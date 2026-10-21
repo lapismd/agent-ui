@@ -1,0 +1,17 @@
+node_modules/
+**/dist/
+storybook-static/
+spec/book/
+.svelte-kit/
+coverage/
+playwright-report/
+test-results/
+.local/
+*.tgz
+.cache/
+.env.storybook.local
+*.local-check.txt
+.local-check.txt
+debug-storybook.log
+
+.local-*.txt

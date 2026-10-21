@@ -1,0 +1,203 @@
+import {
+  TranscriptController,
+  type TranscriptSubmission,
+} from "@lapismd/design-core/chat";
+import type {
+  AgentAction,
+  AgentOutcome,
+  AgentPort,
+  AgentScreen,
+  AgentSnapshot,
+} from "./models.js";
+/** Host-owned presentation state. The adapter acknowledges every application effect. */
+export class AgentUiController {
+  snapshot = $state<AgentSnapshot>();
+  screen = $state<AgentScreen>("chat");
+  sessionId = $state("");
+  view = $state<"document" | "classic">("document");
+  loading = $state(false);
+  pending = $state<AgentAction>();
+  error = $state("");
+  notice = $state("");
+  actionBusy = $state(false);
+  query = $state("");
+  selectedImport = $state("");
+  importPaused = $state(false);
+  selectedAgent = $state("");
+  inspector = $state("");
+  attachments = $state<string[]>([]);
+  recipients = $state<string[]>([]);
+  drafts = $state<Record<string, string>>({});
+  readonly transcript: TranscriptController;
+  #closed = false;
+  #epoch = 0;
+  #abort?: AbortController;
+  #unsubscribe?: () => void;
+  #running?: Promise<unknown>;
+  constructor(
+    readonly port: AgentPort,
+    initial?: AgentSnapshot,
+  ) {
+    this.snapshot = initial;
+    this.sessionId = initial?.sessions[0]?.id ?? "";
+    this.selectedAgent = initial?.agents[0]?.id ?? "";
+    this.transcript = new TranscriptController(() => ({
+      items: this.items,
+      canComment: !this.loading,
+      author: { id: "you", name: "You" },
+      onSend: (submission) => this.send(submission),
+    }));
+    this.#unsubscribe = port.subscribe?.((value) => {
+      if (!this.#closed) this.snapshot = value;
+    });
+  }
+  get session() {
+    return this.snapshot?.sessions.find((s) => s.id === this.sessionId);
+  }
+  get items() {
+    return this.session?.items ?? [];
+  }
+  get busy() {
+    return this.snapshot?.busy ?? false;
+  }
+  can(kind: string) {
+    return (
+      !this.#closed &&
+      !this.actionBusy &&
+      !this.pending &&
+      !!this.snapshot?.capabilities.includes(kind)
+    );
+  }
+  async refresh() {
+    if (this.#closed) return;
+    const epoch = ++this.#epoch;
+    this.#abort?.abort();
+    const abort = (this.#abort = new AbortController());
+    this.loading = true;
+    try {
+      const value = await this.port.read(abort.signal);
+      if (this.#closed || epoch !== this.#epoch) return;
+      this.snapshot = value;
+      if (!this.sessionId) this.sessionId = value.sessions[0]?.id ?? "";
+      this.error = "";
+    } catch (cause) {
+      if (!abort.signal.aborted && epoch === this.#epoch) this.fail(cause);
+    } finally {
+      if (!this.#closed && epoch === this.#epoch) this.loading = false;
+    }
+  }
+  selectSession(id: string) {
+    if (this.#closed || this.pending || this.transcript.sending) return;
+    this.drafts[this.sessionId] = this.transcript.message;
+    this.sessionId = id;
+    this.transcript.message = this.drafts[id] ?? "";
+    this.screen = "chat";
+  }
+  async send(submission: TranscriptSubmission) {
+    if (!this.can("send"))
+      return {
+        publication: "refused" as const,
+        error: "Sending is unavailable; your draft is retained.",
+      };
+    const request: AgentAction = {
+      id: submission.id,
+      kind: "send",
+      session: this.sessionId,
+      submission,
+      attachments: [...this.attachments],
+      recipients: [...this.recipients],
+    };
+    const outcome = await this.execute(request);
+    if (outcome?.status === "acknowledged") {
+      this.attachments = [];
+      return { publication: "queued" as const, batchId: submission.id };
+    }
+    return {
+      publication:
+        outcome?.status === "refused"
+          ? ("refused" as const)
+          : ("unknown" as const),
+      error:
+        outcome?.status === "refused"
+          ? outcome.reason
+          : "Outcome unknown. Your original request is retained.",
+    };
+  }
+  action(
+    kind: string,
+    target?: string,
+    values?: Record<string, string | boolean>,
+    agentParticipants?: AgentAction["agentParticipants"],
+  ) {
+    if (!this.can(kind)) return Promise.resolve(undefined);
+    return this.execute({
+      id: crypto.randomUUID(),
+      kind,
+      session: this.sessionId,
+      target,
+      values,
+      agentParticipants,
+    });
+  }
+  private execute(request: AgentAction) {
+    this.actionBusy = true;
+    this.error = "";
+    return (this.#running = (async () => {
+      try {
+        const outcome = await this.port.act(structuredClone(request));
+        if (!this.#closed) this.accept(outcome, request);
+        return outcome;
+      } catch (cause) {
+        if (!this.#closed) {
+          this.pending = request;
+          this.fail(cause);
+        }
+        return undefined;
+      } finally {
+        if (!this.#closed) this.actionBusy = false;
+      }
+    })());
+  }
+  private accept(outcome: AgentOutcome, request: AgentAction) {
+    if (outcome.status === "acknowledged") {
+      this.snapshot = outcome.snapshot;
+      this.pending = undefined;
+      this.notice = "Action acknowledged";
+    } else if (outcome.status === "unknown") {
+      this.pending = request;
+      this.notice =
+        "Outcome unknown. Check the original request before continuing.";
+    } else {
+      this.pending = undefined;
+      this.fail(new Error(outcome.reason));
+    }
+  }
+  async checkStatus() {
+    const request = this.pending;
+    if (!request || this.actionBusy || this.#closed) return;
+    this.actionBusy = true;
+    try {
+      const outcome = await this.port.status(request.id);
+      if (!this.#closed) this.accept(outcome, request);
+    } catch (cause) {
+      if (!this.#closed) this.fail(cause);
+    } finally {
+      if (!this.#closed) this.actionBusy = false;
+    }
+  }
+  private fail(cause: unknown) {
+    const error = cause instanceof Error ? cause : new Error(String(cause));
+    this.error = error.message;
+    this.port.report?.(error);
+  }
+  async close() {
+    if (this.#closed) return;
+    this.#closed = true;
+    this.#epoch++;
+    this.#abort?.abort();
+    this.loading = false;
+    this.#unsubscribe?.();
+    await this.#running;
+    await this.port.close?.();
+  }
+}

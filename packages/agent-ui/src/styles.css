@@ -1,0 +1,6 @@
+/* Original source families also load their own styles when imported directly. */
+@import "./chat/panel.css";
+@import "./sessions/session-shell.css";
+@import "./sessions/session-tabs.css";
+@import "./history/panel.css";
+@import "./catalog/panel.css";

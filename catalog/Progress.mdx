@@ -1,0 +1,20 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Review/Progress" />
+
+# Agent screens — review slice
+
+This catalog contains Chat, History, Catalog, Imports and Recorded transcripts.
+The screens copy Desktop’s original AppShell markup and CSS and use isolated
+in-memory controllers. Inline chat controls are retained; standalone Agents,
+Clients, Models, Compute, Memory and Settings pages have been removed.
+
+Repository and Combined screens are deferred until Agent review is complete.
+The source ledger records the copied files and explicit host bindings. The
+pixel comparison lane checks the session shell, header, footer, list and tool
+inspector against the original Desktop source at three widths in both themes.
+Full-screen visual review remains pending; no screenshot baselines are updated.
+
+Run `pnpm storybook:restart` to replace only this checkout’s catalog, and
+`pnpm storybook:stop` to stop it. Default port: 7490. Downstream apps, services,
+publication and deployment remain behind the user review gate.

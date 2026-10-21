@@ -1,0 +1,2069 @@
+[
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/catalog/AiCatalogPanel.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/catalog/CatalogCommand.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/catalog/CatalogKind.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/catalog/CatalogOwner.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/catalog/CatalogSkill.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/catalog/CatalogTool.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/catalog/CatalogToolbar.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/catalog/icons.ts",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/catalog/interactions.ts",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/catalog/panel.css",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/AiApprovalCard.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/AiChatPanel.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/AiCommandReport.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/AiInventoryResult.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/AiQuestionCard.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/AiQueuedMessages.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/AiRetryTurn.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/AiTranscriptBlock.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/AiTranscriptComposer.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/AiTranscriptEmpty.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/AiTranscriptFooter.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/AiTranscriptLoading.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/AiTranscriptMessageMeta.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/AiTranscriptPanel.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/AiTranscriptSendHint.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/AiTranscriptToolInspector.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/AiTranscriptToolbar.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/ChatAgentOptions.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/ChatAgentPicker.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/ChatAgentSelector.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/ChatApprovalPolicy.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/ChatAttachedFiles.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/ChatComposerActions.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/ChatComposerDrawer.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/ChatComposerOptions.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/ChatContextUsage.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/ChatConversationMenu.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/ChatConversationPicker.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/ChatFileReference.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/ChatInlineReference.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/ChatMentionButton.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/ChatMentionPreference.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/ChatMessageComposer.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/ChatModeMenuItems.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/ChatParticipantDialog.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/ChatPeopleOptions.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/ChatPermissions.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/ChatRecipients.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/ChatScopeFooter.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/ChatViewMenu.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/VaultPathLabel.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/agents/AgentApprovalPolicySelect.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/agents/AgentExecutionModeSelect.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/agents/AgentIdentityFields.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/agents/AgentProviderFields.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/agents/ChatAgentConfiguration.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/agents/ChatAgentHarnessSelect.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/agents/ChatAgentIcon.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/agents/ChatAgentModelSelect.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/agents/avatar-image.ts",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/composer-references.ts",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/inventory.css",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/panel.css",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/requests.css",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/chat/transcript-agent-links.ts",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/history/AiChangesButton.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/history/AiHistoryBlock.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/history/AiHistoryDialogs.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/history/AiHistoryFile.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/history/AiHistoryPanel.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/history/AiHistoryRail.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/history/AiTurnChanges.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/history/HistoryConversation.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/history/HistoryFolder.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/history/HistoryToolbar.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/history/panel.css",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/imports/AiImportFooter.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/imports/AiImportHarness.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/imports/AiImportPanel.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/imports/AiImportProgress.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/imports/AiImportSources.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/imports/ImportedConversation.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/jsonl/AiJsonlLoading.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/jsonl/AiJsonlPanel.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/jsonl/AiJsonlRecords.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/memory/forget-confirmation.ts",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/plugin/ai-plugin.ts",
+    "classification": "retained-host-adapter",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/plugin/register-commands.ts",
+    "classification": "retained-host-adapter",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/plugin/register-views.ts",
+    "classification": "retained-host-adapter",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/sessions/AiChatSession.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/sessions/AiRecordedTranscript.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/sessions/AiSessionFilters.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/sessions/AiSessionFrame.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/sessions/AiSessionHeader.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/sessions/AiSessionList.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/sessions/AiSessionMenu.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/sessions/AiSessionRow.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/sessions/AiSessionSearch.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/sessions/AiSessionShell.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/sessions/AiSessionTabs.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/sessions/AiSessionThread.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/sessions/AiSessionToggleIcon.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/sessions/CaptureVersionPicker.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/sessions/CapturedSessionBrowser.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/sessions/TranscriptViewToggle.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/sessions/session-resize.svelte.ts",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/sessions/session-shell.css",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/sessions/session-tabs.css",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/AgentClientSummary.svelte",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/AgentClientsField.svelte",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/AgentClientsPage.svelte",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/AgentClientsSettings.svelte",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/AgentProfilesField.svelte",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/AgentProfilesGallery.svelte",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/AgentProfilesSettings.svelte",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/AiComputeField.svelte",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/AiComputeModelMetadata.svelte",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/AiComputeModelPicker.svelte",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/AiComputeModels.svelte",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/AiComputePage.svelte",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/AiComputeSettings.svelte",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/AiComputeSharing.svelte",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/AiModelSettingField.svelte",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/AiSettingsPage.svelte",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/ClientSettingsCard.svelte",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/ClientSettingsEmpty.svelte",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/ClientSettingsFooter.svelte",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/ComputeSettingRow.svelte",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/MemoryFolderField.svelte",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/agent-clients.css",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/agent-profiles.css",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/memory-actions.ts",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/register-ai-settings.ts",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/settings/settings-tabs.css",
+    "classification": "host-owned-settings",
+    "status": "excluded-settings"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/views/AiViewPanel.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/views/ai-view.ts",
+    "classification": "retained-host-adapter",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/views/catalog-view.ts",
+    "classification": "retained-host-adapter",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/views/history-view.ts",
+    "classification": "retained-host-adapter",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/views/import-view.ts",
+    "classification": "retained-host-adapter",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/views/jsonl-view.ts",
+    "classification": "retained-host-adapter",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/views/owned-panel-view.ts",
+    "classification": "retained-host-adapter",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/ai/views/retired-conversation-view.ts",
+    "classification": "retained-host-adapter",
+    "destinationPackage": "@lapismd/agent-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryAuthorAvatar.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryBackupStatus.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryChangedFiles.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryCommitMessage.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryCommitPicker.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryComparisonBar.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryComparisonTime.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryDiff.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryDiffColumn.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryDiffControls.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryFileHistory.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryFileTitle.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryGraph.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryGraphSvg.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryIdentifiers.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryLogHeader.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryOperationArguments.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryOperationColumn.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryOperationFiles.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryOperationMessage.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryOperationOption.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryOperationParentPicker.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryOperationPinPicker.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryOperationRail.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryOperationTarget.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryOperations.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryPanel.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryParentSummary.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryPickerSearch.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryRestoreDialog.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryRevisionActions.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryRevisionFiles.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryRevisionOption.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryRevisionPicker.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryRevisions.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryShell.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositorySkeleton.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositorySourcePicker.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryUpstreamActions.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryWorkingCopyStatus.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/RepositoryWorkspacePicker.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/backup/AdoptionSettings.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/backup/BackupCard.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/backup/BackupField.svelte",
+    "classification": "retained-host-adapter",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/backup/BackupSelect.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/backup/BackupSettings.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/backup/BackupSettingsField.svelte",
+    "classification": "retained-host-adapter",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/backup/ForgeAccounts.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/backup/ForgeAuthorization.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/backup/ForgeIcon.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/backup/PublicationRecovery.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/backup/RemoteSettings.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/backup/RepositorySettingsPage.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/backup/StorageSettings.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/backup/SyncConflictEditor.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/backup/SyncSettings.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/backup/adoption-settings.ts",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/backup/backup-settings.ts",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/backup/forge-icons.ts",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/backup/remote-restore.ts",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/backup/storage-settings.ts",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/blame/RepositoryBlameCommitTitle.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/blame/RepositoryBlameGroup.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/blame/RepositoryBlamePanel.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/blame/RepositoryBlameRows.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/blame/RepositoryBlameView.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/blame/blame-view.ts",
+    "classification": "retained-host-adapter",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/blame/editor-actions.ts",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/conflicts/RepositoryConflictActions.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/conflicts/RepositoryConflictBody.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/conflicts/RepositoryConflictFileTree.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/conflicts/RepositoryConflictPath.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/conflicts/RepositoryConflictResolution.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/conflicts/RepositoryConflictSurface.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/conflicts/RepositoryConflictText.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/conflicts/RepositorySidebarToggleIcon.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/conflicts/repository-conflict-file-tree.css",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/conflicts/repository-conflicts.css",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/file-history-view.ts",
+    "classification": "retained-host-adapter",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/operation-view.ts",
+    "classification": "retained-host-adapter",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/repository-backup.ts",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/repository-column-chrome.css",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/repository-commit-picker.css",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/repository-feedback.ts",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/repository-identifiers.css",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/repository-navigation.ts",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/repository-operation-column.css",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/repository-picker-options.css",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/repository-plugin.ts",
+    "classification": "retained-host-adapter",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/repository-review-identifiers.css",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/repository-status.ts",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/repository-sync.ts",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/repository-tools.ts",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/repository-view.ts",
+    "classification": "retained-host-adapter",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/restore-controller.ts",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "lapis-desktop",
+    "path": "src/components/repository/search/search-provider.ts",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackBookmarkActions.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackBookmarkCard.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackBookmarkHeader.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackCommitActions.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackCommitComposer.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackConflictVersionPicker.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackConflictVersions.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackCopyMenu.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackDiffHunk.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackDropGuide.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackFolderCopy.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackHistorySkeleton.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackLane.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackLaneMenu.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackRelativeActions.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackSourceFiles.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackStagedFiles.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackTargetHistory.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackUnstaged.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspace.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceActions.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceCanvas.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceConflict.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceDetails.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceDetailsActions.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceDetailsColumn.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceDiff.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceForm.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspacePicker.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspacePreview.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceSettings.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceSetup.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceSkeleton.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceSpacer.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceState.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStacksApplicationView.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/StoreStacksNavigation.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/stack-workspace-details.css",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/stack-workspace-drag.css",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/stack-workspace-layout.css",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-stack-workspace/stack-workspace.css",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-forge/StoreForgeBranchStatus.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-forge/StoreForgeButton.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-forge/StoreForgeCheckIcon.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-forge/StoreForgeCheckRow.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-forge/StoreForgeChecks.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-forge/StoreForgeChecksRing.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-forge/StoreForgeCreate.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-forge/StoreForgeDescription.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-forge/StoreForgeDetails.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-forge/StoreForgeIcon.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-forge/StoreForgePanel.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-forge/StoreForgePanelActions.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-forge/StoreForgePullRequest.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-forge/StoreForgePullRequestActions.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-forge/StoreForgeSetup.svelte",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-forge/forge-icons.ts",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-forge/forge-inline.css",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-forge/forge-merge.css",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-forge/menu-layout.ts",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  },
+  {
+    "repository": "jj-store",
+    "path": "web/src/lib/ui/store-forge/store-forge.css",
+    "classification": "shared-presentation-candidate",
+    "destinationPackage": "@lapismd/repository-ui",
+    "status": "mapped"
+  }
+]

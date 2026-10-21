@@ -1,0 +1,179 @@
+{
+  "sources": {
+    "lapis-desktop": "f8f3446e (working-tree file hashes in desktop-layout-sources.json)",
+    "jj-store": "f58b9363",
+    "design-core": "npm 0.6.0"
+  },
+  "license": "Apache-2.0",
+  "upstreamNotices": [
+    "jj-store adaptations of Changeyard drag/drop; see source attribution in original repository",
+    "Lapis Desktop retained Lapis plugins attribution; see copied NOTICE files"
+  ],
+  "copies": [
+    {
+      "source": "web/src/lib/controller/stack-workspace/branches.svelte.ts",
+      "destination": "packages/repository-ui/src/stacks/branches.svelte.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/command-request.ts",
+      "destination": "packages/repository-ui/src/stacks/command-request.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/commit-drafts.svelte.ts",
+      "destination": "packages/repository-ui/src/stacks/commit-drafts.svelte.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/commit-placement.ts",
+      "destination": "packages/repository-ui/src/stacks/commit-placement.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/controller-files.ts",
+      "destination": "packages/repository-ui/src/stacks/controller-files.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/controller-snapshot.ts",
+      "destination": "packages/repository-ui/src/stacks/controller-snapshot.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/controller.svelte.ts",
+      "destination": "packages/repository-ui/src/stacks/controller.svelte.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/details-columns.ts",
+      "destination": "packages/repository-ui/src/stacks/details-columns.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/diff-selection.ts",
+      "destination": "packages/repository-ui/src/stacks/diff-selection.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/drag-session.svelte.ts",
+      "destination": "packages/repository-ui/src/stacks/drag-session.svelte.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/drag.ts",
+      "destination": "packages/repository-ui/src/stacks/drag.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/eligibility.ts",
+      "destination": "packages/repository-ui/src/stacks/eligibility.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/file-drag.ts",
+      "destination": "packages/repository-ui/src/stacks/file-drag.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/files.ts",
+      "destination": "packages/repository-ui/src/stacks/files.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/hunk-context.ts",
+      "destination": "packages/repository-ui/src/stacks/hunk-context.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/lazy-details.svelte.ts",
+      "destination": "packages/repository-ui/src/stacks/lazy-details.svelte.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/physical-observation.svelte.ts",
+      "destination": "packages/repository-ui/src/stacks/physical-observation.svelte.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/presentation.ts",
+      "destination": "packages/repository-ui/src/stacks/presentation.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/read-session.ts",
+      "destination": "packages/repository-ui/src/stacks/read-session.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/retained-diffs.ts",
+      "destination": "packages/repository-ui/src/stacks/retained-diffs.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/selection-actions.ts",
+      "destination": "packages/repository-ui/src/stacks/selection-actions.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/stack-history.svelte.ts",
+      "destination": "packages/repository-ui/src/stacks/stack-history.svelte.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/stack-segments.ts",
+      "destination": "packages/repository-ui/src/stacks/stack-segments.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/target-history.svelte.ts",
+      "destination": "packages/repository-ui/src/stacks/target-history.svelte.ts",
+      "use": "Extracted frontend controller; application models replaced with public presentation contracts."
+    },
+    {
+      "source": "catalog/fixtures/stack-workspace/adapter.ts",
+      "destination": "catalog/support/stacks/adapter.ts",
+      "use": "Isolated in-memory execution; excluded from package exports."
+    },
+    {
+      "source": "catalog/fixtures/stack-workspace/data.ts",
+      "destination": "catalog/support/stacks/data.ts",
+      "use": "Isolated in-memory execution; excluded from package exports."
+    },
+    {
+      "source": "catalog/fixtures/stack-workspace/target-history.ts",
+      "destination": "catalog/support/stacks/target-history.ts",
+      "use": "Isolated in-memory execution; excluded from package exports."
+    },
+    {
+      "source": "catalog/fixtures/stack-workspace/reducer.ts",
+      "destination": "catalog/support/stacks/reducer.ts",
+      "use": "Isolated in-memory execution; excluded from package exports."
+    },
+    {
+      "source": "catalog/fixtures/stack-workspace/menu-reducer.ts",
+      "destination": "catalog/support/stacks/menu-reducer.ts",
+      "use": "Isolated in-memory execution; excluded from package exports."
+    },
+    {
+      "source": "catalog/fixtures/stack-workspace/menu-validation.ts",
+      "destination": "catalog/support/stacks/menu-validation.ts",
+      "use": "Isolated in-memory execution; excluded from package exports."
+    },
+    {
+      "source": "catalog/fixtures/stack-workspace/validation.ts",
+      "destination": "catalog/support/stacks/validation.ts",
+      "use": "Isolated in-memory execution; excluded from package exports."
+    },
+    {
+      "source": "catalog/fixtures/stack-workspace/changes.ts",
+      "destination": "catalog/support/stacks/changes.ts",
+      "use": "Isolated in-memory execution; excluded from package exports."
+    },
+    {
+      "source": "catalog/fixtures/stack-workspace/preview.ts",
+      "destination": "catalog/support/stacks/preview.ts",
+      "use": "Isolated in-memory execution; excluded from package exports."
+    }
+  ]
+}

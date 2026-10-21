@@ -1,0 +1,28 @@
+# Governance
+
+## AUI-GOV-001 — Source ownership
+
+**Requirement.** Production packages MUST consume public Design Core primitives and injected host ports without application-private imports, credentials, native transports or catalog dependencies.
+
+### Acceptance details
+
+- Public types express the boundary.
+- Focused tests and production-component stories verify the behavior.
+
+## AUI-GOV-002 — Complete review
+
+**Requirement.** Storybook MUST demonstrate complete production screens with isolated in-memory adapters and MUST NOT require live services. Consumer migration and publication MUST wait for explicit user review approval.
+
+### Acceptance details
+
+- Public types express the boundary.
+- Focused tests and production-component stories verify the behavior.
+
+## AUI-GOV-003 — Evidence
+
+**Requirement.** Protected changes MUST update their owning contract and verification evidence. Functional and accessibility failures MUST remain explicit; visual baselines MUST NOT change without approval.
+
+### Acceptance details
+
+- Public types express the boundary.
+- Focused tests and production-component stories verify the behavior.

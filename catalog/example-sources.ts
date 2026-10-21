@@ -1,0 +1,4 @@
+export const agentSource =
+  '<script lang="ts">\n  import { AgentWorkbench, AgentUiController, type AgentPort } from "@lapismd/agent-ui";\n  import { onDestroy, untrack } from "svelte";\n  let { port }: { port: AgentPort } = $props();\n  const controller = untrack(() => new AgentUiController(port));\n  void controller.refresh();\n  onDestroy(() => { void controller.close(); });\n</script>\n<div style="height: 100dvh"><AgentWorkbench {controller} /></div>';
+export const repositorySource =
+  '<script lang="ts">\n  import { RepositoryWorkbench, RepositoryController, type RepositoryPort } from "@lapismd/repository-ui";\n  import { onDestroy, untrack } from "svelte";\n  let { port }: { port: RepositoryPort } = $props();\n  const controller = untrack(() => new RepositoryController(port));\n  void controller.refresh();\n  onDestroy(() => { void controller.close(); });\n</script>\n<div style="height: 100dvh"><RepositoryWorkbench {controller} /></div>';

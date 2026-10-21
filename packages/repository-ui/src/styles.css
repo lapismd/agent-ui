@@ -1,0 +1,157 @@
+[data-ui-component="repository-workbench"] {
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  color: var(--foreground);
+  font-family: var(--font-sans, system-ui);
+}
+.rui-screen {
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.rui-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.rui-toolbar h1,
+.rui-toolbar h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+.rui-toolbar .rui-spacer {
+  flex: 1;
+}
+.rui-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 1rem;
+}
+.rui-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem;
+}
+.rui-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  background: var(--card);
+}
+.rui-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem;
+  border-radius: var(--radius);
+  width: 100%;
+  min-width: 0;
+}
+.rui-row[data-selected="true"] {
+  background: var(--accent);
+}
+.rui-row-main {
+  flex: 1;
+  min-width: 0;
+}
+.rui-muted {
+  color: var(--muted-foreground);
+  font-size: 0.8rem;
+}
+.rui-mono {
+  font-family: var(--font-mono, monospace);
+  overflow-wrap: anywhere;
+}
+.rui-actions {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.rui-field {
+  display: grid;
+  gap: 0.35rem;
+  margin-block: 0.8rem;
+}
+.rui-field select,
+.rui-field textarea,
+.rui-select {
+  font: inherit;
+  color: var(--foreground);
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.45rem;
+  max-width: 100%;
+}
+.rui-two-pane {
+  display: grid;
+  grid-template-columns: minmax(12rem, 28%) minmax(0, 1fr);
+  flex: 1;
+  min-height: 0;
+}
+.rui-pane {
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  border-right: 1px solid var(--border);
+}
+.rui-status {
+  padding: 0.4rem 1rem;
+  font-size: 0.8rem;
+  min-height: 2rem;
+  border-top: 1px solid var(--border);
+}
+.rui-empty {
+  padding: 3rem;
+  text-align: center;
+  color: var(--muted-foreground);
+}
+.rui-dialog {
+  max-width: 35rem;
+}
+.rui-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.rui-nav button {
+  justify-content: flex-start;
+}
+.rui-float {
+  position: fixed;
+  inset: 6rem 4vw 3rem 28vw;
+  z-index: 40;
+  box-shadow: 0 12px 48px #0004;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+@media (max-width: 640px) {
+  .rui-two-pane {
+    grid-template-columns: minmax(8rem, 35%) minmax(0, 1fr);
+  }
+  .rui-float {
+    inset: 1rem;
+  }
+}
+
+.rui-notice {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  max-width: min(26rem, 90vw);
+  padding: 1rem;
+  z-index: 100;
+  background: var(--background);
+  border: 1px solid var(--destructive);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 30px #0003;
+}
