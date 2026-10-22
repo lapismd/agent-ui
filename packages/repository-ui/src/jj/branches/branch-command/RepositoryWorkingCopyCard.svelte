@@ -46,10 +46,12 @@
       size="xs"
     />
     <span>workspace</span><span class="repository-bookmark-card__author"
-      ><RelativeTime
-        timestamp={copy.createdAt * 1000}
-        now={now === undefined ? undefined : now * 1000}
-      />{" by "}{copy.author}</span
+      ><span class="repository-bookmark-card__time"
+        ><RelativeTime
+          timestamp={copy.createdAt * 1000}
+          now={now === undefined ? undefined : now * 1000}
+        />{" by "}</span
+      >{copy.author}</span
     >
   </span>
 </div>
@@ -57,6 +59,7 @@
 <style>
   .repository-working-copy-card {
     position: relative;
+    container: repository-branch-row / inline-size;
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -71,23 +74,6 @@
     text-align: start;
     cursor: pointer;
   }
-  .repository-working-copy-card[data-current="true"] {
-    background: var(
-      --ui-repository-branch-selected-background,
-      color-mix(in srgb, var(--foreground) 12%, var(--background))
-    );
-  }
-  .repository-working-copy-card:hover,
-  .repository-working-copy-card:focus-within {
-    background: var(
-      --ui-repository-branch-hover-background,
-      color-mix(in srgb, var(--foreground) 7%, var(--background))
-    );
-  }
-  .repository-working-copy-card:focus-within {
-    outline: 2px solid var(--ring);
-    outline-offset: -2px;
-  }
   .repository-working-copy-card__description {
     color: var(--muted-foreground);
     font-size: var(--ui-repository-branch-body-font-size, 0.875rem);
@@ -98,7 +84,7 @@
   }
   .repository-bookmark-card__heading {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     gap: 0.5rem;
     min-width: 0;
@@ -111,7 +97,7 @@
   }
   .repository-bookmark-card__footer {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     gap: 0.4rem;
     padding-top: 0.5rem;

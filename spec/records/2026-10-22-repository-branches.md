@@ -107,3 +107,42 @@ original-source lane is repaired.
   architecture, all 226 destination fingerprints, the eight-source/four-layout
   Branches comparison and all three spec lanes pass. Changed-file formatting
   passes. No required targeted failure remains open.
+
+## Branch row review: selection and available width
+
+The user's follow-up requests share the bookmark row's primary left-edge marker
+with working copies, make all cards fill their row, and truncate long branch
+names while compacting optional metadata. The source-faithful command selector
+had lost the specificity needed for this custom card composition, allowing
+Command View's ordinary grid to place the entire card body in a content-sized
+track. Restoring that selector and stretching its cell fixes the row boundary.
+Working copies now share the marker/selected/hover rules; their separate enclosing
+focus border is removed. Full names remain available through titles. Row-sized
+container queries hide relative time and optional heading badges below 20rem;
+workspace identities and conflict/deletion status remain present.
+
+Focused regression:
+`pnpm exec playwright test --config .local/live-chat.config.ts tests/repository-branches.pw.ts -g 'working copies share'`.
+The original target failed 1/1 because working copies had no selection marker.
+The repaired target checks a 3px primary marker, full cell width, ellipsis and no
+horizontal overflow, plus compact/restored metadata at the 300/640px column
+bounds. Colour checks compare actual painted primary within each theme state,
+avoiding an asynchronous Storybook theme-switch mismatch. The resize probe uses
+the primitive's supported Shift+Arrow keys; draft Home/End and an insufficient
+step count were corrected without changing production resize behavior.
+
+- Branch Command and complete Branches stories: 17/17 light and 17/17 dark pass.
+- A draft unclosed span caused two story import failures and 11 type diagnostics;
+  corrected source passes with zero errors/warnings and no suppressions.
+- Public Repository UI build/publint and architecture/file budgets pass.
+- Source comparison passes eight fingerprints/four layouts; all 226 destination
+  fingerprints pass with explicit selection/width adaptations in the ledger.
+- All three spec lanes pass after updating the mapped governance chapter.
+- Final cold regression and formatting results are recorded below. Broader
+  suites and visual baselines remain deferred until final review.
+
+Final cold target:
+`pnpm exec playwright test --config tests/catalog-browser.config.ts tests/repository-branches.pw.ts -g 'working copies share'`:
+1/1 passed (30.7s including fresh server startup). Changed-file formatting passes.
+The compact working-copy/long-name preview is saved at
+`.local/branch-rows-review.png`. Review remains pending before Workspace.

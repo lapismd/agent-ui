@@ -144,3 +144,102 @@ test("new family documentation loads the real bounded production preview", async
     ).toContainText("--ui-");
   }
 });
+
+test("working copies share the branch selection marker and full-width responsive cards", async ({
+  page,
+}) => {
+  await open(page);
+  const branches = page.getByRole("region", { name: "Branches", exact: true });
+  const bookmark = branches.locator(
+    '.repository-bookmark-card[data-current="true"]',
+  );
+  const indicator = await bookmark.evaluate((node) => {
+    const style = getComputedStyle(node, "::before");
+    const canvas = document.createElement("canvas"),
+      context = canvas.getContext("2d")!;
+    context.fillStyle = style.backgroundColor;
+    context.fillRect(0, 0, 1, 1);
+    const color = Array.from(context.getImageData(0, 0, 1, 1).data);
+    context.fillStyle = getComputedStyle(node).getPropertyValue("--primary");
+    context.fillRect(0, 0, 1, 1);
+    return {
+      content: style.content,
+      width: style.width,
+      color,
+      primary: Array.from(context.getImageData(0, 0, 1, 1).data),
+    };
+  });
+  expect(indicator.color).toEqual(indicator.primary);
+  await branches
+    .getByRole("button", {
+      name: "Working copy review Review the source-adapted branch cards",
+      exact: true,
+    })
+    .click();
+  const selected = branches.locator(
+    '.repository-working-copy-card[data-current="true"]',
+  );
+  await expect(selected).toHaveCount(1);
+  const workingIndicator = await selected.evaluate((node) => {
+    const style = getComputedStyle(node, "::before");
+    const canvas = document.createElement("canvas"),
+      context = canvas.getContext("2d")!;
+    context.fillStyle = style.backgroundColor;
+    context.fillRect(0, 0, 1, 1);
+    const color = Array.from(context.getImageData(0, 0, 1, 1).data);
+    context.fillStyle = getComputedStyle(node).getPropertyValue("--primary");
+    context.fillRect(0, 0, 1, 1);
+    return {
+      content: style.content,
+      width: style.width,
+      color,
+      primary: Array.from(context.getImageData(0, 0, 1, 1).data),
+    };
+  });
+  expect(workingIndicator.color).toEqual(workingIndicator.primary);
+  expect(workingIndicator.content).toBe(indicator.content);
+  expect(workingIndicator.width).toBe(indicator.width);
+  const resize = page.getByRole("separator", {
+    name: "Resize Branches column",
+    exact: true,
+  });
+  await resize.focus();
+  for (let step = 0; step < 12; step++) await resize.press("Shift+ArrowLeft");
+  await expect(resize).toHaveAttribute("aria-valuenow", "300");
+  const cards = branches.locator(".repository-bookmark-card");
+  for (const card of await cards.all()) {
+    const geometry = await card.evaluate((node) => {
+      const cell = node.querySelector<HTMLElement>(
+        ".repository-bookmark-card__cell",
+      )!;
+      const style = getComputedStyle(node),
+        box = node.getBoundingClientRect();
+      return {
+        width: box.width,
+        innerWidth:
+          box.width -
+          parseFloat(style.paddingLeft) -
+          parseFloat(style.paddingRight),
+        cellWidth: cell.getBoundingClientRect().width,
+      };
+    });
+    expect(Math.abs(geometry.cellWidth - geometry.innerWidth)).toBeLessThan(1);
+  }
+  const long = branches.getByRole("row", { name: /review\/long-branch-name/ });
+  await long.scrollIntoViewIfNeeded();
+  const label = long.locator('[data-ui-part="item-label"]');
+  await expect(label).toHaveCSS("text-overflow", "ellipsis");
+  expect(
+    await label.evaluate((node) => node.scrollWidth > node.clientWidth),
+  ).toBe(true);
+  expect(
+    await branches.evaluate((node) => node.scrollWidth <= node.clientWidth),
+  ).toBe(true);
+  await expect(long.locator(".repository-bookmark-card__status")).toBeHidden();
+  await expect(long.locator(".repository-bookmark-card__time")).toBeHidden();
+  await resize.focus();
+  for (let step = 0; step < 12; step++) await resize.press("Shift+ArrowRight");
+  await expect(resize).toHaveAttribute("aria-valuenow", "640");
+  await expect(long.locator(".repository-bookmark-card__status")).toBeVisible();
+  await expect(long.locator(".repository-bookmark-card__time")).toBeVisible();
+});

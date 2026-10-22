@@ -189,3 +189,8 @@ canvas state. Conflicted/deleted and local/remote references retain their exact
 targets. Targeted evidence is in
 `spec/records/2026-10-22-repository-branches.md`. Stop for visual review before
 Workspace; broader qualification and downstream adoption remain deferred.
+
+Branches review follow-up shares the primary left-edge selection marker with
+working copies, restores full-width command cards, truncates long names and
+compacts optional badges/time metadata as columns narrow. Targeted evidence is
+appended to the Branches record; review remains pending before Workspace.

@@ -88,7 +88,12 @@ The independently resizable three-column canvas reuses existing graph, changed
 files and single/all-file diff components, with keyboard controls and trailing
 resize space. Host actions and persisted canvas state remain injectable; UI
 mount only subscribes and never mutates repositories. Selection controls keep
-author popovers and host actions independently accessible.
+author popovers and host actions independently accessible. Selected working
+copies MUST use the same primary left-edge marker and semantic row surface as
+bookmarks. Branch cards and their content MUST fill the available column width;
+long names MUST truncate with the complete name retained in a title. As columns
+shrink, optional heading badges and relative timestamps MAY hide while author,
+workspace identity and conflicted/deleted status remain available.
 
 ### Acceptance details
 

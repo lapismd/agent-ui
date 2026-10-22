@@ -103,9 +103,12 @@
     <div role="gridcell" class="repository-bookmark-card__cell">
       <span class="repository-bookmark-card__heading"
         ><GitBranchIcon aria-hidden="true" /><CommandView.ItemLabel
+          title={bookmarkLabel(bookmark)}
           >{bookmarkLabel(bookmark)}</CommandView.ItemLabel
         >
-        {#if bookmark.workspace}<Badge variant="secondary"
+        {#if bookmark.workspace}<Badge
+            variant="secondary"
+            class="repository-bookmark-card__status"
             >{bookmark.partiallyApplied
               ? "Partially applied"
               : "Workspace"}</Badge
@@ -130,10 +133,12 @@
         />
         <span>{bookmark.remote ?? "local"}</span><span
           class="repository-bookmark-card__author"
-          >{#if bookmark.updatedAt}<RelativeTime
-              timestamp={bookmark.updatedAt * 1000}
-              now={now === undefined ? undefined : now * 1000}
-            />{" by "}
+          >{#if bookmark.updatedAt}<span class="repository-bookmark-card__time"
+              ><RelativeTime
+                timestamp={bookmark.updatedAt * 1000}
+                now={now === undefined ? undefined : now * 1000}
+              />{" by "}</span
+            >
           {/if}{bookmark.author ?? "Unknown author"}</span
         >
       </span>

@@ -61,6 +61,12 @@ Injected branch and column actions.
 
 Command View owns search and arrow/Enter navigation. All, Workspace and Conflicted filters affect loaded cards only. The host supplies bounded continuation; filtering never changes the captured operation. Avatar and custom action activation stay separate from reference selection. Missing descriptions and deleted/multiple targets remain explicit. Working-copy cards retain their workspace identity.
 
+Working-copy selections share the bookmark rows' primary left-edge marker and
+semantic selected/hover surfaces. Every card fills its column; long branch names
+truncate with a full-name title. Within cards narrower than 20rem, relative
+timestamps and optional heading badges hide to leave room for the name and
+author. Workspace identities and conflicted/deleted labels remain available.
+
 ## Styling variables
 
 Source-faithful defaults use semantic theme colours. Keep custom sizes on a bounded host surface.

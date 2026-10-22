@@ -26,8 +26,12 @@
   border-bottom: 1px solid var(--border);
 }
 
-.repository-bookmark-cards .repository-bookmark-card {
+.repository-bookmark-cards
+  [data-ui-component="command-view"][data-ui-part="item"].repository-bookmark-card {
   position: relative;
+  container: repository-branch-row / inline-size;
+  width: 100%;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -39,14 +43,19 @@
   background: var(--ui-repository-branch-background, var(--card));
 }
 
-.repository-bookmark-card[data-current="true"] {
+.repository-bookmark-cards
+  [data-ui-part="item"].repository-bookmark-card[data-current="true"],
+.repository-bookmark-cards .repository-working-copy-card[data-current="true"] {
   background: var(
     --ui-repository-branch-selected-background,
     color-mix(in srgb, var(--foreground) 12%, var(--background))
   );
 }
 
-.repository-bookmark-cards .repository-bookmark-card:is(:hover, :focus-within),
+.repository-bookmark-cards
+  [data-ui-part="item"].repository-bookmark-card:is(:hover, :focus-within),
+.repository-bookmark-cards
+  .repository-working-copy-card:is(:hover, :focus-within),
 .repository-bookmark-cards:has(input:focus-visible)
   .repository-bookmark-card:has([data-selected]) {
   background: var(
@@ -55,7 +64,8 @@
   );
 }
 
-.repository-bookmark-card[data-current="true"]::before {
+.repository-bookmark-card[data-current="true"]::before,
+.repository-working-copy-card[data-current="true"]::before {
   content: "";
   position: absolute;
   inset-block: 1rem;
@@ -81,11 +91,13 @@
   min-width: 0;
   font-size: var(--ui-repository-branch-body-font-size, 0.875rem);
   font-weight: 650;
-  overflow-wrap: anywhere;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .repository-bookmark-card__footer {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 0.4rem;
   padding-top: 0.5rem;
@@ -95,6 +107,12 @@
 }
 .repository-bookmark-card__author {
   margin-inline-start: auto;
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: end;
 }
 
 .repository-bookmark-card__actions {
@@ -104,6 +122,8 @@
 }
 
 .repository-bookmark-card__cell {
+  width: 100%;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -112,4 +132,11 @@
   border-radius: 0;
   white-space: normal;
   background: transparent;
+}
+
+@container repository-branch-row (max-width: 20rem) {
+  .repository-bookmark-card__time,
+  .repository-bookmark-card__status {
+    display: none;
+  }
 }
