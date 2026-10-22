@@ -377,19 +377,19 @@
         {
           "before": "../../../lib/ai/chat/panel/attachments.svelte.ts",
           "after": "./presentation.js"
+        },
+        {
+          "description": "User-authorized 2026-10-22: replace the generic filename glyph with public Design Core FileTypeIcon, using the exact host path and original icon size. Geometry and actions are retained; artwork is an intentional visual change pending review."
         }
       ],
-      "destinationSha256": "b8bcfb4520cf111b76d7230dc828b38b699bc8f0b6b394cdf552f8902fb14c30",
+      "destinationSha256": "2e1bb901a28b29f92acd7809fbf0478f9ea8fc69a7ac8b43805b635e58b69511",
       "layoutAdaptations": [
         {
-          "before": "              <FileIcon aria-hidden=\"true\" /><span>{file.name}</span>\n            </button>\n          {/snippet}\n        </Tooltip.Trigger>\n        <Tooltip.Content>{file.path}</Tooltip.Content>\n      </Tooltip.Root>\n      <button\n        type=\"button\"\n        class=\"remove\"\n        data-ui-part=\"attachment-remove\"\n        aria-label={`Remove ${file.name}`}\n        onclick={() => attachmentsState.removeAttachment(file.path)}\n      >\n        <XIcon aria-hidden=\"true\" />\n      </button>\n    </Badge>\n  {/each}\n</Tooltip.Provider>\n\n<style>\n  .file-chip {\n    display: inline-flex;\n    max-width: 100%;\n    gap: 0.25rem;\n    padding: 0.25rem;\n    border: 1px solid var(--ui-ai-chat-attachment-border);\n    border-radius: var(--ui-ai-chat-attachment-radius);\n    background: var(--ui-ai-chat-attachment-background);\n    color: var(--ui-ai-chat-attachment-foreground);\n    font-size: 0.75rem;\n    line-height: 1rem;\n  }\n  .file-chip:hover {\n    background: var(--ui-ai-chat-attachment-background-hover);\n  }\n  .file-label,\n  .remove {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    gap: 0.25rem;\n    min-width: 0;\n    border: 0;\n    border-radius: 0.25rem;\n    background: transparent;\n    color: inherit;\n    padding: 0;\n    font: inherit;\n    cursor: pointer;\n  }\n  .file-label {\n    padding-inline-start: 0.25rem;\n  }\n  .file-label span {\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n  }\n  .remove {\n    flex: 0 0 1rem;\n    width: 1rem;\n    height: 1rem;\n  }\n  .remove:hover,\n  .remove:focus-visible {\n    background: var(--ui-ai-chat-attachment-remove-hover);\n  }\n  .file-label:focus-visible,\n  .remove:focus-visible {\n    outline: 2px solid var(--ring);\n    outline-offset: 2px;\n  }\n  .file-label :global(svg),\n",
-          "after": "              <FileTypeIcon path={file.path} size=\"xs\" /><span class=\"file-name\"\n                >{file.name}</span\n              >\n            </button>\n          {/snippet}\n        </Tooltip.Trigger>\n        <Tooltip.Content>{file.path}</Tooltip.Content>\n      </Tooltip.Root>\n      <button\n        type=\"button\"\n        class=\"remove\"\n        data-ui-part=\"attachment-remove\"\n        aria-label={`Remove ${file.name}`}\n        onclick={() => attachmentsState.removeAttachment(file.path)}\n      >\n        <XIcon aria-hidden=\"true\" />\n      </button>\n    </Badge>\n  {/each}\n</Tooltip.Provider>\n\n<style>\n  .file-chip {\n    display: inline-flex;\n    max-width: 100%;\n    gap: 0.25rem;\n    padding: 0.25rem;\n    border: 1px solid var(--ui-ai-chat-attachment-border);\n    border-radius: var(--ui-ai-chat-attachment-radius);\n    background: var(--ui-ai-chat-attachment-background);\n    color: var(--ui-ai-chat-attachment-foreground);\n    font-size: 0.75rem;\n    line-height: 1rem;\n  }\n  .file-chip:hover {\n    background: var(--ui-ai-chat-attachment-background-hover);\n  }\n  .file-label,\n  .remove {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    gap: 0.25rem;\n    min-width: 0;\n    border: 0;\n    border-radius: 0.25rem;\n    background: transparent;\n    color: inherit;\n    padding: 0;\n    font: inherit;\n    cursor: pointer;\n  }\n  .file-label {\n    padding-inline-start: 0.25rem;\n  }\n  .file-name {\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n  }\n  .remove {\n    flex: 0 0 1rem;\n    width: 1rem;\n    height: 1rem;\n  }\n  .remove:hover,\n  .remove:focus-visible {\n    background: var(--ui-ai-chat-attachment-remove-hover);\n  }\n  .file-label:focus-visible,\n  .remove:focus-visible {\n    outline: 2px solid var(--ring);\n    outline-offset: 2px;\n  }\n"
+          "before": "<FileIcon aria-hidden=\"true\" />",
+          "after": "<FileTypeIcon path={file.path} size=\"xs\" />"
         }
       ],
-      "layoutSha256": "6aa75f0c12c00fb4d146eb8d0321ae398f729f25b6ce247487b332f2b4032bee",
-      "reviewNotes": [
-        "File icon review: replaced generic filename glyphs with the public Design Core FileTypeIcon, preserving exact paths, decorative semantics and original slot sizes. See spec/records/2026-10-22-file-type-icons.md."
-      ]
+      "layoutSha256": "600a40a156dbcf9c12c717131f02cbec9a1142c22c1fab4e49aaca8edd09b5a8"
     },
     {
       "sourceRepository": "lapis-desktop",
@@ -520,19 +520,19 @@
         {
           "before": "../../../lib/ai/chat/panel/props.ts",
           "after": "./presentation.js"
+        },
+        {
+          "description": "User-authorized 2026-10-22: replace the generic filename glyph with public Design Core FileTypeIcon, using the exact host path and original icon size. Geometry and actions are retained; artwork is an intentional visual change pending review."
         }
       ],
-      "destinationSha256": "ef035a4ef637e1941fb3b7687ff717640d01762773eabe17f5567bffdb654bd7",
+      "destinationSha256": "24ff287515c182ba94fa501d216648c156d223c452a5088deda980622c1d67a3",
       "layoutAdaptations": [
         {
-          "before": "                        ><FileIcon aria-hidden=\"true\" /></CommandView.ItemIcon\n",
-          "after": "                        ><FileTypeIcon\n                          path={item.id}\n                          size=\"s\"\n                        /></CommandView.ItemIcon\n"
+          "before": "<FileIcon aria-hidden=\"true\" />",
+          "after": "<FileTypeIcon path={item.id} size=\"md\" />"
         }
       ],
-      "layoutSha256": "5a5998d235786a4a1dbbf7da26e2d3c14b4d1e7a69be080c092fca6477fafac1",
-      "reviewNotes": [
-        "File icon review: replaced generic filename glyphs with the public Design Core FileTypeIcon, preserving exact paths, decorative semantics and original slot sizes. See spec/records/2026-10-22-file-type-icons.md."
-      ]
+      "layoutSha256": "f179dc26b7c26f6585cdb64e1ed1d1efa20d394a14652879033b9fab637f5a53"
     },
     {
       "sourceRepository": "lapis-desktop",
@@ -1070,18 +1070,19 @@
       "source": "src/components/ai/catalog/CatalogSkill.svelte",
       "destination": "packages/agent-ui/src/catalog/catalog-skill/CatalogSkill.svelte",
       "sourceSha256": "7d0430cb0924aba28cd1529c5e78a0d9c072003f1a3b55465b4b6b61e2a4e8d9",
-      "adaptations": [],
-      "destinationSha256": "08dc2319ab38c446d48ec5d53093028f576cbcbd6fdc005066724aa2e2678c94",
-      "layoutAdaptations": [
+      "adaptations": [
         {
-          "before": "        <FileTextIcon class=\"ai-catalog__icon\" aria-hidden=\"true\" />\n",
-          "after": "        <FileTypeIcon path={skill.path} class=\"ai-catalog__icon\" />\n"
+          "description": "Resolve local skill filename artwork with the public Design Core FileTypeIcon; preserve the original 16px slot, bundled package icon and explicit host open path."
         }
       ],
-      "layoutSha256": "cdccd62952ee83714c2332d23a7c50049c128454843e1066d0508f722613a624",
-      "reviewNotes": [
-        "File icon review: replaced generic filename glyphs with the public Design Core FileTypeIcon, preserving exact paths, decorative semantics and original slot sizes. See spec/records/2026-10-22-file-type-icons.md."
-      ]
+      "destinationSha256": "9ea660dabc586a224ede0c24d0a4d97dd910cb08fec0c4c63be347ca74b78ea9",
+      "layoutAdaptations": [
+        {
+          "before": "<FileTextIcon class=\"ai-catalog__icon\" aria-hidden=\"true\" />",
+          "after": "<FileTypeIcon path={skill.path} size=\"md\" class=\"ai-catalog__icon\" />"
+        }
+      ],
+      "layoutSha256": "476c6d7855479b7628466204aba30574ff174d3d20ae3492c4b07e900fc47f6b"
     },
     {
       "sourceRepository": "lapis-desktop",
@@ -1431,9 +1432,12 @@
       "adaptations": [
         {
           "description": "Explicit host ports and normalized capture replace App/native authority; original presentation retained. Read failures and async lifetime are guarded."
+        },
+        {
+          "description": "User-authorized 2026-10-22: replace the generic filename glyph with public Design Core FileTypeIcon, using the exact host path and original icon size. Geometry and actions are retained; artwork is an intentional visual change pending review."
         }
       ],
-      "destinationSha256": "44b06f9db8d9476e1b496fb372c290e967000bcaee466ca5ebdcd824fa40ae64",
+      "destinationSha256": "73a3f7f3662d330f47b793b018179f22362df7820c7fde4224e271602ab27d44",
       "layoutAdaptations": [
         {
           "before": "aria-label=\"Select file for undo\"",
@@ -1444,14 +1448,11 @@
           "after": "{#if inspection.fileUnavailable}<p>\n          Saved file unavailable. <Button\n            variant=\"ghost\"\n            size=\"sm\"\n            onclick={() =>\n              inspection.path && void inspection.select(inspection.path)}\n            >Retry saved file</Button\n          >\n        </p>\n      {:else if !inspection.diff}<p role=\"status\">Loading saved file…</p>\n      "
         },
         {
-          "before": "      <FileIcon /><strong title={inspection.path}>{inspection.path}</strong>\n    </div>\n    <Toggle\n      pressed={inspection.selected.includes(inspection.path ?? \"\")}\n      aria-label=\"Select for undo\"\n      disabled={busy}\n      onPressedChange={toggleSelected}>Select for undo</Toggle\n    >\n    <Button\n      variant=\"ghost\"\n      size=\"icon-sm\"\n      aria-label=\"Undo file\"\n      disabled={busy || inspection.undoBusy}\n      onclick={() =>\n        inspection.record &&\n        inspection.path &&\n        void inspection.previewUndo(inspection.record, [inspection.path])}\n      ><UndoIcon /></Button\n    >\n    <Button\n      variant=\"ghost\"\n      size=\"icon-sm\"\n      aria-label=\"Close saved file\"\n      onclick={() => inspection.closeFile()}><XIcon /></Button\n    >\n  </header>\n  <AiSessionTabs\n    value={view}\n    sections={[\n      { value: \"diff\", label: \"Diff\" },\n      { value: \"before\", label: \"Before\" },\n      { value: \"after\", label: \"After\" },\n    ]}\n    label=\"File presentation\"\n    onSelect={(next) => (view = next)}\n  />\n  <ScrollArea class=\"history-file-scroll\">\n    <div class=\"file-content\">\n      {#if inspection.fileUnavailable}<p>\n          Saved file unavailable. <Button\n            variant=\"ghost\"\n            size=\"sm\"\n            onclick={() =>\n              inspection.path && void inspection.select(inspection.path)}\n            >Retry saved file</Button\n          >\n        </p>\n      {:else if !inspection.diff}<p role=\"status\">Loading saved file…</p>\n      {:else if view === \"diff\"}<RepositoryDiff change={inspection.diff} wrap />\n      {:else if text !== undefined}\n        {#if /\\.(md|mdx|markdown)$/iu.test(inspection.path ?? \"\")}<MarkdownContent\n            content={text}\n            fullWidth\n          />\n        {:else}<CodeBlock\n            code={text}\n            language={inspection.path?.split(\".\").at(-1)}\n            width=\"100%\"\n            hasLineNumbers\n          />{/if}\n      {:else}<p>Text preview is unavailable for this file.</p>{/if}\n    </div>\n  </ScrollArea>\n</section>\n\n<style>\n  .history-file {\n    display: flex;\n    flex-direction: column;\n    height: var(--ai-session-body-height, 100%);\n    min-width: 0;\n    min-height: 0;\n    background: var(--background);\n  }\n  header {\n    display: flex;\n    align-items: center;\n    flex: none;\n    gap: 0.375rem;\n    padding: 0.5rem;\n  }\n  .file-title {\n    display: flex;\n    align-items: center;\n    gap: 0.5rem;\n    flex: 1;\n    min-width: 0;\n  }\n  .file-title :global(svg) {\n    width: 1rem;\n    height: 1rem;\n    flex: none;\n",
-          "after": "      {#if inspection.path}<FileTypeIcon path={inspection.path} />{/if}<strong\n        title={inspection.path}>{inspection.path}</strong\n      >\n    </div>\n    <Toggle\n      pressed={inspection.selected.includes(inspection.path ?? \"\")}\n      aria-label=\"Select for undo\"\n      disabled={busy}\n      onPressedChange={toggleSelected}>Select for undo</Toggle\n    >\n    <Button\n      variant=\"ghost\"\n      size=\"icon-sm\"\n      aria-label=\"Undo file\"\n      disabled={busy || inspection.undoBusy}\n      onclick={() =>\n        inspection.record &&\n        inspection.path &&\n        void inspection.previewUndo(inspection.record, [inspection.path])}\n      ><UndoIcon /></Button\n    >\n    <Button\n      variant=\"ghost\"\n      size=\"icon-sm\"\n      aria-label=\"Close saved file\"\n      onclick={() => inspection.closeFile()}><XIcon /></Button\n    >\n  </header>\n  <AiSessionTabs\n    value={view}\n    sections={[\n      { value: \"diff\", label: \"Diff\" },\n      { value: \"before\", label: \"Before\" },\n      { value: \"after\", label: \"After\" },\n    ]}\n    label=\"File presentation\"\n    onSelect={(next) => (view = next)}\n  />\n  <ScrollArea class=\"history-file-scroll\">\n    <div class=\"file-content\">\n      {#if inspection.fileUnavailable}<p>\n          Saved file unavailable. <Button\n            variant=\"ghost\"\n            size=\"sm\"\n            onclick={() =>\n              inspection.path && void inspection.select(inspection.path)}\n            >Retry saved file</Button\n          >\n        </p>\n      {:else if !inspection.diff}<p role=\"status\">Loading saved file…</p>\n      {:else if view === \"diff\"}<RepositoryDiff change={inspection.diff} wrap />\n      {:else if text !== undefined}\n        {#if /\\.(md|mdx|markdown)$/iu.test(inspection.path ?? \"\")}<MarkdownContent\n            content={text}\n            fullWidth\n          />\n        {:else}<CodeBlock\n            code={text}\n            language={inspection.path?.split(\".\").at(-1)}\n            width=\"100%\"\n            hasLineNumbers\n          />{/if}\n      {:else}<p>Text preview is unavailable for this file.</p>{/if}\n    </div>\n  </ScrollArea>\n</section>\n\n<style>\n  .history-file {\n    display: flex;\n    flex-direction: column;\n    height: var(--ai-session-body-height, 100%);\n    min-width: 0;\n    min-height: 0;\n    background: var(--background);\n  }\n  header {\n    display: flex;\n    align-items: center;\n    flex: none;\n    gap: 0.375rem;\n    padding: 0.5rem;\n  }\n  .file-title {\n    display: flex;\n    align-items: center;\n    gap: 0.5rem;\n    flex: 1;\n    min-width: 0;\n"
+          "before": "<FileIcon />",
+          "after": "<FileTypeIcon path={inspection.path ?? \"\"} size=\"md\" />"
         }
       ],
-      "layoutSha256": "e787c6f72e134063f4b9c935780fc014ac2a2af4d944111173c4bd41fdbe59a8",
-      "reviewNotes": [
-        "File icon review: replaced generic filename glyphs with the public Design Core FileTypeIcon, preserving exact paths, decorative semantics and original slot sizes. See spec/records/2026-10-22-file-type-icons.md."
-      ]
+      "layoutSha256": "a9d1e3ad4ec56cc7e18f39a0ba9f04cc10ed766345595b6d5749a4589581561f"
     },
     {
       "sourceRepository": "lapis-desktop",
@@ -2485,19 +2486,19 @@
         },
         {
           "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        },
+        {
+          "description": "User-authorized 2026-10-22: replace the generic filename glyph with public Design Core FileTypeIcon, using the exact host path and original icon size. Geometry and actions are retained; artwork is an intentional visual change pending review."
         }
       ],
       "layoutAdaptations": [
         {
-          "before": "  {#if path}<FileTextIcon aria-hidden=\"true\" />{/if}\n  <span title={path}>{path ?? \"Diff\"}</span>\n</span>\n\n<style>\n  .repository-review-file-title {\n    display: flex;\n    align-items: center;\n    gap: 0.375rem;\n    min-width: 0;\n  }\n  .repository-review-file-title :global(svg) {\n    flex: none;\n    width: 0.875rem;\n    height: 0.875rem;\n    color: var(--muted-foreground);\n",
-          "after": "  {#if path}<FileTypeIcon {path} size=\"s\" />{/if}\n  <span title={path}>{path ?? \"Diff\"}</span>\n</span>\n\n<style>\n  .repository-review-file-title {\n    display: flex;\n    align-items: center;\n    gap: 0.375rem;\n    min-width: 0;\n"
+          "before": "<FileTextIcon aria-hidden=\"true\" />",
+          "after": "<FileTypeIcon {path} size=\"s\" />"
         }
       ],
-      "destinationSha256": "61f7400eb5d33f2bd4c529d68f4ceb0e47ea64cdd6aad082a6beecb722ce8c32",
-      "layoutSha256": "3f8c1166b3c2b1edbbb37ba70751deec6307a011380d17add11358862be8b642",
-      "reviewNotes": [
-        "File icon review: replaced generic filename glyphs with the public Design Core FileTypeIcon, preserving exact paths, decorative semantics and original slot sizes. See spec/records/2026-10-22-file-type-icons.md."
-      ]
+      "destinationSha256": "02e374671baaf3a38415e04a7d8ab47c09b61c55a8ad70e1200daef05576a1de",
+      "layoutSha256": "144bac84717984ac74291ce8110d0f13af6048eef26a3dca69b188a9e1464f52"
     },
     {
       "sourceRepository": "lapis-desktop",

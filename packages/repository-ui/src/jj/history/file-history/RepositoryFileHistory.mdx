@@ -73,6 +73,8 @@ light/dark controls remain independent in Storybook.
 
 <ArgTypes of={Stories} />
 
+Filename artwork comes from the public Design Core `FileTypeIcon`, resolved from the exact host path. Its `--ui-file-type-icon-size` override and `--ui-file-type-icon-size-xs`, `-s`, `-md` and `-lg` presets belong to Design Core; inherited defaults retain the original icon slots. See [File type icon](https://lapismd.github.io/design-core/?path=/docs/shadcn-data-file-type-icon--docs) for the complete styling contract.
+
 ## Composition
 
 Complete screens compose this same implementation. Small controls use a padded, bounded standalone preview; shell and column families retain their required production context. Docs shell previews are bounded to 40rem and flush; Canvas screens fill their parent. Host services and downstream integration remain behind the review gate.

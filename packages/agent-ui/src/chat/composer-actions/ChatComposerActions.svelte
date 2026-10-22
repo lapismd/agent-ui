@@ -76,7 +76,7 @@
                       <CommandView.ItemIcon
                         ><FileTypeIcon
                           path={item.id}
-                          size="s"
+                          size="md"
                         /></CommandView.ItemIcon
                       >
                       <CommandView.ItemLabel>{item.label}</CommandView.ItemLabel

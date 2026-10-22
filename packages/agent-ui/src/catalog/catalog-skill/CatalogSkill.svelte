@@ -46,7 +46,7 @@
         aria-hidden="true"
       />
       {#if skill.path}
-        <FileTypeIcon path={skill.path} class="ai-catalog__icon" />
+        <FileTypeIcon path={skill.path} size="md" class="ai-catalog__icon" />
       {:else}
         <PackageIcon class="ai-catalog__icon" aria-hidden="true" />
       {/if}

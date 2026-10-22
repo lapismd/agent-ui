@@ -21,15 +21,19 @@ test.afterEach(({ page }) => {
 test("Markdown anatomy and styling tables render semantic rows", async ({
   page,
 }) => {
-  await page.goto("/iframe.html?id=agents-chat-transcript--docs&viewMode=docs");
+  await page.goto(
+    "/iframe.html?id=agents-chat-transcript--docs&viewMode=docs",
+    {
+      waitUntil: "domcontentloaded",
+    },
+  );
   await expect(page.locator("#transcript")).toBeVisible({ timeout: 30000 });
   const anatomy = page.locator("#anatomy + table");
   await expect(anatomy).toBeVisible();
   await expect(anatomy.getByRole("row")).toHaveCount(5);
   await expect(anatomy).toContainText("Captured items");
-  const styles = page
-    .getByRole("table")
-    .filter({ hasText: "--ui-transcript-max-width" });
+  const styles = page.locator("#styling-variables + p + table");
+  await expect(styles).toContainText("--ui-transcript-max-width");
   await expect(styles.getByRole("row")).toHaveCount(
     tokens.variables.length + 1,
   );
@@ -42,6 +46,7 @@ test("Docs shell previews are bounded and flush while Canvas fills the viewport"
   test.setTimeout(60000);
   await page.goto("/iframe.html?id=agents-chat-transcript--docs&viewMode=docs");
   const preview = page.locator(".docs-story .sb-story").first();
+  await preview.scrollIntoViewIfNeeded();
   await expect(preview.locator(".foundation-host")).toBeVisible();
   await expect(preview).toHaveCSS("padding", "0px");
   await expect(preview.locator(".foundation-host")).toHaveCSS(
@@ -54,6 +59,7 @@ test("Docs shell previews are bounded and flush while Canvas fills the viewport"
   await expect(page.locator(".foundation-host")).toHaveCSS("height", "900px");
   await page.goto("/iframe.html?id=agent-complete-screens--docs&viewMode=docs");
   const screen = page.locator(".docs-story .sb-story").first();
+  await screen.scrollIntoViewIfNeeded();
   await expect(screen.locator(".agent-demo")).toBeVisible({ timeout: 30000 });
   await expect(screen).toHaveCSS("padding", "0px");
   await expect(screen.locator(".agent-demo")).toHaveCSS("height", "640px");

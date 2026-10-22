@@ -47,6 +47,27 @@ export const BusyStop: Story = {
   }),
 };
 export const Attachments: Story = {
+  play: async ({ canvasElement }) => {
+    await userEvent.click(
+      within(canvasElement).getByRole("button", { name: "Attach file" }),
+    );
+    const c = within(canvasElement.ownerDocument.body);
+    const item = await c.findByRole("option", { name: /settings.ts/ });
+    await waitFor(() =>
+      expect(
+        item.querySelector('[data-file-type-icon="typescript"]'),
+      ).toBeVisible(),
+    );
+    await expect(
+      item.querySelector('[data-ui-component="file-type-icon"]'),
+    ).toHaveAttribute("data-size", "md");
+    await userEvent.click(item);
+    await waitFor(() =>
+      expect(
+        c.queryByRole("listbox", { name: "Vault files" }),
+      ).not.toBeInTheDocument(),
+    );
+  },
   render: () => ({
     Component: Fixture,
     props: { part: "footer", scenario: "attachments" },

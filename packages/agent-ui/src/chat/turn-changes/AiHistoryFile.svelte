@@ -48,7 +48,7 @@
 >
   <header>
     <div class="file-title">
-      {#if inspection.path}<FileTypeIcon path={inspection.path} />{/if}<strong
+      <FileTypeIcon path={inspection.path ?? ""} size="md" /><strong
         title={inspection.path}>{inspection.path}</strong
       >
     </div>
@@ -137,6 +137,11 @@
     gap: 0.5rem;
     flex: 1;
     min-width: 0;
+  }
+  .file-title :global(svg) {
+    width: 1rem;
+    height: 1rem;
+    flex: none;
   }
   strong {
     font-size: 0.8125rem;

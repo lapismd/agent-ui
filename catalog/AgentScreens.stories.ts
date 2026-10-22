@@ -39,6 +39,22 @@ export const Catalog: Story = {
     await expect(
       within(canvasElement).getByRole("tree", { name: "AI catalog" }),
     ).toBeVisible();
+    const skill = within(canvasElement).getByRole("treeitem", {
+      name: /^Research$/,
+    });
+    const icon = skill.querySelector('[data-ui-component="file-type-icon"]');
+    await expect(icon).toBeVisible();
+    await expect(icon).toHaveAttribute("data-file-type-icon", "markdown");
+    await expect(icon).toHaveAttribute("aria-hidden", "true");
+    await expect(icon).toHaveAttribute("data-size", "md");
+    const originalSlot = canvasElement.querySelector("svg.ai-catalog__icon");
+    await expect(originalSlot).toBeVisible();
+    const size = getComputedStyle(originalSlot!);
+    await expect(icon).toHaveStyle({ width: size.width, height: size.height });
+    await userEvent.click(
+      within(skill).getByRole("button", { name: /^Open Research$/ }),
+    );
+    await waitFor(() => expect(skill).toHaveAttribute("aria-selected", "true"));
   },
 };
 export const Imports: Story = {

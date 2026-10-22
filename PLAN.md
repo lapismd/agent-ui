@@ -33,6 +33,15 @@ installation and lockfile refresh remain a release prerequisite, not a passed
 review check. Details and actual qualification counts belong in
 `spec/records/2026-10-22-desktop-jj-review.md`.
 
+The filename-icon follow-up adopts public Design Core FileTypeIcon in attachment
+chips, attach-file suggestions, saved-file headers, local catalog skills and JJ filename titles. Shared
+FileListing and diff/tool presentation inherit the source implementation. The
+source ledger documents each intentional glyph substitution at the original
+size; geometry and actions remain owned by the existing components. Qualification
+is recorded in `spec/records/2026-10-22-file-type-icons.md`. Before release,
+publish the icon-capable Design Core version and update the dependency minimum
+and portable lockfile; the local packed overlay is review evidence only.
+
 Earlier Agent records remain in `spec/records`. Final approval of each section
 and all downstream migration remain explicit user decisions.
 

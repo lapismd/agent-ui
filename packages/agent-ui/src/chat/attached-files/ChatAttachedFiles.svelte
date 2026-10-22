@@ -19,8 +19,7 @@
               class="file-label"
               aria-label={file.name}
             >
-              <FileTypeIcon path={file.path} size="xs" /><span class="file-name"
-                >{file.name}</span
+              <FileTypeIcon path={file.path} size="xs" /><span>{file.name}</span
               >
             </button>
           {/snippet}
@@ -74,7 +73,7 @@
   .file-label {
     padding-inline-start: 0.25rem;
   }
-  .file-name {
+  .file-label span {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -93,6 +92,7 @@
     outline: 2px solid var(--ring);
     outline-offset: 2px;
   }
+  .file-label :global(svg),
   .remove :global(svg) {
     flex: 0 0 0.75rem;
     width: 0.75rem;

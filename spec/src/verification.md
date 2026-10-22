@@ -18,11 +18,11 @@
 | RUI-COMMAND-001 | Partial     | Guarded restore, original-request recovery and local conflict staging verified; native host integration deferred                                          |
 | RUI-FORGE-001   | In progress | Forge and repository settings remain later sections                                                                                                       |
 | RUI-LIFE-001    | Partial     | Copied Desktop pin/late-read/drain regressions verified; downstream host lifetime remains separate                                                        |
-| AUI-FOUND-001   | Implemented | 18 colocated families; full recording; 36 public examples; completeness record                                                                            |
+| AUI-FOUND-001   | Implemented | 18 colocated families; full recording; 36 public examples; completeness record; filename icon adoption record                                             |
 | AUI-THEME-001   | Implemented | Audited defaults; independent theme/mode controls; bounded flush docs previews                                                                            |
 | AUI-VERIFY-001  | Implemented | 656 story/axe checks; 92 unit tests; 21 cold-browser checks; package/static gates                                                                         |
 | AUI-PARITY-001  | Partial     | 16 renderer mappings; full recording and changes UI; visual review pending                                                                                |
-| RUI-FOUND-001   | Implemented | 20 documented families; structural negative tests, token/catalog/package audits; Desktop JJ review record                                                 |
+| RUI-FOUND-001   | Implemented | 20 documented families; structural negative tests, token/catalog/package audits; Desktop JJ and filename icon review records                              |
 | RUI-DESKTOP-001 | Partial     | 656 story/axe, 92 unit, 21 cold browser and 18 native-density pixel comparisons; awaiting human review                                                    |
 
 Commands, counts and visual limits are recorded in
@@ -30,5 +30,6 @@ Commands, counts and visual limits are recorded in
 `spec/records/2026-10-22-agent-foundations.md` and
 `spec/records/2026-10-22-transcript-completeness.md` and
 `spec/records/2026-10-22-desktop-jj-review.md`. Standalone Agent settings pages are
-excluded. No downstream application/service, publication or deployment has
-changed. User approval of the Agent presentation remains pending.
+excluded. Local downstream icon/dependency refresh is user-authorized in the
+filename icon closeout record. Publication and deployment remain pending.
+User approval of the Agent presentation remains pending.

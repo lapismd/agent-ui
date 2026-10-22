@@ -16,6 +16,12 @@
     gap: 0.375rem;
     min-width: 0;
   }
+  .repository-review-file-title :global(svg) {
+    flex: none;
+    width: 0.875rem;
+    height: 0.875rem;
+    color: var(--muted-foreground);
+  }
   .repository-review-file-title > span {
     min-width: 0;
     overflow: hidden;

@@ -16,6 +16,18 @@ type Story = StoryObj<typeof Fixture>;
 export const Basic: Story = {
   play: async ({ canvasElement }) => {
     const c = within(canvasElement);
+    for (const [name, icon] of [
+      ["plan.md", "markdown"],
+      ["settings.ts", "typescript"],
+    ]) {
+      const chip = c.getByRole("button", { name });
+      await expect(
+        chip.querySelector(`[data-file-type-icon="${icon}"]`),
+      ).toBeVisible();
+      await expect(
+        chip.querySelector('[data-ui-component="file-type-icon"]'),
+      ).toHaveAttribute("data-size", "xs");
+    }
     await userEvent.click(
       c.getByRole("button", { name: "Collapse Attachments 2" }),
     );

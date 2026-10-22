@@ -9,6 +9,10 @@ avatar resolution and preference persistence stay host-owned.
 
 **Requirement.** JJ foundations MUST follow the same per-folder documentation, styling contracts and fail-closed specification enforcement as Agent foundations.
 
+Filename titles and shared file listings MUST use the public Design Core
+FileTypeIcon from the host-issued path while retaining original geometry,
+truncation, folder affordances and explicit navigation identities.
+
 ### Acceptance details
 
 - Every independent family MUST own its component, stories, MDX, complete public usage/styling examples and audited CSS-variable defaults.
