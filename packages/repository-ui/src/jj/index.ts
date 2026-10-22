@@ -46,3 +46,16 @@ export type {
   RepositoryDiffEntry,
   RepositoryDiffEntries,
 } from "./logic/comparison-diffs.js";
+
+export { RepositoryBrowserController } from "./browse/logic/controller.js";
+export type * from "./browse/logic/types.js";
+export { default as RepositoryBreadcrumb } from "./browse/breadcrumb/RepositoryBreadcrumb.svelte";
+export { default as RepositoryFileTree } from "./browse/file-tree/RepositoryFileTree.svelte";
+export { default as RepositoryDirectory } from "./browse/directory/RepositoryDirectory.svelte";
+export { default as RepositoryFilePreview } from "./browse/file-preview/RepositoryFilePreview.svelte";
+export { default as RepositoryBrowser } from "./screens/browser/RepositoryBrowser.svelte";
+
+export { default as RepositoryReferencePicker } from "./browse/reference-picker/RepositoryReferencePicker.svelte";
+export type { RepositoryReferenceChoice } from "./browse/reference-picker/types.js";
+
+export { default as RepositoryChangeCard } from "./browse/change-card/RepositoryChangeCard.svelte";

@@ -74,7 +74,10 @@
     margin: 0.25rem 0.75rem 0.75rem;
     padding: 0.75rem;
     border-radius: calc(var(--radius) * 0.8);
-    background: color-mix(in srgb, var(--foreground) 5%, var(--background));
+    background: var(
+      --ui-repository-revisions-message-surface,
+      color-mix(in srgb, var(--foreground) 5%, var(--background))
+    );
     --mira-preview-background: var(
       --ui-repository-revisions-message-background,
       transparent

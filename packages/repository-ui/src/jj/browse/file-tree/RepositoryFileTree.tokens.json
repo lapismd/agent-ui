@@ -1,0 +1,12 @@
+{
+  "component": "RepositoryFileTree",
+  "variables": [
+    {
+      "name": "--ui-repository-file-tree-padding",
+      "default": "0 0.5rem 0.5rem",
+      "description": "Original tree surface inset, independent of the sidebar width.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/browse/file-tree/file-tree.css"
+    }
+  ]
+}

@@ -4,6 +4,7 @@ import {
   longLinesBlameContents,
   largeCommitStats,
 } from "./large-blame.js";
+import { richCommitMessage } from "./reference/rich-commit.js";
 import { holdPreparation } from "./hold-preparation.js";
 import { collectionVariants, collectionChanges } from "./diff-collection.js";
 import { changeStats } from "../../../packages/repository-ui/src/jj/logic/history-files.js";
@@ -61,6 +62,8 @@ export function createJjDemo(part: string, variant = "Basic") {
         ? "operation-detail-failure"
         : scenario;
   const fixture = operationFixture(scenarioForPart);
+  if (part === "RepositoryFileHistory" && variant === "LongDescription")
+    fixture.latest.description = richCommitMessage;
   const denseOperations =
     part === "OperationReview"
       ? attachDenseOperations(fixture.reader, variant)

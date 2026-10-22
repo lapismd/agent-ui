@@ -1,4 +1,4 @@
-import { expect, waitFor } from "storybook/test";
+import { expect, waitFor, within, userEvent } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/svelte-vite";
 import { assertJjStory } from "../../../../../../catalog/jj/support/assert-story.js";
 import Component from "./RepositoryFileHistory.svelte";
@@ -59,5 +59,39 @@ export const Unavailable: Story = {
   }),
   play: async ({ canvasElement }) => {
     await assertJjStory(canvasElement, "RepositoryFileHistory", "Unavailable");
+  },
+};
+
+export const LongDescription: Story = {
+  render: () => ({
+    Component: Fixture,
+    props: { part: "RepositoryFileHistory", variant: "LongDescription" },
+  }),
+  play: async ({ canvasElement }) => {
+    await assertJjStory(
+      canvasElement,
+      "RepositoryFileHistory",
+      "LongDescription",
+    );
+    const canvas = within(canvasElement);
+    await userEvent.click(
+      await canvas.findByRole("button", {
+        name: "Show commit description",
+      }),
+    );
+    const more = await canvas.findByRole("button", {
+      name: "View more of commit message",
+    });
+    await userEvent.click(more);
+    await expect(
+      canvas.getByRole("button", {
+        name: "View less of commit message",
+      }),
+    ).toHaveAttribute("aria-expanded", "true");
+    await userEvent.click(
+      canvas.getByRole("button", {
+        name: "View less of commit message",
+      }),
+    );
   },
 };

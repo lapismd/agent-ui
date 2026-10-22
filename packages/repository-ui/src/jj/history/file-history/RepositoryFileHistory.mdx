@@ -14,21 +14,24 @@ import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
 
 # File history
 
-Independent active-file pin, graph, explicit parent navigation and blame action.
+Operation-pinned file history with date-grouped revision cards and host-owned navigation.
 
 ## Usage
 
-Retain a FileHistoryController in the host and call follow with the active literal path. Mount this independent pane to browse only revisions that changed that file.
+Retain a FileHistoryController in the host and call follow with the active literal path. Mount this pane inside the public AppShell (or RepositoryShell) to browse only revisions that changed that file. The transparent AppShell.Toolbar matches the other shell headers. Pass onOpen to view this file at a revision and optional onBrowse to browse the repository at that revision; these callbacks never choose a new operation or perform a mutation.
 
 <Source code={Basic} language="tsx" />
 
 ## Anatomy
 
-| Part          | Responsibility                                               |
-| ------------- | ------------------------------------------------------------ |
-| Header        | Active path, blame action and explicit refresh.              |
-| Pin           | Exact operation selector when a choice is required.          |
-| History graph | Bounded file-specific revision list and continuation action. |
+| Part          | Responsibility                                                                         |
+| ------------- | -------------------------------------------------------------------------------------- |
+| Header        | Transparent AppShell.Toolbar, active path, blame, refresh and optional host actions.   |
+| Pin           | Exact operation selector when a choice is required.                                    |
+| Timeline      | Date headings group recorded commits without changing read order.                      |
+| Revision card | Recorded subject, author/avatar, commit date and exact Git/JJ copy buttons.            |
+| Description   | Ellipsis discloses the recorded Markdown body; long bodies retain View more/View less. |
+| Actions       | View code and optional Browse repository delegate the recorded revision to the host.   |
 
 ## Variations
 
@@ -56,9 +59,15 @@ A refused or failed read, distinct from a successful empty result. The productio
 
 <Canvas of={Stories.Unavailable} />
 
+### LongDescription
+
+The description button reveals recorded Markdown with the shared bounded preview and View more/View less controls.
+
+<Canvas of={Stories.LongDescription} />
+
 ## Behavior and accessibility
 
-onOpen delegates a recorded revision; onBlame requests host navigation. A missing active file, successful empty history and failed history have separate Empty states. The host closes the controller after unmounting all readers. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+onOpen delegates the exact recorded revision for file code; onBrowse delegates that revision for repository navigation. It is absent when unsupported. onBlame requests host navigation. Wide cards separate metadata and actions with space-between; when actions wrap, they begin at the left edge of the next row. Description disclosure has an accessible name, expanded state and associated panel; clipboard and navigation controls are independent. Date groups use the recorded committer timestamp in UTC, while author metadata remains recorded author data. A missing active file, successful empty history and failed history have separate Empty states. The host closes the controller after unmounting all readers. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
 
 ## Styling variables
 

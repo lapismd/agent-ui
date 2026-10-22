@@ -4,7 +4,8 @@
 | ------------------------------------------- | ---------------------- | ----------------------------------------------------------------------------------------- |
 | Agent foundations and five complete screens | Awaiting visual review | 18 documented families, full transcript, turn changes and tool renderers                  |
 | Desktop JJ history                          | Awaiting visual review | 20 documented families; JJ Log, Op Log, file history, blame, conflicts and restore        |
-| JJ workspace and repository browsing        | Deferred               | jj-store workspace, drag/drop and repository/forge screens require a later reviewed slice |
+| Repository file browsing                    | Awaiting visual review | Five documented families, pinned read-only controller and complete in-memory Files screen |
+| JJ workspace and repository overview        | Deferred               | Overview, branches, workspace and drag/drop follow the Files review gate                  |
 | Downstream adoption and publication         | Review gate            | No application/service changes, deployment or publication                                 |
 
 The user authorized the Desktop-first JJ slice and requested a pause for review
@@ -53,7 +54,7 @@ and pausing for review before the next. Broad suites wait for final screen revie
 1. Chat references, composer/preview parity and configurable transcript actions — committed with focused checks; visual review remains pending.
 2. JJ Log: portable controllers, header actions, search and dense examples — implemented; the requested fixed paging footer and recorded-command disclosure are committed separately.
 3. Op Log: pinned comparisons, native metadata filters, host actions, conflicts and dense operation examples — implemented with targeted checks; awaiting review before repository browsing.
-4. Repository file browser: directory rows, file tree, breadcrumbs, code/documents and file history.
+4. Repository file browser: directory rows, file tree, breadcrumbs, code/documents and existing history/blame — implemented with focused checks; awaiting review.
 5. Repository overview and branches: navigation, selectors, bookmark/branch details and host actions.
 6. Workspace presentation: original columns, stack cards, source files, target history and retained selection.
 7. Workspace transfers: file/folder/hunk drag/drop, keyboard alternatives and exact preview/apply/recovery.
@@ -151,3 +152,22 @@ source lane; complete-screen acceptance passes 51 light/51 dark stories and thre
 fresh-browser cases. See `spec/records/2026-10-22-comment-draft-review.md`.
 Storybook 7590 remains available. Stop for review before broader qualification,
 publication, baseline updates or downstream adoption.
+
+## Repository Files review
+
+The authorized browser slice adapts JJ Store's AppShell sidebar, breadcrumb,
+virtual directory table, document tabs and file preview into seven documented
+families under JJ/Browsing and JJ/Complete screens/Files. A host-retained,
+read-only controller owns exact pin/path requests, bounded paging and disposal;
+applications inject navigation, clipboard, reference, row/file actions and layout
+persistence. Existing history and blame components use the same in-memory file
+contents. Preview/Source/Blame text toggles replace content in place, while
+file history retains its optional inspector with a transparent public header, date-grouped cards, exact Git/JJ buttons, separate recorded code/repository actions and expandable Markdown descriptions. The Files headers use public Design
+Core PanelToggle and shadcn tooltips, and short file
+previews have no forced minimum height or duplicate vertical scroller.
+
+Review Basic, Nested, Dense, Markdown, Source, Binary, Host Actions, History and
+Blame before repository overview or workspace work. Focused qualification and
+remaining limits are recorded in `spec/records/2026-10-22-repository-browser.md`.
+Broad suites, static/clean-package matrix and downstream adoption remain gated
+on final review; all new stories are visual-pending.

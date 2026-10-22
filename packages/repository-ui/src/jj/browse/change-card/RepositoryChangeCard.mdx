@@ -1,0 +1,83 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  ArgTypes,
+  Markdown,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryChangeCard.stories";
+import { Basic, Styling } from "./RepositoryChangeCard.example-sources";
+import tokens from "./RepositoryChangeCard.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Change Card
+
+Compact recorded change metadata for command rows and repository summaries.
+
+## Usage
+
+Pass the host-issued commit record, a clock in Unix seconds and an explicit clipboard callback. The same card renders the Reference Picker's Changes rows; its description, author and exact IDs also participate in host search.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part               | Responsibility                                                        |
+| ------------------ | --------------------------------------------------------------------- |
+| Author avatar      | Existing shared author profile and hover details.                     |
+| Description        | Recorded message, wrapped and clamped with an empty-message fallback. |
+| Metadata           | Author name and shared RelativeTime with an explicit host clock.      |
+| Identifier buttons | Existing Git/JJ copy and feedback components preserve complete IDs.   |
+
+## Variations
+
+### Basic
+
+Recorded author, message, relative time and both exact identity buttons.
+
+<Canvas of={Stories.Basic} />
+
+### LongDescription
+
+Long descriptions wrap and clamp within a narrow command row.
+
+<Canvas of={Stories.LongDescription} />
+
+### UnknownAuthor
+
+Missing author metadata retains an explicit fallback avatar and label.
+
+<Canvas of={Stories.UnknownAuthor} />
+
+### CommitOnly
+
+A Git-only identity does not invent a JJ change identifier.
+
+<Canvas of={Stories.CommitOnly} />
+
+### ChangeOnly
+
+A JJ-only identity does not invent a Git commit identifier.
+
+<Canvas of={Stories.ChangeOnly} />
+
+## Behavior and accessibility
+
+The card is a named group and leaves row selection with its host. The existing avatar and identifier controls stop activation from selecting a surrounding command row; time inspection is independent too. ID buttons retain complete accessible names, clipboard feedback and failure recovery. Picker hosts use the public Command View grid roles so the card and its controls remain valid interactive cell content. No ID is inferred from a label and absent metadata stays absent.
+
+## Styling variables
+
+The card inherits semantic Design Core colours and the existing public avatar/identifier tokens. Its own compact typography, spacing and line clamp are native variables.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+RepositoryReferencePicker composes this card inside a Command View grid cell when the host supplies recorded change metadata. Other hosts may reuse the same card in bounded previews or history summaries; keep routing, selection and clipboard authority in host adapters.

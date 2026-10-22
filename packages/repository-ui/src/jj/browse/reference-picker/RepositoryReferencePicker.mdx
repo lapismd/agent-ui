@@ -1,0 +1,105 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  ArgTypes,
+  Markdown,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryReferencePicker.stories";
+import { Basic, Styling } from "./RepositoryReferencePicker.example-sources";
+import tokens from "./RepositoryReferencePicker.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Reference Picker
+
+Copy of JJ Store's snapshot command view, with host-owned bookmark/change identities.
+
+## Usage
+
+Pass a controlled value and loaded choices at the current operation. Search uses labels and host-supplied commit, author or change keywords. Selection returns the complete choice; zero or multiple targets stay explicit for host resolution.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part           | Responsibility                                                         |
+| -------------- | ---------------------------------------------------------------------- |
+| Trigger        | Current host label, branch icon and open state.                        |
+| Popover header | Switch snapshot title and keyboard-accessible close action.            |
+| Command input  | Filter supplied labels, commit/change identities and keywords.         |
+| Kind filters   | Bookmarks and Changes retain the source command-view layout.           |
+| Virtual rows   | Bounded reference rendering, selected checkmark and continuation.      |
+| Status         | Icon-bearing Empty and unavailable states, loading and optional retry. |
+
+## Variations
+
+### Basic
+
+Switch between host-issued bookmarks and recorded changes.
+
+<Canvas of={Stories.Basic} />
+
+### Changes
+
+The Changes tab searches by change, commit, message or author keywords.
+
+<Canvas of={Stories.Changes} />
+
+### Dense
+
+Virtual rows bound a list with 150 additional bookmarks.
+
+<Canvas of={Stories.Dense} />
+
+### Empty
+
+An icon-bearing Empty explains that no supplied choices match.
+
+<Canvas of={Stories.Empty} />
+
+### Loading
+
+A Skeleton announces an initial host reference read.
+
+<Canvas of={Stories.Loading} />
+
+### Unavailable
+
+A host refusal uses the shared Empty with retry at the same scope.
+
+<Canvas of={Stories.Unavailable} />
+
+### Disabled
+
+A disabled host blocks opening the selector.
+
+<Canvas of={Stories.Disabled} />
+
+### Paged
+
+An explicit host continuation appends more supplied references.
+
+<Canvas of={Stories.Paged} />
+
+## Behavior and accessibility
+
+The public Command View uses grid, rowgroup, row and gridcell roles, with the search combobox advertising a grid popup. This allows independent avatar, timestamp and Git/JJ buttons inside change rows without nesting controls in a listbox option. Arrow keys and Enter retain Command View navigation and selection; clipboard/profile actions do not select a snapshot.
+
+The trigger exposes combobox state. Command View owns the search input, option navigation and keyboard selection; Escape returns focus through the public Popover. Choosing a row closes the command view and calls the host once with its complete identity. Queries do not alter repository pins. The host owns target resolution, reads, cursor scope and optional continuation/retry; mounting this control never mutates repository state.
+
+## Styling variables
+
+Source-faithful geometry uses semantic Design Core tokens. Override the audited variables on an ancestor for host-specific sizing without application-private selectors.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+The complete Files screen supplies this picker through RepositoryBrowser's directoryControls slot. Hosts may place the same control in other repository headers. Keep authority to resolve a chosen bookmark/change, route to a revision or persist preferences in the application adapter.

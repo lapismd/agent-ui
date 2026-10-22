@@ -1,0 +1,93 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  ArgTypes,
+  Markdown,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryFileTree.stories";
+import { Basic, Styling } from "./RepositoryFileTree.example-sources";
+import tokens from "./RepositoryFileTree.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# File Tree
+
+Display loaded canonical files and directories using the public Design Core FileListing. The host retains the display mode, collapsed directories and selected file; expanding a directory can request its bounded page.
+
+## Usage
+
+Display loaded canonical files and directories using the public Design Core FileListing. The host retains the display mode, collapsed directories and selected file; expanding a directory can request its bounded page.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part         | Responsibility                                                                               |
+| ------------ | -------------------------------------------------------------------------------------------- |
+| Tree heading | Shows the loaded file count and list/tree/package presentation control.                      |
+| FileListing  | Owns icons, virtualized rows, controlled disclosure and selected-path presentation.          |
+| Continuation | Requests another host-scoped page rather than fetching through a native client.              |
+| Status       | Loading and empty content retain the production Skeleton and icon-bearing Empty composition. |
+
+## Variations
+
+### Basic
+
+Loaded root files and directories in the source tree surface.
+
+<Canvas of={Stories.Basic} />
+
+### Nested
+
+Additional directory pages populate the same tree without discarding the current path.
+
+<Canvas of={Stories.Nested} />
+
+### Dense
+
+A paged directory of component sources exercises virtualization and retained disclosure.
+
+<Canvas of={Stories.Dense} />
+
+### Empty
+
+An icon-bearing Empty distinguishes an empty loaded tree.
+
+<Canvas of={Stories.Empty} />
+
+### Loading
+
+The production file skeleton represents the initial read.
+
+<Canvas of={Stories.Loading} />
+
+## Behavior and accessibility
+
+The public FileListing owns keyboard navigation and disclosure. Tree, list and
+package modes are controlled values; mode changes request the appropriate host
+page scope. Directory disclosure requests only the disclosed path in tree mode.
+Loading, empty and paged states do not imply that unloaded paths are absent.
+
+## Styling variables
+
+The original source geometry and semantic Design Core theme are the defaults.
+Use the audited native variables below or the public component props; avoid
+application-specific selectors and dependency-internal imports. The Markdown
+reader and editor retain stock content styling. AppShell geometry is bounded to
+40rem only in Docs; complete Canvas stories fill the viewport.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Place the file tree inside AppShell.Body.Sidebar, as RepositoryBrowser does.
+Supply recorded paths and controlled disclosure state, then route file selection
+through the pinned controller. Width persistence and the resize handle belong to
+the enclosing screen, keeping the tree reusable in other layouts.

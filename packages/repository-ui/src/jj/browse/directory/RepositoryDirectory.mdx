@@ -1,0 +1,102 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  ArgTypes,
+  Markdown,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryDirectory.stories";
+import { Basic, Styling } from "./RepositoryDirectory.example-sources";
+import tokens from "./RepositoryDirectory.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Directory
+
+Render one bounded directory window with genuine host-provided last-change or snapshot attribution. Pass direct children, explicit continuation state and optional already-loaded landing documents; metadata is never fabricated from another page.
+
+## Usage
+
+Render one bounded directory window with genuine host-provided last-change or snapshot attribution. Pass direct children, explicit continuation state and optional already-loaded landing documents; metadata is never fabricated from another page.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part                  | Responsibility                                                                                             |
+| --------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Summary               | Recorded author, full native identifiers, timestamp, sidebar toggle and host reference/action slots.       |
+| Directory rows        | Original Name/Description/Updated table, virtualized rows and keyboard navigation.                         |
+| Attribution           | Snapshot fallback remains marked distinctly from a confirmed last path change.                             |
+| Landing documents     | Original README/contributing/license tabs and overflow menu share the stock Markdown preview.              |
+| Host extension points | controls, actions and rowActions let each application add contextual controls without native dependencies. |
+
+## Variations
+
+### Basic
+
+Root directory with rich metadata and landing documents.
+
+<Canvas of={Stories.Basic} />
+
+### Nested
+
+Canonical parent navigation and a retained operation/revision scope.
+
+<Canvas of={Stories.Nested} />
+
+### Dense
+
+A large directory exercises the virtual table, incremental loading and explicit bounds.
+
+<Canvas of={Stories.Dense} />
+
+### Empty
+
+Successful empty directory represented by shadcn Empty and a folder icon.
+
+<Canvas of={Stories.Empty} />
+
+### Loading
+
+Initial loading geometry uses the shared production skeleton.
+
+<Canvas of={Stories.Loading} />
+
+### Unavailable
+
+A refused directory read retains explicit retry; the example recovers through the same controller.
+
+<Canvas of={Stories.Unavailable} />
+
+## Behavior and accessibility
+
+File and folder buttons have explicit action names. Arrow Up/Down and Home/End
+move focus between loaded rows, with virtual scrolling retaining focus. The
+parent row requests its canonical ancestor. Paging and retry are explicit host
+requests; snapshot attribution is distinct from a recorded path change. The
+summary commit opens only when a host callback is available. The shared Design
+Core PanelToggle controls sidebar visibility and exposes its expanded state.
+
+## Styling variables
+
+The original source geometry and semantic Design Core theme are the defaults.
+Use the audited native variables below or the public component props; avoid
+application-specific selectors and dependency-internal imports. The Markdown
+reader and editor retain stock content styling. AppShell geometry is bounded to
+40rem only in Docs; complete Canvas stories fill the viewport.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Use the directory beneath RepositoryBreadcrumb and beside RepositoryFileTree.
+The complete screen provides controller windows and host reference/header/row
+actions. Optional landing documents reuse the stock Markdown reader; the host
+supplies these records without an automatic per-file request fan-out.

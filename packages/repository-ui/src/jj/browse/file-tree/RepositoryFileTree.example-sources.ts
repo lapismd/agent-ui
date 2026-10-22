@@ -1,0 +1,4 @@
+export const Basic =
+  '<script lang="ts">\n  import { RepositoryFileTree } from "@lapismd/repository-ui/jj";\n  let selectedPath = $state("");\n  let mode = $state<"list" | "tree" | "package">("tree");\n</script>\n<RepositoryFileTree files={[{path:"README.md"},{path:"src/main.ts"}]} directories={[{path:"src"}]} {selectedPath} {mode} onModeChange={value => mode = value} onSelectPath={path => selectedPath = path} />';
+export const Styling =
+  '<script lang="ts">\n  import { RepositoryFileTree } from "@lapismd/repository-ui/jj";\n  let selectedPath = $state("");\n  let mode = $state<"list" | "tree" | "package">("tree");\n</script>\n<div style="--ui-repository-file-tree-padding:0 0.5rem 0.5rem">\n<RepositoryFileTree files={[{path:"README.md"},{path:"src/main.ts"}]} directories={[{path:"src"}]} {selectedPath} {mode} onModeChange={value => mode = value} onSelectPath={path => selectedPath = path} />\n</div>';

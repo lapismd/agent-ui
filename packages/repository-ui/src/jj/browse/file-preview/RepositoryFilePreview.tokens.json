@@ -1,0 +1,33 @@
+{
+  "component": "RepositoryFilePreview",
+  "variables": [
+    {
+      "name": "--ui-repository-file-preview-padding",
+      "default": "0.75rem",
+      "description": "Original file-panel stack inset.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/browse/file-preview/files.css"
+    },
+    {
+      "name": "--ui-repository-browser-status-title-size",
+      "default": "0.875rem",
+      "description": "Compact interface heading for file and directory status content.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/browse/file-preview/RepositoryBrowserEmpty.svelte"
+    },
+    {
+      "name": "--ui-repository-browser-status-description-size",
+      "default": "0.8125rem",
+      "description": "Compact interface description for Empty and unavailable states.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/browse/file-preview/RepositoryBrowserEmpty.svelte"
+    },
+    {
+      "name": "--ui-repository-file-action-hover-background",
+      "default": "color-mix(in srgb, var(--foreground) 8%, var(--background))",
+      "description": "Semantic hover surface for file display, clipboard, history and sidebar actions.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/browse/file-preview/RepositoryFileAction.svelte"
+    }
+  ]
+}

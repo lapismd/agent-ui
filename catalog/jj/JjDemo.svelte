@@ -130,12 +130,15 @@
         onHistory={(operation) =>
           demo.state.actions.push(`history:${operation}`)}
       />
-    {:else if part === "RepositoryFileHistory"}<RepositoryFileHistory
-        controller={demo.files}
-        copyText={demo.copyText}
-        onOpen={(id) => demo.state.actions.push(`history:${id}`)}
-        onBlame={() => demo.state.actions.push("open-blame")}
-      />
+    {:else if part === "RepositoryFileHistory"}<RepositoryShell
+        ><RepositoryFileHistory
+          controller={demo.files}
+          copyText={demo.copyText}
+          onOpen={(id) => demo.state.actions.push(`history:${id}`)}
+          onBlame={() => demo.state.actions.push("open-blame")}
+          onBrowse={(id) => demo.state.actions.push(`browse:${id}`)}
+        /></RepositoryShell
+      >
     {:else if part === "RepositoryBlamePanel"}<RepositoryBlamePanel
         controller={demo.blame}
         copyText={demo.copyText}

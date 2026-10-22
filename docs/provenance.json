@@ -2,7 +2,8 @@
   "sources": {
     "lapis-desktop": "f8f3446e (Agent) and 52516ae9 (JJ); exact copied-file hashes in desktop-layout-sources.json",
     "jj-store": "f58b9363",
-    "design-core": "npm range ^0.6.0; opaque diff-header review archive from clean Design Core commit 9362a4ba; SHA-256 df4f6fbf2dfb3172421e970b94b083c63428f90c28e1173b7298aa47c7a03fa2; local validation only, see spec/records/2026-10-22-diff-surface.md"
+    "design-core": "npm range ^0.6.0; local validation archive from Design Core 6f740f9c, SHA-256 7e58e2bdeb270d928f7444029d2440a04239d96f19ae2e8f9e87d087db0091b4; source-built consolidated review package; see spec/records/2026-10-22-repository-browser.md",
+    "mira-mde": "npm range ~0.1.0; safe task marker source fix 0a72edf8; local validation archive SHA-256 c9e024d35e013676905120347bbfe3ca832f3e9e4f4ede74a7dc2b25161078b4; no tracked dependency substitution"
   },
   "license": "Apache-2.0",
   "upstreamNotices": [
@@ -418,7 +419,7 @@
       "sourceRevision": "52516ae9",
       "source": "src/components/repository/RepositoryFileHistory.svelte",
       "destination": "packages/repository-ui/src/jj/history/file-history/RepositoryFileHistory.svelte",
-      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+      "use": "User-supplied file-history reference replaces graph rows with date-grouped cards, author metadata, exact Git/JJ controls, independent recorded code/repository callbacks and shared expandable Markdown. Public transparent AppShell.Toolbar replaces private header geometry; optional host close actions avoid duplicate headers. Source controller pins, lifetime, bounded paging and distinct read states remain unchanged."
     },
     {
       "sourceRepository": "lapis-desktop",
@@ -802,6 +803,153 @@
       "source": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceSpacer.svelte",
       "destination": "packages/repository-ui/src/jj/foundations/shell/RepositoryCanvasSpacer.svelte",
       "use": "Apache-2.0; copied Empty presentation for the shared private log-canvas spacer. Workspace commands/drop authority omitted; resize-specific icon and text adapted. Exact source revision and hashes are in desktop-layout-sources.json."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/StoreFileDisplayControls.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/file-preview/RepositoryFileDisplayControls.svelte",
+      "use": "Retain source Preview/Source/Blame outlined text ButtonGroup and icons; omit working-copy/edit mutations, use the same controlled display and inline Blame content seam; add public shadcn tooltips and shared owned action wrapper for hover feedback."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryFiles.svelte",
+      "destination": "packages/repository-ui/src/jj/screens/browser/RepositoryBrowser.svelte",
+      "use": "Preserve AppShell Body.Sidebar, resize handle and Body.Content topology inside the existing RepositoryShell; replace application route/admission/store/storage with a subscribed pinned read-only controller, typed host callbacks, optional inspector and layout callback; retain 256px default and 208-420px resize range."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryBreadcrumb.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/breadcrumb/RepositoryBreadcrumb.svelte",
+      "use": "Retain breadcrumb hierarchy and original store-application breadcrumb geometry; replace application router with canonical-path callbacks and optional repository callback; expose audited padding/font tokens."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryFileTree.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/file-tree/RepositoryFileTree.svelte",
+      "use": "Retain public FileListing modes and metadata slot; remove application-private icon resolver, add shared icon-bearing Empty and loading Skeleton; canonical host paths remain selection identities."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryDirectory.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/directory/RepositoryDirectory.svelte",
+      "use": "Retain summary, table and landing document composition; supplied entries replace view/routes/native reads, public shared avatar/identifiers/time replace local wrappers; PanelToggle replaces app-specific sidebar icon; optional host controls/row actions and explicit bounded/retry states replace editing actions."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryDirectoryRows.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/directory/RepositoryDirectoryRows.svelte",
+      "use": "Retain original table virtualizer, measured rows, paging and arrow/home/end focus navigation; public FileTypeIcon/RelativeTime replace source wrappers; host supplies commit metadata and typed row actions."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryDirectoryAttribution.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/directory/RepositoryDirectoryAttribution.svelte",
+      "use": "Retain recorded path-change versus snapshot attribution and tooltip; replace source domain commit type with portable record and optional host commit action."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryDocuments.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/directory/RepositoryDocuments.svelte",
+      "use": "Retain README/document tab labels, overflow fitting and document layout; accept recorded file union, reuse public stock Markdown reader and optional host editing callback; no mutation transport."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryFilePanel.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/file-preview/RepositoryFilePreview.svelte",
+      "use": "Retain metadata, stats, file card and content header; remove working-copy editor and native file access; use public CodeBlock/Markdown, shared source icon toggle and typed host history/blame/path/custom actions with distinct binary/empty/unavailable/retry states; remove nested vertical ScrollArea and forced minimum heights per user review."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryFilePanelHeader.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/file-preview/RepositoryFileMetadata.svelte",
+      "use": "Retain metadata row, message and native IDs; public shared avatar/identifiers/time replace app wrappers; controlled public Design Core PanelToggle replaces app-specific sidebar icon."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsMarkdownPreview.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/file-preview/RepositoryMarkdownPreview.svelte",
+      "use": "Use stock public MarkdownContent fullWidth; replace app-specific references/services with host-supplied captured text and shared Empty for empty content."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/repository-browser.ts",
+      "destination": "packages/repository-ui/src/jj/browse/logic/paths.ts",
+      "use": "Copy pure canonical directory/path/document classification helpers; no application transport dependencies."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/repository-files.css",
+      "destination": "packages/repository-ui/src/jj/browse/file-preview/files.css",
+      "use": "Retain source layout geometry under repository-browser namespace; expose audited native spacing/type/background tokens; remove forced 28rem/18rem preview minimum heights so short files adapt to the available pane."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/repository-directory.css",
+      "destination": "packages/repository-ui/src/jj/browse/directory/directory.css",
+      "use": "Retain source summary/table typography, widths, responsive containers and attribution styles; rename ownership namespace and expose source-default row/background/type tokens."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/repository-documents.css",
+      "destination": "packages/repository-ui/src/jj/browse/directory/documents.css",
+      "use": "Retain source document tabs, header and content geometry under owned namespace and expose original document padding."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/repository-file-tree.css",
+      "destination": "packages/repository-ui/src/jj/browse/file-tree/file-tree.css",
+      "use": "Retain source file tree/sidebar geometry under owned namespace with audited sizing/type tokens."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/repository-file-tree-resize.css",
+      "destination": "packages/repository-ui/src/jj/browse/file-tree/file-tree-resize.css",
+      "use": "Retain source pointer/keyboard resize-handle geometry under owned namespace and source-default 256px width token."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryBranchSelector.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/reference-picker/RepositoryReferencePicker.svelte",
+      "use": "Preserve the source snapshot Popover/Command View, kind filters, local search, selected icon, virtual rows and continuation; replace app RepositoryChoice with public immutable choices and typed host selection, use public Badge instead of community chip, and shared icon-bearing Empty/Skeleton with retry; expose source-default sizing tokens."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsVirtualRows.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/reference-picker/RepositoryReferenceRows.svelte",
+      "use": "Preserve source measured virtual rows, paging and cursor/selection callbacks; remove app appearance-store subscription and retain public ResizeObserver measurement with owned selectors."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryFiles.svelte",
+      "destination": "packages/repository-ui/src/jj/screens/browser/RepositorySidebarResize.svelte",
+      "use": "Extract the existing pointer-capture, keyboard and reset resize flow into one private shared sidebar control; parameterize side, bounds, default width and host callbacks. The right edge reverses pointer/arrow direction and preserves independent host width ownership."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryBranchSelector.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/reference-picker/reference-picker.css",
+      "use": "Lift and adapt the source style block into a native owned stylesheet; source and destination fingerprints recorded in desktop-layout-sources.json."
     }
   ]
 }

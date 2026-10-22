@@ -13,8 +13,8 @@
     FileHistoryController,
     FileHistoryState,
   } from "../../logic/file-history-controller.js";
-  import { commitRows } from "../../logic/graph/model.js";
-  import RepositoryGraph from "../graph/RepositoryGraph.svelte";
+  import { AppShell } from "@lapismd/design-core/shell";
+  import RepositoryFileHistoryRows from "./RepositoryFileHistoryRows.svelte";
   import RepositoryFileTitle from "../file-title/RepositoryFileTitle.svelte";
   import RepositoryOperationPinPicker from "../../operations/operation-pin-picker/RepositoryOperationPinPicker.svelte";
   let {
@@ -22,14 +22,17 @@
     copyText,
     onOpen,
     onBlame,
+    onBrowse,
+    headerActions,
   }: {
     controller: FileHistoryController;
     copyText(value: string): Promise<void>;
     onOpen(revision: string): void;
     onBlame(): void;
+    onBrowse?: (revision: string) => void;
+    headerActions?: import("svelte").Snippet;
   } = $props();
   let state = $state<FileHistoryState>();
-  const rows = $derived(commitRows(state?.commits ?? []));
   const pins = $derived([
     ...new Set([
       ...(state?.heads ?? []),
@@ -48,7 +51,10 @@
   aria-label="Active file history"
   aria-busy={state?.busy ?? false}
 >
-  <header>
+  <AppShell.Toolbar
+    label="File history header"
+    style="min-height:var(--ui-shell-toolbar-height, 2.5rem);--ui-shell-toolbar-padding-block:0;--ui-shell-toolbar-padding-inline:0.75rem;background:transparent"
+  >
     <span class="file-title"
       >{#if state?.path}<RepositoryFileTitle path={state.path} />{:else}File
         history{/if}</span
@@ -68,7 +74,8 @@
       disabled={!state?.path || state.busy}
       onclick={() => controller.refresh()}><RefreshCwIcon /></Button
     >
-  </header>
+    {@render headerActions?.()}
+  </AppShell.Toolbar>
   {#if state?.path && !state.operation && pins.length > 1}<div class="file-pin">
       <RepositoryOperationPinPicker
         operations={pins}
@@ -89,13 +96,11 @@
         </Empty.Header>
       </Empty.Root>
     {:else}
-      {#if state.commits.length}<RepositoryGraph
-          revisions={rows}
+      {#if state.commits.length}<RepositoryFileHistoryRows
           commits={state.commits}
-          label="File revision graph"
           {copyText}
-          showAuthor={false}
-          onSelect={onOpen}
+          {onOpen}
+          {onBrowse}
         />{/if}
       {#if state.busy}<RepositorySkeleton
           kind="file-history"
@@ -146,19 +151,8 @@
     min-height: 0;
     min-width: 0;
     color: var(--foreground);
-    background: var(--background);
+    background: transparent;
     font-size: var(--ui-repository-file-history-font-size, 0.8125rem);
-  }
-  header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    box-sizing: border-box;
-    height: var(--ui-workspace-tab-height, 40px);
-    min-height: var(--ui-workspace-tab-height, 40px);
-    flex: 0 0 var(--ui-workspace-tab-height, 40px);
-    padding: 0 0.75rem;
-    border-bottom: 1px solid var(--border);
   }
   .file-title {
     flex: 1;

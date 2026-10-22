@@ -1,0 +1,26 @@
+{
+  "component": "RepositoryChangeCard",
+  "variables": [
+    {
+      "name": "--ui-repository-change-card-gap",
+      "default": "0.5rem",
+      "description": "Space between the author avatar and recorded change content.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/browse/change-card/RepositoryChangeCard.svelte"
+    },
+    {
+      "name": "--ui-repository-change-card-description-lines",
+      "default": "2",
+      "description": "Maximum message lines before truncation in a bounded command row.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/browse/change-card/RepositoryChangeCard.svelte"
+    },
+    {
+      "name": "--ui-repository-change-card-font-size",
+      "default": "0.75rem",
+      "description": "Compact message and metadata typography matching repository controls.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/browse/change-card/RepositoryChangeCard.svelte"
+    }
+  ]
+}

@@ -86,8 +86,11 @@
     },
     {
       "primary": "jj/history/file-history/RepositoryFileHistory",
-      "purpose": "Independent active-file pin, graph, explicit parent navigation and blame action.",
-      "parts": []
+      "purpose": "Operation-pinned, date-grouped file revision cards with expandable recorded descriptions and explicit code/repository navigation.",
+      "parts": [
+        "jj/history/file-history/RepositoryFileHistoryRows.svelte",
+        "jj/history/file-history/RepositoryFileHistoryEntry.svelte"
+      ]
     },
     {
       "primary": "jj/operations/operation-pin-picker/RepositoryOperationPinPicker",
@@ -150,6 +153,51 @@
     {
       "primary": "jj/history/query/RepositoryHistoryQuery",
       "purpose": "Shared source-adapted JJ and operation query editor with host vocabulary and completion.",
+      "parts": []
+    },
+    {
+      "primary": "jj/browse/breadcrumb/RepositoryBreadcrumb",
+      "purpose": "Navigate from the host repository identity through the Files root and canonical path segments. The current segment is text; ancestor segments request navigation through callbacks.",
+      "parts": []
+    },
+    {
+      "primary": "jj/browse/file-tree/RepositoryFileTree",
+      "purpose": "Display loaded canonical files and directories using the public Design Core FileListing. The host retains the display mode, collapsed directories and selected file; expanding a directory can request its bounded page.",
+      "parts": []
+    },
+    {
+      "primary": "jj/browse/directory/RepositoryDirectory",
+      "purpose": "Render one bounded directory window with genuine host-provided last-change or snapshot attribution. Pass direct children, explicit continuation state and optional already-loaded landing documents; metadata is never fabricated from another page.",
+      "parts": [
+        "jj/browse/directory/RepositoryDirectoryRows.svelte",
+        "jj/browse/directory/RepositoryDirectoryAttribution.svelte",
+        "jj/browse/directory/RepositoryDocuments.svelte"
+      ]
+    },
+    {
+      "primary": "jj/browse/file-preview/RepositoryFilePreview",
+      "purpose": "Render an explicitly pinned recorded file. Text, binary, unavailable and successful empty content remain different states. The component requests history/blame/clipboard actions through the host and never edits or follows an external file system entry.",
+      "parts": [
+        "jj/browse/file-preview/RepositoryFileMetadata.svelte",
+        "jj/browse/file-preview/RepositoryMarkdownPreview.svelte",
+        "jj/browse/file-preview/RepositoryBrowserEmpty.svelte",
+        "jj/browse/file-preview/RepositoryFileAction.svelte",
+        "jj/browse/file-preview/RepositoryFileDisplayControls.svelte"
+      ]
+    },
+    {
+      "primary": "jj/screens/browser/RepositoryBrowser",
+      "purpose": "Mount the source-adapted JJ Store repository browser inside the existing embedded AppShell. Supply a stable host-owned controller, immutable repository pin and read-only port. The controller is not created or closed by this component; the host owns its lifetime.",
+      "parts": ["jj/screens/browser/RepositorySidebarResize.svelte"]
+    },
+    {
+      "primary": "jj/browse/reference-picker/RepositoryReferencePicker",
+      "purpose": "Source-adapted snapshot command view with bookmark/change tabs, commit keyword search and typed host selection.",
+      "parts": ["jj/browse/reference-picker/RepositoryReferenceRows.svelte"]
+    },
+    {
+      "primary": "jj/browse/change-card/RepositoryChangeCard",
+      "purpose": "Reusable recorded change card using existing author, relative-time and Git/JJ identifier components.",
       "parts": []
     }
   ],

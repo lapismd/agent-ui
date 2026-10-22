@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { test, expect, type Page } from "@playwright/test";
 
 const errors = new WeakMap<Page, string[]>();
@@ -53,7 +54,13 @@ test("JJ docs load every foundation without failed dynamic modules", async ({
   const docs = Object.values(index.entries).filter(
     (entry: any) => entry.type === "docs" && entry.title.startsWith("JJ/"),
   ) as { id: string; title: string }[];
-  expect(docs).toHaveLength(20);
+  const families = JSON.parse(
+    readFileSync(
+      new URL("../docs/jj-component-families.json", import.meta.url),
+      "utf8",
+    ),
+  );
+  expect(docs).toHaveLength(families.families.length);
   for (const entry of docs)
     await test.step(entry.title, async () => {
       await page.goto(`/iframe.html?id=${entry.id}&viewMode=docs`);

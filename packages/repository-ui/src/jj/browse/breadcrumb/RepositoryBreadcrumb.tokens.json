@@ -1,0 +1,19 @@
+{
+  "component": "RepositoryBreadcrumb",
+  "variables": [
+    {
+      "name": "--ui-repository-breadcrumb-padding",
+      "default": "0.4rem 1rem",
+      "description": "Breadcrumb inset copied from the original repository body breadcrumb.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/browse/breadcrumb/RepositoryBreadcrumb.svelte"
+    },
+    {
+      "name": "--ui-repository-breadcrumb-font-size",
+      "default": "0.75rem",
+      "description": "Source-faithful breadcrumb text size.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/browse/breadcrumb/RepositoryBreadcrumb.svelte"
+    }
+  ]
+}

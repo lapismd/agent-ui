@@ -1,0 +1,159 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  ArgTypes,
+  Markdown,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryBrowser.stories";
+import { Basic, Styling } from "./RepositoryBrowser.example-sources";
+import tokens from "./RepositoryBrowser.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Files
+
+Mount the source-adapted JJ Store repository browser inside the existing embedded AppShell. Supply a stable host-owned controller, immutable repository pin and read-only port. The controller is not created or closed by this component; the host owns its lifetime.
+
+## Usage
+
+Mount the source-adapted JJ Store repository browser inside the existing embedded AppShell. Supply a stable host-owned controller, immutable repository pin and read-only port. The controller is not created or closed by this component; the host owns its lifetime.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part             | Responsibility                                                                                                                 |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| AppShell regions | Resizable file-tree sidebar, independently scrolling content and optional host file inspector.                                 |
+| Breadcrumb       | The same documented Breadcrumb component requests canonical ancestor navigation.                                               |
+| Directory        | The same virtualized Directory component presents rows and optional landing documents.                                         |
+| File preview     | The same File Preview component handles text, documents and unavailable data.                                                  |
+| Host seams       | headerActions, directoryControls, directoryActions, rowActions, fileActions and inspector carry host-specific controls.        |
+| Layout callbacks | fileTreeOpen/fileTreeWidth, inspectorWidth and their layout callbacks let hosts persist layout without package storage access. |
+
+## Variations
+
+### Basic
+
+Source-faithful root file browser, last-change metadata and landing document tabs.
+
+<Canvas of={Stories.Basic} />
+
+### Nested
+
+Directory navigation retains the full immutable pin.
+
+<Canvas of={Stories.Nested} />
+
+### Dense
+
+240 component sources demonstrate a virtual table, bounded pages and narrow-directory guidance.
+
+<Canvas of={Stories.Dense} />
+
+### Markdown
+
+The README is rendered through stock MarkdownContent.
+
+<Canvas of={Stories.Markdown} />
+
+### Source
+
+The same recorded source uses CodeBlock and exact file identity.
+
+<Canvas of={Stories.Source} />
+
+### Binary
+
+Binary assets remain explicitly unavailable as text.
+
+<Canvas of={Stories.Binary} />
+
+### EmptyFile
+
+Empty text is distinct from absent content.
+
+<Canvas of={Stories.EmptyFile} />
+
+### UnavailableFile
+
+Unresolved recorded file content remains explicit.
+
+<Canvas of={Stories.UnavailableFile} />
+
+### Empty
+
+Successful empty repository data uses icon-bearing Empty states.
+
+<Canvas of={Stories.Empty} />
+
+### Loading
+
+Pending reads use the same production tree/directory loading boundaries.
+
+<Canvas of={Stories.Loading} />
+
+### Unavailable
+
+A failed directory read can recover without switching the pin.
+
+<Canvas of={Stories.Unavailable} />
+
+### Retry
+
+The selected file can retry a failed read.
+
+<Canvas of={Stories.Retry} />
+
+### HostActions
+
+Application-specific reference, header/row and file actions are injected through typed seams.
+
+<Canvas of={Stories.HostActions} />
+
+### History
+
+The host plugs in the existing RepositoryFileHistory with its in-memory reader.
+
+<Canvas of={Stories.History} />
+
+### Blame
+
+The host plugs in the existing RepositoryBlamePanel using the same pinned file contents.
+
+<Canvas of={Stories.Blame} />
+
+## Behavior and accessibility
+
+Both sidebars resize independently by dragging their edge, Arrow keys (16px, Shift 32px), Home/End bounds and double-click reset. Bind fileTreeWidth (256px, range 208–420) and inspectorWidth (480px, range 280–800); retain layout in the host using onLayoutChange and onInspectorResize. The right inspector shares the body's semantic background and its transparent history toolbar matches the other header heights.
+
+A stable host-owned controller is subscribed for the screen lifetime; the host
+starts and closes reads. Responses are fenced by repository, operation, revision
+and path. The sidebar resize handle supports drag, Arrow Left/Right, Home/End,
+Shift for larger steps and double-click to reset. Layout callbacks report tree
+visibility and width for optional host persistence. No mount issues mutations.
+
+## Styling variables
+
+The original source geometry and semantic Design Core theme are the defaults.
+Use the audited native variables below or the public component props; avoid
+application-specific selectors and dependency-internal imports. The Markdown
+reader and editor retain stock content styling. AppShell geometry is bounded to
+40rem only in Docs; complete Canvas stories fill the viewport.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Compose this screen with a typed RepositoryBrowserPort and a host-retained
+RepositoryBrowserController. Header, directory, row, file and inspector snippets
+keep app actions outside the package. File history uses the inspector; Blame replaces the file contents using the existing
+production history components against the same in-memory file contents. Review
+this slice before adding repository overview or workspace transfers.

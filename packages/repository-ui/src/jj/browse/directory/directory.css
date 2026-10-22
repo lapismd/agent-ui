@@ -1,0 +1,291 @@
+/* Copied Community repository directory table and revision summary. */
+.repository-browser__file-browser-card {
+  min-width: 0;
+  container-name: repository-directory;
+  container-type: inline-size;
+  --repository-browser-file-table-head-background: color-mix(
+    in srgb,
+    var(--ui-repository-browser-row-background, var(--muted)) 55%,
+    var(--background)
+  );
+
+  border: 1px solid var(--border);
+  border-radius: var(--ui-column-canvas-radius, var(--radius));
+  background: var(--background);
+  overflow: hidden;
+}
+
+.repository-browser__file-browser-summary {
+  display: grid;
+  min-height: var(--repository-browser-file-header-height, 2.25rem);
+  grid-template-columns: minmax(0, 1fr) auto;
+  box-sizing: border-box;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.2rem 0.5rem 0.2rem 0.35rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--ui-repository-browser-row-background, var(--muted));
+  color: var(--muted-foreground);
+  font-size: var(--ui-repository-browser-secondary-font-size, 0.75rem);
+}
+
+.repository-browser__file-browser-summary-primary,
+.repository-browser__file-browser-summary-actions {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.repository-browser__file-browser-summary-actions {
+  justify-content: flex-end;
+}
+
+.repository-browser__file-browser-tree-toggle[data-ui-component="button"] {
+  flex: none;
+  margin-inline-end: -0.15rem;
+}
+
+.repository-browser__file-browser-summary [data-ui-part="git-author"] {
+  flex: none;
+}
+
+.repository-browser__file-browser-summary-message,
+.repository-browser__file-browser-summary-author,
+.repository-browser__file-browser-commit-link {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.repository-browser__file-browser-summary-author {
+  flex: none;
+  color: var(--foreground);
+  font-weight: 550;
+}
+
+.repository-browser__file-browser-summary-verb {
+  flex: none;
+}
+
+.repository-browser__file-browser-commit-link {
+  display: block;
+  flex: 1 1 auto;
+  border: 0;
+  border-radius: var(--radius-sm);
+  padding: 0;
+  color: var(--foreground);
+  background: transparent;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.repository-browser__file-browser-commit-details[data-ui-component="button"] {
+  width: 1.75rem;
+  height: 1.75rem;
+  flex: none;
+  color: var(--muted-foreground);
+}
+
+.repository-browser__file-browser-commit-details > svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.repository-browser__file-browser-commit-link:hover {
+  color: var(--foreground);
+  background: var(--muted);
+}
+
+.repository-browser__file-browser-commit-link:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.repository-browser__file-browser-summary code {
+  color: inherit;
+  font-size: var(--ui-repository-browser-secondary-font-size, 0.75rem);
+}
+
+.repository-browser__file-browser-card
+  .repository-browser__file-branch-trigger[data-ui-component="button"] {
+  min-width: 9.5rem;
+}
+
+.repository-browser__file-browser-table {
+  table-layout: fixed;
+}
+
+.repository-browser__file-browser-card
+  > [data-ui-component="table"][data-ui-part="table-container"] {
+  max-height: min(56dvh, 36rem);
+  overflow: auto;
+}
+
+.repository-browser__file-browser-table [data-ui-part="table-header"] {
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.repository-browser__file-browser-table
+  [data-ui-part="table-body"].repository-browser__virtual-directory-body {
+  display: block;
+  width: 100%;
+}
+
+.repository-browser__file-browser-table [data-ui-part="table-header"],
+.repository-browser__file-browser-table [data-ui-part="table-head"] {
+  background: var(--repository-browser-file-table-head-background);
+}
+
+.repository-browser__file-browser-table [data-ui-part="table-head"]:first-child,
+.repository-browser__file-browser-table
+  [data-ui-part="table-cell"]:first-child {
+  width: 40%;
+}
+
+.repository-browser__file-browser-table
+  [data-ui-part="table-head"]:nth-child(2),
+.repository-browser__file-browser-table
+  [data-ui-part="table-cell"]:nth-child(2) {
+  width: 43%;
+}
+
+.repository-browser__file-browser-table [data-ui-part="table-head"]:last-child,
+.repository-browser__file-browser-table [data-ui-part="table-cell"]:last-child {
+  width: 17%;
+  text-align: end;
+}
+
+.repository-browser__file-browser-table
+  [data-ui-component="table"][data-ui-part="table-head"] {
+  height: 1.95rem;
+  padding-block: 0.2rem;
+  padding-inline: 0.55rem;
+  color: var(--muted-foreground);
+  font-size: var(--ui-repository-browser-secondary-font-size, 0.75rem);
+  font-weight: 500;
+}
+
+.repository-browser__file-browser-table [data-ui-part="table-cell"] {
+  height: 2.35rem;
+  padding-block: 0.35rem;
+  padding-inline: 0.55rem;
+  color: var(--muted-foreground);
+  font-size: var(--ui-repository-browser-secondary-font-size, 0.75rem);
+}
+
+.repository-browser__file-entry {
+  width: 100%;
+  min-width: 0;
+  justify-content: flex-start;
+  padding-inline: 0.25rem;
+  color: var(--foreground);
+}
+
+.repository-browser__file-entry > svg {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+  color: var(--muted-foreground);
+}
+
+.repository-browser__file-entry > strong,
+.repository-browser__file-commit-message {
+  min-width: 0;
+  overflow: hidden;
+  font-size: var(--ui-repository-browser-secondary-font-size, 0.75rem);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.repository-browser__file-entry > strong {
+  font-weight: 550;
+}
+
+.repository-browser__file-entry:hover > strong,
+.repository-browser__file-entry:focus-visible > strong {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.repository-browser__file-attribution
+  > .repository-browser__file-commit-message {
+  display: block;
+  flex: 1 1 0%;
+  min-width: 0;
+  max-width: 100%;
+  padding-inline: 0;
+  text-align: start;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@container repository-directory (max-width: 46rem) {
+  .repository-browser__file-browser-card
+    .repository-browser__file-branch-trigger[data-ui-component="button"] {
+    min-width: 8rem;
+  }
+}
+
+@container repository-directory (max-width: 34rem) {
+  .repository-browser__file-browser-summary {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.15rem;
+    padding-block: 0.25rem;
+  }
+
+  .repository-browser__file-browser-summary-verb,
+  .repository-browser__file-browser-commit-link,
+  .repository-browser__file-browser-summary-actions
+    .community-revision-graph-ids {
+    display: none;
+  }
+
+  .repository-browser__file-browser-summary-author {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .repository-browser__file-browser-commit-details[data-ui-component="button"] {
+    margin-inline-start: auto;
+  }
+
+  .repository-browser__file-browser-summary-actions {
+    justify-content: space-between;
+    padding-inline-start: 2rem;
+  }
+}
+
+.repository-browser__file-attribution {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+.repository-browser__file-snapshot {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.repository-browser__file-attribution
+  > .repository-browser__file-commit-message {
+  color: var(--foreground);
+  text-decoration: none;
+}
+.repository-browser__file-attribution
+  > button.repository-browser__file-commit-message:hover {
+  color: var(--primary);
+  text-decoration: none;
+}

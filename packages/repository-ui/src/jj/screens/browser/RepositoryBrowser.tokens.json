@@ -1,0 +1,33 @@
+{
+  "component": "RepositoryBrowser",
+  "variables": [
+    {
+      "name": "--ui-repository-browser-height",
+      "default": "100%",
+      "description": "Complete AppShell height; the host supplies the enclosing pane.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/screens/browser/RepositoryBrowser.svelte"
+    },
+    {
+      "name": "--ui-repository-browser-secondary-font-size",
+      "default": "0.75rem",
+      "description": "JJ Store secondary typography for tree, table and file controls.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/browse/file-tree/file-tree.css"
+    },
+    {
+      "name": "--ui-repository-browser-body-font-size",
+      "default": "0.875rem",
+      "description": "JJ Store body typography for metadata and documents.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/browse/file-preview/files.css"
+    },
+    {
+      "name": "--ui-repository-browser-row-background",
+      "default": "var(--muted)",
+      "description": "Semantic backing for directory summary and file header rows.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/browse/directory/directory.css"
+    }
+  ]
+}

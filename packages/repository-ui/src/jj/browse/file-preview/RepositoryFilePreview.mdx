@@ -1,0 +1,110 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  ArgTypes,
+  Markdown,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryFilePreview.stories";
+import { Basic, Styling } from "./RepositoryFilePreview.example-sources";
+import tokens from "./RepositoryFilePreview.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# File Preview
+
+Render an explicitly pinned recorded file. Text, binary, unavailable and successful empty content remain different states. The component requests history/blame/clipboard actions through the host and never edits or follows an external file system entry.
+
+## Usage
+
+Render an explicitly pinned recorded file. Text, binary, unavailable and successful empty content remain different states. The component requests history/blame/clipboard actions through the host and never edits or follows an external file system entry.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part            | Responsibility                                                                                  |
+| --------------- | ----------------------------------------------------------------------------------------------- |
+| Metadata        | Recorded author, commit/change identifiers and time use the existing shared history components. |
+| File statistics | Host byte size and actual textual line count remain separate from availability.                 |
+| File header     | Design Core FileTypeIcon, Preview/Source/Blame text toggles and optional host actions.          |
+| Content         | Stock MarkdownContent and CodeBlock present the same text; code retains line numbers.           |
+| Status          | Explicit binary/unavailable/empty presentation uses the same compact icon-bearing Empty.        |
+
+## Variations
+
+### Basic
+
+README content uses stock full-width Markdown, with the source toggle exercised.
+
+<Canvas of={Stories.Basic} />
+
+### Source
+
+A TypeScript file uses the ordinary syntax-aware CodeBlock.
+
+<Canvas of={Stories.Source} />
+
+### Binary
+
+A binary asset keeps its captured size and an explicit non-text state.
+
+<Canvas of={Stories.Binary} />
+
+### Empty
+
+Successful zero-byte text is an Empty file, not a read failure.
+
+<Canvas of={Stories.Empty} />
+
+### Loading
+
+A selected file retains its identity while the read is pending.
+
+<Canvas of={Stories.Loading} />
+
+### Unavailable
+
+Recorded unresolved content is explicit and does not invent readable text.
+
+<Canvas of={Stories.Unavailable} />
+
+### Retry
+
+An injected read refusal can be retried at the same repository/operation/revision/path.
+
+<Canvas of={Stories.Retry} />
+
+## Behavior and accessibility
+
+The source-adapted Preview, Source and Blame buttons expose the current view
+through aria-pressed. Shadcn tooltips describe the header actions and semantic
+hover surfaces provide feedback. Blame replaces the file contents in the same
+card; the host supplies its pinned controller and content snippet. Markdown and source views render the same captured contents.
+History, blame, clipboard and custom actions carry the explicit file selection.
+Loading, refused reads, recorded unavailability, binary files and successful
+empty text remain separate states; retry preserves the selected pin and path.
+Short previews fit the available pane; only overflowing content scrolls through
+the enclosing AppShell content region, without a second vertical scroll area.
+
+## Styling variables
+
+The original source geometry and semantic Design Core theme are the defaults.
+Use the audited native variables below or the public component props; avoid
+application-specific selectors and dependency-internal imports. The Markdown
+reader and editor retain stock content styling. AppShell geometry is bounded to
+40rem only in Docs; complete Canvas stories fill the viewport.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Place the preview below RepositoryBreadcrumb in AppShell.Body.Content.
+RepositoryBrowser connects the read-only controller and optional file-history inspector and inline Blame presentation; hosts own navigation, clipboard and external file actions. The
+preview does not edit the file or follow local filesystem entries.

@@ -1,0 +1,79 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  ArgTypes,
+  Markdown,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryBreadcrumb.stories";
+import { Basic, Styling } from "./RepositoryBreadcrumb.example-sources";
+import tokens from "./RepositoryBreadcrumb.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Breadcrumb
+
+Navigate from the host repository identity through the Files root and canonical path segments. The current segment is text; ancestor segments request navigation through callbacks.
+
+## Usage
+
+Navigate from the host repository identity through the Files root and canonical path segments. The current segment is text; ancestor segments request navigation through callbacks.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part                | Responsibility                                                                                 |
+| ------------------- | ---------------------------------------------------------------------------------------------- |
+| Repository identity | Uses the supplied display name; an optional callback opens the owning app destination.         |
+| Files root          | Returns to the root directory without changing the selected operation or revision.             |
+| Path segments       | Each ancestor retains its complete canonical path; the final segment exposes the current page. |
+
+## Variations
+
+### Basic
+
+Repository identity and the Files root with no selected path.
+
+<Canvas of={Stories.Basic} />
+
+### Nested
+
+File and directory ancestors are independently actionable.
+
+<Canvas of={Stories.Nested} />
+
+### LongPath
+
+Long package and file names truncate within the available header width.
+
+<Canvas of={Stories.LongPath} />
+
+## Behavior and accessibility
+
+The navigation landmark is named Repository path. Ancestor links request their
+complete canonical directory path, while the current segment uses aria-current.
+The optional repository link calls the host without changing the repository pin.
+Long labels truncate without hiding their accessible names.
+
+## Styling variables
+
+The original source geometry and semantic Design Core theme are the defaults.
+Use the audited native variables below or the public component props; avoid
+application-specific selectors and dependency-internal imports. The Markdown
+reader and editor retain stock content styling. AppShell geometry is bounded to
+40rem only in Docs; complete Canvas stories fill the viewport.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Use the breadcrumb above a RepositoryDirectory or RepositoryFilePreview. The
+complete RepositoryBrowser supplies its current path and wires ancestor links
+to the host-retained controller; standalone hosts may supply their own routing.

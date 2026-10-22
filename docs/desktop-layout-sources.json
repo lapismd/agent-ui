@@ -2723,28 +2723,39 @@
       "source": "src/components/repository/RepositoryFileHistory.svelte",
       "destination": "packages/repository-ui/src/jj/history/file-history/RepositoryFileHistory.svelte",
       "sourceSha256": "df78d0f1768d69ca3d3c98e146d2049866fbf9477c3cbaab05e88b031da02d5c",
-      "adaptations": [
-        {
-          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
-        },
-        {
-          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
-        }
+      "destinationSha256": "0711d630d87f124bfe8435e85726075e3ab0b8757d240d3d49b743e1cac65ef8",
+      "reviewNotes": [
+        "User-supplied file-history reference replaces graph rows with date-grouped cards, author metadata, exact Git/JJ controls, independent recorded code/repository callbacks and shared expandable Markdown. Public transparent AppShell.Toolbar replaces private header geometry; optional host close actions avoid duplicate headers. Source controller pins, lifetime, bounded paging and distinct read states remain unchanged.",
+        "Apache-2.0; explicit user review adaptations. No source application changes."
       ],
       "layoutAdaptations": [
         {
-          "before": "        </Empty.Header>\n      </Empty.Root>\n    {:else}\n      <RepositoryGraph\n        revisions={rows}\n        commits={state.commits}\n        label=\"File revision graph\"\n        {copyText}\n        showAuthor={false}\n        onSelect={onOpen}\n      />\n      {#if state.busy}<RepositorySkeleton\n          kind=\"file-history\"\n          label=\"Loading file history…\"\n        />\n      {:else if state.phase === \"unavailable\"}<p role=\"status\">\n          File history is unavailable. Refresh to try again.\n        </p>\n      {:else if !state.operation}<p role=\"status\">\n          {state.heads.length > 1\n            ? \"Choose an operation to inspect this file.\"\n",
-          "after": "        </Empty.Header>\n      </Empty.Root>\n    {:else}\n      {#if state.commits.length}<RepositoryGraph\n          revisions={rows}\n          commits={state.commits}\n          label=\"File revision graph\"\n          {copyText}\n          showAuthor={false}\n          onSelect={onOpen}\n        />{/if}\n      {#if state.busy}<RepositorySkeleton\n          kind=\"file-history\"\n          label=\"Loading file history…\"\n        />\n      {:else if state.phase === \"unavailable\"}<Empty.Root role=\"status\"\n          ><Empty.Header\n            ><Empty.Media variant=\"icon\"\n              ><FileQuestionIcon aria-hidden=\"true\" /></Empty.Media\n            ><Empty.Title>File history unavailable</Empty.Title\n            ><Empty.Description\n              >Refresh to try reading this file’s history again.</Empty.Description\n            ></Empty.Header\n          ></Empty.Root\n        >\n      {:else if !state.operation}<p role=\"status\">\n          {state.heads.length > 1\n            ? \"Choose an operation to inspect this file.\"\n",
-          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+          "before": "  aria-label=\"Active file history\"\n  aria-busy={state?.busy ?? false}\n>\n  <header>\n    <span class=\"file-title\"\n      >{#if state?.path}<RepositoryFileTitle path={state.path} />{:else}File\n        history{/if}</span\n",
+          "after": "  aria-label=\"Active file history\"\n  aria-busy={state?.busy ?? false}\n>\n  <AppShell.Toolbar\n    label=\"File history header\"\n    style=\"min-height:var(--ui-shell-toolbar-height, 2.5rem);--ui-shell-toolbar-padding-block:0;--ui-shell-toolbar-padding-inline:0.75rem;background:transparent\"\n  >\n    <span class=\"file-title\"\n      >{#if state?.path}<RepositoryFileTitle path={state.path} />{:else}File\n        history{/if}</span\n",
+          "description": "User-supplied file-history reference replaces graph rows with date-grouped cards, author metadata, exact Git/JJ controls, independent recorded code/repository callbacks and shared expandable Markdown. Public transparent AppShell.Toolbar replaces private header geometry; optional host close actions avoid duplicate headers. Source controller pins, lifetime, bounded paging and distinct read states remain unchanged."
         },
         {
-          "before": "    min-width: 0;\n    color: var(--foreground);\n    background: var(--background);\n    font-size: 0.8125rem;\n  }\n  header {\n    display: flex;\n",
-          "after": "    min-width: 0;\n    color: var(--foreground);\n    background: var(--background);\n    font-size: var(--ui-repository-file-history-font-size, 0.8125rem);\n  }\n  header {\n    display: flex;\n",
-          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+          "before": "      disabled={!state?.path || state.busy}\n      onclick={() => controller.refresh()}><RefreshCwIcon /></Button\n    >\n  </header>\n  {#if state?.path && !state.operation && pins.length > 1}<div class=\"file-pin\">\n      <RepositoryOperationPinPicker\n        operations={pins}\n",
+          "after": "      disabled={!state?.path || state.busy}\n      onclick={() => controller.refresh()}><RefreshCwIcon /></Button\n    >\n    {@render headerActions?.()}\n  </AppShell.Toolbar>\n  {#if state?.path && !state.operation && pins.length > 1}<div class=\"file-pin\">\n      <RepositoryOperationPinPicker\n        operations={pins}\n",
+          "description": "User-supplied file-history reference replaces graph rows with date-grouped cards, author metadata, exact Git/JJ controls, independent recorded code/repository callbacks and shared expandable Markdown. Public transparent AppShell.Toolbar replaces private header geometry; optional host close actions avoid duplicate headers. Source controller pins, lifetime, bounded paging and distinct read states remain unchanged."
+        },
+        {
+          "before": "        </Empty.Header>\n      </Empty.Root>\n    {:else}\n      <RepositoryGraph\n        revisions={rows}\n        commits={state.commits}\n        label=\"File revision graph\"\n        {copyText}\n        showAuthor={false}\n        onSelect={onOpen}\n      />\n      {#if state.busy}<RepositorySkeleton\n          kind=\"file-history\"\n          label=\"Loading file history…\"\n        />\n      {:else if state.phase === \"unavailable\"}<p role=\"status\">\n          File history is unavailable. Refresh to try again.\n        </p>\n      {:else if !state.operation}<p role=\"status\">\n          {state.heads.length > 1\n            ? \"Choose an operation to inspect this file.\"\n",
+          "after": "        </Empty.Header>\n      </Empty.Root>\n    {:else}\n      {#if state.commits.length}<RepositoryFileHistoryRows\n          commits={state.commits}\n          {copyText}\n          {onOpen}\n          {onBrowse}\n        />{/if}\n      {#if state.busy}<RepositorySkeleton\n          kind=\"file-history\"\n          label=\"Loading file history…\"\n        />\n      {:else if state.phase === \"unavailable\"}<Empty.Root role=\"status\"\n          ><Empty.Header\n            ><Empty.Media variant=\"icon\"\n              ><FileQuestionIcon aria-hidden=\"true\" /></Empty.Media\n            ><Empty.Title>File history unavailable</Empty.Title\n            ><Empty.Description\n              >Refresh to try reading this file’s history again.</Empty.Description\n            ></Empty.Header\n          ></Empty.Root\n        >\n      {:else if !state.operation}<p role=\"status\">\n          {state.heads.length > 1\n            ? \"Choose an operation to inspect this file.\"\n",
+          "description": "User-supplied file-history reference replaces graph rows with date-grouped cards, author metadata, exact Git/JJ controls, independent recorded code/repository callbacks and shared expandable Markdown. Public transparent AppShell.Toolbar replaces private header geometry; optional host close actions avoid duplicate headers. Source controller pins, lifetime, bounded paging and distinct read states remain unchanged."
+        },
+        {
+          "before": "    min-height: 0;\n    min-width: 0;\n    color: var(--foreground);\n    background: var(--background);\n    font-size: 0.8125rem;\n  }\n  header {\n    display: flex;\n    align-items: center;\n    gap: 0.5rem;\n    box-sizing: border-box;\n    height: var(--ui-workspace-tab-height, 40px);\n    min-height: var(--ui-workspace-tab-height, 40px);\n    flex: 0 0 var(--ui-workspace-tab-height, 40px);\n    padding: 0 0.75rem;\n    border-bottom: 1px solid var(--border);\n  }\n  .file-title {\n    flex: 1;\n",
+          "after": "    min-height: 0;\n    min-width: 0;\n    color: var(--foreground);\n    background: transparent;\n    font-size: var(--ui-repository-file-history-font-size, 0.8125rem);\n  }\n  .file-title {\n    flex: 1;\n",
+          "description": "User-supplied file-history reference replaces graph rows with date-grouped cards, author metadata, exact Git/JJ controls, independent recorded code/repository callbacks and shared expandable Markdown. Public transparent AppShell.Toolbar replaces private header geometry; optional host close actions avoid duplicate headers. Source controller pins, lifetime, bounded paging and distinct read states remain unchanged."
         }
       ],
-      "destinationSha256": "aaa28a0993c674906db63bdc2369ca07cee00ea8a532500b4056fa964f36f75f",
-      "layoutSha256": "14aafe6c47e5c3d806b1ad1247ce295111caa0a7c0c73a58e63177af4026ea75"
+      "adaptations": [
+        {
+          "description": "User-supplied file-history reference replaces graph rows with date-grouped cards, author metadata, exact Git/JJ controls, independent recorded code/repository callbacks and shared expandable Markdown. Public transparent AppShell.Toolbar replaces private header geometry; optional host close actions avoid duplicate headers. Source controller pins, lifetime, bounded paging and distinct read states remain unchanged."
+        }
+      ],
+      "layoutSha256": "066148825cdc3e214c3d6b983e502cbe2866cc3f2c9ee94906cf4b294292a83d"
     },
     {
       "sourceRepository": "lapis-desktop",
@@ -2846,16 +2857,24 @@
         },
         {
           "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        },
+        {
+          "description": "Reviewed parent-panel hover tone and transparent Markdown; shared surface token default unchanged."
         }
       ],
       "layoutAdaptations": [
         {
           "before": "    --ui-chat-markdown-padding: 0;\n",
           "after": "    --mira-preview-background: var(\n      --ui-repository-revisions-message-background,\n      transparent\n    );\n    --ui-chat-markdown-padding: 0;\n"
+        },
+        {
+          "before": "    background: color-mix(in srgb, var(--foreground) 5%, var(--background));",
+          "after": "    background: var(\n      --ui-repository-revisions-message-surface,\n      color-mix(in srgb, var(--foreground) 5%, var(--background))\n    );",
+          "description": "Expose the unchanged default outer description-panel surface as a native token. File-history hover changes the parent panel tone while the Mira preview remains transparent; JJ Log default presentation is unchanged."
         }
       ],
-      "destinationSha256": "f85311b15eabd35e1534e79ef0edabe7ac585f1a3f3f80da567091e2ca279dd5",
-      "layoutSha256": "1972b6a1b86897bb9c0764ced1cb0e73094b1f16ea4d2ddf86afc423a235ed79",
+      "destinationSha256": "aae4437df2baff13a6eb803eaca09f13436e8ae3e05587155d6224f0186326b6",
+      "layoutSha256": "30838ca937bcbaa87c93a5e68f0f76f8288f22fe67fc38bb2e1eec68b6c18b74",
       "reviewNotes": [
         "JJ Log parity slice: reviewed native query context, bounded paging, host action/controls snippets, explicit file paging and recorded rename/binary presentation; default shell structure retained. See spec/records/2026-10-22-jj-log-parity.md."
       ]
@@ -3904,6 +3923,764 @@
       "layoutSha256": "545637510b9b95732ac018a96d1ff953bd2bdf3480d43e0154e641e0ad765195",
       "reviewNotes": [
         "Adapt the existing public Empty composition only: replace the branch icon/text with a resize icon/hint, remove workspace drag/drop and command controls, and fill the trailing slot height. Apache-2.0; see docs/provenance.json."
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/StoreFileDisplayControls.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/file-preview/RepositoryFileDisplayControls.svelte",
+      "sourceSha256": "2ce83b1a818235dcb75cd01e56b74960518cb5026e7ba1789c93aa44bdfbba48",
+      "destinationSha256": "0b6d15f0703436c8d9394420065298aa5d4447ea78953a725011470e936ad94f",
+      "reviewNotes": [
+        "Retain source Preview/Source/Blame outlined text ButtonGroup and icons; omit working-copy/edit mutations, use the same controlled display and inline Blame content seam; add public shadcn tooltips and shared owned action wrapper for hover feedback.",
+        "Apache-2.0; source applications remain read-only and host authority stays outside the package."
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "<ButtonGroup.Root\n  class=\"community-projects__file-view-toggle\"\n  aria-label=\"File display\"\n>\n  {#if isMarkdown}<Button\n      type=\"button\"\n      variant=\"outline\"\n      size=\"sm\"\n      data-selected={mode === \"preview\"}\n      aria-pressed={mode === \"preview\"}\n      onclick={() => onSelect(\"preview\")}\n    >\n      <EyeIcon data-icon=\"inline-start\" aria-hidden=\"true\" />Preview\n    </Button>{/if}\n  <Button\n    type=\"button\"\n    variant=\"outline\"\n    size=\"sm\"\n    data-selected={mode === \"source\"}\n    aria-pressed={mode === \"source\"}\n    onclick={() => onSelect(\"source\")}\n  >\n    <CodeXmlIcon data-icon=\"inline-start\" aria-hidden=\"true\" />Source\n  </Button>\n  <Button\n    type=\"button\"\n    variant=\"outline\"\n    size=\"sm\"\n    data-selected={mode === \"blame\"}\n    aria-pressed={mode === \"blame\"}\n    disabled={Boolean(blameReason)}\n    title={blameReason || \"Show line origins\"}\n    aria-describedby={blameReason ? descriptionId : undefined}\n    onclick={() => onSelect(\"blame\")}\n  >\n    <HistoryIcon data-icon=\"inline-start\" aria-hidden=\"true\" />Blame\n  </Button>\n  <Button\n    type=\"button\"\n    variant=\"outline\"\n    size=\"sm\"\n    data-selected={mode === \"edit\"}\n    aria-pressed={mode === \"edit\"}\n    disabled={editDisabled}\n    title={editTitle}\n    onclick={onEdit}\n  >\n    <PencilIcon data-icon=\"inline-start\" aria-hidden=\"true\" />{localEditing\n      ? \"Working copy\"\n      : \"Edit\"}\n  </Button>\n</ButtonGroup.Root>\n\n{#if blameReason}<span id={descriptionId} class=\"sr-only\">{blameReason}</span\n  >{/if}",
+          "after": "<ButtonGroup.Root\n  class=\"repository-browser__file-view-toggle\"\n  aria-label=\"File display\"\n>\n  {#if isMarkdown}<RepositoryFileAction\n      label=\"Show formatted preview\"\n      text=\"Preview\"\n      selected={mode === \"preview\"}\n      onclick={() => onSelect(\"preview\")}\n      ><EyeIcon\n        data-icon=\"inline-start\"\n        aria-hidden=\"true\"\n      /></RepositoryFileAction\n    >{/if}\n  <RepositoryFileAction\n    label=\"Show source\"\n    text=\"Source\"\n    selected={mode === \"source\"}\n    onclick={() => onSelect(\"source\")}\n    ><CodeXmlIcon\n      data-icon=\"inline-start\"\n      aria-hidden=\"true\"\n    /></RepositoryFileAction\n  >\n  {#if canBlame}<RepositoryFileAction\n      label=\"Show line origins\"\n      text=\"Blame\"\n      selected={mode === \"blame\"}\n      onclick={() => onSelect(\"blame\")}\n      ><HistoryIcon\n        data-icon=\"inline-start\"\n        aria-hidden=\"true\"\n      /></RepositoryFileAction\n    >{/if}\n</ButtonGroup.Root>",
+          "description": "Retain source Preview/Source/Blame outlined text ButtonGroup and icons; omit working-copy/edit mutations, use the same controlled display and inline Blame content seam; add public shadcn tooltips and shared owned action wrapper for hover feedback."
+        }
+      ],
+      "adaptations": [
+        {
+          "description": "Retain source Preview/Source/Blame outlined text ButtonGroup and icons; omit working-copy/edit mutations, use the same controlled display and inline Blame content seam; add public shadcn tooltips and shared owned action wrapper for hover feedback."
+        }
+      ],
+      "layoutSha256": "2c9270fc12f398a7a1119167895b8de9b30402488a74d5976d6e701680990c70"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryFiles.svelte",
+      "destination": "packages/repository-ui/src/jj/screens/browser/RepositoryBrowser.svelte",
+      "sourceSha256": "230286388c4ec6a13f1104fd7a03631660e53bbfc62040f1c3b00898390946be",
+      "destinationSha256": "ae84a5caf4c3d5fbb92824f244080d390a2a6328d6f87291c9e84598e1e9591f",
+      "reviewNotes": [
+        "Preserve AppShell Body.Sidebar, resize handle and Body.Content topology inside the existing RepositoryShell; replace application route/admission/store/storage with a subscribed pinned read-only controller, typed host callbacks, optional inspector and layout callback; retain 256px default and 208-420px resize range.",
+        "Apache-2.0; source applications remain read-only and host authority stays outside the package."
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "{#if fileTreeOpen}<AppShell.Body.Sidebar\n    panelId=\"repository-file-tree\"\n    side=\"left\"\n    label=\"Repository file tree\"\n    mobileLabel=\"Repository file tree\"\n    open={fileTreeOpen}\n    scrollbarVisibility=\"hover\"\n    class=\"community-projects__file-tree-region\"\n    style={fileTreeStyle}\n  >\n    {#if initialLoading}<CommunityProjectsRepositorySkeleton\n        layout=\"file-tree\"\n        label=\"Loading repository file tree\"\n      />{:else}<CommunityProjectsRepositoryFileTree\n        files={view.snapshot?.files ?? []}\n        directories={view.snapshot?.directories ?? []}\n        mode={view.fileViewMode}\n        collapsedDirectoryPaths={view.collapsedDirectoryPaths}\n        selectedPath={view.route.path ?? \"\"}\n        hasMore={view.canLoadMoreFiles}\n        loading={view.status.files === \"refreshing\"}\n        onSelectPath={controller.actions.selectFile}\n        onLoadMore={() => void controller.actions.loadMore(\"files\")}\n        onModeChange={(mode) => void controller.actions.setFileViewMode(mode)}\n        onDirectoryToggle={(path) =>\n          void controller.actions.toggleDirectory(path)}\n      />{/if}\n  </AppShell.Body.Sidebar>\n  <button\n    type=\"button\"\n    class=\"community-projects__file-tree-resize\"\n    data-resizing={resizePointerId === null ? undefined : \"\"}\n    data-min-width={fileTreeMinimum}\n    data-max-width={fileTreeMaximum}\n    data-current-width={fileTreeWidth}\n    aria-label=\"Resize repository file tree\"\n    title=\"Drag to resize. Double-click to reset width.\"\n    onpointerdown={beginFileTreeResize}\n    onpointermove={moveFileTreeResize}\n    onpointerup={finishFileTreeResize}\n    onpointercancel={finishFileTreeResize}\n    ondblclick={() => (fileTreeWidth = repositoryFileTreeDefaultWidth)}\n    onkeydown={resizeFileTreeWithKeyboard}\n  >\n    <span aria-hidden=\"true\"></span>\n  </button>{/if}\n<AppShell.Body.Content\n  label=\"Repository file browser\"\n  scrollbarVisibility=\"hover\"\n  class=\"community-projects__files-content\"\n>\n  <section\n    class=\"community-projects__files-surface\"\n    aria-label=\"Repository files\"\n  >\n    <CommunityProjectsRepositoryBreadcrumb\n      {controller}\n      editing={editing && view.repository.profile !== \"git_sha1_jj045\"}\n      bind:filename={editFilename}\n    />\n    {#if initialLoading || directoryLoading}<CommunityProjectsRepositorySkeleton\n        layout={view.route.path ? \"source\" : \"directory\"}\n        path={view.route.path ?? \"\"}\n        label=\"Loading repository files\"\n      />{:else}\n      {#if view.targets.length > 1}<StoreNotice\n          noticeKey=\"bookmark-target-selection\"\n          severity=\"warning\"\n          title=\"Choose a bookmark target\"\n          message=\"This bookmark is conflicted. Select an explicit revision to browse its files.\"\n        />\n        <div role=\"group\" aria-label=\"Choose a bookmark target\">\n          {#each view.targets as target}<Button\n              variant=\"outline\"\n              onclick={() => controller.actions.selectRevision(target)}\n              >Open target {target.slice(0, 8)}…{target.slice(-4)}</Button\n            >{/each}\n        </div>{/if}\n      {#if view.route.path}<CommunityProjectsRepositoryFilePanel\n          {controller}\n          bind:editing\n          bind:filename={editFilename}\n          blob={view.blob}\n          selectedPath={view.route.path ?? \"\"}\n          {latestCommit}\n          {now}\n          {fileTreeOpen}\n          onToggleFileTree={() => (fileTreeOpen = !fileTreeOpen)}\n          loading={view.status.detail === \"loading\"}\n          isMarkdown={isMarkdownRepositoryPath(view.route.path ?? \"\")}\n        />{:else}<CommunityProjectsRepositoryDirectory\n          bind:fileTreeOpen\n          currentPath={view.route.directory}\n          {entries}\n          {latestCommit}\n          {pathCommits}\n          canLoadPathCommit={true}\n          metadataStatus={view.fileRevisionStatus}\n          {previewDocuments}\n          {editUnavailable}\n          branch={selectedSnapshot}\n          branches={snapshotChoices}\n          {now}\n          onOpenDirectory={controller.actions.selectDirectory}\n          onOpenFile={controller.actions.selectFile}\n          onEditFile={editLandingDocument}\n          onSelectCommit={async (revision) => {\n            await controller.actions.selectPage(\"log\");\n            await controller.actions.selectRevision(revision.eventId);\n          }}\n          onSelectBranch={selectSnapshot}\n          hasMore={view.canLoadMoreFiles}\n          loading={view.status.files === \"refreshing\"}\n          onLoadMore={() => controller.actions.loadMore(\"files\")}\n          hasMoreReferences={view.canLoadMoreBookmarks}\n          loadingReferences={view.status.bookmarks === \"refreshing\"}\n          onLoadMoreReferences={() =>\n            void controller.actions.loadMore(\"bookmarks\")}\n        />{/if}\n    {/if}\n  </section>\n</AppShell.Body.Content>",
+          "after": "{#snippet treeHeader(controls: Snippet)}<AppShell.Toolbar\n    label=\"Repository files header\"\n    style=\"min-height:var(--ui-shell-toolbar-height);margin-inline:-0.5rem;--ui-shell-toolbar-padding-inline:0.5rem;--ui-shell-toolbar-padding-block:0\"\n    >{@render controls()}</AppShell.Toolbar\n  >{/snippet}\n\n<div class=\"repository-browser-screen\">\n  <RepositoryShell>\n    <section class=\"repository-browser-layout\" aria-label=\"Repository browser\">\n      {#if fileTreeOpen}\n        <AppShell.Body.Sidebar\n          panelId=\"repository-file-tree\"\n          side=\"left\"\n          label=\"Repository file tree\"\n          mobileLabel=\"Repository file tree\"\n          bind:open={fileTreeOpen}\n          scrollbarVisibility=\"hover\"\n          class=\"repository-browser__file-tree-region\"\n          style={`--ui-shell-body-sidebar-width:${clamp(fileTreeWidth)}px`}\n        >\n          {#if view.directoryPhase === \"loading\" && !entries.length}<RepositorySkeleton\n              kind=\"files\"\n              label=\"Loading repository file tree\"\n            />\n          {:else}<RepositoryFileTree\n              {files}\n              header={treeHeader}\n              {directories}\n              mode={view.mode}\n              collapsedDirectoryPaths={view.collapsedDirectoryPaths}\n              selectedPath={view.path}\n              hasMore={!!view.pages[pathPageKey(\"\", view.mode !== \"tree\")]\n                ?.nextCursor &&\n                !view.pages[pathPageKey(\"\", view.mode !== \"tree\")]\n                  ?.limitReached}\n              loading={treeLoading}\n              onSelectPath={(path) => void controller.openFile(path)}\n              onLoadMore={() => void controller.more(\"\", view.mode !== \"tree\")}\n              onModeChange={(mode) => void controller.setMode(mode)}\n              onDirectoryToggle={(path) =>\n                void controller.toggleDirectory(\n                  path,\n                  !view.collapsedDirectoryPaths.has(path),\n                )}\n            >\n              {#snippet empty()}<RepositoryBrowserEmpty\n                  folder\n                  title=\"No repository files\"\n                  description=\"The selected revision has no loaded files.\"\n                />{/snippet}\n            </RepositoryFileTree>{/if}\n        </AppShell.Body.Sidebar>\n        <RepositorySidebarResize\n          bind:width={fileTreeWidth}\n          label=\"Resize repository file tree\"\n          onResize={saveLayout}\n        />\n      {/if}\n      <AppShell.Body.Content\n        label=\"Repository file browser\"\n        scrollbarVisibility=\"hover\"\n        class=\"repository-browser__files-content\"\n      >\n        <section\n          class=\"repository-browser__files-surface\"\n          aria-label=\"Repository files\"\n        >\n          <AppShell.Toolbar\n            label=\"Repository path header\"\n            class=\"repository-browser-toolbar\"\n            style=\"min-height:var(--ui-shell-toolbar-height);--ui-shell-toolbar-padding-inline:0;--ui-shell-toolbar-padding-block:0\"\n          >\n            <RepositoryBreadcrumb\n              {repositoryName}\n              path={view.path ?? view.directory}\n              onOpenDirectory={(path) => void controller.openDirectory(path)}\n              {onOpenRepository}\n            />{@render headerActions?.(selection)}\n          </AppShell.Toolbar>\n          {#if view.path}\n            <RepositoryFilePreview\n              file={view.file}\n              phase={view.filePhase}\n              {selection}\n              display={view.display}\n              {now}\n              {fileTreeOpen}\n              onToggleFileTree={toggleFileTree}\n              onDisplayChange={(display) => controller.setDisplay(display)}\n              onRetry={() => void controller.openFile(view.path!, true)}\n              {onHistory}\n              {onBlame}\n              {blame}\n              {copyText}\n              actions={fileActions}\n            />\n          {:else}<RepositoryDirectory\n              bind:fileTreeOpen\n              onToggleFileTree={toggleFileTree}\n              {now}\n              currentPath={view.directory}\n              entries={window?.entries ?? []}\n              latestCommit={window?.latestCommit}\n              documents={window?.documents}\n              phase={view.directoryPhase}\n              hasMore={!!window?.nextCursor && !window.limitReached}\n              loading={view.directoryPhase === \"loading\"}\n              limitReached={window?.limitReached ?? false}\n              onOpenDirectory={(path) => void controller.openDirectory(path)}\n              onOpenFile={(path) => void controller.openFile(path)}\n              {onSelectCommit}\n              onLoadMore={() => void controller.more()}\n              onRetry={() => void controller.refresh()}\n              {copyText}\n              controls={directoryControls}\n              actions={directoryActions}\n              {rowActions}\n            />{/if}\n        </section>\n      </AppShell.Body.Content>\n      {#if inspector && view.path}<RepositorySidebarResize\n          side=\"right\"\n          bind:width={inspectorWidth}\n          minimum={280}\n          maximum={800}\n          defaultWidth={480}\n          label=\"Resize file history sidebar\"\n          onResize={onInspectorResize}\n        /><AppShell.Body.Sidebar\n          side=\"right\"\n          panelId=\"repository-file-inspector\"\n          label=\"File inspector\"\n          style={`--ui-shell-body-sidebar-width:${Math.min(800, Math.max(280, Number.isFinite(inspectorWidth) ? inspectorWidth : 480))}px;background:var(--background)`}\n          scrollbarVisibility=\"hover\"\n          >{@render inspector(selection)}</AppShell.Body.Sidebar\n        >{/if}\n    </section>\n  </RepositoryShell>\n</div>\n\n<style>\n  .repository-browser-screen {\n    height: var(--ui-repository-browser-height, 100%);\n    min-width: 0;\n    min-height: 0;\n  }\n  .repository-browser-layout {\n    display: flex;\n    width: 100%;\n    height: 100%;\n    min-width: 0;\n    min-height: 0;\n    flex: 1;\n    overflow: hidden;\n  }\n  :global(.repository-browser-toolbar) {\n    display: flex;\n    align-items: center;\n    flex: none;\n    min-width: 0;\n    padding-inline-end: 0.5rem;\n  }\n  :global(.repository-browser-toolbar .repository-breadcrumb) {\n    flex: 1;\n    min-width: 0;\n  }\n</style>",
+          "description": "Preserve AppShell Body.Sidebar, resize handle and Body.Content topology inside the existing RepositoryShell; replace application route/admission/store/storage with a subscribed pinned read-only controller, typed host callbacks, optional inspector and layout callback; retain 256px default and 208-420px resize range."
+        }
+      ],
+      "adaptations": [
+        {
+          "description": "Preserve AppShell Body.Sidebar, resize handle and Body.Content topology inside the existing RepositoryShell; replace application route/admission/store/storage with a subscribed pinned read-only controller, typed host callbacks, optional inspector and layout callback; retain 256px default and 208-420px resize range."
+        }
+      ],
+      "layoutSha256": "c16c1be54265cd7d24ad3afa4f43fb45778faf60076fc80c4a8d0c676de59ecd"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryBreadcrumb.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/breadcrumb/RepositoryBreadcrumb.svelte",
+      "sourceSha256": "cf2cdfae1a90ecb17ce94c8d77ec459afe83966e99787a459e768689d998425e",
+      "destinationSha256": "0627897807ed47010a0796693fedd92122130efe790cae285357c248dbabd479",
+      "reviewNotes": [
+        "Retain breadcrumb hierarchy and original store-application breadcrumb geometry; replace application router with canonical-path callbacks and optional repository callback; expose audited padding/font tokens.",
+        "Apache-2.0; source applications remain read-only and host authority stays outside the package."
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "<nav class=\"store-application__body-breadcrumb\">\n  <Breadcrumb.Root>\n    <Breadcrumb.List aria-label=\"Repository breadcrumb\">\n      <Breadcrumb.Item>\n        <Breadcrumb.Link\n          href=\"#\"\n          onclick={(event) => {\n            event.preventDefault();\n            controller.actions.openRepository(view.route.repository);\n          }}\n          ><span>{view.repository.name || view.route.repository}</span\n          ></Breadcrumb.Link\n        >\n      </Breadcrumb.Item>\n      <Breadcrumb.Separator />\n      <Breadcrumb.Item>\n        {#if segments.length > 0}\n          <Breadcrumb.Link\n            href=\"#\"\n            onclick={(event) => {\n              event.preventDefault();\n              controller.actions.selectDirectory(\"\");\n            }}><span>Files</span></Breadcrumb.Link\n          >\n        {:else}\n          <Breadcrumb.Page><span>Files</span></Breadcrumb.Page>\n        {/if}\n      </Breadcrumb.Item>\n      {#each contextSegments as segment, index (segment.path)}\n        <Breadcrumb.Separator />\n        <Breadcrumb.Item>\n          {#if !editing && index === contextSegments.length - 1}\n            <Breadcrumb.Page><span>{segment.name}</span></Breadcrumb.Page>\n          {:else}\n            <Breadcrumb.Link\n              href=\"#\"\n              onclick={(event) => {\n                event.preventDefault();\n                controller.actions.selectDirectory(segment.path);\n              }}><span>{segment.name}</span></Breadcrumb.Link\n            >\n          {/if}\n        </Breadcrumb.Item>\n      {/each}\n      {#if editing}\n        <Breadcrumb.Separator />\n        <Breadcrumb.Item class=\"store-application__breadcrumb-filename\">\n          <Input\n            aria-label=\"File name\"\n            title=\"File name relative to the repository root\"\n            bind:value={filename}\n            spellcheck=\"false\"\n            autocomplete=\"off\"\n          />\n        </Breadcrumb.Item>\n      {/if}\n    </Breadcrumb.List>\n  </Breadcrumb.Root>\n</nav>",
+          "after": "<nav class=\"repository-breadcrumb\" aria-label=\"Repository path\">\n  <Breadcrumb.Root>\n    <Breadcrumb.List aria-label=\"Repository breadcrumb\">\n      <Breadcrumb.Item>\n        {#if onOpenRepository}<Breadcrumb.Link\n            href=\"#\"\n            onclick={(event) => {\n              event.preventDefault();\n              onOpenRepository?.();\n            }}><span>{repositoryName}</span></Breadcrumb.Link\n          >\n        {:else}<span>{repositoryName}</span>{/if}\n      </Breadcrumb.Item>\n      <Breadcrumb.Separator />\n      <Breadcrumb.Item>\n        {#if segments.length > 0}<Breadcrumb.Link\n            href=\"#\"\n            onclick={(event) => {\n              event.preventDefault();\n              onOpenDirectory(\"\");\n            }}><span>Files</span></Breadcrumb.Link\n          >\n        {:else}<Breadcrumb.Page><span>Files</span></Breadcrumb.Page>{/if}\n      </Breadcrumb.Item>\n      {#each segments as segment, index (segment.path)}\n        <Breadcrumb.Separator />\n        <Breadcrumb.Item>\n          {#if index === segments.length - 1}<Breadcrumb.Page\n              ><span>{segment.name}</span></Breadcrumb.Page\n            >\n          {:else}<Breadcrumb.Link\n              href=\"#\"\n              onclick={(event) => {\n                event.preventDefault();\n                onOpenDirectory(segment.path);\n              }}><span>{segment.name}</span></Breadcrumb.Link\n            >{/if}\n        </Breadcrumb.Item>\n      {/each}\n    </Breadcrumb.List>\n  </Breadcrumb.Root>\n</nav>\n\n<style>\n  .repository-breadcrumb {\n    display: flex;\n    min-height: 2.5rem;\n    box-sizing: border-box;\n    flex: none;\n    align-items: center;\n    padding: var(--ui-repository-breadcrumb-padding, 0.4rem 1rem);\n    background: var(--background);\n  }\n  .repository-breadcrumb :global([data-slot=\"breadcrumb-list\"]) {\n    min-width: 0;\n    flex-wrap: nowrap;\n    overflow: hidden;\n  }\n  .repository-breadcrumb :global([data-slot=\"breadcrumb-separator\"]) {\n    flex: none;\n  }\n  .repository-breadcrumb\n    :global(:is([data-slot=\"breadcrumb-link\"], [data-slot=\"breadcrumb-page\"])) {\n    max-width: 18rem;\n    overflow: hidden;\n    color: var(--foreground);\n    font-size: var(--ui-repository-breadcrumb-font-size, 0.75rem);\n    font-weight: 550;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n  }\n  .repository-breadcrumb :global([data-slot=\"breadcrumb-link\"]:hover) {\n    color: var(--foreground);\n    text-decoration: underline;\n    text-underline-offset: 0.15em;\n  }\n</style>",
+          "description": "Retain breadcrumb hierarchy and original store-application breadcrumb geometry; replace application router with canonical-path callbacks and optional repository callback; expose audited padding/font tokens."
+        }
+      ],
+      "adaptations": [
+        {
+          "description": "Retain breadcrumb hierarchy and original store-application breadcrumb geometry; replace application router with canonical-path callbacks and optional repository callback; expose audited padding/font tokens."
+        }
+      ],
+      "layoutSha256": "2a620a0407984e403ca6e9a1f14b1711b1c77b51c5fd03765cade4a8289ccf94"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryFileTree.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/file-tree/RepositoryFileTree.svelte",
+      "sourceSha256": "6363ef87b5571d3d40531d9bc21237f0ec2de096ee7c8c30e237bba98f33b22b",
+      "destinationSha256": "45eeeebb2dd1117598dd1fd32eb83d7cbb87e34e49d6c27315315128ed4fe596",
+      "reviewNotes": [
+        "Retain public FileListing modes and metadata slot; remove application-private icon resolver, add shared icon-bearing Empty and loading Skeleton; canonical host paths remain selection identities.",
+        "Apache-2.0; source applications remain read-only and host authority stays outside the package."
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "<div class=\"community-projects__file-tree\">\n  <div class=\"community-projects__file-tree-actions\">\n    <span class=\"community-projects__file-tree-title\">Files</span>\n    <span class=\"community-projects__file-tree-count\">{files.length}</span>\n    <FileListingViewModeToggle {mode} {onModeChange} />\n  </div>\n  {#if !files.length && !directories.length && empty}\n    {@render empty()}\n  {:else}\n    <FileListing\n      files={[...files]}\n",
+          "after": "<div class=\"repository-browser__file-tree\">\n  {#snippet controls()}\n    <span class=\"repository-browser__file-tree-title\">Files</span>\n    <span class=\"repository-browser__file-tree-count\">{files.length}</span>\n    <FileListingViewModeToggle {mode} {onModeChange} />\n  {/snippet}\n  {#if header}{@render header(controls)}{:else}<div\n      class=\"repository-browser__file-tree-actions\"\n    >\n      {@render controls()}\n    </div>{/if}\n  {#if loading && !files.length && !directories.length}\n    <RepositorySkeleton kind=\"files\" label=\"Loading repository file tree\" />\n  {:else if !files.length && !directories.length}\n    {#if empty}{@render empty()}{:else}<RepositoryBrowserEmpty\n        folder\n        title=\"No repository files\"\n        description=\"The selected revision has no loaded files.\"\n      />{/if}\n  {:else}\n    <FileListing\n      files={[...files]}\n",
+          "description": "Retain public FileListing modes and metadata slot; remove application-private icon resolver, add shared icon-bearing Empty and loading Skeleton; canonical host paths remain selection identities."
+        }
+      ],
+      "adaptations": [
+        {
+          "description": "Retain public FileListing modes and metadata slot; remove application-private icon resolver, add shared icon-bearing Empty and loading Skeleton; canonical host paths remain selection identities."
+        }
+      ],
+      "layoutSha256": "6cb45bb4e3e1d98ab97a1e24ca067a86eea7a3a8b6934372fd594b1916fdf976"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryDirectory.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/directory/RepositoryDirectory.svelte",
+      "sourceSha256": "d86feaa3d344df9aecf110e3ef5677ca5e0c5c961a4ae63c166ee4d8605ea2eb",
+      "destinationSha256": "654f12c640101c75081b3c43738805dfa071a75a73cc545c46d45426041fd4a8",
+      "reviewNotes": [
+        "Retain summary, table and landing document composition; supplied entries replace view/routes/native reads, public shared avatar/identifiers/time replace local wrappers; PanelToggle replaces app-specific sidebar icon; optional host controls/row actions and explicit bounded/retry states replace editing actions.",
+        "Apache-2.0; source applications remain read-only and host authority stays outside the package."
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "<StoreNotice\n  noticeKey=\"directory-commit-metadata\"\n  severity=\"warning\"\n  title=\"Commit metadata unavailable\"\n  message={metadataStatus === \"failed\" || metadataStatus === \"unavailable\"\n    ? \"Last-change metadata is unavailable for this directory.\"\n    : \"\"}\n/>\n\n<section class=\"community-projects__file-browser\">\n  <div class=\"community-projects__file-browser-card\">\n    <div class=\"community-projects__file-browser-summary\">\n      <div class=\"community-projects__file-browser-summary-primary\">\n        <Button\n          type=\"button\"\n          variant=\"ghost\"\n          size=\"icon-sm\"\n          class=\"community-projects__file-browser-tree-toggle\"\n          aria-label={fileTreeOpen\n            ? \"Hide repository file tree\"\n            : \"Show repository file tree\"}\n          title={fileTreeOpen\n            ? \"Hide repository file tree\"\n            : \"Show repository file tree\"}\n          onclick={() => (fileTreeOpen = !fileTreeOpen)}\n        >\n          <CommunitySidebarToggleIcon side=\"left\" expanded={fileTreeOpen} />\n        </Button>\n        {#if latestCommit}\n          <CommunityProjectsGitAuthorAvatar\n            email={latestCommit.authorEmail}\n            name={latestAuthorName}\n            size=\"xsmall\"\n          />\n          <strong class=\"community-projects__file-browser-summary-author\"\n            >{latestAuthorName}</strong\n          >\n          <span class=\"community-projects__file-browser-summary-verb\"\n            >committed</span\n          >\n          <button\n            type=\"button\"\n            class=\"community-projects__file-browser-commit-link\"\n            title={`View commit ${latestCommit.message}`}\n            aria-label={`View commit ${latestCommit.message}`}\n            onclick={() => onSelectCommit?.(latestCommit)}\n          >\n            {latestCommit.message}\n          </button>\n          <Button\n            type=\"button\"\n            variant=\"ghost\"\n            size=\"icon-sm\"\n            class=\"community-projects__file-browser-commit-details\"\n            title=\"Open commit details\"\n            aria-label=\"Open commit details\"\n            onclick={() => onSelectCommit?.(latestCommit)}\n          >\n            <EllipsisIcon aria-hidden=\"true\" />\n          </Button>\n        {:else if metadataStatus === \"loading\"}\n          <div\n            role=\"status\"\n            aria-label=\"Loading commit metadata\"\n            aria-busy=\"true\"\n          >\n            <Skeleton style=\"width: 12rem; height: 1rem\" />\n          </div>\n        {/if}\n      </div>\n      <div class=\"community-projects__file-browser-summary-actions\">\n        {#if latestCommit}\n          <CommunityProjectsRevisionGraphIds\n            commitId={latestCommit.eventId}\n            commitLabel=\"Git revision\"\n            placement=\"inline\"\n          />\n          {#if latestCommitDate}\n            <CommunityRelativeTime timestamp={latestCommitDate} {now} />\n          {/if}\n        {/if}\n        <CommunityProjectsRepositoryBranchSelector\n          {branch}\n          {branches}\n          hasMore={hasMoreReferences}\n          loading={loadingReferences}\n          {onSelectBranch}\n          onLoadMore={onLoadMoreReferences}\n        />\n      </div>\n    </div>\n\n    <Table.Root\n      class=\"community-projects__file-browser-table\"\n      aria-label={currentPath ? `Files in ${currentPath}` : \"Repository files\"}\n    >\n      <Table.Header>\n        <Table.Row>\n          <Table.Head>Name</Table.Head>\n          <Table.Head>Description</Table.Head>\n          <Table.Head>Updated</Table.Head>\n        </Table.Row>\n      </Table.Header>\n      <CommunityProjectsRepositoryDirectoryRows\n        {currentPath}\n        {entries}\n        {pathCommits}\n        {canLoadPathCommit}\n        {now}\n        {hasMore}\n        {loading}\n        {onOpenDirectory}\n        {onOpenFile}\n        {onSelectCommit}\n        onLoadMore={() => void onLoadMore()}\n      />\n    </Table.Root>\n  </div>\n\n  <CommunityProjectsRepositoryDocuments\n    {currentPath}\n    {previewDocuments}\n    {onEditFile}\n    {editUnavailable}\n  />\n</section>",
+          "after": "<section\n  class=\"repository-browser__file-browser\"\n  aria-label={currentPath ? `Directory ${currentPath}` : \"Repository directory\"}\n>\n  <div class=\"repository-browser__file-browser-card\">\n    <div class=\"repository-browser__file-browser-summary\">\n      <div class=\"repository-browser__file-browser-summary-primary\">\n        <RepositoryFileAction\n          panelExpanded={fileTreeOpen}\n          class=\"repository-browser__file-browser-tree-toggle\"\n          label={fileTreeOpen\n            ? \"Hide repository file tree\"\n            : \"Show repository file tree\"}\n          onclick={() => {\n            if (onToggleFileTree) onToggleFileTree();\n            else fileTreeOpen = !fileTreeOpen;\n          }}\n        />\n        {#if latestCommit}\n          <RepositoryAuthorAvatar\n            name={latestCommit.author}\n            email={latestCommit.authorEmail}\n            size=\"xs\"\n          />\n          <strong class=\"repository-browser__file-browser-summary-author\"\n            >{latestCommit.author}</strong\n          >\n          <span class=\"repository-browser__file-browser-summary-verb\"\n            >committed</span\n          >\n          <button\n            type=\"button\"\n            class=\"repository-browser__file-browser-commit-link\"\n            title={`View commit ${latestCommit.message}`}\n            aria-label={`View commit ${latestCommit.message}`}\n            disabled={!onSelectCommit}\n            onclick={() => onSelectCommit?.(latestCommit)}\n            >{latestCommit.message}</button\n          >\n          {#if onSelectCommit}<Button\n              variant=\"ghost\"\n              size=\"icon-sm\"\n              class=\"repository-browser__file-browser-commit-details\"\n              title=\"Open commit details\"\n              aria-label=\"Open commit details\"\n              onclick={() => onSelectCommit?.(latestCommit)}\n              ><EllipsisIcon aria-hidden=\"true\" /></Button\n            >{/if}\n        {/if}\n      </div>\n      <div class=\"repository-browser__file-browser-summary-actions\">\n        {#if latestCommit}<RepositoryIdentifiers\n            commitId={latestCommit.eventId}\n            changeId={latestCommit.changeId}\n            placement=\"inline\"\n            {copyText}\n          /><RelativeTime\n            timestamp={latestCommit.createdAt * 1000}\n            now={now * 1000}\n          />{/if}\n        {@render controls?.()}{@render actions?.()}\n      </div>\n    </div>\n    {#if phase === \"loading\" && !entries.length}<RepositorySkeleton\n        kind=\"files\"\n        label=\"Loading repository directory\"\n      />\n    {:else if !entries.length && phase !== \"unavailable\"}<RepositoryBrowserEmpty\n        folder\n        title=\"Empty directory\"\n        description=\"This directory does not contain any files at the selected revision.\"\n      />\n    {:else if entries.length}\n      <Table.Root\n        class=\"repository-browser__file-browser-table\"\n        aria-label={currentPath\n          ? `Files in ${currentPath}`\n          : \"Repository files\"}\n      >\n        <Table.Header\n          ><Table.Row\n            ><Table.Head>Name</Table.Head><Table.Head>Description</Table.Head\n            ><Table.Head>Updated</Table.Head></Table.Row\n          ></Table.Header\n        >\n        <RepositoryDirectoryRows\n          {currentPath}\n          {entries}\n          {pathCommits}\n          {now}\n          {hasMore}\n          {loading}\n          {onOpenDirectory}\n          {onOpenFile}\n          {onSelectCommit}\n          {onLoadMore}\n          {rowActions}\n        />\n      </Table.Root>\n    {/if}\n    {#if phase === \"unavailable\"}<RepositoryBrowserEmpty\n        folder\n        title=\"Directory unavailable\"\n        description=\"The recorded directory could not be read. Retry without changing the selected revision.\"\n        {onRetry}\n      />{/if}\n    {#if hasMore}<Button\n        variant=\"ghost\"\n        class=\"repository-directory-more\"\n        disabled={loading}\n        onclick={onLoadMore}>More files</Button\n      >{/if}\n    {#if limitReached}<p class=\"repository-directory-limit\" role=\"status\">\n        The directory limit has been reached. Open a narrower directory to\n        continue.\n      </p>{/if}\n  </div>\n  <RepositoryDocuments {currentPath} previewDocuments={documents} />\n</section>\n\n<style>\n  :global(.repository-directory-more) {\n    width: 100%;\n    justify-content: center;\n    color: var(--muted-foreground);\n  }\n  .repository-directory-limit {\n    padding: 0.5rem;\n    margin: 0;\n    color: var(--muted-foreground);\n    font-size: 0.75rem;\n  }\n</style>",
+          "description": "Retain summary, table and landing document composition; supplied entries replace view/routes/native reads, public shared avatar/identifiers/time replace local wrappers; PanelToggle replaces app-specific sidebar icon; optional host controls/row actions and explicit bounded/retry states replace editing actions."
+        }
+      ],
+      "adaptations": [
+        {
+          "description": "Retain summary, table and landing document composition; supplied entries replace view/routes/native reads, public shared avatar/identifiers/time replace local wrappers; PanelToggle replaces app-specific sidebar icon; optional host controls/row actions and explicit bounded/retry states replace editing actions."
+        }
+      ],
+      "layoutSha256": "89c178c1de044895af94e617d8276dbb017522ba663188a25292c783cd9b5bbf"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryDirectoryRows.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/directory/RepositoryDirectoryRows.svelte",
+      "sourceSha256": "3ee9858ef0aec56921fee8ffb97807ce92d6081d2b4561376b0f973bfe341477",
+      "destinationSha256": "c7d04470685e6c628b436afba89678e79410a6516c703d7deb7e23c0fc12cfd8",
+      "reviewNotes": [
+        "Retain original table virtualizer, measured rows, paging and arrow/home/end focus navigation; public FileTypeIcon/RelativeTime replace source wrappers; host supplies commit metadata and typed row actions.",
+        "Apache-2.0; source applications remain read-only and host authority stays outside the package."
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "      type=\"button\"\n      variant=\"ghost\"\n      size=\"sm\"\n      class=\"community-projects__file-entry\"\n      aria-label={row.kind === \"parent\"\n        ? \"Go to parent directory\"\n        : `${entry?.type === \"tree\" ? \"Open directory\" : \"Open file\"} ${entry?.name}`}\n",
+          "after": "      type=\"button\"\n      variant=\"ghost\"\n      size=\"sm\"\n      class=\"repository-browser__file-entry\"\n      aria-label={row.kind === \"parent\"\n        ? \"Go to parent directory\"\n        : `${entry?.type === \"tree\" ? \"Open directory\" : \"Open file\"} ${entry?.name}`}\n",
+          "description": "Retain original table virtualizer, measured rows, paging and arrow/home/end focus navigation; public FileTypeIcon/RelativeTime replace source wrappers; host supplies commit metadata and typed row actions."
+        },
+        {
+          "before": "      {#if row.kind === \"parent\" || entry?.type === \"tree\"}\n        <FolderIcon data-icon=\"inline-start\" aria-hidden=\"true\" />\n      {:else}\n        <FileIcon data-icon=\"inline-start\" aria-hidden=\"true\" />\n      {/if}\n      <strong>{row.kind === \"parent\" ? \"..\" : entry?.name}</strong>\n    </Button>\n",
+          "after": "      {#if row.kind === \"parent\" || entry?.type === \"tree\"}\n        <FolderIcon data-icon=\"inline-start\" aria-hidden=\"true\" />\n      {:else}\n        <FileTypeIcon path={entry?.path ?? \"\"} size=\"md\" />\n      {/if}\n      <strong>{row.kind === \"parent\" ? \"..\" : entry?.name}</strong>\n    </Button>\n",
+          "description": "Retain original table virtualizer, measured rows, paging and arrow/home/end focus navigation; public FileTypeIcon/RelativeTime replace source wrappers; host supplies commit metadata and typed row actions."
+        },
+        {
+          "before": "  </Table.Cell>\n  <Table.Cell>\n    {#if entryCommit?.createdAt}\n      <CommunityRelativeTime timestamp={entryCommit.createdAt} {now} />\n    {:else if canLoadPathCommit && !commitLoaded}<Skeleton\n        style=\"height: 1rem; width: 4rem\"\n      />\n    {:else}\n      <span aria-hidden=\"true\">—</span>\n    {/if}\n  </Table.Cell>\n{/snippet}\n\n<Table.Body\n  bind:ref={host}\n  class=\"community-projects__virtual-directory-body\"\n  aria-busy={loading}\n  style={scrollElement\n    ? `height: ${$virtualizer.getTotalSize() + (loading ? 38 : 0)}px`\n",
+          "after": "  </Table.Cell>\n  <Table.Cell>\n    {#if entryCommit?.createdAt}\n      <RelativeTime timestamp={entryCommit.createdAt * 1000} now={now * 1000} />\n    {:else if canLoadPathCommit && !commitLoaded}<Skeleton\n        style=\"height: 1rem; width: 4rem\"\n      />\n    {:else}\n      <span aria-hidden=\"true\">—</span>\n    {/if}\n    {#if entry}{@render rowActions?.(entry)}{/if}\n  </Table.Cell>\n{/snippet}\n\n<Table.Body\n  bind:ref={host}\n  class=\"repository-browser__virtual-directory-body\"\n  aria-busy={loading}\n  style={scrollElement\n    ? `height: ${$virtualizer.getTotalSize() + (loading ? 38 : 0)}px`\n",
+          "description": "Retain original table virtualizer, measured rows, paging and arrow/home/end focus navigation; public FileTypeIcon/RelativeTime replace source wrappers; host supplies commit metadata and typed row actions."
+        },
+        {
+          "before": "  {#if rows.length === 0 && !loading}\n    <Table.Row>\n      <Table.Cell colspan={3}>\n        <p class=\"community-projects__status\">\n          This directory does not contain any files.\n        </p>\n      </Table.Cell>\n",
+          "after": "  {#if rows.length === 0 && !loading}\n    <Table.Row>\n      <Table.Cell colspan={3}>\n        <p class=\"repository-browser__status\">\n          This directory does not contain any files.\n        </p>\n      </Table.Cell>\n",
+          "description": "Retain original table virtualizer, measured rows, paging and arrow/home/end focus navigation; public FileTypeIcon/RelativeTime replace source wrappers; host supplies commit metadata and typed row actions."
+        },
+        {
+          "before": "          data-ui-part=\"table-row\"\n          data-index={virtualRow.index}\n          data-row-index={virtualRow.index}\n          class=\"community-projects__virtual-directory-row\"\n          style:transform={`translateY(${virtualRow.start - $virtualizer.options.scrollMargin}px)`}\n          use:measure\n        >\n",
+          "after": "          data-ui-part=\"table-row\"\n          data-index={virtualRow.index}\n          data-row-index={virtualRow.index}\n          class=\"repository-browser__virtual-directory-row\"\n          style:transform={`translateY(${virtualRow.start - $virtualizer.options.scrollMargin}px)`}\n          use:measure\n        >\n",
+          "description": "Retain original table virtualizer, measured rows, paging and arrow/home/end focus navigation; public FileTypeIcon/RelativeTime replace source wrappers; host supplies commit metadata and typed row actions."
+        },
+        {
+          "before": "  {/if}\n  {#if loading}\n    <tr\n      class:community-projects__virtual-directory-row={!!scrollElement}\n      style:transform={scrollElement\n        ? `translateY(${$virtualizer.getTotalSize()}px)`\n        : undefined}\n",
+          "after": "  {/if}\n  {#if loading}\n    <tr\n      class:repository-browser__virtual-directory-row={!!scrollElement}\n      style:transform={scrollElement\n        ? `translateY(${$virtualizer.getTotalSize()}px)`\n        : undefined}\n",
+          "description": "Retain original table virtualizer, measured rows, paging and arrow/home/end focus navigation; public FileTypeIcon/RelativeTime replace source wrappers; host supplies commit metadata and typed row actions."
+        },
+        {
+          "before": "</Table.Body>\n\n<style>\n  :global(.community-projects__virtual-directory-body) {\n    position: relative;\n    display: table-row-group;\n  }\n  :global(.community-projects__virtual-directory-row) {\n    position: absolute;\n    inset-block-start: 0;\n    inset-inline: 0;\n",
+          "after": "</Table.Body>\n\n<style>\n  :global(.repository-browser__virtual-directory-body) {\n    position: relative;\n    display: table-row-group;\n  }\n  :global(.repository-browser__virtual-directory-row) {\n    position: absolute;\n    inset-block-start: 0;\n    inset-inline: 0;\n",
+          "description": "Retain original table virtualizer, measured rows, paging and arrow/home/end focus navigation; public FileTypeIcon/RelativeTime replace source wrappers; host supplies commit metadata and typed row actions."
+        }
+      ],
+      "adaptations": [
+        {
+          "description": "Retain original table virtualizer, measured rows, paging and arrow/home/end focus navigation; public FileTypeIcon/RelativeTime replace source wrappers; host supplies commit metadata and typed row actions."
+        }
+      ],
+      "layoutSha256": "92d15c64413bb88ccc4b3618d2e813138f2454575f1b5d9d9746442fc97c3121"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryDirectoryAttribution.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/directory/RepositoryDirectoryAttribution.svelte",
+      "sourceSha256": "27984885cf1f8daf8682ebb2538aa363ea381fcc828274a4d6efc2872fa5dc9a",
+      "destinationSha256": "f558b896220c121e2dfd864260014c2db2f59ecb304d7a8b1e3ffc71c4e712c7",
+      "reviewNotes": [
+        "Retain recorded path-change versus snapshot attribution and tooltip; replace source domain commit type with portable record and optional host commit action.",
+        "Apache-2.0; source applications remain read-only and host authority stays outside the package."
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "<div class=\"community-projects__file-attribution\">\n  {#if commit?.attribution === \"snapshot\"}\n    <span\n      class=\"community-projects__file-snapshot\"\n      role=\"img\"\n      title=\"Showing the selected commit's message and date; no path change was found within the history limit.\"\n      aria-label=\"Snapshot details, not a confirmed last path change\"\n",
+          "after": "<div class=\"repository-browser__file-attribution\">\n  {#if commit?.attribution === \"snapshot\"}\n    <span\n      class=\"repository-browser__file-snapshot\"\n      role=\"img\"\n      title=\"Showing the selected commit's message and date; no path change was found within the history limit.\"\n      aria-label=\"Snapshot details, not a confirmed last path change\"\n",
+          "description": "Retain recorded path-change versus snapshot attribution and tooltip; replace source domain commit type with portable record and optional host commit action."
+        },
+        {
+          "before": "    <Button\n      variant=\"link\"\n      size=\"sm\"\n      class=\"community-projects__file-commit-message\"\n      title={subject}\n      aria-label={`View ${commit.attribution === \"snapshot\" ? \"snapshot\" : \"path change\"} commit for ${path}: ${subject}`}\n      onclick={() => onSelectCommit?.(commit)}>{subject}</Button\n    >\n  {:else}\n    <span class=\"community-projects__file-commit-message\" title={subject}\n      >{subject}</span\n    >\n  {/if}\n",
+          "after": "    <Button\n      variant=\"link\"\n      size=\"sm\"\n      class=\"repository-browser__file-commit-message\"\n      title={subject}\n      aria-label={`View ${commit.attribution === \"snapshot\" ? \"snapshot\" : \"path change\"} commit for ${path}: ${subject}`}\n      onclick={() => onSelectCommit?.(commit)}>{subject}</Button\n    >\n  {:else}\n    <span class=\"repository-browser__file-commit-message\" title={subject}\n      >{subject}</span\n    >\n  {/if}\n",
+          "description": "Retain recorded path-change versus snapshot attribution and tooltip; replace source domain commit type with portable record and optional host commit action."
+        }
+      ],
+      "adaptations": [
+        {
+          "description": "Retain recorded path-change versus snapshot attribution and tooltip; replace source domain commit type with portable record and optional host commit action."
+        }
+      ],
+      "layoutSha256": "84d3d66fc735cb164189d023000359fda8fe2e840db45c435fdc2db61d3c35a2"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryDocuments.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/directory/RepositoryDocuments.svelte",
+      "sourceSha256": "6986135b8608320f3206e25de348027c05f78dad0daa6fdf8b87aae4ddee5fa8",
+      "destinationSha256": "005b9d51aed1aa7aa78a8730a059c22ee2f1a6f2f4a015c83002dfcdaf9962a8",
+      "reviewNotes": [
+        "Retain README/document tab labels, overflow fitting and document layout; accept recorded file union, reuse public stock Markdown reader and optional host editing callback; no mutation transport.",
+        "Apache-2.0; source applications remain read-only and host authority stays outside the package."
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "{#if landingDocuments.length > 0}\n  <section\n    class=\"community-projects__repository-document-card\"\n    aria-label=\"Repository document preview\"\n  >\n    <Tabs.Root\n      bind:value={selectedDocument}\n      class=\"community-projects__repository-document-tabs\"\n    >\n      <header\n        bind:this={documentHeader}\n        class=\"community-projects__repository-document-header\"\n      >\n        <Tabs.List\n          bind:ref={documentTabList}\n",
+          "after": "{#if landingDocuments.length > 0}\n  <section\n    class=\"repository-browser__repository-document-card\"\n    aria-label=\"Repository document preview\"\n  >\n    <Tabs.Root\n      bind:value={selectedDocument}\n      class=\"repository-browser__repository-document-tabs\"\n    >\n      <header\n        bind:this={documentHeader}\n        class=\"repository-browser__repository-document-header\"\n      >\n        <Tabs.List\n          bind:ref={documentTabList}\n",
+          "description": "Retain README/document tab labels, overflow fitting and document layout; accept recorded file union, reuse public stock Markdown reader and optional host editing callback; no mutation transport."
+        },
+        {
+          "before": "              {/if}\n              {document.label}\n              <span\n                class=\"community-projects__repository-document-tab-indicator\"\n                aria-hidden=\"true\"\n              ></span>\n            </Tabs.Trigger>\n",
+          "after": "              {/if}\n              {document.label}\n              <span\n                class=\"repository-browser__repository-document-tab-indicator\"\n                aria-hidden=\"true\"\n              ></span>\n            </Tabs.Trigger>\n",
+          "description": "Retain README/document tab labels, overflow fitting and document layout; accept recorded file union, reuse public stock Markdown reader and optional host editing callback; no mutation transport."
+        },
+        {
+          "before": "                  type=\"button\"\n                  variant=\"ghost\"\n                  size=\"sm\"\n                  class=\"community-projects__repository-document-more\"\n                  data-selected={overflowSelectionActive ? \"\" : undefined}\n                  aria-label=\"More repository documents\"\n                  >More<ChevronDownIcon\n                    data-icon=\"inline-end\"\n                    aria-hidden=\"true\"\n                  /><span\n                    class=\"community-projects__repository-document-tab-indicator\"\n                    aria-hidden=\"true\"\n                  ></span></Button\n                >{/snippet}\n",
+          "after": "                  type=\"button\"\n                  variant=\"ghost\"\n                  size=\"sm\"\n                  class=\"repository-browser__repository-document-more\"\n                  data-selected={overflowSelectionActive ? \"\" : undefined}\n                  aria-label=\"More repository documents\"\n                  >More<ChevronDownIcon\n                    data-icon=\"inline-end\"\n                    aria-hidden=\"true\"\n                  /><span\n                    class=\"repository-browser__repository-document-tab-indicator\"\n                    aria-hidden=\"true\"\n                  ></span></Button\n                >{/snippet}\n",
+          "description": "Retain README/document tab labels, overflow fitting and document layout; accept recorded file union, reuse public stock Markdown reader and optional host editing callback; no mutation transport."
+        },
+        {
+          "before": "            >\n              {#each overflowDocuments as document (document.path)}\n                <DropdownMenu.Item\n                  class=\"community-projects__repository-document-menu-item\"\n                  data-selected={document.path === selectedDocument\n                    ? \"\"\n                    : undefined}\n",
+          "after": "            >\n              {#each overflowDocuments as document (document.path)}\n                <DropdownMenu.Item\n                  class=\"repository-browser__repository-document-menu-item\"\n                  data-selected={document.path === selectedDocument\n                    ? \"\"\n                    : undefined}\n",
+          "description": "Retain README/document tab labels, overflow fitting and document layout; accept recorded file union, reuse public stock Markdown reader and optional host editing callback; no mutation transport."
+        },
+        {
+          "before": "            type=\"button\"\n            variant=\"ghost\"\n            size=\"icon-sm\"\n            class=\"community-projects__repository-document-edit\"\n            aria-label={`Edit ${selectedDocumentModel.label}`}\n            title={editUnavailable || `Edit ${selectedDocumentModel.label}`}\n            disabled={Boolean(editUnavailable) || !onEditFile}\n",
+          "after": "            type=\"button\"\n            variant=\"ghost\"\n            size=\"icon-sm\"\n            class=\"repository-browser__repository-document-edit\"\n            aria-label={`Edit ${selectedDocumentModel.label}`}\n            title={editUnavailable || `Edit ${selectedDocumentModel.label}`}\n            disabled={Boolean(editUnavailable) || !onEditFile}\n",
+          "description": "Retain README/document tab labels, overflow fitting and document layout; accept recorded file union, reuse public stock Markdown reader and optional host editing callback; no mutation transport."
+        },
+        {
+          "before": "      </header>\n      {#each landingDocuments as document (document.path)}\n        <Tabs.Content value={document.path}>\n          <CommunityProjectsMarkdownPreview\n            content={document.contents}\n            label={`${document.label} preview`}\n          />\n",
+          "after": "      </header>\n      {#each landingDocuments as document (document.path)}\n        <Tabs.Content value={document.path}>\n          <RepositoryMarkdownPreview\n            content={document.contents}\n            label={`${document.label} preview`}\n          />\n",
+          "description": "Retain README/document tab labels, overflow fitting and document layout; accept recorded file union, reuse public stock Markdown reader and optional host editing callback; no mutation transport."
+        }
+      ],
+      "adaptations": [
+        {
+          "description": "Retain README/document tab labels, overflow fitting and document layout; accept recorded file union, reuse public stock Markdown reader and optional host editing callback; no mutation transport."
+        }
+      ],
+      "layoutSha256": "7db49a8df082a695649f0b82f47afd4d9b55c0f2b3b1c6bff88c95b0df7ead2d"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryFilePanel.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/file-preview/RepositoryFilePreview.svelte",
+      "sourceSha256": "ec24474d3c9902657b3f100338a106a3581603e28a7cb0a1f49da1b7e6a74608",
+      "destinationSha256": "bfd378e60b5bcc51784238b696f1b1056ae265aa3c99ed76c0211f24fd455903",
+      "reviewNotes": [
+        "Retain metadata, stats, file card and content header; remove working-copy editor and native file access; use public CodeBlock/Markdown, shared source icon toggle and typed host history/blame/path/custom actions with distinct binary/empty/unavailable/retry states; remove nested vertical ScrollArea and forced minimum heights per user review.",
+        "Apache-2.0; source applications remain read-only and host authority stays outside the package."
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "<section class=\"community-projects__file-panel\">\n  <ScrollArea\n    type=\"hover\"\n    orientation=\"both\"\n    class=\"community-projects__file-body\"\n  >\n    <div class=\"community-projects__file-panel-stack\">\n      {#if loading && !blob}\n        <RepositoryFileLoading path={selectedPath} {isMarkdown} />\n      {:else if blob}\n        <CommunityProjectsRepositoryFilePanelHeader\n          {blob}\n          {latestCommit}\n          {now}\n          {fileTreeOpen}\n          {onToggleFileTree}\n        />\n        {#if fileStats}\n          <p\n            class=\"community-projects__file-panel-stats\"\n            role=\"status\"\n            aria-label=\"File statistics\"\n          >\n            {fileStats}\n          </p>\n        {/if}\n        <section\n          class=\"community-projects__file-content-card\"\n          aria-label={`Source preview for ${blob.path}`}\n        >\n          {#if blob.binary}\n            <div class=\"community-projects__file-content-unavailable\">\n              <Empty.Root>\n                <Empty.Header>\n                  <Empty.Media variant=\"icon\"\n                    ><FileIcon aria-hidden=\"true\" /></Empty.Media\n                  >\n                  <Empty.Title>Binary file</Empty.Title>\n                  <Empty.Description\n                    >{blob.path} cannot be previewed as text.</Empty.Description\n                  >\n                </Empty.Header>\n              </Empty.Root>\n            </div>\n          {:else if blob.too_large}\n            <div class=\"community-projects__file-content-unavailable\">\n              <p class=\"community-projects__status\">\n                {blob.path} is too large to preview.\n              </p>\n            </div>\n          {:else if blob.contents !== undefined}\n            <header class=\"community-projects__file-content-header\">\n              <span>{blob.path}</span>\n              <StoreFileDisplayControls\n                mode={displayMode}\n                {isMarkdown}\n                {localEditing}\n                {blameReason}\n                editDisabled={localEditing\n                  ? !working.available() || working.pending\n                  : Boolean(editUnavailable)}\n                editTitle={localEditing\n                  ? \"Edit the physical working file\"\n                  : editUnavailable || \"Edit file\"}\n                onSelect={selectDisplay}\n                onEdit={() => {\n                  if (editing) fileView = \"edit\";\n                  else if (localEditing) void working.open();\n                  else beginEditing();\n                }}\n              />\n            </header>\n            {#if working.error}<p role=\"alert\">{working.error}</p>{/if}\n            {#if editing && working.file}\n              {#key working.file}\n                <StoreWorkingFileEditor\n                  {controller}\n                  file={working.file}\n                  mode={fileView}\n                  {isMarkdown}\n                  onCancel={cancelEditing}\n                />\n              {/key}\n            {:else if editing}\n              <StoreFileEditor\n                {controller}\n                {blob}\n                {isMarkdown}\n                mode={fileView}\n                bind:filename\n                bind:contents={draftContents}\n                onCancel={cancelEditing}\n              />\n            {:else if displayMode === \"blame\"}\n              <StoreFileBlame {controller} {blob} {now} />\n            {:else if displayMode === \"preview\" && isMarkdown}\n              <CommunityProjectsMarkdownPreview\n                content={blob.contents ?? \"\"}\n                label={`Markdown preview for ${blob.path}`}\n              />\n            {:else}\n              <CodeBlock\n                code={blob.contents ?? \"\"}\n                {language}\n                hasLanguageLabel\n                hasCopyButton={false}\n                hasLineNumbers\n                width=\"100%\"\n                container=\"section\"\n                tokenizer={repositorySourceTokenizer(language)}\n                highlightMode=\"spans\"\n              />\n            {/if}\n          {/if}\n        </section>\n      {:else}\n        <p class=\"community-projects__status\">Select a file to preview it.</p>\n      {/if}\n    </div>\n  </ScrollArea>\n</section>",
+          "after": "<section\n  class=\"repository-browser__file-panel\"\n  aria-label={`File preview for ${selection.path}`}\n>\n  <div class=\"repository-browser__file-body\">\n    <div class=\"repository-browser__file-panel-stack\">\n      {#if phase === \"loading\"}<RepositorySkeleton\n          kind=\"diff\"\n          label={`Loading ${selection.path}`}\n        />\n      {:else if phase === \"unavailable\"}<RepositoryBrowserEmpty\n          title=\"File preview unavailable\"\n          description=\"This recorded file could not be read. Retry the same pinned file.\"\n          {onRetry}\n        />\n      {:else if file}\n        <RepositoryFileMetadata\n          {file}\n          {now}\n          {fileTreeOpen}\n          {onToggleFileTree}\n          {copyText}\n        />\n        <p\n          class=\"repository-browser__file-panel-stats\"\n          role=\"status\"\n          aria-label=\"File statistics\"\n        >\n          {file.size === undefined\n            ? \"Size unavailable\"\n            : `${file.size.toLocaleString()} bytes`}{file.kind === \"text\"\n            ? ` · ${file.contents ? file.contents.split(\"\\n\").length : 0} lines`\n            : \"\"}\n        </p>\n        <section\n          class=\"repository-browser__file-content-card\"\n          aria-label={`Source preview for ${file.path}`}\n        >\n          <header class=\"repository-browser__file-content-header\">\n            <span><FileTypeIcon path={file.path} size=\"s\" /> {file.path}</span>\n            <div class=\"repository-browser__file-content-actions\">\n              {#if file.kind === \"text\"}<RepositoryFileDisplayControls\n                  mode={display}\n                  isMarkdown={markdown}\n                  canBlame={!!onBlame && !!blame}\n                  onSelect={(mode) => {\n                    onDisplayChange(mode);\n                    if (mode === \"blame\") onBlame?.(selection);\n                  }}\n                />{/if}\n              {#if onHistory}<RepositoryFileAction\n                  label=\"File history\"\n                  onclick={() => onHistory?.(selection)}\n                  ><HistoryIcon aria-hidden=\"true\" /></RepositoryFileAction\n                >{/if}\n              <RepositoryFileAction\n                label=\"Copy file path\"\n                onclick={() => void copyText(file.path)}\n                ><CopyIcon aria-hidden=\"true\" /></RepositoryFileAction\n              >\n              {@render actions?.(selection)}\n            </div>\n          </header>\n          {#if file.kind === \"binary\"}<div\n              class=\"repository-browser__file-content-unavailable\"\n            >\n              <RepositoryBrowserEmpty\n                title=\"Binary file\"\n                description={`${file.path} cannot be previewed as text.`}\n              />\n            </div>\n          {:else if file.kind === \"unavailable\"}<div\n              class=\"repository-browser__file-content-unavailable\"\n            >\n              <RepositoryBrowserEmpty\n                title=\"Preview unavailable\"\n                description={file.reason}\n              />\n            </div>\n          {:else if !file.contents}<RepositoryBrowserEmpty\n              title=\"Empty file\"\n              description=\"This recorded file contains no text.\"\n            />\n          {:else if display === \"blame\" && blame}{@render blame(selection)}\n          {:else if display === \"preview\" && markdown}<RepositoryMarkdownPreview\n              content={file.contents}\n              label={`Markdown preview for ${file.path}`}\n            />\n          {:else}<CodeBlock\n              code={file.contents}\n              language={resolveDiffLanguage(file.path) ?? \"plaintext\"}\n              hasLanguageLabel\n              hasCopyButton={false}\n              hasLineNumbers\n              width=\"100%\"\n              container=\"section\"\n              highlightMode=\"spans\"\n            />{/if}\n        </section>\n      {:else}<RepositoryBrowserEmpty\n          title=\"No file selected\"\n          description=\"Select a recorded file to preview it.\"\n        />{/if}\n    </div>\n  </div>\n</section>",
+          "description": "Retain metadata, stats, file card and content header; remove working-copy editor and native file access; use public CodeBlock/Markdown, shared source icon toggle and typed host history/blame/path/custom actions with distinct binary/empty/unavailable/retry states; remove nested vertical ScrollArea and forced minimum heights per user review."
+        }
+      ],
+      "adaptations": [
+        {
+          "description": "Retain metadata, stats, file card and content header; remove working-copy editor and native file access; use public CodeBlock/Markdown, shared source icon toggle and typed host history/blame/path/custom actions with distinct binary/empty/unavailable/retry states; remove nested vertical ScrollArea and forced minimum heights per user review."
+        }
+      ],
+      "layoutSha256": "95ef968b6469bfb9ef0738d3896f04f0930e76496b7c832a47e1aee8ec4f5aa3"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryFilePanelHeader.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/file-preview/RepositoryFileMetadata.svelte",
+      "sourceSha256": "ca8b271c1494d48a12f6d1fb7f4924eca9528dbd06e5b87bf9408ea32c4fd532",
+      "destinationSha256": "77168cf74eb599722b3dfd8a5a099e8324760f24d90e0ab3b1ec8fec3c7d3528",
+      "reviewNotes": [
+        "Retain metadata row, message and native IDs; public shared avatar/identifiers/time replace app wrappers; controlled public Design Core PanelToggle replaces app-specific sidebar icon.",
+        "Apache-2.0; source applications remain read-only and host authority stays outside the package."
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "<section\n  class=\"community-projects__file-panel-info\"\n  aria-label=\"Selected file metadata\"\n>\n  <Button\n    type=\"button\"\n    variant=\"ghost\"\n    size=\"icon-sm\"\n    class=\"community-projects__file-panel-tree-toggle\"\n    aria-label={fileTreeOpen\n      ? \"Hide repository file tree\"\n      : \"Show repository file tree\"}\n    title={fileTreeOpen\n      ? \"Hide repository file tree\"\n      : \"Show repository file tree\"}\n    onclick={onToggleFileTree}\n  >\n    <CommunitySidebarToggleIcon side=\"left\" expanded={fileTreeOpen} />\n  </Button>\n  {#if latestCommit}\n    <CommunityProjectsGitAuthorAvatar\n      email={latestCommit.authorEmail}\n      name={latestCommit.author}\n      size=\"small\"\n    />\n    <span class=\"community-projects__file-panel-info-message\">\n      <strong>{latestCommit.author}</strong> committed\n      <span>{latestCommit.message}</span>\n    </span>\n    <div class=\"community-projects__file-panel-info-actions\">\n      <CommunityProjectsRevisionGraphIds\n        commitId={latestCommit.eventId}\n        changeId={latestCommit.changeId}\n        placement=\"inline\"\n      />\n      {#if latestCommit.createdAt}\n        <CommunityRelativeTime timestamp={latestCommit.createdAt} {now} />\n      {/if}\n    </div>\n  {:else}\n    <span class=\"community-projects__file-panel-info-message\">\n      {blob.path}\n    </span>\n  {/if}\n</section>",
+          "after": "<section\n  class=\"repository-browser__file-panel-info\"\n  aria-label=\"Selected file metadata\"\n>\n  <RepositoryFileAction\n    panelExpanded={fileTreeOpen}\n    class=\"repository-browser__file-panel-tree-toggle\"\n    label={fileTreeOpen\n      ? \"Hide repository file tree\"\n      : \"Show repository file tree\"}\n    onclick={onToggleFileTree}\n  />\n  {#if file.commit}\n    <RepositoryAuthorAvatar\n      name={file.commit.author}\n      email={file.commit.authorEmail}\n      size=\"sm\"\n    />\n    <span class=\"repository-browser__file-panel-info-message\"\n      ><strong>{file.commit.author}</strong> committed\n      <span>{file.commit.message}</span></span\n    >\n    <div class=\"repository-browser__file-panel-info-actions\">\n      <RepositoryIdentifiers\n        commitId={file.commit.eventId}\n        changeId={file.commit.changeId}\n        placement=\"inline\"\n        {copyText}\n      /><RelativeTime\n        timestamp={file.commit.createdAt * 1000}\n        now={now * 1000}\n      />\n    </div>\n  {:else}<span class=\"repository-browser__file-panel-info-message\"\n      >{file.path}</span\n    >{/if}\n</section>",
+          "description": "Retain metadata row, message and native IDs; public shared avatar/identifiers/time replace app wrappers; controlled public Design Core PanelToggle replaces app-specific sidebar icon."
+        }
+      ],
+      "adaptations": [
+        {
+          "description": "Retain metadata row, message and native IDs; public shared avatar/identifiers/time replace app wrappers; controlled public Design Core PanelToggle replaces app-specific sidebar icon."
+        }
+      ],
+      "layoutSha256": "1a409c8357550949af082bc5247317b7f51c83e35b4d89f3568a5b21f09888bf"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsMarkdownPreview.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/file-preview/RepositoryMarkdownPreview.svelte",
+      "sourceSha256": "0e33ceca4bc627d70caf7a5ff3fcb2aee9916ea97bd3b338ae0a314c036935c5",
+      "destinationSha256": "b24f3f41c337d263925f775b1a6aaca6c4c21bb129c28a8b0eb4f7c44129f132",
+      "reviewNotes": [
+        "Use stock public MarkdownContent fullWidth; replace app-specific references/services with host-supplied captured text and shared Empty for empty content.",
+        "Apache-2.0; source applications remain read-only and host authority stays outside the package."
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "<section\n  class=\"community-projects__markdown-preview\"\n  data-ui-component=\"community-markdown-preview\"\n  aria-label={label}\n>\n  {#if content.trim()}<CommunityMarkdownContent {content} fullWidth />{:else}<p\n      class=\"community-projects__status\"\n    >\n      This file is empty.\n    </p>{/if}\n</section>",
+          "after": "<section class=\"repository-browser__markdown-preview\" aria-label={label}>\n  {#if content.trim()}<MarkdownContent {content} fullWidth />\n  {:else}<RepositoryBrowserEmpty\n      title=\"Empty file\"\n      description=\"This recorded file contains no text.\"\n    />{/if}\n</section>",
+          "description": "Use stock public MarkdownContent fullWidth; replace app-specific references/services with host-supplied captured text and shared Empty for empty content."
+        }
+      ],
+      "adaptations": [
+        {
+          "description": "Use stock public MarkdownContent fullWidth; replace app-specific references/services with host-supplied captured text and shared Empty for empty content."
+        }
+      ],
+      "layoutSha256": "0f7fb37f3d9b9fa540e505753be540b5e6c465ae8de1dc536a034ff68a373a1c"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/repository-browser.ts",
+      "destination": "packages/repository-ui/src/jj/browse/logic/paths.ts",
+      "sourceSha256": "2f0279976c62e6a5d806ac863da3faee8f6450708e921537f69ffd4f1a9acd54",
+      "destinationSha256": "8c20cd47598a2cef44c7c865a4e73c49316007174424063086b9b332dabf1135",
+      "reviewNotes": [
+        "Copy pure canonical directory/path/document classification helpers; no application transport dependencies.",
+        "Apache-2.0; source applications remain read-only and host authority stays outside the package."
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "interface ProjectForgeTreeEntry {\n  type: \"blob\" | \"tree\";\n  name: string;\n",
+          "after": "// SPDX-License-Identifier: Apache-2.0; adapted from JJ Store repository-browser.ts.\ninterface ProjectForgeTreeEntry {\n  type: \"blob\" | \"tree\";\n  name: string;\n",
+          "description": "Copy pure canonical directory/path/document classification helpers; no application transport dependencies."
+        }
+      ],
+      "adaptations": [
+        {
+          "description": "Copy pure canonical directory/path/document classification helpers; no application transport dependencies."
+        }
+      ],
+      "layoutSha256": "05d3d6320dbad08fae320a2e639e13ed5108139df495c1d49fea0d61e50e465d"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/repository-files.css",
+      "destination": "packages/repository-ui/src/jj/browse/file-preview/files.css",
+      "sourceSha256": "dd25e9d2e2332ec370021587803a4fcef00871cdba5acf3e2c2fda453ea77f8b",
+      "destinationSha256": "54af0e9fecca626e2406f0a67cf2b8be57780a2bbd4fca8449a95ad8d1b4f50b",
+      "reviewNotes": [
+        "Retain source layout geometry under repository-browser namespace; expose audited native spacing/type/background tokens; remove forced 28rem/18rem preview minimum heights so short files adapt to the available pane.",
+        "Apache-2.0; source applications remain read-only and host authority stays outside the package."
+      ],
+      "layoutAdaptations": [
+        {
+          "before": ".community-projects__files-surface {\n  --community-projects-file-header-height: 2.25rem;\n\n  width: 100%;\n  min-width: 0;\n",
+          "after": ".repository-browser__files-surface {\n  --repository-browser-file-header-height: 2.25rem;\n\n  width: 100%;\n  min-width: 0;\n",
+          "description": "Retain source layout geometry under repository-browser namespace; expose audited native spacing/type/background tokens; remove forced 28rem/18rem preview minimum heights so short files adapt to the available pane."
+        },
+        {
+          "before": "  padding: 0;\n}\n\n.community-projects__files-content {\n  display: flex;\n  min-height: 0;\n  flex-direction: column;\n  background: var(--background);\n}\n\n.community-projects__file-tree-region {\n  --community-projects-file-header-height: 2.25rem;\n\n  background: var(--background);\n}\n\n.community-projects__file-browser,\n.community-projects__file-panel {\n  width: 100%;\n  min-width: 0;\n  min-height: 0;\n",
+          "after": "  padding: 0;\n}\n\n.repository-browser__files-content {\n  display: flex;\n  min-height: 0;\n  flex-direction: column;\n  background: var(--background);\n}\n\n.repository-browser__file-tree-region {\n  --repository-browser-file-header-height: 2.25rem;\n\n  background: var(--background);\n}\n\n.repository-browser__file-browser,\n.repository-browser__file-panel {\n  width: 100%;\n  min-width: 0;\n  min-height: 0;\n",
+          "description": "Retain source layout geometry under repository-browser namespace; expose audited native spacing/type/background tokens; remove forced 28rem/18rem preview minimum heights so short files adapt to the available pane."
+        },
+        {
+          "before": "  background: var(--background);\n}\n\n.community-projects__file-browser {\n  display: flex;\n  box-sizing: border-box;\n  flex-direction: column;\n  border: 0;\n  border-radius: 0;\n  padding: 0.75rem;\n}\n\n.community-projects__file-header {\n  display: flex;\n  min-height: 2.75rem;\n  box-sizing: border-box;\n",
+          "after": "  background: var(--background);\n}\n\n.repository-browser__file-browser {\n  display: flex;\n  box-sizing: border-box;\n  flex-direction: column;\n  border: 0;\n  border-radius: 0;\n  padding: var(--ui-repository-directory-padding, 0.75rem);\n}\n\n.repository-browser__file-header {\n  display: flex;\n  min-height: 2.75rem;\n  box-sizing: border-box;\n",
+          "description": "Retain source layout geometry under repository-browser namespace; expose audited native spacing/type/background tokens; remove forced 28rem/18rem preview minimum heights so short files adapt to the available pane."
+        },
+        {
+          "before": "  background: color-mix(in srgb, var(--muted) 32%, transparent);\n}\n\n.community-projects__file-browser-toolbar [data-slot=\"breadcrumb-list\"],\n.community-projects__file-header [data-slot=\"breadcrumb-list\"] {\n  min-width: 0;\n  flex-wrap: nowrap;\n  overflow: hidden;\n}\n\n.community-projects__file-browser-toolbar\n  :is([data-slot=\"breadcrumb-link\"], [data-slot=\"breadcrumb-page\"]),\n.community-projects__file-header\n  :is([data-slot=\"breadcrumb-link\"], [data-slot=\"breadcrumb-page\"]) {\n  max-width: 18rem;\n  overflow: hidden;\n  color: var(--foreground);\n  font-size: var(--community-text-secondary);\n  font-weight: 550;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.community-projects__file-browser-toolbar [data-slot=\"breadcrumb-link\"]:hover,\n.community-projects__file-header [data-slot=\"breadcrumb-link\"]:hover {\n  color: var(--foreground);\n  text-decoration: underline;\n}\n\n.community-projects__file-browser-toolbar [data-slot=\"breadcrumb\"],\n.community-projects__file-header [data-slot=\"breadcrumb\"] {\n  min-width: 0;\n  flex: 1;\n}\n\n.community-projects__file-branch-trigger {\n  width: auto;\n  min-width: 8rem;\n  max-width: 12rem;\n",
+          "after": "  background: color-mix(in srgb, var(--muted) 32%, transparent);\n}\n\n.repository-browser__file-browser-toolbar [data-slot=\"breadcrumb-list\"],\n.repository-browser__file-header [data-slot=\"breadcrumb-list\"] {\n  min-width: 0;\n  flex-wrap: nowrap;\n  overflow: hidden;\n}\n\n.repository-browser__file-browser-toolbar\n  :is([data-slot=\"breadcrumb-link\"], [data-slot=\"breadcrumb-page\"]),\n.repository-browser__file-header\n  :is([data-slot=\"breadcrumb-link\"], [data-slot=\"breadcrumb-page\"]) {\n  max-width: 18rem;\n  overflow: hidden;\n  color: var(--foreground);\n  font-size: var(--ui-repository-browser-secondary-font-size, 0.75rem);\n  font-weight: 550;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.repository-browser__file-browser-toolbar [data-slot=\"breadcrumb-link\"]:hover,\n.repository-browser__file-header [data-slot=\"breadcrumb-link\"]:hover {\n  color: var(--foreground);\n  text-decoration: underline;\n}\n\n.repository-browser__file-browser-toolbar [data-slot=\"breadcrumb\"],\n.repository-browser__file-header [data-slot=\"breadcrumb\"] {\n  min-width: 0;\n  flex: 1;\n}\n\n.repository-browser__file-branch-trigger {\n  width: auto;\n  min-width: 8rem;\n  max-width: 12rem;\n",
+          "description": "Retain source layout geometry under repository-browser namespace; expose audited native spacing/type/background tokens; remove forced 28rem/18rem preview minimum heights so short files adapt to the available pane."
+        },
+        {
+          "before": "  flex: none;\n  gap: 0.4rem;\n  padding-inline: 0.55rem;\n  font-size: var(--community-text-secondary);\n}\n\n.community-projects__files-repository-trigger[data-ui-component=\"button\"] {\n  width: auto;\n  min-width: 9rem;\n  max-width: 15rem;\n",
+          "after": "  flex: none;\n  gap: 0.4rem;\n  padding-inline: 0.55rem;\n  font-size: var(--ui-repository-browser-secondary-font-size, 0.75rem);\n}\n\n.repository-browser__files-repository-trigger[data-ui-component=\"button\"] {\n  width: auto;\n  min-width: 9rem;\n  max-width: 15rem;\n",
+          "description": "Retain source layout geometry under repository-browser namespace; expose audited native spacing/type/background tokens; remove forced 28rem/18rem preview minimum heights so short files adapt to the available pane."
+        },
+        {
+          "before": "  flex: none;\n  gap: 0.4rem;\n  padding-inline: 0.55rem;\n  font-size: var(--community-text-secondary);\n}\n\n.community-projects__files-repository-trigger > svg {\n  width: 0.9rem;\n  height: 0.9rem;\n  flex: none;\n}\n\n.community-projects__files-repository-trigger > span {\n  min-width: 0;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.community-projects__file-branch-trigger > svg {\n  width: 0.9rem;\n  height: 0.9rem;\n}\n\n.community-projects__file-branch-trigger > span {\n  min-width: 0;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.community-projects__file-body {\n  min-width: 0;\n  min-height: 28rem;\n}\n\n.community-projects__file-body [data-ui-component=\"code-block\"] {\n  min-height: 28rem;\n}\n\n.community-projects__file-body\n  [data-ui-component=\"code-block\"]\n  [data-ui-part=\"code-block-scroll\"] {\n  min-height: 28rem;\n}\n\n.community-projects__markdown-file {\n  box-sizing: border-box;\n  max-width: 58rem;\n  min-height: 28rem;\n  margin-inline: auto;\n  padding: clamp(1.5rem, 4vw, 3rem);\n}\n\n.community-projects__file-panel-stack {\n  display: flex;\n  min-width: 0;\n  min-height: 100%;\n  box-sizing: border-box;\n  flex-direction: column;\n  gap: 0.75rem;\n  padding: 0.75rem;\n}\n\n.community-projects__file-panel-info {\n  display: flex;\n  min-width: 0;\n  box-sizing: border-box;\n",
+          "after": "  flex: none;\n  gap: 0.4rem;\n  padding-inline: 0.55rem;\n  font-size: var(--ui-repository-browser-secondary-font-size, 0.75rem);\n}\n\n.repository-browser__files-repository-trigger > svg {\n  width: 0.9rem;\n  height: 0.9rem;\n  flex: none;\n}\n\n.repository-browser__files-repository-trigger > span {\n  min-width: 0;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.repository-browser__file-branch-trigger > svg {\n  width: 0.9rem;\n  height: 0.9rem;\n}\n\n.repository-browser__file-branch-trigger > span {\n  min-width: 0;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.repository-browser__file-body {\n  min-width: 0;\n  min-height: 0;\n}\n\n.repository-browser__file-body [data-ui-component=\"code-block\"] {\n  min-height: 0;\n}\n\n.repository-browser__file-body\n  [data-ui-component=\"code-block\"]\n  [data-ui-part=\"code-block-scroll\"] {\n  min-height: 0;\n}\n\n.repository-browser__markdown-file {\n  box-sizing: border-box;\n  max-width: 58rem;\n  min-height: 0;\n  margin-inline: auto;\n  padding: clamp(1.5rem, 4vw, 3rem);\n}\n\n.repository-browser__file-panel-stack {\n  display: flex;\n  min-width: 0;\n  min-height: 100%;\n  box-sizing: border-box;\n  flex-direction: column;\n  gap: 0.75rem;\n  padding: var(--ui-repository-file-preview-padding, 0.75rem);\n}\n\n.repository-browser__file-panel-info {\n  display: flex;\n  min-width: 0;\n  box-sizing: border-box;\n",
+          "description": "Retain source layout geometry under repository-browser namespace; expose audited native spacing/type/background tokens; remove forced 28rem/18rem preview minimum heights so short files adapt to the available pane."
+        },
+        {
+          "before": "  border-radius: var(--ui-column-canvas-radius, var(--radius));\n  background: var(--background);\n  color: var(--muted-foreground);\n  font-size: var(--community-text-body);\n}\n\n.community-projects__file-panel-info-message {\n  display: inline-flex;\n  min-width: 0;\n  flex: 1 1 auto;\n",
+          "after": "  border-radius: var(--ui-column-canvas-radius, var(--radius));\n  background: var(--background);\n  color: var(--muted-foreground);\n  font-size: var(--ui-repository-browser-body-font-size, 0.875rem);\n}\n\n.repository-browser__file-panel-info-message {\n  display: inline-flex;\n  min-width: 0;\n  flex: 1 1 auto;\n",
+          "description": "Retain source layout geometry under repository-browser namespace; expose audited native spacing/type/background tokens; remove forced 28rem/18rem preview minimum heights so short files adapt to the available pane."
+        },
+        {
+          "before": "  white-space: nowrap;\n}\n\n.community-projects__file-panel-info-message > strong {\n  color: var(--foreground);\n  font-weight: 650;\n}\n\n.community-projects__file-panel-info-message > span {\n  min-width: 0;\n  overflow: hidden;\n  color: var(--foreground);\n",
+          "after": "  white-space: nowrap;\n}\n\n.repository-browser__file-panel-info-message > strong {\n  color: var(--foreground);\n  font-weight: 650;\n}\n\n.repository-browser__file-panel-info-message > span {\n  min-width: 0;\n  overflow: hidden;\n  color: var(--foreground);\n",
+          "description": "Retain source layout geometry under repository-browser namespace; expose audited native spacing/type/background tokens; remove forced 28rem/18rem preview minimum heights so short files adapt to the available pane."
+        },
+        {
+          "before": "  white-space: nowrap;\n}\n\n.community-projects__file-panel-tree-toggle[data-ui-component=\"button\"] {\n  flex: none;\n}\n\n.community-projects__file-panel-info-actions {\n  display: flex;\n  min-width: 0;\n  flex: none;\n",
+          "after": "  white-space: nowrap;\n}\n\n.repository-browser__file-panel-tree-toggle[data-ui-component=\"button\"] {\n  flex: none;\n}\n\n.repository-browser__file-panel-info-actions {\n  display: flex;\n  min-width: 0;\n  flex: none;\n",
+          "description": "Retain source layout geometry under repository-browser namespace; expose audited native spacing/type/background tokens; remove forced 28rem/18rem preview minimum heights so short files adapt to the available pane."
+        },
+        {
+          "before": "  gap: 0.55rem;\n}\n\n.community-projects__file-panel-stats {\n  margin: 0;\n  padding: 0.05rem 0.15rem;\n  color: var(--muted-foreground);\n  font-family: var(--font-mono, var(--community-font-mono));\n  font-size: var(--community-text-body);\n  font-weight: 500;\n}\n\n.community-projects__file-content-card {\n  min-width: 0;\n  min-height: 0;\n  border: 1px solid var(--border);\n",
+          "after": "  gap: 0.55rem;\n}\n\n.repository-browser__file-panel-stats {\n  margin: 0;\n  padding: 0.05rem 0.15rem;\n  color: var(--muted-foreground);\n  font-family: var(--font-mono, ui-monospace, monospace);\n  font-size: var(--ui-repository-browser-body-font-size, 0.875rem);\n  font-weight: 500;\n}\n\n.repository-browser__file-content-card {\n  min-width: 0;\n  min-height: 0;\n  border: 1px solid var(--border);\n",
+          "description": "Retain source layout geometry under repository-browser namespace; expose audited native spacing/type/background tokens; remove forced 28rem/18rem preview minimum heights so short files adapt to the available pane."
+        },
+        {
+          "before": "  overflow: hidden;\n}\n\n.community-projects__file-content-header {\n  display: flex;\n  min-height: 2.25rem;\n  box-sizing: border-box;\n",
+          "after": "  overflow: hidden;\n}\n\n.repository-browser__file-content-header {\n  display: flex;\n  min-height: 2.25rem;\n  box-sizing: border-box;\n",
+          "description": "Retain source layout geometry under repository-browser namespace; expose audited native spacing/type/background tokens; remove forced 28rem/18rem preview minimum heights so short files adapt to the available pane."
+        },
+        {
+          "before": "  padding: 0.25rem 0.75rem;\n  padding-inline-start: 0.5rem;\n  border-bottom: 1px solid var(--border);\n  background: var(--jj-store-row-background);\n  color: var(--foreground);\n  font-size: var(--community-text-secondary);\n  font-weight: 600;\n}\n\n.community-projects__file-content-header > span {\n  min-width: 0;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.community-projects__file-view-toggle[data-ui-component=\"button-group\"] {\n  flex: none;\n}\n\n.community-projects__file-view-toggle [data-ui-component=\"button\"] {\n  height: 1.75rem;\n  padding-inline: 0.55rem;\n  font-size: var(--community-text-secondary);\n}\n\n.community-projects__file-view-toggle\n  [data-ui-component=\"button\"][data-selected=\"true\"] {\n  background: var(--accent);\n  color: var(--accent-foreground);\n}\n\n.community-projects__file-content-card [data-ui-component=\"code-block\"] {\n  --ui-code-syntax-background: var(--background);\n  border: 0;\n  border-radius: 0;\n  background: var(--background);\n}\n\n.community-projects__file-content-card [data-ui-part=\"code-block-scroll\"] {\n  min-height: 18rem;\n}\n\n.community-projects__file-content-card [data-ui-part=\"code-block-scroll\"],\n.community-projects__file-content-card [data-ui-part=\"code-block-code-wrapper\"],\n.community-projects__file-content-card [data-ui-part=\"code-block-code\"] {\n  background: var(--background);\n}\n\n.community-projects__file-content-unavailable {\n  min-height: 18rem;\n}",
+          "after": "  padding: 0.25rem 0.75rem;\n  padding-inline-start: 0.5rem;\n  border-bottom: 1px solid var(--border);\n  background: var(--ui-repository-browser-row-background, var(--muted));\n  color: var(--foreground);\n  font-size: var(--ui-repository-browser-secondary-font-size, 0.75rem);\n  font-weight: 600;\n}\n\n.repository-browser__file-content-header > span {\n  display: inline-flex;\n  align-items: center;\n  gap: 0.35rem;\n  min-width: 0;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.repository-browser__file-view-toggle[data-ui-component=\"button-group\"] {\n  flex: none;\n}\n\n.repository-browser__file-view-toggle [data-ui-component=\"button\"] {\n  height: 1.75rem;\n  padding-inline: 0.55rem;\n  font-size: var(--ui-repository-browser-secondary-font-size, 0.75rem);\n}\n\n.repository-browser__file-view-toggle\n  [data-ui-component=\"button\"][data-selected=\"true\"] {\n  background: var(--accent);\n  color: var(--accent-foreground);\n}\n\n.repository-browser__file-content-card [data-ui-component=\"code-block\"] {\n  --ui-code-syntax-background: var(--background);\n  border: 0;\n  border-radius: 0;\n  background: var(--background);\n}\n\n.repository-browser__file-content-card [data-ui-part=\"code-block-scroll\"] {\n  min-height: 0;\n}\n\n.repository-browser__file-content-card [data-ui-part=\"code-block-scroll\"],\n.repository-browser__file-content-card [data-ui-part=\"code-block-code-wrapper\"],\n.repository-browser__file-content-card [data-ui-part=\"code-block-code\"] {\n  background: var(--background);\n}\n\n.repository-browser__file-content-unavailable {\n  min-height: 0;\n}\n\n.repository-browser__file-content-actions {\n  display: flex;\n  flex: none;\n  align-items: center;\n  gap: 0.25rem;\n}",
+          "description": "Retain source layout geometry under repository-browser namespace; expose audited native spacing/type/background tokens; remove forced 28rem/18rem preview minimum heights so short files adapt to the available pane."
+        }
+      ],
+      "adaptations": [
+        {
+          "description": "Retain source layout geometry under repository-browser namespace; expose audited native spacing/type/background tokens; remove forced 28rem/18rem preview minimum heights so short files adapt to the available pane."
+        }
+      ],
+      "layoutSha256": "504e1dc0bee1782e36ce507cbf1e96b76ae5ce21579f58d085a8712239a161bb"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/repository-directory.css",
+      "destination": "packages/repository-ui/src/jj/browse/directory/directory.css",
+      "sourceSha256": "44e7827e9b5a27a8b147b6ecf8796afe1e7603f5c8d6e6175c2a5579df419c99",
+      "destinationSha256": "4f264232c452a3d95be0078b1bf5d9d63872815c39f9db8c5ad16f9506fe4927",
+      "reviewNotes": [
+        "Retain source summary/table typography, widths, responsive containers and attribution styles; rename ownership namespace and expose source-default row/background/type tokens.",
+        "Apache-2.0; source applications remain read-only and host authority stays outside the package."
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "/* Copied Community repository directory table and revision summary. */\n.community-projects__file-browser-card {\n  min-width: 0;\n  container-name: repository-directory;\n  container-type: inline-size;\n  --community-projects-file-table-head-background: color-mix(\n    in srgb,\n    var(--jj-store-row-background) 55%,\n    var(--background)\n  );\n\n",
+          "after": "/* Copied Community repository directory table and revision summary. */\n.repository-browser__file-browser-card {\n  min-width: 0;\n  container-name: repository-directory;\n  container-type: inline-size;\n  --repository-browser-file-table-head-background: color-mix(\n    in srgb,\n    var(--ui-repository-browser-row-background, var(--muted)) 55%,\n    var(--background)\n  );\n\n",
+          "description": "Retain source summary/table typography, widths, responsive containers and attribution styles; rename ownership namespace and expose source-default row/background/type tokens."
+        },
+        {
+          "before": "  overflow: hidden;\n}\n\n.community-projects__file-browser-summary {\n  display: grid;\n  min-height: var(--community-projects-file-header-height, 2.25rem);\n  grid-template-columns: minmax(0, 1fr) auto;\n  box-sizing: border-box;\n  align-items: center;\n  gap: 0.75rem;\n  padding: 0.2rem 0.5rem 0.2rem 0.35rem;\n  border-bottom: 1px solid var(--border);\n  background: var(--jj-store-row-background);\n  color: var(--muted-foreground);\n  font-size: var(--community-text-secondary);\n}\n\n.community-projects__file-browser-summary-primary,\n.community-projects__file-browser-summary-actions {\n  display: flex;\n  min-width: 0;\n  align-items: center;\n  gap: 0.4rem;\n}\n\n.community-projects__file-browser-summary-actions {\n  justify-content: flex-end;\n}\n\n.community-projects__file-browser-tree-toggle[data-ui-component=\"button\"] {\n  flex: none;\n  margin-inline-end: -0.15rem;\n}\n\n.community-projects__file-browser-summary [data-ui-part=\"git-author\"] {\n  flex: none;\n}\n\n.community-projects__file-browser-summary-message,\n.community-projects__file-browser-summary-author,\n.community-projects__file-browser-commit-link {\n  min-width: 0;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.community-projects__file-browser-summary-author {\n  flex: none;\n  color: var(--foreground);\n  font-weight: 550;\n}\n\n.community-projects__file-browser-summary-verb {\n  flex: none;\n}\n\n.community-projects__file-browser-commit-link {\n  display: block;\n  flex: 1 1 auto;\n  border: 0;\n",
+          "after": "  overflow: hidden;\n}\n\n.repository-browser__file-browser-summary {\n  display: grid;\n  min-height: var(--repository-browser-file-header-height, 2.25rem);\n  grid-template-columns: minmax(0, 1fr) auto;\n  box-sizing: border-box;\n  align-items: center;\n  gap: 0.75rem;\n  padding: 0.2rem 0.5rem 0.2rem 0.35rem;\n  border-bottom: 1px solid var(--border);\n  background: var(--ui-repository-browser-row-background, var(--muted));\n  color: var(--muted-foreground);\n  font-size: var(--ui-repository-browser-secondary-font-size, 0.75rem);\n}\n\n.repository-browser__file-browser-summary-primary,\n.repository-browser__file-browser-summary-actions {\n  display: flex;\n  min-width: 0;\n  align-items: center;\n  gap: 0.4rem;\n}\n\n.repository-browser__file-browser-summary-actions {\n  justify-content: flex-end;\n}\n\n.repository-browser__file-browser-tree-toggle[data-ui-component=\"button\"] {\n  flex: none;\n  margin-inline-end: -0.15rem;\n}\n\n.repository-browser__file-browser-summary [data-ui-part=\"git-author\"] {\n  flex: none;\n}\n\n.repository-browser__file-browser-summary-message,\n.repository-browser__file-browser-summary-author,\n.repository-browser__file-browser-commit-link {\n  min-width: 0;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.repository-browser__file-browser-summary-author {\n  flex: none;\n  color: var(--foreground);\n  font-weight: 550;\n}\n\n.repository-browser__file-browser-summary-verb {\n  flex: none;\n}\n\n.repository-browser__file-browser-commit-link {\n  display: block;\n  flex: 1 1 auto;\n  border: 0;\n",
+          "description": "Retain source summary/table typography, widths, responsive containers and attribution styles; rename ownership namespace and expose source-default row/background/type tokens."
+        },
+        {
+          "before": "  cursor: pointer;\n}\n\n.community-projects__file-browser-commit-details[data-ui-component=\"button\"] {\n  width: 1.75rem;\n  height: 1.75rem;\n  flex: none;\n  color: var(--muted-foreground);\n}\n\n.community-projects__file-browser-commit-details > svg {\n  width: 1rem;\n  height: 1rem;\n}\n\n.community-projects__file-browser-commit-link:hover {\n  color: var(--foreground);\n  background: var(--muted);\n}\n\n.community-projects__file-browser-commit-link:focus-visible {\n  outline: 2px solid var(--ring);\n  outline-offset: 2px;\n}\n\n.community-projects__file-browser-summary code {\n  color: inherit;\n  font-size: var(--community-text-secondary);\n}\n\n.community-projects__file-browser-card\n  .community-projects__file-branch-trigger[data-ui-component=\"button\"] {\n  min-width: 9.5rem;\n}\n\n.community-projects__file-browser-table {\n  table-layout: fixed;\n}\n\n.community-projects__file-browser-card\n  > [data-ui-component=\"table\"][data-ui-part=\"table-container\"] {\n  max-height: min(56dvh, 36rem);\n  overflow: auto;\n}\n\n.community-projects__file-browser-table [data-ui-part=\"table-header\"] {\n  position: sticky;\n  z-index: 2;\n  top: 0;\n",
+          "after": "  cursor: pointer;\n}\n\n.repository-browser__file-browser-commit-details[data-ui-component=\"button\"] {\n  width: 1.75rem;\n  height: 1.75rem;\n  flex: none;\n  color: var(--muted-foreground);\n}\n\n.repository-browser__file-browser-commit-details > svg {\n  width: 1rem;\n  height: 1rem;\n}\n\n.repository-browser__file-browser-commit-link:hover {\n  color: var(--foreground);\n  background: var(--muted);\n}\n\n.repository-browser__file-browser-commit-link:focus-visible {\n  outline: 2px solid var(--ring);\n  outline-offset: 2px;\n}\n\n.repository-browser__file-browser-summary code {\n  color: inherit;\n  font-size: var(--ui-repository-browser-secondary-font-size, 0.75rem);\n}\n\n.repository-browser__file-browser-card\n  .repository-browser__file-branch-trigger[data-ui-component=\"button\"] {\n  min-width: 9.5rem;\n}\n\n.repository-browser__file-browser-table {\n  table-layout: fixed;\n}\n\n.repository-browser__file-browser-card\n  > [data-ui-component=\"table\"][data-ui-part=\"table-container\"] {\n  max-height: min(56dvh, 36rem);\n  overflow: auto;\n}\n\n.repository-browser__file-browser-table [data-ui-part=\"table-header\"] {\n  position: sticky;\n  z-index: 2;\n  top: 0;\n",
+          "description": "Retain source summary/table typography, widths, responsive containers and attribution styles; rename ownership namespace and expose source-default row/background/type tokens."
+        },
+        {
+          "before": "  table-layout: fixed;\n}\n\n.community-projects__file-browser-table\n  [data-ui-part=\"table-body\"].community-projects__virtual-directory-body {\n  display: block;\n  width: 100%;\n}\n\n.community-projects__file-browser-table [data-ui-part=\"table-header\"],\n.community-projects__file-browser-table [data-ui-part=\"table-head\"] {\n  background: var(--community-projects-file-table-head-background);\n}\n\n.community-projects__file-browser-table [data-ui-part=\"table-head\"]:first-child,\n.community-projects__file-browser-table\n  [data-ui-part=\"table-cell\"]:first-child {\n  width: 40%;\n}\n\n.community-projects__file-browser-table\n  [data-ui-part=\"table-head\"]:nth-child(2),\n.community-projects__file-browser-table\n  [data-ui-part=\"table-cell\"]:nth-child(2) {\n  width: 43%;\n}\n\n.community-projects__file-browser-table [data-ui-part=\"table-head\"]:last-child,\n.community-projects__file-browser-table [data-ui-part=\"table-cell\"]:last-child {\n  width: 17%;\n  text-align: end;\n}\n\n.community-projects__file-browser-table\n  [data-ui-component=\"table\"][data-ui-part=\"table-head\"] {\n  height: 1.95rem;\n  padding-block: 0.2rem;\n  padding-inline: 0.55rem;\n  color: var(--muted-foreground);\n  font-size: var(--community-text-secondary);\n  font-weight: 500;\n}\n\n.community-projects__file-browser-table [data-ui-part=\"table-cell\"] {\n  height: 2.35rem;\n  padding-block: 0.35rem;\n  padding-inline: 0.55rem;\n  color: var(--muted-foreground);\n  font-size: var(--community-text-secondary);\n}\n\n.community-projects__file-entry {\n  width: 100%;\n  min-width: 0;\n  justify-content: flex-start;\n",
+          "after": "  table-layout: fixed;\n}\n\n.repository-browser__file-browser-table\n  [data-ui-part=\"table-body\"].repository-browser__virtual-directory-body {\n  display: block;\n  width: 100%;\n}\n\n.repository-browser__file-browser-table [data-ui-part=\"table-header\"],\n.repository-browser__file-browser-table [data-ui-part=\"table-head\"] {\n  background: var(--repository-browser-file-table-head-background);\n}\n\n.repository-browser__file-browser-table [data-ui-part=\"table-head\"]:first-child,\n.repository-browser__file-browser-table\n  [data-ui-part=\"table-cell\"]:first-child {\n  width: 40%;\n}\n\n.repository-browser__file-browser-table\n  [data-ui-part=\"table-head\"]:nth-child(2),\n.repository-browser__file-browser-table\n  [data-ui-part=\"table-cell\"]:nth-child(2) {\n  width: 43%;\n}\n\n.repository-browser__file-browser-table [data-ui-part=\"table-head\"]:last-child,\n.repository-browser__file-browser-table [data-ui-part=\"table-cell\"]:last-child {\n  width: 17%;\n  text-align: end;\n}\n\n.repository-browser__file-browser-table\n  [data-ui-component=\"table\"][data-ui-part=\"table-head\"] {\n  height: 1.95rem;\n  padding-block: 0.2rem;\n  padding-inline: 0.55rem;\n  color: var(--muted-foreground);\n  font-size: var(--ui-repository-browser-secondary-font-size, 0.75rem);\n  font-weight: 500;\n}\n\n.repository-browser__file-browser-table [data-ui-part=\"table-cell\"] {\n  height: 2.35rem;\n  padding-block: 0.35rem;\n  padding-inline: 0.55rem;\n  color: var(--muted-foreground);\n  font-size: var(--ui-repository-browser-secondary-font-size, 0.75rem);\n}\n\n.repository-browser__file-entry {\n  width: 100%;\n  min-width: 0;\n  justify-content: flex-start;\n",
+          "description": "Retain source summary/table typography, widths, responsive containers and attribution styles; rename ownership namespace and expose source-default row/background/type tokens."
+        },
+        {
+          "before": "  color: var(--foreground);\n}\n\n.community-projects__file-entry > svg {\n  width: 1rem;\n  height: 1rem;\n  flex: none;\n  color: var(--muted-foreground);\n}\n\n.community-projects__file-entry > strong,\n.community-projects__file-commit-message {\n  min-width: 0;\n  overflow: hidden;\n  font-size: var(--community-text-secondary);\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.community-projects__file-entry > strong {\n  font-weight: 550;\n}\n\n.community-projects__file-entry:hover > strong,\n.community-projects__file-entry:focus-visible > strong {\n  color: var(--primary);\n  text-decoration: underline;\n  text-underline-offset: 0.15em;\n}\n\n.community-projects__file-attribution\n  > .community-projects__file-commit-message {\n  display: block;\n  flex: 1 1 0%;\n  min-width: 0;\n",
+          "after": "  color: var(--foreground);\n}\n\n.repository-browser__file-entry > svg {\n  width: 1rem;\n  height: 1rem;\n  flex: none;\n  color: var(--muted-foreground);\n}\n\n.repository-browser__file-entry > strong,\n.repository-browser__file-commit-message {\n  min-width: 0;\n  overflow: hidden;\n  font-size: var(--ui-repository-browser-secondary-font-size, 0.75rem);\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.repository-browser__file-entry > strong {\n  font-weight: 550;\n}\n\n.repository-browser__file-entry:hover > strong,\n.repository-browser__file-entry:focus-visible > strong {\n  color: var(--primary);\n  text-decoration: underline;\n  text-underline-offset: 0.15em;\n}\n\n.repository-browser__file-attribution\n  > .repository-browser__file-commit-message {\n  display: block;\n  flex: 1 1 0%;\n  min-width: 0;\n",
+          "description": "Retain source summary/table typography, widths, responsive containers and attribution styles; rename ownership namespace and expose source-default row/background/type tokens."
+        },
+        {
+          "before": "}\n\n@container repository-directory (max-width: 46rem) {\n  .community-projects__file-browser-card\n    .community-projects__file-branch-trigger[data-ui-component=\"button\"] {\n    min-width: 8rem;\n  }\n}\n\n@container repository-directory (max-width: 34rem) {\n  .community-projects__file-browser-summary {\n    grid-template-columns: minmax(0, 1fr);\n    gap: 0.15rem;\n    padding-block: 0.25rem;\n  }\n\n  .community-projects__file-browser-summary-verb,\n  .community-projects__file-browser-commit-link,\n  .community-projects__file-browser-summary-actions\n    .community-revision-graph-ids {\n    display: none;\n  }\n\n  .community-projects__file-browser-summary-author {\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n\n  .community-projects__file-browser-commit-details[data-ui-component=\"button\"] {\n    margin-inline-start: auto;\n  }\n\n  .community-projects__file-browser-summary-actions {\n    justify-content: space-between;\n    padding-inline-start: 2rem;\n  }\n}\n\n.community-projects__file-attribution {\n  display: flex;\n  width: 100%;\n  max-width: 100%;\n",
+          "after": "}\n\n@container repository-directory (max-width: 46rem) {\n  .repository-browser__file-browser-card\n    .repository-browser__file-branch-trigger[data-ui-component=\"button\"] {\n    min-width: 8rem;\n  }\n}\n\n@container repository-directory (max-width: 34rem) {\n  .repository-browser__file-browser-summary {\n    grid-template-columns: minmax(0, 1fr);\n    gap: 0.15rem;\n    padding-block: 0.25rem;\n  }\n\n  .repository-browser__file-browser-summary-verb,\n  .repository-browser__file-browser-commit-link,\n  .repository-browser__file-browser-summary-actions\n    .community-revision-graph-ids {\n    display: none;\n  }\n\n  .repository-browser__file-browser-summary-author {\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n\n  .repository-browser__file-browser-commit-details[data-ui-component=\"button\"] {\n    margin-inline-start: auto;\n  }\n\n  .repository-browser__file-browser-summary-actions {\n    justify-content: space-between;\n    padding-inline-start: 2rem;\n  }\n}\n\n.repository-browser__file-attribution {\n  display: flex;\n  width: 100%;\n  max-width: 100%;\n",
+          "description": "Retain source summary/table typography, widths, responsive containers and attribution styles; rename ownership namespace and expose source-default row/background/type tokens."
+        },
+        {
+          "before": "  gap: 0.5rem;\n  min-width: 0;\n}\n.community-projects__file-snapshot {\n  display: inline-flex;\n  flex-shrink: 0;\n}",
+          "after": "  gap: 0.5rem;\n  min-width: 0;\n}\n.repository-browser__file-snapshot {\n  display: inline-flex;\n  flex-shrink: 0;\n}\n\n.repository-browser__file-attribution\n  > .repository-browser__file-commit-message {\n  color: var(--foreground);\n  text-decoration: none;\n}\n.repository-browser__file-attribution\n  > button.repository-browser__file-commit-message:hover {\n  color: var(--primary);\n  text-decoration: none;\n}",
+          "description": "Retain source summary/table typography, widths, responsive containers and attribution styles; rename ownership namespace and expose source-default row/background/type tokens."
+        }
+      ],
+      "adaptations": [
+        {
+          "description": "Retain source summary/table typography, widths, responsive containers and attribution styles; rename ownership namespace and expose source-default row/background/type tokens."
+        }
+      ],
+      "layoutSha256": "4238f78f3b05a2a2877540f05042a8f6bdfe4a7609c998dfe55f92ebfaeeae65"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/repository-documents.css",
+      "destination": "packages/repository-ui/src/jj/browse/directory/documents.css",
+      "sourceSha256": "5c0495cd93e7fd25f86f46bbca5372c18988e7b107758db283d45eb4cf9d197b",
+      "destinationSha256": "fb40d01214f2d29e549b439a806ead2a49a657ccec6dcd590b61b7700d4e675b",
+      "reviewNotes": [
+        "Retain source document tabs, header and content geometry under owned namespace and expose original document padding.",
+        "Apache-2.0; source applications remain read-only and host authority stays outside the package."
+      ],
+      "layoutAdaptations": [
+        {
+          "before": ".community-projects__repository-document-card {\n  min-width: 0;\n  margin-block-start: 0.75rem;\n  border: 1px solid var(--border);\n",
+          "after": ".repository-browser__repository-document-card {\n  min-width: 0;\n  margin-block-start: 0.75rem;\n  border: 1px solid var(--border);\n",
+          "description": "Retain source document tabs, header and content geometry under owned namespace and expose original document padding."
+        },
+        {
+          "before": "  overflow: hidden;\n}\n\n.community-projects__repository-document-tabs[data-ui-component=\"tabs\"] {\n  min-width: 0;\n  flex-direction: column;\n  gap: 0;\n}\n\n.community-projects__repository-document-header {\n  display: flex;\n  width: 100%;\n  min-width: 0;\n",
+          "after": "  overflow: hidden;\n}\n\n.repository-browser__repository-document-tabs[data-ui-component=\"tabs\"] {\n  min-width: 0;\n  flex-direction: column;\n  gap: 0;\n}\n\n.repository-browser__repository-document-header {\n  display: flex;\n  width: 100%;\n  min-width: 0;\n",
+          "description": "Retain source document tabs, header and content geometry under owned namespace and expose original document padding."
+        },
+        {
+          "before": "  background: var(--background);\n}\n\n.community-projects__repository-document-tabs [data-ui-part=\"tabs-list\"] {\n  width: auto;\n  min-width: 0;\n  height: 100%;\n",
+          "after": "  background: var(--background);\n}\n\n.repository-browser__repository-document-tabs [data-ui-part=\"tabs-list\"] {\n  width: auto;\n  min-width: 0;\n  height: 100%;\n",
+          "description": "Retain source document tabs, header and content geometry under owned namespace and expose original document padding."
+        },
+        {
+          "before": "  padding: 0;\n}\n\n.community-projects__repository-document-tabs [data-ui-part=\"tabs-trigger\"] {\n  position: relative;\n  flex: 0 0 auto !important;\n  justify-content: flex-start !important;\n",
+          "after": "  padding: 0;\n}\n\n.repository-browser__repository-document-tabs [data-ui-part=\"tabs-trigger\"] {\n  position: relative;\n  flex: 0 0 auto !important;\n  justify-content: flex-start !important;\n",
+          "description": "Retain source document tabs, header and content geometry under owned namespace and expose original document padding."
+        },
+        {
+          "before": "  padding-inline: 0.55rem;\n  background: transparent;\n  color: var(--foreground);\n  font-size: var(--community-text-secondary);\n  font-weight: 600;\n}\n\n.community-projects__repository-document-tabs\n  [data-ui-part=\"tabs-list\"][data-variant=\"line\"]\n  > [data-ui-part=\"tabs-trigger\"]:hover,\n.community-projects__repository-document-tabs\n  [data-ui-part=\"tabs-list\"][data-variant=\"line\"]\n  > [data-ui-part=\"tabs-trigger\"]:focus-visible,\n.community-projects__repository-document-tabs\n  [data-ui-part=\"tabs-list\"][data-variant=\"line\"]\n  > [data-ui-part=\"tabs-trigger\"][data-state=\"active\"] {\n  color: var(--accent-foreground);\n  background: var(--accent);\n}\n\n.community-projects__repository-document-tabs\n  [data-ui-part=\"tabs-trigger\"]\n  svg {\n  width: 1rem;\n",
+          "after": "  padding-inline: 0.55rem;\n  background: transparent;\n  color: var(--foreground);\n  font-size: var(--ui-repository-browser-secondary-font-size, 0.75rem);\n  font-weight: 600;\n}\n\n.repository-browser__repository-document-tabs\n  [data-ui-part=\"tabs-list\"][data-variant=\"line\"]\n  > [data-ui-part=\"tabs-trigger\"]:hover,\n.repository-browser__repository-document-tabs\n  [data-ui-part=\"tabs-list\"][data-variant=\"line\"]\n  > [data-ui-part=\"tabs-trigger\"]:focus-visible,\n.repository-browser__repository-document-tabs\n  [data-ui-part=\"tabs-list\"][data-variant=\"line\"]\n  > [data-ui-part=\"tabs-trigger\"][data-state=\"active\"] {\n  color: var(--accent-foreground);\n  background: var(--accent);\n}\n\n.repository-browser__repository-document-tabs\n  [data-ui-part=\"tabs-trigger\"]\n  svg {\n  width: 1rem;\n",
+          "description": "Retain source document tabs, header and content geometry under owned namespace and expose original document padding."
+        },
+        {
+          "before": "  color: var(--muted-foreground);\n}\n\n.community-projects__repository-document-tabs\n  [data-ui-part=\"tabs-trigger\"]::after {\n  display: none;\n}\n\n.community-projects__repository-document-tab-indicator {\n  position: absolute;\n  inset-inline: 0;\n  inset-block-end: calc(-0.375rem - 1px);\n",
+          "after": "  color: var(--muted-foreground);\n}\n\n.repository-browser__repository-document-tabs\n  [data-ui-part=\"tabs-trigger\"]::after {\n  display: none;\n}\n\n.repository-browser__repository-document-tab-indicator {\n  position: absolute;\n  inset-inline: 0;\n  inset-block-end: calc(-0.375rem - 1px);\n",
+          "description": "Retain source document tabs, header and content geometry under owned namespace and expose original document padding."
+        },
+        {
+          "before": "  transition: opacity 120ms ease;\n}\n\n.community-projects__repository-document-tabs\n  [data-ui-part=\"tabs-trigger\"][data-state=\"active\"]\n  .community-projects__repository-document-tab-indicator {\n  opacity: 1;\n}\n\n.community-projects__repository-document-tabs\n  [data-ui-part=\"tabs-trigger\"][data-state=\"active\"]\n  svg {\n  color: currentColor;\n}\n\n.community-projects__repository-document-tabs [data-ui-part=\"tabs-content\"] {\n  min-width: 0;\n}\n\n.community-projects__repository-document-edit[data-ui-component=\"button\"] {\n  flex: none;\n}\n\n.community-projects__repository-document-more[data-ui-component=\"button\"] {\n  position: relative;\n  height: 2rem;\n  flex: none;\n",
+          "after": "  transition: opacity 120ms ease;\n}\n\n.repository-browser__repository-document-tabs\n  [data-ui-part=\"tabs-trigger\"][data-state=\"active\"]\n  .repository-browser__repository-document-tab-indicator {\n  opacity: 1;\n}\n\n.repository-browser__repository-document-tabs\n  [data-ui-part=\"tabs-trigger\"][data-state=\"active\"]\n  svg {\n  color: currentColor;\n}\n\n.repository-browser__repository-document-tabs [data-ui-part=\"tabs-content\"] {\n  min-width: 0;\n}\n\n.repository-browser__repository-document-edit[data-ui-component=\"button\"] {\n  flex: none;\n}\n\n.repository-browser__repository-document-more[data-ui-component=\"button\"] {\n  position: relative;\n  height: 2rem;\n  flex: none;\n",
+          "description": "Retain source document tabs, header and content geometry under owned namespace and expose original document padding."
+        },
+        {
+          "before": "  margin-inline-start: 0.15rem;\n  padding-inline: 0.65rem 0.45rem;\n  border-radius: var(--radius-sm);\n  font-size: var(--community-text-secondary);\n  font-weight: 550;\n}\n\n.community-projects__repository-document-more[data-ui-component=\"button\"][data-selected] {\n  background: var(--accent);\n  color: var(--accent-foreground);\n  font-weight: 600;\n}\n\n.community-projects__repository-document-more[data-selected]\n  .community-projects__repository-document-tab-indicator {\n  opacity: 1;\n}\n\n.community-projects__repository-document-more[data-ui-component=\"button\"] svg {\n  width: 0.75rem;\n  height: 0.75rem;\n}\n\n.community-projects__repository-document-menu-item[data-selected] {\n  position: relative;\n  font-weight: 600;\n}\n\n.community-projects__repository-document-menu-item[data-selected]::before {\n  position: absolute;\n  inset-block: 0.35rem;\n  inset-inline-start: 0;\n",
+          "after": "  margin-inline-start: 0.15rem;\n  padding-inline: 0.65rem 0.45rem;\n  border-radius: var(--radius-sm);\n  font-size: var(--ui-repository-browser-secondary-font-size, 0.75rem);\n  font-weight: 550;\n}\n\n.repository-browser__repository-document-more[data-ui-component=\"button\"][data-selected] {\n  background: var(--accent);\n  color: var(--accent-foreground);\n  font-weight: 600;\n}\n\n.repository-browser__repository-document-more[data-selected]\n  .repository-browser__repository-document-tab-indicator {\n  opacity: 1;\n}\n\n.repository-browser__repository-document-more[data-ui-component=\"button\"] svg {\n  width: 0.75rem;\n  height: 0.75rem;\n}\n\n.repository-browser__repository-document-menu-item[data-selected] {\n  position: relative;\n  font-weight: 600;\n}\n\n.repository-browser__repository-document-menu-item[data-selected]::before {\n  position: absolute;\n  inset-block: 0.35rem;\n  inset-inline-start: 0;\n",
+          "description": "Retain source document tabs, header and content geometry under owned namespace and expose original document padding."
+        },
+        {
+          "before": "  content: \"\";\n}\n\n.community-projects__markdown-preview {\n  display: flex;\n  min-width: 0;\n  flex-direction: column;\n  gap: 0.65rem;\n  padding: 1rem;\n  color: var(--foreground);\n  font-size: var(--community-text-body);\n  line-height: 1.6;\n}",
+          "after": "  content: \"\";\n}\n\n.repository-browser__markdown-preview {\n  display: flex;\n  min-width: 0;\n  flex-direction: column;\n  gap: 0.65rem;\n  padding: var(--ui-repository-directory-document-padding, 1rem);\n  color: var(--foreground);\n  font-size: var(--ui-repository-browser-body-font-size, 0.875rem);\n  line-height: 1.6;\n}",
+          "description": "Retain source document tabs, header and content geometry under owned namespace and expose original document padding."
+        }
+      ],
+      "adaptations": [
+        {
+          "description": "Retain source document tabs, header and content geometry under owned namespace and expose original document padding."
+        }
+      ],
+      "layoutSha256": "519786fcdb459d2a04401c69d834ae903005cc5e036fd8c5918743712c39a297"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/repository-file-tree.css",
+      "destination": "packages/repository-ui/src/jj/browse/file-tree/file-tree.css",
+      "sourceSha256": "1dcd121d8b0dcb082b1f952ccff1950b3fa07f10cfcbd59a1c46dab820385ba1",
+      "destinationSha256": "307cbbd3ed2d03364a73abf34dc2fdbf8b448cce7fd6c27ba1ce780594013af7",
+      "reviewNotes": [
+        "Retain source file tree/sidebar geometry under owned namespace with audited sizing/type tokens.",
+        "Apache-2.0; source applications remain read-only and host authority stays outside the package."
+      ],
+      "layoutAdaptations": [
+        {
+          "before": ".community-projects__file-tree {\n  --ui-diff-row-hover: color-mix(\n    in srgb,\n    var(--foreground) 7%,\n",
+          "after": ".repository-browser__file-tree {\n  --ui-diff-row-hover: color-mix(\n    in srgb,\n    var(--foreground) 7%,\n",
+          "description": "Retain source file tree/sidebar geometry under owned namespace with audited sizing/type tokens."
+        },
+        {
+          "before": "  height: 100%;\n  box-sizing: border-box;\n  flex-direction: column;\n  padding: 0 0.5rem 0.5rem;\n  background: var(--background);\n}\n\n.community-projects__file-tree-actions {\n  display: flex;\n  height: var(--community-projects-file-header-height, 2.25rem);\n  box-sizing: border-box;\n  align-items: center;\n  gap: 0.45rem;\n",
+          "after": "  height: 100%;\n  box-sizing: border-box;\n  flex-direction: column;\n  padding: var(--ui-repository-file-tree-padding, 0 0.5rem 0.5rem);\n  background: var(--background);\n}\n\n.repository-browser__file-tree-actions {\n  display: flex;\n  height: var(--repository-browser-file-header-height, 2.25rem);\n  box-sizing: border-box;\n  align-items: center;\n  gap: 0.45rem;\n",
+          "description": "Retain source file tree/sidebar geometry under owned namespace with audited sizing/type tokens."
+        },
+        {
+          "before": "  border-bottom: 1px solid var(--border);\n}\n\n.community-projects__file-tree-title {\n  min-width: 0;\n  flex: 1 1 auto;\n  overflow: hidden;\n  color: var(--foreground);\n  font-size: var(--community-text-secondary);\n  font-weight: 600;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.community-projects__file-tree-count {\n  display: inline-flex;\n  min-width: 1.25rem;\n  flex: none;\n",
+          "after": "  border-bottom: 1px solid var(--border);\n}\n\n.repository-browser__file-tree-title {\n  min-width: 0;\n  flex: 1 1 auto;\n  overflow: hidden;\n  color: var(--foreground);\n  font-size: var(--ui-repository-browser-secondary-font-size, 0.75rem);\n  font-weight: 600;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.repository-browser__file-tree-count {\n  display: inline-flex;\n  min-width: 1.25rem;\n  flex: none;\n",
+          "description": "Retain source file tree/sidebar geometry under owned namespace with audited sizing/type tokens."
+        },
+        {
+          "before": "  border-radius: 999px;\n  background: color-mix(in srgb, var(--foreground) 7%, var(--background));\n  color: var(--foreground);\n  font-size: var(--community-text-secondary);\n  font-weight: 600;\n  line-height: 1rem;\n}\n\n.community-projects__file-tree [data-ui-component=\"file-listing\"] {\n  min-height: 0;\n  flex: 1 1 auto;\n  padding-block: 0.35rem 0;\n}\n\n.community-projects__file-tree [data-ui-part=\"file-row\"],\n.community-projects__file-tree [data-ui-part=\"directory-row\"] {\n  min-height: 2rem;\n  font-size: var(--community-text-secondary);\n}",
+          "after": "  border-radius: 999px;\n  background: color-mix(in srgb, var(--foreground) 7%, var(--background));\n  color: var(--foreground);\n  font-size: var(--ui-repository-browser-secondary-font-size, 0.75rem);\n  font-weight: 600;\n  line-height: 1rem;\n}\n\n.repository-browser__file-tree [data-ui-component=\"file-listing\"] {\n  min-height: 0;\n  flex: 1 1 auto;\n  padding-block: 0.35rem 0;\n}\n\n.repository-browser__file-tree [data-ui-part=\"file-row\"],\n.repository-browser__file-tree [data-ui-part=\"directory-row\"] {\n  min-height: 2rem;\n  font-size: var(--ui-repository-browser-secondary-font-size, 0.75rem);\n}",
+          "description": "Retain source file tree/sidebar geometry under owned namespace with audited sizing/type tokens."
+        }
+      ],
+      "adaptations": [
+        {
+          "description": "Retain source file tree/sidebar geometry under owned namespace with audited sizing/type tokens."
+        }
+      ],
+      "layoutSha256": "d6f86050b3e082d2e6bc1df98de8791dbe273888d3671798f604e87abbfeb3a0"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/repository-file-tree-resize.css",
+      "destination": "packages/repository-ui/src/jj/browse/file-tree/file-tree-resize.css",
+      "sourceSha256": "d3c76212bff5ea9ea52204233b7ddb55ee3b3f033f962a3667ca0d0ace98de65",
+      "destinationSha256": "9f45029a172072bb9382b2f853b0db4525fb5ac60daefcda5c12a69c17488c8f",
+      "reviewNotes": [
+        "Retain source pointer/keyboard resize-handle geometry under owned namespace and source-default 256px width token.",
+        "Apache-2.0; source applications remain read-only and host authority stays outside the package."
+      ],
+      "layoutAdaptations": [
+        {
+          "before": ".community-projects__file-tree-resize {\n  position: relative;\n  z-index: 3;\n  order: 0;\n",
+          "after": ".repository-browser__file-tree-resize {\n  position: relative;\n  z-index: 3;\n  order: 0;\n",
+          "description": "Retain source pointer/keyboard resize-handle geometry under owned namespace and source-default 256px width token."
+        },
+        {
+          "before": "  touch-action: none;\n}\n\n.community-projects__file-tree-resize > span {\n  position: absolute;\n  inset-block: 0;\n  inset-inline-start: -0.25rem;\n  width: 0.5rem;\n}\n\n.community-projects__file-tree-resize > span::after {\n  position: absolute;\n  inset-block: 0;\n  inset-inline-start: calc(50% - 0.5px);\n",
+          "after": "  touch-action: none;\n}\n\n.repository-browser__file-tree-resize > span {\n  position: absolute;\n  inset-block: 0;\n  inset-inline-start: -0.25rem;\n  width: 0.5rem;\n}\n\n.repository-browser__file-tree-resize > span::after {\n  position: absolute;\n  inset-block: 0;\n  inset-inline-start: calc(50% - 0.5px);\n",
+          "description": "Retain source pointer/keyboard resize-handle geometry under owned namespace and source-default 256px width token."
+        },
+        {
+          "before": "  transition: background-color 120ms ease;\n}\n\n.community-projects__file-tree-resize:hover > span::after,\n.community-projects__file-tree-resize:focus-visible > span::after,\n.community-projects__file-tree-resize[data-resizing] > span::after {\n  background: var(--ring);\n}\n\n.community-projects__file-tree-resize:focus-visible {\n  outline: none;\n}\n\n@media (max-width: 760px) {\n  .community-projects__file-tree-resize {\n    display: none;\n  }\n}",
+          "after": "  transition: background-color 120ms ease;\n}\n\n.repository-browser__file-tree-resize:hover > span::after,\n.repository-browser__file-tree-resize:focus-visible > span::after,\n.repository-browser__file-tree-resize[data-resizing] > span::after {\n  background: var(--ring);\n}\n\n.repository-browser__file-tree-resize:focus-visible {\n  outline: none;\n}\n\n@media (max-width: 760px) {\n  .repository-browser__file-tree-resize {\n    display: none;\n  }\n}\n\n.repository-browser__file-tree-resize[data-side=\"right\"] {\n  order: 2;\n}",
+          "description": "Retain source pointer/keyboard resize-handle geometry under owned namespace and source-default 256px width token."
+        }
+      ],
+      "adaptations": [
+        {
+          "description": "Retain source pointer/keyboard resize-handle geometry under owned namespace and source-default 256px width token."
+        }
+      ],
+      "layoutSha256": "ba8c3f09db77d32363089b2d070a40dfeb971c9cba60d202790c6621fd39c0b4"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryBranchSelector.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/reference-picker/RepositoryReferencePicker.svelte",
+      "sourceSha256": "a88ac7031e258c5a7ad8b682ee8e767777cebfc819e4f3fb9e292132a14e1d3a",
+      "destinationSha256": "3f86f73a7dc19e3983511238dc3d8684aeb3d7f2c2d37ba376bf6a9a84644828",
+      "reviewNotes": [
+        "Preserve the source snapshot Popover/Command View, kind filters, local search, selected icon, virtual rows and continuation; replace app RepositoryChoice with public immutable choices and typed host selection, use public Badge instead of community chip, and shared icon-bearing Empty/Skeleton with retry; expose source-default sizing tokens.",
+        "Apache-2.0; source applications remain read-only and host authority stays outside the package."
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "{#snippet referenceOption(option: RepositoryChoice)}\n  <CommandView.Item\n    value={option.value}\n    keywords={[option.label, ...(option.searchTerms ?? [])]}\n    onSelect={() => choose(option.value)}\n  >\n    <CommandView.ItemIcon>\n      {#if option.value === branch}\n        <CheckIcon aria-hidden=\"true\" />\n      {/if}\n    </CommandView.ItemIcon>\n    <CommandView.ItemLabel>{option.label}</CommandView.ItemLabel>\n    {#if option.kind === \"bookmark\" && option.targets.length !== 1}\n      <span data-ui-component=\"command-view\" data-ui-part=\"trailing\">\n        <CommunityChip variant=\"muted\" size=\"compact\" ariaHidden\n          >{option.targets.length\n            ? `${option.targets.length} targets`\n            : \"deleted\"}</CommunityChip\n        >\n      </span>\n    {/if}\n  </CommandView.Item>\n{/snippet}\n\n",
+          "after": "{#snippet referenceOption(option: RepositoryReferenceChoice)}\n  <CommandView.Item\n    role=\"row\"\n    value={option.value}\n    aria-label={option.label}\n    keywords={[option.label, ...(option.searchTerms ?? [])]}\n    onSelect={() => choose(option.value)}\n  >\n    <div role=\"gridcell\" class=\"reference-cell\">\n      <CommandView.ItemIcon\n        >{#if option.value === value}<CheckIcon\n            aria-hidden=\"true\"\n          />{/if}</CommandView.ItemIcon\n      >\n      <CommandView.ItemLabel\n        >{#if option.kind === \"change\" && option.commit}<RepositoryChangeCard\n            commit={option.commit}\n            {now}\n            {copyText}\n          />{:else}{option.label}{/if}</CommandView.ItemLabel\n      >\n      {#if option.kind === \"bookmark\" && option.targets.length !== 1}<span\n          data-ui-component=\"command-view\"\n          data-ui-part=\"trailing\"\n          ><Badge variant=\"secondary\" aria-hidden=\"true\"\n            >{option.targets.length\n              ? `${option.targets.length} targets`\n              : \"deleted\"}</Badge\n          ></span\n        >{/if}\n    </div>\n  </CommandView.Item>\n{/snippet}\n\n",
+          "description": "Preserve the source snapshot Popover/Command View, kind filters, local search, selected icon, virtual rows and continuation; replace app RepositoryChoice with public immutable choices and typed host selection, use public Badge instead of community chip, and shared icon-bearing Empty/Skeleton with retry; expose source-default sizing tokens."
+        },
+        {
+          "before": "      <Button\n        {...props}\n        variant=\"outline\"\n        class={[\"community-projects__file-branch-trigger\", props.class]}\n        role=\"combobox\"\n        aria-label={label}\n      >\n",
+          "after": "      <Button\n        {...props}\n        variant=\"outline\"\n        {disabled}\n        class={[\"repository-reference-picker-trigger\", props.class]}\n        role=\"combobox\"\n        aria-label={label}\n      >\n",
+          "description": "Preserve the source snapshot Popover/Command View, kind filters, local search, selected icon, virtual rows and continuation; replace app RepositoryChoice with public immutable choices and typed host selection, use public Badge instead of community chip, and shared icon-bearing Empty/Skeleton with retry; expose source-default sizing tokens."
+        },
+        {
+          "before": "            : selected?.label) || \"Select snapshot\"}</span\n        >\n        <ChevronDownIcon\n          class=\"community-repository-branch-command__chevron\"\n          aria-hidden=\"true\"\n        />\n      </Button>\n    {/snippet}\n  </Popover.Trigger>\n  <Popover.Content\n    class=\"community-repository-branch-command\"\n    align=\"start\"\n    style=\"--ui-popover-width: 22rem; --ui-popover-padding: 0.5rem 0.75rem 0.625rem; --ui-popover-gap: 0.25rem\"\n  >\n    <Popover.Header class=\"community-repository-branch-command__header\">\n      <Popover.Title\n        class=\"community-repository-branch-command__title\"\n        role=\"heading\"\n        aria-level={2}>{heading}</Popover.Title\n      >\n",
+          "after": "            : selected?.label) || \"Select snapshot\"}</span\n        >\n        <ChevronDownIcon\n          class=\"repository-reference-picker-command__chevron\"\n          aria-hidden=\"true\"\n        />\n      </Button>\n    {/snippet}\n  </Popover.Trigger>\n  <Popover.Content\n    class=\"repository-reference-picker-command\"\n    align=\"start\"\n    style=\"--ui-popover-width: var(--ui-repository-reference-picker-width, 22rem); --ui-popover-padding: 0.5rem 0.75rem 0.625rem; --ui-popover-gap: 0.25rem\"\n  >\n    <Popover.Header class=\"repository-reference-picker-command__header\">\n      <Popover.Title\n        class=\"repository-reference-picker-command__title\"\n        role=\"heading\"\n        aria-level={2}>{heading}</Popover.Title\n      >\n",
+          "description": "Preserve the source snapshot Popover/Command View, kind filters, local search, selected icon, virtual rows and continuation; replace app RepositoryChoice with public immutable choices and typed host selection, use public Badge instead of community chip, and shared icon-bearing Empty/Skeleton with retry; expose source-default sizing tokens."
+        },
+        {
+          "before": "    <CommandView.Root label={heading} shouldFilter={false}>\n      <CommandView.Input\n        bind:value={query}\n        placeholder={\"Find bookmark or change\"}\n        aria-label={\"Find bookmark or change\"}\n      />\n      {#if true}\n        <CommandView.Filters\n",
+          "after": "    <CommandView.Root label={heading} shouldFilter={false}>\n      <CommandView.Input\n        bind:value={query}\n        aria-haspopup=\"grid\"\n        placeholder={\"Find bookmark, change or commit\"}\n        aria-label={\"Find bookmark, change or commit\"}\n      />\n      {#if true}\n        <CommandView.Filters\n",
+          "description": "Preserve the source snapshot Popover/Command View, kind filters, local search, selected icon, virtual rows and continuation; replace app RepositoryChoice with public immutable choices and typed host selection, use public Badge instead of community chip, and shared icon-bearing Empty/Skeleton with retry; expose source-default sizing tokens."
+        },
+        {
+          "before": "          ]}\n        />\n      {/if}\n      <CommandView.List>\n        {#if visibleRefs.length === 0}\n          <CommandView.Empty>No matching snapshots</CommandView.Empty>\n        {:else}\n          <CommandView.Group\n            heading={tab === \"bookmark\" ? \"Bookmarks\" : \"Changes\"}\n          >\n            <CommunityProjectsVirtualRows\n              rows={visibleRefs}\n              row={referenceOption}\n              getKey={(option) => option.value}\n              estimateSize={() => 36}\n              {hasMore}\n              {loading}\n              loadingLabel=\"Loading more references\"\n              {onLoadMore}\n            />\n          </CommandView.Group>\n        {/if}\n      </CommandView.List>\n    </CommandView.Root>\n  </Popover.Content>\n</Popover.Root>\n\n<style>\n  :global(\n    .community-repository-branch-command__header[data-ui-part=\"popover-header\"]\n  ) {\n    flex-direction: row;\n    align-items: center;\n    justify-content: space-between;\n    gap: 0.25rem;\n    min-height: 0;\n    padding: 0;\n    margin: 0;\n  }\n\n  :global(\n    .community-repository-branch-command__title[data-ui-part=\"popover-title\"]\n  ) {\n    margin: 0;\n    line-height: 1.2;\n  }\n\n  :global(\n    .community-repository-branch-command[data-ui-part=\"popover-content\"]\n  ) {\n    --ui-command-view-list-max-height: min(18rem, 50dvh);\n    --ui-command-view-list-padding: 0.25rem;\n    --ui-command-view-gap: 0.25rem;\n  }\n\n  :global(.community-repository-branch-command [data-ui-part=\"item-icon\"]),\n  :global(.community-repository-branch-command [data-ui-part=\"item-icon\"] svg) {\n    width: 0.75rem;\n    height: 0.75rem;\n  }\n\n  :global(.community-projects__file-branch-trigger > span) {\n    flex: 1;\n    text-align: start;\n  }\n\n  :global(.community-repository-branch-command__chevron) {\n    margin-inline-start: auto;\n    flex-shrink: 0;\n  }\n\n  :global(\n    .community-repository-branch-command[data-ui-part=\"popover-content\"]\n      [data-ui-component=\"command-view\"][data-ui-part=\"root\"]\n  ) {\n    overflow: visible;\n  }\n\n  :global(\n    .community-repository-branch-command[data-ui-part=\"popover-content\"]\n      [data-ui-component=\"command-view\"][data-ui-part=\"input-wrapper\"]\n  ) {\n    padding: 0.25rem 0.25rem 0.5rem;\n  }\n\n  :global(\n    .community-repository-branch-command[data-ui-part=\"popover-content\"]\n      [data-ui-component=\"command-view\"][data-ui-part=\"input-wrapper\"]\n      > [data-ui-component=\"input-group\"][data-ui-part=\"input-group\"]\n  ) {\n    border: 1px solid\n      var(\n        --ui-input-group-border-color,\n        var(--ui-input-border-color, var(--input))\n      );\n    border-radius: 999px;\n    background: var(--background);\n    box-shadow: none;\n  }\n\n  :global(\n    .community-repository-branch-command[data-ui-part=\"popover-content\"]\n      [data-ui-component=\"command-view\"][data-ui-part=\"input-wrapper\"]\n      > [data-ui-component=\"input-group\"][data-ui-part=\"input-group\"]:focus-within\n  ) {\n    border-color: transparent;\n    outline: 3px solid color-mix(in srgb, var(--ring) 50%, transparent);\n    outline-offset: 0;\n    box-shadow: none;\n  }\n</style>",
+          "after": "          ]}\n        />\n      {/if}\n      <CommandView.List role=\"grid\" aria-label=\"Repository snapshots\">\n        {#if visibleRefs.length > 0 && !unavailable}<CommandView.Group\n            role=\"rowgroup\"\n            heading={tab === \"bookmark\" ? \"Bookmarks\" : \"Changes\"}\n          >\n            <RepositoryReferenceRows\n              rows={visibleRefs}\n              row={referenceOption}\n              getKey={(option) => option.value}\n              estimateSize={() => (tab === \"change\" ? 94 : 36)}\n              {hasMore}\n              {loading}\n              loadingLabel=\"Loading more references\"\n              {onLoadMore}\n            />\n          </CommandView.Group>{/if}\n      </CommandView.List>\n      {#if unavailable}<RepositoryBrowserEmpty\n          title=\"Snapshots unavailable\"\n          description=\"The host could not read references at this operation.\"\n          {onRetry}\n        />\n      {:else if loading && visibleRefs.length === 0}<RepositorySkeleton\n          kind=\"files\"\n          label=\"Loading snapshots\"\n        />\n      {:else if visibleRefs.length === 0}<RepositoryBrowserEmpty\n          title=\"No matching snapshots\"\n          description=\"Try another query or ask the host to load more references.\"\n        />{/if}\n    </CommandView.Root>\n  </Popover.Content>\n</Popover.Root>",
+          "description": "Preserve the source snapshot Popover/Command View, kind filters, local search, selected icon, virtual rows and continuation; replace app RepositoryChoice with public immutable choices and typed host selection, use public Badge instead of community chip, and shared icon-bearing Empty/Skeleton with retry; expose source-default sizing tokens."
+        }
+      ],
+      "adaptations": [
+        {
+          "description": "Preserve the source snapshot Popover/Command View, kind filters, local search, selected icon, virtual rows and continuation; replace app RepositoryChoice with public immutable choices and typed host selection, use public Badge instead of community chip, and shared icon-bearing Empty/Skeleton with retry; expose source-default sizing tokens."
+        }
+      ],
+      "layoutSha256": "230850e7ba3947cdd1ed6c81fd2c0ae40147c804840b3a8d1c92187ebd40c3af"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsVirtualRows.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/reference-picker/RepositoryReferenceRows.svelte",
+      "sourceSha256": "b95a658caee110affb434f9886826537513ae5b138f016bd620090aff5b00b06",
+      "destinationSha256": "26caef0911e923747fbc555d3488d84e444c692def8663b111c21b038f8c6c48",
+      "reviewNotes": [
+        "Preserve source measured virtual rows, paging and cursor/selection callbacks; remove app appearance-store subscription and retain public ResizeObserver measurement with owned selectors.",
+        "Apache-2.0; source applications remain read-only and host authority stays outside the package."
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "<div\n  bind:this={host}\n  class={`community-projects-virtual-rows ${className}`.trim()}\n  data-ui-component=\"community-projects-virtual-rows\"\n  data-scroll-self={scrollSelf ? \"true\" : undefined}\n>\n  {#if scrollElement}\n    <div\n      class=\"community-projects-virtual-rows__content\"\n      style:height={`${$virtualizer.getTotalSize()}px`}\n    >\n      {#each $virtualizer.getVirtualItems() as virtualRow (virtualRow.key)}\n        {@const item = rows[virtualRow.index]}\n        {#if item}\n          <div\n            class=\"community-projects-virtual-rows__row\"\n            data-ui-part=\"virtual-row\"\n            data-index={virtualRow.index}\n            data-row-id={getKey(item, virtualRow.index)}\n",
+          "after": "<div\n  bind:this={host}\n  class={`repository-reference-virtual-rows ${className}`.trim()}\n  data-ui-component=\"repository-reference-virtual-rows\"\n  data-scroll-self={scrollSelf ? \"true\" : undefined}\n>\n  {#if scrollElement}\n    <div\n      class=\"repository-reference-virtual-rows__content\"\n      style:height={`${$virtualizer.getTotalSize()}px`}\n    >\n      {#each $virtualizer.getVirtualItems() as virtualRow (virtualRow.key)}\n        {@const item = rows[virtualRow.index]}\n        {#if item}\n          <div\n            class=\"repository-reference-virtual-rows__row\"\n            data-ui-part=\"virtual-row\"\n            data-index={virtualRow.index}\n            data-row-id={getKey(item, virtualRow.index)}\n",
+          "description": "Preserve source measured virtual rows, paging and cursor/selection callbacks; remove app appearance-store subscription and retain public ResizeObserver measurement with owned selectors."
+        },
+        {
+          "before": "      {/each}\n    </div>\n  {:else if scrollElement === null}\n    <div class=\"community-projects-virtual-rows__fallback\">\n      {#each rows as item, index (getKey(item, index))}\n        <div\n          class=\"community-projects-virtual-rows__fallback-row\"\n          data-ui-part=\"virtual-row\"\n          data-index={index}\n          data-row-id={getKey(item, index)}\n",
+          "after": "      {/each}\n    </div>\n  {:else if scrollElement === null}\n    <div class=\"repository-reference-virtual-rows__fallback\">\n      {#each rows as item, index (getKey(item, index))}\n        <div\n          class=\"repository-reference-virtual-rows__fallback-row\"\n          data-ui-part=\"virtual-row\"\n          data-index={index}\n          data-row-id={getKey(item, index)}\n",
+          "description": "Preserve source measured virtual rows, paging and cursor/selection callbacks; remove app appearance-store subscription and retain public ResizeObserver measurement with owned selectors."
+        },
+        {
+          "before": "  {/if}\n  {#if loading && rows.length > 0}\n    <div\n      class=\"community-projects-virtual-rows__edge\"\n      role={loadingAsListItem ? \"listitem\" : \"status\"}\n      aria-label={loadingLabel}\n      aria-busy=\"true\"\n",
+          "after": "  {/if}\n  {#if loading && rows.length > 0}\n    <div\n      class=\"repository-reference-virtual-rows__edge\"\n      role={loadingAsListItem ? \"listitem\" : \"status\"}\n      aria-label={loadingLabel}\n      aria-busy=\"true\"\n",
+          "description": "Preserve source measured virtual rows, paging and cursor/selection callbacks; remove app appearance-store subscription and retain public ResizeObserver measurement with owned selectors."
+        },
+        {
+          "before": "</div>\n\n<style>\n  .community-projects-virtual-rows {\n    min-width: 0;\n  }\n\n  .community-projects-virtual-rows[data-scroll-self=\"true\"] {\n    max-height: var(--community-projects-virtual-max-height, 15rem);\n    overflow: auto;\n  }\n\n  .community-projects-virtual-rows__content {\n    position: relative;\n    width: 100%;\n  }\n\n  .community-projects-virtual-rows__row {\n    position: absolute;\n    inset-block-start: 0;\n    inset-inline: 0;\n    width: 100%;\n  }\n\n  .community-projects-virtual-rows__fallback {\n    display: grid;\n  }\n\n  .community-projects-virtual-rows__edge {\n    padding: 0.75rem;\n    color: var(--muted-foreground);\n    font-size: var(--community-text-secondary);\n    text-align: center;\n  }\n</style>",
+          "after": "</div>\n\n<style>\n  .repository-reference-virtual-rows {\n    min-width: 0;\n  }\n\n  .repository-reference-virtual-rows[data-scroll-self=\"true\"] {\n    max-height: var(--repository-reference-virtual-max-height, 15rem);\n    overflow: auto;\n  }\n\n  .repository-reference-virtual-rows__content {\n    position: relative;\n    width: 100%;\n  }\n\n  .repository-reference-virtual-rows__row {\n    position: absolute;\n    inset-block-start: 0;\n    inset-inline: 0;\n    width: 100%;\n  }\n\n  .repository-reference-virtual-rows__fallback {\n    display: grid;\n  }\n\n  .repository-reference-virtual-rows__edge {\n    padding: 0.75rem;\n    color: var(--muted-foreground);\n    font-size: 0.75rem;\n    text-align: center;\n  }\n</style>",
+          "description": "Preserve source measured virtual rows, paging and cursor/selection callbacks; remove app appearance-store subscription and retain public ResizeObserver measurement with owned selectors."
+        }
+      ],
+      "adaptations": [
+        {
+          "description": "Preserve source measured virtual rows, paging and cursor/selection callbacks; remove app appearance-store subscription and retain public ResizeObserver measurement with owned selectors."
+        }
+      ],
+      "layoutSha256": "0062c64d44ec359f7347bed70970bccd70b7dc138a91f6f9828e7b81dd889717"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryFiles.svelte",
+      "destination": "packages/repository-ui/src/jj/screens/browser/RepositorySidebarResize.svelte",
+      "sourceSha256": "230286388c4ec6a13f1104fd7a03631660e53bbfc62040f1c3b00898390946be",
+      "destinationSha256": "0ae35242c4b475c299096ebf8b4342185105d203ff6d29b1ddd8651888ded8d1",
+      "reviewNotes": [
+        "Extract the existing pointer-capture, keyboard and reset resize flow into one private shared sidebar control; parameterize side, bounds, default width and host callbacks. The right edge reverses pointer/arrow direction and preserves independent host width ownership.",
+        "Apache-2.0; explicit user review adaptations. No source application changes."
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "{#if fileTreeOpen}<AppShell.Body.Sidebar\n    panelId=\"repository-file-tree\"\n    side=\"left\"\n    label=\"Repository file tree\"\n    mobileLabel=\"Repository file tree\"\n    open={fileTreeOpen}\n    scrollbarVisibility=\"hover\"\n    class=\"community-projects__file-tree-region\"\n    style={fileTreeStyle}\n  >\n    {#if initialLoading}<CommunityProjectsRepositorySkeleton\n        layout=\"file-tree\"\n        label=\"Loading repository file tree\"\n      />{:else}<CommunityProjectsRepositoryFileTree\n        files={view.snapshot?.files ?? []}\n        directories={view.snapshot?.directories ?? []}\n        mode={view.fileViewMode}\n        collapsedDirectoryPaths={view.collapsedDirectoryPaths}\n        selectedPath={view.route.path ?? \"\"}\n        hasMore={view.canLoadMoreFiles}\n        loading={view.status.files === \"refreshing\"}\n        onSelectPath={controller.actions.selectFile}\n        onLoadMore={() => void controller.actions.loadMore(\"files\")}\n        onModeChange={(mode) => void controller.actions.setFileViewMode(mode)}\n        onDirectoryToggle={(path) =>\n          void controller.actions.toggleDirectory(path)}\n      />{/if}\n  </AppShell.Body.Sidebar>\n  <button\n    type=\"button\"\n    class=\"community-projects__file-tree-resize\"\n    data-resizing={resizePointerId === null ? undefined : \"\"}\n    data-min-width={fileTreeMinimum}\n    data-max-width={fileTreeMaximum}\n    data-current-width={fileTreeWidth}\n    aria-label=\"Resize repository file tree\"\n    title=\"Drag to resize. Double-click to reset width.\"\n    onpointerdown={beginFileTreeResize}\n    onpointermove={moveFileTreeResize}\n    onpointerup={finishFileTreeResize}\n    onpointercancel={finishFileTreeResize}\n    ondblclick={() => (fileTreeWidth = repositoryFileTreeDefaultWidth)}\n    onkeydown={resizeFileTreeWithKeyboard}\n  >\n    <span aria-hidden=\"true\"></span>\n  </button>{/if}\n<AppShell.Body.Content\n  label=\"Repository file browser\"\n  scrollbarVisibility=\"hover\"\n  class=\"community-projects__files-content\"\n>\n  <section\n    class=\"community-projects__files-surface\"\n    aria-label=\"Repository files\"\n  >\n    <CommunityProjectsRepositoryBreadcrumb\n      {controller}\n      editing={editing && view.repository.profile !== \"git_sha1_jj045\"}\n      bind:filename={editFilename}\n    />\n    {#if initialLoading || directoryLoading}<CommunityProjectsRepositorySkeleton\n        layout={view.route.path ? \"source\" : \"directory\"}\n        path={view.route.path ?? \"\"}\n        label=\"Loading repository files\"\n      />{:else}\n      {#if view.targets.length > 1}<StoreNotice\n          noticeKey=\"bookmark-target-selection\"\n          severity=\"warning\"\n          title=\"Choose a bookmark target\"\n          message=\"This bookmark is conflicted. Select an explicit revision to browse its files.\"\n        />\n        <div role=\"group\" aria-label=\"Choose a bookmark target\">\n          {#each view.targets as target}<Button\n              variant=\"outline\"\n              onclick={() => controller.actions.selectRevision(target)}\n              >Open target {target.slice(0, 8)}…{target.slice(-4)}</Button\n            >{/each}\n        </div>{/if}\n      {#if view.route.path}<CommunityProjectsRepositoryFilePanel\n          {controller}\n          bind:editing\n          bind:filename={editFilename}\n          blob={view.blob}\n          selectedPath={view.route.path ?? \"\"}\n          {latestCommit}\n          {now}\n          {fileTreeOpen}\n          onToggleFileTree={() => (fileTreeOpen = !fileTreeOpen)}\n          loading={view.status.detail === \"loading\"}\n          isMarkdown={isMarkdownRepositoryPath(view.route.path ?? \"\")}\n        />{:else}<CommunityProjectsRepositoryDirectory\n          bind:fileTreeOpen\n          currentPath={view.route.directory}\n          {entries}\n          {latestCommit}\n          {pathCommits}\n          canLoadPathCommit={true}\n          metadataStatus={view.fileRevisionStatus}\n          {previewDocuments}\n          {editUnavailable}\n          branch={selectedSnapshot}\n          branches={snapshotChoices}\n          {now}\n          onOpenDirectory={controller.actions.selectDirectory}\n          onOpenFile={controller.actions.selectFile}\n          onEditFile={editLandingDocument}\n          onSelectCommit={async (revision) => {\n            await controller.actions.selectPage(\"log\");\n            await controller.actions.selectRevision(revision.eventId);\n          }}\n          onSelectBranch={selectSnapshot}\n          hasMore={view.canLoadMoreFiles}\n          loading={view.status.files === \"refreshing\"}\n          onLoadMore={() => controller.actions.loadMore(\"files\")}\n          hasMoreReferences={view.canLoadMoreBookmarks}\n          loadingReferences={view.status.bookmarks === \"refreshing\"}\n          onLoadMoreReferences={() =>\n            void controller.actions.loadMore(\"bookmarks\")}\n        />{/if}\n    {/if}\n  </section>\n</AppShell.Body.Content>",
+          "after": "<button\n  type=\"button\"\n  class=\"repository-browser__file-tree-resize\"\n  data-side={side}\n  data-resizing={pointer === null ? undefined : \"\"}\n  data-min-width={minimum}\n  data-max-width={maximum}\n  data-current-width={clamp(width)}\n  aria-label={label}\n  title=\"Drag to resize. Double-click to reset width.\"\n  onpointerdown={begin}\n  onpointermove={move}\n  onpointerup={finish}\n  onpointercancel={finish}\n  ondblclick={() => {\n    width = defaultWidth;\n    onResize?.(width);\n  }}\n  onkeydown={keyboard}><span aria-hidden=\"true\"></span></button\n>",
+          "description": "Extract the existing pointer-capture, keyboard and reset resize flow into one private shared sidebar control; parameterize side, bounds, default width and host callbacks. The right edge reverses pointer/arrow direction and preserves independent host width ownership."
+        }
+      ],
+      "adaptations": [
+        {
+          "description": "Extract the existing pointer-capture, keyboard and reset resize flow into one private shared sidebar control; parameterize side, bounds, default width and host callbacks. The right edge reverses pointer/arrow direction and preserves independent host width ownership."
+        }
+      ],
+      "layoutSha256": "15e8eec2c880acc9d42ff1088a0ad9723ed0656c9c0c42f96f3473634fd09ee9"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "f58b9363",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryBranchSelector.svelte",
+      "destination": "packages/repository-ui/src/jj/browse/reference-picker/reference-picker.css",
+      "sourceSha256": "a88ac7031e258c5a7ad8b682ee8e767777cebfc819e4f3fb9e292132a14e1d3a",
+      "destinationSha256": "ab898dea358b9b81a089f28128afd5f7f928b4aa3818c5f6814d2a149f660d41",
+      "adaptations": [
+        {
+          "description": "Lift the source picker style block into a native owned stylesheet; rename namespaces, retain input focus geometry, expose reviewed tokens and add the single gridcell layout rule. The parent component original-layout comparison records this style-block extraction. This cross-format extraction has a fingerprint and source hash, not an asserted identical full-component layout."
+        }
       ]
     }
   ],

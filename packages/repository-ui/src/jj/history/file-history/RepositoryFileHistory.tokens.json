@@ -7,6 +7,34 @@
       "description": "Independent active-file pin, graph, explicit parent navigation and blame action. Original size default.",
       "owner": "@lapismd/repository-ui",
       "source": "jj/history/file-history/RepositoryFileHistory.svelte"
+    },
+    {
+      "name": "--ui-repository-file-history-row-padding",
+      "default": "0.75rem",
+      "description": "Inset around a recorded revision card row.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/file-history/RepositoryFileHistoryEntry.svelte"
+    },
+    {
+      "name": "--ui-repository-file-history-timeline-padding",
+      "default": "0.75rem",
+      "description": "Inset around the date-grouped revision timeline.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/file-history/RepositoryFileHistoryRows.svelte"
+    },
+    {
+      "name": "--ui-repository-file-history-action-hover-background",
+      "default": "color-mix(in srgb, var(--foreground) 10%, var(--background))",
+      "description": "Subtle hover fill for the commit description button.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/file-history/RepositoryFileHistoryEntry.svelte"
+    },
+    {
+      "name": "--ui-repository-file-history-details-hover-background",
+      "default": "color-mix(in srgb, var(--foreground) 8%, var(--background))",
+      "description": "Recorded Markdown surface while its history row is hovered or keyboard-focused.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/file-history/RepositoryFileHistoryEntry.svelte"
     }
   ]
 }

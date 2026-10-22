@@ -35,10 +35,40 @@ truncation, folder affordances and explicit navigation identities.
 
 **Requirement.** Repository screens MUST preserve host-issued operation, revision and path identities while composing file, directory, code and document views through public primitives.
 
+The browser adapts JJ Store's resizable AppShell body sidebar, breadcrumb,
+directory table with attribution and recorded file/document previews. Typed
+read-only ports bind repository, operation, revision, canonical path and
+recursive/page scope. Controllers reject mismatched responses, repeated cursors
+and duplicate rows, fence stale reads, bound loaded pages and abort/drain owned
+work on close. Construction and mounting MUST NOT mutate repository state.
+Hosts supply navigation, clipboard, history/blame actions, custom header/row
+controls and layout persistence. Sidebar actions MUST use public Design Core
+PanelToggle controls; file previews MUST size to available space without forced
+minimum content heights or redundant nested vertical scrolling. File display
+MUST retain JJ Store's Preview/Source/Blame text toggles, render Blame in place
+of the file contents and expose shadcn tooltips plus semantic hover feedback
+for header actions. Directory description links MUST retain normal text colour
+until hover. The reusable snapshot picker MUST preserve JJ Store's command
+view with bookmark/change filters, commit keyword search and typed complete
+choices; the host resolves zero/multiple targets and owns pinned navigation.
+Change choices MUST reuse a documented shared card with author avatar, message,
+time and exact Git/JJ copy controls that do not activate the surrounding row.
+Complete Files headers MUST use public AppShell header components with matching
+body/sidebar header heights; standalone trees MAY receive a host header snippet.
+Both body sidebars MUST expose independent bounded pointer and keyboard resize controls, bindable widths and host persistence callbacks. The right inspector MUST use the same semantic background as the body.
+File history MUST use a transparent public AppShell.Toolbar of the same height,
+group recorded revisions by date, retain the shared Git/JJ copy buttons, and
+expose separate host callbacks for viewing file code and browsing the repository
+at that revision. Description disclosure MUST reveal the recorded Markdown body
+with the existing View more/View less behavior for long messages. Missing host
+navigation capabilities MUST remain absent rather than inventing routes.
+
 ### Acceptance details
 
-- Filename-bearing rows and headers MUST use Design Core FileListing and FileTypeIcon through public exports, preserving file-type artwork and shared sizing tokens.
-- Focused tests and production-component stories verify the behavior.
+- Filename-bearing rows and headers MUST use public Design Core FileListing and FileTypeIcon, preserving file artwork and sizing tokens.
+- Each reusable browser family MUST own documented public examples, styling variables and governed stories that fail validation when its required structure is absent.
+- Exact-pin controller tests MUST verify scoped reads, invalid replies, bounded paging, stale-response rejection and disposal without repository mutations.
+- Complete in-memory screens MUST reuse the existing history/blame components and cover populated, nested, dense, Markdown/source, binary/empty, loading, unavailable and retry states before pausing for review.
 
 ## RUI-HISTORY-001 — History
 

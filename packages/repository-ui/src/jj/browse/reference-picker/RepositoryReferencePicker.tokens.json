@@ -1,0 +1,26 @@
+{
+  "component": "RepositoryReferencePicker",
+  "variables": [
+    {
+      "name": "--ui-repository-reference-picker-width",
+      "default": "22rem",
+      "description": "Original snapshot popover width.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/browse/reference-picker/RepositoryReferencePicker.svelte"
+    },
+    {
+      "name": "--ui-repository-reference-picker-list-height",
+      "default": "min(18rem, 50dvh)",
+      "description": "Bound the original command list to the available viewport.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/browse/reference-picker/reference-picker.css"
+    },
+    {
+      "name": "--ui-repository-reference-picker-font-size",
+      "default": "0.75rem",
+      "description": "Original compact reference trigger typography.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/browse/reference-picker/reference-picker.css"
+    }
+  ]
+}

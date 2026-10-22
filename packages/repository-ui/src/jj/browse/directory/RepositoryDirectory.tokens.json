@@ -1,0 +1,19 @@
+{
+  "component": "RepositoryDirectory",
+  "variables": [
+    {
+      "name": "--ui-repository-directory-padding",
+      "default": "0.75rem",
+      "description": "Original padding around the directory card and landing documents.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/browse/file-preview/files.css"
+    },
+    {
+      "name": "--ui-repository-directory-document-padding",
+      "default": "1rem",
+      "description": "Original inset around stock Markdown document content.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/browse/directory/documents.css"
+    }
+  ]
+}

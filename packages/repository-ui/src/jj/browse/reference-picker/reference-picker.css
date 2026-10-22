@@ -1,0 +1,89 @@
+.reference-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  min-width: 0;
+}
+.repository-reference-picker-trigger {
+  width: auto;
+  min-width: 8rem;
+  max-width: 12rem;
+  height: 2rem;
+  flex: none;
+  gap: 0.4rem;
+  padding-inline: 0.55rem;
+  font-size: var(--ui-repository-reference-picker-font-size, 0.75rem);
+}
+
+.repository-reference-picker-command__header[data-ui-part="popover-header"] {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.repository-reference-picker-command__title[data-ui-part="popover-title"] {
+  margin: 0;
+  line-height: 1.2;
+}
+
+.repository-reference-picker-command[data-ui-part="popover-content"] {
+  --ui-command-view-list-max-height: var(
+    --ui-repository-reference-picker-list-height,
+    min(18rem, 50dvh)
+  );
+  --ui-command-view-list-padding: 0.25rem;
+  --ui-command-view-gap: 0.25rem;
+}
+
+.repository-reference-picker-command [data-ui-part="item-icon"],
+.repository-reference-picker-command [data-ui-part="item-icon"] svg {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.repository-reference-picker-trigger > span {
+  flex: 1;
+  text-align: start;
+}
+
+.repository-reference-picker-command__chevron {
+  margin-inline-start: auto;
+  flex-shrink: 0;
+}
+
+.repository-reference-picker-command[data-ui-part="popover-content"]
+  [data-ui-component="command-view"][data-ui-part="root"] {
+  overflow: visible;
+}
+
+.repository-reference-picker-command[data-ui-part="popover-content"]
+  [data-ui-component="command-view"][data-ui-part="input-wrapper"] {
+  padding: 0.25rem 0.25rem 0.5rem;
+}
+
+.repository-reference-picker-command[data-ui-part="popover-content"]
+  [data-ui-component="command-view"][data-ui-part="input-wrapper"]
+  > [data-ui-component="input-group"][data-ui-part="input-group"] {
+  border: 1px solid
+    var(
+      --ui-input-group-border-color,
+      var(--ui-input-border-color, var(--input))
+    );
+  border-radius: 999px;
+  background: var(--background);
+  box-shadow: none;
+}
+
+.repository-reference-picker-command[data-ui-part="popover-content"]
+  [data-ui-component="command-view"][data-ui-part="input-wrapper"]
+  > [data-ui-component="input-group"][data-ui-part="input-group"]:focus-within {
+  border-color: transparent;
+  outline: 3px solid color-mix(in srgb, var(--ring) 50%, transparent);
+  outline-offset: 0;
+  box-shadow: none;
+}

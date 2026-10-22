@@ -1,0 +1,4 @@
+export const Basic =
+  '<script lang="ts">\n  import { RepositoryBreadcrumb } from "@lapismd/repository-ui/jj";\n  let { onOpenDirectory, onOpenRepository }: { onOpenDirectory(path: string): void; onOpenRepository(): void } = $props();\n</script>\n<RepositoryBreadcrumb repositoryName="agent-ui" path="src/history/controller.ts" {onOpenDirectory} {onOpenRepository} />';
+export const Styling =
+  '<script lang="ts">\n  import { RepositoryBreadcrumb } from "@lapismd/repository-ui/jj";\n  let { onOpenDirectory, onOpenRepository }: { onOpenDirectory(path: string): void; onOpenRepository(): void } = $props();\n</script>\n<div style="--ui-repository-breadcrumb-padding:0.4rem 1rem">\n<RepositoryBreadcrumb repositoryName="agent-ui" path="src/history/controller.ts" {onOpenDirectory} {onOpenRepository} />\n</div>';

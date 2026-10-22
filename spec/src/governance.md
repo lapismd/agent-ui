@@ -34,16 +34,14 @@ references and actions. Each section MUST stop for screen review. Iteration MUST
 use targeted checks; broad qualification MUST wait until the final screen review.
 Design Core owns generic fixes; application adoption and publication remain gated.
 
-The current authorized section is Op Log portability. Its host controls MUST
-retain the original shell defaults, and its native operation metadata filters
-MUST remain distinct from commit revsets and host-owned indexed search. Private
-query and Empty parts MUST have explicit owners in the JJ family inventory.
-Source fingerprints MUST be refreshed only after comparing the prior original
-layout and recording the specific adaptation; review stops before repository
-browsing begins.
-
-The user has now authorized the pending footer/command corrections followed by
-the Op Log portability slice, with targeted checks and separate verified commits.
+The current authorized section is repository file browsing. Each independent
+breadcrumb, file tree, directory, file preview, reference picker, change card and complete Files family MUST
+use the same fail-closed docs, tokens and public-example contracts. Cold browser
+acceptance MUST cover directory navigation, stock Markdown/source, bounded
+virtual paging, tree disclosure/modes, pointer and keyboard resize, exact host
+action identities and the existing history/blame integration. Source apps stay
+read-only; copied layouts and CSS MUST retain exact source revisions and
+explicitly documented adaptations. Stop for review before overview or workspace.
 
 ## AUI-GOV-001 — Source ownership
 
