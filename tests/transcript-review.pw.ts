@@ -1,4 +1,42 @@
 import { test, expect } from "@playwright/test";
+test("Inline comment hover actions stay in the row before the T", async ({
+  page,
+}) => {
+  await page.goto(
+    "/iframe.html?id=agent-complete-screens--inline-comments&viewMode=story",
+  );
+  const card = page
+    .locator('.ui-transcript-comment-card[data-status="draft"]')
+    .first();
+  const editor = card.getByRole("textbox");
+  await editor.click();
+  await card.hover();
+  const actions = card.locator(".ui-transcript-comment-links");
+  const toggle = card.getByRole("button", {
+    name: "Comment formatting options",
+  });
+  await expect(actions).toHaveCSS("opacity", "1");
+  const controls = await actions.boundingBox();
+  const formatting = await toggle.boundingBox();
+  expect(Math.abs(controls!.y - formatting!.y)).toBeLessThanOrEqual(1);
+  expect(controls!.x + controls!.width).toBeLessThanOrEqual(formatting!.x);
+  const row = await card.locator(".ui-comment-composer__card").boundingBox();
+  expect(
+    Math.abs(formatting!.x + formatting!.width - row!.x - row!.width),
+  ).toBeLessThanOrEqual(1);
+  const heading = page.getByRole("heading", {
+    name: "Review workspace changes",
+    exact: true,
+  });
+  await heading.click();
+  await heading.hover();
+  await expect(actions).toHaveCSS("opacity", "0");
+  await expect(card.locator(".ui-comment-composer__actions")).toHaveCSS(
+    "position",
+    "absolute",
+  );
+  await expect(editor).toHaveText("Keep this captured wording.");
+});
 test.beforeEach(({ page }) => {
   page.on("pageerror", (error) =>
     console.error("Transcript browser error:", error.message),
@@ -74,7 +112,7 @@ test("Document failed send stays below the saved composer draft", async ({
     composer.getByRole("textbox", { name: "Message", exact: true }),
   ).toHaveText("Retain my exact authored draft.");
   const metadata = composer.getByRole("group", {
-    name: "Draft metadata",
+    name: "Composer feedback",
     exact: true,
   });
   await expect(metadata).toContainText(
@@ -112,7 +150,7 @@ test("Document composer keeps the trailing document buffer", async ({
     .click();
   await expect(composer).toHaveCSS("padding-bottom", "16px");
 });
-test("Classic failed send keeps its existing red footer feedback", async ({
+test("Classic failed send shares the attached composer error feedback", async ({
   page,
 }) => {
   await page.goto(
@@ -122,11 +160,16 @@ test("Classic failed send keeps its existing red footer feedback", async ({
     page.getByRole("region", { name: "AI conversation", exact: true }),
   ).toBeVisible({ timeout: 30000 });
   const footer = page.locator(".ui-transcript-body-footer");
-  const error = footer.getByRole("alert");
+  await expect(
+    footer.locator('[data-ui-component="composer-status-banner"]'),
+  ).toHaveCount(0);
+  const error = page
+    .getByRole("group", { name: "Composer feedback", exact: true })
+    .getByRole("alert");
   await expect(error).toContainText("The simulated host refused this action.");
   await expect(
-    page.getByRole("group", { name: "Draft metadata", exact: true }),
-  ).toHaveCount(0);
+    page.getByRole("group", { name: "Composer feedback", exact: true }),
+  ).toHaveCount(1);
   await expect(
     page
       .locator("[data-transcript-composer]")

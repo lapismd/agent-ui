@@ -6,7 +6,11 @@ import {
   ArgTypes,
 } from "@storybook/addon-docs/blocks";
 import * as Stories from "./ChatComposerDrawer.stories";
-import { Basic, Styling } from "./ChatComposerDrawer.example-sources";
+import {
+  Basic,
+  Styling,
+  Permission,
+} from "./ChatComposerDrawer.example-sources";
 import tokens from "./ChatComposerDrawer.tokens.json";
 import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
 
@@ -19,6 +23,14 @@ Supplementary attachment and request content above the message editor, copied fr
 ## Usage
 
 Use the drawer with the presentation adapter from the owning chat controller. Document mode renders the open disclosure above the writing surface; framed mode belongs in the composer drawer slot. Keep primary send and stop actions in the footer so collapsing the drawer never hides them.
+
+`presentation="request"` renders the complete permission panel with a themed
+border, radius and bounded scrollable details. It has no message editor. Active
+permissions in AgentTranscript use this same component in the fixed footer area,
+so history scrolling and streamed text cannot hide the decision. The retained
+draft returns after approval or denial. Answer requests keep their current layout.
+
+<Source code={Permission} language="tsx" />
 
 <Source code={Basic} language="tsx" />
 
@@ -51,6 +63,12 @@ Explicit permission options.
 
 <Canvas of={Stories.Approval} />
 
+### Approval collapsed
+
+The compact permission row stays visible while details are collapsed.
+
+<Canvas of={Stories.ApprovalCollapsed} />
+
 ### Question
 
 Advertised answers and an optional free-text answer.
@@ -60,6 +78,20 @@ Advertised answers and an optional free-text answer.
 ## Behavior and accessibility
 
 The disclosure label changes between Attachments, Permission requested and User input requested. Collapsed content is removed from keyboard navigation. Removing a file changes the host-owned attachment selection; answering a request sends only the exact advertised identity and answer.
+
+Request panels open for each new request identity. Collapsing, expanding and
+streaming never submit a decision. `status` accepts the shared ComposerStatus
+contract; errors use the same red MessageMetadata and attached shell as Chat
+Error, while unknown outcomes remain warnings with their retained recovery state.
+The request content scrolls independently on small screens. Keyboard users can
+focus that region to reach longer resource lists and the decision controls.
+
+The far-right Close button calls `onDismiss`, or the presentation adapter's
+`dismissRequest`. Dismissal clears the local prompt and restores the composer;
+it never grants or denies a request. Refreshes of that same request stay dismissed.
+Hosts can restore it through `controller.requests.restore(session, itemId)`.
+Unknown submitted responses keep their captured operation and explicit Check
+original response action, even after dismissal.
 
 The documentation follows the Usage, Anatomy and Examples pattern in [Astryx Chat Composer Drawer](https://astryx.atmeta.com/components/ChatComposerDrawer), using this package’s Svelte APIs and the existing Desktop visuals.
 

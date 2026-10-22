@@ -9,6 +9,7 @@
     type MarkdownComposerHandle,
   } from "@lapismd/design-core/chat";
   import { Avatar } from "@lapismd/design-core/shadcn/avatar";
+  import { composerFeedback } from "../composer-feedback.js";
   import type { AgentRecipientOption } from "../presentation.js";
   let {
     value = $bindable(""),
@@ -56,14 +57,21 @@
       typeof MarkdownComposer
     >["additionalActions"];
     handle?: MarkdownComposerHandle | null;
+    /** Shared error/warning API in both views; feedback attaches below the input by default. */
     status?: ComponentProps<typeof MarkdownComposer>["status"];
     statusPosition?: "top" | "bottom";
-    /** Refused send for this exact retained draft; unknown outcomes use recovery feedback. */
+    /** @deprecated Pass error/warning feedback through status in either presentation. */
     sendError?: string;
     before?: Snippet;
     drawer?: Snippet;
     onSend(): void;
   } = $props();
+  const feedback = $derived(
+    composerFeedback(
+      sendError ? { type: "error", message: sendError } : undefined,
+      status,
+    ),
+  );
   const referenceExtension = $derived(
     references ? createChatReferenceExtension(references) : undefined,
   );
@@ -100,6 +108,16 @@
   ]);
 </script>
 
+{#snippet feedbackMetadata()}
+  <MessageMetadata
+    sender="assistant"
+    status="error"
+    statusLabel={feedback?.message ?? "An error occurred."}
+    role="group"
+    aria-label="Composer feedback"
+  />
+{/snippet}
+
 <div class="transcript-composer">
   {@render before?.()}
   <MarkdownComposer
@@ -117,7 +135,8 @@
     inputLabel="Message"
     {placeholder}
     {disabled}
-    {status}
+    status={feedback}
+    statusContent={feedback?.type === "error" ? feedbackMetadata : undefined}
     {statusPosition}
     triggers={suggestions}
     extensions={[
@@ -139,15 +158,6 @@
         decorative
       />{/snippet}
   </MarkdownComposer>
-  {#if view === "document" && sendError}<div class="draft-metadata">
-      <MessageMetadata
-        sender="assistant"
-        status="error"
-        statusLabel={sendError}
-        role="group"
-        aria-label="Draft metadata"
-      />
-    </div>{/if}
 </div>
 
 <style>
@@ -162,10 +172,6 @@
     );
     display: grid;
     gap: 0.5rem;
-    min-width: 0;
-  }
-  .draft-metadata {
-    padding-inline-start: 2rem;
     min-width: 0;
   }
 </style>

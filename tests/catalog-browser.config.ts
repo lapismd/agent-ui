@@ -5,6 +5,8 @@ export default defineConfig({
   testMatch: [
     "catalog-browser.pw.ts",
     "transcript-review.pw.ts",
+    "permission-dock.pw.ts",
+    "comment-drafts.pw.ts",
     "chat-references.pw.ts",
     "jj-review.pw.ts",
     "jj-log-parity.pw.ts",

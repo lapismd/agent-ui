@@ -10,6 +10,7 @@ import {
   Basic,
   Styling,
   References,
+  Feedback,
 } from "./ChatMessageComposer.example-sources";
 import tokens from "./ChatMessageComposer.tokens.json";
 import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
@@ -25,6 +26,7 @@ The copied MarkdownComposer adapter used by the production Agent transcript.
 Bind value to the host-retained draft and forward onSend to the same TranscriptController used by the footer. Bind documentActions and render that snippet once in AgentChatFooter when the formatting toolbar is docked.
 
 <Source code={Basic} language="tsx" />
+<Source code={Feedback} language="tsx" />
 
 ## Anatomy
 
@@ -51,9 +53,10 @@ Framed editor with inline formatting.
 ### Error
 
 Host feedback retains the authored draft.
-For a refused send, pass `sendError` only for the exact retained submission.
-Document mode renders the shared MessageMetadata beneath the draft, aligned
-with its prose. The transcript keeps Classic feedback in its existing footer.
+For a refused send, pass `status` with type `error` only for the exact retained
+submission. Both views use a framed input with shared MessageMetadata in its
+attached red error footer. Its text size and line height match the status
+feedback in All Messages, using readable red text in light and dark themes.
 Unknown outcomes use retained-request recovery feedback, never a resend action.
 
 <Canvas of={Stories.Error} />
@@ -90,9 +93,28 @@ The same source and codec in the framed composer.
 
 <Canvas of={Stories.ClassicReferences} />
 
+### Warning
+
+Advisory feedback attaches to the same input frame in either view.
+
+<Canvas of={Stories.Warning} />
+
+### Warning Classic
+
+<Canvas of={Stories.WarningClassic} />
+
+### Error Classic
+
+The same shared error metadata and attached frame used in Document.
+
+<Canvas of={Stories.ErrorClassic} />
+
 ## Behavior and accessibility
 
 Enter inserts a newline in both presentations; Ctrl/Command+Enter requests send. disabled blocks submission. The host clears the draft only after acknowledgement. Supply extensions, triggers, referenceSources, references, customEmojis and emojiText through public editor APIs. The complete Transcript forwards these same hooks to its composer and inline comment editors. Host codecs own stable identities and serialization; navigation never implies delivery. Legacy people.value insertions remain literal.
+
+The error footer uses the same text size and line height as ordinary status
+feedback in All Messages, with accessible red text in both light and dark themes.
 
 ## Styling variables
 
@@ -115,3 +137,11 @@ owning component family.
 components with the same controller flow. Documentation shell previews are
 bounded to 40rem; Canvas screens use the full viewport. Story data and simulated
 host effects stay outside published packages.
+
+Use `status={{ type: "error", message: "The host refused this request." }}` or
+`status={{ type: "warning", message: "Check the original request before continuing." }}`
+on ChatMessageComposer; complete transcripts forward the same API through
+`options.composer.status`. Host errors outrank advisory warnings. Unknown outcomes
+remain warnings, and status rendering never retries or clears a draft. Fixed
+action footers and keyboard hints do not render a second banner. The older
+`sendError` and top-level `composerStatus` props are compatibility aliases.

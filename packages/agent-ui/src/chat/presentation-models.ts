@@ -50,6 +50,12 @@ export type AttachmentsState = {
   attachments: { path: string; name: string }[];
   drawerHost: HTMLElement | null;
   drawerCollapsed: boolean;
+  requestDrafts?: import("./request-controller.svelte.js").AgentRequestController;
+  requestSessionId?: string;
+  requestState?: import("./request-state.js").AgentRequestState;
+  /** Dismiss only the exact local prompt without a host decision. */
+  dismissRequest?: (itemId: string) => void;
+  responseDisabled?: boolean;
   pendingInteraction?:
     | {
         type: "approval";

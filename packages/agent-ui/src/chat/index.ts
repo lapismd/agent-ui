@@ -39,3 +39,7 @@ export { default as AgentToolResult } from "../tools/tool-result/AgentToolResult
 export { default as AgentInventoryResult } from "../tools/inventory-result/AiInventoryResult.svelte";
 export { default as AgentCommandReport } from "../tools/command-report/AiCommandReport.svelte";
 export type { AgentToolResultData } from "./transcript-options.js";
+
+export { AgentRequestController } from "./request-controller.svelte.js";
+export type { AgentRequestDraft } from "./request-controller.svelte.js";
+export type * from "./request-state.js";

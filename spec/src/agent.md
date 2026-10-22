@@ -4,6 +4,10 @@
 
 **Requirement.** Conversation screens MUST compose Design Core Transcript and controlled composer state, retaining drafts, attachments, comments and request identities across presentation changes.
 
+Expanded comment quotes MUST inherit their context surface through public Design
+Core presentation. Plain Backspace on an already empty inline draft MUST remove
+only that draft in either view, preserving other comments and captured text.
+
 ### Acceptance details
 
 - Copied source markup and styles MUST preserve pixel-perfect presentation at matching viewport, theme, fonts and data.
@@ -15,21 +19,42 @@
 
 **Requirement.** Submission MUST retain authored input until host acknowledgement. Unknown outcomes MUST preserve the exact pending request and MUST NOT replay automatically.
 
+ChatMessageComposer.status and AgentTranscriptOptions.composer.status MUST be the
+shared error/warning presentation API. Controller action, permission/question,
+unknown-submission and comment-send feedback MUST use the same attached composer
+status in both views; fixed footer actions and send hints MUST NOT render another
+banner. Error metadata MUST retain the shared status typography and red tone,
+while unknown outcomes remain warnings and stale draft errors remain suppressed.
+
 ### Acceptance details
 
 - Public types express the boundary.
 - Focused tests and production-component stories verify the behavior.
-- A refused send MUST retain its exact draft and show MessageMetadata below the Document composer while Classic keeps its existing feedback.
+- A refused send MUST retain its exact draft and show red MessageMetadata in an attached error footer below the framed composer in both Document and Classic views.
 - Errors MUST NOT be attributed to another session or an edited draft, and unknown outcomes MUST retain recovery feedback without retry.
 
 ## AUI-CHAT-003 — Interactions
 
 **Requirement.** Approvals and questions MUST use exact host-provided identities and advertised options. Cancellation and queued follow-ups MUST remain explicit host actions.
 
+Active permission requests MUST replace the message input with an initially open,
+expandable themed panel pinned outside transcript scrolling in both views.
+Streaming and reading earlier messages MUST NOT move the panel out of view.
+Its bounded content MUST retain exact options and attached error/unknown feedback.
+New request identities MUST reopen it; completing the request MUST restore the
+retained message draft without sending it. Answer requests retain their existing
+presentation in this permission-only slice.
+The header MUST expose a far-right Close control that dismisses only the exact
+local request presentation, without granting, denying or replaying a decision.
+Dismissal MUST survive refreshes of the same request, preserve drafts and remain
+session-scoped; unknown submitted operations MUST retain explicit status recovery.
+
 ### Acceptance details
 
-- Public types express the boundary.
-- Focused tests and production-component stories verify the behavior.
+- Permission cards MUST show only advertised decisions, explicit host scopes and captured resources/commands, preserving exact option identities and acknowledged outcomes in initially collapsed inline transcript rows that expand to the same read-only card; granted icons MUST use semantic green, denied text/icons MUST use readable red, and collapsed history rows MUST use the compact tool-row gap.
+- Question cards MUST support host-declared single/multiple choices, optional decorative letter/number labels, independent custom answers and freeform/secret input, retaining request-scoped drafts through refresh and presentation changes.
+- Submissions MUST remain pending until acknowledgement, reject stale identities and duplicate sends, and preserve unknown requests without replay; secret answers MUST remain absent from history.
+- Focused production-controller and component stories MUST cover both themes, narrow layouts, keyboard interaction and the complete-screen drawer/result compositions.
 
 ## AUI-CHAT-004 — Portable references and actions
 
@@ -39,7 +64,7 @@
 
 - Editor, Markdown preview and transcript references MUST preserve authored Markdown or registered host tokens, use shared InlineReference/ReferenceChip presentation and keep identity lookup, navigation and recipient dispatch host-owned.
 - Agent mentions MUST be references by default; only an explicit host policy may derive recipients from the exact submitted text.
-- Default Comment MUST be icon-only; configurable reactions and overflow actions MUST remain clear of tool controls, while wholly unavailable hover controls MUST be absent.
+- Editable inline comments MUST place the formatting T last on the same row as hover actions, without reserving hidden action width, and open shared Markdown actions and the emoji picker below the input aligned with the text while retaining drafts and selection; default Comment MUST be icon-only; configurable reactions and overflow actions MUST remain clear of tool controls, while wholly unavailable hover controls MUST be absent.
 - Paired editor/preview and complete-screen stories MUST demonstrate people/agents, repositories, GitHub/Forgejo link icons, emoji, spoilers, suggestions and retained source with stock Mira content styling, a line-number-free composer and targeted functional/accessibility evidence.
 
 ## AUI-SCREEN-001 — Agent screens
@@ -85,6 +110,11 @@ icon and explicit open-file actions MUST retain the host path.
 At browser zoom, filename icons MUST match the unchanged neighboring catalog
 icon slot instead of relying on device-dependent integer pixel rounding.
 
+The 2026-10-22 user-authorized request-card adaptation follows supplied outlined
+permission and question references while retaining existing AppShell/composer
+boundaries. Resource rows, answer options and all text, textarea and secret fields MUST share the theme background surface, distinct from their containing card. Decorative choice labels MUST precede their radio buttons or checkboxes and use a solid theme fill through public Badge tokens. Agents/Requests families MUST document every variant and styling
+variable. Desktop and JJ Store adoption follows explicit review of this slice.
+
 ### Acceptance details
 
 - Transcript coverage MUST include every supported item/block kind, captured tools, error states and exact anchored comments.
@@ -129,5 +159,5 @@ tool targets retain their Design Core-owned icons and status precedence.
 
 - The full recorded conversation MUST include Desktop system/warning/error rows, complete outgoing ACP XML context, tools, local reports, recipients, retries and the working state.
 - Turn changes MUST include the original summary card, file listing, rail, file preview and explicit undo/checkpoint dialogs with in-memory effects.
-- Context, handoff and rootless tool readers MUST share the surrounding transcript typography and support the original preview/source/capture states; failed message metadata, attached composer status and retained-comment spacing MUST match the reviewed Document/Classic presentation.
+- Context, handoff and rootless tool readers MUST share the surrounding transcript typography and support the original preview/source/capture states; Document composers with attached status MUST inherit the shared framed input body so feedback joins its edge; failed message metadata MUST match the attached status text size and line height, using red error text in both themes; attached composer status and retained-comment spacing MUST match the reviewed Document/Classic presentation.
 - A source coverage inventory and focused browser regressions MUST distinguish shared primitive defects from missing extraction or fixture coverage.

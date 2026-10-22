@@ -158,10 +158,15 @@
         controller={panel.controller}
         actions={panel.actions}
         attachmentsState={panel.attachmentsState}
-        presentation={view === "document" ? "document" : "framed"}
+        presentation={panel.attachmentsState.pendingInteraction?.type ===
+        "approval"
+          ? "request"
+          : view === "document"
+            ? "document"
+            : "framed"}
       />
     {:else if part === "hint"}
-      <Hint {panel} error={controller.error} />
+      <Hint />
     {:else if part === "inspector"}
       <Frame label="Tool inspector foundation" toolInspector={inspector}>
         <Button
@@ -180,7 +185,7 @@
           view={controller.view}
           onSend={send}
           disabled={controller.loading || !!controller.pending}
-          sendError={controller.draftSendError}
+          status={panel.composerState.composerStatus}
         />
         {#if part === "footer"}{@render footer()}{/if}
       </div>

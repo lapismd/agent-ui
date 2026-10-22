@@ -110,3 +110,44 @@ now have an opaque backing in Design Core. Focused evidence is recorded in
 Unavailable and binary previews now use compact interface typography in the
 shared Diff component, with documented host variables. Focused evidence is in
 `spec/records/2026-10-22-diff-status-typography.md`; screen review remains pending.
+
+## Permission and answer-request review
+
+Implement the supplied outlined request layouts in the existing Agent components,
+with typed host capabilities, retained controller drafts and in-memory complete
+Document/Classic demos. Run focused checks and pause for review before Desktop
+or JJ Store adoption. See `spec/records/2026-10-22-agent-requests.md`.
+
+The request review also includes optional letter/numeric choice labels, explicit
+custom answers for single and multiple choice, theme-surface option/resource rows,
+and collapsed acknowledged permission history that expands to the shared card.
+Focused verification and review precede all downstream adoption.
+
+Question letter/number badges precede their radio buttons/checkboxes and use a solid muted theme fill; the request review and downstream adoption gate remain in place. Textareas, ordinary text fields and secret answers share the choice-row surface.
+
+Document composer status framing and red retained-draft metadata are repaired in Design Core; Chat Error matches the All Messages footer typography. The review uses a prepared source-inclusive public archive with 42 focused light/dark cases passing, and pauses before downstream adoption.
+
+Request review follow-up: denied permission text/icons use semantic red and compact disclosure spacing; inline comment editors expose the shared formatting T toggle and Markdown actions. Focused qualification precedes the same downstream review gate.
+
+Chat feedback now uses the shared attached composer status API in Document and
+Classic, including refused/unknown message and permission/question responses.
+Fixed action footers and keyboard hints no longer add separate banners. Inline
+comment hover actions remain inside the first row before the far-right T;
+the formatting strip adds the shared emoji picker and aligns with the text.
+Source/consumer qualification is recorded in
+`spec/records/2026-10-22-unified-composer-feedback.md`. Stop here for visual review
+before publication or downstream adoption.
+
+Active permissions now use a fixed expandable themed panel in both chat views,
+with a far-right local-dismissal X and retained drafts/unknown-operation recovery.
+Focused source, 102 light/102 dark stories and four cold browser checks pass; see
+`spec/records/2026-10-22-pinned-permission-panel.md`. Pause for visual review before
+broad qualification, publication or downstream adoption.
+
+Expanded comment quotes now share their enclosing context surface. Plain
+Backspace on an already empty inline draft removes only that draft in either
+view. Design Core source fe4a6a3a and the prepared review package pass the focused
+source lane; complete-screen acceptance passes 51 light/51 dark stories and three
+fresh-browser cases. See `spec/records/2026-10-22-comment-draft-review.md`.
+Storybook 7590 remains available. Stop for review before broader qualification,
+publication, baseline updates or downstream adoption.

@@ -24,6 +24,22 @@ for (const file of [
 ]) {
   if (!/\.(?:ts|mjs|svelte)$/.test(file)) continue;
   const text = await readFile(file, "utf8");
+  if (
+    /packages\/agent-ui\/src\/chat\/(transcript-footer|transcript-send-hint)\/[^/]+\.svelte$/.test(
+      file,
+    ) &&
+    !file.includes(".stories.")
+  ) {
+    if (/ComposerStatusBanner|role=["']alert["']/.test(text))
+      findings.push(
+        `${file}: live feedback belongs to ChatMessageComposer.status`,
+      );
+    if (
+      file.endsWith("/AiTranscriptFooter.svelte") &&
+      (!text.includes("showStatus={false}") || /\sstatus=/.test(text))
+    )
+      findings.push(`${file}: fixed actions must disable their status banner`);
+  }
   const count = text
     .split("\n")
     .filter((line) => line.trim() && !/^\s*(?:\/\/|\*|\/\*)/.test(line)).length;

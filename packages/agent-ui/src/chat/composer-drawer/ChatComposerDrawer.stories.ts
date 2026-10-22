@@ -68,3 +68,24 @@ export const Question: Story = {
     props: { part: "drawer", scenario: "question" },
   }),
 };
+
+export const ApprovalCollapsed: Story = {
+  render: () => ({
+    Component: Fixture,
+    props: { part: "drawer", scenario: "approval" },
+  }),
+  play: async ({ canvasElement }) => {
+    const c = within(canvasElement);
+    await userEvent.click(
+      c.getByRole("button", { name: "Collapse Permission requested 1" }),
+    );
+    await waitFor(() =>
+      expect(
+        c.queryByRole("button", { name: "Allow once" }),
+      ).not.toBeInTheDocument(),
+    );
+    await expect(
+      c.getByRole("button", { name: "Expand Permission requested 1" }),
+    ).toBeVisible();
+  },
+};

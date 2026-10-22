@@ -12,49 +12,111 @@ import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
 
 <Meta of={Stories} />
 
-# Approval card
+# Agent permissions
 
-A permission request with captured tool details and lettered host-advertised responses.
+Outlined requests show captured resources and commands, exact advertised decisions, and read-only acknowledged outcomes.
 
 ## Usage
 
-Pass the original ApprovalRequest and respond using its request ID and chosen option ID. Treat labels as presentation. Keep the request visible while a host response is pending; remove it only when the host acknowledges.
+Pass the exact host request and retain the controller for the owning session. Callbacks submit only explicit user choices. Host acknowledgement supplies the completed state; mounting never responds.
 
 <Source code={Basic} language="tsx" />
 
 ## Anatomy
 
-| Part    | Responsibility                                  |
-| ------- | ----------------------------------------------- |
-| Heading | Host title and optional tool name.              |
-| Details | Captured description, path and diff.            |
-| Options | Lettered responses preserving exact option IDs. |
+| Part    | Responsibility                              |
+| ------- | ------------------------------------------- |
+| Header  | Themed emblem, title and explanation.       |
+| Content | Captured details or labelled answer fields. |
+| Footer  | Explicit host-advertised actions and state. |
 
 ## Variations
 
 ### Basic
 
-Respond through the in-memory host and show acknowledgement.
+Captured files and folders with explicit one-time approval and denial.
 
 <Canvas of={Stories.Basic} />
 
+### TerminalCommand
+
+Captured terminal command with the shared code and copy controls.
+
+<Canvas of={Stories.TerminalCommand} />
+
+### ScopedChoices
+
+The in-memory host explicitly advertises project and device scopes.
+
+<Canvas of={Stories.ScopedChoices} />
+
+### Approved
+
+Read-only permission granted; captured resources stay visible.
+
+<Canvas of={Stories.Approved} />
+
+### Denied
+
+Read-only permission denied without claiming execution failure.
+
+<Canvas of={Stories.Denied} />
+
+### Submitting
+
+Response submission disables all competing actions.
+
+<Canvas of={Stories.Submitting} />
+
+### Refused
+
+A refused response retains the exact request and selected option.
+
+<Canvas of={Stories.Refused} />
+
+### UnknownOutcome
+
+Check the original response outcome without resubmitting.
+
+<Canvas of={Stories.UnknownOutcome} />
+
+### Cancelled
+
+Cancelled requests retain details and offer no response.
+
+<Canvas of={Stories.Cancelled} />
+
+### Unavailable
+
+An icon-bearing Empty explains unavailable host support.
+
+<Canvas of={Stories.Unavailable} />
+
+### UnknownOptions
+
+Unfamiliar provider options remain neutral and preserve opaque IDs.
+
+<Canvas of={Stories.UnknownOptions} />
+
+### LongPaths
+
+Long captured filenames wrap within narrow cards.
+
+<Canvas of={Stories.LongPaths} />
+
 ### Disabled
 
-Host operation blocks every response.
+Host-disabled controls preserve the request presentation.
 
 <Canvas of={Stories.Disabled} />
 
 ## Behavior and accessibility
 
-All options are ordinary named buttons. disabled blocks them during host work. Unknown option kinds remain host-defined; this component never expands permission or infers an approval.
+The allowance menu changes the proposed option without dispatch. Only the explicit response button submits the exact advertised ID. Project/device scopes in this catalog are simulated host capabilities; allow-always never implies either scope on its own. Unknown options retain neutral labels. Submitting and unknown states block duplicate responses. Refused requests retain their chosen scope. Approved means permission was granted, not that execution succeeded. Timestamps are host-supplied; cancelled, unavailable and historical requests cannot dispatch.
 
 ## Styling variables
 
-Set variables on an ancestor of the component. Defaults retain the original
-Desktop geometry. Use the brand dropdown for Default/Lapis and the separate
-light/dark button for color mode. Components inherit semantic Design Core colors.
-The table identifies the package that owns each variable; styles load with the
-owning component family.
+The brand and light/dark controls use semantic Design Core themes. Override audited variables on an ancestor; no dependency selectors are needed. Docs shell previews remain bounded while Canvas screens retain the viewport.
 
 <Markdown>{tokenMarkdown(tokens)}</Markdown>
 <Source code={Styling} language="tsx" />
@@ -65,7 +127,4 @@ owning component family.
 
 ## Composition
 
-[Complete screens](?path=/docs/agent-complete-screens--docs) use these production
-components with the same controller flow. Documentation shell previews are
-bounded to 40rem; Canvas screens use the full viewport. Story data and simulated
-host effects stay outside published packages.
+Complete Document and Classic chats use these same production components in their existing composer drawers. Acknowledged permissions appear as compact, collapsed transcript rows labelled with their outcome and request title. Expanding the row renders this same full card read-only, including captured resources, command and allowance. Denied labels and icons use readable red in both themes, and collapsed rows use the same compact trailing gap as tools. Denials remain distinct from tool execution errors. Existing permission history remains visible while a later question is awaiting a response. Host adapters own permission enforcement, persistence and transport; this slice stops before Desktop and JJ Store adoption.

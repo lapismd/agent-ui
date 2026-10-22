@@ -1,4 +1,15 @@
-export const Basic =
-  '<script lang="ts">\n  import { AgentApprovalCard, type ApprovalRequest } from "@lapismd/agent-ui/chat";\n  let { respond }: { respond: (requestId:string, optionId:string) => void } = $props();\n  const request: ApprovalRequest = {id:"permission-1",kind:"write",title:"Allow editing src/agent.ts?",options:[{id:"allow-once",label:"Allow once",kind:"allow-once"},{id:"deny",label:"Deny",kind:"deny-once"}]};\n</script>\n<AgentApprovalCard {request} onRespond={option => respond(request.id, option)} />';
-export const Styling =
-  '<script lang="ts">\n  import { AgentApprovalCard, type ApprovalRequest } from "@lapismd/agent-ui/chat";\n  let { respond }: { respond: (requestId:string, optionId:string) => void } = $props();\n  const request: ApprovalRequest = {id:"permission-1",kind:"write",title:"Allow editing src/agent.ts?",options:[{id:"allow-once",label:"Allow once",kind:"allow-once"},{id:"deny",label:"Deny",kind:"deny-once"}]};\n</script>\n<div style="--ui-agent-request-gap: 0.75rem;">\n<AgentApprovalCard {request} onRespond={option => respond(request.id, option)} /></div>';
+export const Basic = `<script lang="ts">
+  import { AgentApprovalCard, AgentRequestController, type ApprovalRequest } from "@lapismd/agent-ui/chat";
+  const controller = new AgentRequestController();
+  const request: ApprovalRequest = { id: "permission-1", kind: "read", title: "Read project files", details: { resources: [{ path: "notes/plan.md", access: "Read access" }] }, options: [{ id: "opaque-allow", label: "Allow once", kind: "allow-once" }, { id: "opaque-deny", label: "Deny", kind: "deny-once" }] };
+  let responseState = $state({ status: "pending" as const });
+  async function respond(optionId: string) { console.log(request.id, optionId); }
+</script>
+<AgentApprovalCard {request} {controller} state={responseState} sessionId="chat-1" onRespond={respond} />`;
+export const Styling = `<script lang="ts">
+  import { AgentApprovalCard, type ApprovalRequest } from "@lapismd/agent-ui/chat";
+  let { request, onRespond }: { request: ApprovalRequest; onRespond(id: string): void } = $props();
+</script>
+<div style="--ui-agent-request-padding: 1.25rem; --ui-agent-request-radius: 1rem">
+  <AgentApprovalCard {request} {onRespond} />
+</div>`;

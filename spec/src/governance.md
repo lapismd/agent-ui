@@ -1,5 +1,23 @@
 # Governance
 
+The request-card slice uses isolated Jujutsu workspaces and focused controller,
+component, type and spec checks before review. Downstream adoption and broad
+qualification remain deferred until that review.
+Request-card paint refinements MUST use public primitive tokens or root style
+props with audited Agent UI variables, without dependency selector overrides.
+Generic input/status frame geometry and custom status content MUST remain owned
+by public Design Core components; Agent UI supplies exact-draft metadata.
+All live chat warnings/errors MUST flow through the owning composer status API;
+fixed action footers and keyboard hints MUST not duplicate status presentation.
+Active permissions forward that status into their owning expandable request
+panel, pinned in the Transcript footer slot while the message input is absent.
+Captured permission outcomes use the public TranscriptItem disclosure tone;
+inline comment formatting stays in shared CommentComposer and public Mira actions.
+Request-card red/green feedback remains an explicit audited source adaptation.
+Comment draft keyboard behavior and quoted-context surfaces MUST be repaired in
+Design Core and verified through the shared public package in complete Agent UI
+screens; browser-family registration MUST retain cold Document/Classic coverage.
+
 Component-family documentation is enforced by the repository-owned
 `agentFoundations` validator plugin, loaded by the published spec-validator.
 The inventory explicitly assigns private compound parts to documented families;

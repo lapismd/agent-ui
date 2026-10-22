@@ -12,55 +12,141 @@ import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
 
 <Meta of={Stories} />
 
-# Question card
+# Agent questions
 
-Host-requested answers with advertised choices, optional free text and explicit submission.
+Single-choice, multiple-choice and freeform requests using the same production controller and components as complete chat screens.
 
 ## Usage
 
-Supply UserInputRequest and send the returned UserInputAnswers with the exact request identity. Answers are keyed by question ID. Option answers preserve their labels as required by this public contract.
+Pass the exact host request and retain the controller for the owning session. Callbacks submit only explicit user choices. Host acknowledgement supplies the completed state; mounting never responds.
 
 <Source code={Basic} language="tsx" />
 
 ## Anatomy
 
-| Part             | Responsibility                                                |
-| ---------------- | ------------------------------------------------------------- |
-| Fieldset         | One named group for each question.                            |
-| Choices or input | Advertised options, optional Other, or a direct text input.   |
-| Submit           | Enabled only when every required answer has nonempty content. |
+| Part    | Responsibility                              |
+| ------- | ------------------------------------------- |
+| Header  | Themed emblem, title and explanation.       |
+| Content | Captured details or labelled answer fields. |
+| Footer  | Explicit host-advertised actions and state. |
 
 ## Variations
 
 ### Basic
 
-Choose an advertised answer and submit.
+Single-choice answers start unselected and require explicit submission.
 
 <Canvas of={Stories.Basic} />
 
+### MultipleChoice
+
+Select several components with independent checkbox controls.
+
+<Canvas of={Stories.MultipleChoice} />
+
 ### FreeText
 
-A question with no advertised choices.
+A multiline answer with placeholder and helper text.
 
 <Canvas of={Stories.FreeText} />
 
+### CharacterCount
+
+An optional host-advertised 1000-character limit and counter.
+
+<Canvas of={Stories.CharacterCount} />
+
+### Other
+
+A custom answer participates in the same explicit submission.
+
+<Canvas of={Stories.Other} />
+
+### Secret
+
+A masked answer remains transient and is omitted from the result.
+
+<Canvas of={Stories.Secret} />
+
+### SeveralQuestions
+
+Multiple questions with independent drafts and an optional textarea.
+
+<Canvas of={Stories.SeveralQuestions} />
+
+### Answered
+
+Completed questions show acknowledgement without exposing answer values.
+
+<Canvas of={Stories.Answered} />
+
+### Submitting
+
+An in-flight response disables all controls.
+
+<Canvas of={Stories.Submitting} />
+
+### Refused
+
+Refusal keeps the complete authored answer available for explicit retry.
+
+<Canvas of={Stories.Refused} />
+
+### UnknownOutcome
+
+An unresolved response remains read-only pending a host status check.
+
+<Canvas of={Stories.UnknownOutcome} />
+
+### Cancelled
+
+Cancellation is distinct from an answered or denied request.
+
+<Canvas of={Stories.Cancelled} />
+
+### Unavailable
+
+An icon-bearing Empty describes unavailable interaction support.
+
+<Canvas of={Stories.Unavailable} />
+
 ### Disabled
 
-Host work blocks input and submission.
+Disabled questions retain their labelled options.
 
 <Canvas of={Stories.Disabled} />
 
+### NumberedOptions
+
+Use numeric badges instead of letters. Arrow keys still navigate the radio group.
+
+<Canvas of={Stories.NumberedOptions} />
+
+### UnlabelledOptions
+
+Omit the decorative badges while keeping labelled controls.
+
+<Canvas of={Stories.UnlabelledOptions} />
+
+### RestrictedChoices
+
+A host that sets `allowOther: false` exposes only its listed choices.
+
+<Canvas of={Stories.RestrictedChoices} />
+
+### MultipleChoiceOther
+
+Submit a completely different answer on its own or combine it with listed choices.
+
+<Canvas of={Stories.MultipleChoiceOther} />
+
 ## Behavior and accessibility
 
-Selecting a choice exposes aria-pressed. Other reveals a named answer input. Secret questions use a password field. The card trims answers at explicit submit and never changes host state on mount.
+Radio groups support arrow-key navigation; checkboxes support multiple answers. Fields have visible labels, optional descriptions and explicit required/disabled states. Letter badges (`A`, `B`, `C`…) are the default; numeric badges (`1`, `2`, `3`…) and no badges are optional. Badges appear before their radio buttons or checkboxes, including the Other row. They are decorative, do not change the accessible choice name and never become answer values. When the host permits `allowOther`, an explicit Other row opens an editable answer, including for multiple choice; secret inputs are masked and their values never enter captured results. Request-scoped controller drafts survive refresh, remount and presentation/theme switches. Existing consumers keep label-based answers; an explicit host value overrides that label. Character limits apply only when advertised.
 
 ## Styling variables
 
-Set variables on an ancestor of the component. Defaults retain the original
-Desktop geometry. Use the brand dropdown for Default/Lapis and the separate
-light/dark button for color mode. Components inherit semantic Design Core colors.
-The table identifies the package that owns each variable; styles load with the
-owning component family.
+Letter and number badges have a solid muted fill, similar to the card surface, using public Badge color tokens. Free-text, character-count, custom-answer and secret fields share the choice-row background through `--ui-agent-request-option-background`. The brand and light/dark controls use semantic Design Core themes. Override audited variables on an ancestor; no dependency selectors are needed. Docs shell previews remain bounded while Canvas screens retain the viewport.
 
 <Markdown>{tokenMarkdown(tokens)}</Markdown>
 <Source code={Styling} language="tsx" />
@@ -69,9 +155,21 @@ owning component family.
 
 <ArgTypes of={Stories} />
 
+`request.questions` declares each field's behavior:
+
+| Field                | Default          | Purpose                                                        |
+| -------------------- | ---------------- | -------------------------------------------------------------- |
+| `optionLabels`       | `"letters"`      | Decorative `"letters"`, `"numbers"` or `"none"` choice badges. |
+| `selectionMode`      | `"single"`       | Radios or `"multiple"` checkboxes.                             |
+| `allowOther`         | Required         | Whether the host permits a completely different answer.        |
+| `inputMode`          | `"text"`         | Single-line input or multiline `"textarea"`.                   |
+| `placeholder`        | None             | Hint for freeform or Other input.                              |
+| `required`           | `true`           | Whether an answer is required before submission.               |
+| `secret`             | Required         | Mask input and exclude answer values from history.             |
+| `maxLength`          | None             | Optional host limit for authored answers.                      |
+| `showCharacterCount` | `false`          | Show a non-secret answer's length.                             |
+| `options[].value`    | The option label | Exact host response value; selection retains `options[].id`.   |
+
 ## Composition
 
-[Complete screens](?path=/docs/agent-complete-screens--docs) use these production
-components with the same controller flow. Documentation shell previews are
-bounded to 40rem; Canvas screens use the full viewport. Story data and simulated
-host effects stay outside published packages.
+Complete Document and Classic chats use these same production components in their existing composer drawers. Completed request blocks reuse them read-only in the transcript. Host adapters own permission enforcement, persistence and transport; this slice stops before Desktop and JJ Store adoption.

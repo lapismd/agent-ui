@@ -1,5 +1,7 @@
 <!-- SPDX-License-Identifier: Apache-2.0; adapted from Desktop AiTranscriptBlock/AiHistoryBlock. -->
 <script lang="ts">
+  import Approval from "../approval-card/AiApprovalCard.svelte";
+  import Question from "../question-card/AiQuestionCard.svelte";
   import AgentToolResult from "../../tools/tool-result/AgentToolResult.svelte";
   import * as Chat from "@lapismd/design-core/chat";
   import type { TranscriptBlock } from "@lapismd/design-core/chat";
@@ -11,12 +13,17 @@
     block,
     options,
     busy = false,
+    result,
   }: {
     block: TranscriptBlock;
     options: AgentTranscriptOptions;
     busy?: boolean;
+    result?: import("../request-state.js").AgentRequestResult;
   } = $props();
-  const presentation = $derived(options.blocks?.[block.id]);
+  const presentation = $derived(
+    options.blocks?.[block.id] ??
+      (result ? { kind: "request" as const, result } : undefined),
+  );
   const record = $derived(
     options.changes?.history.records.find(
       (record) => block.id === `history/${record.context.turn}`,
@@ -24,7 +31,20 @@
   );
 </script>
 
-{#if record && options.changes}<AiTurnChanges
+{#if presentation?.kind === "request"}
+  {#if presentation.result.kind === "approval"}<Approval
+      request={presentation.result.request}
+      state={presentation.result.state}
+      disabled
+      onRespond={() => {}}
+    />
+  {:else}<Question
+      request={presentation.result.request}
+      state={presentation.result.state}
+      disabled
+      onRespond={() => {}}
+    />{/if}
+{:else if record && options.changes}<AiTurnChanges
     {record}
     inspection={options.changes}
     {busy}

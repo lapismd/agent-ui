@@ -153,14 +153,50 @@ Supply `options.messages` and explicit `onRetry`, `onCopyResponse`, `onOpenPath`
 callbacks for host actions. `options.blocks` describes local result renderers;
 `customBlock` remains the host's registered result-view hook. `icons` is a
 presentation-only map, keeping component functions out of persisted snapshots.
-`options.changes` integrates the saved-turn controller. Use `composerStatus` and
-`composerStatusPosition` for attached warnings; failed authored messages use
+`options.changes` integrates the saved-turn controller. Use
+`options.composer.status` and `options.composer.statusPosition` for attached
+warnings and errors; failed authored messages use
 Design Core's `item.status` metadata below their body.
 
-Refused sends stay in the editable draft. In Document mode the shared
-MessageMetadata appears immediately below that exact draft; Classic keeps its
-existing red feedback. Editing the draft or changing sessions cannot attach the
+Refused sends stay in the editable draft. The shared MessageMetadata appears
+immediately below that exact draft in both views. Editing the draft or changing sessions cannot attach the
 previous refusal to another message. Unknown outcomes retain recovery feedback.
 Document mode leaves 4rem below the composer (3rem below 600px), using the
 document's original trailing buffer. Override
 `--ui-transcript-composer-trailing-space` on the host to change it.
+
+Acknowledged requests use `snapshot.requestResults`, keyed by the exact captured
+custom block ID, or an `options.blocks` request presentation. Put each request
+result in its own transcript item. The transcript projects it into its native
+collapsed disclosure row, labelled with the host-observed outcome and request
+title. Opening it shows the same full permission/question card read-only; mounting
+or expanding cannot submit another response. Unknown responses keep their captured
+request in the drawer until the host acknowledges them. Other completed history
+remains visible during later requests. Hosts own capture order and persistence.
+
+Active permission requests replace the message editor with the shared expandable
+permission panel in the fixed footer area in both views. They remain visible while
+history scrolls or new text streams. The panel shares the permission card's border,
+radius and theme surface, with bounded details and attached error/warning feedback.
+The controller retains drafts and comments; approving or denying restores the
+editor without sending the draft. Each new permission opens its panel. Answer
+requests retain their existing presentation.
+
+The header Close control dismisses only the local permission prompt. The same
+request stays dismissed across streamed snapshot refreshes and can be restored by
+the host. New request identities appear normally. An unresolved submitted response
+keeps its captured operation, warning and explicit Check original response action.
+
+Editable inline comments place the T toggle at the far right, after the hover
+actions on the same row. Hidden actions reserve no editor width. It opens the shared formatting actions
+and emoji picker below the input, aligned with the text, and closes without
+changing the draft or selection. Denied permission history uses a red label/icon and the shared compact
+tool-row spacing, while retaining its captured permission outcome.
+
+Use `status={{ type: "error", message: "The host refused this request." }}` or
+`status={{ type: "warning", message: "Check the original request before continuing." }}`
+on ChatMessageComposer; complete transcripts forward the same API through
+`options.composer.status`. Host errors outrank advisory warnings. Unknown outcomes
+remain warnings, and status rendering never retries or clears a draft. Fixed
+action footers and keyboard hints do not render a second banner. The older
+`sendError` and top-level `composerStatus` props are compatibility aliases.
