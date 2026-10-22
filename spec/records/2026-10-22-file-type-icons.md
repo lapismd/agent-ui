@@ -181,3 +181,38 @@ Published manifests and lockfiles retain registry ranges; unpublished output
 is consumed only through documented ignored local archive overlays. Package
 publication, pushes, deployment and native-service restarts remain outside
 this closeout. Changed stories remain visual-pending.
+
+## Main-checkout and downstream integration
+
+The reviewed branch is merged with the separately committed JJ Log and
+filename-icon changes in the default Agent UI checkout. Merge resolution uses
+the previously qualified five icon components and their source-ledger entries,
+while preserving the JJ Log implementation, documentation and browser cases.
+The final merged tree is committed without additional tests at the user's
+request. `pnpm build` rebuilt both public packages successfully.
+
+Local dependency installation completed in Agent UI, Lapis Notes, Lapis Plugins,
+JJ Store and Lapis Desktop using the V3 Design Core archive above. The Agent UI
+checkout retains `.local/review-dependencies.cjs`; each application checkout
+records its scoped setup under `.local/file-icons/review.pnpmfile.cjs` and
+`receipt.json`. Installation used `--lockfile=false --ignore-scripts` and
+preserved registry-backed manifests and lockfiles. No package was published.
+
+The first Notes install encountered an obsolete Markdown archive in its existing
+hook. The scoped replacement uses normal registry plugin/API ranges and retains
+only the required unpublished controller archive. The first Desktop install
+encountered its previous Mira overlay; the scoped hook now preserves the host's
+older Mira while routing Design Core's new Mira edge to the prepared 0.1 output.
+Both installs subsequently completed. The same correction keeps Plugins on its
+declared API 0.1.4 rather than an obsolete API archive.
+
+Older published API/UI peer ranges report warnings with Design Core 0.6.0. This
+is a temporary local development overlay, not a qualified release graph. No
+application, provider, native-service, full-cohort freshness or additional
+functional/interaction/accessibility acceptance was run after the stop request.
+Native applications/services and other workspace previews were not restarted.
+Agent UI's main Storybook is restarted on port 7490 after dependency refresh;
+the existing review workspace remains available on port 9490.
+
+JJ Store's unrelated in-progress workflow documentation and Community's
+unrelated fixture work are preserved without committing them in this slice.
