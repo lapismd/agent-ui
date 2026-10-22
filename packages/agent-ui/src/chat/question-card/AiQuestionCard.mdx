@@ -142,11 +142,11 @@ Submit a completely different answer on its own or combine it with listed choice
 
 ## Behavior and accessibility
 
-Radio groups support arrow-key navigation; checkboxes support multiple answers. Fields have visible labels, optional descriptions and explicit required/disabled states. Letter badges (`A`, `B`, `C`…) are the default; numeric badges (`1`, `2`, `3`…) and no badges are optional. Badges are decorative, do not change the accessible choice name and never become answer values. When the host permits `allowOther`, an explicit Other row opens an editable answer, including for multiple choice; secret inputs are masked and their values never enter captured results. Request-scoped controller drafts survive refresh, remount and presentation/theme switches. Existing consumers keep label-based answers; an explicit host value overrides that label. Character limits apply only when advertised.
+Radio groups support arrow-key navigation; checkboxes support multiple answers. Fields have visible labels, optional descriptions and explicit required/disabled states. Letter badges (`A`, `B`, `C`…) are the default; numeric badges (`1`, `2`, `3`…) and no badges are optional. Badges appear before their radio buttons or checkboxes, including the Other row. They are decorative, do not change the accessible choice name and never become answer values. When the host permits `allowOther`, an explicit Other row opens an editable answer, including for multiple choice; secret inputs are masked and their values never enter captured results. Request-scoped controller drafts survive refresh, remount and presentation/theme switches. Existing consumers keep label-based answers; an explicit host value overrides that label. Character limits apply only when advertised.
 
 ## Styling variables
 
-Letter and number badges have a solid muted fill, similar to the card surface, using public Badge color tokens. The brand and light/dark controls use semantic Design Core themes. Override audited variables on an ancestor; no dependency selectors are needed. Docs shell previews remain bounded while Canvas screens retain the viewport.
+Letter and number badges have a solid muted fill, similar to the card surface, using public Badge color tokens. Free-text, character-count, custom-answer and secret fields share the choice-row background through `--ui-agent-request-option-background`. The brand and light/dark controls use semantic Design Core themes. Override audited variables on an ancestor; no dependency selectors are needed. Docs shell previews remain bounded while Canvas screens retain the viewport.
 
 <Markdown>{tokenMarkdown(tokens)}</Markdown>
 <Source code={Styling} language="tsx" />

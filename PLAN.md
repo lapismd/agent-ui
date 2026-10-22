@@ -81,4 +81,4 @@ custom answers for single and multiple choice, theme-surface option/resource row
 and collapsed acknowledged permission history that expands to the shared card.
 Focused verification and review precede all downstream adoption.
 
-Question letter/number badges now use a solid muted theme fill; the request review and downstream adoption gate remain in place.
+Question letter/number badges precede their radio buttons/checkboxes and use a solid muted theme fill; the request review and downstream adoption gate remain in place. Textareas, ordinary text fields and secret answers share the choice-row surface.

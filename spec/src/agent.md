@@ -89,7 +89,7 @@ icon slot instead of relying on device-dependent integer pixel rounding.
 
 The 2026-10-22 user-authorized request-card adaptation follows supplied outlined
 permission and question references while retaining existing AppShell/composer
-boundaries. Resource and answer rows MUST use the theme background surface, distinct from their containing card. Decorative choice labels MUST use a solid theme fill through public Badge tokens. Agents/Requests families MUST document every variant and styling
+boundaries. Resource rows, answer options and all text, textarea and secret fields MUST share the theme background surface, distinct from their containing card. Decorative choice labels MUST precede their radio buttons or checkboxes and use a solid theme fill through public Badge tokens. Agents/Requests families MUST document every variant and styling
 variable. Desktop and JJ Store adoption follows explicit review of this slice.
 
 ### Acceptance details

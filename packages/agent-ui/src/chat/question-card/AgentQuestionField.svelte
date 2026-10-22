@@ -38,12 +38,15 @@
   }
 </script>
 
-{#snippet choiceLabel(index: number, label: string, description?: string)}
+{#snippet choiceKey(index: number)}
   {#if question.optionLabels !== "none"}<Badge
       variant="default"
       class="agent-question-option-key"
       aria-hidden="true">{ordinal(index)}</Badge
     >{/if}
+{/snippet}
+
+{#snippet choiceLabel(label: string, description?: string)}
   <span
     ><span>{label}</span>{#if description}<small>{description}</small
       >{/if}</span
@@ -65,14 +68,13 @@
             class="agent-question-option"
             data-selected={selected.includes(option.id)}
             for={`${id}-${index}`}
-            ><Checkbox
+            >{@render choiceKey(index)}<Checkbox
               id={`${id}-${index}`}
               checked={selected.includes(option.id)}
               {disabled}
               onCheckedChange={() =>
                 controller.select(sessionId, requestId, question, option.id)}
             />{@render choiceLabel(
-              index,
               option.label,
               option.description,
             )}</Field.Label
@@ -82,14 +84,13 @@
             class="agent-question-option"
             data-selected={other}
             for={`${id}-other`}
-            ><Checkbox
+            >{@render choiceKey(question.options.length)}<Checkbox
               id={`${id}-other`}
               checked={other}
               {disabled}
               onCheckedChange={() =>
                 controller.chooseOther(sessionId, requestId, question)}
             />{@render choiceLabel(
-              question.options.length,
               "Other",
               "Enter a completely different answer",
             )}</Field.Label
@@ -113,11 +114,10 @@
             class="agent-question-option"
             data-selected={!other && selected.includes(option.id)}
             for={`${id}-${index}`}
-            ><RadioGroup.Item
+            >{@render choiceKey(index)}<RadioGroup.Item
               id={`${id}-${index}`}
               value={`option/${option.id}`}
             />{@render choiceLabel(
-              index,
               option.label,
               option.description,
             )}</Field.Label
@@ -127,11 +127,10 @@
             class="agent-question-option"
             data-selected={other}
             for={`${id}-other`}
-            ><RadioGroup.Item
+            >{@render choiceKey(question.options.length)}<RadioGroup.Item
               id={`${id}-other`}
               value="other"
             />{@render choiceLabel(
-              question.options.length,
               "Other",
               "Enter a completely different answer",
             )}</Field.Label
@@ -146,6 +145,7 @@
       >
       {#if question.inputMode === "textarea" && !question.secret}<Textarea
           id={`${id}-answer`}
+          style="background-color: var(--ui-agent-request-option-background, var(--background))"
           aria-label={`${question.header} answer`}
           placeholder={question.placeholder}
           value={text}
@@ -162,6 +162,7 @@
         />
       {:else}<Input
           id={`${id}-answer`}
+          style="background-color: var(--ui-agent-request-option-background, var(--background))"
           type={question.secret ? "password" : "text"}
           aria-label={`${question.header} answer`}
           autocomplete="off"

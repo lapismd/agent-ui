@@ -53,6 +53,10 @@ export const MultipleChoice: Story = {
   }),
   play: async ({ canvasElement }) => {
     const c = within(canvasElement);
+    await expect(c.getByText("A").getBoundingClientRect().right).toBeLessThan(
+      c.getByRole("checkbox", { name: /^Search API/ }).getBoundingClientRect()
+        .left,
+    );
     await userEvent.click(c.getByRole("checkbox", { name: /^Search API/ }));
     await userEvent.click(c.getByRole("checkbox", { name: /^UI components/ }));
     await expect(c.getAllByRole("checkbox", { checked: true })).toHaveLength(2);
@@ -78,6 +82,10 @@ export const FreeText: Story = {
   play: async ({ canvasElement }) => {
     const c = within(canvasElement);
     const field = c.getByRole("textbox", { name: "Requirements answer" });
+    await expect(field).toHaveStyle({
+      backgroundColor: getComputedStyle(canvasElement.ownerDocument.body)
+        .backgroundColor,
+    });
     await userEvent.type(field, "Search documentation and code.");
     await expect(field).toHaveValue("Search documentation and code.");
     await userEvent.click(c.getByRole("button", { name: "Submit answer" }));
@@ -147,6 +155,10 @@ export const Secret: Story = {
   play: async ({ canvasElement }) => {
     const c = within(canvasElement);
     const field = c.getByLabelText("Requirements answer");
+    await expect(field).toHaveStyle({
+      backgroundColor: getComputedStyle(canvasElement.ownerDocument.body)
+        .backgroundColor,
+    });
     await expect(field).toHaveAttribute("type", "password");
     await userEvent.type(field, "transient-private-token");
     await userEvent.click(c.getByRole("button", { name: "Submit answer" }));
@@ -290,6 +302,10 @@ export const NumberedOptions: Story = {
   }),
   play: async ({ canvasElement }) => {
     const c = within(canvasElement);
+    await expect(c.getByText("1").getBoundingClientRect().right).toBeLessThan(
+      c.getByRole("radio", { name: /^Development/ }).getBoundingClientRect()
+        .left,
+    );
     for (const label of ["1", "2", "3", "4"]) {
       await expect(c.getByText(label)).toHaveAttribute("aria-hidden", "true");
       await expect(

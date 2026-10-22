@@ -123,7 +123,7 @@
     {
       "name": "--ui-agent-request-option-background",
       "default": "var(--background)",
-      "description": "Theme surface for resource rows and unselected answer options; white in light themes",
+      "description": "Theme surface for resource rows, answer options, textareas and text/password inputs; white in light themes",
       "owner": "@lapismd/agent-ui",
       "source": "chat/requests.css"
     },

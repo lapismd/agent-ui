@@ -183,3 +183,31 @@ Downstream adoption and visual baselines remain pending review.
 The follow-up spec-first gate initially required the mapped governance chapter
 for its source-ledger change; the public-token paint boundary is now explicit
 there and the final original-base gate passes.
+
+## Follow-up: label order and answer-field surfaces
+
+The user requested choice badges before radio buttons/checkboxes, then the same
+choice-row background for free-text, character-count, secret and other text
+answers. The shared field renders its decorative badge first, then the control
+and answer text, including Other. Input and Textarea receive the existing
+`--ui-agent-request-option-background` through their public HTML style props;
+their default transparent primitive behavior is unchanged and no dependency
+selectors are introduced. Both family token tables document the expanded use.
+
+The exact question-story target
+`-t '^(Numbered Options|Multiple Choice)$'` failed two placement assertions
+before and passed two after. The additional exact
+`-t '^(Free Text|Secret)$'` target failed two background assertions before and
+passed two after. Both use `pnpm exec vitest run --project storybook
+packages/agent-ui/src/chat/question-card/AiQuestionCard.stories.ts`.
+
+Final focused light/dark qualification: 18 question-family cases plus the three
+complete-screen cases selected by
+`-t '^(Requests|Requests Classic|Requests Free Text)$'` from
+`catalog/AgentScreens.stories.ts`, totalling 42 passed with zero interaction,
+accessibility or runtime failures. Architecture and spec validation pass;
+Agent UI build/publint and root type checking pass without warnings. Manual
+review confirms the label order and opaque textarea background. Changed-file
+formatting and the original-base spec-first gate pass. Controller/unit behavior,
+wide qualification, downstream adoption and visual baselines remain outside
+this focused presentation follow-up.
