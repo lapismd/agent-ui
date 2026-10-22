@@ -158,6 +158,34 @@ export const CatalogToggle: Story = {
 
 export const AllMessages: Story = {
   render: () => ({ Component: AgentDemo, props: { scenario: "all" } }),
+  play: async ({ canvasElement }) => {
+    const c = within(canvasElement);
+    const body = () =>
+      within(c.getByRole("group", { name: "Message composer" }))
+        .getByRole("textbox", { name: "Message" })
+        .closest('[data-ui-part="body"]')!;
+    await expect(
+      parseFloat(getComputedStyle(body()).borderTopWidth),
+    ).toBeGreaterThan(0);
+    const banner = c
+      .getByText("Context window is 90% full.")
+      .closest('[data-ui-component="composer-status-banner"]')!;
+    await expect(body().getBoundingClientRect().bottom).toBeGreaterThan(
+      banner.getBoundingClientRect().top,
+    );
+    await userEvent.click(
+      c.getByRole("button", { name: "Switch to Classic view" }),
+    );
+    await expect(
+      parseFloat(getComputedStyle(body()).borderTopWidth),
+    ).toBeGreaterThan(0);
+    await userEvent.click(
+      c.getByRole("button", { name: "Switch to Document view" }),
+    );
+    await expect(
+      parseFloat(getComputedStyle(body()).borderTopWidth),
+    ).toBeGreaterThan(0);
+  },
 };
 export const InlineComments: Story = {
   render: () => ({ Component: AgentDemo, props: { scenario: "comments" } }),
@@ -173,6 +201,22 @@ export const ChatError: Story = {
     const metadata = await c.findByRole("group", {
       name: "Draft metadata",
     });
+    await expect(
+      parseFloat(
+        getComputedStyle(draft.closest('[data-ui-part="body"]')!)
+          .borderTopWidth,
+      ),
+    ).toBeGreaterThan(0);
+    const banner = metadata.closest(
+      '[data-ui-component="composer-status-banner"]',
+    )!;
+    await expect(banner).toHaveAttribute("data-status", "error");
+    await expect(getComputedStyle(metadata).fontSize).toBe(
+      getComputedStyle(banner).fontSize,
+    );
+    await expect(getComputedStyle(metadata).lineHeight).toBe(
+      getComputedStyle(banner).lineHeight,
+    );
     await expect(metadata).toHaveTextContent(
       "The simulated host refused this action.",
     );

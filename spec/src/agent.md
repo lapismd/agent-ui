@@ -19,7 +19,7 @@
 
 - Public types express the boundary.
 - Focused tests and production-component stories verify the behavior.
-- A refused send MUST retain its exact draft and show MessageMetadata below the Document composer while Classic keeps its existing feedback.
+- A refused send MUST retain its exact draft and show red MessageMetadata in an attached error footer below the framed Document composer while Classic keeps its existing feedback.
 - Errors MUST NOT be attributed to another session or an edited draft, and unknown outcomes MUST retain recovery feedback without retry.
 
 ## AUI-CHAT-003 — Interactions
@@ -136,5 +136,5 @@ tool targets retain their Design Core-owned icons and status precedence.
 
 - The full recorded conversation MUST include Desktop system/warning/error rows, complete outgoing ACP XML context, tools, local reports, recipients, retries and the working state.
 - Turn changes MUST include the original summary card, file listing, rail, file preview and explicit undo/checkpoint dialogs with in-memory effects.
-- Context, handoff and rootless tool readers MUST share the surrounding transcript typography and support the original preview/source/capture states; failed message metadata, attached composer status and retained-comment spacing MUST match the reviewed Document/Classic presentation.
+- Context, handoff and rootless tool readers MUST share the surrounding transcript typography and support the original preview/source/capture states; Document composers with attached status MUST inherit the shared framed input body so feedback joins its edge; failed message metadata MUST match the attached status text size and line height, using red error text in both themes; attached composer status and retained-comment spacing MUST match the reviewed Document/Classic presentation.
 - A source coverage inventory and focused browser regressions MUST distinguish shared primitive defects from missing extraction or fixture coverage.

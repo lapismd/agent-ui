@@ -100,6 +100,16 @@
   ]);
 </script>
 
+{#snippet failedDraftMetadata()}
+  <MessageMetadata
+    sender="assistant"
+    status="error"
+    statusLabel={sendError}
+    role="group"
+    aria-label="Draft metadata"
+  />
+{/snippet}
+
 <div class="transcript-composer">
   {@render before?.()}
   <MarkdownComposer
@@ -117,8 +127,15 @@
     inputLabel="Message"
     {placeholder}
     {disabled}
-    {status}
-    {statusPosition}
+    status={view === "document" && sendError
+      ? { type: "error", message: sendError }
+      : status}
+    statusContent={view === "document" && sendError
+      ? failedDraftMetadata
+      : undefined}
+    statusPosition={view === "document" && sendError
+      ? "bottom"
+      : statusPosition}
     triggers={suggestions}
     extensions={[
       ...(referenceExtension ? [referenceExtension] : []),
@@ -139,15 +156,6 @@
         decorative
       />{/snippet}
   </MarkdownComposer>
-  {#if view === "document" && sendError}<div class="draft-metadata">
-      <MessageMetadata
-        sender="assistant"
-        status="error"
-        statusLabel={sendError}
-        role="group"
-        aria-label="Draft metadata"
-      />
-    </div>{/if}
 </div>
 
 <style>
@@ -162,10 +170,6 @@
     );
     display: grid;
     gap: 0.5rem;
-    min-width: 0;
-  }
-  .draft-metadata {
-    padding-inline-start: 2rem;
     min-width: 0;
   }
 </style>

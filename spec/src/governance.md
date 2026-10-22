@@ -5,6 +5,8 @@ component, type and spec checks before review. Downstream adoption and broad
 qualification remain deferred until that review.
 Request-card paint refinements MUST use public primitive tokens or root style
 props with audited Agent UI variables, without dependency selector overrides.
+Generic input/status frame geometry and custom status content MUST remain owned
+by public Design Core components; Agent UI supplies exact-draft metadata.
 
 Component-family documentation is enforced by the repository-owned
 `agentFoundations` validator plugin, loaded by the published spec-validator.

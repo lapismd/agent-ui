@@ -82,3 +82,5 @@ and collapsed acknowledged permission history that expands to the shared card.
 Focused verification and review precede all downstream adoption.
 
 Question letter/number badges precede their radio buttons/checkboxes and use a solid muted theme fill; the request review and downstream adoption gate remain in place. Textareas, ordinary text fields and secret answers share the choice-row surface.
+
+Document composer status framing and red retained-draft metadata are repaired in Design Core; Chat Error matches the All Messages footer typography. The review uses a prepared source-inclusive public archive with 42 focused light/dark cases passing, and pauses before downstream adoption.

@@ -602,9 +602,12 @@
         },
         {
           "description": "Approved portable chat section: shared reference codec/suggestions, custom emoji and host editor actions are forwarded to MarkdownComposer. Existing layout, draft metadata and avatar geometry are retained."
+        },
+        {
+          "description": "User-authorized 2026-10-22 composer review: exact-draft MessageMetadata is composed inside the public Design Core statusContent footer, retaining the shared Document input frame and semantic red error tone; Classic feedback stays source-faithful."
         }
       ],
-      "destinationSha256": "b35d82d98af395a79cc1be1c4c25b24e76019e10e4cc1766ee7420c8c7f72a80",
+      "destinationSha256": "d8d2d4d4371b5c4769f075eee4c171962f096596a8d150614dbf307900edc8ab",
       "layoutAdaptations": [
         { "before": "extensions={[references]}", "after": "{extensions}" },
         {
@@ -635,9 +638,13 @@
         {
           "before": "{extensions}",
           "after": "extensions={[...(referenceExtension ? [referenceExtension] : []), ...extensions]}\n    {customEmojis}\n    {emojis}\n    {emojiText}\n    {additionalActions}"
+        },
+        {
+          "before": "<div class=\"transcript-composer\">\n  {@render before?.()}\n  <MarkdownComposer\n    bind:handle\n    {...framedDrawer ? { drawer } : {}}\n    interactiveDrawerWhenDisabled\n    bind:value\n    bind:documentActions\n    presentation={view === \"document\" ? \"document\" : \"framed\"}\n    dockActions={view === \"document\"}\n    showSendButton={false}\n    {showHint}\n    submitOnEnter={false}\n    label=\"Message composer\"\n    inputLabel=\"Message\"\n    {placeholder}\n    {disabled}\n    {status}\n    {statusPosition}\n    triggers={suggestions}\n    extensions={[...(referenceExtension ? [referenceExtension] : []), ...extensions]}\n    {customEmojis}\n    {emojis}\n    {emojiText}\n    {additionalActions}\n    onSubmit={() => {\n      if (!disabled) onSend();\n    }}\n  >\n    {#snippet avatar()}<Avatar\n        name=\"You\"\n        initials=\"YO\"\n        size=\"sm\"\n        decorative\n      />{/snippet}\n  </MarkdownComposer>\n  {#if view === \"document\" && sendError}<div class=\"draft-metadata\">\n      <MessageMetadata\n        sender=\"assistant\"\n        status=\"error\"\n        statusLabel={sendError}\n        role=\"group\"\n        aria-label=\"Draft metadata\"\n      />\n    </div>{/if}\n</div>\n\n<style>\n  .transcript-composer {\n    --ui-markdown-composer-min-height: var(--ui-agent-composer-min-height, calc(2 * 1.4rem + 1rem));\n    --ui-markdown-composer-document-min-height: var(--ui-agent-composer-document-min-height, calc(2 * 0.875rem * 1.65));\n    display: grid;\n    gap: 0.5rem;\n    min-width: 0;\n  }\n  .draft-metadata {\n    padding-inline-start: 2rem;\n    min-width: 0;\n  }\n</style>",
+          "after": "{#snippet failedDraftMetadata()}\n  <MessageMetadata\n    sender=\"assistant\"\n    status=\"error\"\n    statusLabel={sendError}\n    role=\"group\"\n    aria-label=\"Draft metadata\"\n  />\n{/snippet}\n\n<div class=\"transcript-composer\">\n  {@render before?.()}\n  <MarkdownComposer\n    bind:handle\n    {...framedDrawer ? { drawer } : {}}\n    interactiveDrawerWhenDisabled\n    bind:value\n    bind:documentActions\n    presentation={view === \"document\" ? \"document\" : \"framed\"}\n    dockActions={view === \"document\"}\n    showSendButton={false}\n    {showHint}\n    submitOnEnter={false}\n    label=\"Message composer\"\n    inputLabel=\"Message\"\n    {placeholder}\n    {disabled}\n    status={view === \"document\" && sendError\n      ? { type: \"error\", message: sendError }\n      : status}\n    statusContent={view === \"document\" && sendError\n      ? failedDraftMetadata\n      : undefined}\n    statusPosition={view === \"document\" && sendError\n      ? \"bottom\"\n      : statusPosition}\n    triggers={suggestions}\n    extensions={[\n      ...(referenceExtension ? [referenceExtension] : []),\n      ...extensions,\n    ]}\n    {customEmojis}\n    {emojis}\n    {emojiText}\n    {additionalActions}\n    onSubmit={() => {\n      if (!disabled) onSend();\n    }}\n  >\n    {#snippet avatar()}<Avatar\n        name=\"You\"\n        initials=\"YO\"\n        size=\"sm\"\n        decorative\n      />{/snippet}\n  </MarkdownComposer>\n</div>\n\n<style>\n  .transcript-composer {\n    --ui-markdown-composer-min-height: var(\n      --ui-agent-composer-min-height,\n      calc(2 * 1.4rem + 1rem)\n    );\n    --ui-markdown-composer-document-min-height: var(\n      --ui-agent-composer-document-min-height,\n      calc(2 * 0.875rem * 1.65)\n    );\n    display: grid;\n    gap: 0.5rem;\n    min-width: 0;\n  }\n</style>"
         }
       ],
-      "layoutSha256": "be1c2ad4c143ca1c298aefe996ea51e5ad8e1c1d653449bed86eb62b7288cc8c"
+      "layoutSha256": "fc9779dcdbd632eaa57c33b62bdfee67c1406274e413bf18bd2c814a5797cde2"
     },
     {
       "sourceRepository": "lapis-desktop",

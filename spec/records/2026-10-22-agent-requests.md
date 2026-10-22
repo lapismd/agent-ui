@@ -211,3 +211,88 @@ review confirms the label order and opaque textarea background. Changed-file
 formatting and the original-base spec-first gate pass. Controller/unit behavior,
 wide qualification, downstream adoption and visual baselines remain outside
 this focused presentation follow-up.
+
+## Follow-up: attached Document composer feedback
+
+The user marked the All Messages context-window warning: its rounded footer was
+not joined to a framed input in Document view. This is owned by Design Core's
+MarkdownComposer; the fix retains its existing Composer frame while status is
+attached and restores prose styling when feedback clears. There is no consumer
+CSS workaround. Ordinary failed-draft metadata stays below its retained draft.
+
+The new exact complete-screen regression
+`pnpm exec vitest run --project storybook catalog/AgentScreens.stories.ts
+-t '^All Messages$'` failed once before the review dependency refresh and passed
+once afterward. It checks the body frame, overlapping banner edge and frame
+retention across Classic/Document switches. The Design Core source regression
+failed two cases before the repair, then its five-file focused lane passed 29,
+including light/dark warning/error, top status and clearing-with-retained-draft
+cases. Source types, spec, native CSS and original-base spec-first pass; source
+implementation is committed as `01984d92` in `design-core-requests`.
+
+Agent UI acceptance selects Message composer and Transcript families (17 cases)
+plus complete All Messages, Chat Error, Refused Submission and Unknown Submission
+(four cases). Both light and dark runs passed: 42 interaction/accessibility cases,
+zero failures or runtime diagnostics. Consumer types and architecture pass.
+
+The initial compiled-only archive caused 34 documentation-token audit failures
+because the validator reads the dependency's source CSS. The review archive is
+rebuilt using `packLocal(..., { retainSource: true })`, preserving the audited
+source alongside the same public compiled exports; no token assertion is relaxed.
+The existing ignored pnpm hook supplies the archive. Installation preserves the
+tracked lockfile bytes; no registry manifests, native apps or services change.
+Final spec/format/package acceptance and the archive digest are recorded below.
+
+The 7590 Storybook is restarted after the dependency refresh. Manual cold browser
+review confirms the input frame and attached curved warning in the complete
+AppShell. Broad suites, publication and visual baselines remain pending review.
+
+The source-inclusive warning-frame archive contains 2726 byte-identical compiled
+runtime files compared with its compiled-only predecessor; retaining source
+restores all 34 token audits without modifying runtime output. Consumer spec
+validation and Agent UI build/publint then pass.
+
+The user also requested the same frame/footer treatment for Chat Error and red
+errors. The shared `statusContent` extension now composes the original
+MessageMetadata inside the existing attached footer. Exact retained-draft errors
+supply an error tone and bottom placement, while Classic keeps its previous
+feedback. The native metadata owns the single alert announcement. No application
+state, retries or transport policy moves into the shared UI.
+
+The new exact Chat Error target failed once before integration (unframed input),
+with the metadata still retained in its original location. Its final regression
+also requires the metadata to sit within an error-tone shared status banner,
+below the saved draft. Source contrast testing exposed and repaired three
+insufficient-red-contrast cases without weakening accessibility rules.
+
+Final red/footer parity qualification: the Lapis-dark Classic Error target
+initially failed once at 3.68:1. Design Core's existing metadata-style dark red
+mix repairs it; the exact target now passes without an accessibility exclusion.
+The follow-up font request exposed two source status-story failures (11px nested
+metadata versus 12px status text). Shared source composition now inherits the
+footer font size and line height. Manual browser measurement confirms both
+Chat Error and All Messages use 12px/16px, and the Chat Error complete-screen
+regression compares its nested metadata against the shared banner in both themes.
+
+Final consumer commands/results against the refreshed archive:
+
+- `CATALOG_THEME=dark pnpm exec vitest run --project storybook packages/agent-ui/src/chat/transcript/AgentTranscript.stories.ts -t '^Classic Error$'`: 1 passed.
+- Message-composer and Transcript files in light and dark: 17 passed per mode.
+- `catalog/AgentScreens.stories.ts -t '^(All Messages|Chat Error|Refused Submission|Unknown Submission)$'`: 4 passed per mode.
+- Final matrix: 42 interaction/accessibility cases passed, zero failures or runtime diagnostics.
+- Root type check: zero errors/warnings; spec validation, architecture and 193 source fingerprints pass. Agent UI build/publint, changed-file formatting and original-base spec-first pass.
+
+The refreshed source-inclusive review archive is
+`lapismd-design-core-0.6.0-agent-requests-error-parity-review.tgz`, SHA-256
+`de91da5b4daa984ca0a1fb3150014693202d1ab95972f31278b76f7c696e2a64`.
+Design Core commits `01984d92`, `782edfa7` and `f2f9fe38` own the shared fixes;
+its final focused seven-file lane passes 47 cases and all strict type lanes.
+The ignored review hook preserves registry manifests and lockfile bytes.
+Storybook 7590 was restarted before consumer/browser acceptance.
+
+Manual light/dark screenshots are saved locally as
+`.local/chat-error-footer-review.png` and
+`.local/chat-error-footer-dark-review.png`. The saved draft, joined input/status
+frame, red feedback and matching status typography were checked in the complete
+AppShell. Publication, broad qualification, downstream adoption and visual
+baselines remain paused for review.

@@ -51,9 +51,11 @@ Framed editor with inline formatting.
 ### Error
 
 Host feedback retains the authored draft.
-For a refused send, pass `sendError` only for the exact retained submission.
+For a refused send, pass `sendError` only for the exact retained submission. In Document view the input is framed and the shared MessageMetadata sits in its attached red error footer; Classic retains its existing feedback.
 Document mode renders the shared MessageMetadata beneath the draft, aligned
-with its prose. The transcript keeps Classic feedback in its existing footer.
+with its prose. Its text size and line height match the status feedback in All
+Messages, using readable red text in light and dark themes. The transcript keeps
+Classic feedback in its existing footer.
 Unknown outcomes use retained-request recovery feedback, never a resend action.
 
 <Canvas of={Stories.Error} />
@@ -93,6 +95,9 @@ The same source and codec in the framed composer.
 ## Behavior and accessibility
 
 Enter inserts a newline in both presentations; Ctrl/Command+Enter requests send. disabled blocks submission. The host clears the draft only after acknowledgement. Supply extensions, triggers, referenceSources, references, customEmojis and emojiText through public editor APIs. The complete Transcript forwards these same hooks to its composer and inline comment editors. Host codecs own stable identities and serialization; navigation never implies delivery. Legacy people.value insertions remain literal.
+
+The error footer uses the same text size and line height as ordinary status
+feedback in All Messages, with accessible red text in both light and dark themes.
 
 ## Styling variables
 
