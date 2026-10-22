@@ -4,6 +4,10 @@
 
 **Requirement.** Conversation screens MUST compose Design Core Transcript and controlled composer state, retaining drafts, attachments, comments and request identities across presentation changes.
 
+Expanded comment quotes MUST inherit their context surface through public Design
+Core presentation. Plain Backspace on an already empty inline draft MUST remove
+only that draft in either view, preserving other comments and captured text.
+
 ### Acceptance details
 
 - Copied source markup and styles MUST preserve pixel-perfect presentation at matching viewport, theme, fonts and data.

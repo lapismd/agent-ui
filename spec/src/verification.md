@@ -5,7 +5,7 @@
 | AUI-GOV-001     | Implemented | Architecture and clean public-package acceptance; Agent review record                                                                                     |
 | AUI-GOV-002     | Partial     | Five complete in-memory screens; downstream review gate retained                                                                                          |
 | AUI-GOV-003     | Implemented | Spec checks, source ledger and before/after counts                                                                                                        |
-| AUI-CHAT-001    | Partial     | 81 documented original layouts; shell pixel review in completeness record; full-screen review pending                                                     |
+| AUI-CHAT-001    | Partial     | 81 documented layouts; comment draft/context acceptance in `spec/records/2026-10-22-comment-draft-review.md`; pixel review pending                        |
 | AUI-CHAT-002    | Implemented | Exact submission/status and retained-draft controller regressions                                                                                         |
 | AUI-CHAT-003    | Implemented | Outlined request cards and pinned local-dismissal panel; `spec/records/2026-10-22-pinned-permission-panel.md`                                             |
 | AUI-CHAT-004    | In progress | Section 1 targeted evidence: `spec/records/2026-10-22-chat-reference-review.md`; broad qualification awaits final review.                                 |

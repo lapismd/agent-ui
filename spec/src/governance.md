@@ -14,6 +14,9 @@ panel, pinned in the Transcript footer slot while the message input is absent.
 Captured permission outcomes use the public TranscriptItem disclosure tone;
 inline comment formatting stays in shared CommentComposer and public Mira actions.
 Request-card red/green feedback remains an explicit audited source adaptation.
+Comment draft keyboard behavior and quoted-context surfaces MUST be repaired in
+Design Core and verified through the shared public package in complete Agent UI
+screens; browser-family registration MUST retain cold Document/Classic coverage.
 
 Component-family documentation is enforced by the repository-owned
 `agentFoundations` validator plugin, loaded by the published spec-validator.

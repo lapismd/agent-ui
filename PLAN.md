@@ -101,3 +101,11 @@ with a far-right local-dismissal X and retained drafts/unknown-operation recover
 Focused source, 102 light/102 dark stories and four cold browser checks pass; see
 `spec/records/2026-10-22-pinned-permission-panel.md`. Pause for visual review before
 broad qualification, publication or downstream adoption.
+
+Expanded comment quotes now share their enclosing context surface. Plain
+Backspace on an already empty inline draft removes only that draft in either
+view. Design Core source fe4a6a3a and the prepared review package pass the focused
+source lane; complete-screen acceptance passes 51 light/51 dark stories and three
+fresh-browser cases. See `spec/records/2026-10-22-comment-draft-review.md`.
+Storybook 7590 remains available. Stop for review before broader qualification,
+publication, baseline updates or downstream adoption.
