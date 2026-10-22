@@ -57,6 +57,8 @@ in a cold process. Browser documentation checks MUST bring lazy Canvas previews
 into view before verifying their production component bounds.
 Filename icon qualification MUST include local catalog skills in the complete
 screen, preserving the copied row geometry and explicit host navigation.
+Geometry assertions MUST compare rendered source slots at the current browser
+zoom while retaining the declared icon size preset.
 Large shared-package chunks MUST pass the supported Vite asset-URL scanner;
 catalog configuration MUST NOT disable its transforms or suppress import errors.
 

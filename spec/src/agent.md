@@ -82,6 +82,8 @@ public Design Core FileTypeIcon from their explicit path, preserving the origina
 Local catalog skills MUST resolve the same icon from their exact file path in
 the original 16px slot; bundled skills without a path MUST retain the package
 icon and explicit open-file actions MUST retain the host path.
+At browser zoom, filename icons MUST match the unchanged neighboring catalog
+icon slot instead of relying on device-dependent integer pixel rounding.
 
 ### Acceptance details
 

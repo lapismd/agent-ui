@@ -115,7 +115,8 @@ Before: one failure, 14 skipped. After: one pass, 14 skipped. Initial type check
 also found two unsupported Testing Library `exact` options; anchored name
 expressions retain exact matching with the supported API. The live in-app preview
 exposed a fractional transformed bounding rectangle at browser zoom; the story
-now checks the exact computed 16px CSS width and height instead. Source comparison
+now verifies the declared `md` preset and exact width/height equality with an
+unchanged neighboring source icon slot, including fractional browser zoom. Source comparison
 again passed all 193 fingerprints and 140 adapted original layouts.
 
 ## Combined reference review
@@ -127,9 +128,16 @@ target the combined tree instead. No passing result is claimed for its cancelled
 dark-mode and remaining lanes.
 
 The combined prepared Design Core archive is
-`lapismd-design-core-0.6.0-agent-icons-reference-review.tgz`, SHA-256
-`6f864a5ad9a77fb45255a8df9ceea10ec436ab2c39dfd9814bbec630f7b4baba`.
+`lapismd-design-core-0.6.0-agent-icons-reference-review-v2.tgz`, SHA-256
+`f0e8e1ce07be0f3495734b468983b668c639dcc27f19588243f058233872bdbf`.
 The ignored hook retains the reference slice's prepared Mira and JJ history
 dependencies and substitutes this combined public archive. The existing npm
 ranges and registry lockfile remain portable. Combined strict types and all
 97 units pass; the complete qualification is running against this tree.
+V2 includes the source's strict optional-property repairs; the earlier combined
+archive is superseded. One prior light/narrow full run timed out in the unchanged
+Source Picker (171 passed, one failed). Its exact narrow family rerun passed both
+stories without changing the component, assertions or timeout. The final Catalog
+target passed one case with 19 intentionally unselected, and the live browser
+completed its icon-size and explicit-selection checks at fractional zoom. Its
+selection assertion now waits for the acknowledged host action.

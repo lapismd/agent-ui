@@ -46,11 +46,15 @@ export const Catalog: Story = {
     await expect(icon).toBeVisible();
     await expect(icon).toHaveAttribute("data-file-type-icon", "markdown");
     await expect(icon).toHaveAttribute("aria-hidden", "true");
-    await expect(icon).toHaveStyle({ width: "16px", height: "16px" });
+    await expect(icon).toHaveAttribute("data-size", "md");
+    const originalSlot = canvasElement.querySelector("svg.ai-catalog__icon");
+    await expect(originalSlot).toBeVisible();
+    const size = getComputedStyle(originalSlot!);
+    await expect(icon).toHaveStyle({ width: size.width, height: size.height });
     await userEvent.click(
       within(skill).getByRole("button", { name: /^Open Research$/ }),
     );
-    await expect(skill).toHaveAttribute("aria-selected", "true");
+    await waitFor(() => expect(skill).toHaveAttribute("aria-selected", "true"));
   },
 };
 export const Imports: Story = {
