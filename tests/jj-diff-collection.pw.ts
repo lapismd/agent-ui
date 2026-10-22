@@ -200,10 +200,10 @@ for (const kind of ["jj-log", "op-log"])
         .nth(2)
         .locator("header");
       const before = await header.evaluate(
-        (el) => getComputedStyle(el).backgroundColor,
+        (el) => getComputedStyle(el).backgroundImage,
       );
       await header.getByRole("button", { name: /^Expand docs/ }).hover();
-      await expect(header).not.toHaveCSS("background-color", before);
+      await expect(header).not.toHaveCSS("background-image", before);
     });
 
 for (const kind of ["jj-log", "op-log"])

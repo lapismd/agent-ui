@@ -86,9 +86,10 @@ comparison, including unpaged files; missing totals MUST remain absent rather
 than falling back to selected-file or partially loaded counts. Single-file
 actions MUST stay in single-file headers or per-file menus; an independent
 all-changes action snippet MUST provide explicit comparison-wide controls.
-The collection MUST leave inline-end clearance for the column overlay scrollbar
-so it cannot cover a selected frame, and expanded file bodies MUST have no extra
-bottom padding after the final content row.
+The collection MUST be flush with the column by default, retain visible selected
+frame edges beside overlay scrollbars, and have no extra bottom padding after
+the final content row. Sticky headers MUST have an opaque surface beneath their
+semantic selection and hover tints, preventing scrolled content showing through.
 
 JJ Log and Op Log MUST use fixed-width scrolling canvases with a 240px trailing
 spacer, using the public Column Canvas controller and trailing-content slot.

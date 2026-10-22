@@ -202,11 +202,7 @@
     padding: var(--ui-repository-diff-viewer-padding, 0);
   }
   .repository-diff-viewer[data-file-mode="all"] {
-    /* The column's overlay scrollbar must not cover section selection edges. */
-    padding-inline-end: var(
-      --ui-repository-diff-viewer-scrollbar-inset,
-      0.5rem
-    );
+    padding-inline-end: var(--ui-repository-diff-viewer-scrollbar-inset, 0);
     --ui-diff-frame-radius: 0px;
     --ui-diff-file-gap: 0;
     --ui-diff-file-section-border: 0;

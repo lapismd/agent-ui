@@ -100,3 +100,9 @@ The log-canvas follow-up adopts JJ Store's fixed scrolling configuration and
 240px trailing spacer with a shared icon-bearing Empty hint, retaining pointer
 and keyboard resizing of the final Diff column. Evidence is in
 `spec/records/2026-10-22-log-canvas-spacer.md`; screen review remains pending.
+
+All Changes surface review removes the collection's default inline-end inset
+and Op Log's inner side borders, keeps the selected frame visible, and restores
+Op Log sticky headers to the actual column viewport. Translucent header tints
+now have an opaque backing in Design Core. Focused evidence is recorded in
+`spec/records/2026-10-22-diff-surface.md`; review remains pending.

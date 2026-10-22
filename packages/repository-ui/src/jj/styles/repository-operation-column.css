@@ -27,6 +27,12 @@
   border-radius: var(--ui-column-canvas-radius, var(--radius));
   background: var(--background);
 }
+.operation-diff-stack[data-file-mode="all"] .operation-file-card {
+  border-inline: 0;
+  border-radius: 0;
+  /* Clip the card without creating a second sticky-header scroll container. */
+  overflow: clip;
+}
 .operation-card-header {
   display: flex;
   min-width: 0;

@@ -10,8 +10,8 @@
     },
     {
       "name": "--ui-repository-diff-viewer-scrollbar-inset",
-      "default": "0.5rem",
-      "description": "Inline-end clearance for the outer column overlay scrollbar in all-file mode; keeps selected frame edges visible.",
+      "default": "0",
+      "description": "Optional inline-end inset for all-file collections; sections are flush with the column by default.",
       "owner": "@lapismd/repository-ui",
       "source": "jj/history/diff-viewer/RepositoryDiffViewer.svelte"
     },

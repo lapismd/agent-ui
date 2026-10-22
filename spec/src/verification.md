@@ -53,3 +53,7 @@ actions, semantic header interaction and painted selection edges in both logs.
 The RUI-HISTORY-001 / RUI-DESKTOP-001 / AUI-GOV-003 canvas resize-space follow-up
 is recorded in `spec/records/2026-10-22-log-canvas-spacer.md`, with both logs using
 the source workspace's fixed scrolling mode and public trailing-content slot.
+
+The RUI-HISTORY-001 / AUI-GOV-003 All Changes surface follow-up is recorded in
+`spec/records/2026-10-22-diff-surface.md`, covering flush geometry, opaque sticky
+header paint and retained selected side edges in both logs and themes.

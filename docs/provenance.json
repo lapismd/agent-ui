@@ -2,7 +2,7 @@
   "sources": {
     "lapis-desktop": "f8f3446e (Agent) and 52516ae9 (JJ); exact copied-file hashes in desktop-layout-sources.json",
     "jj-store": "f58b9363",
-    "design-core": "npm range ^0.6.0; FileTypeIcon review archive from isolated Design Core change mtrtuvpr, parent 749de753; SHA-256 5e55494444d7d580c198fb91a80c66225c858135a4786e8fe0e54a1a66891dd3"
+    "design-core": "npm range ^0.6.0; opaque diff-header review archive from clean Design Core commit 9362a4ba; SHA-256 df4f6fbf2dfb3172421e970b94b083c63428f90c28e1173b7298aa47c7a03fa2; local validation only, see spec/records/2026-10-22-diff-surface.md"
   },
   "license": "Apache-2.0",
   "upstreamNotices": [
