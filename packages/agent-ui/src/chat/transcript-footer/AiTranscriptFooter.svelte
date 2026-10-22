@@ -48,8 +48,7 @@
   onStop={controller.busy
     ? () => panel.actions.perform(() => controller.cancel())
     : undefined}
-  status={composerState.composerStatus}
-  showStatus={!panelProps.transcriptFrame}
+  showStatus={false}
 >
   {#snippet actions()}
     <ChatComposerActions

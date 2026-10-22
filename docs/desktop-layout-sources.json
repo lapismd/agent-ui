@@ -415,9 +415,12 @@
         {
           "before": "../../../lib/ai/chat/panel/transcript.ts",
           "after": "./presentation.js"
+        },
+        {
+          "description": "User-authorized unified composer feedback review: errors/warnings share the attached input status API in both views; fixed actions and keyboard hints no longer render banners, with exact draft/request identity retained."
         }
       ],
-      "destinationSha256": "cfc36db9ff90addc3ef54b707fa3f4be98ae2a3396400fc8f75479cc9384a96b",
+      "destinationSha256": "43fee45c7d98f3738b293cf0fd2278169b689a7305874ab963b82ea8dbec5069",
       "layoutAdaptations": [
         {
           "before": "gap: 0.25rem;",
@@ -426,9 +429,13 @@
         {
           "before": "<TranscriptFooter\n",
           "after": "<TranscriptFooter\n  style=\"--ui-transcript-footer-padding:var(--ui-agent-footer-padding,0);--ui-transcript-footer-gap:var(--ui-agent-footer-gap,0.25rem)\"\n"
+        },
+        {
+          "before": "<TranscriptFooter\n  style=\"--ui-transcript-footer-padding:var(--ui-agent-footer-padding,0);--ui-transcript-footer-gap:var(--ui-agent-footer-gap,0.25rem)\"\n  busy={controller.busy || !!controller.queuedMessages.pending.length}\n  {state}\n  sendPending={state.sending ||\n    !!state.retainedSubmission ||\n    controller.queuedMessages.saving}\n  hasContent={(!controller.busy || !!controller.repository) &&\n    Boolean(composerState.draft.trim() || state.pending.length)}\n  canSend={!controller.queuedMessages.saving &&\n    Boolean(composerState.draft.trim() || state.pending.length)}\n  disabled={blocked}\n  {onSend}\n  onStop={controller.busy\n    ? () => panel.actions.perform(() => controller.cancel())\n    : undefined}\n  status={composerState.composerStatus}\n  showStatus={!panelProps.transcriptFrame}\n>\n  {#snippet actions()}\n    <ChatComposerActions\n      {panelProps}\n      {controller}\n      {attachmentsState}\n      {composerState}\n      actions={panel.actions}\n    />\n    {@render documentActions?.()}\n  {/snippet}\n\n  {#snippet controls()}\n    <div class=\"transcript-controls\">\n      <ChatAgentPicker {panel} />\n      {#if panelProps.transcriptFrame}<ChatContextUsage\n          {controller}\n          {composerState}\n          actions={panel.actions}\n          variant=\"ring\"\n        />{/if}\n      <ChatComposerOptions {panelProps} {composerState} />\n    </div>\n  {/snippet}\n  {#snippet workspace()}<ChatScopeFooter\n      inline\n      {panelProps}\n      {controller}\n      {conversationsState}\n      actions={panel.actions}\n    />{/snippet}\n</TranscriptFooter>\n\n<style>\n  .transcript-controls {\n    gap: var(--ui-agent-footer-controls-gap, 0.25rem);\n    display: flex;\n    align-items: center;\n  }\n</style>",
+          "after": "<TranscriptFooter\n  style=\"--ui-transcript-footer-padding:var(--ui-agent-footer-padding,0);--ui-transcript-footer-gap:var(--ui-agent-footer-gap,0.25rem)\"\n  busy={controller.busy || !!controller.queuedMessages.pending.length}\n  {state}\n  sendPending={state.sending ||\n    !!state.retainedSubmission ||\n    controller.queuedMessages.saving}\n  hasContent={(!controller.busy || !!controller.repository) &&\n    Boolean(composerState.draft.trim() || state.pending.length)}\n  canSend={!controller.queuedMessages.saving &&\n    Boolean(composerState.draft.trim() || state.pending.length)}\n  disabled={blocked}\n  {onSend}\n  onStop={controller.busy\n    ? () => panel.actions.perform(() => controller.cancel())\n    : undefined}\n  showStatus={false}\n>\n  {#snippet actions()}\n    <ChatComposerActions\n      {panelProps}\n      {controller}\n      {attachmentsState}\n      {composerState}\n      actions={panel.actions}\n    />\n    {@render documentActions?.()}\n  {/snippet}\n\n  {#snippet controls()}\n    <div class=\"transcript-controls\">\n      <ChatAgentPicker {panel} />\n      {#if panelProps.transcriptFrame}<ChatContextUsage\n          {controller}\n          {composerState}\n          actions={panel.actions}\n          variant=\"ring\"\n        />{/if}\n      <ChatComposerOptions {panelProps} {composerState} />\n    </div>\n  {/snippet}\n  {#snippet workspace()}<ChatScopeFooter\n      inline\n      {panelProps}\n      {controller}\n      {conversationsState}\n      actions={panel.actions}\n    />{/snippet}\n</TranscriptFooter>\n\n<style>\n  .transcript-controls {\n    gap: var(--ui-agent-footer-controls-gap, 0.25rem);\n    display: flex;\n    align-items: center;\n  }\n</style>"
         }
       ],
-      "layoutSha256": "e4001c627890abc78fe573ba5cea6b1c17153fd1fb0046a158d388b81f229a15"
+      "layoutSha256": "e1f73927218ffa9900f66dad00ac450e83ef3f064a9844d24dfcc4edf7430998"
     },
     {
       "sourceRepository": "lapis-desktop",
@@ -611,9 +618,12 @@
         },
         {
           "description": "User-authorized 2026-10-22 composer review: exact-draft MessageMetadata is composed inside the public Design Core statusContent footer, retaining the shared Document input frame and semantic red error tone; Classic feedback stays source-faithful."
+        },
+        {
+          "description": "User-authorized unified composer feedback review: errors/warnings share the attached input status API in both views; fixed actions and keyboard hints no longer render banners, with exact draft/request identity retained."
         }
       ],
-      "destinationSha256": "d8d2d4d4371b5c4769f075eee4c171962f096596a8d150614dbf307900edc8ab",
+      "destinationSha256": "0ca19c006779a8ca19b4ce68a6084bd5d8e5a740868725c7e07221f4383c6975",
       "layoutAdaptations": [
         {
           "before": "extensions={[references]}",
@@ -654,9 +664,13 @@
         {
           "before": "<div class=\"transcript-composer\">\n  {@render before?.()}\n  <MarkdownComposer\n    bind:handle\n    {...framedDrawer ? { drawer } : {}}\n    interactiveDrawerWhenDisabled\n    bind:value\n    bind:documentActions\n    presentation={view === \"document\" ? \"document\" : \"framed\"}\n    dockActions={view === \"document\"}\n    showSendButton={false}\n    {showHint}\n    submitOnEnter={false}\n    label=\"Message composer\"\n    inputLabel=\"Message\"\n    {placeholder}\n    {disabled}\n    {status}\n    {statusPosition}\n    triggers={suggestions}\n    extensions={[...(referenceExtension ? [referenceExtension] : []), ...extensions]}\n    {customEmojis}\n    {emojis}\n    {emojiText}\n    {additionalActions}\n    onSubmit={() => {\n      if (!disabled) onSend();\n    }}\n  >\n    {#snippet avatar()}<Avatar\n        name=\"You\"\n        initials=\"YO\"\n        size=\"sm\"\n        decorative\n      />{/snippet}\n  </MarkdownComposer>\n  {#if view === \"document\" && sendError}<div class=\"draft-metadata\">\n      <MessageMetadata\n        sender=\"assistant\"\n        status=\"error\"\n        statusLabel={sendError}\n        role=\"group\"\n        aria-label=\"Draft metadata\"\n      />\n    </div>{/if}\n</div>\n\n<style>\n  .transcript-composer {\n    --ui-markdown-composer-min-height: var(--ui-agent-composer-min-height, calc(2 * 1.4rem + 1rem));\n    --ui-markdown-composer-document-min-height: var(--ui-agent-composer-document-min-height, calc(2 * 0.875rem * 1.65));\n    display: grid;\n    gap: 0.5rem;\n    min-width: 0;\n  }\n  .draft-metadata {\n    padding-inline-start: 2rem;\n    min-width: 0;\n  }\n</style>",
           "after": "{#snippet failedDraftMetadata()}\n  <MessageMetadata\n    sender=\"assistant\"\n    status=\"error\"\n    statusLabel={sendError}\n    role=\"group\"\n    aria-label=\"Draft metadata\"\n  />\n{/snippet}\n\n<div class=\"transcript-composer\">\n  {@render before?.()}\n  <MarkdownComposer\n    bind:handle\n    {...framedDrawer ? { drawer } : {}}\n    interactiveDrawerWhenDisabled\n    bind:value\n    bind:documentActions\n    presentation={view === \"document\" ? \"document\" : \"framed\"}\n    dockActions={view === \"document\"}\n    showSendButton={false}\n    {showHint}\n    submitOnEnter={false}\n    label=\"Message composer\"\n    inputLabel=\"Message\"\n    {placeholder}\n    {disabled}\n    status={view === \"document\" && sendError\n      ? { type: \"error\", message: sendError }\n      : status}\n    statusContent={view === \"document\" && sendError\n      ? failedDraftMetadata\n      : undefined}\n    statusPosition={view === \"document\" && sendError\n      ? \"bottom\"\n      : statusPosition}\n    triggers={suggestions}\n    extensions={[\n      ...(referenceExtension ? [referenceExtension] : []),\n      ...extensions,\n    ]}\n    {customEmojis}\n    {emojis}\n    {emojiText}\n    {additionalActions}\n    onSubmit={() => {\n      if (!disabled) onSend();\n    }}\n  >\n    {#snippet avatar()}<Avatar\n        name=\"You\"\n        initials=\"YO\"\n        size=\"sm\"\n        decorative\n      />{/snippet}\n  </MarkdownComposer>\n</div>\n\n<style>\n  .transcript-composer {\n    --ui-markdown-composer-min-height: var(\n      --ui-agent-composer-min-height,\n      calc(2 * 1.4rem + 1rem)\n    );\n    --ui-markdown-composer-document-min-height: var(\n      --ui-agent-composer-document-min-height,\n      calc(2 * 0.875rem * 1.65)\n    );\n    display: grid;\n    gap: 0.5rem;\n    min-width: 0;\n  }\n</style>"
+        },
+        {
+          "before": "{#snippet failedDraftMetadata()}\n  <MessageMetadata\n    sender=\"assistant\"\n    status=\"error\"\n    statusLabel={sendError}\n    role=\"group\"\n    aria-label=\"Draft metadata\"\n  />\n{/snippet}\n\n<div class=\"transcript-composer\">\n  {@render before?.()}\n  <MarkdownComposer\n    bind:handle\n    {...framedDrawer ? { drawer } : {}}\n    interactiveDrawerWhenDisabled\n    bind:value\n    bind:documentActions\n    presentation={view === \"document\" ? \"document\" : \"framed\"}\n    dockActions={view === \"document\"}\n    showSendButton={false}\n    {showHint}\n    submitOnEnter={false}\n    label=\"Message composer\"\n    inputLabel=\"Message\"\n    {placeholder}\n    {disabled}\n    status={view === \"document\" && sendError\n      ? { type: \"error\", message: sendError }\n      : status}\n    statusContent={view === \"document\" && sendError\n      ? failedDraftMetadata\n      : undefined}\n    statusPosition={view === \"document\" && sendError\n      ? \"bottom\"\n      : statusPosition}\n    triggers={suggestions}\n    extensions={[\n      ...(referenceExtension ? [referenceExtension] : []),\n      ...extensions,\n    ]}\n    {customEmojis}\n    {emojis}\n    {emojiText}\n    {additionalActions}\n    onSubmit={() => {\n      if (!disabled) onSend();\n    }}\n  >\n    {#snippet avatar()}<Avatar\n        name=\"You\"\n        initials=\"YO\"\n        size=\"sm\"\n        decorative\n      />{/snippet}\n  </MarkdownComposer>\n</div>\n\n<style>\n  .transcript-composer {\n    --ui-markdown-composer-min-height: var(\n      --ui-agent-composer-min-height,\n      calc(2 * 1.4rem + 1rem)\n    );\n    --ui-markdown-composer-document-min-height: var(\n      --ui-agent-composer-document-min-height,\n      calc(2 * 0.875rem * 1.65)\n    );\n    display: grid;\n    gap: 0.5rem;\n    min-width: 0;\n  }\n</style>",
+          "after": "{#snippet feedbackMetadata()}\n  <MessageMetadata\n    sender=\"assistant\"\n    status=\"error\"\n    statusLabel={feedback?.message ?? \"An error occurred.\"}\n    role=\"group\"\n    aria-label=\"Composer feedback\"\n  />\n{/snippet}\n\n<div class=\"transcript-composer\">\n  {@render before?.()}\n  <MarkdownComposer\n    bind:handle\n    {...framedDrawer ? { drawer } : {}}\n    interactiveDrawerWhenDisabled\n    bind:value\n    bind:documentActions\n    presentation={view === \"document\" ? \"document\" : \"framed\"}\n    dockActions={view === \"document\"}\n    showSendButton={false}\n    {showHint}\n    submitOnEnter={false}\n    label=\"Message composer\"\n    inputLabel=\"Message\"\n    {placeholder}\n    {disabled}\n    status={feedback}\n    statusContent={feedback?.type === \"error\" ? feedbackMetadata : undefined}\n    {statusPosition}\n    triggers={suggestions}\n    extensions={[\n      ...(referenceExtension ? [referenceExtension] : []),\n      ...extensions,\n    ]}\n    {customEmojis}\n    {emojis}\n    {emojiText}\n    {additionalActions}\n    onSubmit={() => {\n      if (!disabled) onSend();\n    }}\n  >\n    {#snippet avatar()}<Avatar\n        name=\"You\"\n        initials=\"YO\"\n        size=\"sm\"\n        decorative\n      />{/snippet}\n  </MarkdownComposer>\n</div>\n\n<style>\n  .transcript-composer {\n    --ui-markdown-composer-min-height: var(\n      --ui-agent-composer-min-height,\n      calc(2 * 1.4rem + 1rem)\n    );\n    --ui-markdown-composer-document-min-height: var(\n      --ui-agent-composer-document-min-height,\n      calc(2 * 0.875rem * 1.65)\n    );\n    display: grid;\n    gap: 0.5rem;\n    min-width: 0;\n  }\n</style>"
         }
       ],
-      "layoutSha256": "fc9779dcdbd632eaa57c33b62bdfee67c1406274e413bf18bd2c814a5797cde2"
+      "layoutSha256": "436a2c2254f4f1cd942e5f3769227166a4b1c219adeb6ab4d94ceb0fa3722d37"
     },
     {
       "sourceRepository": "lapis-desktop",
@@ -679,9 +693,12 @@
         {
           "before": "const { controller, composerState }",
           "after": "const { composerState }"
+        },
+        {
+          "description": "User-authorized unified composer feedback review: errors/warnings share the attached input status API in both views; fixed actions and keyboard hints no longer render banners, with exact draft/request identity retained."
         }
       ],
-      "destinationSha256": "38855b25f1446b21d0d259290b84eba46b6368dce91e99830da34f320a15768f",
+      "destinationSha256": "7ddc26dd7aa84ec77ac53f59bc6248b7319c380471c922da02dd4ceb295e49b4",
       "layoutAdaptations": [
         {
           "before": "font-size: 0.6875rem;",
@@ -690,9 +707,13 @@
         {
           "before": "padding: 0.25rem 0.5rem;",
           "after": "padding: var(--ui-agent-send-hint-padding, 0.25rem 0.5rem);"
+        },
+        {
+          "before": "<div class=\"transcript-send-hint\">\n  {#if status}<ComposerStatusBanner {status} position=\"standalone\" />{/if}\n  <span>Ctrl/⌘+Enter to send</span>\n</div>\n\n<style>\n  .transcript-send-hint {\n    display: flex;\n    flex-direction: column;\n    box-sizing: border-box;\n    gap: 0.25rem;\n    min-height: 1.5rem;\n    padding: var(--ui-agent-send-hint-padding, 0.25rem 0.5rem);\n    color: var(--muted-foreground);\n    font-size: var(--ui-agent-send-hint-size, 0.6875rem);\n    line-height: 1rem;\n    --ui-composer-status-radius: var(--radius);\n  }\n  .transcript-send-hint > span {\n    padding-inline: 0.5rem;\n  }\n</style>",
+          "after": "<div class=\"transcript-send-hint\">\n  <span>Ctrl/⌘+Enter to send</span>\n</div>\n\n<style>\n  .transcript-send-hint {\n    display: flex;\n    flex-direction: column;\n    box-sizing: border-box;\n    gap: 0.25rem;\n    min-height: 1.5rem;\n    padding: var(--ui-agent-send-hint-padding, 0.25rem 0.5rem);\n    color: var(--muted-foreground);\n    font-size: var(--ui-agent-send-hint-size, 0.6875rem);\n    line-height: 1rem;\n  }\n  .transcript-send-hint > span {\n    padding-inline: 0.5rem;\n  }\n</style>"
         }
       ],
-      "layoutSha256": "2a0bfb1c00356b8dda2e3b0a59c3e62b9deab4a59217137feb8a2baa4b500ff4"
+      "layoutSha256": "6e7240d31927411446c393ce5017ca623eddf3f7546c7a8e85d0961734f000fe"
     },
     {
       "sourceRepository": "lapis-desktop",

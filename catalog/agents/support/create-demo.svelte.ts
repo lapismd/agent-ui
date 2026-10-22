@@ -154,10 +154,12 @@ export function createDemo(
       controller.action("copy_response", text).then(() => {}),
     onOpenPath: (path) => controller.action("open_path", path).then(() => {}),
     workingLabel: "Agent is working…",
-    composerStatus:
-      scenario === "all"
-        ? { type: "warning", message: "Context window is 90% full." }
-        : undefined,
+    composer: {
+      status:
+        scenario === "all"
+          ? { type: "warning", message: "Context window is 90% full." }
+          : undefined,
+    },
     blocks: {
       "local-command/body": { kind: "command" },
       "inventory/body": {

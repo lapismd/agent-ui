@@ -15,11 +15,18 @@
 
 **Requirement.** Submission MUST retain authored input until host acknowledgement. Unknown outcomes MUST preserve the exact pending request and MUST NOT replay automatically.
 
+ChatMessageComposer.status and AgentTranscriptOptions.composer.status MUST be the
+shared error/warning presentation API. Controller action, permission/question,
+unknown-submission and comment-send feedback MUST use the same attached composer
+status in both views; fixed footer actions and send hints MUST NOT render another
+banner. Error metadata MUST retain the shared status typography and red tone,
+while unknown outcomes remain warnings and stale draft errors remain suppressed.
+
 ### Acceptance details
 
 - Public types express the boundary.
 - Focused tests and production-component stories verify the behavior.
-- A refused send MUST retain its exact draft and show red MessageMetadata in an attached error footer below the framed Document composer while Classic keeps its existing feedback.
+- A refused send MUST retain its exact draft and show red MessageMetadata in an attached error footer below the framed composer in both Document and Classic views.
 - Errors MUST NOT be attributed to another session or an edited draft, and unknown outcomes MUST retain recovery feedback without retry.
 
 ## AUI-CHAT-003 — Interactions
@@ -41,7 +48,7 @@
 
 - Editor, Markdown preview and transcript references MUST preserve authored Markdown or registered host tokens, use shared InlineReference/ReferenceChip presentation and keep identity lookup, navigation and recipient dispatch host-owned.
 - Agent mentions MUST be references by default; only an explicit host policy may derive recipients from the exact submitted text.
-- Editable inline comments MUST expose a right-aligned formatting T toggle that opens the shared Markdown actions below the input while retaining drafts and selection; default Comment MUST be icon-only; configurable reactions and overflow actions MUST remain clear of tool controls, while wholly unavailable hover controls MUST be absent.
+- Editable inline comments MUST place the formatting T last on the same row as hover actions, without reserving hidden action width, and open shared Markdown actions and the emoji picker below the input aligned with the text while retaining drafts and selection; default Comment MUST be icon-only; configurable reactions and overflow actions MUST remain clear of tool controls, while wholly unavailable hover controls MUST be absent.
 - Paired editor/preview and complete-screen stories MUST demonstrate people/agents, repositories, GitHub/Forgejo link icons, emoji, spoilers, suggestions and retained source with stock Mira content styling, a line-number-free composer and targeted functional/accessibility evidence.
 
 ## AUI-SCREEN-001 — Agent screens

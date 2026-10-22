@@ -9,6 +9,7 @@
     type MarkdownComposerHandle,
   } from "@lapismd/design-core/chat";
   import { Avatar } from "@lapismd/design-core/shadcn/avatar";
+  import { composerFeedback } from "../composer-feedback.js";
   import type { AgentRecipientOption } from "../presentation.js";
   let {
     value = $bindable(""),
@@ -56,14 +57,21 @@
       typeof MarkdownComposer
     >["additionalActions"];
     handle?: MarkdownComposerHandle | null;
+    /** Shared error/warning API in both views; feedback attaches below the input by default. */
     status?: ComponentProps<typeof MarkdownComposer>["status"];
     statusPosition?: "top" | "bottom";
-    /** Refused send for this exact retained draft; unknown outcomes use recovery feedback. */
+    /** @deprecated Pass error/warning feedback through status in either presentation. */
     sendError?: string;
     before?: Snippet;
     drawer?: Snippet;
     onSend(): void;
   } = $props();
+  const feedback = $derived(
+    composerFeedback(
+      sendError ? { type: "error", message: sendError } : undefined,
+      status,
+    ),
+  );
   const referenceExtension = $derived(
     references ? createChatReferenceExtension(references) : undefined,
   );
@@ -100,13 +108,13 @@
   ]);
 </script>
 
-{#snippet failedDraftMetadata()}
+{#snippet feedbackMetadata()}
   <MessageMetadata
     sender="assistant"
     status="error"
-    statusLabel={sendError}
+    statusLabel={feedback?.message ?? "An error occurred."}
     role="group"
-    aria-label="Draft metadata"
+    aria-label="Composer feedback"
   />
 {/snippet}
 
@@ -127,15 +135,9 @@
     inputLabel="Message"
     {placeholder}
     {disabled}
-    status={view === "document" && sendError
-      ? { type: "error", message: sendError }
-      : status}
-    statusContent={view === "document" && sendError
-      ? failedDraftMetadata
-      : undefined}
-    statusPosition={view === "document" && sendError
-      ? "bottom"
-      : statusPosition}
+    status={feedback}
+    statusContent={feedback?.type === "error" ? feedbackMetadata : undefined}
+    {statusPosition}
     triggers={suggestions}
     extensions={[
       ...(referenceExtension ? [referenceExtension] : []),

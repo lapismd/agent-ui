@@ -1,23 +1,4 @@
-<script lang="ts">
-  import {
-    ComposerStatusBanner,
-    type ComposerStatus,
-  } from "@lapismd/design-core/chat";
-  import type { TranscriptPanelProps } from "../presentation.js";
-  let {
-    panel,
-    error,
-  }: { panel: TranscriptPanelProps; error?: string | null | undefined } =
-    $props();
-  const { composerState } = $derived(panel);
-  const status = $derived<ComposerStatus | undefined>(
-    composerState.composerStatus ??
-      (error ? { type: "error", message: error } : undefined),
-  );
-</script>
-
 <div class="transcript-send-hint">
-  {#if status}<ComposerStatusBanner {status} position="standalone" />{/if}
   <span>Ctrl/⌘+Enter to send</span>
 </div>
 
@@ -32,7 +13,6 @@
     color: var(--muted-foreground);
     font-size: var(--ui-agent-send-hint-size, 0.6875rem);
     line-height: 1rem;
-    --ui-composer-status-radius: var(--radius);
   }
   .transcript-send-hint > span {
     padding-inline: 0.5rem;

@@ -83,6 +83,9 @@ test("unknown permission response retains the exact request and status never rep
   await c.respondToApproval("permission", "forged");
   expect(port.calls).toHaveLength(0);
   await c.respondToApproval("permission", "opaque-choice");
+  expect(
+    createChatPresentation(() => c).composerState.composerStatus?.type,
+  ).toBe("warning");
   expect(c.pending?.target).toBe("permission");
   expect(c.interaction?.id).toBe("permission");
   await c.respondToApproval("permission", "opaque-choice");
@@ -99,6 +102,9 @@ test("refused responses retain drafts and an explicit retry requires a new actio
   c.requests.permission(c.sessionId, "permission", "opaque-choice");
   await c.respondToApproval("permission", "opaque-choice");
   expect(c.requestFeedback?.state.status).toBe("refused");
+  expect(
+    createChatPresentation(() => c).composerState.composerStatus?.type,
+  ).toBe("error");
   expect(c.requests.get(c.sessionId, "permission").optionId).toBe(
     "opaque-choice",
   );
@@ -246,5 +252,22 @@ test("refusal feedback follows the current request while unknown response retain
   ).toBe("Refreshed allowance");
   c.snapshot.requests[0].id = "new-request";
   expect(presentation.attachmentsState.requestState?.status).toBe("pending");
+  await c.close();
+});
+
+test("a refused permission stays visible when its wording matches an older send failure", async () => {
+  const { port, c } = setup();
+  port.fault = "failed";
+  c.transcript.message = "Earlier failed draft";
+  await c.transcript.send();
+  c.transcript.message = "An edited draft";
+  expect(
+    createChatPresentation(() => c).composerState.composerStatus,
+  ).toBeUndefined();
+  await c.respondToApproval("permission", "opaque-choice");
+  expect(createChatPresentation(() => c).composerState.composerStatus).toEqual({
+    type: "error",
+    message: "The simulated host refused this action.",
+  });
   await c.close();
 });

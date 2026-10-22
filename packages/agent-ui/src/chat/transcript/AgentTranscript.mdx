@@ -153,13 +153,13 @@ Supply `options.messages` and explicit `onRetry`, `onCopyResponse`, `onOpenPath`
 callbacks for host actions. `options.blocks` describes local result renderers;
 `customBlock` remains the host's registered result-view hook. `icons` is a
 presentation-only map, keeping component functions out of persisted snapshots.
-`options.changes` integrates the saved-turn controller. Use `composerStatus` and
-`composerStatusPosition` for attached warnings; failed authored messages use
+`options.changes` integrates the saved-turn controller. Use
+`options.composer.status` and `options.composer.statusPosition` for attached
+warnings and errors; failed authored messages use
 Design Core's `item.status` metadata below their body.
 
-Refused sends stay in the editable draft. In Document mode the shared
-MessageMetadata appears immediately below that exact draft; Classic keeps its
-existing red feedback. Editing the draft or changing sessions cannot attach the
+Refused sends stay in the editable draft. The shared MessageMetadata appears
+immediately below that exact draft in both views. Editing the draft or changing sessions cannot attach the
 previous refusal to another message. Unknown outcomes retain recovery feedback.
 Document mode leaves 4rem below the composer (3rem below 600px), using the
 document's original trailing buffer. Override
@@ -174,7 +174,16 @@ or expanding cannot submit another response. Unknown responses keep their captur
 request in the drawer until the host acknowledges them. Other completed history
 remains visible during later requests. Hosts own capture order and persistence.
 
-Editable inline comments include a right-aligned T toggle. It opens the shared
-formatting actions below the input and closes without changing the draft or
-selection. Denied permission history uses a red label/icon and the shared compact
+Editable inline comments place the T toggle at the far right, after the hover
+actions on the same row. Hidden actions reserve no editor width. It opens the shared formatting actions
+and emoji picker below the input, aligned with the text, and closes without
+changing the draft or selection. Denied permission history uses a red label/icon and the shared compact
 tool-row spacing, while retaining its captured permission outcome.
+
+Use `status={{ type: "error", message: "The host refused this request." }}` or
+`status={{ type: "warning", message: "Check the original request before continuing." }}`
+on ChatMessageComposer; complete transcripts forward the same API through
+`options.composer.status`. Host errors outrank advisory warnings. Unknown outcomes
+remain warnings, and status rendering never retries or clears a draft. Fixed
+action footers and keyboard hints do not render a second banner. The older
+`sendError` and top-level `composerStatus` props are compatibility aliases.

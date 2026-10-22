@@ -5,6 +5,7 @@
   import AgentMessageMetadata from "../message-metadata/AgentMessageMetadata.svelte";
   import { historyTranscript } from "../turn-changes/transcript.js";
   import { requestTranscript } from "../request-transcript.js";
+  import { composerFeedback } from "../composer-feedback.js";
   import type { Snippet } from "svelte";
   import {
     Transcript,
@@ -68,13 +69,13 @@
     ...options.markdown,
     references: options.markdown?.references ?? references,
   });
-  const footerError = $derived.by(() => {
-    const failure =
-      controller.view === "document" ? controller.sendFailure : undefined;
-    return [controller.error, controller.transcript.error].find(
-      (message) => message && message !== failure?.reason,
-    );
-  });
+  const feedback = $derived(
+    composerFeedback(
+      panel.composerState.composerStatus,
+      options.composer?.status,
+      options.composerStatus,
+    ),
+  );
 </script>
 
 {#snippet attachmentsDrawer()}
@@ -149,9 +150,10 @@
       disabled={!!controller.pending}
       showHint={false}
       onSend={send}
-      status={options.composerStatus}
-      statusPosition={options.composerStatusPosition}
-      sendError={controller.draftSendError}
+      status={feedback}
+      statusPosition={options.composer?.statusPosition ??
+        options.composerStatusPosition ??
+        "bottom"}
       framedDrawer={view === "classic" &&
         (controller.attachments.length > 0 ||
           !!panel.attachmentsState.pendingInteraction)}
@@ -165,10 +167,7 @@
           />{/if}{/snippet}
     </ChatMessageComposer>
   {/snippet}
-  {#snippet footer()}<AiTranscriptSendHint
-      {panel}
-      error={footerError}
-    />{/snippet}
+  {#snippet footer()}<AiTranscriptSendHint />{/snippet}
 </Transcript>
 
 <style>

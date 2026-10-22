@@ -86,3 +86,12 @@ Question letter/number badges precede their radio buttons/checkboxes and use a s
 Document composer status framing and red retained-draft metadata are repaired in Design Core; Chat Error matches the All Messages footer typography. The review uses a prepared source-inclusive public archive with 42 focused light/dark cases passing, and pauses before downstream adoption.
 
 Request review follow-up: denied permission text/icons use semantic red and compact disclosure spacing; inline comment editors expose the shared formatting T toggle and Markdown actions. Focused qualification precedes the same downstream review gate.
+
+Chat feedback now uses the shared attached composer status API in Document and
+Classic, including refused/unknown message and permission/question responses.
+Fixed action footers and keyboard hints no longer add separate banners. Inline
+comment hover actions remain inside the first row before the far-right T;
+the formatting strip adds the shared emoji picker and aligns with the text.
+Source/consumer qualification is recorded in
+`spec/records/2026-10-22-unified-composer-feedback.md`. Stop here for visual review
+before publication or downstream adoption.

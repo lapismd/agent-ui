@@ -1,4 +1,15 @@
-export const Basic =
-  '<script lang="ts">\n  import { onDestroy, untrack } from "svelte";\n  import { AgentUiController, createChatPresentation, type AgentPort, AgentSendHint } from "@lapismd/agent-ui";\n  let { port }: { port: AgentPort } = $props();\n  const controller = untrack(() => new AgentUiController(port));\n  const panel = createChatPresentation(() => controller);\n  void controller.refresh();\n  onDestroy(() => { void controller.close(); });\n</script>\n<AgentSendHint {panel} error={controller.error} />';
-export const Styling =
-  '<script lang="ts">\n  import { onDestroy, untrack } from "svelte";\n  import { AgentUiController, createChatPresentation, type AgentPort, AgentSendHint } from "@lapismd/agent-ui";\n  let { port }: { port: AgentPort } = $props();\n  const controller = untrack(() => new AgentUiController(port));\n  const panel = createChatPresentation(() => controller);\n  void controller.refresh();\n  onDestroy(() => { void controller.close(); });\n</script>\n<div style="--ui-agent-send-hint-size: 0.75rem;">\n<AgentSendHint {panel} error={controller.error} /></div>';
+export const Basic = `<script lang="ts">
+  import { AgentSendHint } from "@lapismd/agent-ui/chat";
+</script>
+<AgentSendHint />`;
+export const Styling = `<script lang="ts">
+  import { AgentSendHint } from "@lapismd/agent-ui/chat";
+</script>
+<div style="--ui-agent-send-hint-size:0.75rem"><AgentSendHint /></div>`;
+
+export const WithFeedback = `<script lang="ts">
+  import { AgentSendHint, ChatMessageComposer } from "@lapismd/agent-ui/chat";
+  let value = $state("Retain this exact draft.");
+</script>
+<ChatMessageComposer bind:value view="document" status={{ type:"error", message:"The host refused this request." }} onSend={() => {}} />
+<AgentSendHint />`;

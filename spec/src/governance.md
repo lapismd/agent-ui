@@ -7,6 +7,8 @@ Request-card paint refinements MUST use public primitive tokens or root style
 props with audited Agent UI variables, without dependency selector overrides.
 Generic input/status frame geometry and custom status content MUST remain owned
 by public Design Core components; Agent UI supplies exact-draft metadata.
+All live chat warnings/errors MUST flow through the owning composer status API;
+fixed action footers and keyboard hints MUST not duplicate status presentation.
 Captured permission outcomes use the public TranscriptItem disclosure tone;
 inline comment formatting stays in shared CommentComposer and public Mira actions.
 Request-card red/green feedback remains an explicit audited source adaptation.

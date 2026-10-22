@@ -1,3 +1,4 @@
+import { feedbackReview } from "./agents/support/composer-feedback.js";
 import { verifyInlineCommentFormatting } from "./agents/support/comment-formatting.js";
 import ReferenceDemo from "./agents/references/ReferenceDemo.svelte";
 import type { Meta, StoryObj } from "@storybook/svelte-vite";
@@ -201,7 +202,7 @@ export const ChatError: Story = {
     ).getByRole("textbox", { name: "Message" });
     await expect(draft).toHaveTextContent("Retain my exact authored draft.");
     const metadata = await c.findByRole("group", {
-      name: "Draft metadata",
+      name: "Composer feedback",
     });
     await expect(
       parseFloat(
@@ -228,9 +229,11 @@ export const ChatError: Story = {
   },
 };
 export const RefusedSubmission: Story = {
+  play: feedbackReview("error"),
   render: () => ({ Component: AgentDemo, props: { scenario: "refused" } }),
 };
 export const UnknownSubmission: Story = {
+  play: feedbackReview("warning"),
   render: () => ({ Component: AgentDemo, props: { scenario: "unknown" } }),
 };
 
@@ -329,12 +332,14 @@ export const RequestsFreeText: Story = {
   }),
 };
 export const RequestRefused: Story = {
+  play: feedbackReview("error", true),
   render: () => ({
     Component: AgentDemo,
     props: { requests: true, fault: "failed" },
   }),
 };
 export const RequestUnknown: Story = {
+  play: feedbackReview("warning", true),
   render: () => ({
     Component: AgentDemo,
     props: { requests: true, fault: "unknown" },

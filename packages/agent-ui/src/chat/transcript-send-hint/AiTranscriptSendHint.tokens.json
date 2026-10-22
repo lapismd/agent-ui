@@ -11,7 +11,7 @@
     {
       "name": "--ui-agent-send-hint-padding",
       "default": "0.25rem 0.5rem",
-      "description": "Hint and feedback inset",
+      "description": "Keyboard hint inset",
       "owner": "@lapismd/agent-ui",
       "source": "chat/transcript-send-hint/AiTranscriptSendHint.svelte"
     }

@@ -16,3 +16,13 @@ export const References = `<script lang="ts">
 </script>
 <ChatMessageComposer bind:value view="document" {references} {referenceSources} extensions={[spoilerExtension]} onSend={() => console.log(value)} />
 <MarkdownContent content={value} {references} extensions={[spoilerExtension]} />`;
+
+export const Feedback = `<script lang="ts">
+  import { ChatMessageComposer } from "@lapismd/agent-ui/chat";
+  import type { ComposerStatus } from "@lapismd/design-core/chat";
+  let value = $state("Retain this draft");
+  let status = $state<ComposerStatus | undefined>({ type: "warning", message: "Check the original request before continuing." });
+</script>
+<ChatMessageComposer bind:value view="document" {status} onSend={() => {}} />
+<button onclick={() => { status = { type: "error", message: "The host refused this request." }; }}>Show error</button>
+<button onclick={() => { status = undefined; }}>Clear feedback</button>`;

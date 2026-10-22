@@ -6,7 +6,11 @@ import {
   ArgTypes,
 } from "@storybook/addon-docs/blocks";
 import * as Stories from "./AiTranscriptSendHint.stories";
-import { Basic, Styling } from "./AiTranscriptSendHint.example-sources";
+import {
+  Basic,
+  Styling,
+  WithFeedback,
+} from "./AiTranscriptSendHint.example-sources";
 import tokens from "./AiTranscriptSendHint.tokens.json";
 import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
 
@@ -14,20 +18,19 @@ import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
 
 # Send feedback
 
-The original keyboard hint and host delivery feedback below the transcript.
+Keyboard send guidance below the transcript; attached feedback belongs to the composer.
 
 ## Usage
 
-Pass the presentation panel and current host error. Composer status takes priority over the fallback error. This keeps feedback consistent with the footer while the draft stays in the owning controller.
+Render AgentSendHint beside the fixed actions. Send errors and warnings through ChatMessageComposer.status or AgentTranscriptOptions.composer.status; the hint takes no controller or error props.
 
 <Source code={Basic} language="tsx" />
 
 ## Anatomy
 
-| Part          | Responsibility                               |
-| ------------- | -------------------------------------------- |
-| Status banner | Host feedback from the presentation adapter. |
-| Shortcut hint | Ctrl/Command+Enter send guidance.            |
+| Part          | Responsibility                    |
+| ------------- | --------------------------------- |
+| Shortcut hint | Ctrl/Command+Enter send guidance. |
 
 ## Variations
 
@@ -39,13 +42,14 @@ Keyboard hint without an error.
 
 ### Error
 
-Visible retained-draft host feedback.
+The shared composer shows retained-draft feedback, with the keyboard hint in context below it.
 
 <Canvas of={Stories.Error} />
+<Source code={WithFeedback} language="tsx" />
 
 ## Behavior and accessibility
 
-Feedback never triggers a retry or clears authored text. Unknown or refused submissions stay under host control. This component supplies presentation only; status recovery belongs to the controller and port.
+The hint does not render an alert or status banner. Composer feedback never triggers a retry or clears authored text. Unknown or refused submissions stay under host control. This component supplies presentation only; status recovery belongs to the controller and port.
 
 ## Styling variables
 

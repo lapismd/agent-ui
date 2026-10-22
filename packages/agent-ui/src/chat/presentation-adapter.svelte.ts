@@ -1,4 +1,5 @@
 import { currentAgentRequest } from "../core/request-actions.svelte.js";
+import { controllerComposerFeedback } from "./composer-feedback.js";
 import type { AgentUiController } from "../core/controller.svelte.js";
 import type { SettingsPatch, TranscriptPanelProps } from "./presentation.js";
 import { normalizeAcpAgent } from "../profiles/acp-agents.js";
@@ -121,9 +122,7 @@ export function createChatPresentation(
           : 0;
       },
       get composerStatus() {
-        return owner().pending
-          ? { type: "warning" as const, message: owner().notice }
-          : undefined;
+        return controllerComposerFeedback(owner());
       },
       get recipientOptions() {
         return recipientOptions();

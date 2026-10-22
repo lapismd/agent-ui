@@ -1,10 +1,14 @@
+import FeedbackFixture from "./ChatMessageComposer.feedback.stories.fixture.svelte";
 import ReferenceDemo from "../../../../../catalog/agents/references/ReferenceDemo.svelte";
 import { References } from "./ChatMessageComposer.example-sources.js";
 import { expect, within, userEvent, waitFor } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/svelte-vite";
 import Component from "./ChatMessageComposer.svelte";
 import Fixture from "../transcript/AgentTranscript.stories.fixture.svelte";
-import { Basic as source } from "./ChatMessageComposer.example-sources.js";
+import {
+  Basic as source,
+  Feedback,
+} from "./ChatMessageComposer.example-sources.js";
 const meta = {
   title: "Agents/Chat/Message composer",
   component: Component,
@@ -56,4 +60,26 @@ export const ClassicReferences: StoryObj<typeof ReferenceDemo> = {
     docs: { source: { code: References, language: "tsx", type: "code" } },
   },
   render: () => ({ Component: ReferenceDemo, props: { classic: true } }),
+};
+
+export const Warning: StoryObj<typeof FeedbackFixture> = {
+  parameters: {
+    docs: { source: { code: Feedback, language: "tsx", type: "code" } },
+  },
+  render: () => ({ Component: FeedbackFixture }),
+};
+export const WarningClassic: StoryObj<typeof FeedbackFixture> = {
+  parameters: {
+    docs: { source: { code: Feedback, language: "tsx", type: "code" } },
+  },
+  render: () => ({ Component: FeedbackFixture, props: { view: "classic" } }),
+};
+export const ErrorClassic: Story = {
+  parameters: {
+    docs: { source: { code: Feedback, language: "tsx", type: "code" } },
+  },
+  render: () => ({
+    Component: Fixture,
+    props: { part: "footer", scenario: "error", view: "classic" },
+  }),
 };

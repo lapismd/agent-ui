@@ -35,7 +35,9 @@ export type AgentTranscriptOptions = Pick<
   onCopyResponse?: (text: string) => void | Promise<void>;
   onOpenPath?: (path: string) => void | Promise<void>;
   workingLabel?: string;
+  /** @deprecated Prefer composer.status. */
   composerStatus?: import("@lapismd/design-core/ai/chat").ComposerStatus;
+  /** @deprecated Prefer composer.statusPosition. */
   composerStatusPosition?: "top" | "bottom";
   changes?: import("./turn-changes/controller.svelte.js").AiHistoryInspection;
 };
@@ -49,6 +51,8 @@ export type AgentComposerOptions = Pick<
   | "emojiText"
   | "placeholder"
   | "additionalActions"
+  | "status"
+  | "statusPosition"
 > & {
   references?: import("@lapismd/design-core/chat").ChatReferenceOptions;
   referenceSources?: readonly import("@lapismd/design-core/chat").ChatReferenceSource[];
