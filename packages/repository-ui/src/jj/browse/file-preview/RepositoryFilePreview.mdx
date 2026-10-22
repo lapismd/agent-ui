@@ -78,6 +78,8 @@ An injected read refusal can be retried at the same repository/operation/revisio
 
 ## Behavior and accessibility
 
+The metadata ellipsis toggles the same local recorded commit description used by File History, directly beneath its row, with no vertical spacing and a thin horizontal inset. Long descriptions offer View more/View less; Markdown stays transparent inside the parent panel. Disclosure does not invoke commit navigation, change the pin or issue a repository read.
+
 The source-adapted Preview, Source and Blame buttons expose the current view
 through aria-pressed. Shadcn tooltips describe the header actions and semantic
 hover surfaces provide feedback. Blame replaces the file contents in the same

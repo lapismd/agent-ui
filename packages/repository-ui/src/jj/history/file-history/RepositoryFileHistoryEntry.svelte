@@ -3,12 +3,11 @@
   import type { LocalGraphCommit } from "@lapismd/jj-history";
   import FileCodeIcon from "@lucide/svelte/icons/file-code";
   import CodeIcon from "@lucide/svelte/icons/code";
-  import EllipsisIcon from "@lucide/svelte/icons/ellipsis";
   import { Button } from "@lapismd/design-core/shadcn/button";
   import * as Tooltip from "@lapismd/design-core/shadcn/tooltip";
   import RepositoryAuthorAvatar from "../../foundations/author-avatar/RepositoryAuthorAvatar.svelte";
   import RepositoryIdentifiers from "../../foundations/identifiers/RepositoryIdentifiers.svelte";
-  import RepositoryCommitMessage from "../commit-message/RepositoryCommitMessage.svelte";
+  import RepositoryCommitDetails from "../commit-message/RepositoryCommitDetails.svelte";
   let {
     commit,
     copyText,
@@ -20,8 +19,6 @@
     onOpen(revision: string): void;
     onBrowse?: (revision: string) => void;
   } = $props();
-  const id = $props.id();
-  let expanded = $state(false);
   const subject = $derived(
     commit.description.split("\n")[0] || "No description",
   );
@@ -38,23 +35,14 @@
 
 <article class="file-history-entry" aria-label={subject}>
   <div class="file-history-entry__content">
-    <div class="file-history-entry__subject">
-      <strong>{subject}</strong>
-      {#if hasBody}<Button
-          variant="ghost"
-          size="icon-xs"
-          style="--accent:var(--ui-repository-file-history-action-hover-background, color-mix(in srgb, var(--foreground) 10%, var(--background)))"
-          aria-label={expanded
-            ? "Hide commit description"
-            : "Show commit description"}
-          aria-expanded={expanded}
-          aria-controls={id}
-          onclick={() => (expanded = !expanded)}><EllipsisIcon /></Button
-        >{/if}
-    </div>
-    {#if expanded}<div {id}>
-        <RepositoryCommitMessage description={commit.description} />
-      </div>{/if}
+    <RepositoryCommitDetails description={commit.description}>
+      {#snippet children(toggle, panel)}
+        <div class="file-history-entry__subject">
+          <strong>{subject}</strong>{#if hasBody}{@render toggle()}{/if}
+        </div>
+        {@render panel()}
+      {/snippet}
+    </RepositoryCommitDetails>
     <div class="file-history-entry__author">
       <RepositoryAuthorAvatar
         name={commit.author.name}

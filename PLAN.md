@@ -171,3 +171,5 @@ Blame before repository overview or workspace work. Focused qualification and
 remaining limits are recorded in `spec/records/2026-10-22-repository-browser.md`.
 Broad suites, static/clean-package matrix and downstream adoption remain gated
 on final review; all new stories are visual-pending.
+
+Files review follow-up: Directory and File Preview metadata now reuse the same local expandable commit-description control as File History; no route/pin changes. Targeted evidence is appended to the Files record.

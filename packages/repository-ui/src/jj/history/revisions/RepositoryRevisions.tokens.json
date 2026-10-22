@@ -28,6 +28,20 @@
       "description": "Outer commit description panel backing; the Markdown preview remains transparent by default.",
       "owner": "@lapismd/repository-ui",
       "source": "jj/history/commit-message/RepositoryCommitMessage.svelte"
+    },
+    {
+      "name": "--ui-repository-revisions-message-padding",
+      "default": "0.75rem",
+      "description": "Inset within the outer description panel; metadata disclosures use zero vertical and thin horizontal padding.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/commit-message/RepositoryCommitMessage.svelte"
+    },
+    {
+      "name": "--ui-repository-revisions-message-margin",
+      "default": "0.25rem 0.75rem 0.75rem",
+      "description": "Outer description panel spacing; compact metadata disclosures remove it.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/commit-message/RepositoryCommitMessage.svelte"
     }
   ]
 }

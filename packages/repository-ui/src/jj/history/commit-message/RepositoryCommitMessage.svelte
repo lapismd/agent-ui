@@ -71,8 +71,11 @@
 <style>
   .repository-review-commit-message {
     min-width: 0;
-    margin: 0.25rem 0.75rem 0.75rem;
-    padding: 0.75rem;
+    margin: var(
+      --ui-repository-revisions-message-margin,
+      0.25rem 0.75rem 0.75rem
+    );
+    padding: var(--ui-repository-revisions-message-padding, 0.75rem);
     border-radius: calc(var(--radius) * 0.8);
     background: var(
       --ui-repository-revisions-message-surface,

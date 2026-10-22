@@ -4,6 +4,7 @@ import type {
   RepositoryBrowserEntry,
 } from "../../../packages/repository-ui/src/jj/index.js";
 import { repository, operation, revision } from "./reference/fixture.js";
+import { richCommitMessage } from "./reference/rich-commit.js";
 import { blameText } from "./reference/blame.js";
 export const browserPin = { repository, operation, revision };
 export const browserNow = 1792692000;
@@ -11,7 +12,8 @@ export const browserCommit: RepositoryBrowserCommit = {
   eventId: revision,
   changeId: "aa".repeat(16),
   message:
-    "Extract reusable repository browsing without losing the recorded context",
+    "Extract reusable repository browsing without losing the recorded context\n" +
+    richCommitMessage.slice(richCommitMessage.indexOf("\n")),
   author: "Alex Morgan",
   authorEmail: "dev@lapis.md",
   createdAt: browserNow - 7200,

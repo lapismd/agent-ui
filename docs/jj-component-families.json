@@ -59,7 +59,8 @@
         "jj/history/revision-actions/RepositoryRevisionActions.svelte",
         "jj/history/commit-message/RepositoryCommitMessage.svelte",
         "jj/history/revisions/RepositoryHistoryLimit.svelte",
-        "jj/history/revision-files/RepositoryRevisionFiles.svelte"
+        "jj/history/revision-files/RepositoryRevisionFiles.svelte",
+        "jj/history/commit-message/RepositoryCommitDetails.svelte"
       ]
     },
     {

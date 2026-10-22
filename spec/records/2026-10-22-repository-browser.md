@@ -122,3 +122,46 @@ All new/changed stories remain visual-pending. Full product suites, static build
 clean package/example matrix, broader downstream acceptance and publication are
 deferred until final human screen review. Stop before overview, branches,
 workspace presentation or transfers.
+
+## Metadata disclosure follow-up
+
+After Files foundation commit `4d469e20`, the two user-marked metadata locations
+reuse one private RepositoryCommitDetails implementation with File History.
+Directory and file headers expose the same ellipsis button; its recorded
+Markdown body opens beneath the row with transparent preview and shared
+View more/View less. Existing commit links retain host navigation, while local
+disclosure changes neither the pin nor host action state. Fixtures now include
+a complete long description. The new part is owned by the Revision details
+family and its source/default contracts remain audited.
+
+Before: `pnpm exec playwright test --config .local/live-chat.config.ts tests/repository-metadata-details.pw.ts`
+failed both exact cases, because the controls/panels were absent. After:
+`pnpm exec playwright test --config .local/live-chat.config.ts tests/repository-metadata-details.pw.ts tests/repository-file-history.pw.ts tests/repository-browser.pw.ts`
+passed all 11 cases, including both original regressions, metadata placement,
+transparent preview, long-body expansion and no host navigation side effects.
+
+The four directly affected Directory/File Preview/File History/Files story
+families passed 33 interaction/accessibility cases with
+`pnpm exec vitest run --project storybook packages/repository-ui/src/jj/browse/directory/RepositoryDirectory.stories.ts packages/repository-ui/src/jj/browse/file-preview/RepositoryFilePreview.stories.ts packages/repository-ui/src/jj/history/file-history/RepositoryFileHistory.stories.ts packages/repository-ui/src/jj/screens/browser/RepositoryBrowser.stories.ts`.
+Svelte-check had zero errors/warnings and architecture passed. Source
+fingerprints/original-layout adaptations and the owning package build are
+rechecked. Specification checks retain the canonical governance mapping in this
+follow-up change. Broad qualification and human visual approval remain deferred.
+
+Metadata spacing review adds compact disclosure styling with no vertical
+padding/margins and an 8px horizontal inset, configured through unchanged-default
+public message spacing tokens. The original spacing target failed both cases
+before this correction. Final metadata/history tests explicitly assert those
+computed styles while preserving the history layout defaults. Cold metadata
+acceptance passed both exact cases after awaiting the owning region's startup
+readiness; the control-presence assertions remain unchanged. The first cold
+attempt had one startup-readiness failure, distinct from the repaired UI cases.
+
+Final spacing qualification: all five metadata/history browser cases passed,
+including zero vertical padding/margins and the 8px inline inset. The five
+Directory/File Preview/File History/Revision details/Files Storybook families
+passed 36 interaction/accessibility cases. Types had zero diagnostics;
+architecture, the three specification lanes, package build/publint and source
+checks passed. The review gate and broad-check deferral remain unchanged.
+
+The shared long-description fixture also passes all 13 Reference Picker/Change Card interaction and accessibility cases. The final public package build/publint and changed-file formatting check pass.

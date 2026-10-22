@@ -27,7 +27,7 @@
       "default": "color-mix(in srgb, var(--foreground) 10%, var(--background))",
       "description": "Subtle hover fill for the commit description button.",
       "owner": "@lapismd/repository-ui",
-      "source": "jj/history/file-history/RepositoryFileHistoryEntry.svelte"
+      "source": "jj/history/commit-message/RepositoryCommitDetails.svelte"
     },
     {
       "name": "--ui-repository-file-history-details-hover-background",
