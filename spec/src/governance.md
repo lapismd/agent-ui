@@ -44,7 +44,7 @@ read-only; copied layouts and CSS MUST retain exact source revisions and
 explicitly documented adaptations. Shared commit-detail disclosure MUST be composed by directory summaries, file metadata and file history, with one private implementation and per-owner documentation. Attached directory/file metadata detail surfaces MUST retain a single enclosing card and divider. The narrower history default preserves the existing host-layout binding, documented defaults, source comparisons and visual-review gate. The Branches command and complete-screen families MUST retain the same documentation, token and source-layout governance. Their selection-marker and responsive-row review MUST update the source ledger with explicit adaptations and retain focused browser checks for minimum/maximum column widths. Generic resize-rail expand/reset behavior MUST remain owned by public Design Core
 Column Canvas. Branches acceptance MUST verify bounded fitting, resetting after
 manual resizing, keyboard parity and unchanged captured selection through the
-prepared local review package. Branch row surface changes, including the selected resting surface and primary marker, MUST retain explicit source adaptations and audited token defaults. Stop for review before Workspace.
+prepared local review package. Branch row surface changes MUST retain explicit source adaptations and audited token defaults. Stop for review before Workspace.
 
 ## AUI-GOV-001 — Source ownership
 

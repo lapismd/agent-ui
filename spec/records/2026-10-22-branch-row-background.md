@@ -49,3 +49,26 @@ After HMR, the selected `main` row and adjacent unselected rows all paint
 Repository UI build/publint, all 226 fingerprints, eight Branches fingerprints
 and four original-layout comparisons, `pnpm spec:check` and changed-file
 formatting pass. Broader qualification remains deferred.
+
+## 2026-10-23: restore selected colour
+
+The user clarified that the selected colour must stay as it was. Restore the
+selected-row default to `color-mix(in srgb, var(--foreground) 12%, var(--background))`
+for bookmark and working-copy rows, retaining the primary left marker. Unselected
+rows remain on the white body surface. The selected-white follow-up above is
+superseded by this correction. Restore the matching audited token, documentation
+and source-ledger adaptation from `c28a8986` without discarding recorded evidence.
+
+Before correction, the selected `main` row and its adjacent unselected row both
+painted `rgb(255, 255, 255)` on the current Basic page.
+
+After HMR settles, selected `main` again paints
+`color(srgb 0.896 0.896 0.896)` with the 3px marker; its unselected neighbour
+remains `rgb(255, 255, 255)`. Screenshot:
+`.local/branch-selection-restored-review.png`.
+
+Targeted Basic/Working Copy checks use the same two Branches story files with
+`-t 'Basic|Working'`: 3/3 pass in light mode and 3/3 with `CATALOG_THEME=dark`
+(14 unrelated stories skipped per run). Source fingerprints (226), spec check,
+Repository UI build/publint and changed-file formatting pass. Full checks remain
+deferred until final review.

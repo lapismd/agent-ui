@@ -4889,11 +4889,10 @@
           "description": "Extract source command-card styles; remove Svelte global wrappers for native CSS, substitute audited semantic variables and retain source geometry. Row/gridcell accessibility composition retains outer card selection/hover."
         }
       ],
-      "destinationSha256": "43f1b5c088458358199b1a2fef7741ad4fd1baeaf2d8ba21a492d359ec4c0028",
+      "destinationSha256": "4574fe358c496f270b05cd308ae86990d6eb56defd608dfe3e082546bb5ee919",
       "reviewNotes": [
         "Branches review: source-strength card selector restores full-width flex layout; working copies reuse the same primary left marker and semantic selection/hover surfaces. Truncate names with full titles, and hide optional heading badges/timestamps below 20rem while retaining identities and conflict/deleted states.",
-        "Default row surface review: use the theme body background (white in light mode) for unselected bookmarks and working copies; retain existing hover/selection paint.",
-        "Selected resting rows also use the body surface; the existing primary left marker indicates selection, and hover retains its feedback."
+        "Default row surface review: use the theme body background (white in light mode) for unselected bookmarks and working copies; retain existing hover/selection paint."
       ]
     },
     {

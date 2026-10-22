@@ -31,8 +31,8 @@
     },
     {
       "name": "--ui-repository-branch-selected-background",
-      "default": "var(--background)",
-      "description": "Selected row resting surface; the primary left marker indicates selection.",
+      "default": "color-mix(in srgb, var(--foreground) 12%, var(--background))",
+      "description": "Retained selected reference surface.",
       "owner": "@lapismd/repository-ui",
       "source": "jj/branches/branch-command/branch-command.css"
     }
