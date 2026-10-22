@@ -1,0 +1,77 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  ArgTypes,
+  Markdown,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryBranchCommand.stories";
+import { Basic, Styling } from "./RepositoryBranchCommand.example-sources";
+import tokens from "./RepositoryBranchCommand.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Branch Command
+
+Source-adapted JJ Store bookmark command view with working copies, captured metadata, filters and isolated host actions.
+
+## Usage
+
+Pass captured bookmarks and working copies. Selection returns an opaque bookmarkKey; resolve it against the same loaded page. Timestamps and now are Unix seconds. Local and remote names retain distinct identities.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part               | Responsibility                                                              |
+| ------------------ | --------------------------------------------------------------------------- |
+| Working-copy cards | Recorded workspace, description and attribution.                            |
+| Filters and search | Search loaded branch metadata without changing history scope.               |
+| Bookmark cards     | Exact local/remote identities, default/workspace/conflicted/deleted status. |
+| Virtual rows       | Shared bounded rendering and host continuation.                             |
+
+## Variations
+
+### Basic
+
+Recorded default branch with dense history and a selected file diff.
+
+<Canvas of={Stories.Basic} />
+
+### Dense
+
+Paged bookmarks and graph history with many branches.
+
+<Canvas of={Stories.Dense} />
+
+### Empty
+
+Icon-bearing empty bookmark list.
+
+<Canvas of={Stories.Empty} />
+
+### HostActions
+
+Injected branch and column actions.
+
+<Canvas of={Stories.HostActions} />
+
+## Behavior and accessibility
+
+Command View owns search and arrow/Enter navigation. All, Workspace and Conflicted filters affect loaded cards only. The host supplies bounded continuation; filtering never changes the captured operation. Avatar and custom action activation stay separate from reference selection. Missing descriptions and deleted/multiple targets remain explicit. Working-copy cards retain their workspace identity.
+
+## Styling variables
+
+Source-faithful defaults use semantic theme colours. Keep custom sizes on a bounded host surface.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+The complete Branches screen composes this same production control. RepositoryReferenceRows remains owned by Reference Picker and is reused for bounded lists.

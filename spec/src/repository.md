@@ -70,6 +70,33 @@ navigation capabilities MUST remain absent rather than inventing routes.
 - Exact-pin controller tests MUST verify scoped reads, invalid replies, bounded paging, stale-response rejection and disposal without repository mutations.
 - Complete in-memory screens MUST reuse the existing history/blame components and cover populated, nested, dense, Markdown/source, binary/empty, loading, unavailable and retry states before pausing for review.
 
+## RUI-BRANCH-001 — Captured branches
+
+**Requirement.** Branches MUST adapt JJ Store's bookmark and working-copy cards
+and Branches/Revisions/Diff canvas, with host-owned exact operation pins and
+read-only reference ports. Files provides the repository overview.
+
+References resolve before graph reads. Single targets use exact ancestry,
+conflicted targets use a union, and deleted references use none(). Branch
+switches clear dependent selections. Working copies open their exact commit
+while retaining the ancestry graph. Reference paging is bounded and
+deduplicated; graph paging retains its target query and evaluation clock.
+Invalid pins, repeated cursors, duplicate identities and stale replies fail
+closed. Closing aborts/drains owned work and releases history handles.
+
+The independently resizable three-column canvas reuses existing graph, changed
+files and single/all-file diff components, with keyboard controls and trailing
+resize space. Host actions and persisted canvas state remain injectable; UI
+mount only subscribes and never mutates repositories. Selection controls keep
+author popovers and host actions independently accessible.
+
+### Acceptance details
+
+- Recorded local/remote, workspace/change and bookmark status identities MUST remain distinct.
+- Focused controller tests MUST verify exact target scopes, paging, stale replies and disposal.
+- Isolated stories MUST cover populated, conflicted/deleted, remote, workspace, dense/paged, bounded, all-file, custom-action, loading, Empty, Unavailable and retry states.
+- Stories MUST remain visual-pending with a review pause before Workspace.
+
 ## RUI-HISTORY-001 — History
 
 **Requirement.** Commit, operation, evolution, file history and blame screens MUST preserve explicit pins, parent comparisons and bounded paging. Missing content MUST remain distinct from empty content.

@@ -12,6 +12,7 @@
 | AUI-SCREEN-001  | Partial     | Chat, History, Catalog, Imports and Recorded; visual-pending stories                                                                                                                                                                                                                  |
 | AUI-LIFE-001    | Implemented | Late-read/disposal and import-reader ownership regressions                                                                                                                                                                                                                            |
 | RUI-BROWSE-001  | Partial     | Seven documented families, exact-pin read-only controller, complete Files stories and focused evidence in `spec/records/2026-10-22-repository-browser.md`; visual review pending                                                                                                      |
+| RUI-BRANCH-001  | Partial     | Two documented Branches families; exact-target controller, focused stories/browser evidence; visual review pending                                                                                                                                                                    |
 | RUI-HISTORY-001 | Partial     | JJ Log and Op Log controller/host parity and shared presentation/query follow-up; exact targeted counts and review limits in `spec/records/2026-10-22-op-log-parity.md`; repository browsing has its own review slice; follow-up in `spec/records/2026-10-22-history-presentation.md` |
 | RUI-STACK-001   | In progress | Original controller regressions retained; workspace screen review remains later                                                                                                                                                                                                       |
 | RUI-DRAG-001    | In progress | Original drop regressions retained; jj-store workspace slice remains later                                                                                                                                                                                                            |
@@ -22,7 +23,7 @@
 | AUI-THEME-001   | Implemented | Audited defaults; independent theme/mode controls; bounded flush docs previews                                                                                                                                                                                                        |
 | AUI-VERIFY-001  | Implemented | 656 story/axe checks; 92 unit tests; 21 cold-browser checks; package/static gates                                                                                                                                                                                                     |
 | AUI-PARITY-001  | Partial     | 16 renderer mappings; full recording and changes UI; visual review pending                                                                                                                                                                                                            |
-| RUI-FOUND-001   | Implemented | 29 documented families; structural negative tests, token/catalog/package audits; Desktop JJ and filename icon review records                                                                                                                                                          |
+| RUI-FOUND-001   | Implemented | 31 documented families; structural negative tests, token/catalog/package audits; Desktop JJ and filename icon review records                                                                                                                                                          |
 | RUI-DESKTOP-001 | Partial     | 656 story/axe, 92 unit, 21 cold browser and 18 native-density pixel comparisons; awaiting human review                                                                                                                                                                                |
 
 Commands, counts and visual limits are recorded in
@@ -63,4 +64,13 @@ in `spec/records/2026-10-22-diff-status-typography.md`.
 
 The RUI-BROWSE-001 / RUI-FOUND-001 / AUI-GOV-003 repository browsing slice is
 recorded in `spec/records/2026-10-22-repository-browser.md`. Review pauses before
-repository overview, branches or workspace changes; source apps stay read-only.
+Workspace changes after the now-authorized Branches slice; source apps stay read-only.
+
+## Branches slice
+
+RUI-BRANCH-001 is qualified through exact-target controller tests, the two new
+Branch Command/Branches story families, cold complete-screen browser checks and
+source-layout comparisons. RUI-HISTORY-001 retains query behavior through the
+existing focused history/query tests. Evidence and before/after counts belong in
+`spec/records/2026-10-22-repository-branches.md`. Broad qualification remains
+deferred until final human screen review.

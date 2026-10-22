@@ -118,10 +118,10 @@ export class HistoryController {
       }),
     );
   }
-  selectOperation(operation: string): Promise<void> {
+  selectOperation(operation: string, revset?: string): Promise<void> {
     this.#pinned = true;
     return this.#run(() =>
-      this.#action(() => this.#selectOperation(operation)),
+      this.#action(() => this.#selectOperation(operation, revset)),
     );
   }
   search(revset: string): Promise<void> {
@@ -147,7 +147,7 @@ export class HistoryController {
       this.#action(() => this.#selectOperation(operation)),
     );
   }
-  async #selectOperation(operation: string): Promise<void> {
+  async #selectOperation(operation: string, revset?: string): Promise<void> {
     const selection = ++this.#selection;
     this.#comparison++;
     this.#files.reset();
@@ -157,7 +157,7 @@ export class HistoryController {
     this.#handle = undefined;
     this.#set({
       ...initialHistoryState(),
-      revset: this.#state.revset,
+      revset: revset ?? this.#state.revset,
       heads: this.#state.heads,
       headsReady: this.#state.headsReady,
       operation,

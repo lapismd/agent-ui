@@ -34,14 +34,14 @@ references and actions. Each section MUST stop for screen review. Iteration MUST
 use targeted checks; broad qualification MUST wait until the final screen review.
 Design Core owns generic fixes; application adoption and publication remain gated.
 
-The current authorized section is repository file browsing. Each independent
+Files provides the repository overview; the current authorized section is Branches. Each independent
 breadcrumb, file tree, directory, file preview, reference picker, change card and complete Files family MUST
 use the same fail-closed docs, tokens and public-example contracts. Cold browser
 acceptance MUST cover directory navigation, stock Markdown/source, bounded
 virtual paging, tree disclosure/modes, pointer and keyboard resize, exact host
 action identities and the existing history/blame integration. Source apps stay
 read-only; copied layouts and CSS MUST retain exact source revisions and
-explicitly documented adaptations. Shared commit-detail disclosure MUST be composed by directory summaries, file metadata and file history, with one private implementation and per-owner documentation. Attached directory/file metadata detail surfaces MUST retain a single enclosing card and divider. The narrower history default preserves the existing host-layout binding, documented defaults, source comparisons and visual-review gate. Stop for review before overview or workspace.
+explicitly documented adaptations. Shared commit-detail disclosure MUST be composed by directory summaries, file metadata and file history, with one private implementation and per-owner documentation. Attached directory/file metadata detail surfaces MUST retain a single enclosing card and divider. The narrower history default preserves the existing host-layout binding, documented defaults, source comparisons and visual-review gate. The Branches command and complete-screen families MUST retain the same documentation, token and source-layout governance. Stop for review before Workspace.
 
 ## AUI-GOV-001 — Source ownership
 

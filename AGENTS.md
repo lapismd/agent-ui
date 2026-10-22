@@ -8,10 +8,12 @@ implementation. Apply the parent workspace guidance. This repository owns
 
 Deliver one user-authorized section at a time with complete Storybook screens
 using production UI controllers and isolated in-memory adapters. The current
-section is repository file browsing, authorized after the history review:
-source-faithful directory/tree/breadcrumb/file-preview components and a complete
-in-memory screen, plus the shared reference picker/change card and recorded file-history review. Use public AppShell.Toolbar headers, matching heights, semantic body backgrounds and independently resizable body sidebars. Stop for review before repository overview, branches or
-workspace presentation and transfers.
+section is repository Branches, authorized after Files. Files is the repository
+overview. Copy JJ Store's bookmark/working-copy command cards and Branches canvas,
+reuse the shared graph/files/diff and bind captured references through typed
+read-only host ports. Preserve local/remote identities, conflicted/deleted
+targets, exact ancestry, paging, host actions and controller lifetime. Stop for
+review before workspace presentation and transfers.
 Stop for explicit user review after this slice and before modifying
 Lapis Desktop, jj-store, downstream services, publishing or deploying anything.
 The approved plan authorizes generic fixes in Design Core; source applications

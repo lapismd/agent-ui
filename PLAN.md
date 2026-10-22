@@ -5,7 +5,8 @@
 | Agent foundations and five complete screens | Awaiting visual review | 18 documented families, full transcript, turn changes and tool renderers                  |
 | Desktop JJ history                          | Awaiting visual review | 20 documented families; JJ Log, Op Log, file history, blame, conflicts and restore        |
 | Repository file browsing                    | Awaiting visual review | Five documented families, pinned read-only controller and complete in-memory Files screen |
-| JJ workspace and repository overview        | Deferred               | Overview, branches, workspace and drag/drop follow the Files review gate                  |
+| Repository Branches                         | Awaiting visual review | Source-adapted reference cards, exact-target controller and shared graph/diff canvas      |
+| JJ workspace                                | Deferred               | Workspace and transfers follow the Branches review gate                                   |
 | Downstream adoption and publication         | Review gate            | No application/service changes, deployment or publication                                 |
 
 The user authorized the Desktop-first JJ slice and requested a pause for review
@@ -55,7 +56,7 @@ and pausing for review before the next. Broad suites wait for final screen revie
 2. JJ Log: portable controllers, header actions, search and dense examples — implemented; the requested fixed paging footer and recorded-command disclosure are committed separately.
 3. Op Log: pinned comparisons, native metadata filters, host actions, conflicts and dense operation examples — implemented with targeted checks; awaiting review before repository browsing.
 4. Repository file browser: directory rows, file tree, breadcrumbs, code/documents and existing history/blame — implemented with focused checks; awaiting review.
-5. Repository overview and branches: navigation, selectors, bookmark/branch details and host actions.
+5. Repository Branches: Files provides the overview; source-adapted bookmark/working-copy cards, exact-target graph/diff and host actions — implemented with targeted checks; awaiting review.
 6. Workspace presentation: original columns, stack cards, source files, target history and retained selection.
 7. Workspace transfers: file/folder/hunk drag/drop, keyboard alternatives and exact preview/apply/recovery.
 8. Stack and commit operations: original supported menus, drafts, placement controls and conflict surfaces.
@@ -167,7 +168,7 @@ Core PanelToggle and shadcn tooltips, and short file
 previews have no forced minimum height or duplicate vertical scroller.
 
 Review Basic, Nested, Dense, Markdown, Source, Binary, Host Actions, History and
-Blame before repository overview or workspace work. Focused qualification and
+Blame before Branches or workspace work. Focused qualification and
 remaining limits are recorded in `spec/records/2026-10-22-repository-browser.md`.
 Broad suites, static/clean-package matrix and downstream adoption remain gated
 on final review; all new stories are visual-pending.
@@ -177,3 +178,14 @@ Files review follow-up: Directory and File Preview metadata now reuse the same l
 Metadata card review: directory and file commit details expand inside the existing bordered card, using a shared attached muted body and single divider; targeted checks precede the same review pause.
 
 History sidebar review reduces the default and reset width from 480px to 420px; host sizing and independent resize bounds remain unchanged.
+
+## Repository Branches review
+
+Files already provides the repository overview. The next authorized slice copies
+JJ Store's Branches cards and 380/480/560px canvas geometry, reusing the existing
+graph, changed files and single/all-file diff. Hosts inject captured reference
+reads, exact pins, feedback, custom column/row actions and optional persisted
+canvas state. Conflicted/deleted and local/remote references retain their exact
+targets. Targeted evidence is in
+`spec/records/2026-10-22-repository-branches.md`. Stop for visual review before
+Workspace; broader qualification and downstream adoption remain deferred.

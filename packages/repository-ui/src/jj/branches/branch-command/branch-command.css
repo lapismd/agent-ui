@@ -1,0 +1,115 @@
+.repository-bookmark-cards {
+  --ui-command-view-background: var(
+    --ui-repository-branch-background,
+    var(--card)
+  );
+  --ui-command-view-foreground: var(--foreground);
+  --ui-command-view-list-max-height: max(12rem, calc(100dvh - 16rem));
+  --ui-command-view-list-padding: 0;
+  --ui-command-view-item-radius: 0px;
+  --ui-command-view-item-selected-background: var(
+    --ui-repository-branch-hover-background,
+    color-mix(in srgb, var(--foreground) 7%, var(--background))
+  );
+  --ui-command-view-radius: 0px;
+}
+.repository-bookmark-cards [data-ui-part="command-group"] {
+  padding: 0;
+  overflow: visible;
+}
+.repository-bookmark-cards [data-ui-part="command-group-heading"] {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 0.5rem 0.9rem;
+  background: var(--ui-repository-branch-background, var(--card));
+  border-bottom: 1px solid var(--border);
+}
+
+.repository-bookmark-cards .repository-bookmark-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+  padding: 0.9rem;
+  border-radius: 0;
+  border-bottom: 1px solid var(--border);
+  white-space: normal;
+  background: var(--ui-repository-branch-background, var(--card));
+}
+
+.repository-bookmark-card[data-current="true"] {
+  background: var(
+    --ui-repository-branch-selected-background,
+    color-mix(in srgb, var(--foreground) 12%, var(--background))
+  );
+}
+
+.repository-bookmark-cards .repository-bookmark-card:is(:hover, :focus-within),
+.repository-bookmark-cards:has(input:focus-visible)
+  .repository-bookmark-card:has([data-selected]) {
+  background: var(
+    --ui-repository-branch-hover-background,
+    color-mix(in srgb, var(--foreground) 7%, var(--background))
+  );
+}
+
+.repository-bookmark-card[data-current="true"]::before {
+  content: "";
+  position: absolute;
+  inset-block: 1rem;
+  inset-inline-start: 0;
+  width: 3px;
+  background: var(--primary);
+  border-radius: 0 3px 3px 0;
+}
+.repository-bookmark-card__heading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+.repository-bookmark-card__heading svg {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+  color: var(--muted-foreground);
+}
+.repository-bookmark-card__heading [data-ui-part="item-label"] {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--ui-repository-branch-body-font-size, 0.875rem);
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+.repository-bookmark-card__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: var(--ui-repository-branch-secondary-font-size, 0.75rem);
+}
+.repository-bookmark-card__author {
+  margin-inline-start: auto;
+}
+
+.repository-bookmark-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.repository-bookmark-card__cell {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+  padding: 0;
+  border-radius: 0;
+  white-space: normal;
+  background: transparent;
+}

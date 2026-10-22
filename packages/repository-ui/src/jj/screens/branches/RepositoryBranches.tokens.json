@@ -1,0 +1,12 @@
+{
+  "component": "RepositoryBranches",
+  "variables": [
+    {
+      "name": "--ui-repository-branches-height",
+      "default": "100%",
+      "description": "Enclosing host pane height.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/screens/branches/RepositoryBranches.svelte"
+    }
+  ]
+}

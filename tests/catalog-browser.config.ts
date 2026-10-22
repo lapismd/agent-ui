@@ -18,6 +18,7 @@ export default defineConfig({
     "jj-history-review.pw.ts",
     "file-type-icons.pw.ts",
     "repository-browser.pw.ts",
+    "repository-branches.pw.ts",
     "repository-browser-docs.pw.ts",
     "repository-file-history.pw.ts",
     "repository-metadata-details.pw.ts",

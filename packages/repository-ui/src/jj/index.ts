@@ -59,3 +59,9 @@ export { default as RepositoryReferencePicker } from "./browse/reference-picker/
 export type { RepositoryReferenceChoice } from "./browse/reference-picker/types.js";
 
 export { default as RepositoryChangeCard } from "./browse/change-card/RepositoryChangeCard.svelte";
+
+export { default as RepositoryBranchCommand } from "./branches/branch-command/RepositoryBranchCommand.svelte";
+export { default as RepositoryBranches } from "./screens/branches/RepositoryBranches.svelte";
+export { RepositoryBranchesController } from "./branches/logic/controller.js";
+export { createBranchesCanvas } from "./screens/branches/canvas.js";
+export * from "./branches/logic/types.js";

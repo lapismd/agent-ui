@@ -1,0 +1,40 @@
+{
+  "component": "RepositoryBranchCommand",
+  "variables": [
+    {
+      "name": "--ui-repository-branch-body-font-size",
+      "default": "0.875rem",
+      "description": "Recorded description and branch heading size.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/branches/branch-command/branch-command.css"
+    },
+    {
+      "name": "--ui-repository-branch-secondary-font-size",
+      "default": "0.75rem",
+      "description": "Footer attribution size.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/branches/branch-command/branch-command.css"
+    },
+    {
+      "name": "--ui-repository-branch-background",
+      "default": "var(--card)",
+      "description": "Opaque column/card surface.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/branches/branch-command/branch-command.css"
+    },
+    {
+      "name": "--ui-repository-branch-hover-background",
+      "default": "color-mix(in srgb, var(--foreground) 7%, var(--background))",
+      "description": "Pointer and keyboard feedback.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/branches/branch-command/branch-command.css"
+    },
+    {
+      "name": "--ui-repository-branch-selected-background",
+      "default": "color-mix(in srgb, var(--foreground) 12%, var(--background))",
+      "description": "Retained selected reference surface.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/branches/branch-command/branch-command.css"
+    }
+  ]
+}

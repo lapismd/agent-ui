@@ -200,6 +200,19 @@
       "primary": "jj/browse/change-card/RepositoryChangeCard",
       "purpose": "Reusable recorded change card using existing author, relative-time and Git/JJ identifier components.",
       "parts": []
+    },
+    {
+      "primary": "jj/branches/branch-command/RepositoryBranchCommand",
+      "purpose": "Source-copied bookmark/working-copy command cards with loaded search, filters, exact identities and host action slots.",
+      "parts": [
+        "jj/branches/branch-command/RepositoryBranchEmpty.svelte",
+        "jj/branches/branch-command/RepositoryWorkingCopyCard.svelte"
+      ]
+    },
+    {
+      "primary": "jj/screens/branches/RepositoryBranches",
+      "purpose": "Source-adapted Branches canvas with captured-reference controller, shared graph/files/diff and host-controlled actions.",
+      "parts": ["jj/screens/branches/RepositoryBranchesStatus.svelte"]
     }
   ],
   "deferred": [

@@ -1,8 +1,8 @@
 {
   "sources": {
     "lapis-desktop": "f8f3446e (Agent) and 52516ae9 (JJ); exact copied-file hashes in desktop-layout-sources.json",
-    "jj-store": "f58b9363",
-    "design-core": "npm range ^0.6.0; local validation archive from Design Core 6f740f9c, SHA-256 7e58e2bdeb270d928f7444029d2440a04239d96f19ae2e8f9e87d087db0091b4; source-built consolidated review package; see spec/records/2026-10-22-repository-browser.md",
+    "jj-store": "f58b9363 (Files/history references), 87f2f603 (Branches); exact per-file revisions/hashes in desktop-layout-sources.json",
+    "design-core": "npm range ^0.6.0; local validation archive with warning-tag source fix 36c8412e, SHA-256 3cf11eb4fb4150d6ef488ac70ae68c8062e87b8970999ffa0379c2daf6302785; prepared source-inclusive current local package; see spec/records/2026-10-22-repository-branches.md",
     "mira-mde": "npm range ~0.1.0; safe task marker source fix 0a72edf8; local validation archive SHA-256 c9e024d35e013676905120347bbfe3ca832f3e9e4f4ede74a7dc2b25161078b4; no tracked dependency substitution"
   },
   "license": "Apache-2.0",
@@ -950,6 +950,62 @@
       "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryBranchSelector.svelte",
       "destination": "packages/repository-ui/src/jj/browse/reference-picker/reference-picker.css",
       "use": "Lift and adapt the source style block into a native owned stylesheet; source and destination fingerprints recorded in desktop-layout-sources.json."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "87f2f603",
+      "source": "web/src/lib/ui/community-repository-branch-command/CommunityRepositoryBranchCommand.svelte",
+      "destination": "packages/repository-ui/src/jj/branches/branch-command/RepositoryBranchCommand.svelte",
+      "use": "Copy command cards/filter/search/virtual rows; use public Badge, Avatar and RelativeTime, exact remote-aware identities and typed host actions; use grid/row/cell semantics for interactive card contents; CSS extracted to a colocated file."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "87f2f603",
+      "source": "web/src/lib/ui/community-repository-branch-command/CommunityRepositoryBranchEmpty.svelte",
+      "destination": "packages/repository-ui/src/jj/branches/branch-command/RepositoryBranchEmpty.svelte",
+      "use": "Retain source Empty icon/messages/geometry; render outside the command grid, retaining an empty controlled grid for accessible input ownership."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "87f2f603",
+      "source": "web/src/lib/ui/community-repository-branch-command/CommunityWorkingCopyCard.svelte",
+      "destination": "packages/repository-ui/src/jj/branches/branch-command/RepositoryWorkingCopyCard.svelte",
+      "use": "Retain working-copy card layout; separate button from author/time popovers; public Badge/Avatar/RelativeTime and portable presentation type."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "87f2f603",
+      "source": "web/src/lib/ui/community-projects/CommunityProjectsRepositoryLog.svelte",
+      "destination": "packages/repository-ui/src/jj/screens/branches/RepositoryBranches.svelte",
+      "use": "Extract Branches composition only; public AppShell/ColumnCanvas and shared Revisions/Diff replace app-private components. Host-owned captured references, actions and optional persisted canvas. Loading/retry states use public shared primitives; omit unrelated evolution/agent/review contexts."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "87f2f603",
+      "source": "web/src/lib/projects/repository-log-canvas.ts",
+      "destination": "packages/repository-ui/src/jj/screens/branches/canvas.ts",
+      "use": "Retain 380/480/560px widths and source bounds/path levels; use existing closed Diff and 240px resize-spacer convention. Host injects persistence instead of app-local storage."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "87f2f603",
+      "source": "web/src/lib/controller/production-branch-actions.ts",
+      "destination": "packages/repository-ui/src/jj/branches/logic/controller.ts",
+      "use": "Adapt source reference-target selection/reset flow into read-only portable captured-reference controller; reuse HistoryController for immutable ancestry, paging and comparisons. Routes/notifications/admission/mutations remain host-owned."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "87f2f603",
+      "source": "web/src/lib/ui/community-repository-branch-command/CommunityRepositoryBranchCommand.svelte",
+      "destination": "packages/repository-ui/src/jj/branches/branch-command/branch-command.css",
+      "use": "Extract source command-card styles; remove Svelte global wrappers for native CSS, substitute audited semantic variables and retain source geometry. Row/gridcell accessibility composition retains outer card selection/hover."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "87f2f603",
+      "source": "web/src/lib/projects/presentation.ts",
+      "destination": "packages/repository-ui/src/jj/branches/logic/types.ts",
+      "use": "Retain Bookmark presentation fields with explicit remote identity; combine RepositoryWorkingCopy fields from projects/repository-log.ts and typed pinned read-port/controller state."
     }
   ]
 }

@@ -1,0 +1,131 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  ArgTypes,
+  Markdown,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryBranches.stories";
+import { Basic, Styling } from "./RepositoryBranches.example-sources";
+import tokens from "./RepositoryBranches.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Branches
+
+Source-adapted JJ Store Branches screen with independently resizable Branches, Revisions and Diff columns.
+
+## Usage
+
+Create one host-retained RepositoryBranchesController with a captured-reference read port, HistoryReader and feedback sink. Call controller.open with the exact repository/operation before or after mounting; mounting subscribes only. The host closes the controller after unmount. Pass a canvas from createBranchesCanvas for optional host persistence; the host then owns its disposal.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part             | Responsibility                                                            |
+| ---------------- | ------------------------------------------------------------------------- |
+| Branches column  | Source-copied bookmark and working-copy command view.                     |
+| Revisions column | Existing graph, commit description and changed files.                     |
+| Diff column      | Existing single/all-file diff reader and host menus.                      |
+| Column Canvas    | Source geometry, keyboard resizing, navigation and trailing resize space. |
+
+## Variations
+
+### Basic
+
+Recorded default branch with dense history and a selected file diff.
+
+<Canvas of={Stories.Basic} />
+
+### WorkingCopy
+
+Open the exact captured review workspace commit.
+
+<Canvas of={Stories.WorkingCopy} />
+
+### Remote
+
+Distinguish main from main at origin.
+
+<Canvas of={Stories.Remote} />
+
+### Conflicted
+
+Retain both immutable targets of a conflicted bookmark.
+
+<Canvas of={Stories.Conflicted} />
+
+### Deleted
+
+A recorded deleted bookmark has an explicitly empty graph.
+
+<Canvas of={Stories.Deleted} />
+
+### Dense
+
+Paged bookmarks and graph history with many branches.
+
+<Canvas of={Stories.Dense} />
+
+### Bounded
+
+A sticky bounded-history notice.
+
+<Canvas of={Stories.Bounded} />
+
+### AllInOne
+
+Existing expandable all-file diff mode.
+
+<Canvas of={Stories.AllInOne} />
+
+### HostActions
+
+Injected branch and column actions.
+
+<Canvas of={Stories.HostActions} />
+
+### Loading
+
+Captured references are still being read.
+
+<Canvas of={Stories.Loading} />
+
+### Unavailable
+
+Icon-bearing unavailable state with retry.
+
+<Canvas of={Stories.Unavailable} />
+
+### Retry
+
+A failed first read can recover through the same controller.
+
+<Canvas of={Stories.Retry} />
+
+### Empty
+
+No recorded bookmarks or working copies.
+
+<Canvas of={Stories.Empty} />
+
+## Behavior and accessibility
+
+References resolve before graph reads. Single targets use their exact ancestry, conflicted references use the union and deleted references use none(). Immutable pins, graph clocks and continuation cursors remain bound to the selected reference. Changing references clears revision/files/diff. Working copies open their exact recorded commit. The controller rejects mismatched pins, duplicate references, repeated cursors and stale replies, and aborts/drains owned reads on close. Header slots, branch actions, revision/file actions and diff menus request host effects only. No mounting mutation, routes, storage, credentials or native access is built in. Empty/unavailable states use shadcn Empty with an icon and retry when applicable.
+
+## Styling variables
+
+Source-faithful defaults use semantic theme colours. Keep custom sizes on a bounded host surface.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Files is the repository overview. Branches reuses the existing history/controller/diff families; Workspace and downstream adoption remain separate review slices. Host-owned route or operation changes call controller.open with the new pin. Optional typed slots are branchHeaderActions, revisionHeaderActions, branchActions, revisionActions, fileActions, diffActions and allChangesActions. Diff settings, menus and totals use the same RepositoryDiffPreferences contract as both logs.
