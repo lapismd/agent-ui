@@ -28,6 +28,27 @@
       "description": "Semantic hover surface for file display, clipboard, history and sidebar actions.",
       "owner": "@lapismd/repository-ui",
       "source": "jj/browse/file-preview/RepositoryFileAction.svelte"
+    },
+    {
+      "name": "--ui-repository-file-metadata-details-background",
+      "default": "var(--muted)",
+      "description": "Subtle attached commit-detail body inside the bordered file metadata card; Markdown remains transparent.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/commit-message/RepositoryCommitDetails.svelte"
+    },
+    {
+      "name": "--ui-repository-metadata-details-padding",
+      "default": "0.5rem 0.5rem 0",
+      "description": "Attached directory/file commit details: 8px top and horizontal inset, no bottom padding at the default root size.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/commit-message/RepositoryCommitDetails.svelte"
+    },
+    {
+      "name": "--ui-repository-commit-details-expanded-background",
+      "default": "color-mix(in srgb, var(--foreground) 12%, var(--background))",
+      "description": "Persistent theme-aware background of the expanded commit-detail ellipsis button.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/commit-message/RepositoryCommitDetails.svelte"
     }
   ]
 }

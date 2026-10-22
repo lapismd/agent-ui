@@ -21,47 +21,52 @@
   } = $props();
 </script>
 
-<RepositoryCommitDetails compact description={file.commit?.message ?? ""}>
+<RepositoryCommitDetails
+  compact
+  attached
+  description={file.commit?.message ?? ""}
+>
   {#snippet children(toggle, panel)}
     <section
       class="repository-browser__file-panel-info"
       aria-label="Selected file metadata"
     >
-      <RepositoryFileAction
-        panelExpanded={fileTreeOpen}
-        class="repository-browser__file-panel-tree-toggle"
-        label={fileTreeOpen
-          ? "Hide repository file tree"
-          : "Show repository file tree"}
-        onclick={onToggleFileTree}
-      />
-      {#if file.commit}
-        <RepositoryAuthorAvatar
-          name={file.commit.author}
-          email={file.commit.authorEmail}
-          size="sm"
+      <div class="repository-browser__file-panel-info-row">
+        <RepositoryFileAction
+          panelExpanded={fileTreeOpen}
+          class="repository-browser__file-panel-tree-toggle"
+          label={fileTreeOpen
+            ? "Hide repository file tree"
+            : "Show repository file tree"}
+          onclick={onToggleFileTree}
         />
-        <span class="repository-browser__file-panel-info-message"
-          ><strong>{file.commit.author}</strong> committed
-          <span>{file.commit.message.split("\n")[0]}</span></span
-        >
-        {@render toggle()}
-        <div class="repository-browser__file-panel-info-actions">
-          <RepositoryIdentifiers
-            commitId={file.commit.eventId}
-            changeId={file.commit.changeId}
-            placement="inline"
-            {copyText}
-          /><RelativeTime
-            timestamp={file.commit.createdAt * 1000}
-            now={now * 1000}
+        {#if file.commit}
+          <RepositoryAuthorAvatar
+            name={file.commit.author}
+            email={file.commit.authorEmail}
+            size="sm"
           />
-        </div>
-      {:else}<span class="repository-browser__file-panel-info-message"
-          >{file.path}</span
-        >{/if}
+          <span class="repository-browser__file-panel-info-message"
+            ><strong>{file.commit.author}</strong> committed
+            <span>{file.commit.message.split("\n")[0]}</span></span
+          >
+          {@render toggle()}
+          <div class="repository-browser__file-panel-info-actions">
+            <RepositoryIdentifiers
+              commitId={file.commit.eventId}
+              changeId={file.commit.changeId}
+              placement="inline"
+              {copyText}
+            /><RelativeTime
+              timestamp={file.commit.createdAt * 1000}
+              now={now * 1000}
+            />
+          </div>
+        {:else}<span class="repository-browser__file-panel-info-message"
+            >{file.path}</span
+          >{/if}
+      </div>
+      {@render panel()}
     </section>
-
-    {@render panel()}
   {/snippet}
 </RepositoryCommitDetails>

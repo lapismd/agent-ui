@@ -165,3 +165,37 @@ architecture, the three specification lanes, package build/publint and source
 checks passed. The review gate and broad-check deferral remain unchanged.
 
 The shared long-description fixture also passes all 13 Reference Picker/Change Card interaction and accessibility cases. The final public package build/publint and changed-file formatting check pass.
+
+## Attached metadata card review
+
+Following `ef4f750e`, the user's reference requires directory and file commit
+bodies to remain within the metadata card instead of a separate rounded panel.
+The shared disclosure now supports an attached body with one divider and a
+muted theme surface; the stock Markdown is transparent. File metadata retains
+its original header controls/height in a private row within the existing card.
+The directory header avoids a duplicate divider. Compact spacing and host
+navigation/pin behavior remain unchanged. File Preview documents the native
+attached-body surface variable.
+
+Before: the exact `Files source` target in
+`pnpm exec playwright test --config .local/live-chat.config.ts tests/repository-metadata-details.pw.ts -g 'Files source'`
+failed one containment assertion. After: the two metadata targets pass with
+explicit descendant containment, full inner-card width, one divider, transparent
+Markdown, compact spacing, long-message expansion and unchanged host actions.
+The complete focused browser group also passed all 11 cases. No broad suite or
+baseline update is part of this review correction.
+
+The final inline review increases both metadata bodies to 8px top padding,
+retains their 8px horizontal inset and zero bottom padding/margins, and gives
+the shared ellipsis a persistent semantic background while expanded. These are
+native documented variables in both metadata families; the history button uses
+the same expanded-state styling. The latest padding instruction supersedes the
+previous zero-top-spacing preference. Focused browser assertions cover the
+computed top inset and persistent button fill after moving the pointer away.
+
+Attached-card qualification passes 33 affected story/accessibility cases,
+11 focused browser cases, both cold containment cases and the final five
+metadata/history cases with the 8px top inset and expanded-button fill.
+Svelte-check has zero errors/warnings; architecture, package build/publint,
+three specification lanes and reviewed source/fingerprint checks pass. The
+user's full-suite and visual-review deferral remains in place.

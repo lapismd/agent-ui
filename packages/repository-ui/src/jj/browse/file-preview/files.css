@@ -172,15 +172,21 @@
   display: flex;
   min-width: 0;
   box-sizing: border-box;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.75rem 0.85rem;
-  padding-inline-start: 0.5rem;
+  flex-direction: column;
+  overflow: hidden;
   border: 1px solid var(--border);
   border-radius: var(--ui-column-canvas-radius, var(--radius));
   background: var(--background);
   color: var(--muted-foreground);
   font-size: var(--ui-repository-browser-body-font-size, 0.875rem);
+}
+
+.repository-browser__file-panel-info-row {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.75rem 0.85rem 0.75rem 0.5rem;
 }
 
 .repository-browser__file-panel-info-message {

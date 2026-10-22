@@ -289,3 +289,9 @@
   color: var(--primary);
   text-decoration: none;
 }
+
+.repository-browser__file-browser-summary:has(
+  + .repository-commit-details[data-attached="true"]
+) {
+  border-bottom: 0;
+}

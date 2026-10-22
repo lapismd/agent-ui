@@ -73,7 +73,11 @@
   aria-label={currentPath ? `Directory ${currentPath}` : "Repository directory"}
 >
   <div class="repository-browser__file-browser-card">
-    <RepositoryCommitDetails compact description={latestCommit?.message ?? ""}>
+    <RepositoryCommitDetails
+      compact
+      attached
+      description={latestCommit?.message ?? ""}
+    >
       {#snippet children(toggle, panel)}
         <div class="repository-browser__file-browser-summary">
           <div class="repository-browser__file-browser-summary-primary">

@@ -35,6 +35,13 @@
       "description": "Recorded Markdown surface while its history row is hovered or keyboard-focused.",
       "owner": "@lapismd/repository-ui",
       "source": "jj/history/file-history/RepositoryFileHistoryEntry.svelte"
+    },
+    {
+      "name": "--ui-repository-commit-details-expanded-background",
+      "default": "color-mix(in srgb, var(--foreground) 12%, var(--background))",
+      "description": "Persistent theme-aware background of the expanded commit-detail ellipsis button.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/commit-message/RepositoryCommitDetails.svelte"
     }
   ]
 }

@@ -60,7 +60,7 @@ File history MUST use a transparent public AppShell.Toolbar of the same height,
 group recorded revisions by date, retain the shared Git/JJ copy buttons, and
 expose separate host callbacks for viewing file code and browsing the repository
 at that revision. Description disclosure MUST reveal the recorded Markdown body
-with the existing View more/View less behavior for long messages. Directory summaries and file metadata MUST reuse this same local disclosure beneath the metadata row, without navigating to another commit or changing the selected pin. Metadata detail panels MUST remove vertical padding/margins and retain a thin horizontal inset; other commit-description surfaces keep their existing defaults. Missing host
+with the existing View more/View less behavior for long messages. Directory summaries and file metadata MUST reuse this same local disclosure beneath the metadata row, without navigating to another commit or changing the selected pin. Directory and file metadata MUST keep the expanded description inside their existing bordered card, below the unchanged header row, with a divider and a theme-muted body surface. The description button MUST retain a visible theme-based background while expanded. Metadata detail panels MUST retain 8px top and horizontal padding with zero bottom padding and outer margins; other commit-description surfaces keep their existing defaults. Missing host
 navigation capabilities MUST remain absent rather than inventing routes.
 
 ### Acceptance details

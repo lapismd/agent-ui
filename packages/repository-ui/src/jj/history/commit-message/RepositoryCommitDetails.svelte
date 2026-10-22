@@ -8,9 +8,11 @@
     description,
     children,
     compact = false,
+    attached = false,
   }: {
     description: string;
     compact?: boolean;
+    attached?: boolean;
     children: Snippet<[Snippet, Snippet]>;
   } = $props();
   const id = $props.id();
@@ -30,7 +32,7 @@
   <Button
     variant="ghost"
     size="icon-xs"
-    style="--accent:var(--ui-repository-file-history-action-hover-background, color-mix(in srgb, var(--foreground) 10%, var(--background)))"
+    style={`--accent:var(--ui-repository-file-history-action-hover-background, color-mix(in srgb, var(--foreground) 10%, var(--background)));${expanded ? "background:var(--ui-repository-commit-details-expanded-background, color-mix(in srgb, var(--foreground) 12%, var(--background)))" : ""}`}
     aria-label={expanded
       ? "Hide commit description"
       : "Show commit description"}
@@ -44,6 +46,7 @@
       {id}
       class="repository-commit-details"
       data-compact={compact}
+      data-attached={attached}
     >
       <RepositoryCommitMessage description={message} />
     </div>{/if}
@@ -57,6 +60,17 @@
   }
   .repository-commit-details[data-compact="true"] {
     --ui-repository-revisions-message-margin: 0;
-    --ui-repository-revisions-message-padding: 0 0.5rem;
+    --ui-repository-revisions-message-padding: var(
+      --ui-repository-metadata-details-padding,
+      0.5rem 0.5rem 0
+    );
+  }
+  .repository-commit-details[data-attached="true"] {
+    border-block-start: 1px solid var(--border);
+    background: var(
+      --ui-repository-file-metadata-details-background,
+      var(--muted)
+    );
+    --ui-repository-revisions-message-surface: transparent;
   }
 </style>
