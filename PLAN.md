@@ -31,7 +31,7 @@ review check. Details and actual qualification counts belong in
 `spec/records/2026-10-22-desktop-jj-review.md`.
 
 The filename-icon follow-up adopts public Design Core FileTypeIcon in attachment
-chips, attach-file suggestions, saved-file headers and JJ filename titles. Shared
+chips, attach-file suggestions, saved-file headers, local catalog skills and JJ filename titles. Shared
 FileListing and diff/tool presentation inherit the source implementation. The
 source ledger documents each intentional glyph substitution at the original
 size; geometry and actions remain owned by the existing components. Qualification

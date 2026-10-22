@@ -18,14 +18,15 @@ from Design Core change `mtrtuvpr` at parent `749de753`. It was prepared with
 CSS, rune modules and types. No internal dependency import or node_modules edit
 is used.
 
-Production adoption uses the exact host filename/path in four private compound
+Production adoption uses the exact host filename/path in five private compound
 parts: attachment chips (`xs`, 12px), attach-file suggestions (`md`, 16px), saved
-file headers (`md`, 16px) and JJ filename titles (`s`, 14px). Complete screens
+file headers (`md`, 16px), local catalog skills (`md`, 16px) and JJ filename titles
+(`s`, 14px). Complete screens
 compose these same components. File listings, diff headers and normalized tool
 read/edit/search results inherit Design Core's shared implementation. Folder,
 action and status affordances and all host identities remain intact.
 
-The source ledger records only these four reviewed glyph substitutions. Its
+The source ledger records only these five reviewed glyph substitutions. Its
 comparison passed: 193 destination fingerprints and 140 original layouts with
 explicit adaptations. The icon artwork is intentionally new and remains
 visual-pending; baseline images are unchanged.
@@ -99,3 +100,20 @@ A passed packed-overlay review does not establish ordinary registry installation
 No screenshot baselines, downstream applications/services, release, publication
 or deployment are changed. Agent and Desktop-derived JJ visual review remain
 pending.
+
+## Catalog consistency follow-up
+
+The final audit found CatalogSkill still used a generic file glyph for an
+explicit host path. It now uses the shared icon in its original 16px slot;
+pathless bundled skills retain PackageIcon. The complete Catalog story verifies
+the Markdown artwork, decorative semantics, exact CSS dimensions and unchanged
+explicit host navigation. Its exact target was:
+
+`pnpm exec vitest run --project storybook catalog/AgentScreens.stories.ts -t '^Catalog$'`
+
+Before: one failure, 14 skipped. After: one pass, 14 skipped. Initial type checking
+also found two unsupported Testing Library `exact` options; anchored name
+expressions retain exact matching with the supported API. The live in-app preview
+exposed a fractional transformed bounding rectangle at browser zoom; the story
+now checks the exact computed 16px CSS width and height instead. Source comparison
+again passed all 193 fingerprints and 140 adapted original layouts.

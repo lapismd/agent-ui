@@ -4,7 +4,7 @@
   import { useTextHighlight } from "../../presentation/use-text-highlight.js";
   import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
   import * as Collapsible from "@lapismd/design-core/shadcn/collapsible";
-  import FileTextIcon from "@lucide/svelte/icons/file-text";
+  import { FileTypeIcon } from "@lapismd/design-core/shadcn/file-type-icon";
   import PackageIcon from "@lucide/svelte/icons/package";
   import * as Sidebar from "@lapismd/design-core/shadcn/sidebar";
   import SquareArrowOutUpRightIcon from "@lucide/svelte/icons/square-arrow-out-up-right";
@@ -46,7 +46,7 @@
         aria-hidden="true"
       />
       {#if skill.path}
-        <FileTextIcon class="ai-catalog__icon" aria-hidden="true" />
+        <FileTypeIcon path={skill.path} size="md" class="ai-catalog__icon" />
       {:else}
         <PackageIcon class="ai-catalog__icon" aria-hidden="true" />
       {/if}

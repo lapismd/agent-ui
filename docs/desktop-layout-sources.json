@@ -1055,10 +1055,19 @@
       "source": "src/components/ai/catalog/CatalogSkill.svelte",
       "destination": "packages/agent-ui/src/catalog/catalog-skill/CatalogSkill.svelte",
       "sourceSha256": "7d0430cb0924aba28cd1529c5e78a0d9c072003f1a3b55465b4b6b61e2a4e8d9",
-      "adaptations": [],
-      "destinationSha256": "9587b433bcc670c44cd2e920d6740a07465ac08e7ab562dbb22695a842db3423",
-      "layoutAdaptations": [],
-      "layoutSha256": "08e7310ba9561acbf8242553d8c50950f68c0e83c736f4f053b315b1c7fad719"
+      "adaptations": [
+        {
+          "description": "Resolve local skill filename artwork with the public Design Core FileTypeIcon; preserve the original 16px slot, bundled package icon and explicit host open path."
+        }
+      ],
+      "destinationSha256": "9ea660dabc586a224ede0c24d0a4d97dd910cb08fec0c4c63be347ca74b78ea9",
+      "layoutAdaptations": [
+        {
+          "before": "<FileTextIcon class=\"ai-catalog__icon\" aria-hidden=\"true\" />",
+          "after": "<FileTypeIcon path={skill.path} size=\"md\" class=\"ai-catalog__icon\" />"
+        }
+      ],
+      "layoutSha256": "476c6d7855479b7628466204aba30574ff174d3d20ae3492c4b07e900fc47f6b"
     },
     {
       "sourceRepository": "lapis-desktop",

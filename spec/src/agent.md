@@ -68,6 +68,9 @@ view toggle, with accessible action labels and separate raw capture where needed
 Attachment chips, attach-file suggestions and saved-file headers MUST render the
 public Design Core FileTypeIcon from their explicit path, preserving the original
 12px, 16px and 16px slots and exact selection/removal identities.
+Local catalog skills MUST resolve the same icon from their exact file path in
+the original 16px slot; bundled skills without a path MUST retain the package
+icon and explicit open-file actions MUST retain the host path.
 
 ### Acceptance details
 

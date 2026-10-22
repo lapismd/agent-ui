@@ -54,6 +54,8 @@ including the public FileTypeIcon subpath, through both the Storybook dev
 retain strict compile/runtime diagnostics and qualify changed startup behavior
 in a cold process. Browser documentation checks MUST bring lazy Canvas previews
 into view before verifying their production component bounds.
+Filename icon qualification MUST include local catalog skills in the complete
+screen, preserving the copied row geometry and explicit host navigation.
 
 ### Acceptance details
 
