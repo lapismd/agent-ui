@@ -88,6 +88,16 @@ export const ScopedChoices: Story = {
   },
 };
 export const Approved: Story = {
+  play: async ({ canvasElement }) => {
+    const card = within(canvasElement).getByTestId("ai-approval-card");
+    const icon = card.querySelector(".agent-request-emblem svg")!;
+    await expect(getComputedStyle(icon).color).not.toBe(
+      getComputedStyle(card).color,
+    );
+    await expect(getComputedStyle(icon).color).toBe(
+      getComputedStyle(card.querySelector(".agent-request-outcome")!).color,
+    );
+  },
   parameters: {
     docs: {
       description: {
@@ -101,6 +111,17 @@ export const Approved: Story = {
   }),
 };
 export const Denied: Story = {
+  play: async ({ canvasElement }) => {
+    const card = within(canvasElement).getByTestId("ai-approval-card");
+    const title = card.querySelector(".agent-request-title")!;
+    const icon = card.querySelector(".agent-request-emblem svg")!;
+    await expect(getComputedStyle(title).color).not.toBe(
+      getComputedStyle(card).color,
+    );
+    await expect(getComputedStyle(icon).color).toBe(
+      getComputedStyle(title).color,
+    );
+  },
   parameters: {
     docs: {
       description: {

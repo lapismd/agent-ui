@@ -224,6 +224,7 @@ test("captured permissions become collapsed native transcript rows without mutat
       `${status === "approved" ? "Permission granted" : "Permission denied"}: ${request.title}`,
     );
     expect(row.defaultExpanded).toBe(false);
+    expect(row.tone).toBe(status === "denied" ? "destructive" : undefined);
     expect(row.blocks).toBe(item.blocks);
     expect(item.defaultExpanded).toBe(true);
   }

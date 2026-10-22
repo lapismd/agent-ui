@@ -7,6 +7,9 @@ Request-card paint refinements MUST use public primitive tokens or root style
 props with audited Agent UI variables, without dependency selector overrides.
 Generic input/status frame geometry and custom status content MUST remain owned
 by public Design Core components; Agent UI supplies exact-draft metadata.
+Captured permission outcomes use the public TranscriptItem disclosure tone;
+inline comment formatting stays in shared CommentComposer and public Mira actions.
+Request-card red/green feedback remains an explicit audited source adaptation.
 
 Component-family documentation is enforced by the repository-owned
 `agentFoundations` validator plugin, loaded by the published spec-validator.

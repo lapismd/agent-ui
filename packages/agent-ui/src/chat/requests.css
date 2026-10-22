@@ -1,4 +1,8 @@
 [data-ui-component="ai-agent-request"] {
+  --_request-destructive: var(
+    --ui-agent-request-destructive,
+    color-mix(in srgb, var(--destructive) 80%, var(--foreground))
+  );
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
@@ -128,7 +132,10 @@
   .agent-request-emblem,
 [data-ui-component="ai-agent-request"][data-state="approved"]
   .agent-request-outcome {
-  color: var(--ui-agent-request-success, var(--foreground));
+  color: var(
+    --ui-agent-request-success,
+    color-mix(in srgb, var(--success, var(--chart-2)) 55%, var(--foreground))
+  );
   background: color-mix(
     in srgb,
     var(--success, var(--primary)) 10%,
@@ -141,7 +148,7 @@
   .agent-request-outcome,
 [data-ui-component="ai-agent-request"][data-state="refused"]
   .agent-request-outcome {
-  color: var(--ui-agent-request-destructive, var(--foreground));
+  color: var(--_request-destructive);
   background: color-mix(in srgb, var(--destructive) 10%, var(--card));
 }
 .agent-question-form {
@@ -230,4 +237,15 @@
   min-inline-size: 1.5rem;
   justify-content: center;
   font-variant-numeric: tabular-nums;
+}
+
+.dark [data-ui-component="ai-agent-request"] {
+  --_request-destructive: var(
+    --ui-agent-request-destructive,
+    color-mix(in srgb, var(--destructive) 60%, var(--foreground))
+  );
+}
+[data-ui-component="ai-agent-request"][data-state="denied"]
+  .agent-request-title {
+  color: var(--_request-destructive);
 }

@@ -206,7 +206,10 @@
       "destination": "packages/agent-ui/src/identity/agent-avatar.ts",
       "sourceSha256": "1943e25b2522771430ad929bccd168b9c3de5f84a63980e9b3fa1879829a3e30",
       "adaptations": [
-        { "before": "local: \"/lapis-logo.svg\"", "after": "local: lapisIcon" },
+        {
+          "before": "local: \"/lapis-logo.svg\"",
+          "after": "local: lapisIcon"
+        },
         {
           "before": "import cursorIcon",
           "after": "import lapisIcon from \"./assets/lapis.svg\";\nimport cursorIcon"
@@ -584,7 +587,10 @@
           "before": "  import { composerReferences } from \"./composer-references.ts\";\n",
           "after": ""
         },
-        { "before": "    app,", "after": "    extensions = []," },
+        {
+          "before": "    app,",
+          "after": "    extensions = [],"
+        },
         {
           "before": "    app?: App;",
           "after": "    extensions?: ComponentProps<typeof MarkdownComposer>[\"extensions\"];"
@@ -609,7 +615,10 @@
       ],
       "destinationSha256": "d8d2d4d4371b5c4769f075eee4c171962f096596a8d150614dbf307900edc8ab",
       "layoutAdaptations": [
-        { "before": "extensions={[references]}", "after": "{extensions}" },
+        {
+          "before": "extensions={[references]}",
+          "after": "{extensions}"
+        },
         {
           "before": "--ui-markdown-composer-min-height: calc(2 * 1.4rem + 1rem);",
           "after": "--ui-markdown-composer-min-height: var(--ui-agent-composer-min-height, calc(2 * 1.4rem + 1rem));"
@@ -634,7 +643,10 @@
           "before": "placeholder=\"Ask about your notes…\"",
           "after": "{placeholder}"
         },
-        { "before": "{triggers}", "after": "triggers={suggestions}" },
+        {
+          "before": "{triggers}",
+          "after": "triggers={suggestions}"
+        },
         {
           "before": "{extensions}",
           "after": "extensions={[...(referenceExtension ? [referenceExtension] : []), ...extensions]}\n    {customEmojis}\n    {emojis}\n    {emojiText}\n    {additionalActions}"
@@ -696,12 +708,18 @@
           "before": "status={`${agent} · ${composerState.selectedModel || \"Automatic model\"} · ${panel.conversationsState.scopePathLabel}`}",
           "after": "{status}"
         },
-        { "before": "busy={controller.busy}", "after": "{busy}" },
+        {
+          "before": "busy={controller.busy}",
+          "after": "{busy}"
+        },
         {
           "before": "loading={!loaded || !!panelProps.initializing}",
           "after": "{loading}"
         },
-        { "before": "onSelect={select}", "after": "{onSelect}" },
+        {
+          "before": "onSelect={select}",
+          "after": "{onSelect}"
+        },
         {
           "before": "harness={composerState.selectedAgent}",
           "after": "{harness}"
@@ -710,7 +728,10 @@
           "before": "disabled={!!panelProps.initializing || controller.busy}",
           "after": "disabled={loading || busy}"
         },
-        { "before": "onclick={create}", "after": "onclick={onCreate}" },
+        {
+          "before": "onclick={create}",
+          "after": "onclick={onCreate}"
+        },
         {
           "before": "{view}\n      onChange={onViewChange}",
           "after": "bind:view\n      onChange={onViewChange}"
@@ -719,7 +740,10 @@
           "before": "<ChatConversationMenu\n      {panelProps}\n      {controller}\n      actions={panel.actions}\n      {composerState}\n    />",
           "after": "{@render menu?.()}"
         },
-        { "before": "{rows.length}", "after": "{items.length}" }
+        {
+          "before": "{rows.length}",
+          "after": "{items.length}"
+        }
       ],
       "destinationSha256": "9597708a4f5480d6ce131f70d911fae6695f8b4024e09defd3ca5aba5d58a929",
       "layoutAdaptations": [
@@ -731,12 +755,18 @@
           "before": "status={`${agent} · ${composerState.selectedModel || \"Automatic model\"} · ${panel.conversationsState.scopePathLabel}`}",
           "after": "{status}"
         },
-        { "before": "busy={controller.busy}", "after": "{busy}" },
+        {
+          "before": "busy={controller.busy}",
+          "after": "{busy}"
+        },
         {
           "before": "loading={!loaded || !!panelProps.initializing}",
           "after": "{loading}"
         },
-        { "before": "onSelect={select}", "after": "{onSelect}" },
+        {
+          "before": "onSelect={select}",
+          "after": "{onSelect}"
+        },
         {
           "before": "harness={composerState.selectedAgent}",
           "after": "{harness}"
@@ -745,13 +775,22 @@
           "before": "disabled={!!panelProps.initializing || controller.busy}",
           "after": "disabled={loading || busy}"
         },
-        { "before": "onclick={create}", "after": "onclick={onCreate}" },
-        { "before": "      {view}", "after": "      bind:view" },
+        {
+          "before": "onclick={create}",
+          "after": "onclick={onCreate}"
+        },
+        {
+          "before": "      {view}",
+          "after": "      bind:view"
+        },
         {
           "before": "<ChatConversationMenu\n      {panelProps}\n      {controller}\n      actions={panel.actions}\n      {composerState}\n    />",
           "after": "{@render menu?.()}"
         },
-        { "before": "{rows.length}", "after": "{items.length}" }
+        {
+          "before": "{rows.length}",
+          "after": "{items.length}"
+        }
       ],
       "layoutSha256": "09d77f95c54f8e2168203fbe348c8ec6940c06ddaed0c4434f748afd3402ecb1"
     },
@@ -839,9 +878,12 @@
         },
         {
           "description": "User-authorized 2026-10-22 visual review: decorative letter and number labels use solid theme fills through public Badge color tokens; answer rows retain their theme background."
+        },
+        {
+          "description": "User-authorized request feedback polish: readable red denied title/icons/outcomes and semantic green granted icons/outcomes, preserving card geometry and host request behavior."
         }
       ],
-      "destinationSha256": "bd16513c7d022198925f7bcd1a60908dacaa869f1278c787ff8c51a139da0356",
+      "destinationSha256": "7bc69f69a6a95ae062acca2a5ca6cfe64137ad5ea7f4697ac4664c036a48f94c",
       "layoutAdaptations": [
         {
           "before": "gap: var(--ui-ai-request-gap);",
@@ -866,9 +908,13 @@
         {
           "before": "[data-ui-component=\"ai-agent-request\"] {\n  box-sizing: border-box;\n  width: 100%;\n  min-width: 0;\n  --ui-card-background: var(--ui-agent-request-background, var(--card));\n  --ui-card-border-color: var(--ui-agent-request-border, var(--border));\n  --ui-card-radius: var(--ui-agent-request-radius, 0.75rem);\n}\n.agent-request-card {\n  min-width: 0;\n  gap: var(--ui-agent-request-gap, var(--ui-ai-request-gap, 0.75rem));\n  padding: var(--ui-agent-request-padding, 1rem);\n  box-shadow: none;\n  border: 1px solid var(--ui-agent-request-border, var(--border));\n  font-size: var(--ui-agent-request-text-size, 0.8125rem);\n}\n.agent-request-heading {\n  display: flex;\n  align-items: flex-start;\n  gap: var(--ui-agent-request-heading-gap, 0.75rem);\n  padding: 0;\n}\n.agent-request-heading-text {\n  flex: 1;\n  min-width: 0;\n}\n.agent-request-title {\n  margin: 0;\n  font-size: var(--ui-agent-request-title-size, 0.875rem);\n  font-weight: 600;\n  line-height: 1.45;\n}\n.agent-request-description {\n  margin-block-start: 0.125rem;\n  color: var(--muted-foreground);\n  font-size: inherit;\n  line-height: 1.5;\n}\n.agent-request-emblem {\n  display: grid;\n  place-items: center;\n  flex: none;\n  width: var(--ui-agent-request-icon-size, 2.5rem);\n  height: var(--ui-agent-request-icon-size, 2.5rem);\n  border-radius: var(--radius-lg);\n  background: var(\n    --ui-agent-request-icon-background,\n    color-mix(in srgb, var(--primary) 8%, var(--card))\n  );\n  color: var(--primary);\n}\n.agent-request-emblem svg {\n  width: 1.25rem;\n  height: 1.25rem;\n}\n.agent-request-content {\n  display: flex;\n  min-width: 0;\n  flex-direction: column;\n  gap: 0.75rem;\n  padding: 0;\n}\n.agent-request-actions {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: flex-start;\n  gap: var(--ui-agent-request-action-gap, 0.5rem);\n  padding: 0;\n}\n.agent-permission-resources {\n  display: flex;\n  flex-direction: column;\n  gap: 0.375rem;\n  margin: 0;\n  padding: 0.625rem;\n  border: 1px solid var(--border);\n  border-radius: var(--radius-md);\n  background: var(--ui-agent-request-detail-background, var(--muted));\n  list-style: none;\n}\n.agent-permission-resources li {\n  padding: 0.5rem 0.625rem;\n  border: 1px solid var(--border);\n  border-radius: var(--radius-md);\n  background: var(--ui-agent-request-option-background, var(--background));\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  min-width: 0;\n}\n.agent-permission-resources svg {\n  width: 0.875rem;\n  height: 0.875rem;\n  flex: none;\n  color: var(--muted-foreground);\n}\n.agent-permission-resources code {\n  min-width: 0;\n  overflow-wrap: anywhere;\n  font-family: var(--font-mono);\n  font-size: 0.75rem;\n}\n.agent-permission-resources li > span:last-child {\n  margin-inline-start: auto;\n  color: var(--muted-foreground);\n  font-size: 0.75rem;\n  text-align: end;\n}\n.agent-request-outcome {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  padding: 0.5rem 0.625rem;\n  border-radius: var(--radius-md);\n  background: var(--muted);\n}\n.agent-request-outcome svg {\n  flex: none;\n  width: 1rem;\n  height: 1rem;\n}\n.agent-request-outcome time {\n  margin-inline-start: auto;\n  font-size: 0.75rem;\n  color: var(--muted-foreground);\n}\n[data-ui-component=\"ai-agent-request\"][data-state=\"approved\"]\n  .agent-request-emblem,\n[data-ui-component=\"ai-agent-request\"][data-state=\"approved\"]\n  .agent-request-outcome {\n  color: var(--ui-agent-request-success, var(--foreground));\n  background: color-mix(\n    in srgb,\n    var(--success, var(--primary)) 10%,\n    var(--card)\n  );\n}\n[data-ui-component=\"ai-agent-request\"][data-state=\"denied\"]\n  .agent-request-emblem,\n[data-ui-component=\"ai-agent-request\"][data-state=\"denied\"]\n  .agent-request-outcome,\n[data-ui-component=\"ai-agent-request\"][data-state=\"refused\"]\n  .agent-request-outcome {\n  color: var(--ui-agent-request-destructive, var(--foreground));\n  background: color-mix(in srgb, var(--destructive) 10%, var(--card));\n}\n.agent-question-form {\n  width: 100%;\n  min-width: 0;\n}\n.agent-question-fields {\n  gap: 1rem;\n}\n.agent-question-field {\n  gap: 0.5rem;\n}\n.agent-question-options {\n  display: flex;\n  flex-direction: column;\n  gap: var(--ui-agent-request-option-gap, 0.5rem);\n}\n.agent-question-option {\n  background: var(--ui-agent-request-option-background, var(--background));\n  display: flex;\n  align-items: center;\n  width: 100%;\n  min-width: 0;\n  gap: 0.75rem;\n  padding: var(--ui-agent-request-option-padding, 0.75rem);\n  border: 1px solid var(--border);\n  border-radius: var(--radius-md);\n  cursor: pointer;\n  font: inherit;\n}\n.agent-question-option[data-selected=\"true\"] {\n  border-color: var(--primary);\n  background: var(--ui-agent-request-selected-background, var(--background));\n}\n.agent-question-option:has(:focus-visible) {\n  outline: 2px solid var(--ring);\n  outline-offset: 2px;\n}\n.agent-question-option:has(:disabled) {\n  cursor: not-allowed;\n  opacity: 0.6;\n}\n.agent-question-option > span:last-child {\n  display: flex;\n  min-width: 0;\n  flex-direction: column;\n  gap: 0.125rem;\n}\n.agent-question-option small {\n  font-size: 0.75rem;\n  font-weight: 400;\n  line-height: 1.4;\n  color: var(--muted-foreground);\n}\n.agent-question-count {\n  align-self: flex-end;\n  color: var(--muted-foreground);\n  font-size: 0.75rem;\n  font-variant-numeric: tabular-nums;\n}\n@container (min-width: 30rem) {\n  .agent-request-content,\n  .agent-request-actions {\n    margin-inline-start: calc(\n      var(--ui-agent-request-icon-size, 2.5rem) +\n        var(--ui-agent-request-heading-gap, 0.75rem)\n    );\n  }\n}\n[data-ui-component=\"ai-agent-request\"] {\n  container-type: inline-size;\n}\n@media (forced-colors: active) {\n  .agent-question-option[data-selected=\"true\"] {\n    outline: 2px solid Highlight;\n  }\n}\n\n.agent-question-option-key {\n  flex: none;\n  min-inline-size: 1.5rem;\n  justify-content: center;\n  font-variant-numeric: tabular-nums;\n}",
           "after": "[data-ui-component=\"ai-agent-request\"] {\n  box-sizing: border-box;\n  width: 100%;\n  min-width: 0;\n  --ui-card-background: var(--ui-agent-request-background, var(--card));\n  --ui-card-border-color: var(--ui-agent-request-border, var(--border));\n  --ui-card-radius: var(--ui-agent-request-radius, 0.75rem);\n}\n.agent-request-card {\n  min-width: 0;\n  gap: var(--ui-agent-request-gap, var(--ui-ai-request-gap, 0.75rem));\n  padding: var(--ui-agent-request-padding, 1rem);\n  box-shadow: none;\n  border: 1px solid var(--ui-agent-request-border, var(--border));\n  font-size: var(--ui-agent-request-text-size, 0.8125rem);\n}\n.agent-request-heading {\n  display: flex;\n  align-items: flex-start;\n  gap: var(--ui-agent-request-heading-gap, 0.75rem);\n  padding: 0;\n}\n.agent-request-heading-text {\n  flex: 1;\n  min-width: 0;\n}\n.agent-request-title {\n  margin: 0;\n  font-size: var(--ui-agent-request-title-size, 0.875rem);\n  font-weight: 600;\n  line-height: 1.45;\n}\n.agent-request-description {\n  margin-block-start: 0.125rem;\n  color: var(--muted-foreground);\n  font-size: inherit;\n  line-height: 1.5;\n}\n.agent-request-emblem {\n  display: grid;\n  place-items: center;\n  flex: none;\n  width: var(--ui-agent-request-icon-size, 2.5rem);\n  height: var(--ui-agent-request-icon-size, 2.5rem);\n  border-radius: var(--radius-lg);\n  background: var(\n    --ui-agent-request-icon-background,\n    color-mix(in srgb, var(--primary) 8%, var(--card))\n  );\n  color: var(--primary);\n}\n.agent-request-emblem svg {\n  width: 1.25rem;\n  height: 1.25rem;\n}\n.agent-request-content {\n  display: flex;\n  min-width: 0;\n  flex-direction: column;\n  gap: 0.75rem;\n  padding: 0;\n}\n.agent-request-actions {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: flex-start;\n  gap: var(--ui-agent-request-action-gap, 0.5rem);\n  padding: 0;\n}\n.agent-permission-resources {\n  display: flex;\n  flex-direction: column;\n  gap: 0.375rem;\n  margin: 0;\n  padding: 0.625rem;\n  border: 1px solid var(--border);\n  border-radius: var(--radius-md);\n  background: var(--ui-agent-request-detail-background, var(--muted));\n  list-style: none;\n}\n.agent-permission-resources li {\n  padding: 0.5rem 0.625rem;\n  border: 1px solid var(--border);\n  border-radius: var(--radius-md);\n  background: var(--ui-agent-request-option-background, var(--background));\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  min-width: 0;\n}\n.agent-permission-resources svg {\n  width: 0.875rem;\n  height: 0.875rem;\n  flex: none;\n  color: var(--muted-foreground);\n}\n.agent-permission-resources code {\n  min-width: 0;\n  overflow-wrap: anywhere;\n  font-family: var(--font-mono);\n  font-size: 0.75rem;\n}\n.agent-permission-resources li > span:last-child {\n  margin-inline-start: auto;\n  color: var(--muted-foreground);\n  font-size: 0.75rem;\n  text-align: end;\n}\n.agent-request-outcome {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  padding: 0.5rem 0.625rem;\n  border-radius: var(--radius-md);\n  background: var(--muted);\n}\n.agent-request-outcome svg {\n  flex: none;\n  width: 1rem;\n  height: 1rem;\n}\n.agent-request-outcome time {\n  margin-inline-start: auto;\n  font-size: 0.75rem;\n  color: var(--muted-foreground);\n}\n[data-ui-component=\"ai-agent-request\"][data-state=\"approved\"]\n  .agent-request-emblem,\n[data-ui-component=\"ai-agent-request\"][data-state=\"approved\"]\n  .agent-request-outcome {\n  color: var(--ui-agent-request-success, var(--foreground));\n  background: color-mix(\n    in srgb,\n    var(--success, var(--primary)) 10%,\n    var(--card)\n  );\n}\n[data-ui-component=\"ai-agent-request\"][data-state=\"denied\"]\n  .agent-request-emblem,\n[data-ui-component=\"ai-agent-request\"][data-state=\"denied\"]\n  .agent-request-outcome,\n[data-ui-component=\"ai-agent-request\"][data-state=\"refused\"]\n  .agent-request-outcome {\n  color: var(--ui-agent-request-destructive, var(--foreground));\n  background: color-mix(in srgb, var(--destructive) 10%, var(--card));\n}\n.agent-question-form {\n  width: 100%;\n  min-width: 0;\n}\n.agent-question-fields {\n  gap: 1rem;\n}\n.agent-question-field {\n  gap: 0.5rem;\n}\n.agent-question-options {\n  display: flex;\n  flex-direction: column;\n  gap: var(--ui-agent-request-option-gap, 0.5rem);\n}\n.agent-question-option {\n  background: var(--ui-agent-request-option-background, var(--background));\n  display: flex;\n  align-items: center;\n  width: 100%;\n  min-width: 0;\n  gap: 0.75rem;\n  padding: var(--ui-agent-request-option-padding, 0.75rem);\n  border: 1px solid var(--border);\n  border-radius: var(--radius-md);\n  cursor: pointer;\n  font: inherit;\n}\n.agent-question-option[data-selected=\"true\"] {\n  border-color: var(--primary);\n  background: var(--ui-agent-request-selected-background, var(--background));\n}\n.agent-question-option:has(:focus-visible) {\n  outline: 2px solid var(--ring);\n  outline-offset: 2px;\n}\n.agent-question-option:has(:disabled) {\n  cursor: not-allowed;\n  opacity: 0.6;\n}\n.agent-question-option > span:last-child {\n  display: flex;\n  min-width: 0;\n  flex-direction: column;\n  gap: 0.125rem;\n}\n.agent-question-option small {\n  font-size: 0.75rem;\n  font-weight: 400;\n  line-height: 1.4;\n  color: var(--muted-foreground);\n}\n.agent-question-count {\n  align-self: flex-end;\n  color: var(--muted-foreground);\n  font-size: 0.75rem;\n  font-variant-numeric: tabular-nums;\n}\n@container (min-width: 30rem) {\n  .agent-request-content,\n  .agent-request-actions {\n    margin-inline-start: calc(\n      var(--ui-agent-request-icon-size, 2.5rem) +\n        var(--ui-agent-request-heading-gap, 0.75rem)\n    );\n  }\n}\n[data-ui-component=\"ai-agent-request\"] {\n  container-type: inline-size;\n}\n@media (forced-colors: active) {\n  .agent-question-option[data-selected=\"true\"] {\n    outline: 2px solid Highlight;\n  }\n}\n\n.agent-question-option-key {\n  --ui-badge-background: var(--ui-agent-request-label-background, var(--muted));\n  --ui-badge-foreground: var(\n    --ui-agent-request-label-foreground,\n    var(--foreground)\n  );\n  flex: none;\n  min-inline-size: 1.5rem;\n  justify-content: center;\n  font-variant-numeric: tabular-nums;\n}"
+        },
+        {
+          "before": "[data-ui-component=\"ai-agent-request\"] {\n  box-sizing: border-box;\n  width: 100%;\n  min-width: 0;\n  --ui-card-background: var(--ui-agent-request-background, var(--card));\n  --ui-card-border-color: var(--ui-agent-request-border, var(--border));\n  --ui-card-radius: var(--ui-agent-request-radius, 0.75rem);\n}\n.agent-request-card {\n  min-width: 0;\n  gap: var(--ui-agent-request-gap, var(--ui-ai-request-gap, 0.75rem));\n  padding: var(--ui-agent-request-padding, 1rem);\n  box-shadow: none;\n  border: 1px solid var(--ui-agent-request-border, var(--border));\n  font-size: var(--ui-agent-request-text-size, 0.8125rem);\n}\n.agent-request-heading {\n  display: flex;\n  align-items: flex-start;\n  gap: var(--ui-agent-request-heading-gap, 0.75rem);\n  padding: 0;\n}\n.agent-request-heading-text {\n  flex: 1;\n  min-width: 0;\n}\n.agent-request-title {\n  margin: 0;\n  font-size: var(--ui-agent-request-title-size, 0.875rem);\n  font-weight: 600;\n  line-height: 1.45;\n}\n.agent-request-description {\n  margin-block-start: 0.125rem;\n  color: var(--muted-foreground);\n  font-size: inherit;\n  line-height: 1.5;\n}\n.agent-request-emblem {\n  display: grid;\n  place-items: center;\n  flex: none;\n  width: var(--ui-agent-request-icon-size, 2.5rem);\n  height: var(--ui-agent-request-icon-size, 2.5rem);\n  border-radius: var(--radius-lg);\n  background: var(\n    --ui-agent-request-icon-background,\n    color-mix(in srgb, var(--primary) 8%, var(--card))\n  );\n  color: var(--primary);\n}\n.agent-request-emblem svg {\n  width: 1.25rem;\n  height: 1.25rem;\n}\n.agent-request-content {\n  display: flex;\n  min-width: 0;\n  flex-direction: column;\n  gap: 0.75rem;\n  padding: 0;\n}\n.agent-request-actions {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: flex-start;\n  gap: var(--ui-agent-request-action-gap, 0.5rem);\n  padding: 0;\n}\n.agent-permission-resources {\n  display: flex;\n  flex-direction: column;\n  gap: 0.375rem;\n  margin: 0;\n  padding: 0.625rem;\n  border: 1px solid var(--border);\n  border-radius: var(--radius-md);\n  background: var(--ui-agent-request-detail-background, var(--muted));\n  list-style: none;\n}\n.agent-permission-resources li {\n  padding: 0.5rem 0.625rem;\n  border: 1px solid var(--border);\n  border-radius: var(--radius-md);\n  background: var(--ui-agent-request-option-background, var(--background));\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  min-width: 0;\n}\n.agent-permission-resources svg {\n  width: 0.875rem;\n  height: 0.875rem;\n  flex: none;\n  color: var(--muted-foreground);\n}\n.agent-permission-resources code {\n  min-width: 0;\n  overflow-wrap: anywhere;\n  font-family: var(--font-mono);\n  font-size: 0.75rem;\n}\n.agent-permission-resources li > span:last-child {\n  margin-inline-start: auto;\n  color: var(--muted-foreground);\n  font-size: 0.75rem;\n  text-align: end;\n}\n.agent-request-outcome {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  padding: 0.5rem 0.625rem;\n  border-radius: var(--radius-md);\n  background: var(--muted);\n}\n.agent-request-outcome svg {\n  flex: none;\n  width: 1rem;\n  height: 1rem;\n}\n.agent-request-outcome time {\n  margin-inline-start: auto;\n  font-size: 0.75rem;\n  color: var(--muted-foreground);\n}\n[data-ui-component=\"ai-agent-request\"][data-state=\"approved\"]\n  .agent-request-emblem,\n[data-ui-component=\"ai-agent-request\"][data-state=\"approved\"]\n  .agent-request-outcome {\n  color: var(--ui-agent-request-success, var(--foreground));\n  background: color-mix(\n    in srgb,\n    var(--success, var(--primary)) 10%,\n    var(--card)\n  );\n}\n[data-ui-component=\"ai-agent-request\"][data-state=\"denied\"]\n  .agent-request-emblem,\n[data-ui-component=\"ai-agent-request\"][data-state=\"denied\"]\n  .agent-request-outcome,\n[data-ui-component=\"ai-agent-request\"][data-state=\"refused\"]\n  .agent-request-outcome {\n  color: var(--ui-agent-request-destructive, var(--foreground));\n  background: color-mix(in srgb, var(--destructive) 10%, var(--card));\n}\n.agent-question-form {\n  width: 100%;\n  min-width: 0;\n}\n.agent-question-fields {\n  gap: 1rem;\n}\n.agent-question-field {\n  gap: 0.5rem;\n}\n.agent-question-options {\n  display: flex;\n  flex-direction: column;\n  gap: var(--ui-agent-request-option-gap, 0.5rem);\n}\n.agent-question-option {\n  background: var(--ui-agent-request-option-background, var(--background));\n  display: flex;\n  align-items: center;\n  width: 100%;\n  min-width: 0;\n  gap: 0.75rem;\n  padding: var(--ui-agent-request-option-padding, 0.75rem);\n  border: 1px solid var(--border);\n  border-radius: var(--radius-md);\n  cursor: pointer;\n  font: inherit;\n}\n.agent-question-option[data-selected=\"true\"] {\n  border-color: var(--primary);\n  background: var(--ui-agent-request-selected-background, var(--background));\n}\n.agent-question-option:has(:focus-visible) {\n  outline: 2px solid var(--ring);\n  outline-offset: 2px;\n}\n.agent-question-option:has(:disabled) {\n  cursor: not-allowed;\n  opacity: 0.6;\n}\n.agent-question-option > span:last-child {\n  display: flex;\n  min-width: 0;\n  flex-direction: column;\n  gap: 0.125rem;\n}\n.agent-question-option small {\n  font-size: 0.75rem;\n  font-weight: 400;\n  line-height: 1.4;\n  color: var(--muted-foreground);\n}\n.agent-question-count {\n  align-self: flex-end;\n  color: var(--muted-foreground);\n  font-size: 0.75rem;\n  font-variant-numeric: tabular-nums;\n}\n@container (min-width: 30rem) {\n  .agent-request-content,\n  .agent-request-actions {\n    margin-inline-start: calc(\n      var(--ui-agent-request-icon-size, 2.5rem) +\n        var(--ui-agent-request-heading-gap, 0.75rem)\n    );\n  }\n}\n[data-ui-component=\"ai-agent-request\"] {\n  container-type: inline-size;\n}\n@media (forced-colors: active) {\n  .agent-question-option[data-selected=\"true\"] {\n    outline: 2px solid Highlight;\n  }\n}\n\n.agent-question-option-key {\n  --ui-badge-background: var(--ui-agent-request-label-background, var(--muted));\n  --ui-badge-foreground: var(\n    --ui-agent-request-label-foreground,\n    var(--foreground)\n  );\n  flex: none;\n  min-inline-size: 1.5rem;\n  justify-content: center;\n  font-variant-numeric: tabular-nums;\n}",
+          "after": "[data-ui-component=\"ai-agent-request\"] {\n  --_request-destructive: var(\n    --ui-agent-request-destructive,\n    color-mix(in srgb, var(--destructive) 80%, var(--foreground))\n  );\n  box-sizing: border-box;\n  width: 100%;\n  min-width: 0;\n  --ui-card-background: var(--ui-agent-request-background, var(--card));\n  --ui-card-border-color: var(--ui-agent-request-border, var(--border));\n  --ui-card-radius: var(--ui-agent-request-radius, 0.75rem);\n}\n.agent-request-card {\n  min-width: 0;\n  gap: var(--ui-agent-request-gap, var(--ui-ai-request-gap, 0.75rem));\n  padding: var(--ui-agent-request-padding, 1rem);\n  box-shadow: none;\n  border: 1px solid var(--ui-agent-request-border, var(--border));\n  font-size: var(--ui-agent-request-text-size, 0.8125rem);\n}\n.agent-request-heading {\n  display: flex;\n  align-items: flex-start;\n  gap: var(--ui-agent-request-heading-gap, 0.75rem);\n  padding: 0;\n}\n.agent-request-heading-text {\n  flex: 1;\n  min-width: 0;\n}\n.agent-request-title {\n  margin: 0;\n  font-size: var(--ui-agent-request-title-size, 0.875rem);\n  font-weight: 600;\n  line-height: 1.45;\n}\n.agent-request-description {\n  margin-block-start: 0.125rem;\n  color: var(--muted-foreground);\n  font-size: inherit;\n  line-height: 1.5;\n}\n.agent-request-emblem {\n  display: grid;\n  place-items: center;\n  flex: none;\n  width: var(--ui-agent-request-icon-size, 2.5rem);\n  height: var(--ui-agent-request-icon-size, 2.5rem);\n  border-radius: var(--radius-lg);\n  background: var(\n    --ui-agent-request-icon-background,\n    color-mix(in srgb, var(--primary) 8%, var(--card))\n  );\n  color: var(--primary);\n}\n.agent-request-emblem svg {\n  width: 1.25rem;\n  height: 1.25rem;\n}\n.agent-request-content {\n  display: flex;\n  min-width: 0;\n  flex-direction: column;\n  gap: 0.75rem;\n  padding: 0;\n}\n.agent-request-actions {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: flex-start;\n  gap: var(--ui-agent-request-action-gap, 0.5rem);\n  padding: 0;\n}\n.agent-permission-resources {\n  display: flex;\n  flex-direction: column;\n  gap: 0.375rem;\n  margin: 0;\n  padding: 0.625rem;\n  border: 1px solid var(--border);\n  border-radius: var(--radius-md);\n  background: var(--ui-agent-request-detail-background, var(--muted));\n  list-style: none;\n}\n.agent-permission-resources li {\n  padding: 0.5rem 0.625rem;\n  border: 1px solid var(--border);\n  border-radius: var(--radius-md);\n  background: var(--ui-agent-request-option-background, var(--background));\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  min-width: 0;\n}\n.agent-permission-resources svg {\n  width: 0.875rem;\n  height: 0.875rem;\n  flex: none;\n  color: var(--muted-foreground);\n}\n.agent-permission-resources code {\n  min-width: 0;\n  overflow-wrap: anywhere;\n  font-family: var(--font-mono);\n  font-size: 0.75rem;\n}\n.agent-permission-resources li > span:last-child {\n  margin-inline-start: auto;\n  color: var(--muted-foreground);\n  font-size: 0.75rem;\n  text-align: end;\n}\n.agent-request-outcome {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  padding: 0.5rem 0.625rem;\n  border-radius: var(--radius-md);\n  background: var(--muted);\n}\n.agent-request-outcome svg {\n  flex: none;\n  width: 1rem;\n  height: 1rem;\n}\n.agent-request-outcome time {\n  margin-inline-start: auto;\n  font-size: 0.75rem;\n  color: var(--muted-foreground);\n}\n[data-ui-component=\"ai-agent-request\"][data-state=\"approved\"]\n  .agent-request-emblem,\n[data-ui-component=\"ai-agent-request\"][data-state=\"approved\"]\n  .agent-request-outcome {\n  color: var(\n    --ui-agent-request-success,\n    color-mix(in srgb, var(--success, var(--chart-2)) 55%, var(--foreground))\n  );\n  background: color-mix(\n    in srgb,\n    var(--success, var(--primary)) 10%,\n    var(--card)\n  );\n}\n[data-ui-component=\"ai-agent-request\"][data-state=\"denied\"]\n  .agent-request-emblem,\n[data-ui-component=\"ai-agent-request\"][data-state=\"denied\"]\n  .agent-request-outcome,\n[data-ui-component=\"ai-agent-request\"][data-state=\"refused\"]\n  .agent-request-outcome {\n  color: var(--_request-destructive);\n  background: color-mix(in srgb, var(--destructive) 10%, var(--card));\n}\n.agent-question-form {\n  width: 100%;\n  min-width: 0;\n}\n.agent-question-fields {\n  gap: 1rem;\n}\n.agent-question-field {\n  gap: 0.5rem;\n}\n.agent-question-options {\n  display: flex;\n  flex-direction: column;\n  gap: var(--ui-agent-request-option-gap, 0.5rem);\n}\n.agent-question-option {\n  background: var(--ui-agent-request-option-background, var(--background));\n  display: flex;\n  align-items: center;\n  width: 100%;\n  min-width: 0;\n  gap: 0.75rem;\n  padding: var(--ui-agent-request-option-padding, 0.75rem);\n  border: 1px solid var(--border);\n  border-radius: var(--radius-md);\n  cursor: pointer;\n  font: inherit;\n}\n.agent-question-option[data-selected=\"true\"] {\n  border-color: var(--primary);\n  background: var(--ui-agent-request-selected-background, var(--background));\n}\n.agent-question-option:has(:focus-visible) {\n  outline: 2px solid var(--ring);\n  outline-offset: 2px;\n}\n.agent-question-option:has(:disabled) {\n  cursor: not-allowed;\n  opacity: 0.6;\n}\n.agent-question-option > span:last-child {\n  display: flex;\n  min-width: 0;\n  flex-direction: column;\n  gap: 0.125rem;\n}\n.agent-question-option small {\n  font-size: 0.75rem;\n  font-weight: 400;\n  line-height: 1.4;\n  color: var(--muted-foreground);\n}\n.agent-question-count {\n  align-self: flex-end;\n  color: var(--muted-foreground);\n  font-size: 0.75rem;\n  font-variant-numeric: tabular-nums;\n}\n@container (min-width: 30rem) {\n  .agent-request-content,\n  .agent-request-actions {\n    margin-inline-start: calc(\n      var(--ui-agent-request-icon-size, 2.5rem) +\n        var(--ui-agent-request-heading-gap, 0.75rem)\n    );\n  }\n}\n[data-ui-component=\"ai-agent-request\"] {\n  container-type: inline-size;\n}\n@media (forced-colors: active) {\n  .agent-question-option[data-selected=\"true\"] {\n    outline: 2px solid Highlight;\n  }\n}\n\n.agent-question-option-key {\n  --ui-badge-background: var(--ui-agent-request-label-background, var(--muted));\n  --ui-badge-foreground: var(\n    --ui-agent-request-label-foreground,\n    var(--foreground)\n  );\n  flex: none;\n  min-inline-size: 1.5rem;\n  justify-content: center;\n  font-variant-numeric: tabular-nums;\n}\n\n.dark [data-ui-component=\"ai-agent-request\"] {\n  --_request-destructive: var(\n    --ui-agent-request-destructive,\n    color-mix(in srgb, var(--destructive) 60%, var(--foreground))\n  );\n}\n[data-ui-component=\"ai-agent-request\"][data-state=\"denied\"]\n  .agent-request-title {\n  color: var(--_request-destructive);\n}"
         }
       ],
-      "layoutSha256": "e2ae47e5f9eb5671c23b62f12e7fe5466b81780347ddf79143f506a304854c0c"
+      "layoutSha256": "b03fd6da92c611e7de9f5f0a84e165448e33175646b33528959b1f9e6ab86b84"
     },
     {
       "sourceRepository": "lapis-desktop",
@@ -1099,7 +1145,10 @@
           "before": "../conversations/transcript-store.ts",
           "after": "./models.js"
         },
-        { "before": "../conversations/types.ts", "after": "./models.js" }
+        {
+          "before": "../conversations/types.ts",
+          "after": "./models.js"
+        }
       ],
       "destinationSha256": "ffd9643bff626dd12a41a6016fbb2b4dc678a996f0d99db82cb59f412ff4e1a4"
     },
@@ -1314,10 +1363,22 @@
       "adaptations": [],
       "destinationSha256": "409ca2876cfc84aec5b3993837d4d256a32d7b0ecfb870ab3dca464cb02dc62a",
       "layoutAdaptations": [
-        { "before": "!!props.sources", "after": "!!imports.available" },
-        { "before": "!!props.onOpen", "after": "!!imports.canOpen" },
-        { "before": "            app={props.app}\n", "after": "" },
-        { "before": "{props.sources", "after": "{imports.available" }
+        {
+          "before": "!!props.sources",
+          "after": "!!imports.available"
+        },
+        {
+          "before": "!!props.onOpen",
+          "after": "!!imports.canOpen"
+        },
+        {
+          "before": "            app={props.app}\n",
+          "after": ""
+        },
+        {
+          "before": "{props.sources",
+          "after": "{imports.available"
+        }
       ],
       "layoutSha256": "f9fa83ac18f4cdb36ac85886ad3b0a373e8fd441638b6ec913e3bf8197abc8df"
     },
@@ -1363,7 +1424,12 @@
       "sourceSha256": "2d6b87af814c0157b31e4df297f4f0df235ee5c1c425a0c81b19828ee06db9bf",
       "adaptations": [],
       "destinationSha256": "8c5e8691ab462a537895b03380473758f03abc61f84002c7559d79131cea342c",
-      "layoutAdaptations": [{ "before": "        {app}\n", "after": "" }],
+      "layoutAdaptations": [
+        {
+          "before": "        {app}\n",
+          "after": ""
+        }
+      ],
       "layoutSha256": "d2ee6eea66191bf3228579944e22dc6df586b80faad248e4aedf18b3b66cf489"
     },
     {
@@ -1596,7 +1662,10 @@
       ],
       "destinationSha256": "f5f6af5ac35a1004fa2a67e30395ad32c4ee380e213b0f21eafa98d3d639aad6",
       "layoutAdaptations": [
-        { "before": "item.path && app", "after": "item.path && onOpenPath" }
+        {
+          "before": "item.path && app",
+          "after": "item.path && onOpenPath"
+        }
       ],
       "layoutSha256": "44aa01a35d9f17fd43068bd53955ed99991f7d1d4efb7ffb9d6c490de02c3a04"
     },

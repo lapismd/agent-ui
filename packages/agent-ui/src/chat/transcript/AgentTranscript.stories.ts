@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/svelte-vite";
-import { expect, within } from "storybook/test";
+import { expect, within, userEvent } from "storybook/test";
 import Transcript from "./AgentTranscript.svelte";
 import Fixture from "./AgentTranscript.stories.fixture.svelte";
 import { Basic as source } from "./AgentTranscript.example-sources.js";
@@ -31,6 +31,22 @@ export const Classic: Story = {
 };
 export const InlineComments: Story = {
   render: () => ({ Component: Fixture, props: { scenario: "comments" } }),
+  play: async ({ canvasElement }) => {
+    const c = within(canvasElement);
+    const toggle = c.getAllByRole("button", {
+      name: "Comment formatting options",
+    })[0];
+    await expect(toggle).toHaveAttribute("aria-pressed", "false");
+    await userEvent.click(toggle);
+    await expect(toggle).toHaveAttribute("aria-pressed", "true");
+    await expect(
+      c.getByRole("group", { name: "Comment formatting" }),
+    ).toBeVisible();
+    await userEvent.click(toggle);
+    await expect(
+      c.queryByRole("group", { name: "Comment formatting" }),
+    ).not.toBeInTheDocument();
+  },
 };
 export const StaleComments: Story = {
   render: () => ({ Component: Fixture, props: { scenario: "stale" } }),

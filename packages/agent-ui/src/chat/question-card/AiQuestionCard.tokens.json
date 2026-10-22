@@ -87,15 +87,15 @@
     },
     {
       "name": "--ui-agent-request-success",
-      "default": "var(--foreground)",
-      "description": "Success",
+      "default": "color-mix(in srgb, var(--success, var(--chart-2)) 55%, var(--foreground))",
+      "description": "Approved permission foreground in semantic green",
       "owner": "@lapismd/agent-ui",
       "source": "chat/requests.css"
     },
     {
       "name": "--ui-agent-request-destructive",
-      "default": "var(--foreground)",
-      "description": "Destructive",
+      "default": "color-mix(in srgb, var(--destructive) 80%, var(--foreground))",
+      "description": "Denied/refused feedback foreground (60% destructive in dark themes)",
       "owner": "@lapismd/agent-ui",
       "source": "chat/requests.css"
     },

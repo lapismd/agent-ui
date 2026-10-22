@@ -1,3 +1,4 @@
+import { verifyInlineCommentFormatting } from "./agents/support/comment-formatting.js";
 import ReferenceDemo from "./agents/references/ReferenceDemo.svelte";
 import type { Meta, StoryObj } from "@storybook/svelte-vite";
 import { expect, within, userEvent, waitFor } from "storybook/test";
@@ -189,6 +190,7 @@ export const AllMessages: Story = {
 };
 export const InlineComments: Story = {
   render: () => ({ Component: AgentDemo, props: { scenario: "comments" } }),
+  play: verifyInlineCommentFormatting,
 };
 export const ChatError: Story = {
   render: () => ({ Component: AgentDemo, props: { scenario: "error" } }),
@@ -351,6 +353,13 @@ export const PermissionDenied: Story = {
       name: "Permission denied: Request to read project files",
     });
     await expect(row).toHaveAttribute("aria-expanded", "false");
+    await expect(row).toHaveAttribute("data-tone", "destructive");
+    await expect(getComputedStyle(row.querySelector("svg")!).color).toBe(
+      getComputedStyle(row).color,
+    );
+    await expect(
+      parseFloat(getComputedStyle(row.closest("li")!).marginBottom),
+    ).toBeLessThanOrEqual(4);
     await userEvent.click(row);
     const captured = c.getByTestId("ai-approval-card");
     await expect(captured).toHaveAttribute("data-state", "denied");

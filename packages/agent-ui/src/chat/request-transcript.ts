@@ -23,6 +23,7 @@ export function requestTranscript(
           : result.state.status === "denied"
             ? DeniedIcon
             : CheckIcon,
+      tone: result.state.status === "denied" ? "destructive" : undefined,
       defaultExpanded: false,
     };
   });

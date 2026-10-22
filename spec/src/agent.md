@@ -28,7 +28,7 @@
 
 ### Acceptance details
 
-- Permission cards MUST show only advertised decisions, explicit host scopes and captured resources/commands, preserving exact option identities and acknowledged outcomes in initially collapsed inline transcript rows that expand to the same read-only card.
+- Permission cards MUST show only advertised decisions, explicit host scopes and captured resources/commands, preserving exact option identities and acknowledged outcomes in initially collapsed inline transcript rows that expand to the same read-only card; granted icons MUST use semantic green, denied text/icons MUST use readable red, and collapsed history rows MUST use the compact tool-row gap.
 - Question cards MUST support host-declared single/multiple choices, optional decorative letter/number labels, independent custom answers and freeform/secret input, retaining request-scoped drafts through refresh and presentation changes.
 - Submissions MUST remain pending until acknowledgement, reject stale identities and duplicate sends, and preserve unknown requests without replay; secret answers MUST remain absent from history.
 - Focused production-controller and component stories MUST cover both themes, narrow layouts, keyboard interaction and the complete-screen drawer/result compositions.
@@ -41,7 +41,7 @@
 
 - Editor, Markdown preview and transcript references MUST preserve authored Markdown or registered host tokens, use shared InlineReference/ReferenceChip presentation and keep identity lookup, navigation and recipient dispatch host-owned.
 - Agent mentions MUST be references by default; only an explicit host policy may derive recipients from the exact submitted text.
-- Default Comment MUST be icon-only; configurable reactions and overflow actions MUST remain clear of tool controls, while wholly unavailable hover controls MUST be absent.
+- Editable inline comments MUST expose a right-aligned formatting T toggle that opens the shared Markdown actions below the input while retaining drafts and selection; default Comment MUST be icon-only; configurable reactions and overflow actions MUST remain clear of tool controls, while wholly unavailable hover controls MUST be absent.
 - Paired editor/preview and complete-screen stories MUST demonstrate people/agents, repositories, GitHub/Forgejo link icons, emoji, spoilers, suggestions and retained source with stock Mira content styling, a line-number-free composer and targeted functional/accessibility evidence.
 
 ## AUI-SCREEN-001 — Agent screens
