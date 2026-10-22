@@ -36,6 +36,7 @@ export const storybookBrowserDependencies = [
     ...discoverCatalogIcons(path.join(root, "catalog")),
     ...discoverCatalogIcons(designCore),
   ]),
+  "@lapismd/design-core/shadcn/file-type-icon",
   "react",
   "react-dom",
   "react-dom/client",

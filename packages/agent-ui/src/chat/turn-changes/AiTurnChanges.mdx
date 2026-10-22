@@ -86,6 +86,8 @@ Set public variables on an ancestor; defaults retain Desktop geometry. Inherit D
 
 <ArgTypes of={Stories} />
 
+Filename artwork comes from the public Design Core `FileTypeIcon`, resolved from the exact host path. Its `--ui-file-type-icon-size` override and `--ui-file-type-icon-size-xs`, `-s`, `-md` and `-lg` presets belong to Design Core; inherited defaults retain the original icon slots. See [File type icon](https://lapismd.github.io/design-core/?path=/docs/shadcn-data-file-type-icon--docs) for the complete styling contract.
+
 ## Composition
 
 [Transcript](?path=/docs/agents-chat-transcript--docs) and [Complete screens](?path=/docs/agent-complete-screens--docs) compose the same production components and in-memory controller flow. Docs previews stay bounded to 40rem; Canvas fills the viewport. Host adapters retain repository and provider authority.

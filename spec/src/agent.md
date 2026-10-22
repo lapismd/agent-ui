@@ -65,6 +65,9 @@ including generic/normalized details, inventory, local reports and host register
 results. The transcript MUST compose these same production renderers. Tool result
 and read-file overlays MUST reuse the shared icon-only Code/BookOpen content
 view toggle, with accessible action labels and separate raw capture where needed.
+Attachment chips, attach-file suggestions and saved-file headers MUST render the
+public Design Core FileTypeIcon from their explicit path, preserving the original
+12px, 16px and 16px slots and exact selection/removal identities.
 
 ### Acceptance details
 

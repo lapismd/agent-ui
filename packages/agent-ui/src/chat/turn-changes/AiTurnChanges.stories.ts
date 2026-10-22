@@ -28,6 +28,25 @@ export const Basic: Story = {
   },
 };
 export const FilePreview: Story = {
+  play: async ({ canvasElement }) => {
+    const title = canvasElement.querySelector(".history-file .file-title");
+    await waitFor(() =>
+      expect(
+        title?.querySelector('[data-file-type-icon="markdown"]'),
+      ).toBeVisible(),
+    );
+    await expect(
+      title?.querySelector('[data-ui-component="file-type-icon"]'),
+    ).toHaveAttribute("data-size", "md");
+    await userEvent.click(
+      within(canvasElement).getByRole("button", { name: "Close saved file" }),
+    );
+    await waitFor(() =>
+      expect(
+        canvasElement.querySelector(".history-file"),
+      ).not.toBeInTheDocument(),
+    );
+  },
   render: () => ({ Component: Fixture, props: { file: true } }),
 };
 export const UndoConfirmation: Story = {

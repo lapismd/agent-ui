@@ -1,5 +1,7 @@
 import type { StorybookConfig } from "@storybook/svelte-vite";
 import remarkGfm from "remark-gfm";
+import { mergeConfig } from "vite";
+import { storybookBrowserDependencies } from "./dependency-optimization.js";
 export default {
   stories: [
     "../packages/agent-ui/src/**/*.stories.ts",
@@ -22,5 +24,9 @@ export default {
     "@storybook/addon-vitest",
   ],
   framework: "@storybook/svelte-vite",
+  viteFinal: async (viteConfig) =>
+    mergeConfig(viteConfig, {
+      optimizeDeps: { include: storybookBrowserDependencies },
+    }),
   core: { disableTelemetry: true },
 } satisfies StorybookConfig;

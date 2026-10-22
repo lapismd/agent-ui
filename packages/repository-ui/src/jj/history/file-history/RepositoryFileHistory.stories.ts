@@ -1,3 +1,4 @@
+import { expect, waitFor } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/svelte-vite";
 import { assertJjStory } from "../../../../../../catalog/jj/support/assert-story.js";
 import Component from "./RepositoryFileHistory.svelte";
@@ -19,6 +20,18 @@ export const Basic: Story = {
   }),
   play: async ({ canvasElement }) => {
     await assertJjStory(canvasElement, "RepositoryFileHistory", "Basic");
+    await waitFor(() =>
+      expect(
+        canvasElement.querySelector(
+          '.repository-review-file-title [data-file-type-icon="markdown"]',
+        ),
+      ).toBeVisible(),
+    );
+    await expect(
+      canvasElement.querySelector(
+        '.repository-review-file-title [data-ui-component="file-type-icon"]',
+      ),
+    ).toHaveAttribute("data-size", "s");
   },
 };
 export const Empty: Story = {

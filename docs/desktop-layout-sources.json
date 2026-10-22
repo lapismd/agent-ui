@@ -377,11 +377,19 @@
         {
           "before": "../../../lib/ai/chat/panel/attachments.svelte.ts",
           "after": "./presentation.js"
+        },
+        {
+          "description": "User-authorized 2026-10-22: replace the generic filename glyph with public Design Core FileTypeIcon, using the exact host path and original icon size. Geometry and actions are retained; artwork is an intentional visual change pending review."
         }
       ],
-      "destinationSha256": "85fb06736d935ff0a576423f0107a983e3e5f2c16a1147e530cba19b541d6b51",
-      "layoutAdaptations": [],
-      "layoutSha256": "7fd26b59e4369030cc24749e767589b1bf634a0688e2b75150cb0dc31a4a9105"
+      "destinationSha256": "2e1bb901a28b29f92acd7809fbf0478f9ea8fc69a7ac8b43805b635e58b69511",
+      "layoutAdaptations": [
+        {
+          "before": "<FileIcon aria-hidden=\"true\" />",
+          "after": "<FileTypeIcon path={file.path} size=\"xs\" />"
+        }
+      ],
+      "layoutSha256": "600a40a156dbcf9c12c717131f02cbec9a1142c22c1fab4e49aaca8edd09b5a8"
     },
     {
       "sourceRepository": "lapis-desktop",
@@ -512,11 +520,19 @@
         {
           "before": "../../../lib/ai/chat/panel/props.ts",
           "after": "./presentation.js"
+        },
+        {
+          "description": "User-authorized 2026-10-22: replace the generic filename glyph with public Design Core FileTypeIcon, using the exact host path and original icon size. Geometry and actions are retained; artwork is an intentional visual change pending review."
         }
       ],
-      "destinationSha256": "7080fad6c114991190f56723eaffcfd599bb017933d582468f75635807f13327",
-      "layoutAdaptations": [],
-      "layoutSha256": "cba9c166c8863441a2b178c68e0132612a7d2a8e01e33e0e3445f418d3ab3b14"
+      "destinationSha256": "24ff287515c182ba94fa501d216648c156d223c452a5088deda980622c1d67a3",
+      "layoutAdaptations": [
+        {
+          "before": "<FileIcon aria-hidden=\"true\" />",
+          "after": "<FileTypeIcon path={item.id} size=\"md\" />"
+        }
+      ],
+      "layoutSha256": "f179dc26b7c26f6585cdb64e1ed1d1efa20d394a14652879033b9fab637f5a53"
     },
     {
       "sourceRepository": "lapis-desktop",
@@ -1392,9 +1408,12 @@
       "adaptations": [
         {
           "description": "Explicit host ports and normalized capture replace App/native authority; original presentation retained. Read failures and async lifetime are guarded."
+        },
+        {
+          "description": "User-authorized 2026-10-22: replace the generic filename glyph with public Design Core FileTypeIcon, using the exact host path and original icon size. Geometry and actions are retained; artwork is an intentional visual change pending review."
         }
       ],
-      "destinationSha256": "1feb1832634310138ebb83c1994b362ca32af2b6dd30b46810a27cfbc6ea91f4",
+      "destinationSha256": "73a3f7f3662d330f47b793b018179f22362df7820c7fde4224e271602ab27d44",
       "layoutAdaptations": [
         {
           "before": "aria-label=\"Select file for undo\"",
@@ -1403,9 +1422,13 @@
         {
           "before": "{#if !inspection.diff}<p role=\"status\">Loading saved file…</p>\n      ",
           "after": "{#if inspection.fileUnavailable}<p>\n          Saved file unavailable. <Button\n            variant=\"ghost\"\n            size=\"sm\"\n            onclick={() =>\n              inspection.path && void inspection.select(inspection.path)}\n            >Retry saved file</Button\n          >\n        </p>\n      {:else if !inspection.diff}<p role=\"status\">Loading saved file…</p>\n      "
+        },
+        {
+          "before": "<FileIcon />",
+          "after": "<FileTypeIcon path={inspection.path ?? \"\"} size=\"md\" />"
         }
       ],
-      "layoutSha256": "74c5d929dae72352971f0040161e345ce956b0bb9fedfd118aeff3127120dca1"
+      "layoutSha256": "a9d1e3ad4ec56cc7e18f39a0ba9f04cc10ed766345595b6d5749a4589581561f"
     },
     {
       "sourceRepository": "lapis-desktop",
@@ -2402,11 +2425,19 @@
         },
         {
           "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        },
+        {
+          "description": "User-authorized 2026-10-22: replace the generic filename glyph with public Design Core FileTypeIcon, using the exact host path and original icon size. Geometry and actions are retained; artwork is an intentional visual change pending review."
         }
       ],
-      "layoutAdaptations": [],
-      "destinationSha256": "d5e201b5bfabbeb02f9f38ce4d6fc363df5bfa310ce7945e1b4f17b93064b0d7",
-      "layoutSha256": "de1a4f0419af49da5cb2fd346e8b1bba0343fc8bfce4df6cc8b7d4ec82681576"
+      "layoutAdaptations": [
+        {
+          "before": "<FileTextIcon aria-hidden=\"true\" />",
+          "after": "<FileTypeIcon {path} size=\"s\" />"
+        }
+      ],
+      "destinationSha256": "02e374671baaf3a38415e04a7d8ab47c09b61c55a8ad70e1200daef05576a1de",
+      "layoutSha256": "144bac84717984ac74291ce8110d0f13af6048eef26a3dca69b188a9e1464f52"
     },
     {
       "sourceRepository": "lapis-desktop",

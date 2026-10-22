@@ -9,7 +9,7 @@
   import * as CommandView from "@lapismd/design-core/shadcn/command-view";
   import * as Popover from "@lapismd/design-core/shadcn/popover";
   import * as Tooltip from "@lapismd/design-core/shadcn/tooltip";
-  import FileIcon from "@lucide/svelte/icons/file";
+  import { FileTypeIcon } from "@lapismd/design-core/shadcn/file-type-icon";
   import VaultPathLabel from "../vault-path-label/VaultPathLabel.svelte";
   import PaperclipIcon from "@lucide/svelte/icons/paperclip";
   import type { AttachmentsState } from "../presentation.js";
@@ -74,7 +74,10 @@
                       onSelect={() => attachmentsState.addAttachment(item)}
                     >
                       <CommandView.ItemIcon
-                        ><FileIcon aria-hidden="true" /></CommandView.ItemIcon
+                        ><FileTypeIcon
+                          path={item.id}
+                          size="md"
+                        /></CommandView.ItemIcon
                       >
                       <CommandView.ItemLabel>{item.label}</CommandView.ItemLabel
                       >
