@@ -99,6 +99,41 @@ for (const kind of ["jj-log", "op-log"])
         .getByRole("button", { name: /Show (all )?\d+ (unmodified )?lines/ })
         .first();
       await expect(reveal).toBeVisible();
+      if (layout === "split") {
+        const left = diff.getByRole("region", {
+          name: "Previous revision",
+          exact: true,
+        });
+        await left
+          .locator('[data-ui-part="scroll-area-viewport"]')
+          .evaluate((el) => {
+            el.scrollLeft = 48;
+            el.dispatchEvent(new Event("scroll"));
+          });
+        for (const pane of await diff
+          .locator('[data-ui-part="file-diff-pane"]')
+          .all()) {
+          const gutter = await pane.evaluate((el) => {
+            const fold = el
+              .querySelector('[data-ui-part="collapsed-context"]')!
+              .getBoundingClientRect();
+            const box = el.getBoundingClientRect();
+            const front = el.ownerDocument.elementFromPoint(
+              box.left + 20,
+              fold.top + 16,
+            )!;
+            return {
+              opaqueGutter: front.classList.contains(
+                "ui-diff-file-diff__gutter",
+              ),
+              scrollLeft: el.querySelector(
+                '[data-ui-part="scroll-area-viewport"]',
+              )!.scrollLeft,
+            };
+          });
+          expect(gutter).toEqual({ opaqueGutter: true, scrollLeft: 48 });
+        }
+      }
       await expect(diff.getByText(/History preset 32/)).toHaveCount(0);
       await reveal.click();
       await expect(diff.getByText(/History preset 32/).first()).toBeVisible();

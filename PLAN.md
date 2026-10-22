@@ -78,3 +78,5 @@ JJ Store's icon-bearing informational alerts in the shared query component.
 The long-diff review exposed missing context folding in Design Core's split
 reader. The source fix and local review package now pass reveal/hide checks in
 both JJ and Op Log unified/split layouts; the corrected screen awaits review.
+The horizontal-scroll follow-up retains an opaque gutter beside split fold
+controls, qualified in the same complete-screen regressions.
