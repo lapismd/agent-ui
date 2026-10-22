@@ -95,3 +95,9 @@ the formatting strip adds the shared emoji picker and aligns with the text.
 Source/consumer qualification is recorded in
 `spec/records/2026-10-22-unified-composer-feedback.md`. Stop here for visual review
 before publication or downstream adoption.
+
+Active permissions now use a fixed expandable themed panel in both chat views,
+with a far-right local-dismissal X and retained drafts/unknown-operation recovery.
+Focused source, 102 light/102 dark stories and four cold browser checks pass; see
+`spec/records/2026-10-22-pinned-permission-panel.md`. Pause for visual review before
+broad qualification, publication or downstream adoption.

@@ -1,4 +1,14 @@
-import { feedbackReview } from "./agents/support/composer-feedback.js";
+import {
+  feedbackReview,
+  verifyChatError,
+} from "./agents/support/composer-feedback.js";
+import {
+  verifyPermissionDock,
+  verifyClassicRequests,
+  verifyPermissionDraftRestored,
+  verifyPermissionDismissed,
+  verifyDismissedResponseRecovery,
+} from "./agents/support/permission-dock.js";
 import { verifyInlineCommentFormatting } from "./agents/support/comment-formatting.js";
 import ReferenceDemo from "./agents/references/ReferenceDemo.svelte";
 import type { Meta, StoryObj } from "@storybook/svelte-vite";
@@ -19,6 +29,48 @@ const meta = {
 } satisfies Meta<typeof AgentWorkbench>;
 export default meta;
 type Story = StoryObj<typeof AgentDemo>;
+export const PermissionDock: Story = {
+  render: () => ({
+    Component: AgentDemo,
+    props: {
+      requests: true,
+      streaming: true,
+      draft: "Retain this draft while permission is pending.",
+    },
+  }),
+  play: verifyPermissionDock,
+};
+export const PermissionRestoresDraft: Story = {
+  render: () => ({
+    Component: AgentDemo,
+    props: {
+      requests: true,
+      draft: "Retain this draft while permission is pending.",
+    },
+  }),
+  play: verifyPermissionDraftRestored,
+};
+export const PermissionDismissed: Story = {
+  render: () => ({
+    Component: AgentDemo,
+    props: {
+      requests: true,
+      draft: "Retain this draft while permission is pending.",
+    },
+  }),
+  play: verifyPermissionDismissed,
+};
+export const PermissionDismissedUnknown: Story = {
+  render: () => ({
+    Component: AgentDemo,
+    props: {
+      requests: true,
+      fault: "unknown",
+      draft: "Retain this draft while permission is pending.",
+    },
+  }),
+  play: verifyDismissedResponseRecovery,
+};
 export const Chat: Story = {
   render: () => ({ Component: AgentDemo, props: { screen: "chat" } }),
   play: async ({ canvasElement }) => {
@@ -195,38 +247,7 @@ export const InlineComments: Story = {
 };
 export const ChatError: Story = {
   render: () => ({ Component: AgentDemo, props: { scenario: "error" } }),
-  play: async ({ canvasElement }) => {
-    const c = within(canvasElement);
-    const draft = within(
-      c.getByRole("group", { name: "Message composer" }),
-    ).getByRole("textbox", { name: "Message" });
-    await expect(draft).toHaveTextContent("Retain my exact authored draft.");
-    const metadata = await c.findByRole("group", {
-      name: "Composer feedback",
-    });
-    await expect(
-      parseFloat(
-        getComputedStyle(draft.closest('[data-ui-part="body"]')!)
-          .borderTopWidth,
-      ),
-    ).toBeGreaterThan(0);
-    const banner = metadata.closest(
-      '[data-ui-component="composer-status-banner"]',
-    )!;
-    await expect(banner).toHaveAttribute("data-status", "error");
-    await expect(getComputedStyle(metadata).fontSize).toBe(
-      getComputedStyle(banner).fontSize,
-    );
-    await expect(getComputedStyle(metadata).lineHeight).toBe(
-      getComputedStyle(banner).lineHeight,
-    );
-    await expect(metadata).toHaveTextContent(
-      "The simulated host refused this action.",
-    );
-    expect(metadata.getBoundingClientRect().top).toBeGreaterThanOrEqual(
-      draft.getBoundingClientRect().bottom,
-    );
-  },
+  play: verifyChatError,
 };
 export const RefusedSubmission: Story = {
   play: feedbackReview("error"),
@@ -298,32 +319,7 @@ export const RequestsClassic: Story = {
     Component: AgentDemo,
     props: { requests: true, questionVariant: "multiple", view: "classic" },
   }),
-  play: async ({ canvasElement }) => {
-    const c = within(canvasElement);
-    await userEvent.click(c.getByRole("button", { name: "Allow once" }));
-    await userEvent.click(
-      await c.findByRole("checkbox", { name: /^Search API/ }),
-    );
-    await userEvent.click(
-      c.getByRole("button", { name: "Switch to Document view" }),
-    );
-    await expect(
-      await c.findByRole("checkbox", { name: /^Search API/ }),
-    ).toHaveAttribute("aria-checked", "true");
-    await userEvent.click(c.getByRole("checkbox", { name: /^UI components/ }));
-    await userEvent.click(c.getByRole("button", { name: "Submit answer" }));
-    await userEvent.click(
-      await c.findByRole("button", {
-        name: "Response submitted: Your input is needed",
-      }),
-    );
-    await waitFor(() =>
-      expect(c.getByTestId("ai-question-card")).toHaveAttribute(
-        "data-state",
-        "answered",
-      ),
-    );
-  },
+  play: verifyClassicRequests,
 };
 export const RequestsFreeText: Story = {
   render: () => ({

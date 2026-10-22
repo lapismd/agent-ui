@@ -3,7 +3,7 @@
     permissionRequest,
     questionRequest,
   } from "./agents/requests/data.js";
-  import { onDestroy, untrack } from "svelte";
+  import { onDestroy, onMount, untrack } from "svelte";
   import { AgentWorkbench } from "../packages/agent-ui/src/screens/index.js";
   import {
     createDemo,
@@ -21,6 +21,8 @@
     view = "document",
     busy = false,
     empty = false,
+    streaming = false,
+    draft,
   }: {
     screen?: AgentScreen;
     scenario?: AgentScenario;
@@ -31,6 +33,8 @@
     view?: "document" | "classic";
     busy?: boolean;
     empty?: boolean;
+    streaming?: boolean;
+    draft?: string;
   } = $props();
   const demo = untrack(() => createDemo(scenario));
   const { port, controller } = demo;
@@ -65,6 +69,55 @@
   }
   controller.view = untrack(() => view);
   controller.snapshot = structuredClone(port.snapshot);
+  if (untrack(() => draft !== undefined))
+    controller.transcript.message = untrack(() => draft!);
+  let streamTicks = $state(0);
+  const requestCalls = $derived.by(() => {
+    void controller.snapshot;
+    void controller.actionBusy;
+    return port.calls.length;
+  });
+  onMount(() => {
+    if (!streaming) return;
+    port.snapshot.busy = true;
+    const session = port.snapshot.sessions[0];
+    session.items = [
+      ...session.items,
+      ...Array.from({ length: 12 }, (_, index) => ({
+        id: `streaming-permission-${index}`,
+        kind: "message" as const,
+        role: "assistant" as const,
+        label: "Streaming review",
+        blocks: [
+          {
+            id: `streaming-permission-${index}/body`,
+            revision: "0",
+            kind: "markdown" as const,
+            label: "Streaming review",
+            text: `Review section ${index + 1}\n\n${"Captured review content continues while permission awaits a decision.\n\n".repeat(4)}`,
+          },
+        ],
+      })),
+    ];
+    controller.snapshot = structuredClone(port.snapshot);
+    const timer = setInterval(() => {
+      if (streamTicks >= 16) {
+        clearInterval(timer);
+        return;
+      }
+      streamTicks++;
+      const item = session.items.at(-1)!;
+      item.blocks = [
+        {
+          ...item.blocks[0],
+          revision: String(streamTicks),
+          text: item.blocks[0].text + "\n\nMore captured review output.",
+        },
+      ];
+      controller.snapshot = structuredClone(port.snapshot);
+    }, 350);
+    return () => clearInterval(timer);
+  });
   controller.screen = untrack(() => screen);
   const imports = memoryAgentImports(controller);
   void imports.load();
@@ -76,6 +129,16 @@
 
 <div class="agent-demo">
   <AgentWorkbench {controller} {imports} transcriptOptions={demo.options} />
+  {#if requests}<output
+      hidden
+      data-testid="request-story-state"
+      data-calls={requestCalls}
+    ></output>{/if}
+  {#if streaming}<output
+      hidden
+      data-testid="permission-stream-state"
+      data-ticks={streamTicks}
+    ></output>{/if}
 </div>
 
 <style>

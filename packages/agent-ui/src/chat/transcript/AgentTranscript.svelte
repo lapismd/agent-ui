@@ -1,6 +1,7 @@
 <!-- SPDX-License-Identifier: Apache-2.0; the production transcript composition shared by stories and complete screens. -->
 <script lang="ts">
   import { Spinner } from "@lapismd/design-core/shadcn/spinner";
+  import { Button } from "@lapismd/design-core/shadcn/button";
   import AgentTranscriptBlock from "./AgentTranscriptBlock.svelte";
   import AgentMessageMetadata from "../message-metadata/AgentMessageMetadata.svelte";
   import { historyTranscript } from "../turn-changes/transcript.js";
@@ -69,6 +70,9 @@
     ...options.markdown,
     references: options.markdown?.references ?? references,
   });
+  const permission = $derived(
+    panel.attachmentsState.pendingInteraction?.type === "approval",
+  );
   const feedback = $derived(
     composerFeedback(
       panel.composerState.composerStatus,
@@ -84,6 +88,32 @@
     actions={panel.actions}
     attachmentsState={panel.attachmentsState}
   />
+{/snippet}
+{#snippet chatComposer(view: "document" | "classic")}
+  <ChatMessageComposer
+    {...options.composer}
+    bind:value={controller.transcript.message}
+    bind:documentActions
+    {view}
+    disabled={!!controller.pending}
+    showHint={false}
+    onSend={send}
+    status={feedback}
+    statusPosition={options.composer?.statusPosition ??
+      options.composerStatusPosition ??
+      "bottom"}
+    framedDrawer={view === "classic" &&
+      (controller.attachments.length > 0 ||
+        !!panel.attachmentsState.pendingInteraction)}
+    drawer={attachmentsDrawer}
+  >
+    {#snippet before()}{#if view === "document"}<ChatComposerDrawer
+          controller={panel.controller}
+          actions={panel.actions}
+          attachmentsState={panel.attachmentsState}
+          presentation="document"
+        />{/if}{/snippet}
+  </ChatMessageComposer>
 {/snippet}
 <Transcript
   {...options}
@@ -110,6 +140,7 @@
   scrollButton
   busy={controller.busy}
   classicComposerPlacement="fixed"
+  composer={permission ? undefined : chatComposer}
   label="AI conversation"
   logLabel="AI conversation messages"
   loading={controller.loading}
@@ -141,36 +172,47 @@
       entries={controller.snapshot?.queued ?? []}
       onCancel={(entry) => void controller.action("cancel_queued", entry.id)}
     />{/snippet}
-  {#snippet composer(view)}
-    <ChatMessageComposer
-      {...options.composer}
-      bind:value={controller.transcript.message}
-      bind:documentActions
-      {view}
-      disabled={!!controller.pending}
-      showHint={false}
-      onSend={send}
-      status={feedback}
-      statusPosition={options.composer?.statusPosition ??
-        options.composerStatusPosition ??
-        "bottom"}
-      framedDrawer={view === "classic" &&
-        (controller.attachments.length > 0 ||
-          !!panel.attachmentsState.pendingInteraction)}
-      drawer={attachmentsDrawer}
-    >
-      {#snippet before()}{#if view === "document"}<ChatComposerDrawer
-            controller={panel.controller}
-            actions={panel.actions}
-            attachmentsState={panel.attachmentsState}
-            presentation="document"
-          />{/if}{/snippet}
-    </ChatMessageComposer>
+  {#snippet footer()}{#if permission}<div class="permission-dock">
+        <ChatComposerDrawer
+          controller={panel.controller}
+          actions={panel.actions}
+          attachmentsState={panel.attachmentsState}
+          presentation="request"
+          status={feedback}
+        />
+      </div>{:else}<AiTranscriptSendHint />{/if}
+    {#if controller.pending?.kind === "respond"}<div class="request-recovery">
+        <Button
+          variant="outline"
+          size="sm"
+          disabled={controller.actionBusy}
+          onclick={() => void controller.checkStatus()}
+          >Check original response</Button
+        >
+      </div>{/if}
   {/snippet}
-  {#snippet footer()}<AiTranscriptSendHint />{/snippet}
 </Transcript>
 
 <style>
+  .request-recovery {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.25rem 0.5rem;
+  }
+  .permission-dock {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: var(
+      --ui-agent-permission-dock-max-width,
+      var(--ui-transcript-max-width, 62rem)
+    );
+    margin-inline: auto;
+    padding: var(
+      --ui-agent-permission-dock-padding,
+      0.5rem 2.75rem 0.5rem 1rem
+    );
+  }
+
   .transcript-activity {
     display: flex;
     align-items: center;

@@ -13,11 +13,27 @@ const empty: AgentRequestDraft = { selections: {}, text: {}, other: {} };
 /** Host-owned transient drafts. No storage, dispatch or mount-time effects. */
 export class AgentRequestController {
   drafts = $state<Record<string, AgentRequestDraft>>({});
+  #dismissed = $state<Record<string, boolean>>({});
   key(session: string, request: string) {
     return JSON.stringify([session, request]);
   }
   get(session: string, request: string): AgentRequestDraft {
     return this.drafts[this.key(session, request)] ?? empty;
+  }
+  /** Hide only this local prompt. No host decision or operation is sent. */
+  dismiss(session: string, request: string) {
+    this.#dismissed = {
+      ...this.#dismissed,
+      [this.key(session, request)]: true,
+    };
+  }
+  restore(session: string, request: string) {
+    const next = { ...this.#dismissed };
+    delete next[this.key(session, request)];
+    this.#dismissed = next;
+  }
+  isDismissed(session: string, request: string) {
+    return this.#dismissed[this.key(session, request)] === true;
   }
   private update(
     session: string,
@@ -80,6 +96,7 @@ export class AgentRequestController {
   }
   close() {
     this.drafts = {};
+    this.#dismissed = {};
   }
 }
 export function questionAnswers(

@@ -1,4 +1,7 @@
-import { currentAgentRequest } from "../core/request-actions.svelte.js";
+import {
+  currentAgentRequest,
+  dismissCurrentPermission,
+} from "../core/request-actions.svelte.js";
 import { controllerComposerFeedback } from "./composer-feedback.js";
 import type { AgentUiController } from "../core/controller.svelte.js";
 import type { SettingsPatch, TranscriptPanelProps } from "./presentation.js";
@@ -199,6 +202,7 @@ export function createChatPresentation(
       get responseDisabled() {
         return owner().actionBusy || !!owner().pending;
       },
+      dismissRequest: (id) => dismissCurrentPermission(owner(), id),
       get pendingInteraction() {
         const request = currentAgentRequest(owner());
         if (!request) return;

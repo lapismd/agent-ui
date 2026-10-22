@@ -133,6 +133,20 @@
       "description": "Inline author avatar diameter",
       "owner": "@lapismd/design-core",
       "source": "@lapismd/design-core/src/shared/shadcn/reference-chip/reference-chip.css"
+    },
+    {
+      "name": "--ui-agent-permission-dock-max-width",
+      "default": "var(--ui-transcript-max-width, 62rem)",
+      "description": "Maximum width of the pinned permission panel",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/transcript/AgentTranscript.svelte"
+    },
+    {
+      "name": "--ui-agent-permission-dock-padding",
+      "default": "0.5rem 2.75rem 0.5rem 1rem",
+      "description": "Pinned permission panel inset above fixed actions",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/transcript/AgentTranscript.svelte"
     }
   ]
 }

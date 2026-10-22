@@ -1,16 +1,31 @@
 import type { AgentUiController } from "./controller.svelte.js";
 import type { AgentRequest } from "./models.js";
 import type { UserInputAnswers } from "../chat/requests.js";
+/** Dismissal belongs to local presentation, never the host's permission decision. */
+export function dismissCurrentPermission(
+  owner: AgentUiController,
+  itemId: string,
+) {
+  const request = currentAgentRequest(owner);
+  if (request?.kind === "approval" && request.id === itemId)
+    owner.requests.dismiss(owner.sessionId, request.id);
+}
 /** Keep the captured request only while its response is in flight or unresolved. */
 export function currentAgentRequest(
   owner: AgentUiController,
 ): AgentRequest | undefined {
-  return owner.interaction &&
+  const visible = (request: AgentRequest) =>
+    !owner.requests.isDismissed(owner.sessionId, request.id);
+  if (
+    owner.interaction &&
     (owner.pending?.kind === "respond" || owner.actionBusy)
-    ? owner.interaction
-    : owner.snapshot?.requests.find(
-        (request) => !request.session || request.session === owner.sessionId,
-      );
+  )
+    return visible(owner.interaction) ? owner.interaction : undefined;
+  return owner.snapshot?.requests.find(
+    (request) =>
+      (!request.session || request.session === owner.sessionId) &&
+      visible(request),
+  );
 }
 function pending(
   owner: AgentUiController,
@@ -20,6 +35,7 @@ function pending(
   const matches = owner.snapshot?.requests.filter(
     (request) =>
       (!request.session || request.session === owner.sessionId) &&
+      !owner.requests.isDismissed(owner.sessionId, request.id) &&
       (!itemId || itemId === request.id) &&
       (request.approval?.id ?? request.question?.id ?? request.id) ===
         requestId,

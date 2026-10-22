@@ -30,6 +30,9 @@
     attachmentsState,
     conversationsState,
   } = $derived(panel);
+  const permissionRequested = $derived(
+    attachmentsState.pendingInteraction?.type === "approval",
+  );
 </script>
 
 <TranscriptFooter
@@ -39,9 +42,11 @@
   sendPending={state.sending ||
     !!state.retainedSubmission ||
     controller.queuedMessages.saving}
-  hasContent={(!controller.busy || !!controller.repository) &&
+  hasContent={!permissionRequested &&
+    (!controller.busy || !!controller.repository) &&
     Boolean(composerState.draft.trim() || state.pending.length)}
-  canSend={!controller.queuedMessages.saving &&
+  canSend={!permissionRequested &&
+    !controller.queuedMessages.saving &&
     Boolean(composerState.draft.trim() || state.pending.length)}
   disabled={blocked}
   {onSend}

@@ -53,6 +53,8 @@ export type AttachmentsState = {
   requestDrafts?: import("./request-controller.svelte.js").AgentRequestController;
   requestSessionId?: string;
   requestState?: import("./request-state.js").AgentRequestState;
+  /** Dismiss only the exact local prompt without a host decision. */
+  dismissRequest?: (itemId: string) => void;
   responseDisabled?: boolean;
   pendingInteraction?:
     | {

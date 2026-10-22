@@ -33,6 +33,18 @@ while unknown outcomes remain warnings and stale draft errors remain suppressed.
 
 **Requirement.** Approvals and questions MUST use exact host-provided identities and advertised options. Cancellation and queued follow-ups MUST remain explicit host actions.
 
+Active permission requests MUST replace the message input with an initially open,
+expandable themed panel pinned outside transcript scrolling in both views.
+Streaming and reading earlier messages MUST NOT move the panel out of view.
+Its bounded content MUST retain exact options and attached error/unknown feedback.
+New request identities MUST reopen it; completing the request MUST restore the
+retained message draft without sending it. Answer requests retain their existing
+presentation in this permission-only slice.
+The header MUST expose a far-right Close control that dismisses only the exact
+local request presentation, without granting, denying or replaying a decision.
+Dismissal MUST survive refreshes of the same request, preserve drafts and remain
+session-scoped; unknown submitted operations MUST retain explicit status recovery.
+
 ### Acceptance details
 
 - Permission cards MUST show only advertised decisions, explicit host scopes and captured resources/commands, preserving exact option identities and acknowledged outcomes in initially collapsed inline transcript rows that expand to the same read-only card; granted icons MUST use semantic green, denied text/icons MUST use readable red, and collapsed history rows MUST use the compact tool-row gap.

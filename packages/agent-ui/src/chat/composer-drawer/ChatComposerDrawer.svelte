@@ -6,6 +6,9 @@
   import * as Collapsible from "@lapismd/design-core/shadcn/collapsible";
   import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
   import PaperclipIcon from "@lucide/svelte/icons/paperclip";
+  import ShieldCheckIcon from "@lucide/svelte/icons/shield-check";
+  import XIcon from "@lucide/svelte/icons/x";
+  import { Button } from "@lapismd/design-core/shadcn/button";
   import ChatAttachedFiles from "../attached-files/ChatAttachedFiles.svelte";
   import AiApprovalCard from "../approval-card/AiApprovalCard.svelte";
   import AiQuestionCard from "../question-card/AiQuestionCard.svelte";
@@ -17,12 +20,31 @@
     actions,
     attachmentsState,
     presentation = "framed",
+    status,
+    onDismiss,
   }: {
-    presentation?: "framed" | "document";
+    /** Request is a complete expandable panel without a message editor. */
+    presentation?: "framed" | "document" | "request";
+    status?: Chat.ComposerStatus;
+    /** Local presentation dismissal; never approve or deny implicitly. */
+    onDismiss?: (itemId: string) => void;
     controller: AiChatController;
     actions: ChatPanelActions;
     attachmentsState: AttachmentsState;
   } = $props();
+  const dismiss = $derived(onDismiss ?? attachmentsState.dismissRequest);
+  let shownRequest = $state("");
+  $effect(() => {
+    const request = attachmentsState.pendingInteraction;
+    const key =
+      presentation === "request" && request
+        ? `${attachmentsState.requestSessionId}:${request.id}:${request.request.id}`
+        : "";
+    if (key !== shownRequest) {
+      shownRequest = key;
+      if (key) attachmentsState.drawerCollapsed = false;
+    }
+  });
 </script>
 
 {#snippet contents()}
@@ -68,39 +90,82 @@
   {@const count =
     attachmentsState.attachments.length +
     (attachmentsState.pendingInteraction ? 1 : 0)}
+  {@const requestItemId = attachmentsState.pendingInteraction?.id}
   <div
     bind:this={attachmentsState.drawerHost}
     class:document-attachments={presentation === "document"}
+    class:request-panel={presentation === "request"}
+    role={presentation === "request" ? "group" : undefined}
+    aria-label={presentation === "request" ? "Permission request" : undefined}
   >
-    {#if presentation === "document"}
-      <Collapsible.Root
-        open={!attachmentsState.drawerCollapsed}
-        onOpenChange={(open) => (attachmentsState.drawerCollapsed = !open)}
-        data-testid="ai-attachment-section"
-        data-presentation="document"
-      >
-        <Collapsible.Trigger>
-          {#snippet child({ props })}
-            <button
-              {...props}
-              type="button"
-              class="disclosure"
-              aria-label={`${attachmentsState.drawerCollapsed ? "Expand" : "Collapse"} ${label} ${count}`}
-            >
-              <ChevronRightIcon
-                class={attachmentsState.drawerCollapsed ? "" : "open"}
-                aria-hidden="true"
-              />
-              <PaperclipIcon aria-hidden="true" /><span>{label}</span>{" "}<span
-                class="count">{count}</span
-              >
-            </button>
-          {/snippet}
-        </Collapsible.Trigger>
-        <Collapsible.Content
-          ><div class="files">{@render contents()}</div></Collapsible.Content
+    {#if presentation !== "framed"}
+      <div class:request-surface={presentation === "request"}>
+        <Collapsible.Root
+          open={!attachmentsState.drawerCollapsed}
+          onOpenChange={(open) => (attachmentsState.drawerCollapsed = !open)}
+          data-testid="ai-attachment-section"
+          data-presentation={presentation}
         >
-      </Collapsible.Root>
+          <div class:request-heading={presentation === "request"}>
+            <Collapsible.Trigger>
+              {#snippet child({ props })}
+                <button
+                  {...props}
+                  type="button"
+                  class="disclosure"
+                  aria-label={`${attachmentsState.drawerCollapsed ? "Expand" : "Collapse"} ${label} ${count}`}
+                >
+                  <ChevronRightIcon
+                    class={attachmentsState.drawerCollapsed ? "" : "open"}
+                    aria-hidden="true"
+                  />
+                  {#if presentation === "request"}<ShieldCheckIcon
+                      aria-hidden="true"
+                    />{:else}<PaperclipIcon aria-hidden="true" />{/if}<span
+                    >{label}</span
+                  >{" "}<span class="count">{count}</span>
+                </button>
+              {/snippet}
+            </Collapsible.Trigger>
+            {#if presentation === "request" && dismiss && requestItemId}
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon-xs"
+                aria-label="Dismiss permission request"
+                title="Dismiss permission request"
+                onclick={() => dismiss(requestItemId)}
+                ><XIcon aria-hidden="true" /></Button
+              >
+            {/if}
+          </div>
+          <Collapsible.Content
+            ><!-- svelte-ignore a11y_no_noninteractive_tabindex (keyboard scrolling for bounded permission details) -->
+            <div
+              class="files"
+              class:request-content={presentation === "request"}
+              role={presentation === "request" ? "region" : undefined}
+              aria-label={presentation === "request"
+                ? "Permission request details"
+                : undefined}
+              tabindex={presentation === "request" ? 0 : undefined}
+            >
+              {@render contents()}
+            </div></Collapsible.Content
+          >
+        </Collapsible.Root>
+      </div>
+      {#if presentation === "request" && status}
+        <Chat.ComposerStatusBanner {status} position="bottom">
+          {#if status.type === "error"}<Chat.MessageMetadata
+              sender="assistant"
+              status="error"
+              statusLabel={status.message}
+              role="group"
+              aria-label="Request feedback"
+            />{:else}{status.message}{/if}
+        </Chat.ComposerStatusBanner>
+      {/if}
     {:else}
       <Chat.ComposerDrawer
         bind:collapsed={attachmentsState.drawerCollapsed}
@@ -114,6 +179,40 @@
 {/if}
 
 <style>
+  .request-panel {
+    min-width: 0;
+  }
+  .request-surface {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    border: 1px solid var(--ui-agent-request-border, var(--border));
+    border-radius: var(--ui-agent-request-radius, 0.75rem);
+    background: var(--ui-agent-request-background, var(--card));
+  }
+  .request-surface .disclosure {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: var(--ui-agent-drawer-request-header-padding, 0.5rem 0.75rem);
+    font-size: 0.8125rem;
+    color: var(--foreground);
+  }
+  .request-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding-inline-end: 0.5rem;
+  }
+  .request-surface .request-content {
+    display: block;
+    padding: var(--ui-agent-drawer-request-padding, 0 0.5rem 0.5rem);
+    max-height: var(--ui-agent-drawer-request-max-height, min(50dvh, 28rem));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    box-sizing: border-box;
+  }
   .document-attachments {
     min-width: 0;
     margin-inline-start: var(--ui-agent-drawer-document-inset, 2rem);

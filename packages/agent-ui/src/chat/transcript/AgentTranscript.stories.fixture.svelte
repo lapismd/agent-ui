@@ -158,7 +158,12 @@
         controller={panel.controller}
         actions={panel.actions}
         attachmentsState={panel.attachmentsState}
-        presentation={view === "document" ? "document" : "framed"}
+        presentation={panel.attachmentsState.pendingInteraction?.type ===
+        "approval"
+          ? "request"
+          : view === "document"
+            ? "document"
+            : "framed"}
       />
     {:else if part === "hint"}
       <Hint />

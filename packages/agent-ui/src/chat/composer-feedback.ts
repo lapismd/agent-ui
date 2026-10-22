@@ -39,8 +39,16 @@ export function controllerComposerFeedback(
       ? owner.requestFeedback.state.message
       : undefined;
   if (requestError) return { type: "error", message: requestError };
+  const dismissedFailure =
+    owner.requestFeedback?.state.status === "refused" &&
+    owner.requests.isDismissed(owner.sessionId, owner.requestFeedback.requestId)
+      ? owner.requestFeedback.state.message
+      : undefined;
   const error = [owner.error, owner.transcript.error].find(
-    (message) => message && message !== owner.sendFailure?.reason,
+    (message) =>
+      message &&
+      message !== owner.sendFailure?.reason &&
+      message !== dismissedFailure,
   );
   return error ? { type: "error", message: error } : undefined;
 }

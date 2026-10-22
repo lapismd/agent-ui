@@ -174,6 +174,19 @@ or expanding cannot submit another response. Unknown responses keep their captur
 request in the drawer until the host acknowledges them. Other completed history
 remains visible during later requests. Hosts own capture order and persistence.
 
+Active permission requests replace the message editor with the shared expandable
+permission panel in the fixed footer area in both views. They remain visible while
+history scrolls or new text streams. The panel shares the permission card's border,
+radius and theme surface, with bounded details and attached error/warning feedback.
+The controller retains drafts and comments; approving or denying restores the
+editor without sending the draft. Each new permission opens its panel. Answer
+requests retain their existing presentation.
+
+The header Close control dismisses only the local permission prompt. The same
+request stays dismissed across streamed snapshot refreshes and can be restored by
+the host. New request identities appear normally. An unresolved submitted response
+keeps its captured operation, warning and explicit Check original response action.
+
 Editable inline comments place the T toggle at the far right, after the hover
 actions on the same row. Hidden actions reserve no editor width. It opens the shared formatting actions
 and emoji picker below the input, aligned with the text, and closes without

@@ -77,6 +77,38 @@ function setup() {
   const c = new AgentUiController(port, port.snapshot);
   return { port, c };
 }
+test("dismissing a permission is local, scoped, refresh-stable and retains unresolved recovery", async () => {
+  const { port, c } = setup();
+  const presentation = createChatPresentation(() => c);
+  c.transcript.message = "Retained draft";
+  c.requests.dismiss(c.sessionId, "permission");
+  expect(presentation.attachmentsState.pendingInteraction).toBeUndefined();
+  expect(port.calls).toHaveLength(0);
+  await c.respondToApproval("permission", "opaque-choice");
+  expect(port.calls).toHaveLength(0);
+  await c.refresh();
+  expect(presentation.attachmentsState.pendingInteraction).toBeUndefined();
+  expect(c.transcript.message).toBe("Retained draft");
+  expect(c.requests.isDismissed("other-session", "permission")).toBe(false);
+  c.requests.restore(c.sessionId, "permission");
+  expect(presentation.attachmentsState.pendingInteraction?.id).toBe(
+    "permission",
+  );
+  port.fault = "unknown";
+  await c.respondToApproval("permission", "opaque-choice");
+  const pending = c.pending;
+  c.requests.dismiss(c.sessionId, "permission");
+  expect(presentation.attachmentsState.pendingInteraction).toBeUndefined();
+  expect(c.pending).toBe(pending);
+  expect(c.interaction?.id).toBe("permission");
+  expect(presentation.composerState.composerStatus?.type).toBe("warning");
+  await c.checkStatus();
+  expect(c.pending).toBeUndefined();
+  expect(port.calls).toHaveLength(1);
+  expect(c.transcript.message).toBe("Retained draft");
+  await c.close();
+  expect(c.requests.isDismissed(c.sessionId, "permission")).toBe(false);
+});
 test("unknown permission response retains the exact request and status never replays", async () => {
   const { port, c } = setup();
   port.fault = "unknown";
@@ -269,5 +301,22 @@ test("a refused permission stays visible when its wording matches an older send 
     type: "error",
     message: "The simulated host refused this action.",
   });
+  await c.close();
+});
+
+test("closing a refused permission clears only its feedback and new request identities remain visible", async () => {
+  const { port, c } = setup();
+  port.fault = "failed";
+  await c.respondToApproval("permission", "opaque-choice");
+  const panel = createChatPresentation(() => c);
+  expect(panel.composerState.composerStatus?.type).toBe("error");
+  panel.attachmentsState.dismissRequest?.("stale-permission");
+  expect(panel.attachmentsState.pendingInteraction?.id).toBe("permission");
+  panel.attachmentsState.dismissRequest?.("permission");
+  expect(panel.composerState.composerStatus).toBeUndefined();
+  expect(c.snapshot?.requests[0].id).toBe("permission");
+  expect(port.calls).toHaveLength(1);
+  c.snapshot!.requests = [{ ...c.snapshot!.requests[0], id: "new-permission" }];
+  expect(panel.attachmentsState.pendingInteraction?.id).toBe("new-permission");
   await c.close();
 });

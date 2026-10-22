@@ -14,6 +14,48 @@
       "description": "Disclosure and file-token gap",
       "owner": "@lapismd/agent-ui",
       "source": "chat/composer-drawer/ChatComposerDrawer.svelte"
+    },
+    {
+      "name": "--ui-agent-request-border",
+      "default": "var(--border)",
+      "description": "Permission panel border",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/composer-drawer/ChatComposerDrawer.svelte"
+    },
+    {
+      "name": "--ui-agent-request-radius",
+      "default": "0.75rem",
+      "description": "Permission panel corners",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/composer-drawer/ChatComposerDrawer.svelte"
+    },
+    {
+      "name": "--ui-agent-request-background",
+      "default": "var(--card)",
+      "description": "Permission panel theme surface",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/composer-drawer/ChatComposerDrawer.svelte"
+    },
+    {
+      "name": "--ui-agent-drawer-request-header-padding",
+      "default": "0.5rem 0.75rem",
+      "description": "Permission disclosure inset",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/composer-drawer/ChatComposerDrawer.svelte"
+    },
+    {
+      "name": "--ui-agent-drawer-request-padding",
+      "default": "0 0.5rem 0.5rem",
+      "description": "Permission details inset",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/composer-drawer/ChatComposerDrawer.svelte"
+    },
+    {
+      "name": "--ui-agent-drawer-request-max-height",
+      "default": "min(50dvh, 28rem)",
+      "description": "Maximum permission details height before independent scrolling",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/composer-drawer/ChatComposerDrawer.svelte"
     }
   ]
 }
