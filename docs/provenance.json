@@ -2,7 +2,7 @@
   "sources": {
     "lapis-desktop": "f8f3446e (Agent) and 52516ae9 (JJ); exact copied-file hashes in desktop-layout-sources.json",
     "jj-store": "f58b9363 (Files/history references), 87f2f603 (Branches); exact per-file revisions/hashes in desktop-layout-sources.json",
-    "design-core": "npm range ^0.6.0; local validation archive with warning-tag source fix 36c8412e, SHA-256 3cf11eb4fb4150d6ef488ac70ae68c8062e87b8970999ffa0379c2daf6302785; prepared source-inclusive current local package; see spec/records/2026-10-22-repository-branches.md",
+    "design-core": "npm range ^0.6.0; local source-inclusive column-fit review archive from 1981b801 (includes warning-tag fix 36c8412e), SHA-256 f4b58f28cdeaf50cdf12d4fc73e46d952afd3143b2b7df6ac3d8007b63621c12; see spec/records/2026-10-22-column-fit-toggle.md",
     "mira-mde": "npm range ~0.1.0; safe task marker source fix 0a72edf8; local validation archive SHA-256 c9e024d35e013676905120347bbfe3ca832f3e9e4f4ede74a7dc2b25161078b4; no tracked dependency substitution"
   },
   "license": "Apache-2.0",

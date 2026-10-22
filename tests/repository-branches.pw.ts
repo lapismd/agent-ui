@@ -243,3 +243,39 @@ test("working copies share the branch selection marker and full-width responsive
   await expect(long.locator(".repository-bookmark-card__status")).toBeVisible();
   await expect(long.locator(".repository-bookmark-card__time")).toBeVisible();
 });
+
+test("resize rail toggles content fit and default width without changing selection", async ({
+  page,
+}) => {
+  test.setTimeout(60_000);
+  await open(page);
+  const original = await state(page).getAttribute("data-selected");
+  const path = await state(page).getAttribute("data-path");
+  const resize = page.getByRole("separator", {
+    name: "Resize Branches column",
+    exact: true,
+  });
+  await expect(resize).toHaveAttribute("aria-valuenow", "380");
+  await resize.dblclick();
+  await expect
+    .poll(async () => Number(await resize.getAttribute("aria-valuenow")))
+    .toBeGreaterThan(380);
+  expect(
+    Number(await resize.getAttribute("aria-valuenow")),
+  ).toBeLessThanOrEqual(640);
+  await resize.dblclick();
+  await expect(resize).toHaveAttribute("aria-valuenow", "380");
+  await resize.focus();
+  await resize.press("ArrowRight");
+  await expect(resize).toHaveAttribute("aria-valuenow", "388");
+  await resize.press("Enter");
+  await expect(resize).toHaveAttribute("aria-valuenow", "380");
+  await resize.press("Enter");
+  await expect
+    .poll(async () => Number(await resize.getAttribute("aria-valuenow")))
+    .toBeGreaterThan(380);
+  await resize.press("Enter");
+  await expect(resize).toHaveAttribute("aria-valuenow", "380");
+  await expect(state(page)).toHaveAttribute("data-selected", original!);
+  await expect(state(page)).toHaveAttribute("data-path", path!);
+});

@@ -74,3 +74,8 @@ source-layout comparisons. RUI-HISTORY-001 retains query behavior through the
 existing focused history/query tests. Evidence and before/after counts belong in
 `spec/records/2026-10-22-repository-branches.md`. Broad qualification remains
 deferred until final human screen review.
+
+The public Design Core rail-toggle consumer regression for RUI-BRANCH-001 and
+AUI-GOV-001/AUI-GOV-003 is recorded in
+`spec/records/2026-10-22-column-fit-toggle.md`; broader qualification remains
+deferred until final screen review.

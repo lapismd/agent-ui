@@ -194,3 +194,9 @@ Branches review follow-up shares the primary left-edge selection marker with
 working copies, restores full-width command cards, truncates long names and
 compacts optional badges/time metadata as columns narrow. Targeted evidence is
 appended to the Branches record; review remains pending before Workspace.
+
+Column Canvas rail double-click/Enter now toggles bounded content expansion at
+its default width and reset at other widths. Design Core owns measurement and
+host callbacks; Branches adds focused acceptance through the prepared local
+review package. See `spec/records/2026-10-22-column-fit-toggle.md`. Review remains
+pending before Workspace and broader checks.
