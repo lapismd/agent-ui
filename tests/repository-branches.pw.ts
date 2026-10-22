@@ -170,6 +170,22 @@ test("working copies share the branch selection marker and full-width responsive
     };
   });
   expect(indicator.color).toEqual(indicator.primary);
+  const ordinary = branches.getByRole("row", {
+    name: /feature\/portable-branches/,
+  });
+  await page.mouse.move(1250, 10);
+  await expect(ordinary).toHaveCSS("background-color", "rgb(255, 255, 255)");
+  for (const row of [bookmark, ordinary]) {
+    await row.hover();
+    const chip = row.locator('[data-ui-component="badge"]').first();
+    await expect(chip).toBeVisible();
+    await expect(chip).toHaveCSS("background-color", "rgb(255, 255, 255)");
+    expect(
+      await chip.evaluate((node) => getComputedStyle(node).borderTopColor),
+    ).not.toBe("rgba(0, 0, 0, 0)");
+  }
+  await page.mouse.move(1250, 10);
+  await expect(ordinary).toHaveCSS("background-color", "rgb(255, 255, 255)");
   await branches
     .getByRole("button", {
       name: "Working copy review Review the source-adapted branch cards",
@@ -180,6 +196,17 @@ test("working copies share the branch selection marker and full-width responsive
     '.repository-working-copy-card[data-current="true"]',
   );
   await expect(selected).toHaveCount(1);
+  await selected.hover();
+  const workspaceChip = selected.locator('[data-ui-component="badge"]');
+  await expect(workspaceChip).toHaveCSS(
+    "background-color",
+    "rgb(255, 255, 255)",
+  );
+  expect(
+    await workspaceChip.evaluate(
+      (node) => getComputedStyle(node).borderTopColor,
+    ),
+  ).not.toBe("rgba(0, 0, 0, 0)");
   const workingIndicator = await selected.evaluate((node) => {
     const style = getComputedStyle(node, "::before");
     const canvas = document.createElement("canvas"),

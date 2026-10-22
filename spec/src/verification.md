@@ -83,3 +83,6 @@ deferred until final screen review.
 The RUI-BRANCH-001 default row surface follow-up is recorded in
 `spec/records/2026-10-22-branch-row-background.md`; screen review and broader
 qualification remain pending.
+
+The RUI-BRANCH-001 hover-chip visibility and opaque row-paint review is recorded
+in `spec/records/2026-10-23-branch-chip-contrast.md`.

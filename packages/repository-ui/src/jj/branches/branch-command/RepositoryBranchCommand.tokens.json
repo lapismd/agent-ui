@@ -35,6 +35,20 @@
       "description": "Retained selected reference surface.",
       "owner": "@lapismd/repository-ui",
       "source": "jj/branches/branch-command/branch-command.css"
+    },
+    {
+      "name": "--ui-repository-branch-chip-background",
+      "default": "var(--background)",
+      "description": "Opaque chip surface retained over row hover, focus and selection.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/branches/branch-command/RepositoryBranchCommand.svelte"
+    },
+    {
+      "name": "--ui-repository-branch-chip-border-color",
+      "default": "color-mix(in srgb, var(--foreground) 25%, var(--background))",
+      "description": "Chip outline that remains visible against normal and interactive row surfaces.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/branches/branch-command/RepositoryBranchCommand.svelte"
     }
   ]
 }

@@ -92,6 +92,8 @@ author popovers and host actions independently accessible. Selected working
 copies MUST use the same primary left-edge marker and semantic row surface as
 bookmarks. Unselected bookmark and working-copy rows MUST use the theme body
 background (white in light mode), retaining distinct hover and selected surfaces.
+Branch and working-copy chips MUST retain an opaque theme body fill and a
+visible outline during pointer hover, keyboard focus and retained selection.
 Branch cards and their content MUST fill the available column width;
 long names MUST truncate with the complete name retained in a title. As columns
 shrink, optional heading badges and relative timestamps MAY hide while author,

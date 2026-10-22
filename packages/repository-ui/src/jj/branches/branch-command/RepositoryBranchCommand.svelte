@@ -90,6 +90,8 @@
         ].filter((group) => group.bookmarks.length)
       : [{ heading: "Bookmarks", bookmarks: visible }],
   );
+  const badgeStyle =
+    "background-color: var(--ui-repository-branch-chip-background, var(--background)); border-color: var(--ui-repository-branch-chip-border-color, color-mix(in srgb, var(--foreground) 25%, var(--background)));";
 </script>
 
 {#snippet bookmarkRow(bookmark: Bookmark)}
@@ -107,23 +109,26 @@
           >{bookmarkLabel(bookmark)}</CommandView.ItemLabel
         >
         {#if bookmark.workspace}<Badge
-            variant="secondary"
+            variant="outline"
+            style={badgeStyle}
             class="repository-bookmark-card__status"
             >{bookmark.partiallyApplied
               ? "Partially applied"
               : "Workspace"}</Badge
-          >{:else if bookmark.default}<Badge variant="secondary">default</Badge
+          >{:else if bookmark.default}<Badge
+            variant="outline"
+            style={badgeStyle}>default</Badge
           >{/if}
       </span>
       <CommandView.ItemDescription
         >{bookmark.description ?? "No description"}</CommandView.ItemDescription
       >
       {#if bookmark.targets.length > 1}<span
-          ><Badge variant="secondary"
+          ><Badge variant="outline" style={badgeStyle}
             >Conflicted · {bookmark.targets.length} targets</Badge
           ></span
         >{:else if bookmark.targets.length === 0}<span
-          ><Badge variant="secondary">deleted</Badge></span
+          ><Badge variant="outline" style={badgeStyle}>deleted</Badge></span
         >{/if}
       <span class="repository-bookmark-card__footer">
         <RepositoryAuthorAvatar

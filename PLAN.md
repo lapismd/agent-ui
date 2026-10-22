@@ -204,3 +204,8 @@ pending before Workspace and broader checks.
 Branches row surface review uses the body background for unselected bookmark
 and working-copy rows (white in light mode), preserving hover/selection feedback.
 See `spec/records/2026-10-22-branch-row-background.md`.
+
+Branches chip review adds a theme body fill and visible outline while preserving
+the existing selected/hover row colours. Ancestor paint inspection confirms
+opaque white normal rows; evidence is in
+`spec/records/2026-10-23-branch-chip-contrast.md`.

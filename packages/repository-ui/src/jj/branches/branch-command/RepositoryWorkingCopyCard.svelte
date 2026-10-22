@@ -18,6 +18,8 @@
     now?: number;
     onSelect: (commit: string, workspace?: string) => void;
   } = $props();
+  const badgeStyle =
+    "background-color: var(--ui-repository-branch-chip-background, var(--background)); border-color: var(--ui-repository-branch-chip-border-color, color-mix(in srgb, var(--foreground) 25%, var(--background)));";
 </script>
 
 <div
@@ -34,7 +36,7 @@
     <span class="repository-bookmark-card__heading">
       <GitCommitIcon aria-hidden="true" />
       <strong>Working copy</strong>
-      <Badge variant="secondary">{copy.workspace}</Badge>
+      <Badge variant="outline" style={badgeStyle}>{copy.workspace}</Badge>
     </span>
     <span class="repository-working-copy-card__description">{copy.message}</span
     >

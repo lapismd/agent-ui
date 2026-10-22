@@ -998,7 +998,7 @@
       "sourceRevision": "87f2f603",
       "source": "web/src/lib/ui/community-repository-branch-command/CommunityRepositoryBranchCommand.svelte",
       "destination": "packages/repository-ui/src/jj/branches/branch-command/branch-command.css",
-      "use": "Extract source command-card styles; remove Svelte global wrappers for native CSS, substitute audited semantic variables and retain source geometry. Row/gridcell accessibility composition retains outer card selection/hover. Unselected branch and working-copy cards use the theme body background (white in light mode)."
+      "use": "Extract source command-card styles; remove Svelte global wrappers for native CSS, substitute audited semantic variables and retain source geometry. Row/gridcell accessibility composition retains outer card selection/hover. Unselected branch and working-copy cards use the theme body background (white in light mode). Branch badges use public outline variants and root style props to retain an opaque body fill and visible border across row hover, focus and selection."
     },
     {
       "sourceRepository": "jj-store",
