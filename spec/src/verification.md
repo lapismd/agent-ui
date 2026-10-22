@@ -57,3 +57,6 @@ the source workspace's fixed scrolling mode and public trailing-content slot.
 The RUI-HISTORY-001 / AUI-GOV-003 All Changes surface follow-up is recorded in
 `spec/records/2026-10-22-diff-surface.md`, covering flush geometry, opaque sticky
 header paint and retained selected side edges in both logs and themes.
+
+The RUI-HISTORY-001 / AUI-GOV-003 diff-status typography correction is recorded
+in `spec/records/2026-10-22-diff-status-typography.md`.

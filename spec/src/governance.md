@@ -92,6 +92,8 @@ comparison-wide and file-scoped actions retain their respective identities.
 All-file surface qualification MUST verify flush column geometry and invariant
 sticky-header paint over contrasting content backdrops in both logs and themes,
 including focused headers and actual outer-column scrolling.
+Diff-status typography checks MUST cover unavailable and binary content in both
+complete logs, including text sizes and independence from the code font.
 Log canvas qualification MUST exercise the trailing resize hint, pointer and
 keyboard resizing of the final Diff column, and retained horizontal access in
 small panes in both complete logs.

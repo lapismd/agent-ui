@@ -106,3 +106,7 @@ and Op Log's inner side borders, keeps the selected frame visible, and restores
 Op Log sticky headers to the actual column viewport. Translucent header tints
 now have an opaque backing in Design Core. Focused evidence is recorded in
 `spec/records/2026-10-22-diff-surface.md`; review remains pending.
+
+Unavailable and binary previews now use compact interface typography in the
+shared Diff component, with documented host variables. Focused evidence is in
+`spec/records/2026-10-22-diff-status-typography.md`; screen review remains pending.

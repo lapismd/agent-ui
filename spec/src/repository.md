@@ -90,6 +90,9 @@ The collection MUST be flush with the column by default, retain visible selected
 frame edges beside overlay scrollbars, and have no extra bottom padding after
 the final content row. Sticky headers MUST have an opaque surface beneath their
 semantic selection and hover tints, preventing scrolled content showing through.
+Unavailable and binary diff status messages MUST use compact interface typography
+(14px title and 13px description at the default root size), independent of the
+code reader's monospace font, with documented host styling variables.
 
 JJ Log and Op Log MUST use fixed-width scrolling canvases with a 240px trailing
 spacer, using the public Column Canvas controller and trailing-content slot.

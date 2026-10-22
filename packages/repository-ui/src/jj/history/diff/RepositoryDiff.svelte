@@ -34,7 +34,9 @@
   {#each sources as source}<p class="diff-source">
       {source.kind === "rename" ? "Renamed" : "Copied"} from {source.path}
     </p>{/each}
-  {#if "unavailable" in content}<Empty.Root role="status"
+  {#if "unavailable" in content}<Empty.Root
+      role="status"
+      style="font-family:var(--ui-repository-diff-status-font-family,var(--font-sans,sans-serif));--text-lg:var(--ui-repository-diff-status-title-font-size,0.875rem);--text-sm:var(--ui-repository-diff-status-description-font-size,0.8125rem)"
       ><Empty.Header
         ><Empty.Media variant="icon"
           ><FileQuestionIcon aria-hidden="true" /></Empty.Media

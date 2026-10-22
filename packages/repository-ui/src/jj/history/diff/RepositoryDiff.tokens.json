@@ -2,6 +2,27 @@
   "component": "RepositoryDiff",
   "variables": [
     {
+      "name": "--ui-repository-diff-status-font-family",
+      "default": "var(--font-sans,sans-serif)",
+      "description": "Interface font for unavailable and binary status messages, independent of the code reader's monospace font.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/diff/RepositoryDiff.svelte"
+    },
+    {
+      "name": "--ui-repository-diff-status-title-font-size",
+      "default": "0.875rem",
+      "description": "Compact unavailable and binary status title size.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/diff/RepositoryDiff.svelte"
+    },
+    {
+      "name": "--ui-repository-diff-status-description-font-size",
+      "default": "0.8125rem",
+      "description": "Compact unavailable and binary status description size.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/diff/RepositoryDiff.svelte"
+    },
+    {
       "name": "--ui-repository-diff-min-height",
       "default": "16rem",
       "description": "Recorded diff with unified/split rendering, explicit unavailable content and source controls. Original height default.",

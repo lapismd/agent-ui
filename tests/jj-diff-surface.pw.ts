@@ -2,6 +2,42 @@ import { expect, test } from "@playwright/test";
 import { PNG } from "pngjs";
 
 for (const kind of ["jj-log", "op-log"])
+  test(`${kind}: unavailable previews use compact interface typography`, async ({
+    page,
+  }) => {
+    await page.goto(
+      `/iframe.html?id=jj-complete-screens-${kind}--all-in-one&viewMode=story`,
+      { waitUntil: "domcontentloaded" },
+    );
+    for (const [path, title, reason] of [
+      ["src/history/query.ts", "Preview unavailable", "conflict"],
+      ["assets/repository-graph.png", "Binary file", "binary"],
+    ]) {
+      await page.locator(`[data-file-path="${path}"]`).click();
+      const preview = page.getByRole("region", {
+        name: `Changes to ${path}`,
+        exact: true,
+      });
+      await expect(preview.getByText(title, { exact: true })).toHaveCSS(
+        "font-size",
+        "14px",
+      );
+      await expect(
+        preview.getByText(`This file cannot be shown as text: ${reason}.`, {
+          exact: true,
+        }),
+      ).toHaveCSS("font-size", "13px");
+      const interfaceFont = await page
+        .getByText("All changes", { exact: true })
+        .evaluate((el) => getComputedStyle(el).fontFamily);
+      await expect(preview.getByRole("status")).toHaveCSS(
+        "font-family",
+        interfaceFont,
+      );
+    }
+  });
+
+for (const kind of ["jj-log", "op-log"])
   for (const mode of ["light", "dark"])
     test(`${kind}: flush collection and opaque sticky header in ${mode}`, async ({
       page,
