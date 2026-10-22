@@ -5,6 +5,13 @@ Component-family documentation is enforced by the repository-owned
 The inventory explicitly assigns private compound parts to documented families;
 a new independent component requires its own colocated contract.
 
+The tracked AGENTS guide records the source-copy, per-family documentation,
+token, controller and Storybook workflow for both packages; newly reviewed JJ
+families MUST use the same fail-closed structure as Agent foundations.
+The user has authorized a Desktop-derived JJ history review slice while Agent
+visual review remains pending; jj-store workspace/provider/settings screens and
+downstream migration remain outside that slice.
+
 ## AUI-GOV-001 — Source ownership
 
 **Requirement.** Production packages MUST consume public Design Core primitives and injected host ports without application-private imports, credentials, native transports or catalog dependencies.
