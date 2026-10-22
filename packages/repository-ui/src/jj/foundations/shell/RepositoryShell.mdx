@@ -24,10 +24,11 @@ Wrap one embedded repository pane in this AppShell boundary. Supply ordinary con
 
 ## Anatomy
 
-| Part         | Responsibility                                                                 |
-| ------------ | ------------------------------------------------------------------------------ |
-| Main body    | Inset, bounded AppShell main/body with the original border, radius and shadow. |
-| Surface slot | AppShell surface host for conflict inspection without replacing the workspace. |
+| Part          | Responsibility                                                                                                                                        |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Main body     | Inset, bounded AppShell main/body with the original border, radius and shadow.                                                                        |
+| Surface slot  | AppShell surface host for conflict inspection without replacing the workspace.                                                                        |
+| Canvas spacer | Private `RepositoryCanvasSpacer` part shared by the complete JJ/Op Log screens. It fills the public trailing slot with an Empty icon and resize hint. |
 
 ## Variations
 
@@ -46,6 +47,13 @@ The narrow geometry for this family, using the same production implementation.
 ## Behavior and accessibility
 
 Size the parent pane explicitly. Shell disposal releases its AppShell controller; it does not close a host-owned history reader. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+
+Both complete log canvases configure `trailingSpacerWidth: 240` through the
+public Design Core controller and render the same private Empty part in
+`trailingSpacer`. They use `displayMode="fixed"`, matching JJ Store's workspace:
+every column resizes independently and smaller panes scroll horizontally.
+This keeps the last Diff column's resize edge reachable. The hint uses the public
+Empty component's semantic styling; it introduces no repository or branch action.
 
 ## Styling variables
 

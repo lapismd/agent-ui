@@ -3,7 +3,7 @@
     {
       "primary": "jj/foundations/shell/RepositoryShell",
       "purpose": "Original embedded AppShell boundary with pane-sized main area and overlay surface.",
-      "parts": []
+      "parts": ["jj/foundations/shell/RepositoryCanvasSpacer.svelte"]
     },
     {
       "primary": "jj/foundations/author-avatar/RepositoryAuthorAvatar",

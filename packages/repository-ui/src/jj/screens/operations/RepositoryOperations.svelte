@@ -23,6 +23,7 @@
   import RepositoryOperationFiles from "../../operations/operation-files/RepositoryOperationFiles.svelte";
   import RepositoryOperationColumn from "../../operations/operation-column/RepositoryOperationColumn.svelte";
   import RepositoryShell from "../../foundations/shell/RepositoryShell.svelte";
+  import RepositoryCanvasSpacer from "../../foundations/shell/RepositoryCanvasSpacer.svelte";
   import RepositoryGraph from "../../history/graph/RepositoryGraph.svelte";
   let {
     controller,
@@ -109,7 +110,12 @@
     aria-busy={snapshot.busy}
   >
     <div class="operation-columns">
-      <ColumnCanvas.Root controller={canvas} aria-label="Operation log columns">
+      <ColumnCanvas.Root
+        controller={canvas}
+        displayMode="fixed"
+        aria-label="Operation log columns"
+      >
+        {#snippet trailingSpacer()}<RepositoryCanvasSpacer />{/snippet}
         <ColumnCanvas.Column
           id="revisions"
           columnTitle="Op Log"

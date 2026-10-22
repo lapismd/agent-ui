@@ -49,3 +49,7 @@ qualification and downstream adoption remain pending review.
 The RUI-HISTORY-001 / AUI-GOV-003 header follow-up is recorded in
 `spec/records/2026-10-22-diff-header-review.md`, covering host totals, scoped
 actions, semantic header interaction and painted selection edges in both logs.
+
+The RUI-HISTORY-001 / RUI-DESKTOP-001 / AUI-GOV-003 canvas resize-space follow-up
+is recorded in `spec/records/2026-10-22-log-canvas-spacer.md`, with both logs using
+the source workspace's fixed scrolling mode and public trailing-content slot.

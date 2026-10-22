@@ -797,6 +797,11 @@
       "source": "src/lib/repository/operation-parent.ts",
       "destination": "packages/repository-ui/src/jj/logic/operation-parent.ts",
       "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceSpacer.svelte",
+      "destination": "packages/repository-ui/src/jj/foundations/shell/RepositoryCanvasSpacer.svelte",
+      "use": "Apache-2.0; copied Empty presentation for the shared private log-canvas spacer. Workspace commands/drop authority omitted; resize-specific icon and text adapted. Exact source revision and hashes are in desktop-layout-sources.json."
     }
   ]
 }

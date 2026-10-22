@@ -90,6 +90,12 @@ The collection MUST leave inline-end clearance for the column overlay scrollbar
 so it cannot cover a selected frame, and expanded file bodies MUST have no extra
 bottom padding after the final content row.
 
+JJ Log and Op Log MUST use fixed-width scrolling canvases with a 240px trailing
+spacer, using the public Column Canvas controller and trailing-content slot.
+The spacer MUST show an icon-bearing shadcn Empty resize hint, keep the final
+Diff column edge reachable for pointer and keyboard resizing. Smaller panes
+MUST retain horizontal scrolling and independently resizable columns.
+
 ### Acceptance details
 
 - JJ Log MUST retain its exact operation and workspace while applying a host-configured revset query, clearing dependent revision/file selections and discarding late replies.

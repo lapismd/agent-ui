@@ -24,6 +24,7 @@
   import RepositoryRevisions from "../../history/revisions/RepositoryRevisions.svelte";
   import RepositoryDiffColumn from "../../history/diff-column/RepositoryDiffColumn.svelte";
   import RepositoryShell from "../../foundations/shell/RepositoryShell.svelte";
+  import RepositoryCanvasSpacer from "../../foundations/shell/RepositoryCanvasSpacer.svelte";
   import RepositoryRestoreDialog from "../../history/restore-dialog/RepositoryRestoreDialog.svelte";
   import type { RestoreController } from "../../logic/restore.js";
   import { openHistoryRevision } from "../../logic/open-history-revision.js";
@@ -153,8 +154,10 @@
     <div class="repository-columns">
       <ColumnCanvas.Root
         controller={canvas}
+        displayMode="fixed"
         aria-label="Repository history columns"
       >
+        {#snippet trailingSpacer()}<RepositoryCanvasSpacer />{/snippet}
         <ColumnCanvas.Column
           id="revisions"
           columnTitle="JJ Log"

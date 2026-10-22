@@ -95,3 +95,8 @@ comparison-wide action slots in both logs. Exact file restores stay beside their
 file. Shared Design Core selection layering and header hover/focus are qualified
 with painted side-edge probes; evidence is in
 `spec/records/2026-10-22-diff-header-review.md`. Continue to pause for screen review.
+
+The log-canvas follow-up adopts JJ Store's fixed scrolling configuration and
+240px trailing spacer with a shared icon-bearing Empty hint, retaining pointer
+and keyboard resizing of the final Diff column. Evidence is in
+`spec/records/2026-10-22-log-canvas-spacer.md`; screen review remains pending.

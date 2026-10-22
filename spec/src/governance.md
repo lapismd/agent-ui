@@ -89,6 +89,9 @@ diff content in light and dark themes, with real pointer header hover; computed
 outline declarations alone are insufficient. Header qualification MUST distinguish
 complete host totals, unavailable totals and per-file counts, and prove that
 comparison-wide and file-scoped actions retain their respective identities.
+Log canvas qualification MUST exercise the trailing resize hint, pointer and
+keyboard resizing of the final Diff column, and retained horizontal access in
+small panes in both complete logs.
 
 ### Acceptance details
 

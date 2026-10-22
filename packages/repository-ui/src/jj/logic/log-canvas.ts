@@ -1,7 +1,8 @@
 import { createColumnCanvasController } from "@lapismd/design-core/shadcn/column-canvas";
-/** jj-store log/diff column geometry. The public root owns pane-responsive mode. */
+/** jj-store log/diff geometry with room after the final independent resize edge. */
 export function createLogCanvas() {
   return createColumnCanvasController<string>({
+    trailingSpacerWidth: 240,
     columns: {
       revisions: {
         defaultWidth: 480,
