@@ -7,10 +7,11 @@
   flex-direction: column;
   gap: 0.75rem;
 }
-.operation-diff-stack[data-view-mode="split"] {
+.operation-diff-stack[data-view-mode="split"][data-file-mode="single"] {
   height: 100%;
 }
-.operation-diff-stack[data-view-mode="split"] .operation-file-card {
+.operation-diff-stack[data-view-mode="split"][data-file-mode="single"]
+  .operation-file-card {
   display: flex;
   flex: 1 1 0;
   flex-direction: column;

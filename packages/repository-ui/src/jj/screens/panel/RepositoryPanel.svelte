@@ -1,5 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0; copied from Lapis Desktop with explicit host boundaries. -->
 <script lang="ts">
+  import type { RepositoryDiffPreferences } from "../../history/diff-viewer/types.js";
   import type { Snippet } from "svelte";
   import type { RepositoryHistoryQueryInfo } from "../../history/query/types.js";
   import type { LocalGraphCommit } from "@lapismd/jj-history";
@@ -39,6 +40,10 @@
     headerControls,
     headerActions,
     diffActions,
+    diffFileMode = "single",
+    onDiffFileModeChange,
+    diffPageSize,
+    getDiffMenuItems,
     revisionActions,
     fileActions,
   }: {
@@ -56,7 +61,7 @@
     diffActions?: Snippet<[HistoryState]>;
     revisionActions?: Snippet<[LocalGraphCommit]>;
     fileActions?: Snippet<[HistoryState]>;
-  } = $props();
+  } & RepositoryDiffPreferences = $props();
   let snapshot = $state(initialHistoryState());
   let conflictsOpen = $state(false);
   let queryOpen = $state(false);
@@ -78,7 +83,7 @@
   const canvas = createLogCanvas();
   onDestroy(() => void canvas.dispose());
   const selection = $derived(
-    `${snapshot.revision?.id ?? ""}/${snapshot.path ?? ""}`,
+    `${snapshot.revision?.id ?? ""}/${snapshot.path ?? ""}/${diffFileMode}/${snapshot.pathsReady}`,
   );
   const restoreCheckpoint = $derived(
     snapshot.revision
@@ -100,7 +105,9 @@
       if (path) {
         canvas.select(1, path);
         canvas.open("diff");
-      } else canvas.close("diff");
+      } else if (diffFileMode === "all" && snapshot.pathsReady)
+        canvas.open("diff");
+      else canvas.close("diff");
     });
   });
   onMount(() => {
@@ -228,6 +235,10 @@
             />{/if}
         </ColumnCanvas.Column>
         <RepositoryDiffColumn
+          {diffFileMode}
+          {onDiffFileModeChange}
+          {diffPageSize}
+          {getDiffMenuItems}
           actions={diffActions ? selectedDiffActions : undefined}
           state={snapshot}
           {controller}

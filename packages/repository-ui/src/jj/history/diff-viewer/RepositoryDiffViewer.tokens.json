@@ -1,0 +1,19 @@
+{
+  "component": "RepositoryDiffViewer",
+  "variables": [
+    {
+      "name": "--ui-repository-diff-viewer-padding",
+      "default": "0",
+      "description": "Outer inset around the single-file or multi-file body.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/diff-viewer/RepositoryDiffViewer.svelte"
+    },
+    {
+      "name": "--ui-repository-diff-menu-min-width",
+      "default": "14rem",
+      "description": "Minimum width for file-action menus and nested submenus; labels remain on one line.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/diff-viewer/RepositoryDiffMenu.svelte"
+    }
+  ]
+}

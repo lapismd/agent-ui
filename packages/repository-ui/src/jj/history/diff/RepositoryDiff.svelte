@@ -10,11 +10,13 @@
     viewMode = "unified",
     wrap = false,
     compact = false,
+    sizing = "fill",
   }: {
     change: LocalFileDiffChange;
     viewMode?: FileDiffViewMode;
     wrap?: boolean;
     compact?: boolean;
+    sizing?: "fill" | "content";
   } = $props();
   const content = $derived(diffText(change));
   const sources = $derived(
@@ -26,6 +28,7 @@
   class="repository-diff"
   data-compact={compact || undefined}
   data-view-mode={viewMode}
+  data-sizing={sizing}
   aria-label={`Changes to ${change.path}`}
 >
   {#each sources as source}<p class="diff-source">
@@ -50,6 +53,7 @@
       newText={content.newText}
       {viewMode}
       {wrap}
+      {sizing}
     />{/if}
 </section>
 
@@ -66,7 +70,7 @@
     min-width: 0;
     min-height: var(--ui-repository-diff-min-height, 16rem);
   }
-  .repository-diff[data-view-mode="split"] {
+  .repository-diff[data-view-mode="split"][data-sizing="fill"] {
     height: 100%;
     min-height: 0;
     flex: 1 1 0;

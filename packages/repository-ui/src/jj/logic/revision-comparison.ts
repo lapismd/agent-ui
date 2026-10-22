@@ -1,11 +1,14 @@
 import type { Handle } from "@lapismd/jj-history";
 import type { HistoryReader } from "./history-reader.js";
 import type { HistoryState } from "./history-state.js";
+import { parentCandidates } from "./parent-candidates.js";
+import { ComparisonDiffs } from "./comparison-diffs.js";
 import { check } from "./history-selection.js";
 
 type Scope = { handle?: Handle; state: HistoryState; closed: boolean };
 /** File replies are fenced independently from graph paging and metadata. */
 export class RevisionComparison {
+  readonly diffs: ComparisonDiffs;
   #comparison = 0;
   #file = 0;
   readonly reader: HistoryReader;
@@ -16,11 +19,13 @@ export class RevisionComparison {
     scope: () => Scope,
     publish: (patch: Partial<HistoryState>) => void,
   ) {
+    this.diffs = new ComparisonDiffs((diffs) => publish({ diffs }));
     this.reader = reader;
     this.scope = scope;
     this.publish = publish;
   }
   reset() {
+    this.diffs.reset();
     this.#comparison++;
     this.#file++;
   }
@@ -29,15 +34,19 @@ export class RevisionComparison {
     const handle = this.scope().handle,
       revision = this.scope().state.revision;
     if (!handle || !revision) return;
-    if (!append)
+    if (!append) {
+      this.diffs.reset();
+      this.#file++;
       this.publish({
         base,
         paths: [],
         pathsReady: false,
+        pathsLimitReached: false,
         nextPath: null,
         path: undefined,
         diff: undefined,
       });
+    }
     const response = await this.reader.read(handle, {
       kind: "diff_paths",
       query: {
@@ -62,6 +71,18 @@ export class RevisionComparison {
         response.data.from === base &&
         response.data.to === revision.id,
     );
+    const retained = append ? this.scope().state.paths : [];
+    const incoming = response.data.changes;
+    check(
+      new Set(incoming.map((row) => row.path)).size === incoming.length &&
+        !incoming.some((row) =>
+          retained.some((item) => item.path === row.path),
+        ) &&
+        (!response.data.next || incoming.length > 0) &&
+        (!append ||
+          !response.data.next ||
+          response.data.next !== this.scope().state.nextPath),
+    );
     const paths = [
       ...(append ? this.scope().state.paths : []),
       ...response.data.changes,
@@ -70,39 +91,68 @@ export class RevisionComparison {
       paths,
       nextPath: paths.length < 500 ? response.data.next : null,
       pathsReady: true,
+      pathsLimitReached:
+        retained.length + incoming.length > 500 ||
+        (paths.length === 500 && !!response.data.next),
     });
   }
+  async loadParents(): Promise<void> {
+    const { handle, state } = this.scope(),
+      generation = this.#comparison;
+    if (!handle || !state.revision) return;
+    const parents = await parentCandidates(
+      this.reader,
+      handle,
+      state.revision.parents,
+      [...state.commits, ...state.parentCommits],
+      () =>
+        !this.scope().closed &&
+        handle === this.scope().handle &&
+        generation === this.#comparison,
+    );
+    if (parents) this.publish({ parentCommits: parents });
+  }
   async selectPath(path: string): Promise<void> {
+    const { handle, state, closed } = this.scope();
+    if (closed || !handle || !state.revision || !state.base) return;
+    check(state.paths.some((change) => change.path === path));
     const comparison = this.#comparison,
       file = ++this.#file;
-    const handle = this.scope().handle,
-      revision = this.scope().state.revision,
-      base = this.scope().state.base;
-    if (!handle || !revision || !base) return;
-    check(this.scope().state.paths.some((change) => change.path === path));
-    this.publish({ path, diff: undefined });
-    const response = await this.reader.read(handle, {
-      kind: "diff",
-      query: { from: base, to: revision.id, path, content: true },
+    this.publish({
+      path,
+      diff: undefined,
+      pathRequest: this.scope().state.pathRequest + 1,
     });
+    const diff = await this.loadDiff(path);
     if (
-      comparison !== this.#comparison ||
-      file !== this.#file ||
-      handle !== this.scope().handle ||
-      revision.id !== this.scope().state.revision?.id ||
-      base !== this.scope().state.base ||
-      path !== this.scope().state.path ||
-      this.scope().closed
+      comparison === this.#comparison &&
+      file === this.#file &&
+      !this.scope().closed
     )
-      return;
-    check(
-      response.kind === "diff" &&
-        response.data.from === base &&
-        response.data.to === revision.id &&
-        response.data.path === path,
-    );
-    const change = response.data.changes.find((change) => change.path === path);
-    check(change);
-    this.publish({ diff: change });
+      this.publish({ diff });
+  }
+  async loadDiff(path: string) {
+    const { handle, state, closed } = this.scope();
+    const revision = state.revision,
+      base = state.base;
+    if (closed || !handle || !revision || !base) return;
+    check(state.paths.some((change) => change.path === path));
+    return this.diffs.load(path, async () => {
+      const response = await this.reader.read(handle, {
+        kind: "diff",
+        query: { from: base, to: revision.id, path, content: true },
+      });
+      check(
+        response.kind === "diff" &&
+          response.data.from === base &&
+          response.data.to === revision.id &&
+          response.data.path === path,
+      );
+      const change = response.data.changes.find(
+        (change) => change.path === path,
+      );
+      check(change);
+      return change;
+    });
   }
 }

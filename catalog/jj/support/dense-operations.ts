@@ -3,13 +3,17 @@ import type { LocalGraphOperationNode } from "@lapismd/jj-history";
 import { operationNode, operationDifference } from "./reference/operations.js";
 import { operation } from "./reference/fixture.js";
 import { richCommitMessage } from "./reference/rich-commit.js";
+import { collectionVariants, collectionChanges } from "./diff-collection.js";
 import { attachDenseHistory } from "./dense-history.js";
 import { commitDetail } from "./reference/commit-detail.js";
 import { stats } from "./reference/query-stats.js";
 import { branchingParents } from "./branching-history.js";
 
 export function attachDenseOperations(reader: HistoryReader, variant: string) {
-  const { commits, changes } = attachDenseHistory(reader);
+  const { commits, changes } = attachDenseHistory(
+    reader,
+    collectionVariants.includes(variant) ? collectionChanges : undefined,
+  );
   const nodes: LocalGraphOperationNode[] = Array.from(
     { length: 64 },
     (_, i): LocalGraphOperationNode => ({

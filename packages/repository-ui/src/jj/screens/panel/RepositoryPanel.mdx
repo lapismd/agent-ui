@@ -105,6 +105,24 @@ Host source controls replace the default selectors while shared actions remain.
 
 <Canvas of={Stories.HostControls} />
 
+### AllInOne
+
+Host settings enable the shared expandable file-diff collection while retaining the ordinary reader.
+
+<Canvas of={Stories.AllInOne} />
+
+### PagedFiles
+
+Four-section batches exercise loaded metadata paging and file selection beyond the visible batch.
+
+<Canvas of={Stories.PagedFiles} />
+
+### FileActions
+
+Each file and the single-file header share icon-bearing host actions, including nested copy paths and a simulated Finder action.
+
+<Canvas of={Stories.FileActions} />
+
 ## Behavior and accessibility
 
 Mount reads through the injected controller. Host lifetime outlives pane remounts; initialOperation and initialRevision restore exact selections. Dispose the controller only after its final owner releases it. No native transport, routing or preference storage is constructed here. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.

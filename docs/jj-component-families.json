@@ -77,6 +77,14 @@
       ]
     },
     {
+      "primary": "jj/history/diff-viewer/RepositoryDiffViewer",
+      "purpose": "Single-file and expandable paged comparison with exact per-file host menus and lazy content.",
+      "parts": [
+        "jj/history/diff-viewer/RepositoryDiffMenu.svelte",
+        "jj/history/diff-viewer/RepositoryDiffBody.svelte"
+      ]
+    },
+    {
       "primary": "jj/history/file-history/RepositoryFileHistory",
       "purpose": "Independent active-file pin, graph, explicit parent navigation and blame action.",
       "parts": []

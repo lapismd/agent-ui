@@ -80,7 +80,10 @@ catalog configuration MUST NOT disable its transforms or suppress import errors.
 History diff qualification MUST exercise context reveal and hide in both
 unified and split layouts in JJ Log and Op Log, including synchronized split
 panes and opaque fold-row gutters during horizontal scrolling; a single-layout
-pass cannot stand for both presentations.
+pass cannot stand for both presentations. All-file collection qualification MUST
+cover bounded continuation, repeated navigation, independent section disclosure,
+per-file host menu identities and retained single-file gutter behavior in both
+logs, using production controllers with isolated in-memory readers.
 
 ### Acceptance details
 

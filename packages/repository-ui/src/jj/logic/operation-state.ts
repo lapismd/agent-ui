@@ -91,3 +91,11 @@ export const resetOperationQuery = (
   next: null,
   limitReached: false,
 });
+
+export function operationPins(
+  state: Pick<OperationState, "heads" | "operation">,
+) {
+  return [
+    ...new Set([...state.heads, ...(state.operation ? [state.operation] : [])]),
+  ];
+}

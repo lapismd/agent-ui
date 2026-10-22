@@ -1,6 +1,5 @@
 import { RevisionComparison } from "./revision-comparison.js";
 import { HistoryGraph } from "./history-graph.js";
-import { parentCandidates } from "./parent-candidates.js";
 import type { Handle, LocalGraphCommit } from "@lapismd/jj-history";
 import type { HistoryReader } from "./history-reader.js";
 import {
@@ -235,25 +234,7 @@ export class HistoryController {
     );
   }
   loadParents(): Promise<void> {
-    return this.#run(() =>
-      this.#action(async () => {
-        const handle = this.#handle,
-          revision = this.#state.revision,
-          generation = this.#comparison;
-        if (!handle || !revision) return;
-        const parentCommits = await parentCandidates(
-          this.reader,
-          handle,
-          revision.parents,
-          [...this.#state.commits, ...this.#state.parentCommits],
-          () =>
-            !this.#closed &&
-            handle === this.#handle &&
-            generation === this.#comparison,
-        );
-        if (parentCommits) this.#set({ parentCommits });
-      }),
-    );
+    return this.#run(() => this.#action(() => this.#files.loadParents()));
   }
   loadConflicts(): Promise<void> {
     const comparison = this.#comparison;
@@ -286,7 +267,17 @@ export class HistoryController {
   selectPath(path: string): Promise<void> {
     return this.#run(() => this.#action(() => this.#files.selectPath(path)));
   }
+  loadDiff(path: string): Promise<void> {
+    return this.#run(async () => {
+      try {
+        await this.#files.loadDiff(path);
+      } catch (error) {
+        if (!this.#closed) this.feedback.report(error);
+      }
+    });
+  }
   close(): Promise<void> {
+    this.#files.reset();
     this.#closed = true;
     this.#selection++;
     this.#abort.abort();

@@ -3,15 +3,11 @@
   import type { Snippet } from "svelte";
   import RepositoryFileTitle from "../../history/file-title/RepositoryFileTitle.svelte";
   import * as ColumnCanvas from "@lapismd/design-core/shadcn/column-canvas";
-  import * as Empty from "@lapismd/design-core/shadcn/empty";
-  import RepositorySkeleton from "../../foundations/skeleton/RepositorySkeleton.svelte";
   import {
     FileChangeStats,
     type FileDiffViewMode,
   } from "@lapismd/design-core/diff";
-  import { Button } from "@lapismd/design-core/shadcn/button";
   import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
-  import FileSearchIcon from "@lucide/svelte/icons/file-search";
   import type { OperationState } from "../../logic/operation-state.js";
   import type { OperationController } from "../../logic/operation-controller.js";
   import { changeStats } from "../../logic/history-files.js";
@@ -19,7 +15,9 @@
   import RepositoryOperationRail from "../operation-rail/RepositoryOperationRail.svelte";
   import RepositoryOperationArguments from "../operation-arguments/RepositoryOperationArguments.svelte";
   import RepositoryOperationMessage from "../operation-message/RepositoryOperationMessage.svelte";
-  import RepositoryDiff from "../../history/diff/RepositoryDiff.svelte";
+  import RepositoryDiffViewer from "../../history/diff-viewer/RepositoryDiffViewer.svelte";
+  import RepositoryDiffMenu from "../../history/diff-viewer/RepositoryDiffMenu.svelte";
+  import type { RepositoryDiffPreferences } from "../../history/diff-viewer/types.js";
   import RepositoryDiffControls from "../../history/diff-controls/RepositoryDiffControls.svelte";
   import "../../styles/repository-operation-column.css";
   let {
@@ -28,16 +26,39 @@
     copyText,
     metadataActions,
     diffActions,
+    diffFileMode = "single",
+    onDiffFileModeChange,
+    diffPageSize,
+    getDiffMenuItems,
   }: {
     state: OperationState;
     controller: OperationController;
     copyText(value: string): Promise<void>;
     metadataActions?: Snippet<[OperationState]>;
     diffActions?: Snippet<[OperationState]>;
-  } = $props();
+  } & RepositoryDiffPreferences = $props();
   let expanded = $state(true);
   let viewMode = $state<FileDiffViewMode>("unified"),
     wrap = $state(false);
+  const comparisonKey = $derived(
+    `${snapshot.operation}/${snapshot.selected?.id}/${snapshot.files.group?.change}/${snapshot.files.from}/${snapshot.files.to}`,
+  );
+  const selected = $derived(
+    snapshot.files.diff ??
+      snapshot.files.paths.find((file) => file.path === snapshot.files.path),
+  );
+  const menuContext = $derived(
+    selected && snapshot.files.from && snapshot.files.to
+      ? {
+          comparisonKey,
+          operation: snapshot.operation,
+          from: snapshot.files.from,
+          to: snapshot.files.to,
+          path: selected.path,
+          change: selected,
+        }
+      : undefined,
+  );
   const stats = $derived(changeStats(snapshot.files.diff));
   const panelId = $derived(
     `operation-metadata-${snapshot.selected?.id ?? "none"}`,
@@ -56,7 +77,11 @@
   style="border:0;border-radius:0;background:transparent"
 >
   <ColumnCanvas.Body>
-    <div class="operation-diff-stack" data-view-mode={viewMode}>
+    <div
+      class="operation-diff-stack"
+      data-view-mode={viewMode}
+      data-file-mode={diffFileMode}
+    >
       {#if snapshot.selected}
         <section class="operation-card" aria-label="Selected operation">
           <header class="operation-card-header">
@@ -81,10 +106,6 @@
             />
             <div class="operation-card-actions">
               {@render metadataActions?.(snapshot)}
-              <ColumnCanvas.Close
-                aria-label="Close Diff column"
-                title="Close Diff"
-              />
             </div>
           </header>
           {#if expanded}
@@ -116,55 +137,54 @@
         </section>
       {/if}
       <section class="operation-file-card" aria-label="Selected file diff">
-        {#if snapshot.files.path}
-          <header class="operation-card-header">
-            <span class="operation-file-path"
-              ><RepositoryFileTitle path={snapshot.files.path} /></span
-            >
-            <div class="operation-card-actions">
-              {@render diffActions?.(snapshot)}
-              {#if stats}<FileChangeStats {...stats} showZero />{/if}
-              <RepositoryDiffControls bind:viewMode bind:wrap />
-            </div>
-          </header>
-          {#if snapshot.files.diff}<RepositoryDiff
-              compact
-              change={snapshot.files.diff}
-              {viewMode}
-              {wrap}
+        <header class="operation-card-header">
+          <span class="operation-file-path"
+            >{#if diffFileMode === "all"}All changes{:else}<RepositoryFileTitle
+                path={snapshot.files.path}
+              />{/if}</span
+          >
+          <div class="operation-card-actions">
+            {@render diffActions?.(snapshot)}
+            {#if stats && diffFileMode === "single"}<FileChangeStats
+                {...stats}
+                showZero
+              />{/if}
+            <RepositoryDiffControls
+              bind:viewMode
+              bind:wrap
+              fileMode={diffFileMode}
+              onFileModeChange={onDiffFileModeChange}
             />
-          {:else if snapshot.busy}<RepositorySkeleton
-              kind="diff"
-              label="Loading selected operation comparison"
+            {#if diffFileMode === "single"}<RepositoryDiffMenu
+                context={menuContext}
+                getItems={getDiffMenuItems}
+              />{/if}
+            <ColumnCanvas.Close
+              aria-label="Close Diff column"
+              title="Close Diff"
             />
-          {:else}<Empty.Root class="operation-diff-empty" role="status"
-              ><Empty.Header
-                ><Empty.Media variant="icon"><FileSearchIcon /></Empty.Media
-                ><Empty.Title style="font-size:0.875rem;color:var(--foreground)"
-                  >File preview is unavailable</Empty.Title
-                ><Empty.Description style="font-size:0.75rem;max-width:28rem"
-                  >Retry the selected file comparison.</Empty.Description
-                ></Empty.Header
-              ><Button
-                size="sm"
-                onclick={() =>
-                  controller.files.selectPath(snapshot.files.path!)}
-                >Retry preview</Button
-              ></Empty.Root
-            >{/if}
-        {:else}
-          <Empty.Root class="operation-diff-empty" role="status">
-            <Empty.Header
-              ><Empty.Media variant="icon"
-                ><FileSearchIcon aria-hidden="true" /></Empty.Media
-              ><Empty.Title style="font-size:0.875rem;color:var(--foreground)"
-                >No file selected</Empty.Title
-              ><Empty.Description style="font-size:0.75rem;max-width:28rem"
-                >Select a changed file to preview the operation diff.</Empty.Description
-              ></Empty.Header
-            >
-          </Empty.Root>
-        {/if}
+          </div>
+        </header>
+        <RepositoryDiffViewer
+          {comparisonKey}
+          from={snapshot.files.from ?? ""}
+          to={snapshot.files.to ?? ""}
+          operation={snapshot.operation}
+          files={snapshot.files.paths}
+          entries={snapshot.files.diffs}
+          selectedPath={snapshot.files.path}
+          selectionRequest={snapshot.files.pathRequest}
+          fileMode={diffFileMode}
+          pageSize={diffPageSize}
+          {viewMode}
+          {wrap}
+          hasMore={!!snapshot.files.nextPath}
+          loadingPaths={snapshot.busy}
+          limitReached={snapshot.files.pathsLimitReached}
+          onLoad={(path) => controller.files.loadDiff(path)}
+          onMore={() => controller.files.morePaths()}
+          {getDiffMenuItems}
+        />
       </section>
     </div>
   </ColumnCanvas.Body>

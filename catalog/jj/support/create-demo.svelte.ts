@@ -5,6 +5,7 @@ import {
   largeCommitStats,
 } from "./large-blame.js";
 import { holdPreparation } from "./hold-preparation.js";
+import { collectionVariants, collectionChanges } from "./diff-collection.js";
 import { attachDenseHistory } from "./dense-history.js";
 import { attachDenseOperations } from "./dense-operations.js";
 import {
@@ -64,6 +65,7 @@ export function createJjDemo(part: string, variant = "Basic") {
       ? attachDenseOperations(fixture.reader, variant)
       : undefined;
   const dense = [
+    ...collectionVariants,
     "DenseHistory",
     "PagedHistory",
     "BoundedHistory",
@@ -73,7 +75,10 @@ export function createJjDemo(part: string, variant = "Basic") {
     "Binary",
     "Renamed",
   ].includes(variant)
-    ? attachDenseHistory(fixture.reader)
+    ? attachDenseHistory(
+        fixture.reader,
+        collectionVariants.includes(variant) ? collectionChanges : undefined,
+      )
     : undefined;
   const largeBlame =
     part === "RepositoryBlamePanel" &&

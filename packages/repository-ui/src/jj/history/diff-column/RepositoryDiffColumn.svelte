@@ -1,7 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0; copied from Lapis Desktop with explicit host boundaries. -->
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import RepositorySkeleton from "../../foundations/skeleton/RepositorySkeleton.svelte";
   import RepositoryFileTitle from "../file-title/RepositoryFileTitle.svelte";
   import {
     FileChangeStats,
@@ -13,7 +12,10 @@
 
   import { changeStats } from "../../logic/history-files.js";
   import RepositoryDiffControls from "../diff-controls/RepositoryDiffControls.svelte";
-  import RepositoryDiff from "../diff/RepositoryDiff.svelte";
+  import RepositoryDiffViewer from "../diff-viewer/RepositoryDiffViewer.svelte";
+  import RepositoryDiffMenu from "../diff-viewer/RepositoryDiffMenu.svelte";
+  import type { RepositoryDiffPreferences } from "../diff-viewer/types.js";
+  import type { HistoryController } from "../../logic/history-controller.js";
   import RotateCcwIcon from "@lucide/svelte/icons/rotate-ccw";
   let {
     state: snapshot,
@@ -23,24 +25,51 @@
     closeLabel = "Close Diff column",
     onRestore,
     actions,
+    diffFileMode = "single",
+    onDiffFileModeChange,
+    diffPageSize,
+    getDiffMenuItems,
   }: {
-    state: Pick<HistoryState, "path" | "diff" | "busy">;
-    controller: { selectPath(path: string): Promise<void> };
+    state: HistoryState;
+    controller: Pick<
+      HistoryController,
+      "selectPath" | "loadDiff" | "morePaths"
+    >;
     columnId?: string;
     label?: string;
     closeLabel?: string;
     onRestore?(): void;
     actions?: Snippet<[Pick<HistoryState, "path" | "diff" | "busy">]>;
-  } = $props();
+  } & RepositoryDiffPreferences = $props();
   let viewMode = $state<FileDiffViewMode>("split");
   let wrap = $state(false);
+  const comparisonKey = $derived(
+    `${snapshot.operation}/${snapshot.base}/${snapshot.revision?.id}`,
+  );
+  const selected = $derived(
+    snapshot.diff ?? snapshot.paths.find((file) => file.path === snapshot.path),
+  );
+  const menuContext = $derived(
+    selected && snapshot.base && snapshot.revision
+      ? {
+          comparisonKey,
+          operation: snapshot.operation,
+          from: snapshot.base,
+          to: snapshot.revision.id,
+          path: selected.path,
+          change: selected,
+        }
+      : undefined,
+  );
   const stats = $derived(changeStats(snapshot.diff));
 </script>
 
 <ColumnCanvas.Column id={columnId} columnTitle="Diff" aria-label={label}>
   <ColumnCanvas.Header>
     <ColumnCanvas.Title
-      ><RepositoryFileTitle path={snapshot.path} /></ColumnCanvas.Title
+      >{#if diffFileMode === "all"}All changes{:else}<RepositoryFileTitle
+          path={snapshot.path}
+        />{/if}</ColumnCanvas.Title
     >
     <ColumnCanvas.HeaderActions class="repository-review-column-actions">
       {#if stats}<FileChangeStats {...stats} showZero />{/if}
@@ -52,32 +81,40 @@
           disabled={snapshot.busy}
           onclick={onRestore}><RotateCcwIcon /></Button
         >{/if}
-      <RepositoryDiffControls bind:viewMode bind:wrap />
+      <RepositoryDiffControls
+        bind:viewMode
+        bind:wrap
+        fileMode={diffFileMode}
+        onFileModeChange={onDiffFileModeChange}
+      />
       {@render actions?.(snapshot)}
+      {#if diffFileMode === "single"}<RepositoryDiffMenu
+          context={menuContext}
+          getItems={getDiffMenuItems}
+        />{/if}
       <ColumnCanvas.Close aria-label={closeLabel} />
     </ColumnCanvas.HeaderActions>
   </ColumnCanvas.Header>
-  <ColumnCanvas.Body orientation="both">
-    {#if snapshot.diff}<RepositoryDiff
-        change={snapshot.diff}
-        {viewMode}
-        {wrap}
-      />
-    {:else if snapshot.path}{#if snapshot.busy}<RepositorySkeleton
-          kind="diff"
-          label="Loading file changes…"
-        />{:else}<p role="status">File preview is unavailable.</p>
-        <Button size="sm" onclick={() => controller.selectPath(snapshot.path!)}
-          >Retry preview</Button
-        >{/if}
-    {:else}<p role="status">Select a changed file to preview the diff.</p>{/if}
+  <ColumnCanvas.Body orientation={diffFileMode === "all" ? "vertical" : "both"}>
+    <RepositoryDiffViewer
+      {comparisonKey}
+      from={snapshot.base ?? ""}
+      to={snapshot.revision?.id ?? ""}
+      operation={snapshot.operation}
+      files={snapshot.paths}
+      entries={snapshot.diffs}
+      selectedPath={snapshot.path}
+      selectionRequest={snapshot.pathRequest}
+      fileMode={diffFileMode}
+      pageSize={diffPageSize}
+      {viewMode}
+      {wrap}
+      hasMore={!!snapshot.nextPath}
+      loadingPaths={snapshot.busy}
+      limitReached={snapshot.pathsLimitReached}
+      onLoad={(path) => controller.loadDiff(path)}
+      onMore={() => controller.morePaths()}
+      {getDiffMenuItems}
+    />
   </ColumnCanvas.Body>
 </ColumnCanvas.Column>
-
-<style>
-  p {
-    padding: 1rem;
-    color: var(--muted-foreground);
-    font-size: 0.875rem;
-  }
-</style>

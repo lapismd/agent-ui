@@ -37,3 +37,12 @@ export {
   provideRepositoryAuthorAvatars,
   type RepositoryAuthorAvatarResolver,
 } from "./logic/author-avatars.js";
+
+export { default as RepositoryDiffViewer } from "./history/diff-viewer/RepositoryDiffViewer.svelte";
+export { default as RepositoryDiffMenu } from "./history/diff-viewer/RepositoryDiffMenu.svelte";
+export { createRepositoryDiffMenu } from "./history/diff-viewer/actions.js";
+export type * from "./history/diff-viewer/types.js";
+export type {
+  RepositoryDiffEntry,
+  RepositoryDiffEntries,
+} from "./logic/comparison-diffs.js";

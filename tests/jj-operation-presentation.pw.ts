@@ -123,6 +123,23 @@ for (const kind of ["jj-log", "op-log"])
               fold.top + 16,
             )!;
             return {
+              diagnostic: {
+                tag: front.tagName,
+                className: front.className,
+                text: front.textContent?.slice(0, 120),
+                pane: {
+                  x: box.x,
+                  y: box.y,
+                  width: box.width,
+                  height: box.height,
+                },
+                fold: {
+                  x: fold.x,
+                  y: fold.y,
+                  width: fold.width,
+                  height: fold.height,
+                },
+              },
               opaqueGutter: front.classList.contains(
                 "ui-diff-file-diff__gutter",
               ),
@@ -131,7 +148,11 @@ for (const kind of ["jj-log", "op-log"])
               )!.scrollLeft,
             };
           });
-          expect(gutter).toEqual({ opaqueGutter: true, scrollLeft: 48 });
+          const { diagnostic, ...actual } = gutter;
+          expect(actual, JSON.stringify(diagnostic)).toEqual({
+            opaqueGutter: true,
+            scrollLeft: 48,
+          });
         }
       }
       await expect(diff.getByText(/History preset 32/)).toHaveCount(0);

@@ -6,7 +6,12 @@ import type {
   LocalFileDiffChange,
 } from "@lapismd/jj-history";
 
+import type { RepositoryDiffEntries } from "./comparison-diffs.js";
+
 export interface HistoryState {
+  diffs: RepositoryDiffEntries;
+  pathRequest: number;
+  pathsLimitReached: boolean;
   phase: "idle" | "loading" | "ready" | "unavailable";
   busy: boolean;
   revset: string;
@@ -32,6 +37,9 @@ export interface HistoryState {
   diff?: LocalFileDiffChange;
 }
 export const initialHistoryState = (): HistoryState => ({
+  diffs: {},
+  pathRequest: 0,
+  pathsLimitReached: false,
   phase: "idle",
   busy: false,
   revset: "all()",
@@ -81,6 +89,9 @@ export function diffText(
 /** Clears the selected revision and every dependent comparison value. */
 export function resetHistoryComparison(): Partial<HistoryState> {
   return {
+    diffs: {},
+    pathRequest: 0,
+    pathsLimitReached: false,
     conflicts: [],
     conflictsReady: false,
     revision: undefined,

@@ -1,24 +1,23 @@
 <!-- SPDX-License-Identifier: Apache-2.0; copied from Lapis Desktop with explicit host boundaries. -->
 <script lang="ts">
+  import type { RepositoryOperationsProps } from "./types.js";
   import RepositoryOperationEmpty from "../../operations/operation-column/RepositoryOperationEmpty.svelte";
-  import type { Snippet } from "svelte";
-  import type { RepositoryHistoryQueryInfo } from "../../history/query/types.js";
-  import type { OperationState } from "../../logic/operation-state.js";
   import SearchIcon from "@lucide/svelte/icons/search";
   import RepositoryOperationQuery from "./RepositoryOperationQuery.svelte";
   import RepositoryHistoryLimit from "../../history/revisions/RepositoryHistoryLimit.svelte";
   import RepositoryConflictResolution from "../../conflicts/conflict-resolution/RepositoryConflictResolution.svelte";
   import FileQuestionIcon from "@lucide/svelte/icons/file-question-mark";
   import * as Empty from "@lapismd/design-core/shadcn/empty";
-  import type { HistorySourcePicker } from "../../logic/history-source.js";
   import RepositorySkeleton from "../../foundations/skeleton/RepositorySkeleton.svelte";
   import { repositoryWorkspaces } from "../../logic/workspaces.js";
   import { onMount, onDestroy, untrack } from "svelte";
   import { Button } from "@lapismd/design-core/shadcn/button";
   import RepositoryLogHeader from "../../history/log-header/RepositoryLogHeader.svelte";
   import * as ColumnCanvas from "@lapismd/design-core/shadcn/column-canvas";
-  import type { OperationController } from "../../logic/operation-controller.js";
-  import { initialOperationState } from "../../logic/operation-state.js";
+  import {
+    initialOperationState,
+    operationPins,
+  } from "../../logic/operation-state.js";
   import { operationGraphRows } from "../../logic/operation-metadata.js";
   import { createLogCanvas } from "../../logic/log-canvas.js";
   import RepositoryOperationFiles from "../../operations/operation-files/RepositoryOperationFiles.svelte";
@@ -39,23 +38,12 @@
     metadataActions,
     fileActions,
     diffActions,
+    diffFileMode = "single",
+    onDiffFileModeChange,
+    diffPageSize,
+    getDiffMenuItems,
     onRevert,
-  }: {
-    sources?: HistorySourcePicker;
-    controller: OperationController;
-    initialOperation?: string;
-    copyText(value: string): Promise<void>;
-    onHistory?(operation: string): void;
-    searchable?: boolean;
-    queryInfo?: RepositoryHistoryQueryInfo;
-    headerControls?: Snippet<[OperationState]>;
-    headerActions?: Snippet<[OperationState]>;
-    operationActions?: Snippet<[OperationState]>;
-    metadataActions?: Snippet<[OperationState]>;
-    fileActions?: Snippet<[OperationState]>;
-    diffActions?: Snippet<[OperationState]>;
-    onRevert?(snapshot: OperationState): void;
-  } = $props();
+  }: RepositoryOperationsProps = $props();
   let snapshot = $state(initialOperationState());
   let queryOpen = $state(false),
     conflictsOpen = $state(false);
@@ -66,12 +54,7 @@
     void conflictScope;
     conflictsOpen = false;
   });
-  const pins = $derived([
-    ...new Set([
-      ...snapshot.heads,
-      ...(snapshot.operation ? [snapshot.operation] : []),
-    ]),
-  ]);
+  const pins = $derived(operationPins(snapshot));
   const rows = $derived(operationGraphRows(snapshot));
   const selection = $derived(
     `${snapshot.selected?.id ?? ""}/${snapshot.files.path ?? ""}`,
@@ -255,6 +238,10 @@
             />{/if}
         </ColumnCanvas.Column>
         <RepositoryOperationColumn
+          {diffFileMode}
+          {onDiffFileModeChange}
+          {diffPageSize}
+          {getDiffMenuItems}
           state={snapshot}
           {controller}
           {copyText}

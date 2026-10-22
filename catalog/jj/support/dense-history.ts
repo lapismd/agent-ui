@@ -2,10 +2,14 @@ import type { HistoryReader } from "../../../packages/repository-ui/src/jj/logic
 import { commit, revision } from "./reference/fixture.js";
 import { stats } from "./reference/query-stats.js";
 import { commitDetail } from "./reference/commit-detail.js";
+import type { LocalFileDiffChange } from "@lapismd/jj-history";
 import { denseChanges } from "./dense-diffs.js";
 import { richCommitMessage } from "./reference/rich-commit.js";
 import { branchingParents } from "./branching-history.js";
-export function attachDenseHistory(reader: HistoryReader) {
+export function attachDenseHistory(
+  reader: HistoryReader,
+  changes: LocalFileDiffChange[] = denseChanges,
+) {
   const hash = (index: number) =>
     (Math.imul(index + 1, 2654435761) >>> 0).toString(16).padStart(8, "0");
   const names = ["Alex Morgan", "Mira Patel", "Sam Rivera", "Jo Chen"];
@@ -123,9 +127,9 @@ export function attachDenseHistory(reader: HistoryReader) {
     }
     if (query.kind === "diff_paths") {
       const offset = query.query.anchor
-        ? denseChanges.findIndex((row) => row.path === query.query.anchor) + 1
+        ? changes.findIndex((row) => row.path === query.query.anchor) + 1
         : 0;
-      const page = denseChanges.slice(offset, offset + 8);
+      const page = changes.slice(offset, offset + 8);
       return {
         kind: "diff_paths",
         data: {
@@ -133,9 +137,7 @@ export function attachDenseHistory(reader: HistoryReader) {
           ...query.query,
           changes: page,
           next:
-            offset + page.length < denseChanges.length
-              ? page.at(-1)!.path
-              : null,
+            offset + page.length < changes.length ? page.at(-1)!.path : null,
           stats: stats(),
         },
       };
@@ -146,11 +148,11 @@ export function attachDenseHistory(reader: HistoryReader) {
         data: {
           version: 1,
           ...query.query,
-          changes: denseChanges.filter((row) => row.path === query.query.path),
+          changes: changes.filter((row) => row.path === query.query.path),
           stats: stats(),
         },
       };
     return read(handle, query);
   };
-  return { commits, changes: denseChanges };
+  return { commits, changes: changes };
 }

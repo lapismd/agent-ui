@@ -6,6 +6,9 @@
   import CopyIcon from "@lucide/svelte/icons/copy";
   import {
     RepositoryPanel,
+    createRepositoryDiffMenu,
+    type RepositoryDiffFileMode,
+    type RepositoryDiffMenuItem,
     initialHistoryState,
     type HistoryState,
   } from "../../packages/repository-ui/src/jj/index.js";
@@ -13,10 +16,51 @@
   import { createJjDemo } from "./support/create-demo.svelte.js";
   import { useDemoAuthors } from "./support/authors.svelte.js";
   let { variant = "DenseHistory" }: { variant?: string } = $props();
+  const collectionStory = untrack(() =>
+    ["AllInOne", "PagedFiles", "FileActions"].includes(variant),
+  );
+  let diffFileMode: RepositoryDiffFileMode = $state(
+    collectionStory ? "all" : "single",
+  );
   useDemoAuthors();
   const demo = untrack(() => createJjDemo("RepositoryPanel", variant));
-  let state = $state(initialHistoryState());
-  onMount(() => demo.history.subscribe((value) => (state = value)));
+  const menuItems: RepositoryDiffMenuItem[] = [
+    ...createRepositoryDiffMenu({
+      copyText: demo.copyText,
+      absolutePath: ({ path }) => `/workspace/lapis/${path}`,
+      reveal: ({ path, from, to }) => {
+        demo.state.actions.push(`reveal:${path}:${from}:${to}`);
+      },
+    }),
+    ...(untrack(() => variant === "FileActions")
+      ? [
+          {
+            id: "open-in-editor",
+            label: "Open in editor",
+            icon: ExternalLinkIcon,
+            onSelect: ({ path }: { path: string }) => {
+              demo.state.actions.push(`editor:${path}`);
+            },
+          },
+        ]
+      : []),
+  ];
+  let snapshot = $state(initialHistoryState());
+  onMount(() => {
+    let selected = false;
+    return demo.history.subscribe((value) => {
+      snapshot = value;
+      if (
+        collectionStory &&
+        !selected &&
+        value.pathsReady &&
+        value.paths.length
+      ) {
+        selected = true;
+        void demo.history.selectPath(value.paths[0].path);
+      }
+    });
+  });
   onDestroy(() => void demo.close());
 </script>
 
@@ -72,6 +116,13 @@
 <Tooltip.Provider
   ><div class="log-review" data-testid="log-review">
     <RepositoryPanel
+      {diffFileMode}
+      onDiffFileModeChange={(mode) => {
+        diffFileMode = mode;
+        demo.state.actions.push(`preference:${mode}`);
+      }}
+      diffPageSize={variant === "PagedFiles" ? 4 : 20}
+      getDiffMenuItems={() => menuItems}
       controller={demo.history}
       sources={demo.source}
       copyText={demo.copyText}
@@ -90,13 +141,13 @@
       data-errors={JSON.stringify(demo.state.errors)}
       data-actions={JSON.stringify(demo.state.actions)}
       data-state={JSON.stringify({
-        operation: state.operation,
-        revision: state.revision?.id,
-        path: state.path,
-        base: state.base,
-        revset: state.revset,
-        count: state.commits.length,
-        limitReached: state.limitReached,
+        operation: snapshot.operation,
+        revision: snapshot.revision?.id,
+        path: snapshot.path,
+        base: snapshot.base,
+        revset: snapshot.revset,
+        count: snapshot.commits.length,
+        limitReached: snapshot.limitReached,
       })}
     ></output>
   </div></Tooltip.Provider

@@ -5,14 +5,37 @@
   import * as ToggleGroup from "@lapismd/design-core/shadcn/toggle-group";
   import Columns2 from "@lucide/svelte/icons/columns-2";
   import Rows2 from "@lucide/svelte/icons/rows-2";
+  import FilesIcon from "@lucide/svelte/icons/files";
+  import type { RepositoryDiffFileMode } from "../diff-viewer/types.js";
   import WrapText from "@lucide/svelte/icons/wrap-text";
   let {
     viewMode = $bindable("unified"),
     wrap = $bindable(false),
-  }: { viewMode?: FileDiffViewMode; wrap?: boolean } = $props();
+    fileMode = "single",
+    onFileModeChange,
+  }: {
+    viewMode?: FileDiffViewMode;
+    wrap?: boolean;
+    fileMode?: RepositoryDiffFileMode;
+    onFileModeChange?(mode: RepositoryDiffFileMode): void;
+  } = $props();
 </script>
 
 <div class="repository-review-diff-controls">
+  {#if onFileModeChange}<span class="repository-review-diff-chrome">
+      <Toggle
+        pressed={fileMode === "all"}
+        onPressedChange={(value) =>
+          onFileModeChange?.(value ? "all" : "single")}
+        variant="outline"
+        size="sm"
+        class="repository-review-diff-control"
+        aria-label="All-in-one diff"
+        title="All-in-one diff"
+      >
+        <FilesIcon class="repository-review-diff-icon" />
+      </Toggle>
+    </span>{/if}
   <span class="repository-review-diff-chrome">
     <ToggleGroup.Root
       type="single"

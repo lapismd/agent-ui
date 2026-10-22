@@ -80,3 +80,12 @@ reader. The source fix and local review package now pass reveal/hide checks in
 both JJ and Op Log unified/split layouts; the corrected screen awaits review.
 The horizontal-scroll follow-up retains an opaque gutter beside split fold
 controls, qualified in the same complete-screen regressions.
+
+The approved all-in-one diff slice adds the documented shared Diff Viewer family,
+host-controlled single/all-file settings, lazy per-file reads, bounded append
+paging, navigation into expandable sections and icon-bearing per-file menus.
+Both complete logs retain the ordinary unified/split reader and original column
+boundaries. Header-wide disclosure, continuous square sections, separators,
+inset selection outlines and vertical menus incorporate the live review feedback.
+Focused qualification is recorded in `spec/records/2026-10-22-diff-collection.md`.
+This section is visual-pending; stop for review before repository browsing.

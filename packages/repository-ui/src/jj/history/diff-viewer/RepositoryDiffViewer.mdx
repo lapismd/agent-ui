@@ -1,0 +1,99 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryDiffViewer.stories";
+import { Basic, Styling } from "./RepositoryDiffViewer.example-sources";
+import tokens from "./RepositoryDiffViewer.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Diff Viewer
+
+A shared single-file or expandable collection of exact repository comparisons.
+
+## Usage
+
+The host owns the controller, comparison identity and preference persistence. Pass `diffFileMode` and `onDiffFileModeChange` to `RepositoryPanel` or `RepositoryOperations` to enable the column's All-in-one diff toggle. This standalone viewer receives the resulting `fileMode` and independent unified/split `viewMode`.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part          | Responsibility                                                                    |
+| ------------- | --------------------------------------------------------------------------------- |
+| File sections | Shared Design Core composer owns path headers, disclosure and navigation.         |
+| File body     | The ordinary RepositoryDiff renders text, binary, rename and unavailable content. |
+| File menu     | RepositoryDiffMenu renders host commands with icons and optional submenus.        |
+| Continuation  | Load more reveals another batch or requests the next metadata page.               |
+
+## Variations
+
+### Basic
+
+The selected file starts expanded; other paths are collapsed. Select a shortcut to expand and visit another file. Menus demonstrate nested copy paths and a simulated Finder action.
+
+<Canvas of={Stories.Basic} />
+
+### Split
+
+Content-sized split panes share one outer vertical scroll surface and retain horizontal synchronization and unchanged-context folding.
+
+<Canvas of={Stories.Split} />
+
+### Paged
+
+Four-section batches make paging and navigating beyond the rendered batch visible.
+
+<Canvas of={Stories.Paged} />
+
+### SingleFile
+
+The same file body fills the ordinary single-file presentation.
+
+<Canvas of={Stories.SingleFile} />
+
+### Empty
+
+An icon-bearing Empty state distinguishes absent selection from a failed read.
+
+<Canvas of={Stories.Empty} />
+
+### Loading
+
+A held in-memory content read shows the same per-file loading body used by complete screens.
+
+<Canvas of={Stories.Loading} />
+
+### Retry
+
+A failed file read keeps its section and offers an explicit retry. Other loaded files are retained.
+
+<Canvas of={Stories.Retry} />
+
+## Behavior and accessibility
+
+Disclosure buttons expose expanded state and controlled content IDs. Multiple files can stay open. Explicit selection expands and scrolls to the file; scrolling alone does not change selection. Repeat selection requests remain repeatable. Section state survives mode changes within one comparison and resets for new comparisons. Default batches contain 20 paths, with the existing 500-path cap shown explicitly. Content loads only for expanded sections, deduplicates pending requests and supports per-file retry. Binary and unavailable content remain distinct from empty changes.
+
+`getDiffMenuItems(context)` provides commands, submenus and separators. Every command and submenu requires an icon. `RepositoryDiffActionContext` carries `comparisonKey`, operation, from/to, path and change for that section. Optional `createRepositoryDiffMenu` callbacks supply absolute-path resolution, clipboard and platform-specific reveal behavior. The helper omits unavailable capabilities. Custom async command failures are displayed locally; hosts may also report their own notifications. Menus use vertical kebabs and content-width popovers with single-line labels. The main menu sits immediately before Close and uses the same public Button hover shape. Menu controls do not toggle disclosure, and empty menus have no trigger.
+
+## Styling variables
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+Expandable sections configure the public Design Core tokens: `--ui-diff-frame-radius: 0px`, `--ui-diff-file-gap: 0`, `--ui-diff-file-section-border: 0` and `--ui-diff-file-section-separator: 1px solid var(--border)`. Expanded bodies use `--ui-diff-file-content-padding-bottom: 0.75rem`. The selected file uses `--ui-diff-file-selection-outline: 1px solid var(--ring)` and `--ui-diff-file-selection-outline-offset: -1px` so all four edges stay inside the clipped column; its header inherits `--ui-diff-selected` through `--ui-diff-file-selected-header`. Header labels and status metadata form one keyboard-accessible disclosure button; the menu remains independent. File headers, syntax, changed rows, selected sections and gutters inherit the public Design Core diff tokens. RepositoryDiff owns rename provenance styles. No Mira or dependency-internal overrides are required.
+
+## API
+
+<ArgTypes of={Stories} />
+
+Public companion exports: `RepositoryDiffMenu`, `createRepositoryDiffMenu`, `RepositoryDiffFileMode`, `RepositoryDiffPreferences`, `RepositoryDiffActionContext`, `RepositoryDiffMenuItem`, `RepositoryDiffMenuProvider`, `RepositoryDiffEntry` and `RepositoryDiffEntries`.
+
+## Composition
+
+JJ Log and Op Log compose this same production viewer inside their original columns. Op Log retains operation metadata above the currently chosen revision-pair diff collection. Existing header action snippets remain available. Storybook uses disposable in-memory ports; native execution and downstream adoption remain behind review.

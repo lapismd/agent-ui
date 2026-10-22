@@ -4,8 +4,14 @@ import type {
   LocalFileDiffChange,
   LocalOperationChangesGroup,
 } from "@lapismd/jj-history";
+import {
+  ComparisonDiffs,
+  type RepositoryDiffEntries,
+} from "./comparison-diffs.js";
 import { check } from "./history-selection.js";
 export interface OperationFilesState {
+  diffs: RepositoryDiffEntries;
+  pathRequest: number;
   ready: boolean;
   groupsLimitReached: boolean;
   pathsLimitReached: boolean;
@@ -21,6 +27,8 @@ export interface OperationFilesState {
   diff?: LocalFileDiffChange;
 }
 export const initialOperationFiles = (): OperationFilesState => ({
+  diffs: {},
+  pathRequest: 0,
   ready: false,
   groupsLimitReached: false,
   pathsLimitReached: false,
@@ -31,6 +39,7 @@ export const initialOperationFiles = (): OperationFilesState => ({
 /** Shares the operation reader's lifetime; every reset fences delayed replies. */
 export class OperationFiles {
   state = initialOperationFiles();
+  readonly diffs: ComparisonDiffs;
   #epoch = 0;
   #file = 0;
   #operation?: string;
@@ -43,6 +52,7 @@ export class OperationFiles {
     run: OperationFiles["run"],
     changed: OperationFiles["changed"],
   ) {
+    this.diffs = new ComparisonDiffs((diffs) => this.#set({ diffs }));
     this.read = read;
     this.run = run;
     this.changed = changed;
@@ -52,6 +62,7 @@ export class OperationFiles {
     this.changed(this.state);
   }
   reset() {
+    this.diffs.reset();
     this.#epoch++;
     this.#file++;
     this.#operation = undefined;
@@ -124,6 +135,7 @@ export class OperationFiles {
   async #selectGroup(change: string) {
     const group = this.state.groups.find((g) => g.change === change);
     check(group);
+    this.diffs.reset();
     this.#epoch++;
     this.#file++;
     this.#set({
@@ -154,6 +166,7 @@ export class OperationFiles {
             comparison.before.includes(from) &&
             comparison.after.includes(to),
     );
+    this.diffs.reset();
     this.#epoch++;
     this.#file++;
     this.#set({
@@ -220,26 +233,42 @@ export class OperationFiles {
   }
   selectPath(path: string) {
     return this.run(async () => {
-      const { from, to } = this.state,
-        epoch = this.#epoch,
+      if (!this.state.from || !this.state.to) return;
+      check(this.state.paths.some((row) => row.path === path));
+      const epoch = this.#epoch,
         request = ++this.#file;
-      if (!from || !to) return;
-      check(this.state.paths.some((p) => p.path === path));
-      this.#set({ path, diff: undefined });
+      this.#set({
+        path,
+        diff: undefined,
+        pathRequest: this.state.pathRequest + 1,
+      });
+      const diff = await this.#loadDiff(path);
+      if (epoch === this.#epoch && request === this.#file) this.#set({ diff });
+    });
+  }
+  loadDiff(path: string) {
+    return this.run(async () => {
+      await this.#loadDiff(path);
+    });
+  }
+  async #loadDiff(path: string) {
+    const { from, to } = this.state;
+    if (!from || !to) return;
+    check(this.state.paths.some((row) => row.path === path));
+    return this.diffs.load(path, async () => {
       const response = await this.read({
         kind: "diff",
         query: { from, to, path, content: true },
       });
-      if (epoch !== this.#epoch || request !== this.#file) return;
       check(
         response.kind === "diff" &&
           response.data.from === from &&
           response.data.to === to &&
           response.data.path === path,
       );
-      const diff = response.data.changes.find((c) => c.path === path);
+      const diff = response.data.changes.find((change) => change.path === path);
       check(diff);
-      this.#set({ diff });
+      return diff;
     });
   }
 }

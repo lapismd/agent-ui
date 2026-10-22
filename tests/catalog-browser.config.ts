@@ -10,6 +10,7 @@ export default defineConfig({
     "jj-log-parity.pw.ts",
     "jj-operation-parity.pw.ts",
     "jj-operation-presentation.pw.ts",
+    "jj-diff-collection.pw.ts",
     "jj-history-review.pw.ts",
     "file-type-icons.pw.ts",
   ],

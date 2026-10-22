@@ -171,3 +171,48 @@ export const HostControls: StoryObj<typeof LogReview> = {
     );
   },
 };
+
+export const AllInOne: StoryObj<typeof LogReview> = {
+  render: () => ({ Component: LogReview, props: { variant: "AllInOne" } }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(
+      await canvas.findByRole("button", {
+        name: /^Collapse src\/history\/controller\.ts(?:\s|$)/,
+      }),
+    ).toBeVisible();
+    await expect(
+      canvas.getByRole("button", { name: "All-in-one diff" }),
+    ).toHaveAttribute("aria-pressed", "true");
+  },
+};
+
+export const PagedFiles: StoryObj<typeof LogReview> = {
+  render: () => ({ Component: LogReview, props: { variant: "PagedFiles" } }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(
+      await canvas.findByRole("button", {
+        name: /^Collapse src\/history\/controller\.ts(?:\s|$)/,
+      }),
+    ).toBeVisible();
+    await expect(
+      canvas.getByRole("button", { name: "All-in-one diff" }),
+    ).toHaveAttribute("aria-pressed", "true");
+  },
+};
+
+export const FileActions: StoryObj<typeof LogReview> = {
+  render: () => ({ Component: LogReview, props: { variant: "FileActions" } }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(
+      await canvas.findByRole("button", {
+        name: /^Collapse src\/history\/controller\.ts(?:\s|$)/,
+      }),
+    ).toBeVisible();
+    await expect(
+      canvas.getByRole("button", { name: "All-in-one diff" }),
+    ).toHaveAttribute("aria-pressed", "true");
+  },
+};

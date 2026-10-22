@@ -72,6 +72,15 @@ MUST use the source informational Alert composition with centered icons,
 language-specific syntax and accurate keyboard guidance. Changed-file rows MUST
 retain known conflicts and supplied counts, with loaded descendant totals.
 
+Both logs MUST accept a host-controlled single/all-file diff preference. All-file
+presentation MUST reuse the shared diff reader inside expandable file sections,
+start with the selected file expanded, append bounded batches and reveal, expand
+and scroll to explicit changed-file selections including repeated requests.
+Per-file content reads MUST be deduplicated, independently retryable and fenced
+by their exact comparison and controller lifetime. File menus MUST accept typed
+host actions with icons and exact per-file identities; path resolution, clipboard,
+file-manager access and preference persistence remain host-owned.
+
 ### Acceptance details
 
 - JJ Log MUST retain its exact operation and workspace while applying a host-configured revset query, clearing dependent revision/file selections and discarding late replies.

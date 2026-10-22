@@ -104,3 +104,57 @@ export const RootOperation = review("RootOperation");
 export const UnavailableComparison = review("UnavailableComparison");
 export const FailedRead = review("FailedRead");
 export const HostControls = review("HostControls");
+
+export const AllInOne: StoryObj<typeof OperationReview> = {
+  render: () => ({
+    Component: OperationReview,
+    props: { variant: "AllInOne" },
+  }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(
+      await canvas.findByRole("button", {
+        name: /^Collapse src\/history\/controller\.ts(?:\s|$)/,
+      }),
+    ).toBeVisible();
+    await expect(
+      canvas.getByRole("button", { name: "All-in-one diff" }),
+    ).toHaveAttribute("aria-pressed", "true");
+  },
+};
+
+export const PagedFiles: StoryObj<typeof OperationReview> = {
+  render: () => ({
+    Component: OperationReview,
+    props: { variant: "PagedFiles" },
+  }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(
+      await canvas.findByRole("button", {
+        name: /^Collapse src\/history\/controller\.ts(?:\s|$)/,
+      }),
+    ).toBeVisible();
+    await expect(
+      canvas.getByRole("button", { name: "All-in-one diff" }),
+    ).toHaveAttribute("aria-pressed", "true");
+  },
+};
+
+export const FileActions: StoryObj<typeof OperationReview> = {
+  render: () => ({
+    Component: OperationReview,
+    props: { variant: "FileActions" },
+  }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(
+      await canvas.findByRole("button", {
+        name: /^Collapse src\/history\/controller\.ts(?:\s|$)/,
+      }),
+    ).toBeVisible();
+    await expect(
+      canvas.getByRole("button", { name: "All-in-one diff" }),
+    ).toHaveAttribute("aria-pressed", "true");
+  },
+};
