@@ -1,5 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0; copied from Lapis Desktop with explicit host boundaries. -->
 <script lang="ts">
+  import type { Snippet } from "svelte";
   import RepositoryFileTitle from "../../history/file-title/RepositoryFileTitle.svelte";
   import * as ColumnCanvas from "@lapismd/design-core/shadcn/column-canvas";
   import * as Empty from "@lapismd/design-core/shadcn/empty";
@@ -25,10 +26,14 @@
     state: snapshot,
     controller,
     copyText,
+    metadataActions,
+    diffActions,
   }: {
     state: OperationState;
     controller: OperationController;
     copyText(value: string): Promise<void>;
+    metadataActions?: Snippet<[OperationState]>;
+    diffActions?: Snippet<[OperationState]>;
   } = $props();
   let expanded = $state(true);
   let viewMode = $state<FileDiffViewMode>("unified"),
@@ -75,6 +80,7 @@
               onSelect={() => (expanded = !expanded)}
             />
             <div class="operation-card-actions">
+              {@render metadataActions?.(snapshot)}
               <ColumnCanvas.Close
                 aria-label="Close Diff column"
                 title="Close Diff"
@@ -116,6 +122,7 @@
               ><RepositoryFileTitle path={snapshot.files.path} /></span
             >
             <div class="operation-card-actions">
+              {@render diffActions?.(snapshot)}
               {#if stats}<FileChangeStats {...stats} showZero />{/if}
               <RepositoryDiffControls bind:viewMode bind:wrap />
             </div>

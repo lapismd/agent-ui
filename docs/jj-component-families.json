@@ -93,6 +93,7 @@
       "purpose": "Original operation metadata and comparison inspector with files and recorded targets.",
       "parts": [
         "jj/operations/operation-arguments/RepositoryOperationArguments.svelte",
+        "jj/operations/operation-column/RepositoryOperationEmpty.svelte",
         "jj/operations/operation-files/RepositoryOperationFiles.svelte",
         "jj/operations/operation-message/RepositoryOperationMessage.svelte",
         "jj/operations/operation-parent-picker/RepositoryOperationParentPicker.svelte",
@@ -136,7 +137,7 @@
     {
       "primary": "jj/screens/operations/RepositoryOperations",
       "purpose": "Complete Desktop operation log, metadata comparison and changed-file inspector.",
-      "parts": []
+      "parts": ["jj/screens/operations/RepositoryOperationQuery.svelte"]
     }
   ],
   "deferred": [

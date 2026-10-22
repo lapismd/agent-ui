@@ -8,6 +8,7 @@ export default defineConfig({
     "chat-references.pw.ts",
     "jj-review.pw.ts",
     "jj-log-parity.pw.ts",
+    "jj-operation-parity.pw.ts",
     "file-type-icons.pw.ts",
   ],
   workers: 1,

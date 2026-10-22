@@ -6,7 +6,11 @@ import {
   ArgTypes,
 } from "@storybook/addon-docs/blocks";
 import * as Stories from "./RepositoryOperations.stories";
-import { Basic, Styling } from "./RepositoryOperations.example-sources";
+import {
+  Basic,
+  Styling,
+  HostActions,
+} from "./RepositoryOperations.example-sources";
 import tokens from "./RepositoryOperations.tokens.json";
 import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
 
@@ -21,6 +25,13 @@ Complete Desktop operation log, metadata comparison and changed-file inspector.
 Mount the complete Op Log with its independent host-owned OperationController. It composes the original graph and metadata/file inspector rather than sharing the JJ Log’s mutable selection.
 
 <Source code={Basic} language="tsx" />
+
+Enable `searchable` for the native operation metadata language. The controller
+sends `operations_filtered` and retains the current operation pin; it does not
+interpret commit revsets or implement indexed full-text search. Hosts may replace
+the header controls to supply their own richer query editor and navigation.
+
+<Source code={HostActions} language="tsx" />
 
 ## Anatomy
 
@@ -62,7 +73,97 @@ A recorded operation description containing a commit ID and original command arg
 
 <Canvas of={Stories.Metadata} />
 
+### Dense history
+
+Sixty-four recorded operations from several authors, hosts and workspaces,
+including snapshots and long original commands; file comparisons contain text,
+rename provenance, binary content and an oversized capture.
+
+<Canvas of={Stories.DenseHistory} />
+
+### Paged history
+
+Load additional operation and changed-file pages without losing the selected pair.
+
+<Canvas of={Stories.PagedHistory} />
+
+### Bounded history
+
+A six-row display bound is explicitly reported beneath the scrolling column.
+
+<Canvas of={Stories.BoundedHistory} />
+
+### Multiple changes
+
+Choose a recorded changed revision before opening its files.
+
+<Canvas of={Stories.MultipleChanges} />
+
+### Merge parents
+
+A merge requires choosing one of its immediate native operation parents.
+
+<Canvas of={Stories.MergeParents} />
+
+### Ambiguous
+
+Select both recorded commit endpoints; no pair is invented.
+
+<Canvas of={Stories.Ambiguous} />
+
+### Conflicts
+
+Inspect captured conflicts for the exact selected revision, retaining local
+staging/preview without native execution.
+
+<Canvas of={Stories.Conflicts} />
+
+### Metadata only
+
+A successful operation difference with no revision content changes.
+
+<Canvas of={Stories.MetadataOnly} />
+
+### Root operation
+
+A recorded root has no comparison parent.
+
+<Canvas of={Stories.RootOperation} />
+
+### Unavailable comparison
+
+A recorded changed revision without available comparison endpoints.
+
+<Canvas of={Stories.UnavailableComparison} />
+
+### Failed read
+
+A comparison failure retains its pin and recovers through an explicit retry.
+
+<Canvas of={Stories.FailedRead} />
+
+### Host controls
+
+Replace header controls while preserving additional actions and the column toggle.
+
+<Canvas of={Stories.HostControls} />
+
 ## Behavior and accessibility
+
+Header, operation, metadata, changed-file and diff snippets receive the complete
+`OperationState`, including exact pin, parent, group, revision pair and path.
+`onRevert` only requests a host action; hosts own admission, confirmation,
+execution, pending state and feedback. Without it the original control remains
+disabled. Controller construction issues no reads or mutations.
+
+`OperationControllerOptions` is an optional fourth constructor argument; defaults
+remain 50 operations per page and at most 200 displayed operations. Changed
+revisions and paths retain their 500-item bounds with explicit status. Query
+changes clear dependent selections, stale replies are discarded and invalid
+continuations are reported through the injected feedback port. Workspace is
+retained host navigation context, not an invented operation-query predicate.
+The in-memory filter fixture demonstrates `description:"rebase"`, `none` and
+`invalid`; it is not an implementation of the native query grammar.
 
 Expanding a complete single-change operation selects that change and shows its files immediately. Multiple/paged changes require a choice from Revisions; ambiguous pairs require both endpoints. Selecting a file uses the same pinned handle. onHistory delegates the selected operation to host navigation. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
 

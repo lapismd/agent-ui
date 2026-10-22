@@ -1,5 +1,7 @@
 <!-- SPDX-License-Identifier: Apache-2.0; copied from Lapis Desktop with explicit host boundaries. -->
 <script lang="ts">
+  import RepositoryOperationEmpty from "../operation-column/RepositoryOperationEmpty.svelte";
+  import type { Snippet } from "svelte";
   import RepositorySkeleton from "../../foundations/skeleton/RepositorySkeleton.svelte";
   import RepositoryRevisionPicker from "../../history/revision-picker/RepositoryRevisionPicker.svelte";
   import UndoIcon from "@lucide/svelte/icons/undo-2";
@@ -20,9 +22,17 @@
     copyText,
     commits,
     onHistory,
+    actions,
+    fileActions,
+    onRevert,
+    onConflicts,
   }: {
     state: OperationState;
     onHistory?(): void;
+    actions?: Snippet<[OperationState]>;
+    fileActions?: Snippet<[OperationState]>;
+    onRevert?(state: OperationState): void;
+    onConflicts?(): void;
     commits: import("@lapismd/jj-history").LocalGraphCommit[];
     controller: OperationController;
     onOpenDiff(): void;
@@ -67,10 +77,19 @@
     <Button
       size="xs"
       variant="outline"
-      disabled
-      title="Operation revert is unavailable in this read-only repository plugin"
+      disabled={!onRevert || snapshot.busy}
+      onclick={() => onRevert?.(snapshot)}
+      title={onRevert
+        ? "Request operation revert"
+        : "Operation revert is unavailable in this read-only repository plugin"}
       ><UndoIcon data-icon="inline-start" aria-hidden="true" />Revert</Button
     >
+    {@render actions?.(snapshot)}
+    {#if onConflicts && commits.some((commit) => commit.id === snapshot.files.to && commit.conflicted)}
+      <Button size="xs" variant="outline" onclick={onConflicts}
+        >Inspect conflicts</Button
+      >
+    {/if}
     <span class="repository-review-operation-menu">
       <Menu.Root>
         <Menu.Trigger>
@@ -112,14 +131,18 @@
           kind="files"
           label="Loading operation revisions…"
         />
-      {:else}<p role="status">Operation revisions are unavailable.</p>{/if}
+      {:else}<RepositoryOperationEmpty
+          title="Operation revisions unavailable"
+          description="Retry reading this pinned operation."
+        />{/if}
       {#if !snapshot.busy}<Button
           size="sm"
           onclick={() => controller.files.retry()}>Retry revisions</Button
         >{/if}
-    {:else if !files.groups.length}<p>
-        No revision content changes in this operation.
-      </p>
+    {:else if !files.groups.length}<RepositoryOperationEmpty
+        title="No revision content changes"
+        description="This operation changes repository metadata only."
+      />
     {:else}
       {#if !files.group}<p>Choose a changed revision to see its files.</p>{/if}
       {#if files.group?.comparison.status === "select"}
@@ -146,11 +169,10 @@
           onclick={() => controller.files.compare(from, to)}
           >Compare revisions</Button
         >
-      {:else if files.group?.comparison.status === "unavailable"}<p
-          role="status"
-        >
-          This change has no available content comparison.
-        </p>{/if}
+      {:else if files.group?.comparison.status === "unavailable"}<RepositoryOperationEmpty
+          title="Content comparison unavailable"
+          description="This recorded change has no available revision pair."
+        />{/if}
       {#if files.from && files.to}
         {#if files.pathsReady || snapshot.busy}<RepositoryChangedFiles
             files={listing}
@@ -163,17 +185,19 @@
               void controller.files.selectPath(path);
             }}
             onMore={() => void controller.files.morePaths()}
-          />{/if}
-        {#if !files.pathsReady && !snapshot.busy}<p role="status">
-            File changes are unavailable.
-          </p>
+            >{#snippet actions()}{@render fileActions?.(
+                snapshot,
+              )}{/snippet}</RepositoryChangedFiles
+          >{/if}
+        {#if !files.pathsReady && !snapshot.busy}<RepositoryOperationEmpty
+            title="File changes unavailable"
+            description="Retry the selected comparison."
+          />
           <Button size="sm" onclick={() => controller.files.retryPaths()}
             >Retry comparison</Button
           >
-        {:else if files.pathsReady && !files.paths.length}<p>
-            No changed files in this comparison.
-          </p>{/if}
-        {#if files.paths.length === 500}<p>
+        {/if}
+        {#if files.pathsLimitReached}<p role="status">
             Showing the first 500 changed files.
           </p>{/if}
       {/if}
@@ -182,16 +206,23 @@
           disabled={snapshot.busy}
           onclick={() => controller.files.more()}>More changed revisions</Button
         >{/if}
-      {#if files.groups.length === 500}<p>
+      {#if files.groupsLimitReached}<p role="status">
           Showing the first 500 changed revisions.
         </p>{/if}
     {/if}
+  {:else if snapshot.detail?.status === "root"}<RepositoryOperationEmpty
+      title="Root operation"
+      description="This operation has no comparison parent."
+    />
   {:else if snapshot.selected && snapshot.selected.parents.length > 0 && !snapshot.parent}<p
     >
       Choose a comparison parent in the operation card.
     </p>
   {:else if snapshot.selected && !snapshot.detail && !snapshot.busy}
-    <p role="status">Operation changes are unavailable.</p>
+    <RepositoryOperationEmpty
+      title="Operation changes unavailable"
+      description="Retry the selected operation."
+    />
     <Button
       size="sm"
       onclick={() =>

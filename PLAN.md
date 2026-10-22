@@ -51,8 +51,8 @@ The approved plan delivers one complete section at a time, using focused checks
 and pausing for review before the next. Broad suites wait for final screen review.
 
 1. Chat references, composer/preview parity and configurable transcript actions — committed with focused checks; visual review remains pending.
-2. JJ Log: portable controllers, header actions, search and dense examples — implemented with targeted checks; awaiting visual review before Op Log.
-3. Op Log: pinned comparisons, conflicts and dense operation examples.
+2. JJ Log: portable controllers, header actions, search and dense examples — implemented; the requested fixed paging footer and recorded-command disclosure are committed separately.
+3. Op Log: pinned comparisons, native metadata filters, host actions, conflicts and dense operation examples — implemented with targeted checks; awaiting review before repository browsing.
 4. Repository file browser: directory rows, file tree, breadcrumbs, code/documents and file history.
 5. Repository overview and branches: navigation, selectors, bookmark/branch details and host actions.
 6. Workspace presentation: original columns, stack cards, source files, target history and retained selection.

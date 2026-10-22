@@ -1,5 +1,12 @@
 <!-- SPDX-License-Identifier: Apache-2.0; copied from Lapis Desktop with explicit host boundaries. -->
 <script lang="ts">
+  import RepositoryOperationEmpty from "../../operations/operation-column/RepositoryOperationEmpty.svelte";
+  import type { Snippet } from "svelte";
+  import type { OperationState } from "../../logic/operation-state.js";
+  import SearchIcon from "@lucide/svelte/icons/search";
+  import RepositoryOperationQuery from "./RepositoryOperationQuery.svelte";
+  import RepositoryHistoryLimit from "../../history/revisions/RepositoryHistoryLimit.svelte";
+  import RepositoryConflictResolution from "../../conflicts/conflict-resolution/RepositoryConflictResolution.svelte";
   import FileQuestionIcon from "@lucide/svelte/icons/file-question-mark";
   import * as Empty from "@lapismd/design-core/shadcn/empty";
   import type { HistorySourcePicker } from "../../logic/history-source.js";
@@ -23,28 +30,56 @@
     initialOperation,
     copyText,
     onHistory,
+    searchable = false,
+    headerControls,
+    headerActions,
+    operationActions,
+    metadataActions,
+    fileActions,
+    diffActions,
+    onRevert,
   }: {
     sources?: HistorySourcePicker;
     controller: OperationController;
     initialOperation?: string;
     copyText(value: string): Promise<void>;
     onHistory?(operation: string): void;
+    searchable?: boolean;
+    headerControls?: Snippet<[OperationState]>;
+    headerActions?: Snippet<[OperationState]>;
+    operationActions?: Snippet<[OperationState]>;
+    metadataActions?: Snippet<[OperationState]>;
+    fileActions?: Snippet<[OperationState]>;
+    diffActions?: Snippet<[OperationState]>;
+    onRevert?(snapshot: OperationState): void;
   } = $props();
-  let state = $state(initialOperationState());
+  let snapshot = $state(initialOperationState());
+  let queryOpen = $state(false),
+    conflictsOpen = $state(false);
+  const conflictScope = $derived(
+    `${snapshot.operation}/${snapshot.selected?.id}/${snapshot.parent}/${snapshot.files.group?.change}/${snapshot.files.to}`,
+  );
+  $effect(() => {
+    void conflictScope;
+    conflictsOpen = false;
+  });
   const pins = $derived([
-    ...new Set([...state.heads, ...(state.operation ? [state.operation] : [])]),
+    ...new Set([
+      ...snapshot.heads,
+      ...(snapshot.operation ? [snapshot.operation] : []),
+    ]),
   ]);
-  const rows = $derived(operationRows(state.nodes));
+  const rows = $derived(operationRows(snapshot.nodes));
   const selection = $derived(
-    `${state.selected?.id ?? ""}/${state.files.path ?? ""}`,
+    `${snapshot.selected?.id ?? ""}/${snapshot.files.path ?? ""}`,
   );
   const canvas = createLogCanvas();
   let selectedOperation: string | undefined;
   onDestroy(() => void canvas.dispose());
   $effect(() => {
     selection;
-    const id = untrack(() => state.selected?.id);
-    const path = untrack(() => state.files.path);
+    const id = untrack(() => snapshot.selected?.id);
+    const path = untrack(() => snapshot.files.path);
     untrack(() => {
       canvas.clear();
       if (id) {
@@ -59,17 +94,31 @@
     });
   });
   onMount(() => {
-    const unsubscribe = controller.subscribe((value) => (state = value));
+    const unsubscribe = controller.subscribe((value) => (snapshot = value));
     void controller.refresh(initialOperation);
     return unsubscribe;
   });
 </script>
 
+{#snippet controls()}{@render headerControls?.(snapshot)}{/snippet}
+{#snippet actions()}
+  {#if searchable}<Button
+      variant="ghost"
+      size="icon-xs"
+      aria-label="Search operations"
+      title="Search operations"
+      aria-expanded={queryOpen}
+      onclick={() => (queryOpen = !queryOpen)}
+      ><SearchIcon aria-hidden="true" /></Button
+    >{/if}
+  {@render headerActions?.(snapshot)}
+{/snippet}
+
 <RepositoryShell>
   <section
     class="repository-operations"
     aria-label="Repository operation log"
-    aria-busy={state.busy}
+    aria-busy={snapshot.busy}
   >
     <div class="operation-columns">
       <ColumnCanvas.Root controller={canvas} aria-label="Operation log columns">
@@ -79,127 +128,148 @@
           aria-label="Operations"
         >
           <RepositoryLogHeader
+            controls={headerControls ? controls : undefined}
+            {actions}
             {sources}
             {copyText}
-            nodes={state.nodes}
-            workspaces={repositoryWorkspaces(state.workspaceCommits)}
-            workspace={state.workspace}
+            nodes={snapshot.nodes}
+            workspaces={repositoryWorkspaces(snapshot.workspaceCommits)}
+            workspace={snapshot.workspace}
             onWorkspaceSelect={(next) => void controller.selectWorkspace(next)}
             onWorkspaceOpen={() => void controller.loadWorkspaces()}
             title="Op Log"
-            count={state.nodes.length}
+            count={snapshot.nodes.length}
             operations={pins}
-            operation={state.operation}
+            operation={snapshot.operation}
             selectionLabel="Pinned operation"
-            busy={state.busy}
+            busy={snapshot.busy}
             onSelect={(operation) => controller.selectPin(operation)}
             onRefresh={() => controller.refresh()}
           />
+          {#if searchable && queryOpen}<RepositoryOperationQuery
+              {controller}
+              busy={snapshot.busy}
+            />{/if}
           <ColumnCanvas.Body>
-            {#if state.phase === "loading"}<RepositorySkeleton
+            {#if snapshot.phase === "loading"}<RepositorySkeleton
                 label="Preparing operation log…"
               />
-            {:else if state.phase === "unavailable"}<Empty.Root role="status"
-                ><Empty.Header
-                  ><Empty.Media variant="icon"
-                    ><FileQuestionIcon aria-hidden="true" /></Empty.Media
-                  ><Empty.Title>Operation log unavailable</Empty.Title
-                  ><Empty.Description
-                    >Operation log is unavailable for this vault. Refresh to try
-                    again.</Empty.Description
-                  ></Empty.Header
-                ></Empty.Root
-              >
-            {:else if !state.headsReady}<RepositorySkeleton
+            {:else if snapshot.phase === "unavailable"}<RepositoryOperationEmpty
+                title="Operation log unavailable"
+                description="Operation log is unavailable for this vault. Refresh to try again."
+              />
+            {:else if !snapshot.headsReady}<RepositorySkeleton
                 label="Loading repository operations…"
               />
-            {:else if !state.operation}<Empty.Root role="status"
+            {:else if !snapshot.operation}<Empty.Root role="status"
                 ><Empty.Header
                   ><Empty.Media variant="icon"
                     ><FileQuestionIcon aria-hidden="true" /></Empty.Media
                   ><Empty.Title
-                    >{state.heads.length > 1
+                    >{snapshot.heads.length > 1
                       ? "Choose an operation"
                       : "No repository operations"}</Empty.Title
                   ><Empty.Description
-                    >{state.heads.length > 1
+                    >{snapshot.heads.length > 1
                       ? "Choose an operation to inspect its ancestry."
                       : "No repository operations available."}</Empty.Description
                   ></Empty.Header
                 ></Empty.Root
               >{/if}
-            {#if state.snapshot}
-              {#if state.selected && !state.nodes.some((node) => node.id === state.selected?.id)}
+            {#if snapshot.snapshot}
+              {#if snapshot.selected && !snapshot.nodes.some((node) => node.id === snapshot.selected?.id)}
                 <section aria-label="Selected operation outside loaded graph">
                   <p>The selected operation is outside this graph page.</p>
                   <RepositoryOperationFiles
+                    actions={operationActions}
+                    {fileActions}
+                    {onRevert}
+                    onConflicts={() => (conflictsOpen = true)}
                     {copyText}
-                    commits={state.commits}
-                    onHistory={onHistory && state.selected
-                      ? () => onHistory?.(state.selected!.id)
+                    commits={snapshot.commits}
+                    onHistory={onHistory && snapshot.selected
+                      ? () => onHistory?.(snapshot.selected!.id)
                       : undefined}
-                    {state}
+                    state={snapshot}
                     {controller}
                     onOpenDiff={() => canvas.open("diff")}
                     onOpenDetails={() => canvas.open("diff")}
                   />
                 </section>
               {/if}
-              {#if !state.ready && !state.busy}<p role="status">
-                  Operations are unavailable. Refresh to try again.
-                </p>
-              {:else if state.ready && !state.nodes.length}<Empty.Root
-                  role="status"
-                  ><Empty.Header
-                    ><Empty.Media variant="icon"
-                      ><FileQuestionIcon aria-hidden="true" /></Empty.Media
-                    ><Empty.Title>No operations</Empty.Title><Empty.Description
-                      >No operations in this history.</Empty.Description
-                    ></Empty.Header
-                  ></Empty.Root
-                >{/if}
-              {#if state.nodes.length}<RepositoryGraph
+              {#if !snapshot.ready && !snapshot.busy}<RepositoryOperationEmpty
+                  title="Operations unavailable"
+                  description="Retry the query or refresh the pinned operation."
+                />
+              {:else if snapshot.ready && !snapshot.nodes.length}<RepositoryOperationEmpty
+                  title="No operations"
+                  description="No operations in this history."
+                />{/if}
+              {#if snapshot.nodes.length}<RepositoryGraph
                   operationTitles
                   {copyText}
                   commitLabel="operation ID"
                   revisions={rows}
-                  selectedId={state.selected?.id}
+                  selectedId={snapshot.selected?.id}
                   label="Operation graph"
                   onSelect={(id) => {
-                    const node = state.nodes.find((item) => item.id === id);
+                    const node = snapshot.nodes.find((item) => item.id === id);
                     if (node)
-                      void (state.selected?.id === id
+                      void (snapshot.selected?.id === id
                         ? controller.clearSelection()
                         : controller.select(node));
                   }}
                 >
                   {#snippet selectedFiles()}<RepositoryOperationFiles
+                      actions={operationActions}
+                      {fileActions}
+                      {onRevert}
+                      onConflicts={() => (conflictsOpen = true)}
                       {copyText}
-                      commits={state.commits}
-                      onHistory={onHistory && state.selected
-                        ? () => onHistory?.(state.selected!.id)
+                      commits={snapshot.commits}
+                      onHistory={onHistory && snapshot.selected
+                        ? () => onHistory?.(snapshot.selected!.id)
                         : undefined}
-                      {state}
+                      state={snapshot}
                       {controller}
                       onOpenDiff={() => canvas.open("diff")}
                       onOpenDetails={() => canvas.open("diff")}
                     />{/snippet}
                 </RepositoryGraph>{/if}
-              {#if state.next}<Button
+              {#if snapshot.next}<Button
                   size="sm"
-                  disabled={state.busy}
+                  disabled={snapshot.busy}
                   onclick={() => controller.more()}>More operations</Button
                 >{/if}
-              {#if state.nodes.length === 200}<p>
-                  Showing the first 200 operations.
-                </p>{/if}
             {/if}
           </ColumnCanvas.Body>
+          {#if snapshot.limitReached}<RepositoryHistoryLimit
+              limit={snapshot.displayLimit}
+              label="operations"
+            />{/if}
         </ColumnCanvas.Column>
-        <RepositoryOperationColumn {state} {controller} {copyText} />
+        <RepositoryOperationColumn
+          state={snapshot}
+          {controller}
+          {copyText}
+          {metadataActions}
+          {diffActions}
+        />
       </ColumnCanvas.Root>
     </div>
   </section>
+  {#snippet surface()}
+    {#key `${snapshot.selected?.id}/${snapshot.parent}/${snapshot.files.group?.change}/${snapshot.files.to}`}
+      {#if snapshot.files.to}<RepositoryConflictResolution
+          open={conflictsOpen}
+          conflicts={snapshot.conflicts}
+          ready={snapshot.conflictsReady}
+          busy={snapshot.busy}
+          onLoad={() => void controller.loadConflicts()}
+          onClose={() => (conflictsOpen = false)}
+        />{/if}
+    {/key}
+  {/snippet}
 </RepositoryShell>
 
 <style>

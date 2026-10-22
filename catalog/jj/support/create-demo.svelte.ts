@@ -6,6 +6,7 @@ import {
 } from "./large-blame.js";
 import { holdPreparation } from "./hold-preparation.js";
 import { attachDenseHistory } from "./dense-history.js";
+import { attachDenseOperations } from "./dense-operations.js";
 import {
   HistoryController,
   OperationController,
@@ -58,6 +59,10 @@ export function createJjDemo(part: string, variant = "Basic") {
         ? "operation-detail-failure"
         : scenario;
   const fixture = operationFixture(scenarioForPart);
+  const denseOperations =
+    part === "OperationReview"
+      ? attachDenseOperations(fixture.reader, variant)
+      : undefined;
   const dense = [
     "DenseHistory",
     "PagedHistory",
@@ -107,7 +112,14 @@ export function createJjDemo(part: string, variant = "Basic") {
         }
       : undefined,
   );
-  const operations = new OperationController(fixture.reader, feedback);
+  const operations = new OperationController(
+    fixture.reader,
+    feedback,
+    undefined,
+    denseOperations
+      ? { pageSize: 12, maxOperations: variant === "BoundedHistory" ? 6 : 200 }
+      : undefined,
+  );
   const files = new FileHistoryController(fixture.reader, feedback);
   const blame = new BlameController(fixture.reader, feedback);
   const restore = new RestoreController(

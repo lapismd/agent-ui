@@ -125,3 +125,57 @@ test("failed group read recovers on explicit retry and then shows files", async 
     await f.controller.close();
   }
 });
+
+test("changed revision paging reports its retained 500-group bound", async () => {
+  const f = setup(),
+    read = f.reader.read;
+  f.reader.read = async (handle, query) => {
+    const response = await read(handle, query);
+    if (
+      query.kind !== "operation_changes" ||
+      response.kind !== "operation_changes"
+    )
+      return response;
+    const offset = Number(query.query.anchor ?? 0);
+    return {
+      ...response,
+      data: {
+        ...response.data,
+        groups: Array.from({ length: 100 }, (_, i) => ({
+          ...response.data.groups[0],
+          change: (offset + i + 1).toString(16).padStart(32, "0"),
+        })),
+        next: String(offset + 100),
+      },
+    };
+  };
+  try {
+    await expand(f);
+    for (let page = 0; page < 4; page++) await f.controller.files.more();
+    expect(f.controller.state.files.groups).toHaveLength(500);
+    expect(f.controller.state.files.groupsLimitReached).toBe(true);
+    expect(f.controller.state.files.next).toBeNull();
+    expect(f.errors).toEqual([]);
+  } finally {
+    await f.controller.close();
+  }
+});
+
+test("duplicate changed paths fail without inventing a completed comparison", async () => {
+  const f = setup(),
+    read = f.reader.read;
+  f.reader.read = async (handle, query) => {
+    const response = await read(handle, query);
+    if (response.kind === "diff_paths")
+      response.data.changes.push(response.data.changes[0]);
+    return response;
+  };
+  try {
+    await expand(f);
+    expect(f.errors).toHaveLength(1);
+    expect(f.controller.state.files.pathsReady).toBe(false);
+    expect(f.controller.state.files.paths).toEqual([]);
+  } finally {
+    await f.controller.close();
+  }
+});

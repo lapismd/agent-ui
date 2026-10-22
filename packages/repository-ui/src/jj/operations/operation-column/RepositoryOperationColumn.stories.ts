@@ -43,3 +43,12 @@ export const Unavailable: Story = {
     );
   },
 };
+export const Metadata: Story = {
+  render: () => ({
+    Component: Fixture,
+    props: { part: "RepositoryOperationColumn", variant: "Metadata" },
+  }),
+  play: async ({ canvasElement }) => {
+    await assertJjStory(canvasElement, "RepositoryOperationColumn", "Metadata");
+  },
+};

@@ -1,28 +1,37 @@
+import { OperationActivity, prepareOperation } from "./operation-lifetime.js";
 import { OperationGraph } from "./operation-graph.js";
-import { operationRevisionCards } from "./operation-metadata.js";
-import { operationParent, operationParents } from "./operation-parent.js";
+import {
+  OperationMetadata,
+  operationDifference,
+} from "./operation-metadata.js";
+import { operationParent } from "./operation-parent.js";
 import { OperationFiles } from "./operation-files.js";
 import type { Handle, LocalGraphOperationNode } from "@lapismd/jj-history";
 import type { HistoryReader } from "./history-reader.js";
 import { HistoryLifetime } from "./history-lifetime.js";
-import { check, pause, prepared } from "./history-selection.js";
+import { check, pause } from "./history-selection.js";
 import {
   initialOperationState,
   resetOperationSelection,
+  resetOperationQuery,
+  operationFilesPatch,
   type OperationState,
 } from "./operation-state.js";
+import type { OperationControllerOptions } from "./operation-options.js";
+export type { OperationControllerOptions } from "./operation-options.js";
 
 /** Independent operation-pinned reader; it shares no mutable history selection. */
 export class OperationController {
   #state = initialOperationState();
   readonly files: OperationFiles;
   readonly #graph: OperationGraph;
+  readonly #metadata: OperationMetadata;
   #listeners = new Set<(state: OperationState) => void>();
   readonly #lifetime: HistoryLifetime;
+  readonly #activity: OperationActivity;
   #handle?: Handle;
   #selection = 0;
   #detail = 0;
-  #request = 0;
   #abort = new AbortController();
   #closed = false;
   #pinned = false;
@@ -34,6 +43,7 @@ export class OperationController {
     reader: HistoryReader,
     feedback: OperationController["feedback"],
     wait = pause,
+    options: OperationControllerOptions = {},
   ) {
     this.#graph = new OperationGraph(
       reader,
@@ -43,6 +53,7 @@ export class OperationController {
         closed: this.#closed,
       }),
       (patch) => this.#set(patch),
+      options,
     );
     this.files = new OperationFiles(
       async (query) => {
@@ -50,12 +61,28 @@ export class OperationController {
         return reader.read(this.#handle, query);
       },
       (action) => this.#run(action),
-      (files) => this.#set({ files }),
+      (files) => this.#set(operationFilesPatch(this.#state, files)),
+    );
+    this.#metadata = new OperationMetadata(
+      reader,
+      () => ({
+        handle: this.#handle,
+        state: this.#state,
+        closed: this.#closed,
+        detail: this.#detail,
+      }),
+      (patch) => this.#set(patch),
     );
     this.reader = reader;
     this.feedback = feedback;
     this.wait = wait;
     this.#lifetime = new HistoryLifetime(reader);
+    this.#activity = new OperationActivity(
+      this.#lifetime,
+      () => ({ closed: this.#closed, state: this.#state }),
+      (patch) => this.#set(patch),
+      feedback,
+    );
   }
   get state(): OperationState {
     return this.#state;
@@ -74,23 +101,7 @@ export class OperationController {
     for (const listener of this.#listeners) listener(this.#state);
   }
   #run(action: () => Promise<void>): Promise<void> {
-    if (this.#closed) return Promise.resolve();
-    return this.#lifetime.run(async () => {
-      const request = ++this.#request;
-      this.#set({ busy: true });
-      try {
-        await action();
-        if (!this.#closed && request === this.#request)
-          this.feedback.recovered();
-      } catch (error) {
-        if (!this.#closed && request === this.#request) {
-          this.#set({ phase: this.#state.snapshot ? "ready" : "unavailable" });
-          this.feedback.report(error);
-        }
-      } finally {
-        if (request === this.#request) this.#set({ busy: false });
-      }
-    });
+    return this.#activity.run(action);
   }
   refresh(preferred?: string): Promise<void> {
     if (preferred) this.#pinned = true;
@@ -127,6 +138,7 @@ export class OperationController {
     return this.#run(() => this.#pin(operation));
   }
   async #pin(operation: string): Promise<void> {
+    this.#graph.invalidate();
     const selection = ++this.#selection;
     this.#detail++;
     this.files.reset();
@@ -136,52 +148,48 @@ export class OperationController {
     this.#handle = undefined;
     this.#set({
       ...initialOperationState(),
+      query: this.#state.query,
       heads: this.#state.heads,
       headsReady: this.#state.headsReady,
       operation,
       phase: "loading",
       busy: true,
     });
-    if (prior) await this.#lifetime.closeHandle(prior);
-    const handle = await this.reader.open(operation);
-    this.#lifetime.handles.add(handle);
-    if (this.#closed) return;
-    if (selection !== this.#selection) {
-      await this.#lifetime.closeHandle(handle);
-      return;
-    }
-    this.#handle = handle;
-    const snapshot = await prepared(
+    const result = await prepareOperation(
       this.reader,
-      handle,
+      this.#lifetime,
+      operation,
+      prior,
       abort.signal,
       this.wait,
+      () => !this.#closed && selection === this.#selection,
     );
-    check(snapshot.operation === operation);
-    if (selection !== this.#selection || this.#closed) return;
-    this.#set({ snapshot, phase: "ready" });
+    if (!result) return;
+    this.#handle = result.handle;
+    this.#set({ snapshot: result.snapshot, phase: "ready" });
     await this.#graph.load(false);
   }
   more(): Promise<void> {
     return this.#run(() => this.#graph.load(true));
   }
-  loadRevisions(): Promise<void> {
+  search(query: string): Promise<void> {
+    this.#pinned = true;
+    this.#detail++;
+    this.#graph.invalidate();
+    this.files.reset();
     return this.#run(async () => {
-      const handle = this.#handle,
-        detail = this.#detail;
-      if (!handle) return;
-      const commits = await operationRevisionCards(
-        this.reader,
-        handle,
-        this.#state,
-        () =>
-          !this.#closed && this.#handle === handle && this.#detail === detail,
-      );
-      if (commits) this.#set({ commits });
+      this.#set(resetOperationQuery(query));
+      await this.#graph.load(false);
     });
+  }
+  loadRevisions(): Promise<void> {
+    return this.#run(() => this.#metadata.revisions());
   }
   loadWorkspaces(): Promise<void> {
     return this.#run(() => this.#graph.workspaces());
+  }
+  loadConflicts(): Promise<void> {
+    return this.#run(() => this.#metadata.conflicts());
   }
   selectWorkspace(workspace: string | null): Promise<void> {
     return this.#run(async () => {
@@ -238,23 +246,7 @@ export class OperationController {
     if (selected.parents.length <= 1) await this.#compare(selected.parents[0]);
   }
   loadParents(): Promise<void> {
-    return this.#run(async () => {
-      const handle = this.#handle,
-        selected = this.#state.selected,
-        request = this.#detail;
-      if (!handle || !selected) return;
-      const parentNodes = await operationParents(
-        this.reader,
-        handle,
-        this.#state.operation!,
-        selected.id,
-        selected.parents,
-        [...this.#state.nodes, ...this.#state.parentNodes],
-        () =>
-          !this.#closed && handle === this.#handle && request === this.#detail,
-      );
-      if (parentNodes) this.#set({ parentNodes });
-    });
+    return this.#run(() => this.#metadata.parents());
   }
   selectParent(parent: string): Promise<void> {
     return this.#run(async () => {
@@ -269,23 +261,20 @@ export class OperationController {
     const request = ++this.#detail;
     this.files.reset();
     this.#set({ parent, detail: undefined });
-    const response = await this.reader.read(handle, {
-      kind: "operation_diff",
-      query: { operation: selected.id, parent },
-    });
-    if (this.#closed || handle !== this.#handle || request !== this.#detail)
-      return;
-    check(
-      response.kind === "operation_diff" &&
-        response.data.data.operation === selected.id,
+    const detail = await operationDifference(
+      this.reader,
+      handle,
+      selected,
+      parent,
+      () =>
+        !this.#closed && handle === this.#handle && request === this.#detail,
     );
-    const detail = response.data.data;
-    if ("parent" in detail) check(detail.parent === parent);
-    else if ("status" in detail && detail.status === "root")
-      check(!selected.parents.length);
+    if (!detail) return;
     this.#set({ detail });
-    if (detail.status === "difference")
+    if (detail.status === "difference") {
       await this.files.load(selected.id, detail.parent);
+      await this.loadRevisions();
+    }
   }
   close(): Promise<void> {
     this.#closed = true;

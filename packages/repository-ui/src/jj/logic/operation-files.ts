@@ -7,6 +7,8 @@ import type {
 import { check } from "./history-selection.js";
 export interface OperationFilesState {
   ready: boolean;
+  groupsLimitReached: boolean;
+  pathsLimitReached: boolean;
   groups: LocalOperationChangesGroup[];
   next?: string | null;
   group?: LocalOperationChangesGroup;
@@ -20,6 +22,8 @@ export interface OperationFilesState {
 }
 export const initialOperationFiles = (): OperationFilesState => ({
   ready: false,
+  groupsLimitReached: false,
+  pathsLimitReached: false,
   groups: [],
   paths: [],
   pathsReady: false,
@@ -95,10 +99,19 @@ export class OperationFiles {
       ids.add(group.change);
     }
     const groups = [...retained, ...response.data.groups].slice(0, 500);
+    check(
+      (!response.data.next || response.data.groups.length > 0) &&
+        (!append ||
+          !response.data.next ||
+          response.data.next !== this.state.next),
+    );
     this.#set({
       groups,
       ready: true,
       next: groups.length < 500 ? response.data.next : null,
+      groupsLimitReached:
+        retained.length + response.data.groups.length > 500 ||
+        (groups.length === 500 && !!response.data.next),
     });
     // A complete single-change result has no choice to make. Retain explicit
     // selection for multiple/paged groups and ambiguous revision endpoints.
@@ -119,6 +132,7 @@ export class OperationFiles {
       to: undefined,
       paths: [],
       pathsReady: false,
+      pathsLimitReached: false,
       nextPath: null,
       path: undefined,
       diff: undefined,
@@ -147,6 +161,7 @@ export class OperationFiles {
       to,
       paths: [],
       pathsReady: false,
+      pathsLimitReached: false,
       nextPath: null,
       path: undefined,
       diff: undefined,
@@ -180,6 +195,16 @@ export class OperationFiles {
         response.data.from === from &&
         response.data.to === to,
     );
+    const retained = append ? this.state.paths : [];
+    const incoming = response.data.changes;
+    check(
+      new Set(incoming.map((row) => row.path)).size === incoming.length &&
+        !incoming.some((row) =>
+          retained.some((item) => item.path === row.path),
+        ) &&
+        (!response.data.next || incoming.length > 0) &&
+        (!append || !response.data.next || response.data.next !== nextPath),
+    );
     const paths = [
       ...(append ? this.state.paths : []),
       ...response.data.changes,
@@ -188,6 +213,9 @@ export class OperationFiles {
       paths,
       pathsReady: true,
       nextPath: paths.length < 500 ? response.data.next : null,
+      pathsLimitReached:
+        retained.length + incoming.length > 500 ||
+        (paths.length === 500 && !!response.data.next),
     });
   }
   selectPath(path: string) {

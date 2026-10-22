@@ -2,6 +2,20 @@
   "component": "RepositoryOperations",
   "variables": [
     {
+      "name": "--ui-repository-operations-query-gap",
+      "default": "0.5rem",
+      "description": "Spacing between native operation query controls.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/screens/operations/RepositoryOperationQuery.svelte"
+    },
+    {
+      "name": "--ui-repository-operations-query-padding",
+      "default": "0.5rem",
+      "description": "Inset of the optional operation metadata filter.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/screens/operations/RepositoryOperationQuery.svelte"
+    },
+    {
       "name": "--ui-repository-operations-font-size",
       "default": "0.875rem",
       "description": "Complete Desktop operation log, metadata comparison and changed-file inspector. Original size default.",

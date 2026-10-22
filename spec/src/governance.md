@@ -16,12 +16,13 @@ references and actions. Each section MUST stop for screen review. Iteration MUST
 use targeted checks; broad qualification MUST wait until the final screen review.
 Design Core owns generic fixes; application adoption and publication remain gated.
 
-The next authorized section is JJ Log portability. Its optional host controls
-MUST retain the original shell defaults, and its native revset examples MUST
-remain distinct from host-owned indexed search. New private query UI MUST have
-an explicit owner in the JJ family inventory. Source fingerprints MUST be
-refreshed only after comparing the prior original layout and recording the
-specific adaptation; review stops before Op Log work begins.
+The current authorized section is Op Log portability. Its host controls MUST
+retain the original shell defaults, and its native operation metadata filters
+MUST remain distinct from commit revsets and host-owned indexed search. Private
+query and Empty parts MUST have explicit owners in the JJ family inventory.
+Source fingerprints MUST be refreshed only after comparing the prior original
+layout and recording the specific adaptation; review stops before repository
+browsing begins.
 
 The user has now authorized the pending footer/command corrections followed by
 the Op Log portability slice, with targeted checks and separate verified commits.
