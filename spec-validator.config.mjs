@@ -5,7 +5,10 @@ import {
 } from "@lapismd/spec-validator";
 export default defineConfig(headingRequirements(), {
   name: "agent-ui",
-  plugins: ["./scripts/agent-foundation-audit.mjs"],
+  plugins: [
+    "./scripts/agent-foundation-audit.mjs",
+    "./scripts/transcript-coverage-audit.mjs",
+  ],
   idPattern: /^(?:AUI|RUI)-[A-Z]+-\d{3}$/,
   ruleIds: {
     governance: "AUI-GOV-003",

@@ -56,7 +56,6 @@
         "chat/conversation-menu/ChatConversationMenu.svelte",
         "chat/agent-options/ChatAgentOptions.svelte",
         "chat/composer-options/ChatComposerOptions.svelte",
-        "chat/command-report/AiCommandReport.svelte",
         "chat/participant-dialog/ChatParticipantDialog.svelte",
         "chat/mention-preference/ChatMentionPreference.svelte",
         "chat/agent-picker/ChatAgentPicker.svelte",
@@ -93,7 +92,8 @@
       "purpose": "The shared production transcript body, composer, attachments, message queue and send feedback.",
       "parts": [
         "chat/transcript-empty/AiTranscriptEmpty.svelte",
-        "chat/transcript-loading/AiTranscriptLoading.svelte"
+        "chat/transcript-loading/AiTranscriptLoading.svelte",
+        "chat/transcript/AgentTranscriptBlock.svelte"
       ]
     },
     {
@@ -126,6 +126,38 @@
         "catalog/catalog-panel/AiCatalogPanel.svelte",
         "catalog/catalog-owner/CatalogOwner.svelte"
       ]
+    },
+    {
+      "primary": "chat/message-metadata/AgentMessageMetadata",
+      "purpose": "The original Desktop retry, recipient delivery and copy-response actions in the shared Design Core metadata row.",
+      "parts": ["chat/message-metadata/ChatRecipients.svelte"]
+    },
+    {
+      "primary": "chat/turn-changes/AiTurnChanges",
+      "purpose": "Copied saved-turn summary, repository identifiers, file rail, diff/preview and explicit checkpoint/undo dialogs using a neutral host port.",
+      "parts": [
+        "chat/turn-changes/AiChangesButton.svelte",
+        "chat/turn-changes/AiHistoryRail.svelte",
+        "chat/turn-changes/AiHistoryFile.svelte",
+        "chat/turn-changes/AiHistoryDialogs.svelte",
+        "chat/turn-changes/RepositoryIdentifiers.svelte",
+        "chat/turn-changes/RepositoryDiff.svelte"
+      ]
+    },
+    {
+      "primary": "tools/tool-result/AgentToolResult",
+      "purpose": "The captured tool detail fallback and explicit host registered result-view slot.",
+      "parts": []
+    },
+    {
+      "primary": "tools/inventory-result/AiInventoryResult",
+      "purpose": "Original Desktop /skills and /tools inventory with optional host-owned navigation.",
+      "parts": []
+    },
+    {
+      "primary": "tools/command-report/AiCommandReport",
+      "purpose": "Original captured local command report with safe text-only highlighting.",
+      "parts": []
     }
   ]
 }

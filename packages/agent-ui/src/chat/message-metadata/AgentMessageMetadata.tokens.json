@@ -1,0 +1,33 @@
+{
+  "component": "AgentMessageMetadata",
+  "variables": [
+    {
+      "name": "--ui-agent-message-recipients-gap",
+      "default": "0.375rem",
+      "description": "Recipient badge spacing",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/message-metadata/ChatRecipients.svelte"
+    },
+    {
+      "name": "--ui-transcript-metadata-font-size",
+      "default": "0.75rem",
+      "description": "Timestamp and outcome text size",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/chat/transcript/chat-body.css"
+    },
+    {
+      "name": "--ui-transcript-metadata-gap",
+      "default": "0.4rem",
+      "description": "Metadata item spacing",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/chat/transcript/chat-body.css"
+    },
+    {
+      "name": "--ui-ai-chat-metadata-error-foreground",
+      "default": "color-mix(in srgb, var(--destructive) 80%, var(--foreground))",
+      "description": "Readable light error foreground; dark defaults to a 60% destructive mix",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/ai/chat.css"
+    }
+  ]
+}

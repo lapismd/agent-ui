@@ -2,7 +2,7 @@ import { fileURLToPath } from "node:url";
 import { defineConfig } from "@playwright/test";
 export default defineConfig({
   testDir: ".",
-  testMatch: "catalog-browser.pw.ts",
+  testMatch: ["catalog-browser.pw.ts", "transcript-review.pw.ts"],
   workers: 1,
   outputDir: "../.local/catalog-browser",
   use: {

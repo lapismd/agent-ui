@@ -1,11 +1,17 @@
 <script lang="ts">
   import { onDestroy, onMount, untrack, type Snippet } from "svelte";
+  import {
+    inspectorTool,
+    type InspectorVariant,
+  } from "../../../../../catalog/agents/support/inspector-data.js";
+  import AgentTranscriptBlock from "./AgentTranscriptBlock.svelte";
   import AgentTranscript from "./AgentTranscript.svelte";
   import AgentChatScreen from "../chat-screen/AgentChatScreen.svelte";
   import Footer from "../transcript-footer/AiTranscriptFooter.svelte";
   import Composer from "../message-composer/ChatMessageComposer.svelte";
   import Drawer from "../composer-drawer/ChatComposerDrawer.svelte";
   import Hint from "../transcript-send-hint/AiTranscriptSendHint.svelte";
+  import { Button } from "@lapismd/design-core/shadcn/button";
   import * as Tooltip from "@lapismd/design-core/shadcn/tooltip";
   import Inspector from "../transcript-tool-inspector/AiTranscriptToolInspector.svelte";
   import Frame from "../../sessions/session-frame/AiSessionFrame.svelte";
@@ -22,6 +28,7 @@
     part = "body",
     view = "document",
     styled = false,
+    inspectorVariant = "markdown",
   }: {
     scenario?: AgentScenario;
     part?:
@@ -34,13 +41,14 @@
       | "hint";
     view?: "document" | "classic";
     styled?: boolean;
+    inspectorVariant?: InspectorVariant;
   } = $props();
   const demo = untrack(() => createDemo(scenario));
   const { controller, panel, port } = demo;
   controller.view = untrack(() => view);
   let documentActions = $state<Snippet>();
   let tool = $state<TranscriptTool>();
-  let opener = $state<HTMLElement>();
+  let opener = $state<HTMLButtonElement | null>(null);
   let height = $state(0);
   const evidence = $derived.by(() => {
     void controller.snapshot;
@@ -54,6 +62,7 @@
   const send = () => void controller.transcript.send();
   onDestroy(() => void demo.close());
   onMount(() => {
+    if (part === "inspector" && opener) tool = inspectorTool(inspectorVariant);
     if (scenario !== "streaming") return;
     let count = 0;
     const timer = setInterval(() => {
@@ -107,13 +116,28 @@
     onSend={send}
   />
 {/snippet}
+{#snippet inspectorBlock(
+  block: import("@lapismd/design-core/chat").TranscriptBlock,
+)}<AgentTranscriptBlock
+    {block}
+    options={{
+      blocks: {
+        "inspect/custom": {
+          kind: "tool",
+          name: "vault.read",
+          input: '{"path":"notes/review.md"}',
+          output: '{"text":"Captured local tool result"}',
+        },
+      },
+    }}
+  />{/snippet}
 {#snippet inspector()}
   {#if tool && opener}<Inspector
       {tool}
       state={controller.transcript}
       {opener}
       onClose={() => (tool = undefined)}
-      customBlock={undefined}
+      customBlock={inspectorBlock}
     />{/if}
 {/snippet}
 <Tooltip.Provider
@@ -125,7 +149,10 @@
       ? "--ui-transcript-font-size:1rem;--ui-transcript-max-width:46rem;--ui-agent-footer-controls-gap:0.5rem"
       : undefined}
   >
-    {#if part === "screen"}<AgentChatScreen {controller} />
+    {#if part === "screen"}<AgentChatScreen
+        {controller}
+        transcriptOptions={demo.options}
+      />
     {:else if part === "drawer"}
       <Drawer
         controller={panel.controller}
@@ -137,12 +164,12 @@
       <Hint {panel} error={controller.error} />
     {:else if part === "inspector"}
       <Frame label="Tool inspector foundation" toolInspector={inspector}>
-        <button
-          type="button"
-          bind:this={opener}
+        <Button
+          variant="outline"
+          bind:ref={opener}
           onclick={() => {
-            tool = controller.items.flatMap((item) => item.tools ?? [])[0];
-          }}>Inspect captured tool</button
+            tool = inspectorTool(inspectorVariant);
+          }}>Inspect captured tool</Button
         >
       </Frame>
     {:else if part === "composer" || part === "footer"}
@@ -153,35 +180,12 @@
           view={controller.view}
           onSend={send}
           disabled={controller.loading || !!controller.pending}
+          sendError={controller.draftSendError}
         />
         {#if part === "footer"}{@render footer()}{/if}
       </div>
     {:else}
-      <Frame
-        label="Agent transcript foundation"
-        bind:height
-        toolInspector={inspector}
-      >
-        <Thread
-          {height}
-          title="Agent transcript"
-          status="Immutable captured conversation"
-          selected
-          listLabel="Conversations"
-          {footer}
-        >
-          {#snippet actions()}<Toggle bind:view={controller.view} />{/snippet}
-          <AgentTranscript
-            {controller}
-            {panel}
-            bind:documentActions
-            onInspectTool={(next, element) => {
-              tool = next;
-              opener = element;
-            }}
-          />
-        </Thread>
-      </Frame>
+      <AgentChatScreen {controller} transcriptOptions={demo.options} />
     {/if}
     <output
       hidden

@@ -1,0 +1,57 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./AiCommandReport.stories";
+import { Basic, Styling } from "./AiCommandReport.example-sources";
+import tokens from "./AiCommandReport.tokens.json";
+import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# AiCommandReport
+
+Original Desktop safe captured slash-command report.
+
+## Usage
+
+Supply the exact captured local command report. This is presentation only; slash-command dispatch belongs to the host.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+A wrapping preformatted block retains whitespace. The original heading, command and separator spans add safe semantic colors.
+
+## Variations
+
+### Basic
+
+<Canvas of={Stories.Basic} />
+
+### CapturedText
+
+<Canvas of={Stories.CapturedText} />
+
+## Behavior and accessibility
+
+Captured markup and ANSI sequences are not interpreted. The component never queries a registry or dispatches commands.
+
+## Styling variables
+
+Set public variables on an ancestor. Defaults preserve source geometry and inherit Design Core semantic colors. The theme dropdown and light/dark controls also apply to these results.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+[Transcript](?path=/docs/agents-chat-transcript--docs) uses these same production renderers through options.blocks, including inside the tool inspector. [Complete screens](?path=/docs/agent-complete-screens--docs) share that composition. Registered result views remain host-owned; all catalog captures and effects are simulated.

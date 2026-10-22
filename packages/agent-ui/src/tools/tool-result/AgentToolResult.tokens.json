@@ -1,0 +1,19 @@
+{
+  "component": "AgentToolResult",
+  "variables": [
+    {
+      "name": "--ui-agent-tool-result-font-size",
+      "default": "0.875rem",
+      "description": "Result text size",
+      "owner": "@lapismd/agent-ui",
+      "source": "tools/tool-result/AgentToolResult.svelte"
+    },
+    {
+      "name": "--ui-content-view-toggle-icon-size",
+      "default": "1rem",
+      "description": "Shared Code/BookOpen icon size",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/ai/content-view-toggle/content-view-toggle.css"
+    }
+  ]
+}

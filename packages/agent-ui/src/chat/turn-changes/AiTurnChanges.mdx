@@ -1,0 +1,85 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./AiTurnChanges.stories";
+import { Basic, Styling } from "./AiTurnChanges.example-sources";
+import tokens from "./AiTurnChanges.tokens.json";
+import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Turn changes
+
+Original Desktop saved-turn summary with file listing, revision identifiers, rail, preview and undo dialogs.
+
+## Usage
+
+Create one host-owned AgentChangesController with an injected port. Pass it through transcriptOptions.changes on AgentChatScreen to compose the summary, changes button, rail, file preview and dialogs. Hosts own immutable checkpoint identities and every repository effect.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+The summary card uses FileListing and FileChangeStats. Its header exposes view and undo actions; the footer exposes revision IDs, expansion and tree/list controls. The AppShell rail and main inspector retain Desktop geometry.
+
+## Variations
+
+### Basic
+
+<Canvas of={Stories.Basic} />
+
+### FilePreview
+
+<Canvas of={Stories.FilePreview} />
+
+### UndoConfirmation
+
+<Canvas of={Stories.UndoConfirmation} />
+
+### CheckpointUnavailable
+
+<Canvas of={Stories.CheckpointUnavailable} />
+
+### Loading
+
+<Canvas of={Stories.Loading} />
+
+### Empty
+
+<Canvas of={Stories.Empty} />
+
+### Incomplete
+
+<Canvas of={Stories.Incomplete} />
+
+### Bounded
+
+<Canvas of={Stories.Bounded} />
+
+### Unavailable
+
+<Canvas of={Stories.Unavailable} />
+
+## Behavior and accessibility
+
+Visible cards request read-only comparisons. Undo first requests a preview and requires confirmation of that exact host request. Unavailable comparisons and files expose retry; incomplete and bounded captures disable whole-turn undo. Dispose the controller with the host.
+
+## Styling variables
+
+Set public variables on an ancestor; defaults retain Desktop geometry. Inherit Design Core semantic colors and the catalog brand/light-dark controls.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+[Transcript](?path=/docs/agents-chat-transcript--docs) and [Complete screens](?path=/docs/agent-complete-screens--docs) compose the same production components and in-memory controller flow. Docs previews stay bounded to 40rem; Canvas fills the viewport. Host adapters retain repository and provider authority.

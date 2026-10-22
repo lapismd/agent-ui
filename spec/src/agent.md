@@ -19,6 +19,8 @@
 
 - Public types express the boundary.
 - Focused tests and production-component stories verify the behavior.
+- A refused send MUST retain its exact draft and show MessageMetadata below the Document composer while Classic keeps its existing feedback.
+- Errors MUST NOT be attributed to another session or an edited draft, and unknown outcomes MUST retain recovery feedback without retry.
 
 ## AUI-CHAT-003 — Interactions
 
@@ -58,6 +60,12 @@ controllers. Do not add invented application navigation or replacement layouts.
 
 **Requirement.** Agent foundations MUST have their own logical component folders with colocated stories, documentation and consumer-ready examples, and complete screens MUST compose those same production components.
 
+Tool result renderers MUST have their own documented Agents/Tool calls families,
+including generic/normalized details, inventory, local reports and host registered
+results. The transcript MUST compose these same production renderers. Tool result
+and read-file overlays MUST reuse the shared icon-only Code/BookOpen content
+view toggle, with accessible action labels and separate raw capture where needed.
+
 ### Acceptance details
 
 - Transcript coverage MUST include every supported item/block kind, captured tools, error states and exact anchored comments.
@@ -86,3 +94,14 @@ controllers. Do not add invented application navigation or replacement layouts.
 - Svelte warnings and runtime diagnostics MUST fail the owning checks through rendering and teardown.
 - The full affected component and complete-screen matrix MUST run in both color modes and desktop/narrow viewports, including semantic Markdown tables and docs-only height limits.
 - Visual baselines MUST remain unchanged until explicit human approval.
+
+## AUI-PARITY-001 — Desktop transcript completeness
+
+**Requirement.** Agent transcript foundations and complete-screen examples MUST cover every visible Desktop transcript renderer and preserve its source presentation through public, host-owned contracts.
+
+### Acceptance details
+
+- The full recorded conversation MUST include Desktop system/warning/error rows, complete outgoing ACP XML context, tools, local reports, recipients, retries and the working state.
+- Turn changes MUST include the original summary card, file listing, rail, file preview and explicit undo/checkpoint dialogs with in-memory effects.
+- Context, handoff and rootless tool readers MUST share the surrounding transcript typography and support the original preview/source/capture states; failed message metadata, attached composer status and retained-comment spacing MUST match the reviewed Document/Classic presentation.
+- A source coverage inventory and focused browser regressions MUST distinguish shared primitive defects from missing extraction or fixture coverage.

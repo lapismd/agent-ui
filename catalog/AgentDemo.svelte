@@ -24,8 +24,8 @@
   } = $props();
   const demo = untrack(() => createDemo(scenario));
   const { port, controller } = demo;
-  port.fault = untrack(() => fault);
-  port.snapshot.busy = untrack(() => busy);
+  if (untrack(() => fault !== "none")) port.fault = untrack(() => fault);
+  if (untrack(() => busy)) port.snapshot.busy = true;
   if (untrack(() => empty)) {
     port.snapshot.sessions = [];
     port.snapshot.imports = [];
@@ -59,13 +59,13 @@
   const imports = memoryAgentImports(controller);
   void imports.load();
   onDestroy(() => {
-    void controller.close();
+    void demo.close();
     void imports.close();
   });
 </script>
 
 <div class="agent-demo">
-  <AgentWorkbench {controller} {imports} />
+  <AgentWorkbench {controller} {imports} transcriptOptions={demo.options} />
 </div>
 
 <style>

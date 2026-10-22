@@ -15,3 +15,24 @@ export { default as AgentSendHint } from "./transcript-send-hint/AiTranscriptSen
 export { default as AgentTranscriptEmpty } from "./transcript-empty/AiTranscriptEmpty.svelte";
 export { default as AgentTranscriptLoading } from "./transcript-loading/AiTranscriptLoading.svelte";
 export type * from "./requests.js";
+
+export { default as AgentMessageMetadata } from "./message-metadata/AgentMessageMetadata.svelte";
+export { default as AgentTurnChanges } from "./turn-changes/AiTurnChanges.svelte";
+export { AiHistoryInspection as AgentChangesController } from "./turn-changes/controller.svelte.js";
+export type {
+  AiTurnRecord as AgentTurnRecord,
+  AgentChangesPort,
+  TurnComparison,
+  AiUndoRequest as AgentUndoRequest,
+  AiFileHistory as AgentFileHistory,
+} from "./turn-changes/models.js";
+export type {
+  AgentMessagePresentation,
+  AgentBlockPresentation,
+  AgentInventory,
+} from "./transcript-options.js";
+
+export { default as AgentToolResult } from "../tools/tool-result/AgentToolResult.svelte";
+export { default as AgentInventoryResult } from "../tools/inventory-result/AiInventoryResult.svelte";
+export { default as AgentCommandReport } from "../tools/command-report/AiCommandReport.svelte";
+export type { AgentToolResultData } from "./transcript-options.js";

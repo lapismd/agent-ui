@@ -19,6 +19,11 @@ export class AgentUiController {
   pending = $state<AgentAction>();
   error = $state("");
   notice = $state("");
+  sendFailure = $state<{
+    session: string;
+    submission: TranscriptSubmission;
+    reason: string;
+  }>();
   actionBusy = $state(false);
   query = $state("");
   selectedImport = $state("");
@@ -60,6 +65,23 @@ export class AgentUiController {
   get busy() {
     return this.snapshot?.busy ?? false;
   }
+  get draftSendError() {
+    const failure = this.sendFailure;
+    const pending = this.transcript.pending;
+    return failure?.session === this.sessionId &&
+      failure.submission.text === this.transcript.message &&
+      failure.submission.comments.length === pending.length &&
+      failure.submission.comments.every((entry) =>
+        pending.some(
+          ({ thread, comment }) =>
+            thread.id === entry.threadId &&
+            comment.id === entry.commentId &&
+            comment.text === entry.text,
+        ),
+      )
+      ? failure.reason
+      : undefined;
+  }
   can(kind: string) {
     return (
       !this.#closed &&
@@ -99,6 +121,7 @@ export class AgentUiController {
         publication: "refused" as const,
         error: "Sending is unavailable; your draft is retained.",
       };
+    this.sendFailure = undefined;
     const request: AgentAction = {
       id: submission.id,
       kind: "send",
@@ -112,6 +135,12 @@ export class AgentUiController {
       this.attachments = [];
       return { publication: "queued" as const, batchId: submission.id };
     }
+    if (!this.#closed && outcome?.status === "refused")
+      this.sendFailure = {
+        session: request.session!,
+        submission,
+        reason: outcome.reason,
+      };
     return {
       publication:
         outcome?.status === "refused"

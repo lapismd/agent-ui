@@ -1,0 +1,85 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./AgentToolResult.stories";
+import { Basic, Styling } from "./AgentToolResult.example-sources";
+import tokens from "./AgentToolResult.tokens.json";
+import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# AgentToolResult
+
+Generic and normalized tool results, plus a host registered view.
+
+## Usage
+
+Pass exact input/output/error capture and, optionally, a normalized detail. Tool-name detection and registry lookup belong to the host. The optional view snippet renders a registered result only when there is no captured error.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+The shared Design Core detail renders shell output, file reads, edits/diffs, search matches, unavailable data, raw capture and capture warnings. A registered host snippet replaces only its formatted result.
+
+## Variations
+
+### Basic
+
+<Canvas of={Stories.Basic} />
+
+### Shell
+
+<Canvas of={Stories.Shell} />
+
+### FileRead
+
+<Canvas of={Stories.FileRead} />
+
+### FileEdit
+
+<Canvas of={Stories.FileEdit} />
+
+### Search
+
+<Canvas of={Stories.Search} />
+
+### PartialCapture
+
+<Canvas of={Stories.PartialCapture} />
+
+### Error
+
+<Canvas of={Stories.Error} />
+
+### Unavailable
+
+<Canvas of={Stories.Unavailable} />
+
+### RegisteredResult
+
+<Canvas of={Stories.RegisteredResult} />
+
+## Behavior and accessibility
+
+The view only presents capture; it never runs a tool. Raw capture remains exact. File navigation goes through an explicit host callback. Desktop owns its App registry and can pass App-backed views through this snippet; this package has no App dependency.
+
+## Styling variables
+
+Set public variables on an ancestor. Defaults preserve source geometry and inherit Design Core semantic colors. The theme dropdown and light/dark controls also apply to these results.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+[Transcript](?path=/docs/agents-chat-transcript--docs) uses these same production renderers through options.blocks, including inside the tool inspector. [Complete screens](?path=/docs/agent-complete-screens--docs) share that composition. Registered result views remain host-owned; all catalog captures and effects are simulated.

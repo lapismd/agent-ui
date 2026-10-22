@@ -1,0 +1,65 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./AiInventoryResult.stories";
+import { Basic, Styling } from "./AiInventoryResult.example-sources";
+import tokens from "./AiInventoryResult.tokens.json";
+import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# AiInventoryResult
+
+Original Desktop skills and tools discovery result.
+
+## Usage
+
+Pass a normalized inventory from the host. Reuse this renderer for the Desktop /skills and /tools registered command results.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+Each row contains the captured name, description and optional open action. Empty inventories use the public Empty primitive.
+
+## Variations
+
+### Basic
+
+<Canvas of={Stories.Basic} />
+
+### Tools
+
+<Canvas of={Stories.Tools} />
+
+### EmptySkills
+
+<Canvas of={Stories.EmptySkills} />
+
+### EmptyTools
+
+<Canvas of={Stories.EmptyTools} />
+
+## Behavior and accessibility
+
+No path is opened without an explicit host callback. Empty skills and tools have distinct descriptions; names and descriptions remain safe text.
+
+## Styling variables
+
+Set public variables on an ancestor. Defaults preserve source geometry and inherit Design Core semantic colors. The theme dropdown and light/dark controls also apply to these results.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+[Transcript](?path=/docs/agents-chat-transcript--docs) uses these same production renderers through options.blocks, including inside the tool inspector. [Complete screens](?path=/docs/agent-complete-screens--docs) share that composition. Registered result views remain host-owned; all catalog captures and effects are simulated.

@@ -1,3 +1,7 @@
+import { recordedConversation } from "./recorded-data.js";
+import { memoryChanges } from "./changes.svelte.js";
+import { outgoingContext } from "./sent-context.js";
+import type { AgentTranscriptOptions } from "../../../packages/agent-ui/src/chat/transcript-options.js";
 import { commentAnchor } from "@lapismd/design-core/chat";
 import { AgentUiController } from "../../../packages/agent-ui/src/core/index.js";
 import { createChatPresentation } from "../../../packages/agent-ui/src/chat/presentation-adapter.svelte.js";
@@ -9,11 +13,13 @@ import {
   queuedMessages,
 } from "./conversation-data.js";
 export type AgentScenario =
+  | "typography"
   | "default"
   | "all"
   | "comments"
   | "stale"
   | "error"
+  | "message-status"
   | "refused"
   | "unknown"
   | "queue"
@@ -26,7 +32,12 @@ export type AgentScenario =
   | "question";
 export function createDemo(scenario: AgentScenario = "default") {
   const port = new MemoryAgentPort();
-  if (["all", "comments", "stale", "streaming"].includes(scenario))
+  const icons: NonNullable<AgentTranscriptOptions["icons"]> = {};
+  const captureAbort = new AbortController();
+  const changes = scenario === "all" ? memoryChanges() : undefined;
+  if (
+    ["all", "comments", "stale", "streaming", "typography"].includes(scenario)
+  )
     port.snapshot.sessions[0].items = supportedMessages();
   if (scenario === "comments" || scenario === "stale")
     port.snapshot.sessions[0].items = [
@@ -38,11 +49,27 @@ export function createDemo(scenario: AgentScenario = "default") {
         blocks: [prose, code],
       },
     ];
+  if (scenario === "all") {
+    port.snapshot.sessions[0].items = supportedMessages();
+    const prompt = port.snapshot.sessions[0].items.find(
+      (item) => item.id === "prompt",
+    )!;
+    prompt.sentContext = {
+      content: outgoingContext,
+      rawContent: outgoingContext,
+      rawLanguage: "xml",
+      delivery: "sent",
+    };
+  }
+  if (scenario === "all")
+    port.snapshot.sessions[0].items.push(...failedMessages());
+  if (scenario === "message-status")
+    port.snapshot.sessions[0].items = failedMessages();
   if (scenario === "empty") port.snapshot.sessions[0].items = [];
   if (scenario === "queue" || scenario === "busy" || scenario === "streaming")
     port.snapshot.busy = true;
   if (scenario === "queue") port.snapshot.queued = queuedMessages();
-  if (scenario === "refused") port.fault = "failed";
+  if (scenario === "refused" || scenario === "error") port.fault = "failed";
   if (scenario === "unknown") port.fault = "unknown";
   if (scenario === "approval" || scenario === "question")
     port.snapshot.requests = [
@@ -68,9 +95,6 @@ export function createDemo(scenario: AgentScenario = "default") {
   if (scenario === "loading") controller.loading = true;
   if (["error", "refused", "unknown"].includes(scenario))
     controller.transcript.message = "Retain my exact authored draft.";
-  if (scenario === "error")
-    controller.error =
-      "The host is temporarily unavailable. Your draft is retained.";
   if (scenario === "attachments")
     controller.attachments = ["notes/plan.md", "src/settings.ts"];
   if (scenario === "comments" || scenario === "stale") {
@@ -110,5 +134,110 @@ export function createDemo(scenario: AgentScenario = "default") {
         },
       ];
   }
-  return { port, controller, panel, close: () => controller.close() };
+  const options: AgentTranscriptOptions = {
+    icons,
+    changes: changes?.inspection,
+    messages: {
+      "failed-prompt": { retry: true },
+      error: { retry: true },
+      prompt: {
+        recipients: [{ id: "reviewer", label: "Reviewer" }],
+        deliveries: [{ recipient: { id: "reviewer" }, state: "completed" }],
+      },
+    },
+    onRetry: (id) => controller.action("retry_turn", id).then(() => {}),
+    onCopyResponse: (text) =>
+      controller.action("copy_response", text).then(() => {}),
+    onOpenPath: (path) => controller.action("open_path", path).then(() => {}),
+    workingLabel: "Agent is working…",
+    composerStatus:
+      scenario === "all"
+        ? { type: "warning", message: "Context window is 90% full." }
+        : undefined,
+    blocks: {
+      "local-command/body": { kind: "command" },
+      "inventory/body": {
+        kind: "inventory",
+        inventory: {
+          kind: "skills",
+          items: [
+            {
+              kind: "skill",
+              name: "Component review",
+              description: "Review source-faithful components.",
+              path: "Skills/review.md",
+            },
+          ],
+        },
+      },
+      "local-tool/body": {
+        kind: "tool",
+        name: "vault.read",
+        input: '{"path":"notes/review.md"}',
+        output: '{"text":"Captured note"}',
+      },
+    },
+  };
+  const ready =
+    scenario === "all"
+      ? recordedConversation(captureAbort.signal)
+          .then((recorded) => {
+            if (captureAbort.signal.aborted) return;
+            Object.assign(icons, recorded.icons);
+            port.snapshot.sessions[0].items = [
+              ...recorded.items,
+              ...port.snapshot.sessions[0].items,
+            ];
+            controller.snapshot = structuredClone(port.snapshot);
+            controller.transcript.threads = structuredClone(recorded.threads);
+          })
+          .catch((error) => {
+            if (!captureAbort.signal.aborted) controller.error = String(error);
+          })
+      : scenario === "error"
+        ? Promise.resolve()
+            .then(() => controller.transcript.send())
+            .then(() => {})
+        : Promise.resolve();
+  return {
+    port,
+    ready,
+    controller,
+    panel,
+    options,
+    changes,
+    close: () => {
+      captureAbort.abort();
+      changes?.inspection.dispose();
+      return controller.close();
+    },
+  };
+}
+
+function failedMessages(): import("@lapismd/design-core/chat").TranscriptItem[] {
+  return [
+    {
+      id: "failed-prompt",
+      kind: "message",
+      role: "user",
+      label: "Request",
+      author: { id: "you", name: "You" },
+      timestamp: "2:30 PM",
+      blocks: [
+        {
+          id: "failed-prompt/body",
+          revision: "1",
+          kind: "markdown",
+          label: "Request",
+          text: "Review the captured source and retain my message.",
+        },
+      ],
+      status: {
+        type: "error",
+        label: "Failed",
+        message:
+          "The agent could not start this turn. Your message is retained.",
+      },
+    },
+  ];
 }

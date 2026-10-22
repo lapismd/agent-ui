@@ -14,6 +14,13 @@
       "description": "Captured tool title size",
       "owner": "@lapismd/agent-ui",
       "source": "chat/transcript-tool-inspector/AiTranscriptToolInspector.svelte"
+    },
+    {
+      "name": "--ui-content-view-toggle-icon-size",
+      "default": "1rem",
+      "description": "Shared Code/BookOpen icon size",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/ai/content-view-toggle/content-view-toggle.css"
     }
   ]
 }

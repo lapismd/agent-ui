@@ -1,5 +1,9 @@
 <!-- SPDX-License-Identifier: Apache-2.0; the production transcript composition shared by stories and complete screens. -->
 <script lang="ts">
+  import { Spinner } from "@lapismd/design-core/shadcn/spinner";
+  import AgentTranscriptBlock from "./AgentTranscriptBlock.svelte";
+  import AgentMessageMetadata from "../message-metadata/AgentMessageMetadata.svelte";
+  import { historyTranscript } from "../turn-changes/transcript.js";
   import type { Snippet } from "svelte";
   import {
     Transcript,
@@ -26,7 +30,27 @@
     onInspectTool?: TranscriptProps["onInspectTool"];
     options?: AgentTranscriptOptions;
   } = $props();
+  const items = $derived(
+    historyTranscript(
+      controller.items.map((item) => ({
+        ...item,
+        icon: options.icons?.[item.id] ?? item.icon,
+        tools: item.tools?.map((tool) => ({
+          ...tool,
+          icon: options.icons?.[tool.id] ?? tool.icon,
+        })),
+      })),
+      options.changes?.history.records ?? [],
+    ),
+  );
   const send = () => void controller.transcript.send();
+  const footerError = $derived.by(() => {
+    const failure =
+      controller.view === "document" ? controller.sendFailure : undefined;
+    return [controller.error, controller.transcript.error].find(
+      (message) => message && message !== failure?.reason,
+    );
+  });
 </script>
 
 {#snippet attachmentsDrawer()}
@@ -38,7 +62,7 @@
 {/snippet}
 <Transcript
   {...options}
-  items={controller.items}
+  {items}
   view={controller.view}
   scrollButton
   busy={controller.busy}
@@ -52,6 +76,22 @@
   authorPopover={options.authorPopover ?? { interaction: "hover" }}
   {onInspectTool}
 >
+  {#snippet customBlock(block)}<AgentTranscriptBlock
+      {block}
+      {options}
+      busy={controller.busy}
+    />{/snippet}
+  {#snippet metadataSupplement(item)}<AgentMessageMetadata
+      {item}
+      {options}
+      busy={controller.busy || controller.loading}
+    />{@render options.metadataSupplement?.(item)}{/snippet}
+  {#snippet afterItems()}{@render options.afterItems?.()}{#if controller.busy && options.workingLabel}<div
+        class="transcript-activity"
+        role="status"
+      >
+        <Spinner /><span>{options.workingLabel}</span>
+      </div>{/if}{/snippet}
   {#snippet emptyState()}<AiTranscriptEmpty />{/snippet}
   {#snippet queuedMessages()}<MessageQueue
       entries={controller.snapshot?.queued ?? []}
@@ -65,6 +105,9 @@
       disabled={!!controller.pending}
       showHint={false}
       onSend={send}
+      status={options.composerStatus}
+      statusPosition={options.composerStatusPosition}
+      sendError={controller.draftSendError}
       framedDrawer={view === "classic" &&
         (controller.attachments.length > 0 ||
           !!panel.attachmentsState.pendingInteraction)}
@@ -80,6 +123,16 @@
   {/snippet}
   {#snippet footer()}<AiTranscriptSendHint
       {panel}
-      error={controller.error || controller.transcript.error}
+      error={footerError}
     />{/snippet}
 </Transcript>
+
+<style>
+  .transcript-activity {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--muted-foreground);
+  }
+</style>

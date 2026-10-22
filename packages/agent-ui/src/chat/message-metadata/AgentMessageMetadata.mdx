@@ -1,0 +1,61 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./AgentMessageMetadata.stories";
+import { Basic, Styling } from "./AgentMessageMetadata.example-sources";
+import tokens from "./AgentMessageMetadata.tokens.json";
+import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Message metadata
+
+Retry, recipient delivery and response-copy actions composed inside the shared metadata row.
+
+## Usage
+
+Pass captured item presentation and explicit host actions. The Transcript owns time and outcome text; this component supplies the same reusable action content to that row.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+Time and outcome come from Design Core MessageMetadata; these copied Desktop actions provide retry, recipient badges and response copy.
+
+## Variations
+
+### Basic
+
+<Canvas of={Stories.Basic} />
+
+### Classic
+
+<Canvas of={Stories.Classic} />
+
+### Recipients
+
+<Canvas of={Stories.Recipients} />
+
+## Behavior and accessibility
+
+Retry requires an explicit click and a host callback. Busy state disables retry. Captured recipient states never imply successful delivery. The warning stays attached below the composer in the error example.
+
+## Styling variables
+
+Set public variables on an ancestor; defaults retain Desktop geometry. Inherit Design Core semantic colors and the catalog brand/light-dark controls.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+[Transcript](?path=/docs/agents-chat-transcript--docs) and [Complete screens](?path=/docs/agent-complete-screens--docs) compose the same production components and in-memory controller flow. Docs previews stay bounded to 40rem; Canvas fills the viewport. Host adapters retain repository and provider authority.

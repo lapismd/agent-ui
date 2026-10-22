@@ -47,6 +47,10 @@ Framed editor with inline formatting.
 ### Error
 
 Host feedback retains the authored draft.
+For a refused send, pass `sendError` only for the exact retained submission.
+Document mode renders the shared MessageMetadata beneath the draft, aligned
+with its prose. The transcript keeps Classic feedback in its existing footer.
+Unknown outcomes use retained-request recovery feedback, never a resend action.
 
 <Canvas of={Stories.Error} />
 

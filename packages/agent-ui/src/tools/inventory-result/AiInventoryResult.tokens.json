@@ -1,0 +1,12 @@
+{
+  "component": "AgentInventoryResult",
+  "variables": [
+    {
+      "name": "--ui-agent-inventory-gap",
+      "default": "0.25rem",
+      "description": "Inventory row spacing",
+      "owner": "@lapismd/agent-ui",
+      "source": "tools/inventory-result/inventory.css"
+    }
+  ]
+}

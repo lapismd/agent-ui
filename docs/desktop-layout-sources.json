@@ -206,10 +206,7 @@
       "destination": "packages/agent-ui/src/identity/agent-avatar.ts",
       "sourceSha256": "1943e25b2522771430ad929bccd168b9c3de5f84a63980e9b3fa1879829a3e30",
       "adaptations": [
-        {
-          "before": "local: \"/lapis-logo.svg\"",
-          "after": "local: lapisIcon"
-        },
+        { "before": "local: \"/lapis-logo.svg\"", "after": "local: lapisIcon" },
         {
           "before": "import cursorIcon",
           "after": "import lapisIcon from \"./assets/lapis.svg\";\nimport cursorIcon"
@@ -255,7 +252,7 @@
       "destination": "packages/agent-ui/src/chat/transcript-tool-inspector/AiTranscriptToolInspector.svelte",
       "sourceSha256": "73cf0dcd555adabd73478526780135b55bcd5efc5c23b4a79b09faf42bc56b6c",
       "adaptations": [],
-      "destinationSha256": "672c6b46bed3a262dbac3ea3ca48a223705f028c59059b05375f5d8cf3649e9a",
+      "destinationSha256": "05fa24c84c1db714795988117182ab11a4e8327aa424bcd8977907a76f3dd122",
       "layoutAdaptations": [
         {
           "before": "padding: 1rem 2rem;",
@@ -264,9 +261,14 @@
         {
           "before": "font-size: 0.8125rem;",
           "after": "font-size: var(--ui-agent-inspector-title-size, 0.8125rem);"
+        },
+        {
+          "before": "<SegmentedControl\n        value={mode}\n        options={markdown\n          ? [\"preview\", \"source\", \"capture\"]\n          : [\"preview\", \"capture\"]}\n        labels={markdown\n          ? { preview: \"Preview\", source: \"Source\", capture: \"Capture\" }\n          : { preview: \"Formatted\", capture: \"Source\" }}\n        ariaLabel=\"Tool output view\"\n        onChange={choose}\n      />",
+          "after": "<ContentViewToggle\n        view={mode === \"preview\" ? \"formatted\" : \"source\"}\n        sourceLabel=\"Show source\"\n        formattedLabel={markdown ? \"Show preview\" : \"Show formatted output\"}\n        onViewChange={(next) =>\n          choose(\n            next === \"formatted\" ? \"preview\" : markdown ? \"source\" : \"capture\",\n          )}\n      />\n      {#if markdown}<Button\n          variant=\"ghost\"\n          size=\"icon-sm\"\n          aria-label=\"Raw capture\"\n          title=\"Raw capture\"\n          aria-pressed={mode === \"capture\"}\n          onclick={() => choose(mode === \"capture\" ? \"preview\" : \"capture\")}\n          ><BracesIcon aria-hidden=\"true\" /></Button\n        >{/if}",
+          "description": "User-requested shared Code/BookOpen icon toggle; keep the Markdown raw-capture action separate."
         }
       ],
-      "layoutSha256": "3ffd8ee1595fe627b7e71ac76b46fa69451a824a684a9a4c7d05a20e56fcdc57"
+      "layoutSha256": "b9c20ac311f09769f80d3df1627a76053fb21664c457675b46fda4a2034e526b"
     },
     {
       "sourceRepository": "lapis-desktop",
@@ -566,10 +568,7 @@
           "before": "  import { composerReferences } from \"./composer-references.ts\";\n",
           "after": ""
         },
-        {
-          "before": "    app,",
-          "after": "    extensions = [],"
-        },
+        { "before": "    app,", "after": "    extensions = []," },
         {
           "before": "    app?: App;",
           "after": "    extensions?: ComponentProps<typeof MarkdownComposer>[\"extensions\"];"
@@ -581,14 +580,14 @@
         {
           "before": "    extensions={[references]}",
           "after": "    {extensions}"
+        },
+        {
+          "description": "User-reviewed failed-send metadata belongs beneath the exact retained Document draft. Shared MessageMetadata preserves native styling; Classic composition is unchanged."
         }
       ],
-      "destinationSha256": "9e5dcbb66b724ebb2f25e6dca08d50149c70ff21099db0acc00c4106b9d57eca",
+      "destinationSha256": "29d375483f27b2076b5a47690a4f98c49b54a411bc2c28e9dd17d65ae002469c",
       "layoutAdaptations": [
-        {
-          "before": "extensions={[references]}",
-          "after": "{extensions}"
-        },
+        { "before": "extensions={[references]}", "after": "{extensions}" },
         {
           "before": "--ui-markdown-composer-min-height: calc(2 * 1.4rem + 1rem);",
           "after": "--ui-markdown-composer-min-height: var(--ui-agent-composer-min-height, calc(2 * 1.4rem + 1rem));"
@@ -596,9 +595,21 @@
         {
           "before": "--ui-markdown-composer-document-min-height: calc(2 * 0.875rem * 1.65);",
           "after": "--ui-markdown-composer-document-min-height: var(--ui-agent-composer-document-min-height, calc(2 * 0.875rem * 1.65));"
+        },
+        {
+          "before": "    {disabled}\n    {triggers}",
+          "after": "    {disabled}\n    {status}\n    {statusPosition}\n    {triggers}"
+        },
+        {
+          "before": "</MarkdownComposer>",
+          "after": "</MarkdownComposer>\n  {#if view === \"document\" && sendError}<div class=\"draft-metadata\">\n      <MessageMetadata\n        sender=\"assistant\"\n        status=\"error\"\n        statusLabel={sendError}\n        role=\"group\"\n        aria-label=\"Draft metadata\"\n      />\n    </div>{/if}"
+        },
+        {
+          "before": "\n</style>",
+          "after": "\n  .draft-metadata {\n    padding-inline-start: 2rem;\n    min-width: 0;\n  }\n</style>"
         }
       ],
-      "layoutSha256": "7e006d3c96aaee678c8ec8aac5b3a66bf67b65642eeda1f0fecc1e928c891057"
+      "layoutSha256": "5a556fb09a49ed165bc5bcee2ed4783575a6874c0243c3182867843b0222741a"
     },
     {
       "sourceRepository": "lapis-desktop",
@@ -647,21 +658,15 @@
           "after": "{title}"
         },
         {
-          "before": "status={`${agent} \u00b7 ${composerState.selectedModel || \"Automatic model\"} \u00b7 ${panel.conversationsState.scopePathLabel}`}",
+          "before": "status={`${agent} · ${composerState.selectedModel || \"Automatic model\"} · ${panel.conversationsState.scopePathLabel}`}",
           "after": "{status}"
         },
-        {
-          "before": "busy={controller.busy}",
-          "after": "{busy}"
-        },
+        { "before": "busy={controller.busy}", "after": "{busy}" },
         {
           "before": "loading={!loaded || !!panelProps.initializing}",
           "after": "{loading}"
         },
-        {
-          "before": "onSelect={select}",
-          "after": "{onSelect}"
-        },
+        { "before": "onSelect={select}", "after": "{onSelect}" },
         {
           "before": "harness={composerState.selectedAgent}",
           "after": "{harness}"
@@ -670,10 +675,7 @@
           "before": "disabled={!!panelProps.initializing || controller.busy}",
           "after": "disabled={loading || busy}"
         },
-        {
-          "before": "onclick={create}",
-          "after": "onclick={onCreate}"
-        },
+        { "before": "onclick={create}", "after": "onclick={onCreate}" },
         {
           "before": "{view}\n      onChange={onViewChange}",
           "after": "bind:view\n      onChange={onViewChange}"
@@ -682,10 +684,7 @@
           "before": "<ChatConversationMenu\n      {panelProps}\n      {controller}\n      actions={panel.actions}\n      {composerState}\n    />",
           "after": "{@render menu?.()}"
         },
-        {
-          "before": "{rows.length}",
-          "after": "{items.length}"
-        }
+        { "before": "{rows.length}", "after": "{items.length}" }
       ],
       "destinationSha256": "9597708a4f5480d6ce131f70d911fae6695f8b4024e09defd3ca5aba5d58a929",
       "layoutAdaptations": [
@@ -694,21 +693,15 @@
           "after": "{title}"
         },
         {
-          "before": "status={`${agent} \u00b7 ${composerState.selectedModel || \"Automatic model\"} \u00b7 ${panel.conversationsState.scopePathLabel}`}",
+          "before": "status={`${agent} · ${composerState.selectedModel || \"Automatic model\"} · ${panel.conversationsState.scopePathLabel}`}",
           "after": "{status}"
         },
-        {
-          "before": "busy={controller.busy}",
-          "after": "{busy}"
-        },
+        { "before": "busy={controller.busy}", "after": "{busy}" },
         {
           "before": "loading={!loaded || !!panelProps.initializing}",
           "after": "{loading}"
         },
-        {
-          "before": "onSelect={select}",
-          "after": "{onSelect}"
-        },
+        { "before": "onSelect={select}", "after": "{onSelect}" },
         {
           "before": "harness={composerState.selectedAgent}",
           "after": "{harness}"
@@ -717,22 +710,13 @@
           "before": "disabled={!!panelProps.initializing || controller.busy}",
           "after": "disabled={loading || busy}"
         },
-        {
-          "before": "onclick={create}",
-          "after": "onclick={onCreate}"
-        },
-        {
-          "before": "      {view}",
-          "after": "      bind:view"
-        },
+        { "before": "onclick={create}", "after": "onclick={onCreate}" },
+        { "before": "      {view}", "after": "      bind:view" },
         {
           "before": "<ChatConversationMenu\n      {panelProps}\n      {controller}\n      actions={panel.actions}\n      {composerState}\n    />",
           "after": "{@render menu?.()}"
         },
-        {
-          "before": "{rows.length}",
-          "after": "{items.length}"
-        }
+        { "before": "{rows.length}", "after": "{items.length}" }
       ],
       "layoutSha256": "09d77f95c54f8e2168203fbe348c8ec6940c06ddaed0c4434f748afd3402ecb1"
     },
@@ -1007,10 +991,7 @@
           "before": "../conversations/transcript-store.ts",
           "after": "./models.js"
         },
-        {
-          "before": "../conversations/types.ts",
-          "after": "./models.js"
-        }
+        { "before": "../conversations/types.ts", "after": "./models.js" }
       ],
       "destinationSha256": "ffd9643bff626dd12a41a6016fbb2b4dc678a996f0d99db82cb59f412ff4e1a4"
     },
@@ -1216,34 +1197,27 @@
       "adaptations": [],
       "destinationSha256": "409ca2876cfc84aec5b3993837d4d256a32d7b0ecfb870ab3dca464cb02dc62a",
       "layoutAdaptations": [
-        {
-          "before": "!!props.sources",
-          "after": "!!imports.available"
-        },
-        {
-          "before": "!!props.onOpen",
-          "after": "!!imports.canOpen"
-        },
-        {
-          "before": "            app={props.app}\n",
-          "after": ""
-        },
-        {
-          "before": "{props.sources",
-          "after": "{imports.available"
-        }
+        { "before": "!!props.sources", "after": "!!imports.available" },
+        { "before": "!!props.onOpen", "after": "!!imports.canOpen" },
+        { "before": "            app={props.app}\n", "after": "" },
+        { "before": "{props.sources", "after": "{imports.available" }
       ],
       "layoutSha256": "f9fa83ac18f4cdb36ac85886ad3b0a373e8fd441638b6ec913e3bf8197abc8df"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/AiCommandReport.svelte",
-      "destination": "packages/agent-ui/src/chat/command-report/AiCommandReport.svelte",
+      "destination": "packages/agent-ui/src/tools/command-report/AiCommandReport.svelte",
       "sourceSha256": "0cd2dc5fc1a744f7bf88aed7a09f65a910da855206a06ceba1c0e0e3447dd65a",
       "adaptations": [],
-      "destinationSha256": "0cd2dc5fc1a744f7bf88aed7a09f65a910da855206a06ceba1c0e0e3447dd65a",
-      "layoutAdaptations": [],
-      "layoutSha256": "b8cfdf4d527e6b7f95a2822c20b935f35c276046eb2c50165b02bd328b2043c8"
+      "destinationSha256": "146c2ed8d21389deffe37f24ca1edad6fffd5c2cc72039ce0055bab632a74197",
+      "layoutAdaptations": [
+        {
+          "before": "font-size: 0.8125rem;",
+          "after": "font-size: var(--ui-agent-command-report-font-size, 0.8125rem);"
+        }
+      ],
+      "layoutSha256": "15880b8c81b1d0d58c4f0fb54ffd899d505eb93b5285ae2ee7a650ea5c8c5e0b"
     },
     {
       "sourceRepository": "lapis-desktop",
@@ -1251,7 +1225,7 @@
       "destination": "packages/agent-ui/src/sessions/recorded-transcript/AiRecordedTranscript.svelte",
       "sourceSha256": "03534498cefb8342916b9c62c708bf2aa4397554384b0fa3e3ff4aa3b3b38c8b",
       "adaptations": [],
-      "destinationSha256": "f9afa7e599b2048d32308dd71160d51673da179a3ccd5dae157281e7adffff33",
+      "destinationSha256": "a6fb196119137dbdef793e4115e720afd745d383782b22ec286e97c349bfd1c3",
       "layoutAdaptations": [],
       "layoutSha256": "d6c0eb2dca319725fd1214c0f7a6f22c5b6752b0cc6d4939af9caefe84a6cac3"
     },
@@ -1272,12 +1246,7 @@
       "sourceSha256": "2d6b87af814c0157b31e4df297f4f0df235ee5c1c425a0c81b19828ee06db9bf",
       "adaptations": [],
       "destinationSha256": "8c5e8691ab462a537895b03380473758f03abc61f84002c7559d79131cea342c",
-      "layoutAdaptations": [
-        {
-          "before": "        {app}\n",
-          "after": ""
-        }
-      ],
+      "layoutAdaptations": [{ "before": "        {app}\n", "after": "" }],
       "layoutSha256": "d2ee6eea66191bf3228579944e22dc6df586b80faad248e4aedf18b3b66cf489"
     },
     {
@@ -1287,6 +1256,266 @@
       "sourceSha256": "c7545b0c1496834650563a5c76745751f6c47bd86700ddc51b7aaa46fc50238d",
       "adaptations": [],
       "destinationSha256": "cdeb44ca3e45eed26b02012cf8dbcbb886b221bc0acf49adb353c7b715b7c5d8"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/ai/history/AiTurnChanges.svelte",
+      "destination": "packages/agent-ui/src/chat/turn-changes/AiTurnChanges.svelte",
+      "sourceSha256": "ff220da72e97cdd2f9aa830ab3769d717b2b01e6c779f72737be2e4812987eb0",
+      "adaptations": [
+        {
+          "description": "Explicit host ports and normalized capture replace App/native authority; original presentation retained. Read failures and async lifetime are guarded."
+        }
+      ],
+      "destinationSha256": "dfa016676667598162407495a3bcbbc390c452209b675042edc7288b441e5f22",
+      "layoutAdaptations": [
+        {
+          "before": "encodeJjChangeId((record.after ?? record.before).change_id)",
+          "after": "(record.after ?? record.before).change_id"
+        },
+        {
+          "before": "padding: 0.75rem;",
+          "after": "padding: var(--ui-agent-turn-changes-padding, 0.75rem);"
+        }
+      ],
+      "layoutSha256": "5300ab223d9e024596e8f898a2a165080afb8be00ecb6d70abee1deb0a3ce72d"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/ai/history/AiChangesButton.svelte",
+      "destination": "packages/agent-ui/src/chat/turn-changes/AiChangesButton.svelte",
+      "sourceSha256": "0847d1cd4a89141bb988508b9fdc7b1d84fa65c9dd43689dfca00b52c1e075cf",
+      "adaptations": [
+        {
+          "description": "Explicit host ports and normalized capture replace App/native authority; original presentation retained. Read failures and async lifetime are guarded."
+        }
+      ],
+      "destinationSha256": "f2d3a8d40a9009f307fd3c4e06cb712150341b52663e516926f8885c46977a74",
+      "layoutAdaptations": [],
+      "layoutSha256": "a1d497abfe648c029c8397f385dc6f690a3d2cc773ca9cc38815fd2b704628ce"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/ai/history/AiHistoryRail.svelte",
+      "destination": "packages/agent-ui/src/chat/turn-changes/AiHistoryRail.svelte",
+      "sourceSha256": "e58ea1921aa0aa5eb7a7b8af9744b9c6697c40eb1087b1785df57bae5e3bc4a8",
+      "adaptations": [
+        {
+          "description": "Explicit host ports and normalized capture replace App/native authority; original presentation retained. Read failures and async lifetime are guarded."
+        }
+      ],
+      "destinationSha256": "2c2d457de100999e8dd1ef41b0ad9fe79593ed5d201a3fb79adcbc363ea41837",
+      "layoutAdaptations": [],
+      "layoutSha256": "9b23fe6118cec50d567cea459ce0a852ae48b126f8d85ce7670b9da3c7b63b03"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/ai/history/AiHistoryFile.svelte",
+      "destination": "packages/agent-ui/src/chat/turn-changes/AiHistoryFile.svelte",
+      "sourceSha256": "9f99ece23a584f1cb066dec4c453006d7243ff598ab6d6c1c7dc95a555dceec1",
+      "adaptations": [
+        {
+          "description": "Explicit host ports and normalized capture replace App/native authority; original presentation retained. Read failures and async lifetime are guarded."
+        }
+      ],
+      "destinationSha256": "1feb1832634310138ebb83c1994b362ca32af2b6dd30b46810a27cfbc6ea91f4",
+      "layoutAdaptations": [
+        {
+          "before": "aria-label=\"Select file for undo\"",
+          "after": "aria-label=\"Select for undo\""
+        },
+        {
+          "before": "{#if !inspection.diff}<p role=\"status\">Loading saved file…</p>\n      ",
+          "after": "{#if inspection.fileUnavailable}<p>\n          Saved file unavailable. <Button\n            variant=\"ghost\"\n            size=\"sm\"\n            onclick={() =>\n              inspection.path && void inspection.select(inspection.path)}\n            >Retry saved file</Button\n          >\n        </p>\n      {:else if !inspection.diff}<p role=\"status\">Loading saved file…</p>\n      "
+        }
+      ],
+      "layoutSha256": "74c5d929dae72352971f0040161e345ce956b0bb9fedfd118aeff3127120dca1"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/ai/history/AiHistoryDialogs.svelte",
+      "destination": "packages/agent-ui/src/chat/turn-changes/AiHistoryDialogs.svelte",
+      "sourceSha256": "8639aecd727dd8fa31aeb44e226e0dd852890f99ae9a2993a809d0a13a3e22e4",
+      "adaptations": [
+        {
+          "description": "Explicit host ports and normalized capture replace App/native authority; original presentation retained. Read failures and async lifetime are guarded."
+        }
+      ],
+      "destinationSha256": "23cf91439936609fa2bb188ac792d65928e57579c1119c015402153da161ed51",
+      "layoutAdaptations": [],
+      "layoutSha256": "92f70fd655489ac9dbf8b360d9587bd1294621607fa61ddedc68db314d54f3bb"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryIdentifiers.svelte",
+      "destination": "packages/agent-ui/src/chat/turn-changes/RepositoryIdentifiers.svelte",
+      "sourceSha256": "332bb5e006c6c556cdd6e62300621cd16f8427920e99d7a51ab108d29258dfb7",
+      "adaptations": [
+        {
+          "description": "Explicit host ports and normalized capture replace App/native authority; original presentation retained. Read failures and async lifetime are guarded."
+        }
+      ],
+      "destinationSha256": "cc19e3cc2ca93c05f6f0cb36d5dc40ece80eefe78a32c8c78191ba8dfa6a7cd1",
+      "layoutAdaptations": [],
+      "layoutSha256": "71765e96a99aacec38b23e50fc56b8d6ef0de7dbde9baa3d1977e0217656c44f"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/repository-identifiers.css",
+      "destination": "packages/agent-ui/src/chat/turn-changes/repository-identifiers.css",
+      "sourceSha256": "7e81370496fddd81f21b3e25e212a45a557f4c81a461da78ebe183744a65393b",
+      "adaptations": [
+        {
+          "description": "Explicit host ports and normalized capture replace App/native authority; original presentation retained. Read failures and async lifetime are guarded."
+        }
+      ],
+      "destinationSha256": "d3ed787afd9e0919113651c26d1b3283b6099c556f64d5ae11ae109738196857",
+      "layoutAdaptations": [],
+      "layoutSha256": "34cbe1c3c91d602f4c23c7f3c064994f22a67a1e5612c1138f0333370065d253"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryDiff.svelte",
+      "destination": "packages/agent-ui/src/chat/turn-changes/RepositoryDiff.svelte",
+      "sourceSha256": "9cda6ed23f9309850bb63b64741e736340911c84b56040c06e6f13bdf6a7690a",
+      "adaptations": [
+        {
+          "description": "Explicit host ports and normalized capture replace App/native authority; original presentation retained. Read failures and async lifetime are guarded."
+        }
+      ],
+      "destinationSha256": "b471c8c7ca66c04871905d7b0640d2ceddc427698ee9bbd1b2d596b62c919dbc",
+      "layoutAdaptations": [],
+      "layoutSha256": "3e2034a6efb74788ee466d1fa997c9efdb190319a054810e0a2f22baa67b34f5"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/graph/revision-id.ts",
+      "destination": "packages/agent-ui/src/chat/turn-changes/revision-id.ts",
+      "sourceSha256": "290728472a8d89b6defdd508f06bc1fc1caf8b2077e06079690efbfcb853c448",
+      "adaptations": [
+        {
+          "description": "Explicit host ports and normalized capture replace App/native authority; original presentation retained. Read failures and async lifetime are guarded."
+        }
+      ],
+      "destinationSha256": "290728472a8d89b6defdd508f06bc1fc1caf8b2077e06079690efbfcb853c448"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/ai/chat/ChatRecipients.svelte",
+      "destination": "packages/agent-ui/src/chat/message-metadata/ChatRecipients.svelte",
+      "sourceSha256": "5b9c9f73906c912f20656a0701907e633f2679e0800284b427fb21ef02f2ea54",
+      "adaptations": [
+        {
+          "description": "Explicit host ports and normalized capture replace App/native authority; original presentation retained. Read failures and async lifetime are guarded."
+        }
+      ],
+      "destinationSha256": "c94c6fe5efbed6995435ca969cfdf62971067053e7758ac231f4e3a6787814af",
+      "layoutAdaptations": [
+        {
+          "before": "gap: 0.375rem;",
+          "after": "gap: var(--ui-agent-message-recipients-gap, 0.375rem);"
+        }
+      ],
+      "layoutSha256": "48b51cb7a9f2f2d4c1927715f74d2262191eae147400aea01fb2ded871d0ef1c"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/ai/chat/AiInventoryResult.svelte",
+      "destination": "packages/agent-ui/src/tools/inventory-result/AiInventoryResult.svelte",
+      "sourceSha256": "bc0f7d55ca706f6e38d972b248f1558edabdac4ec48ab96aeebac78e5bb95ca5",
+      "adaptations": [
+        {
+          "description": "Explicit host ports and normalized capture replace App/native authority; original presentation retained. Read failures and async lifetime are guarded."
+        }
+      ],
+      "destinationSha256": "f5f6af5ac35a1004fa2a67e30395ad32c4ee380e213b0f21eafa98d3d639aad6",
+      "layoutAdaptations": [
+        { "before": "item.path && app", "after": "item.path && onOpenPath" }
+      ],
+      "layoutSha256": "44aa01a35d9f17fd43068bd53955ed99991f7d1d4efb7ffb9d6c490de02c3a04"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/ai/chat/inventory.css",
+      "destination": "packages/agent-ui/src/tools/inventory-result/inventory.css",
+      "sourceSha256": "e166c247399a6a9991c45abeb49b9bd671dd56997d9fa7503035781d6975a04c",
+      "adaptations": [
+        {
+          "description": "Explicit host ports and normalized capture replace App/native authority; original presentation retained. Read failures and async lifetime are guarded."
+        }
+      ],
+      "destinationSha256": "06d679766b760be628384a942b94e49547adf62720c89defbc9d3fcb74c7916b",
+      "layoutAdaptations": [
+        {
+          "before": "gap: 0.25rem;",
+          "after": "gap: var(--ui-agent-inventory-gap, 0.25rem);"
+        }
+      ],
+      "layoutSha256": "722a84272462dfe1bf984d19e3de96a20f67c5448eb2c7b998e83d635ce40061"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/ai/chat/AiTranscriptBlock.svelte",
+      "destination": "packages/agent-ui/src/chat/transcript/AgentTranscriptBlock.svelte",
+      "sourceSha256": "50303c2317111acf58c139db39b2c2d0e1df32615c59e707b74a0e2d5097d7d0",
+      "adaptations": [
+        {
+          "description": "Explicit host ports and normalized capture replace App/native authority; original presentation retained. Read failures and async lifetime are guarded."
+        }
+      ],
+      "destinationSha256": "3734494485ab9fd2d204447a8a5435797c5b97297e772749ddae4a9b0177c5b0"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/ai/chat/AiTranscriptMessageMeta.svelte",
+      "destination": "packages/agent-ui/src/chat/message-metadata/AgentMessageMetadata.svelte",
+      "sourceSha256": "3630d49f1461ca8f09646ed74885c340c869c8eb88dcbecb775b0a91d48b645b",
+      "adaptations": [
+        {
+          "description": "Explicit host ports and normalized capture replace App/native authority; original presentation retained. Read failures and async lifetime are guarded."
+        }
+      ],
+      "destinationSha256": "da95d0203c2214e9f96c8378babb3d55df5cda4f05d6e2f3fb683e863faeb7bc"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/ai/chat/history-inspection.svelte.ts",
+      "destination": "packages/agent-ui/src/chat/turn-changes/controller.svelte.ts",
+      "sourceSha256": "a4b527f7da6abaa56e86cd678779bcfeee24498379c215f03d51a5120d1178be",
+      "adaptations": [
+        {
+          "description": "Explicit host ports and normalized capture replace App/native authority; original presentation retained. Read failures and async lifetime are guarded."
+        }
+      ],
+      "destinationSha256": "c56e9cdc5fb30ad4834ecd972bb6970a723b7f4e443f16efd4a52a82a96ea905"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/ai/chat/history-transcript.ts",
+      "destination": "packages/agent-ui/src/chat/turn-changes/transcript.ts",
+      "sourceSha256": "bb7a19494867e009f002bf73d3a085ad2237f2543f571728ad6f0d4d91277bd2",
+      "adaptations": [
+        {
+          "description": "Explicit host ports and normalized capture replace App/native authority; original presentation retained. Read failures and async lifetime are guarded."
+        }
+      ],
+      "destinationSha256": "4179faa56f95b92bcd0682198d329908316dad62924063b4ddb8e53583743676"
     }
   ],
   "fingerprintFormat": "Prettier normalized source; Svelte layout excludes script and comments. Explicit host bindings are applied before comparison.",

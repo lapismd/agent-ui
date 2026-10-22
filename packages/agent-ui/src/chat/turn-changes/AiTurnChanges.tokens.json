@@ -1,0 +1,12 @@
+{
+  "component": "AgentTurnChanges",
+  "variables": [
+    {
+      "name": "--ui-agent-turn-changes-padding",
+      "default": "0.75rem",
+      "description": "Summary header inset",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/turn-changes/AiTurnChanges.svelte"
+    }
+  ]
+}

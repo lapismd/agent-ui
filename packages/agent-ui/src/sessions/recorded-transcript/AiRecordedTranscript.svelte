@@ -9,7 +9,7 @@
   } from "@lapismd/design-core/chat";
   import TranscriptViewToggle from "../transcript-view-toggle/TranscriptViewToggle.svelte";
   import AiTranscriptToolInspector from "../../chat/transcript-tool-inspector/AiTranscriptToolInspector.svelte";
-  import AiCommandReport from "../../chat/command-report/AiCommandReport.svelte";
+  import AiCommandReport from "../../tools/command-report/AiCommandReport.svelte";
   let {
     entries = [],
     projectedItems,

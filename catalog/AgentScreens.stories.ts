@@ -128,6 +128,22 @@ export const InlineComments: Story = {
 };
 export const ChatError: Story = {
   render: () => ({ Component: AgentDemo, props: { scenario: "error" } }),
+  play: async ({ canvasElement }) => {
+    const c = within(canvasElement);
+    const draft = within(
+      c.getByRole("group", { name: "Message composer" }),
+    ).getByRole("textbox", { name: "Message" });
+    await expect(draft).toHaveTextContent("Retain my exact authored draft.");
+    const metadata = await c.findByRole("group", {
+      name: "Draft metadata",
+    });
+    await expect(metadata).toHaveTextContent(
+      "The simulated host refused this action.",
+    );
+    expect(metadata.getBoundingClientRect().top).toBeGreaterThanOrEqual(
+      draft.getBoundingClientRect().bottom,
+    );
+  },
 };
 export const RefusedSubmission: Story = {
   render: () => ({ Component: AgentDemo, props: { scenario: "refused" } }),

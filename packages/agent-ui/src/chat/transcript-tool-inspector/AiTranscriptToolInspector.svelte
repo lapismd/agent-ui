@@ -2,10 +2,11 @@
 <script lang="ts">
   import { AppShell } from "@lapismd/design-core/shell";
   import { Button } from "@lapismd/design-core/shadcn/button";
-  import { SegmentedControl } from "@lapismd/design-core/forms";
+  import BracesIcon from "@lucide/svelte/icons/braces";
   import XIcon from "@lucide/svelte/icons/x";
   import WrenchIcon from "@lucide/svelte/icons/wrench";
   import {
+    ContentViewToggle,
     TranscriptContent,
     TranscriptToolContent,
     type TranscriptController,
@@ -75,17 +76,24 @@
       >
     </div>
     <div class="ai-tool-inspector-actions">
-      <SegmentedControl
-        value={mode}
-        options={markdown
-          ? ["preview", "source", "capture"]
-          : ["preview", "capture"]}
-        labels={markdown
-          ? { preview: "Preview", source: "Source", capture: "Capture" }
-          : { preview: "Formatted", capture: "Source" }}
-        ariaLabel="Tool output view"
-        onChange={choose}
+      <ContentViewToggle
+        view={mode === "preview" ? "formatted" : "source"}
+        sourceLabel="Show source"
+        formattedLabel={markdown ? "Show preview" : "Show formatted output"}
+        onViewChange={(next) =>
+          choose(
+            next === "formatted" ? "preview" : markdown ? "source" : "capture",
+          )}
       />
+      {#if markdown}<Button
+          variant="ghost"
+          size="icon-sm"
+          aria-label="Raw capture"
+          title="Raw capture"
+          aria-pressed={mode === "capture"}
+          onclick={() => choose(mode === "capture" ? "preview" : "capture")}
+          ><BracesIcon aria-hidden="true" /></Button
+        >{/if}
       <Button
         variant="ghost"
         size="icon-sm"

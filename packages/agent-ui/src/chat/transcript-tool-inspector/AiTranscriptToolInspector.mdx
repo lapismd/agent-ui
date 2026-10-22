@@ -44,9 +44,19 @@ Inspector shares the same underlying capture across presentation modes.
 
 <Canvas of={Stories.Classic} />
 
+### Code
+
+<Canvas of={Stories.Code} />
+### Multiple files
+<Canvas of={Stories.MultipleFiles} />
+### Captured error
+<Canvas of={Stories.Error} />
+### Custom local tool result
+<Canvas of={Stories.CustomResult} />
+
 ## Behavior and accessibility
 
-The view selector offers Preview, Source and Capture for Markdown tools, and Formatted/Source for other tools. Escape dismisses the AppShell surface. Switching raw views changes presentation only; captured text and revision remain unchanged.
+The shared ContentViewToggle uses one Code/BookOpen button for rendered/source presentation. Markdown tools retain a separate Raw capture icon for their exact envelope. Other tools use the same toggle for Formatted/Source. Escape dismisses the AppShell surface. Switching raw views changes presentation only; captured text and revision remain unchanged.
 
 ## Styling variables
 

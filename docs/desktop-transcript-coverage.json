@@ -1,0 +1,119 @@
+{
+  "sourceRepository": "lapis-desktop",
+  "sourceRevision": "52516ae9",
+  "composition": "src/components/ai/chat/AiTranscriptPanel.svelte",
+  "rows": [
+    {
+      "id": "recorded-conversation",
+      "source": "catalog/support/ai/transcript/design-core-reference.json",
+      "component": "chat/transcript/AgentTranscript.svelte",
+      "story": "agents-chat-transcript--basic",
+      "behavior": "22 recorded rows, 30 captured tools and three simulated discussions, with Desktop additions"
+    },
+    {
+      "id": "system-and-notice",
+      "source": "src/lib/ai/chat/transcript-projection.ts",
+      "component": "chat/transcript/AgentTranscript.svelte",
+      "story": "agents-chat-transcript--basic",
+      "behavior": "System divider, warning and error; shared Design Core rendering"
+    },
+    {
+      "id": "sent-context",
+      "source": "src/lib/ai/chat/sent-context.svelte.ts",
+      "component": "chat/transcript/AgentTranscript.svelte",
+      "story": "agent-complete-screens--all-messages",
+      "behavior": "Complete simulated captured ACP XML with actual Desktop bootstrap, attachment, handoff and recall delimiters; explicit delivery"
+    },
+    {
+      "id": "message-metadata",
+      "source": "src/components/ai/chat/AiTranscriptMessageMeta.svelte",
+      "component": "chat/message-metadata/AgentMessageMetadata.svelte",
+      "story": "agents-chat-message-metadata--basic",
+      "behavior": "Original retry/copy/recipient actions; failed authored message status below its body in both views"
+    },
+    {
+      "id": "recipient-delivery",
+      "source": "src/components/ai/chat/ChatRecipients.svelte",
+      "component": "chat/message-metadata/ChatRecipients.svelte",
+      "story": "agents-chat-message-metadata--recipients",
+      "behavior": "Captured recipient badges and delivery state; no inferred delivery"
+    },
+    {
+      "id": "tool-inspector",
+      "source": "src/components/ai/chat/AiTranscriptToolInspector.svelte",
+      "component": "chat/transcript-tool-inspector/AiTranscriptToolInspector.svelte",
+      "story": "agents-chat-tool-inspector--basic",
+      "behavior": "Open AppShell surface, Preview/Source/Capture, exact reader, dismissal and return focus"
+    },
+    {
+      "id": "tool-results",
+      "source": "src/components/ai/chat/AiTranscriptBlock.svelte",
+      "component": "tools/tool-result/AgentToolResult.svelte",
+      "story": "agents-tool-calls-tool-result--registered-result",
+      "behavior": "Generic fallback, normalized shell/read/edit/search, capture facts and explicit host registered view; App lookup remains host-owned"
+    },
+    {
+      "id": "inventory",
+      "source": "src/components/ai/chat/AiInventoryResult.svelte",
+      "component": "tools/inventory-result/AiInventoryResult.svelte",
+      "story": "agents-tool-calls-inventory-result--basic",
+      "behavior": "Actual /skills and /tools registered result renderer; populated/empty and explicit navigation"
+    },
+    {
+      "id": "command-report",
+      "source": "src/components/ai/chat/AiCommandReport.svelte",
+      "component": "tools/command-report/AiCommandReport.svelte",
+      "story": "agents-tool-calls-command-report--basic",
+      "behavior": "Captured slash-command text with original safe highlighting"
+    },
+    {
+      "id": "working",
+      "source": "src/components/ai/chat/AiTranscriptPanel.svelte",
+      "component": "chat/transcript/AgentTranscript.svelte",
+      "story": "agents-chat-transcript--streaming",
+      "behavior": "Spinner and explicit working label; no execution on mount"
+    },
+    {
+      "id": "queue",
+      "source": "src/components/ai/chat/AiQueuedMessages.svelte",
+      "component": "chat/transcript/AgentTranscript.svelte",
+      "story": "agents-chat-transcript--queued-messages",
+      "behavior": "Shared queue primitive with captured recipients and explicit cancellation; host queue/persistence remains outside"
+    },
+    {
+      "id": "comments",
+      "source": "src/components/ai/chat/AiTranscriptPanel.svelte",
+      "component": "chat/transcript/AgentTranscript.svelte",
+      "story": "agents-chat-transcript--inline-comments",
+      "behavior": "Same exact-anchor controller; stale comments retain quotes with separated status cards"
+    },
+    {
+      "id": "turn-summary",
+      "source": "src/components/ai/history/AiTurnChanges.svelte",
+      "component": "chat/turn-changes/AiTurnChanges.svelte",
+      "story": "agents-chat-turn-changes--basic",
+      "behavior": "Lazy immutable summary, three-file preview, expansion, tree/list, totals, identifiers and explicit view/undo actions"
+    },
+    {
+      "id": "changes-rail",
+      "source": "src/components/ai/history/AiHistoryRail.svelte",
+      "component": "chat/turn-changes/AiHistoryRail.svelte",
+      "story": "agents-chat-turn-changes--basic",
+      "behavior": "AppShell body rail, turn/conversation scopes, file navigation and selected/whole-turn undo"
+    },
+    {
+      "id": "changes-file",
+      "source": "src/components/ai/history/AiHistoryFile.svelte",
+      "component": "chat/turn-changes/AiHistoryFile.svelte",
+      "story": "agents-chat-turn-changes--file-preview",
+      "behavior": "Original main inspector, diff/before/after, file selection, undo and close; unavailable read has explicit retry"
+    },
+    {
+      "id": "history-dialogs",
+      "source": "src/components/ai/history/AiHistoryDialogs.svelte",
+      "component": "chat/turn-changes/AiHistoryDialogs.svelte",
+      "story": "agents-chat-turn-changes--checkpoint-unavailable",
+      "behavior": "Checkpoint cancel/continue/retry and exact undo preview/confirmation; native safety remains host-owned"
+    }
+  ]
+}

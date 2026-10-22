@@ -1,0 +1,12 @@
+{
+  "component": "AgentCommandReport",
+  "variables": [
+    {
+      "name": "--ui-agent-command-report-font-size",
+      "default": "0.8125rem",
+      "description": "Result text size",
+      "owner": "@lapismd/agent-ui",
+      "source": "tools/command-report/AiCommandReport.svelte"
+    }
+  ]
+}

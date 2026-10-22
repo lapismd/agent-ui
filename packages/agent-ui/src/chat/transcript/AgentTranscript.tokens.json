@@ -28,6 +28,41 @@
       "description": "Comment and review editor size",
       "owner": "@lapismd/design-core",
       "source": "@lapismd/design-core/src/shared/chat/transcript/comment-card.css"
+    },
+    {
+      "name": "--ui-transcript-metadata-font-size",
+      "default": "0.75rem",
+      "description": "Timestamp and outcome text size",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/chat/transcript/chat-body.css"
+    },
+    {
+      "name": "--ui-transcript-metadata-gap",
+      "default": "0.4rem",
+      "description": "Metadata item spacing",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/chat/transcript/chat-body.css"
+    },
+    {
+      "name": "--ui-ai-chat-metadata-error-foreground",
+      "default": "color-mix(in srgb, var(--destructive) 80%, var(--foreground))",
+      "description": "Readable light error foreground; dark defaults to a 60% destructive mix",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/ai/chat.css"
+    },
+    {
+      "name": "--ui-transcript-stale-gap",
+      "default": "0.5rem",
+      "description": "Spacing between retained unavailable-source comment cards",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/chat/transcript/chat-body.css"
+    },
+    {
+      "name": "--ui-transcript-composer-trailing-space",
+      "default": "4rem",
+      "description": "Document writing space after the composer; 3rem below 600px. Classic keeps its existing inset.",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/chat/transcript/chat-body.css"
     }
   ]
 }

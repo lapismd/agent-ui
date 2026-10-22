@@ -202,7 +202,7 @@ export function supportedMessages(): TranscriptItem[] {
       id: "error",
       kind: "context",
       notice: "error",
-      label: "Request failed",
+      label: "Turn interrupted",
       blocks: [
         {
           id: "error/body",
@@ -213,6 +213,30 @@ export function supportedMessages(): TranscriptItem[] {
         },
       ],
     },
+    ...["local-command", "inventory", "local-tool"].map((id) => ({
+      id,
+      kind: "context" as const,
+      label:
+        id === "local-command"
+          ? "Local command report"
+          : id === "inventory"
+            ? "Available skills"
+            : "Local application tool",
+      defaultExpanded: true,
+      blocks: [
+        {
+          id: `${id}/body`,
+          revision: "1",
+          kind: "custom" as const,
+          surface: "plain" as const,
+          label: id,
+          text:
+            id === "local-command"
+              ? "App\n  /help — Show available commands\nSkills\n  /review — Review captured source"
+              : "",
+        },
+      ],
+    })),
     {
       id: "handoff",
       kind: "handoff",

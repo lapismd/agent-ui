@@ -1,4 +1,14 @@
+import { readFileSync } from "node:fs";
 import { test, expect, type Page } from "@playwright/test";
+const tokens = JSON.parse(
+  readFileSync(
+    new URL(
+      "../packages/agent-ui/src/chat/transcript/AgentTranscript.tokens.json",
+      import.meta.url,
+    ),
+    "utf8",
+  ),
+);
 const errors = new WeakMap<Page, string[]>();
 test.beforeEach(({ page }) => {
   const messages: string[] = [];
@@ -20,7 +30,9 @@ test("Markdown anatomy and styling tables render semantic rows", async ({
   const styles = page
     .getByRole("table")
     .filter({ hasText: "--ui-transcript-max-width" });
-  await expect(styles.getByRole("row")).toHaveCount(5);
+  await expect(styles.getByRole("row")).toHaveCount(
+    tokens.variables.length + 1,
+  );
   await expect(styles).toContainText("62rem");
   await page.screenshot({ path: ".local/agent-transcript-docs.png" });
 });

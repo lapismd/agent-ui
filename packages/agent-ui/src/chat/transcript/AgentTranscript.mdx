@@ -87,6 +87,12 @@ The original empty conversation surface.
 
 <Canvas of={Stories.Empty} />
 
+### Classic error
+
+<Canvas of={Stories.ClassicError} />
+### Context and handoff typography
+<Canvas of={Stories.Typography} />
+
 ## Behavior and accessibility
 
 Document and Classic retain the same controller, source revisions and comment anchors. Tool inspectors share the exact readers. Unknown outcomes retain the pending request and do not replay it. The public options forward history, Markdown hooks, custom blocks, supplements, thread navigation, message actions and reactions; host authority remains explicit. Sent-comment editing is not enabled by this Agent adapter.
@@ -112,3 +118,25 @@ owning component family.
 components with the same controller flow. Documentation shell previews are
 bounded to 40rem; Canvas screens use the full viewport. Story data and simulated
 host effects stay outside published packages.
+
+The full example reuses Desktop's sanitized 22-row recorded conversation (30 tools
+and three simulated discussions), then adds Desktop-specific system/error,
+local report, inventory, recipient and saved-turn surfaces. Sent context contains
+the complete simulated ACP payload with the actual `lapis_context` and
+`lapis-context` wire delimiters, separate from authored text.
+
+Supply `options.messages` and explicit `onRetry`, `onCopyResponse`, `onOpenPath`
+callbacks for host actions. `options.blocks` describes local result renderers;
+`customBlock` remains the host's registered result-view hook. `icons` is a
+presentation-only map, keeping component functions out of persisted snapshots.
+`options.changes` integrates the saved-turn controller. Use `composerStatus` and
+`composerStatusPosition` for attached warnings; failed authored messages use
+Design Core's `item.status` metadata below their body.
+
+Refused sends stay in the editable draft. In Document mode the shared
+MessageMetadata appears immediately below that exact draft; Classic keeps its
+existing red feedback. Editing the draft or changing sessions cannot attach the
+previous refusal to another message. Unknown outcomes retain recovery feedback.
+Document mode leaves 4rem below the composer (3rem below 600px), using the
+document's original trailing buffer. Override
+`--ui-transcript-composer-trailing-space` on the host to change it.

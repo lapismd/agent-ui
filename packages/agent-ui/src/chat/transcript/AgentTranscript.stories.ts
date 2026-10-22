@@ -50,3 +50,13 @@ export const Loading: Story = {
 export const Empty: Story = {
   render: () => ({ Component: Fixture, props: { scenario: "empty" } }),
 };
+
+export const ClassicError: Story = {
+  render: () => ({
+    Component: Fixture,
+    props: { scenario: "error", view: "classic" },
+  }),
+};
+export const Typography: Story = {
+  render: () => ({ Component: Fixture, props: { scenario: "typography" } }),
+};

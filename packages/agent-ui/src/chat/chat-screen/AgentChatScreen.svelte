@@ -1,6 +1,10 @@
 <!-- SPDX-License-Identifier: Apache-2.0; copied Desktop frame/transcript composition, with host-owned controller ports. -->
 <script lang="ts">
   import { type Snippet } from "svelte";
+  import ChangesButton from "../turn-changes/AiChangesButton.svelte";
+  import ChangesRail from "../turn-changes/AiHistoryRail.svelte";
+  import ChangesFile from "../turn-changes/AiHistoryFile.svelte";
+  import ChangesDialogs from "../turn-changes/AiHistoryDialogs.svelte";
   import AgentTranscript from "../transcript/AgentTranscript.svelte";
   import type { AgentTranscriptOptions } from "../transcript-options.js";
   import { AppShell } from "@lapismd/design-core/shell";
@@ -28,6 +32,7 @@
     headerActions?: Snippet;
     transcriptOptions?: AgentTranscriptOptions;
   } = $props();
+  const changes = $derived(transcriptOptions?.changes);
   const panel = createChatPresentation(() => controller);
   let documentActions = $state<Snippet>();
   let opener = $state<HTMLElement>();
@@ -88,6 +93,12 @@
     />{/if}
 {/snippet}
 {#snippet bodySidebar(height: number, compact: boolean)}
+  {#if changes}<ChangesRail
+      inspection={changes}
+      busy={controller.busy}
+      {height}
+      {compact}
+    />{/if}
   {#if repositoryInspector}<AppShell.Body.Sidebar
       side="right"
       label="Repository context"
@@ -97,6 +108,10 @@
       {@render repositoryInspector()}
     </AppShell.Body.Sidebar>{/if}
 {/snippet}
+{#snippet savedFile()}{#if changes}<ChangesFile
+      inspection={changes}
+      busy={controller.busy}
+    />{/if}{/snippet}
 <div data-ui-component="ai-chat-panel">
   <div
     class="transcript-panel"
@@ -118,9 +133,12 @@
       footer={composerFooter}
       {toolInspector}
       {bodySidebar}
-      bodySidebarOpen={controller.inspector === "repository"}
+      bodySidebarOpen={!!changes?.open || controller.inspector === "repository"}
+      mainInspector={changes?.path ? savedFile : undefined}
     >
-      {#snippet headerActions()}{@render headerActions?.()}{/snippet}
+      {#snippet headerActions()}{#if changes}<ChangesButton
+            inspection={changes}
+          />{/if}{@render headerActions?.()}{/snippet}
       {#snippet menu()}<ChatConversationMenu>
           <DropdownMenu.Group>
             <DropdownMenu.Item onclick={() => (controller.screen = "history")}
@@ -158,6 +176,11 @@
     </AiChatSession>
   </div>
 </div>
+
+{#if changes}<ChangesDialogs
+    inspection={changes}
+    history={changes.history}
+  />{/if}
 
 <style>
   .transcript-panel {

@@ -31,7 +31,7 @@
     background: transparent;
     color: var(--foreground);
     font-family: var(--font-mono, ui-monospace, monospace);
-    font-size: 0.8125rem;
+    font-size: var(--ui-agent-command-report-font-size, 0.8125rem);
     line-height: 1.65;
     white-space: pre-wrap;
     overflow-wrap: anywhere;

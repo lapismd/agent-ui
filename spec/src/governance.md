@@ -27,6 +27,12 @@ a new independent component requires its own colocated contract.
 
 **Requirement.** Protected changes MUST update their owning contract and verification evidence. Functional and accessibility failures MUST remain explicit; visual baselines MUST NOT change without approval.
 
+Specification validation MUST keep the Desktop transcript coverage inventory
+complete, with existing production components and review stories for every mapped
+renderer. It MUST reject missing mappings, components and catalog scenarios.
+Source-package review archives MAY be used through an ignored, documented
+validation overlay; published manifests and lockfiles MUST retain registry ranges.
+
 ### Acceptance details
 
 - Public types express the boundary.

@@ -3,6 +3,7 @@
   import type { Snippet, ComponentProps } from "svelte";
   import {
     MarkdownComposer,
+    MessageMetadata,
     type MarkdownComposerHandle,
   } from "@lapismd/design-core/chat";
   import { Avatar } from "@lapismd/design-core/shadcn/avatar";
@@ -20,6 +21,9 @@
     people = [],
     extensions = [],
     handle = $bindable(null),
+    status,
+    statusPosition = "bottom",
+    sendError,
     before,
     drawer,
     onSend,
@@ -35,6 +39,10 @@
     people?: readonly import("../presentation.js").ComposerPersonOption[];
     extensions?: ComponentProps<typeof MarkdownComposer>["extensions"];
     handle?: MarkdownComposerHandle | null;
+    status?: ComponentProps<typeof MarkdownComposer>["status"];
+    statusPosition?: "top" | "bottom";
+    /** Refused send for this exact retained draft; unknown outcomes use recovery feedback. */
+    sendError?: string;
     before?: Snippet;
     drawer?: Snippet;
     onSend(): void;
@@ -58,6 +66,8 @@
     inputLabel="Message"
     placeholder="Ask about your notes…"
     {disabled}
+    {status}
+    {statusPosition}
     {triggers}
     {extensions}
     onSubmit={() => {
@@ -71,6 +81,15 @@
         decorative
       />{/snippet}
   </MarkdownComposer>
+  {#if view === "document" && sendError}<div class="draft-metadata">
+      <MessageMetadata
+        sender="assistant"
+        status="error"
+        statusLabel={sendError}
+        role="group"
+        aria-label="Draft metadata"
+      />
+    </div>{/if}
 </div>
 
 <style>
@@ -85,6 +104,10 @@
     );
     display: grid;
     gap: 0.5rem;
+    min-width: 0;
+  }
+  .draft-metadata {
+    padding-inline-start: 2rem;
     min-width: 0;
   }
 </style>
