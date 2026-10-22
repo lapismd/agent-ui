@@ -200,3 +200,7 @@ its default width and reset at other widths. Design Core owns measurement and
 host callbacks; Branches adds focused acceptance through the prepared local
 review package. See `spec/records/2026-10-22-column-fit-toggle.md`. Review remains
 pending before Workspace and broader checks.
+
+Branches row surface review uses the body background for unselected bookmark
+and working-copy rows (white in light mode), preserving hover/selection feedback.
+See `spec/records/2026-10-22-branch-row-background.md`.

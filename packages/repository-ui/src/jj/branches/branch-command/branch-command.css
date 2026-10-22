@@ -1,7 +1,7 @@
 .repository-bookmark-cards {
   --ui-command-view-background: var(
     --ui-repository-branch-background,
-    var(--card)
+    var(--background)
   );
   --ui-command-view-foreground: var(--foreground);
   --ui-command-view-list-max-height: max(12rem, calc(100dvh - 16rem));
@@ -22,7 +22,7 @@
   top: 0;
   z-index: 2;
   padding: 0.5rem 0.9rem;
-  background: var(--ui-repository-branch-background, var(--card));
+  background: var(--ui-repository-branch-background, var(--background));
   border-bottom: 1px solid var(--border);
 }
 
@@ -40,7 +40,7 @@
   border-radius: 0;
   border-bottom: 1px solid var(--border);
   white-space: normal;
-  background: var(--ui-repository-branch-background, var(--card));
+  background: var(--ui-repository-branch-background, var(--background));
 }
 
 .repository-bookmark-cards

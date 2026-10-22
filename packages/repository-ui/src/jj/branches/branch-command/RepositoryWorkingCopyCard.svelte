@@ -69,7 +69,7 @@
     border-bottom: 1px solid var(--border);
     border-radius: 0;
     color: var(--foreground);
-    background: var(--ui-repository-branch-background, var(--card));
+    background: var(--ui-repository-branch-background, var(--background));
     font: inherit;
     text-align: start;
     cursor: pointer;

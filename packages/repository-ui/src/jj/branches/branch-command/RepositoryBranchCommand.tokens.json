@@ -17,8 +17,8 @@
     },
     {
       "name": "--ui-repository-branch-background",
-      "default": "var(--card)",
-      "description": "Opaque column/card surface.",
+      "default": "var(--background)",
+      "description": "Default body surface for bookmark and working-copy rows.",
       "owner": "@lapismd/repository-ui",
       "source": "jj/branches/branch-command/branch-command.css"
     },

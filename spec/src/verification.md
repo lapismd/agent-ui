@@ -79,3 +79,7 @@ The public Design Core rail-toggle consumer regression for RUI-BRANCH-001 and
 AUI-GOV-001/AUI-GOV-003 is recorded in
 `spec/records/2026-10-22-column-fit-toggle.md`; broader qualification remains
 deferred until final screen review.
+
+The RUI-BRANCH-001 default row surface follow-up is recorded in
+`spec/records/2026-10-22-branch-row-background.md`; screen review and broader
+qualification remain pending.
