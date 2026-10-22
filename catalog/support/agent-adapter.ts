@@ -1,3 +1,4 @@
+import { acknowledgeRequest } from "./request-result.js";
 import type {
   AgentAction,
   AgentOutcome,
@@ -108,10 +109,11 @@ export class MemoryAgentPort implements AgentPort {
     }
     if (action.kind === "delete_session")
       next.sessions = next.sessions.filter((row) => row.id !== action.target);
-    if (action.kind === "respond")
-      next.requests = next.requests.filter(
-        (request) => request.id !== action.target,
-      );
+    if (action.kind === "respond" && !acknowledgeRequest(next, action))
+      return {
+        status: "refused",
+        reason: "The exact request or option is unavailable.",
+      };
     if (action.kind === "cancel_queued")
       next.queued = next.queued.filter((entry) => entry.id !== action.target);
     if (action.kind === "toggle_catalog") {

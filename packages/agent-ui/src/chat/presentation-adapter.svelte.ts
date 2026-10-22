@@ -1,3 +1,4 @@
+import { currentAgentRequest } from "../core/request-actions.svelte.js";
 import type { AgentUiController } from "../core/controller.svelte.js";
 import type { SettingsPatch, TranscriptPanelProps } from "./presentation.js";
 import { normalizeAcpAgent } from "../profiles/acp-agents.js";
@@ -87,11 +88,9 @@ export function createChatPresentation(
         await owner().action("stop");
       },
       respondToApproval: (request, option) =>
-        owner().action("respond", request, { option }),
+        owner().respondToApproval(request, option),
       respondToQuestion: (request, answers) =>
-        owner().action("respond", request, {
-          answers: JSON.stringify(answers),
-        }),
+        owner().respondToQuestion(request, answers),
     },
     composerState: {
       get draft() {
@@ -183,8 +182,26 @@ export function createChatPresentation(
       set drawerCollapsed(value) {
         drawerCollapsed = value;
       },
+      get requestDrafts() {
+        return owner().requests;
+      },
+      get requestSessionId() {
+        return owner().sessionId;
+      },
+      get requestState() {
+        if (!owner().snapshot?.capabilities.includes("respond"))
+          return { status: "unavailable" as const };
+        return owner().requestFeedback &&
+          owner().requestFeedback?.requestId ===
+            currentAgentRequest(owner())?.id
+          ? owner().requestFeedback!.state
+          : { status: "pending" as const };
+      },
+      get responseDisabled() {
+        return owner().actionBusy || !!owner().pending;
+      },
       get pendingInteraction() {
-        const request = owner().snapshot?.requests[0];
+        const request = currentAgentRequest(owner());
         if (!request) return;
         return request.kind === "approval"
           ? {

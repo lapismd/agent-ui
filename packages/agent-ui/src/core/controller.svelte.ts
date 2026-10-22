@@ -1,3 +1,5 @@
+import { AgentRequestController } from "../chat/request-controller.svelte.js";
+import { respondApproval, respondQuestion } from "./request-actions.svelte.js";
 import {
   TranscriptController,
   type TranscriptSubmission,
@@ -34,6 +36,12 @@ export class AgentUiController {
   attachments = $state<string[]>([]);
   recipients = $state<string[]>([]);
   drafts = $state<Record<string, string>>({});
+  readonly requests = new AgentRequestController();
+  interaction = $state<import("./models.js").AgentRequest>();
+  requestFeedback = $state<{
+    requestId: string;
+    state: import("../chat/request-state.js").AgentRequestState;
+  }>();
   readonly transcript: TranscriptController;
   #closed = false;
   #epoch = 0;
@@ -116,7 +124,13 @@ export class AgentUiController {
     }
   }
   selectSession(id: string) {
-    if (this.#closed || this.pending || this.transcript.sending) return;
+    if (
+      this.#closed ||
+      this.actionBusy ||
+      this.pending ||
+      this.transcript.sending
+    )
+      return;
     this.drafts[this.sessionId] = this.transcript.message;
     this.sessionId = id;
     this.transcript.message = this.drafts[id] ?? "";
@@ -176,6 +190,16 @@ export class AgentUiController {
           : "Outcome unknown. Your original request is retained.",
     };
   }
+  respondToApproval(request: string, option: string, item?: string) {
+    return respondApproval(this, request, option, item);
+  }
+  respondToQuestion(
+    request: string,
+    answers: import("../chat/requests.js").UserInputAnswers,
+    item?: string,
+  ) {
+    return respondQuestion(this, request, answers, item);
+  }
   action(
     kind: string,
     target?: string,
@@ -216,6 +240,20 @@ export class AgentUiController {
       this.snapshot = outcome.snapshot;
       this.pending = undefined;
       this.notice = "Action acknowledged";
+      const interaction = this.interaction;
+      if (
+        request.kind === "respond" &&
+        interaction &&
+        interaction.id === request.target
+      ) {
+        const id =
+          interaction.approval?.id ??
+          interaction.question?.id ??
+          interaction.id;
+        this.requests.clear(request.session ?? "", id);
+        this.interaction = undefined;
+        this.requestFeedback = undefined;
+      }
     } else if (outcome.status === "unknown") {
       this.pending = request;
       this.notice =
@@ -250,6 +288,9 @@ export class AgentUiController {
     this.#abort?.abort();
     this.loading = false;
     this.#unsubscribe?.();
+    this.requests.close();
+    this.interaction = undefined;
+    this.requestFeedback = undefined;
     await this.#running;
     await this.port.close?.();
   }

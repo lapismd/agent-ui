@@ -28,8 +28,10 @@
 
 ### Acceptance details
 
-- Public types express the boundary.
-- Focused tests and production-component stories verify the behavior.
+- Permission cards MUST show only advertised decisions, explicit host scopes and captured resources/commands, preserving exact option identities and acknowledged outcomes in initially collapsed inline transcript rows that expand to the same read-only card.
+- Question cards MUST support host-declared single/multiple choices, optional decorative letter/number labels, independent custom answers and freeform/secret input, retaining request-scoped drafts through refresh and presentation changes.
+- Submissions MUST remain pending until acknowledgement, reject stale identities and duplicate sends, and preserve unknown requests without replay; secret answers MUST remain absent from history.
+- Focused production-controller and component stories MUST cover both themes, narrow layouts, keyboard interaction and the complete-screen drawer/result compositions.
 
 ## AUI-CHAT-004 — Portable references and actions
 
@@ -84,6 +86,11 @@ the original 16px slot; bundled skills without a path MUST retain the package
 icon and explicit open-file actions MUST retain the host path.
 At browser zoom, filename icons MUST match the unchanged neighboring catalog
 icon slot instead of relying on device-dependent integer pixel rounding.
+
+The 2026-10-22 user-authorized request-card adaptation follows supplied outlined
+permission and question references while retaining existing AppShell/composer
+boundaries. Resource and answer rows MUST use the theme background surface, distinct from their containing card. Agents/Requests families MUST document every variant and styling
+variable. Desktop and JJ Store adoption follows explicit review of this slice.
 
 ### Acceptance details
 

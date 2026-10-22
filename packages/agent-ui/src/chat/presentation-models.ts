@@ -50,6 +50,10 @@ export type AttachmentsState = {
   attachments: { path: string; name: string }[];
   drawerHost: HTMLElement | null;
   drawerCollapsed: boolean;
+  requestDrafts?: import("./request-controller.svelte.js").AgentRequestController;
+  requestSessionId?: string;
+  requestState?: import("./request-state.js").AgentRequestState;
+  responseDisabled?: boolean;
   pendingInteraction?:
     | {
         type: "approval";

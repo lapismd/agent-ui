@@ -26,6 +26,7 @@ export type AgentSession = {
 };
 export type AgentRequest = {
   id: string;
+  session?: string;
   kind: "approval" | "question";
   title: string;
   details: string;
@@ -59,6 +60,11 @@ export type AgentSnapshot = {
   catalogGroups?: import("../catalog/types.js").CatalogGroup[];
   imports: AgentImport[];
   requests: AgentRequest[];
+  /** Captured, read-only request results keyed by exact transcript block ID. */
+  requestResults?: Record<
+    string,
+    import("../chat/request-state.js").AgentRequestResult
+  >;
   queued: TranscriptQueuedMessage[];
   busy: boolean;
   capabilities: string[];

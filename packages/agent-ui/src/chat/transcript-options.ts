@@ -62,6 +62,7 @@ export type AgentBlockPresentation =
       kind: "tool";
       view?: import("svelte").Snippet<[AgentToolResultData]>;
     })
+  | { kind: "request"; result: import("./request-state.js").AgentRequestResult }
   | { kind: "command" | "system" }
   | { kind: "inventory"; inventory: AgentInventory };
 export interface AgentMessagePresentation {

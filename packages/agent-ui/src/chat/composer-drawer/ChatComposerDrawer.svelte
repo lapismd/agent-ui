@@ -31,6 +31,10 @@
     {@const itemId = attachmentsState.pendingInteraction.id}
     <AiApprovalCard
       request={attachmentsState.pendingInteraction.request}
+      controller={attachmentsState.requestDrafts}
+      sessionId={attachmentsState.requestSessionId}
+      state={attachmentsState.requestState}
+      disabled={attachmentsState.responseDisabled}
       onRespond={(optionId) =>
         void actions.perform(() =>
           controller.respondToApproval(requestId, optionId, itemId),
@@ -41,6 +45,10 @@
     {@const itemId = attachmentsState.pendingInteraction.id}
     <AiQuestionCard
       request={attachmentsState.pendingInteraction.request}
+      controller={attachmentsState.requestDrafts}
+      sessionId={attachmentsState.requestSessionId}
+      state={attachmentsState.requestState}
+      disabled={attachmentsState.responseDisabled}
       onRespond={(answers) =>
         void actions.perform(() =>
           controller.respondToQuestion(requestId, answers, itemId),

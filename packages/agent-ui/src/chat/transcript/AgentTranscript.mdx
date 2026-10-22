@@ -164,3 +164,12 @@ previous refusal to another message. Unknown outcomes retain recovery feedback.
 Document mode leaves 4rem below the composer (3rem below 600px), using the
 document's original trailing buffer. Override
 `--ui-transcript-composer-trailing-space` on the host to change it.
+
+Acknowledged requests use `snapshot.requestResults`, keyed by the exact captured
+custom block ID, or an `options.blocks` request presentation. Put each request
+result in its own transcript item. The transcript projects it into its native
+collapsed disclosure row, labelled with the host-observed outcome and request
+title. Opening it shows the same full permission/question card read-only; mounting
+or expanding cannot submit another response. Unknown responses keep their captured
+request in the drawer until the host acknowledges them. Other completed history
+remains visible during later requests. Hosts own capture order and persistence.

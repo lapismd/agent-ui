@@ -79,18 +79,36 @@ export const Requests: Story = {
   render: () => ({ Component: AgentDemo, props: { requests: true } }),
   play: async ({ canvasElement }) => {
     const c = within(canvasElement);
-    await userEvent.click(c.getByRole("button", { name: /^A Allow once$/ }));
+    await userEvent.click(c.getByRole("button", { name: "Allow once" }));
     await waitFor(() =>
-      expect(
-        c.queryByText("Allow editing src/settings.ts?"),
-      ).not.toBeInTheDocument(),
+      expect(c.getByTestId("ai-question-card")).toBeVisible(),
     );
-    await userEvent.click(c.getByRole("button", { name: /^A Keep current$/ }));
+    await expect(
+      c.getByTestId("ai-question-card").getBoundingClientRect().width,
+    ).toBeGreaterThan(200);
+    const permission = c.getByRole("button", {
+      name: "Permission granted: Request to read project files",
+    });
+    await expect(permission).toHaveAttribute("aria-expanded", "false");
+    await userEvent.click(permission);
+    await expect(c.getByTestId("ai-approval-card")).toHaveAttribute(
+      "data-state",
+      "approved",
+    );
+    await userEvent.click(permission);
+    await expect(c.queryByTestId("ai-approval-card")).not.toBeInTheDocument();
+    await userEvent.click(c.getByRole("radio", { name: /^Development/ }));
     await userEvent.click(c.getByRole("button", { name: "Submit answer" }));
+    await userEvent.click(
+      await c.findByRole("button", {
+        name: "Response submitted: Your input is needed",
+      }),
+    );
     await waitFor(() =>
-      expect(
-        c.queryByText("Which behavior should be retained?"),
-      ).not.toBeInTheDocument(),
+      expect(c.getByTestId("ai-question-card")).toHaveAttribute(
+        "data-state",
+        "answered",
+      ),
     );
   },
 };
@@ -212,4 +230,118 @@ export const ChatReadOnlyReferences: StoryObj<typeof ReferenceDemo> = {
     Component: ReferenceDemo,
     props: { part: "screen", disabledActions: true },
   }),
+};
+
+export const PermissionCommand: Story = {
+  render: () => ({
+    Component: AgentDemo,
+    props: { requests: true, requestVariant: "terminal" },
+  }),
+};
+export const PermissionScopes: Story = {
+  render: () => ({
+    Component: AgentDemo,
+    props: { requests: true, requestVariant: "scoped" },
+  }),
+};
+export const RequestsClassic: Story = {
+  render: () => ({
+    Component: AgentDemo,
+    props: { requests: true, questionVariant: "multiple", view: "classic" },
+  }),
+  play: async ({ canvasElement }) => {
+    const c = within(canvasElement);
+    await userEvent.click(c.getByRole("button", { name: "Allow once" }));
+    await userEvent.click(
+      await c.findByRole("checkbox", { name: /^Search API/ }),
+    );
+    await userEvent.click(
+      c.getByRole("button", { name: "Switch to Document view" }),
+    );
+    await expect(
+      await c.findByRole("checkbox", { name: /^Search API/ }),
+    ).toHaveAttribute("aria-checked", "true");
+    await userEvent.click(c.getByRole("checkbox", { name: /^UI components/ }));
+    await userEvent.click(c.getByRole("button", { name: "Submit answer" }));
+    await userEvent.click(
+      await c.findByRole("button", {
+        name: "Response submitted: Your input is needed",
+      }),
+    );
+    await waitFor(() =>
+      expect(c.getByTestId("ai-question-card")).toHaveAttribute(
+        "data-state",
+        "answered",
+      ),
+    );
+  },
+};
+export const RequestsFreeText: Story = {
+  render: () => ({
+    Component: AgentDemo,
+    props: { requests: true, questionVariant: "character-count" },
+  }),
+};
+export const RequestRefused: Story = {
+  render: () => ({
+    Component: AgentDemo,
+    props: { requests: true, fault: "failed" },
+  }),
+};
+export const RequestUnknown: Story = {
+  render: () => ({
+    Component: AgentDemo,
+    props: { requests: true, fault: "unknown" },
+  }),
+};
+
+export const PermissionDenied: Story = {
+  render: () => ({
+    Component: AgentDemo,
+    props: { requests: true, view: "classic" },
+  }),
+  play: async ({ canvasElement }) => {
+    const c = within(canvasElement);
+    await userEvent.click(c.getByRole("button", { name: "Deny" }));
+    const row = await c.findByRole("button", {
+      name: "Permission denied: Request to read project files",
+    });
+    await expect(row).toHaveAttribute("aria-expanded", "false");
+    await userEvent.click(row);
+    const captured = c.getByTestId("ai-approval-card");
+    await expect(captured).toHaveAttribute("data-state", "denied");
+    await expect(
+      within(captured).getByRole("list", { name: "Requested resources" }),
+    ).toBeVisible();
+    await expect(
+      within(captured).queryByRole("button", { name: "Allow once" }),
+    ).not.toBeInTheDocument();
+    await expect(c.getByRole("radio", { name: /^Other/ })).toBeVisible();
+  },
+};
+export const RequestsOther: Story = {
+  render: () => ({
+    Component: AgentDemo,
+    props: { requests: true, questionVariant: "numbers" },
+  }),
+  play: async ({ canvasElement }) => {
+    const c = within(canvasElement);
+    await userEvent.click(c.getByRole("button", { name: "Allow once" }));
+    await userEvent.click(await c.findByRole("radio", { name: /^Other/ }));
+    await userEvent.type(
+      c.getByRole("textbox", { name: "Environment answer" }),
+      "A completely separate environment",
+    );
+    await userEvent.click(c.getByRole("button", { name: "Submit answer" }));
+    await expect(
+      await c.findByRole("button", {
+        name: "Response submitted: Your input is needed",
+      }),
+    ).toHaveAttribute("aria-expanded", "false");
+    await expect(
+      c.getByRole("button", {
+        name: "Permission granted: Request to read project files",
+      }),
+    ).toHaveAttribute("aria-expanded", "false");
+  },
 };

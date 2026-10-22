@@ -2,16 +2,128 @@
   "component": "AgentApprovalCard",
   "variables": [
     {
+      "name": "--ui-agent-request-background",
+      "default": "var(--card)",
+      "description": "Background",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/requests.css"
+    },
+    {
+      "name": "--ui-agent-request-border",
+      "default": "var(--border)",
+      "description": "Border",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/requests.css"
+    },
+    {
+      "name": "--ui-agent-request-radius",
+      "default": "0.75rem",
+      "description": "Radius",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/requests.css"
+    },
+    {
       "name": "--ui-agent-request-gap",
-      "default": "var(--ui-ai-request-gap, 0.5rem)",
-      "description": "Request content gap",
+      "default": "var(--ui-ai-request-gap, 0.75rem)",
+      "description": "Gap",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/requests.css"
+    },
+    {
+      "name": "--ui-agent-request-padding",
+      "default": "1rem",
+      "description": "Padding",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/requests.css"
+    },
+    {
+      "name": "--ui-agent-request-text-size",
+      "default": "0.8125rem",
+      "description": "Text size",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/requests.css"
+    },
+    {
+      "name": "--ui-agent-request-heading-gap",
+      "default": "0.75rem",
+      "description": "Heading gap",
       "owner": "@lapismd/agent-ui",
       "source": "chat/requests.css"
     },
     {
       "name": "--ui-agent-request-title-size",
       "default": "0.875rem",
-      "description": "Request title size",
+      "description": "Title size",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/requests.css"
+    },
+    {
+      "name": "--ui-agent-request-icon-size",
+      "default": "2.5rem",
+      "description": "Icon size",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/requests.css"
+    },
+    {
+      "name": "--ui-agent-request-icon-background",
+      "default": "color-mix(in srgb, var(--primary) 8%, var(--card))",
+      "description": "Icon background",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/requests.css"
+    },
+    {
+      "name": "--ui-agent-request-action-gap",
+      "default": "0.5rem",
+      "description": "Action gap",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/requests.css"
+    },
+    {
+      "name": "--ui-agent-request-detail-background",
+      "default": "var(--muted)",
+      "description": "Detail background",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/requests.css"
+    },
+    {
+      "name": "--ui-agent-request-success",
+      "default": "var(--foreground)",
+      "description": "Success",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/requests.css"
+    },
+    {
+      "name": "--ui-agent-request-destructive",
+      "default": "var(--foreground)",
+      "description": "Destructive",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/requests.css"
+    },
+    {
+      "name": "--ui-agent-request-option-gap",
+      "default": "0.5rem",
+      "description": "Option gap",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/requests.css"
+    },
+    {
+      "name": "--ui-agent-request-option-padding",
+      "default": "0.75rem",
+      "description": "Option padding",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/requests.css"
+    },
+    {
+      "name": "--ui-agent-request-selected-background",
+      "default": "var(--background)",
+      "description": "Selected background",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/requests.css"
+    },
+    {
+      "name": "--ui-agent-request-option-background",
+      "default": "var(--background)",
+      "description": "Theme surface for resource rows and unselected answer options; white in light themes",
       "owner": "@lapismd/agent-ui",
       "source": "chat/requests.css"
     }

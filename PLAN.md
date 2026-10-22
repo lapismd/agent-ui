@@ -68,3 +68,15 @@ lookup, notifications, persistence and agent dispatch remain injected. Mentions
 are references by default, with explicit host-configured routing. Complete
 Threads, Workflows and settings are deferred. Actual downstream adoption and
 publication require separate approval.
+
+## Permission and answer-request review
+
+Implement the supplied outlined request layouts in the existing Agent components,
+with typed host capabilities, retained controller drafts and in-memory complete
+Document/Classic demos. Run focused checks and pause for review before Desktop
+or JJ Store adoption. See `spec/records/2026-10-22-agent-requests.md`.
+
+The request review also includes optional letter/numeric choice labels, explicit
+custom answers for single and multiple choice, theme-surface option/resource rows,
+and collapsed acknowledged permission history that expands to the shared card.
+Focused verification and review precede all downstream adoption.

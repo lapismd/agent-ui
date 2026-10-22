@@ -79,13 +79,16 @@
     },
     {
       "primary": "chat/approval-card/AiApprovalCard",
-      "purpose": "A permission request with captured tool details and lettered host-advertised responses.",
-      "parts": []
+      "purpose": "Outlined permissions with captured resources/commands, exact host-advertised decisions and acknowledged read-only outcomes.",
+      "parts": [
+        "chat/approval-card/AgentRequestFrame.svelte",
+        "chat/approval-card/AgentPermissionDetails.svelte"
+      ]
     },
     {
       "primary": "chat/question-card/AiQuestionCard",
-      "purpose": "Host-requested answers with advertised choices, optional free text and explicit submission.",
-      "parts": []
+      "purpose": "Host-requested single/multiple choices with optional letter/numeric labels, custom/secret input and explicit submission.",
+      "parts": ["chat/question-card/AgentQuestionField.svelte"]
     },
     {
       "primary": "chat/transcript/AgentTranscript",

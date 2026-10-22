@@ -4,6 +4,7 @@
   import AgentTranscriptBlock from "./AgentTranscriptBlock.svelte";
   import AgentMessageMetadata from "../message-metadata/AgentMessageMetadata.svelte";
   import { historyTranscript } from "../turn-changes/transcript.js";
+  import { requestTranscript } from "../request-transcript.js";
   import type { Snippet } from "svelte";
   import {
     Transcript,
@@ -32,17 +33,33 @@
     onInspectTool?: TranscriptProps["onInspectTool"];
     options?: AgentTranscriptOptions;
   } = $props();
+  const requestResults = $derived.by(() => {
+    const results = { ...controller.snapshot?.requestResults };
+    for (const [id, presentation] of Object.entries(options.blocks ?? {}))
+      if (presentation.kind === "request") results[id] = presentation.result;
+    if (controller.pending?.kind === "respond") {
+      const request = controller.interaction;
+      const unresolved =
+        request?.approval?.id ?? request?.question?.id ?? request?.id;
+      for (const [id, result] of Object.entries(results))
+        if (result.request.id === unresolved) delete results[id];
+    }
+    return results;
+  });
   const items = $derived(
-    historyTranscript(
-      controller.items.map((item) => ({
-        ...item,
-        icon: options.icons?.[item.id] ?? item.icon,
-        tools: item.tools?.map((tool) => ({
-          ...tool,
-          icon: options.icons?.[tool.id] ?? tool.icon,
+    requestTranscript(
+      historyTranscript(
+        controller.items.map((item) => ({
+          ...item,
+          icon: options.icons?.[item.id] ?? item.icon,
+          tools: item.tools?.map((tool) => ({
+            ...tool,
+            icon: options.icons?.[tool.id] ?? tool.icon,
+          })),
         })),
-      })),
-      options.changes?.history.records ?? [],
+        options.changes?.history.records ?? [],
+      ),
+      requestResults,
     ),
   );
   const send = () => void controller.transcript.send();
@@ -104,6 +121,7 @@
   {#snippet customBlock(block)}<AgentTranscriptBlock
       {block}
       {options}
+      result={requestResults[block.id]}
       busy={controller.busy}
     />{/snippet}
   {#snippet metadataSupplement(item)}<AgentMessageMetadata

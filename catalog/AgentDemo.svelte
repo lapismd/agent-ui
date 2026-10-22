@@ -1,4 +1,8 @@
 <script lang="ts">
+  import {
+    permissionRequest,
+    questionRequest,
+  } from "./agents/requests/data.js";
   import { onDestroy, untrack } from "svelte";
   import { AgentWorkbench } from "../packages/agent-ui/src/screens/index.js";
   import {
@@ -12,6 +16,9 @@
     scenario = "default",
     fault = "none",
     requests = false,
+    requestVariant = "basic",
+    questionVariant = "basic",
+    view = "document",
     busy = false,
     empty = false,
   }: {
@@ -19,6 +26,9 @@
     scenario?: AgentScenario;
     fault?: "none" | "unknown" | "failed";
     requests?: boolean;
+    requestVariant?: string;
+    questionVariant?: string;
+    view?: "document" | "classic";
     busy?: boolean;
     empty?: boolean;
   } = $props();
@@ -31,29 +41,29 @@
     port.snapshot.imports = [];
     port.snapshot.catalog = [];
   }
-  if (untrack(() => requests))
+  if (untrack(() => requests)) {
+    const approval = permissionRequest(untrack(() => requestVariant));
+    const question = questionRequest(untrack(() => questionVariant));
     port.snapshot.requests = [
       {
-        id: "approval-1",
+        id: approval.id,
         kind: "approval",
-        title: "Allow editing src/settings.ts?",
-        details: "The host requests approval for this exact file edit.",
-        options: [
-          { id: "allow-once", label: "Allow once" },
-          { id: "deny", label: "Deny" },
-        ],
+        title: approval.title,
+        details: "Captured permission request",
+        options: approval.options,
+        approval,
       },
       {
-        id: "question-1",
+        id: question.id,
         kind: "question",
-        title: "Which behavior should be retained?",
-        details: "Choose an advertised answer or provide context.",
-        options: [
-          { id: "keep", label: "Keep current" },
-          { id: "change", label: "Use new behavior" },
-        ],
+        title: question.title,
+        details: "Captured question",
+        options: [],
+        question,
       },
     ];
+  }
+  controller.view = untrack(() => view);
   controller.snapshot = structuredClone(port.snapshot);
   controller.screen = untrack(() => screen);
   const imports = memoryAgentImports(controller);
