@@ -45,3 +45,7 @@ The RUI-HISTORY-001 all-file collection and host-menu slice is recorded in
 `spec/records/2026-10-22-diff-collection.md`, with focused comparison-cache,
 controller, Storybook/a11y and complete JJ/Op Log browser coverage. Broader
 qualification and downstream adoption remain pending review.
+
+The RUI-HISTORY-001 / AUI-GOV-003 header follow-up is recorded in
+`spec/records/2026-10-22-diff-header-review.md`, covering host totals, scoped
+actions, semantic header interaction and painted selection edges in both logs.

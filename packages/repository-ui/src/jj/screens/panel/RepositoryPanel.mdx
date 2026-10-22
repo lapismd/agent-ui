@@ -10,6 +10,7 @@ import {
   Basic,
   Styling,
   HostActions,
+  AllChanges,
   Bounded,
 } from "./RepositoryPanel.example-sources";
 import tokens from "./RepositoryPanel.tokens.json";
@@ -109,7 +110,14 @@ Host source controls replace the default selectors while shared actions remain.
 
 Host settings enable the shared expandable file-diff collection while retaining the ordinary reader.
 
+`getDiffStats(context)` supplies complete host totals, including unpaged files.
+`allChangesActions` provides comparison-wide commands; `diffActions` and the
+restore button stay in single-file headers. In all-file mode, restore is in
+each file's menu. FileActions demonstrates an unavailable host total, which
+stays absent instead of displaying a partial count.
+
 <Canvas of={Stories.AllInOne} />
+<Source code={AllChanges} language="tsx" />
 
 ### PagedFiles
 

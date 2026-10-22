@@ -9,6 +9,13 @@
       "source": "jj/history/diff-viewer/RepositoryDiffViewer.svelte"
     },
     {
+      "name": "--ui-repository-diff-viewer-scrollbar-inset",
+      "default": "0.5rem",
+      "description": "Inline-end clearance for the outer column overlay scrollbar in all-file mode; keeps selected frame edges visible.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/diff-viewer/RepositoryDiffViewer.svelte"
+    },
+    {
       "name": "--ui-repository-diff-menu-min-width",
       "default": "14rem",
       "description": "Minimum width for file-action menus and nested submenus; labels remain on one line.",

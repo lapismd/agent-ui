@@ -19,5 +19,6 @@ export interface RepositoryOperationsProps extends RepositoryDiffPreferences {
   metadataActions?: Snippet<[OperationState]>;
   fileActions?: Snippet<[OperationState]>;
   diffActions?: Snippet<[OperationState]>;
+  allChangesActions?: Snippet<[OperationState]>;
   onRevert?(snapshot: OperationState): void;
 }

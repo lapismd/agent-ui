@@ -89,3 +89,9 @@ boundaries. Header-wide disclosure, continuous square sections, separators,
 inset selection outlines and vertical menus incorporate the live review feedback.
 Focused qualification is recorded in `spec/records/2026-10-22-diff-collection.md`.
 This section is visual-pending; stop for review before repository browsing.
+
+All-file header review adds complete optional host totals and separate
+comparison-wide action slots in both logs. Exact file restores stay beside their
+file. Shared Design Core selection layering and header hover/focus are qualified
+with painted side-edge probes; evidence is in
+`spec/records/2026-10-22-diff-header-review.md`. Continue to pause for screen review.

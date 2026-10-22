@@ -40,10 +40,12 @@
     headerControls,
     headerActions,
     diffActions,
+    allChangesActions,
     diffFileMode = "single",
     onDiffFileModeChange,
     diffPageSize,
     getDiffMenuItems,
+    getDiffStats,
     revisionActions,
     fileActions,
   }: {
@@ -59,6 +61,7 @@
     headerControls?: Snippet<[HistoryState]>;
     headerActions?: Snippet<[HistoryState]>;
     diffActions?: Snippet<[HistoryState]>;
+    allChangesActions?: Snippet<[HistoryState]>;
     revisionActions?: Snippet<[LocalGraphCommit]>;
     fileActions?: Snippet<[HistoryState]>;
   } & RepositoryDiffPreferences = $props();
@@ -239,11 +242,13 @@
           {onDiffFileModeChange}
           {diffPageSize}
           {getDiffMenuItems}
+          {getDiffStats}
+          {allChangesActions}
           actions={diffActions ? selectedDiffActions : undefined}
           state={snapshot}
           {controller}
-          onRestore={restore && snapshot.revision && snapshot.path
-            ? () => restore.prepare(restoreCheckpoint!, snapshot.path!)
+          onRestore={restore && snapshot.revision
+            ? (path) => restore.prepare(restoreCheckpoint!, path)
             : undefined}
         />
       </ColumnCanvas.Root>

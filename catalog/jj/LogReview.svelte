@@ -112,6 +112,17 @@
       )}><CopyIcon aria-hidden="true" /></Button
   >
 {/snippet}
+{#snippet allChangesActions(state: HistoryState)}
+  <Button
+    size="icon-sm"
+    variant="ghost"
+    aria-label="Copy all changed file paths"
+    title="Copy all changed file paths"
+    onclick={() =>
+      demo.state.actions.push(`all-paths:${state.base}:${state.revision?.id}`)}
+    ><CopyIcon aria-hidden="true" /></Button
+  >
+{/snippet}
 
 <Tooltip.Provider
   ><div class="log-review" data-testid="log-review">
@@ -123,6 +134,10 @@
       }}
       diffPageSize={variant === "PagedFiles" ? 4 : 20}
       getDiffMenuItems={() => menuItems}
+      getDiffStats={variant === "FileActions"
+        ? undefined
+        : () => demo.diffStats}
+      {allChangesActions}
       controller={demo.history}
       sources={demo.source}
       copyText={demo.copyText}

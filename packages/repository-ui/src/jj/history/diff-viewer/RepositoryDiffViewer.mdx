@@ -20,6 +20,13 @@ A shared single-file or expandable collection of exact repository comparisons.
 
 The host owns the controller, comparison identity and preference persistence. Pass `diffFileMode` and `onDiffFileModeChange` to `RepositoryPanel` or `RepositoryOperations` to enable the column's All-in-one diff toggle. This standalone viewer receives the resulting `fileMode` and independent unified/split `viewMode`.
 
+The complete-screen columns accept `getDiffStats(context)` for host-provided total
+additions and deletions. The synchronous callback receives the exact operation,
+from/to revisions and comparison key; return cached totals or `undefined`.
+Totals cover every file, including unpaged files, and never fall back to the
+selected file or a partial sum. Hosts own fetching, caching and invalidation;
+replace reactive totals when the comparison changes. Zero totals remain visible.
+
 <Source code={Basic} language="tsx" />
 
 ## Anatomy
@@ -86,13 +93,20 @@ Disclosure buttons expose expanded state and controlled content IDs. Multiple fi
 <Markdown>{tokenMarkdown(tokens)}</Markdown>
 <Source code={Styling} language="tsx" />
 
-Expandable sections configure the public Design Core tokens: `--ui-diff-frame-radius: 0px`, `--ui-diff-file-gap: 0`, `--ui-diff-file-section-border: 0` and `--ui-diff-file-section-separator: 1px solid var(--border)`. Expanded bodies use `--ui-diff-file-content-padding-bottom: 0.75rem`. The selected file uses `--ui-diff-file-selection-outline: 1px solid var(--ring)` and `--ui-diff-file-selection-outline-offset: -1px` so all four edges stay inside the clipped column; its header inherits `--ui-diff-selected` through `--ui-diff-file-selected-header`. Header labels and status metadata form one keyboard-accessible disclosure button; the menu remains independent. File headers, syntax, changed rows, selected sections and gutters inherit the public Design Core diff tokens. RepositoryDiff owns rename provenance styles. No Mira or dependency-internal overrides are required.
+Expandable sections configure the public Design Core tokens: `--ui-diff-frame-radius: 0px`, `--ui-diff-file-gap: 0`, `--ui-diff-file-section-border: 0` and `--ui-diff-file-section-separator: 1px solid var(--border)`. The collection reserves `--ui-repository-diff-viewer-scrollbar-inset: 0.5rem` at the inline end so the column overlay scrollbar cannot obscure the section frame. Expanded bodies use `--ui-diff-file-content-padding-bottom: 0` so the selection frame ends at the content. The selected file uses `--ui-diff-file-selection-outline: 1px solid var(--ring)` and `--ui-diff-file-selection-outline-offset: -1px` so all four edges stay inside the clipped column; its header inherits `--ui-diff-selected` through `--ui-diff-file-selected-header`. Header labels and status metadata form one keyboard-accessible disclosure button; the menu remains independent. File headers, syntax, changed rows, selected sections and gutters inherit the public Design Core diff tokens. RepositoryDiff owns rename provenance styles. No Mira or dependency-internal overrides are required.
 
 ## API
 
 <ArgTypes of={Stories} />
 
 Public companion exports: `RepositoryDiffMenu`, `createRepositoryDiffMenu`, `RepositoryDiffFileMode`, `RepositoryDiffPreferences`, `RepositoryDiffActionContext`, `RepositoryDiffMenuItem`, `RepositoryDiffMenuProvider`, `RepositoryDiffEntry` and `RepositoryDiffEntries`.
+
+`RepositoryDiffComparisonContext` carries comparison identity without a selected
+path, and `RepositoryDiffStats` carries complete additions/deletions. On the
+complete screens, `diffActions` renders only in single-file headers;
+`allChangesActions` provides comparison-wide header actions with the screen's
+typed state. JJ Log's built-in restore moves to each file's menu in all-file
+mode, using that section's exact path. Copy/reveal menus stay file-scoped.
 
 ## Composition
 

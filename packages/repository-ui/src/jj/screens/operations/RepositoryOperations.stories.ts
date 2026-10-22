@@ -1,3 +1,4 @@
+import { AllChanges } from "./RepositoryOperations.example-sources.js";
 import type { Meta, StoryObj } from "@storybook/svelte-vite";
 import { assertJjStory } from "../../../../../../catalog/jj/support/assert-story.js";
 import Component from "./RepositoryOperations.svelte";
@@ -106,6 +107,9 @@ export const FailedRead = review("FailedRead");
 export const HostControls = review("HostControls");
 
 export const AllInOne: StoryObj<typeof OperationReview> = {
+  parameters: {
+    docs: { source: { code: AllChanges, language: "tsx", type: "code" } },
+  },
   render: () => ({
     Component: OperationReview,
     props: { variant: "AllInOne" },

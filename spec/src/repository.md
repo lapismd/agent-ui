@@ -81,6 +81,15 @@ by their exact comparison and controller lifetime. File menus MUST accept typed
 host actions with icons and exact per-file identities; path resolution, clipboard,
 file-manager access and preference persistence remain host-owned.
 
+All Changes headers MUST show optional host-provided totals for the exact
+comparison, including unpaged files; missing totals MUST remain absent rather
+than falling back to selected-file or partially loaded counts. Single-file
+actions MUST stay in single-file headers or per-file menus; an independent
+all-changes action snippet MUST provide explicit comparison-wide controls.
+The collection MUST leave inline-end clearance for the column overlay scrollbar
+so it cannot cover a selected frame, and expanded file bodies MUST have no extra
+bottom padding after the final content row.
+
 ### Acceptance details
 
 - JJ Log MUST retain its exact operation and workspace while applying a host-configured revset query, clearing dependent revision/file selections and discarding late replies.

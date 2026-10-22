@@ -3,11 +3,17 @@ import type { IconProps } from "@lucide/svelte";
 import type { LocalFileDiffChange } from "@lapismd/jj-history";
 
 export type RepositoryDiffFileMode = "single" | "all";
-export interface RepositoryDiffActionContext {
+export interface RepositoryDiffComparisonContext {
   comparisonKey: string;
   operation?: string;
   from: string;
   to: string;
+}
+export interface RepositoryDiffStats {
+  additions: number;
+  deletions: number;
+}
+export interface RepositoryDiffActionContext extends RepositoryDiffComparisonContext {
   path: string;
   change: LocalFileDiffChange;
 }
@@ -37,4 +43,9 @@ export interface RepositoryDiffPreferences {
   onDiffFileModeChange?(mode: RepositoryDiffFileMode): void;
   diffPageSize?: number;
   getDiffMenuItems?: RepositoryDiffMenuProvider;
+  /** Complete comparison totals from the host cache, including files not paged in.
+   * Return undefined while unavailable; this synchronous callback must not do I/O. */
+  getDiffStats?(
+    context: RepositoryDiffComparisonContext,
+  ): RepositoryDiffStats | undefined;
 }

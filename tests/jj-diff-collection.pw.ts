@@ -1,10 +1,12 @@
 import { expect, test } from "@playwright/test";
+import { PNG } from "pngjs";
 for (const kind of ["jj-log", "op-log"]) {
   test(`${kind}: paged sections, file navigation, retained modes and exact file menus`, async ({
     page,
   }) => {
     await page.goto(
       `/iframe.html?id=jj-complete-screens-${kind}--paged-files&viewMode=story`,
+      { waitUntil: "domcontentloaded" },
     );
     const viewer = page.locator(".repository-diff-viewer");
     const sections = viewer.locator('[data-ui-part="file-section"]');
@@ -31,7 +33,7 @@ for (const kind of ["jj-log", "op-log"]) {
     await expect(selected).toHaveAttribute("data-collapsed", "false");
     await expect(
       selected.locator(".ui-diff-file-diff-composer__content"),
-    ).toHaveCSS("padding-bottom", "12px");
+    ).toHaveCSS("padding-bottom", "0px");
     const a = await sections.nth(1).boundingBox(),
       b = await sections.nth(2).boundingBox();
     expect(Math.abs(a!.y + a!.height - b!.y)).toBeLessThanOrEqual(1);
@@ -126,3 +128,153 @@ for (const kind of ["jj-log", "op-log"]) {
     ).toHaveCount(1);
   });
 }
+
+for (const kind of ["jj-log", "op-log"])
+  for (const mode of ["light", "dark"])
+    test(`${kind}: selected frame paints over content and headers hover in ${mode}`, async ({
+      page,
+    }) => {
+      await page.goto(
+        `/iframe.html?id=jj-complete-screens-${kind}--all-in-one&viewMode=story&globals=colorMode:${mode}`,
+        { waitUntil: "domcontentloaded" },
+      );
+      await expect(page.locator("html")).toHaveClass(
+        mode === "dark" ? /\bdark\b/ : /^(?!.*\bdark\b)/,
+      );
+      const selected = page.locator(
+        '[data-ui-part="file-section"][data-selected="true"]',
+      );
+      await expect(
+        selected.getByRole("region", {
+          name: "Changes to src/history/controller.ts",
+          exact: true,
+        }),
+      ).toBeVisible();
+      // An opaque public token makes this a paint test, independent of theme color conversion.
+      await selected.evaluate((el) => {
+        (el as HTMLElement).style.setProperty(
+          "--ui-diff-file-selection-outline",
+          "2px solid rgb(12, 106, 222)",
+        );
+        (el as HTMLElement).style.setProperty(
+          "--ui-diff-file-selection-outline-offset",
+          "-2px",
+        );
+      });
+      const shot = await selected.screenshot({
+        animations: "disabled",
+        path: test.info().outputPath("selection.png"),
+      });
+      await test.info().attach(`${kind}-${mode}-selection`, {
+        body: shot,
+        contentType: "image/png",
+      });
+      const png = PNG.sync.read(shot);
+      const headerHeight = (await selected.locator("header").boundingBox())!
+        .height;
+      for (const y of [
+        Math.floor(headerHeight + 30),
+        Math.floor(png.height * 0.65),
+      ]) {
+        for (const xs of [
+          [0, 1, 2],
+          [png.width - 3, png.width - 2, png.width - 1],
+        ]) {
+          const distance = Math.min(
+            ...xs.map((x) => {
+              const offset = (png.width * y + x) * 4;
+              return Math.max(
+                Math.abs(png.data[offset] - 12),
+                Math.abs(png.data[offset + 1] - 106),
+                Math.abs(png.data[offset + 2] - 222),
+              );
+            }),
+          );
+          expect(distance, `${kind}/${mode} frame edge at y=${y}`).toBeLessThan(
+            25,
+          );
+        }
+      }
+      const header = page
+        .locator('[data-ui-part="file-section"]')
+        .nth(2)
+        .locator("header");
+      const before = await header.evaluate(
+        (el) => getComputedStyle(el).backgroundColor,
+      );
+      await header.getByRole("button", { name: /^Expand docs/ }).hover();
+      await expect(header).not.toHaveCSS("background-color", before);
+    });
+
+for (const kind of ["jj-log", "op-log"])
+  test(`${kind}: all changes totals and actions have comparison scope`, async ({
+    page,
+  }) => {
+    await page.goto(
+      `/iframe.html?id=jj-complete-screens-${kind}--all-in-one&viewMode=story`,
+      { waitUntil: "domcontentloaded" },
+    );
+    const header =
+      kind === "jj-log"
+        ? page.locator('[data-ui-part="column-header"]').filter({
+            has: page.getByRole("button", {
+              name: "Close Diff column",
+              exact: true,
+            }),
+          })
+        : page.locator(".operation-file-card > header");
+    await expect(header).toContainText("All changes");
+    await expect(header.getByText("+142", { exact: true })).toBeVisible();
+    await expect(header.getByText("-90", { exact: true })).toBeVisible();
+    if (kind === "jj-log") {
+      await page
+        .getByRole("button", {
+          name: "File actions for docs/history/query-guide.md",
+          exact: true,
+        })
+        .click();
+      await page
+        .getByRole("menuitem", {
+          name: "Restore this file version",
+          exact: true,
+        })
+        .click();
+      const dialog = page.getByRole("alertdialog");
+      await expect(dialog).toContainText("docs/history/query-guide.md");
+      await dialog.getByRole("button", { name: "Cancel", exact: true }).click();
+    }
+    await expect(
+      header.getByRole("button", { name: /Restore this file|Open file/ }),
+    ).toHaveCount(0);
+    await expect(
+      header.getByRole("button", {
+        name: "Copy all changed file paths",
+        exact: true,
+      }),
+    ).toBeVisible();
+    // Selection and paging do not replace complete host totals with one file's counts.
+    await page
+      .locator('[data-file-path="assets/repository-graph.png"]')
+      .click();
+    await expect(header.getByText("+142", { exact: true })).toBeVisible();
+    await expect(header.getByText("-90", { exact: true })).toBeVisible();
+    await header
+      .getByRole("button", { name: "All-in-one diff", exact: true })
+      .click();
+    await expect(header.getByText("+142", { exact: true })).toHaveCount(0);
+    await expect(
+      header.getByRole("button", { name: /Open file/ }),
+    ).toBeVisible();
+    await header
+      .getByRole("button", { name: "All-in-one diff", exact: true })
+      .click();
+    // A missing host summary stays absent, rather than displaying a partial sum.
+    await page.goto(
+      `/iframe.html?id=jj-complete-screens-${kind}--file-actions&viewMode=story`,
+      { waitUntil: "domcontentloaded" },
+    );
+    await expect(header).toContainText("All changes");
+    await expect(
+      header.locator('[data-ui-component="file-change-stats"]'),
+    ).toHaveCount(0);
+  });

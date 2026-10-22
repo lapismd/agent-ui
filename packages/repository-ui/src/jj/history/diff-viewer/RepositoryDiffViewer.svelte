@@ -202,6 +202,11 @@
     padding: var(--ui-repository-diff-viewer-padding, 0);
   }
   .repository-diff-viewer[data-file-mode="all"] {
+    /* The column's overlay scrollbar must not cover section selection edges. */
+    padding-inline-end: var(
+      --ui-repository-diff-viewer-scrollbar-inset,
+      0.5rem
+    );
     --ui-diff-frame-radius: 0px;
     --ui-diff-file-gap: 0;
     --ui-diff-file-section-border: 0;
@@ -209,7 +214,7 @@
     --ui-diff-file-selection-outline: 1px solid var(--ring);
     --ui-diff-file-selection-outline-offset: -1px;
     --ui-diff-file-selected-header: var(--ui-diff-selected);
-    --ui-diff-file-content-padding-bottom: 0.75rem;
+    --ui-diff-file-content-padding-bottom: 0;
   }
   .repository-diff-viewer[data-file-mode="single"] {
     height: 100%;

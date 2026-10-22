@@ -82,6 +82,7 @@ the running cold catalog: 40 total documented foundation families, 162 foundatio
 variations and all 5 specification pages present. This live-index check does not
 claim the deferred static build/package matrix passed.
 
-Manual in-app review confirms continuous sections, visible left/right selected
-outline edges and retained ordinary diff styling. The final Storybook process on
-7490 remains available for human review.
+The original manual review confirmed continuous sections and retained ordinary
+diff styling, but missed side outlines obscured by opaque diff content. The
+follow-up in `2026-10-22-diff-header-review.md` supersedes that selection-frame
+claim with actual painted-pixel checks in both themes and logs.

@@ -26,16 +26,19 @@
     copyText,
     metadataActions,
     diffActions,
+    allChangesActions,
     diffFileMode = "single",
     onDiffFileModeChange,
     diffPageSize,
     getDiffMenuItems,
+    getDiffStats,
   }: {
     state: OperationState;
     controller: OperationController;
     copyText(value: string): Promise<void>;
     metadataActions?: Snippet<[OperationState]>;
     diffActions?: Snippet<[OperationState]>;
+    allChangesActions?: Snippet<[OperationState]>;
   } & RepositoryDiffPreferences = $props();
   let expanded = $state(true);
   let viewMode = $state<FileDiffViewMode>("unified"),
@@ -59,7 +62,18 @@
         }
       : undefined,
   );
-  const stats = $derived(changeStats(snapshot.files.diff));
+  const stats = $derived(
+    diffFileMode === "all"
+      ? snapshot.files.from && snapshot.files.to
+        ? getDiffStats?.({
+            comparisonKey,
+            operation: snapshot.operation,
+            from: snapshot.files.from,
+            to: snapshot.files.to,
+          })
+        : undefined
+      : changeStats(snapshot.files.diff),
+  );
   const panelId = $derived(
     `operation-metadata-${snapshot.selected?.id ?? "none"}`,
   );
@@ -136,7 +150,12 @@
           {/if}
         </section>
       {/if}
-      <section class="operation-file-card" aria-label="Selected file diff">
+      <section
+        class="operation-file-card"
+        aria-label={diffFileMode === "all"
+          ? "All changes diff"
+          : "Selected file diff"}
+      >
         <header class="operation-card-header">
           <span class="operation-file-path"
             >{#if diffFileMode === "all"}All changes{:else}<RepositoryFileTitle
@@ -144,11 +163,10 @@
               />{/if}</span
           >
           <div class="operation-card-actions">
-            {@render diffActions?.(snapshot)}
-            {#if stats && diffFileMode === "single"}<FileChangeStats
-                {...stats}
-                showZero
-              />{/if}
+            {#if diffFileMode === "all"}{@render allChangesActions?.(
+                snapshot,
+              )}{:else}{@render diffActions?.(snapshot)}{/if}
+            {#if stats}<FileChangeStats {...stats} showZero />{/if}
             <RepositoryDiffControls
               bind:viewMode
               bind:wrap

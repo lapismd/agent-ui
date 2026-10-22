@@ -21,3 +21,20 @@ export const HostActions = `<script lang="ts">
 <RepositoryPanel {controller} searchable {headerActions} {revisionActions} {diffActions}
   copyText={(value) => navigator.clipboard.writeText(value)} />`;
 export const Bounded = HostActions.replace("maxCommits:200", "maxCommits:6");
+
+export const AllChanges = `<script lang="ts">
+  import { RepositoryPanel, type HistoryController, type HistoryState, type RepositoryDiffComparisonContext, type RepositoryDiffStats } from "@lapismd/repository-ui/jj";
+  import { Button } from "@lapismd/design-core/shadcn/button";
+  import FilesIcon from "@lucide/svelte/icons/files";
+  let { controller, getTotals, review }: {
+    controller: HistoryController;
+    getTotals(context: RepositoryDiffComparisonContext): RepositoryDiffStats | undefined;
+    review(state: HistoryState): void;
+  } = $props();
+  let fileMode = $state<"single" | "all">("all");
+</script>
+{#snippet allChangesActions(state: HistoryState)}
+  <Button variant="ghost" size="icon-sm" aria-label="Review all changes" onclick={() => review(state)}><FilesIcon /></Button>
+{/snippet}
+<RepositoryPanel {controller} diffFileMode={fileMode} onDiffFileModeChange={mode => fileMode = mode}
+  getDiffStats={getTotals} {allChangesActions} copyText={value => navigator.clipboard.writeText(value)} />`;

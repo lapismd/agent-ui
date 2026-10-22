@@ -6,6 +6,7 @@ import {
 } from "./large-blame.js";
 import { holdPreparation } from "./hold-preparation.js";
 import { collectionVariants, collectionChanges } from "./diff-collection.js";
+import { changeStats } from "../../../packages/repository-ui/src/jj/logic/history-files.js";
 import { attachDenseHistory } from "./dense-history.js";
 import { attachDenseOperations } from "./dense-operations.js";
 import {
@@ -221,6 +222,17 @@ export function createJjDemo(part: string, variant = "Basic") {
   };
   return {
     fixture,
+    // Host-computed totals cover the full fixture, including pages not loaded by UI.
+    diffStats: (denseOperations?.changes ?? dense?.changes)?.reduce(
+      (total, change) => {
+        const stats = changeStats(change);
+        return {
+          additions: total.additions + (stats?.additions ?? 0),
+          deletions: total.deletions + (stats?.deletions ?? 0),
+        };
+      },
+      { additions: 0, deletions: 0 },
+    ),
     largeCommitStats,
     state,
     history,

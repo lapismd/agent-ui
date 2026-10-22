@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount, onDestroy, untrack } from "svelte";
   import ExternalLinkIcon from "@lucide/svelte/icons/external-link";
+  import CopyIcon from "@lucide/svelte/icons/copy";
   import { Button } from "@lapismd/design-core/shadcn/button";
   import * as Tooltip from "@lapismd/design-core/shadcn/tooltip";
   import {
@@ -106,6 +107,16 @@
     >Open file</Button
   >
 {/snippet}
+{#snippet allChangesActions(context: OperationState)}
+  <Button
+    size="icon-sm"
+    variant="ghost"
+    aria-label="Copy all changed file paths"
+    title="Copy all changed file paths"
+    onclick={() => action("all-paths", context)}
+    ><CopyIcon aria-hidden="true" /></Button
+  >
+{/snippet}
 
 <Tooltip.Provider>
   <div class="operation-review">
@@ -117,6 +128,10 @@
       }}
       diffPageSize={variant === "PagedFiles" ? 4 : 20}
       getDiffMenuItems={() => menuItems}
+      getDiffStats={variant === "FileActions"
+        ? undefined
+        : () => demo.diffStats}
+      {allChangesActions}
       controller={demo.operations}
       sources={demo.source}
       copyText={demo.copyText}

@@ -1,3 +1,4 @@
+import { AllChanges } from "./RepositoryPanel.example-sources.js";
 import type { Meta, StoryObj } from "@storybook/svelte-vite";
 import { assertJjStory } from "../../../../../../catalog/jj/support/assert-story.js";
 import Component from "./RepositoryPanel.svelte";
@@ -173,6 +174,9 @@ export const HostControls: StoryObj<typeof LogReview> = {
 };
 
 export const AllInOne: StoryObj<typeof LogReview> = {
+  parameters: {
+    docs: { source: { code: AllChanges, language: "tsx", type: "code" } },
+  },
   render: () => ({ Component: LogReview, props: { variant: "AllInOne" } }),
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

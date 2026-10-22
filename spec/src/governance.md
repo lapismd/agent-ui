@@ -84,6 +84,11 @@ pass cannot stand for both presentations. All-file collection qualification MUST
 cover bounded continuation, repeated navigation, independent section disclosure,
 per-file host menu identities and retained single-file gutter behavior in both
 logs, using production controllers with isolated in-memory readers.
+Collection selection MUST be verified as painted pixels on both side edges over
+diff content in light and dark themes, with real pointer header hover; computed
+outline declarations alone are insufficient. Header qualification MUST distinguish
+complete host totals, unavailable totals and per-file counts, and prove that
+comparison-wide and file-scoped actions retain their respective identities.
 
 ### Acceptance details
 

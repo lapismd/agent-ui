@@ -10,6 +10,7 @@ import {
   Basic,
   Styling,
   HostActions,
+  AllChanges,
 } from "./RepositoryOperations.example-sources";
 import tokens from "./RepositoryOperations.tokens.json";
 import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
@@ -156,7 +157,13 @@ Replace header controls while preserving additional actions and the column toggl
 
 Host settings enable the shared expandable file-diff collection while retaining the ordinary reader.
 
+`getDiffStats(context)` supplies complete host totals for the selected comparison,
+including unpaged files. `allChangesActions` provides comparison-wide commands;
+`diffActions` stays in single-file headers. FileActions demonstrates an
+unavailable host total, which stays absent instead of displaying a partial count.
+
 <Canvas of={Stories.AllInOne} />
+<Source code={AllChanges} language="tsx" />
 
 ### PagedFiles
 

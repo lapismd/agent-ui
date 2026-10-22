@@ -25,3 +25,20 @@ export const HostControls = HostActions.replace(
   "{controller} {operationActions} searchable",
   "{controller} {operationActions} {headerControls} searchable",
 );
+
+export const AllChanges = `<script lang="ts">
+  import { RepositoryOperations, type OperationController, type OperationState, type RepositoryDiffComparisonContext, type RepositoryDiffStats } from "@lapismd/repository-ui/jj";
+  import { Button } from "@lapismd/design-core/shadcn/button";
+  import FilesIcon from "@lucide/svelte/icons/files";
+  let { controller, getTotals, review }: {
+    controller: OperationController;
+    getTotals(context: RepositoryDiffComparisonContext): RepositoryDiffStats | undefined;
+    review(state: OperationState): void;
+  } = $props();
+  let fileMode = $state<"single" | "all">("all");
+</script>
+{#snippet allChangesActions(state: OperationState)}
+  <Button variant="ghost" size="icon-sm" aria-label="Review all changes" onclick={() => review(state)}><FilesIcon /></Button>
+{/snippet}
+<RepositoryOperations {controller} diffFileMode={fileMode} onDiffFileModeChange={mode => fileMode = mode}
+  getDiffStats={getTotals} {allChangesActions} copyText={value => navigator.clipboard.writeText(value)} />`;

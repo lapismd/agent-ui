@@ -14,7 +14,10 @@
   import RepositoryDiffControls from "../diff-controls/RepositoryDiffControls.svelte";
   import RepositoryDiffViewer from "../diff-viewer/RepositoryDiffViewer.svelte";
   import RepositoryDiffMenu from "../diff-viewer/RepositoryDiffMenu.svelte";
-  import type { RepositoryDiffPreferences } from "../diff-viewer/types.js";
+  import type {
+    RepositoryDiffPreferences,
+    RepositoryDiffMenuProvider,
+  } from "../diff-viewer/types.js";
   import type { HistoryController } from "../../logic/history-controller.js";
   import RotateCcwIcon from "@lucide/svelte/icons/rotate-ccw";
   let {
@@ -25,10 +28,12 @@
     closeLabel = "Close Diff column",
     onRestore,
     actions,
+    allChangesActions,
     diffFileMode = "single",
     onDiffFileModeChange,
     diffPageSize,
     getDiffMenuItems,
+    getDiffStats,
   }: {
     state: HistoryState;
     controller: Pick<
@@ -38,8 +43,9 @@
     columnId?: string;
     label?: string;
     closeLabel?: string;
-    onRestore?(): void;
+    onRestore?(path: string): void | Promise<void>;
     actions?: Snippet<[Pick<HistoryState, "path" | "diff" | "busy">]>;
+    allChangesActions?: Snippet<[HistoryState]>;
   } & RepositoryDiffPreferences = $props();
   let viewMode = $state<FileDiffViewMode>("split");
   let wrap = $state(false);
@@ -61,7 +67,32 @@
         }
       : undefined,
   );
-  const stats = $derived(changeStats(snapshot.diff));
+  const stats = $derived(
+    diffFileMode === "all"
+      ? snapshot.base && snapshot.revision
+        ? getDiffStats?.({
+            comparisonKey,
+            operation: snapshot.operation,
+            from: snapshot.base,
+            to: snapshot.revision.id,
+          })
+        : undefined
+      : changeStats(snapshot.diff),
+  );
+  const fileMenu: RepositoryDiffMenuProvider = (context) => [
+    ...(getDiffMenuItems?.(context) ?? []),
+    ...(onRestore
+      ? [
+          {
+            id: "restore-file-version",
+            label: "Restore this file version",
+            icon: RotateCcwIcon,
+            disabled: snapshot.busy,
+            onSelect: () => onRestore!(context.path),
+          },
+        ]
+      : []),
+  ];
 </script>
 
 <ColumnCanvas.Column id={columnId} columnTitle="Diff" aria-label={label}>
@@ -73,13 +104,14 @@
     >
     <ColumnCanvas.HeaderActions class="repository-review-column-actions">
       {#if stats}<FileChangeStats {...stats} showZero />{/if}
-      {#if onRestore}<Button
+      {#if onRestore && diffFileMode === "single" && snapshot.path}<Button
           variant="ghost"
           size="icon-sm"
           aria-label="Restore this file version"
           title="Restore this file version"
           disabled={snapshot.busy}
-          onclick={onRestore}><RotateCcwIcon /></Button
+          onclick={() => void onRestore!(snapshot.path!)}
+          ><RotateCcwIcon /></Button
         >{/if}
       <RepositoryDiffControls
         bind:viewMode
@@ -87,7 +119,9 @@
         fileMode={diffFileMode}
         onFileModeChange={onDiffFileModeChange}
       />
-      {@render actions?.(snapshot)}
+      {#if diffFileMode === "all"}{@render allChangesActions?.(
+          snapshot,
+        )}{:else}{@render actions?.(snapshot)}{/if}
       {#if diffFileMode === "single"}<RepositoryDiffMenu
           context={menuContext}
           getItems={getDiffMenuItems}
@@ -114,7 +148,7 @@
       limitReached={snapshot.pathsLimitReached}
       onLoad={(path) => controller.loadDiff(path)}
       onMore={() => controller.morePaths()}
-      {getDiffMenuItems}
+      getDiffMenuItems={onRestore ? fileMenu : getDiffMenuItems}
     />
   </ColumnCanvas.Body>
 </ColumnCanvas.Column>

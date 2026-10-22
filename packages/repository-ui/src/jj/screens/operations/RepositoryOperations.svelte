@@ -38,10 +38,12 @@
     metadataActions,
     fileActions,
     diffActions,
+    allChangesActions,
     diffFileMode = "single",
     onDiffFileModeChange,
     diffPageSize,
     getDiffMenuItems,
+    getDiffStats,
     onRevert,
   }: RepositoryOperationsProps = $props();
   let snapshot = $state(initialOperationState());
@@ -242,11 +244,13 @@
           {onDiffFileModeChange}
           {diffPageSize}
           {getDiffMenuItems}
+          {getDiffStats}
           state={snapshot}
           {controller}
           {copyText}
           {metadataActions}
           {diffActions}
+          {allChangesActions}
         />
       </ColumnCanvas.Root>
     </div>
