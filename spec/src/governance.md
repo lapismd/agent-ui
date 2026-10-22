@@ -11,9 +11,10 @@ remain frozen by exact hashes until its own extraction is reviewed.
 The tracked AGENTS guide records the source-copy, per-family documentation,
 token, controller and Storybook workflow for both packages; newly reviewed JJ
 families MUST use the same fail-closed structure as Agent foundations.
-The user has authorized a Desktop-derived JJ history review slice while Agent
-visual review remains pending; jj-store workspace/provider/settings screens and
-downstream migration remain outside that slice.
+The user approved the portable jj-store parity plan, beginning with chat
+references and actions. Each section MUST stop for screen review. Iteration MUST
+use targeted checks; broad qualification MUST wait until the final screen review.
+Design Core owns generic fixes; application adoption and publication remain gated.
 
 ## AUI-GOV-001 — Source ownership
 
@@ -51,6 +52,8 @@ inventories and specification pages.
 The development catalog MUST prebundle its actual icon/runtime dependencies,
 retain strict compile/runtime diagnostics and qualify changed startup behavior
 in a cold process.
+Large shared-package chunks MUST pass the supported Vite asset-URL scanner;
+catalog configuration MUST NOT disable its transforms or suppress import errors.
 
 ### Acceptance details
 

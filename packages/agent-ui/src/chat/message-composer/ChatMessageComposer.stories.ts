@@ -1,3 +1,5 @@
+import ReferenceDemo from "../../../../../catalog/agents/references/ReferenceDemo.svelte";
+import { References } from "./ChatMessageComposer.example-sources.js";
 import { expect, within, userEvent, waitFor } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/svelte-vite";
 import Component from "./ChatMessageComposer.svelte";
@@ -35,4 +37,23 @@ export const Error: Story = {
     Component: Fixture,
     props: { part: "footer", scenario: "error" },
   }),
+};
+
+export const PairedReferences: StoryObj<typeof ReferenceDemo> = {
+  parameters: {
+    docs: { source: { code: References, language: "tsx", type: "code" } },
+  },
+  render: () => ({ Component: ReferenceDemo }),
+};
+export const JJStoreReferences: StoryObj<typeof ReferenceDemo> = {
+  parameters: {
+    docs: { source: { code: References, language: "tsx", type: "code" } },
+  },
+  render: () => ({ Component: ReferenceDemo, props: { legacy: true } }),
+};
+export const ClassicReferences: StoryObj<typeof ReferenceDemo> = {
+  parameters: {
+    docs: { source: { code: References, language: "tsx", type: "code" } },
+  },
+  render: () => ({ Component: ReferenceDemo, props: { classic: true } }),
 };

@@ -8,6 +8,7 @@ import type {
   AgentPort,
   AgentScreen,
   AgentSnapshot,
+  AgentControllerOptions,
 } from "./models.js";
 /** Host-owned presentation state. The adapter acknowledges every application effect. */
 export class AgentUiController {
@@ -42,13 +43,14 @@ export class AgentUiController {
   constructor(
     readonly port: AgentPort,
     initial?: AgentSnapshot,
+    readonly options: AgentControllerOptions = {},
   ) {
     this.snapshot = initial;
     this.sessionId = initial?.sessions[0]?.id ?? "";
     this.selectedAgent = initial?.agents[0]?.id ?? "";
     this.transcript = new TranscriptController(() => ({
       items: this.items,
-      canComment: !this.loading,
+      canComment: this.canComment,
       author: { id: "you", name: "You" },
       onSend: (submission) => this.send(submission),
     }));
@@ -64,6 +66,11 @@ export class AgentUiController {
   }
   get busy() {
     return this.snapshot?.busy ?? false;
+  }
+  get canComment() {
+    return (
+      !this.#closed && !this.loading && (this.options.canComment?.() ?? true)
+    );
   }
   get draftSendError() {
     const failure = this.sendFailure;
@@ -122,13 +129,30 @@ export class AgentUiController {
         error: "Sending is unavailable; your draft is retained.",
       };
     this.sendFailure = undefined;
+    let recipients: readonly string[];
+    try {
+      recipients =
+        this.port.resolveRecipients?.({
+          session: this.sessionId,
+          submission: structuredClone(submission),
+          selected: [...this.recipients],
+        }) ?? this.recipients;
+    } catch (cause) {
+      this.fail(cause);
+      this.sendFailure = {
+        session: this.sessionId,
+        submission,
+        reason: this.error,
+      };
+      return { publication: "refused" as const, error: this.error };
+    }
     const request: AgentAction = {
       id: submission.id,
       kind: "send",
       session: this.sessionId,
       submission,
       attachments: [...this.attachments],
-      recipients: [...this.recipients],
+      recipients: [...new Set(recipients)],
     };
     const outcome = await this.execute(request);
     if (outcome?.status === "acknowledged") {

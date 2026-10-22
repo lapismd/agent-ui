@@ -32,3 +32,23 @@ review check. Details and actual qualification counts belong in
 
 Earlier Agent records remain in `spec/records`. Final approval of each section
 and all downstream migration remain explicit user decisions.
+
+## Portable jj-store parity review sequence
+
+The approved plan delivers one complete section at a time, using focused checks
+and pausing for review before the next. Broad suites wait for final screen review.
+
+1. Chat references, composer/preview parity and configurable transcript actions — complete with focused checks; awaiting user review before JJ Log.
+2. JJ Log: portable controllers, header actions, search and dense examples.
+3. Op Log: pinned comparisons, conflicts and dense operation examples.
+4. Repository browser and branches: directory, files, documents and references.
+5. Workspace/Stacks: original UI, reconciled controllers and exact drag/drop.
+6. Projects/Tasks: scoped directories, details, forms and discussions.
+7. Agent directory/session parity: managed/recorded presentation and recovery.
+8. Embedded evolution, review, activity, agent-context and forge/checks panels.
+
+Generic references and actions belong to Design Core; host navigation, identity
+lookup, notifications, persistence and agent dispatch remain injected. Mentions
+are references by default, with explicit host-configured routing. Complete
+Threads, Workflows and settings are deferred. Actual downstream adoption and
+publication require separate approval.

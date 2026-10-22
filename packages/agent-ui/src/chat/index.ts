@@ -6,7 +6,10 @@ export { default as ChatParticipantDialog } from "./participant-dialog/ChatParti
 export type * from "./presentation-models.js";
 export type { ChatProfilePreferences } from "../profiles/preferences.js";
 export { default as AgentTranscript } from "./transcript/AgentTranscript.svelte";
-export type { AgentTranscriptOptions } from "./transcript-options.js";
+export type {
+  AgentTranscriptOptions,
+  AgentComposerOptions,
+} from "./transcript-options.js";
 export { createChatPresentation } from "./presentation-adapter.svelte.js";
 export { default as AgentApprovalCard } from "./approval-card/AiApprovalCard.svelte";
 export { default as AgentQuestionCard } from "./question-card/AiQuestionCard.svelte";

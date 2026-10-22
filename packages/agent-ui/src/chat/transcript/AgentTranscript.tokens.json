@@ -63,6 +63,76 @@
       "description": "Document writing space after the composer; 3rem below 600px. Classic keeps its existing inset.",
       "owner": "@lapismd/design-core",
       "source": "@lapismd/design-core/src/shared/chat/transcript/chat-body.css"
+    },
+    {
+      "name": "--ui-reference-chip-radius",
+      "default": "999px",
+      "description": "Reference chip corners",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/shadcn/reference-chip/reference-chip.css"
+    },
+    {
+      "name": "--ui-reference-chip-padding",
+      "default": "0.12rem 0.4rem",
+      "description": "Reference chip inset",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/shadcn/reference-chip/reference-chip.css"
+    },
+    {
+      "name": "--ui-reference-chip-font-size",
+      "default": "0.875em",
+      "description": "Reference chip type size",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/shadcn/reference-chip/reference-chip.css"
+    },
+    {
+      "name": "--ui-reference-chip-max-width",
+      "default": "16rem",
+      "description": "Reference label maximum width",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/shadcn/reference-chip/reference-chip.css"
+    },
+    {
+      "name": "--ui-chat-inline-emoji-size",
+      "default": "1.2em",
+      "description": "Custom emoji diameter",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/chat/inline-reference/InlineReference.svelte"
+    },
+    {
+      "name": "--ui-reference-mention-radius",
+      "default": "calc(var(--radius) - 0.2rem)",
+      "description": "Mention chip corners",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/shadcn/reference-chip/reference-chip.css"
+    },
+    {
+      "name": "--ui-reference-mention-background",
+      "default": "var(--secondary)",
+      "description": "Mention fill",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/shadcn/reference-chip/reference-chip.css"
+    },
+    {
+      "name": "--ui-reference-mention-padding",
+      "default": "0 0.25em",
+      "description": "Mention inset",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/shadcn/reference-chip/reference-chip.css"
+    },
+    {
+      "name": "--ui-reference-mention-font-weight",
+      "default": "600",
+      "description": "Mention weight",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/shadcn/reference-chip/reference-chip.css"
+    },
+    {
+      "name": "--ui-reference-mention-avatar-size",
+      "default": "1.25em",
+      "description": "Inline author avatar diameter",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/shadcn/reference-chip/reference-chip.css"
     }
   ]
 }

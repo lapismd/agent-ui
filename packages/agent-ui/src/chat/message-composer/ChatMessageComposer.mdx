@@ -6,7 +6,11 @@ import {
   ArgTypes,
 } from "@storybook/addon-docs/blocks";
 import * as Stories from "./ChatMessageComposer.stories";
-import { Basic, Styling } from "./ChatMessageComposer.example-sources";
+import {
+  Basic,
+  Styling,
+  References,
+} from "./ChatMessageComposer.example-sources";
 import tokens from "./ChatMessageComposer.tokens.json";
 import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
 
@@ -54,9 +58,41 @@ Unknown outcomes use retained-request recovery feedback, never a resend action.
 
 <Canvas of={Stories.Error} />
 
+### Paired references
+
+The composer and Markdown preview render the same source with shared Design Core
+InlineReference/ReferenceChip, icons and avatars. The fixture includes people,
+agents, repositories, projects, tasks, channels, Unicode/custom emoji, spoilers,
+formatting, tables and code. `@`, `#`, `:` and `/` demonstrate cancellable suggestions.
+People/agent references retain jj-store's filled author chip. The composer offers
+exact token removal; the Markdown preview keeps the same chip without removal.
+`references.getPopover` optionally supplies host profile content and actions.
+GitHub and Forgejo links use Mira’s public `inlineLinksExtension()` in both
+composer and preview. A third, plain Mira panel renders the same source without
+Chat extensions for comparison. Content typography, spacing and indentation stay
+stock; the composer removes note centering and disables line numbers through
+public configuration. Custom chip styling keeps removal inside each chip and
+omits link underlines.
+
+<Canvas of={Stories.PairedReferences} />
+<Source code={References} language="tsx" />
+
+### JJ Store references
+
+The host preserves existing member/agent tokens and handles application schemes.
+No mention dispatches an agent unless the host opts into recipient resolution.
+
+<Canvas of={Stories.JJStoreReferences} />
+
+### Classic references
+
+The same source and codec in the framed composer.
+
+<Canvas of={Stories.ClassicReferences} />
+
 ## Behavior and accessibility
 
-Enter inserts a newline in both presentations; Ctrl/Command+Enter requests send. disabled blocks submission. The host clears the draft only after acknowledgement. Supply extensions and triggers through the public editor APIs for application-specific references.
+Enter inserts a newline in both presentations; Ctrl/Command+Enter requests send. disabled blocks submission. The host clears the draft only after acknowledgement. Supply extensions, triggers, referenceSources, references, customEmojis and emojiText through public editor APIs. The complete Transcript forwards these same hooks to its composer and inline comment editors. Host codecs own stable identities and serialization; navigation never implies delivery. Legacy people.value insertions remain literal.
 
 ## Styling variables
 
