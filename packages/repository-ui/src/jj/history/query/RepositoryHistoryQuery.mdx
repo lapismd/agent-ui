@@ -1,0 +1,68 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryHistoryQuery.stories";
+import { Basic, Styling } from "./RepositoryHistoryQuery.example-sources";
+import tokens from "./RepositoryHistoryQuery.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# History query
+
+The jj-store query editor adapted to a host-controlled shared component. Both log screens compose this same implementation.
+
+## Usage
+
+Pass the committed query and apply drafts through the owning controller. Hosts may supply `info` with native callable signatures, aliases, operators, operation fields and symbols; defaults offer common JJ vocabulary. Completion is lexical assistance; native validation stays host-owned.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part              | Responsibility                                                         |
+| ----------------- | ---------------------------------------------------------------------- |
+| SearchFilterInput | Shared pill and CodeMirror custom-language editor.                     |
+| Query actions     | Run query and disclose syntax/context.                                 |
+| Completion        | Native vocabulary and snapshot bookmarks without transport or routing. |
+
+## Variations
+
+### Revset
+
+JJ functions, aliases, operators and bookmark completions.
+
+<Canvas of={Stories.Revset} />
+
+### Operations
+
+Recorded metadata fields and value suggestions; no revset interpretation.
+
+<Canvas of={Stories.Operations} />
+
+### Pending
+
+Retains the draft while the host runs a query and disables repeat submission.
+
+<Canvas of={Stories.Pending} />
+
+## Behavior and accessibility
+
+Ctrl/Cmd+Space opens completion, Tab accepts a suggestion, and Ctrl/Cmd+Enter applies the draft. Enter accepts active completion or applies when no completion is open. Strings suppress inappropriate suggestions. Query controls have accessible names; context disclosure retains focus. Clearing restores all revisions or an unfiltered operation graph. Host validation, pins, errors and feedback remain in the existing controller.
+
+## Styling variables
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+RepositoryPanel and RepositoryOperations bind the same query component to their own controller and derive bookmarks from the pinned snapshot. `queryInfo` replaces the default vocabulary when a host has richer native metadata. Neither editor performs native reads or mutations.

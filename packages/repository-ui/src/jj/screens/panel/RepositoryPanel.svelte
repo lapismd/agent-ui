@@ -1,6 +1,7 @@
 <!-- SPDX-License-Identifier: Apache-2.0; copied from Lapis Desktop with explicit host boundaries. -->
 <script lang="ts">
   import type { Snippet } from "svelte";
+  import type { RepositoryHistoryQueryInfo } from "../../history/query/types.js";
   import type { LocalGraphCommit } from "@lapismd/jj-history";
   import type { HistoryState } from "../../logic/history-state.js";
   import RepositoryHistoryLimit from "../../history/revisions/RepositoryHistoryLimit.svelte";
@@ -33,7 +34,8 @@
     initialLoad,
     copyText,
     restore,
-    searchable = false,
+    searchable = true,
+    queryInfo,
     headerControls,
     headerActions,
     diffActions,
@@ -48,6 +50,7 @@
     copyText(value: string): Promise<void>;
     restore?: RestoreController;
     searchable?: boolean;
+    queryInfo?: RepositoryHistoryQueryInfo;
     headerControls?: Snippet<[HistoryState]>;
     headerActions?: Snippet<[HistoryState]>;
     diffActions?: Snippet<[HistoryState]>;
@@ -164,6 +167,7 @@
             onRefresh={() => controller.refresh()}
           />
           {#if searchable && queryOpen}<RepositoryLogQuery
+              info={queryInfo}
               {controller}
               busy={snapshot.busy}
             />{/if}

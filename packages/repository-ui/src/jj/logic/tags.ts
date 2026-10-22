@@ -1,6 +1,11 @@
 import type { LocalGraphCommit } from "@lapismd/jj-history";
 import type { TagListItem } from "@lapismd/design-core/shadcn/tag-list";
 import TriangleAlertIcon from "@lucide/svelte/icons/triangle-alert";
+import CameraIcon from "@lucide/svelte/icons/camera";
+import GitMergeIcon from "@lucide/svelte/icons/git-merge";
+import FolderGitIcon from "@lucide/svelte/icons/folder-git-2";
+import BookmarkIcon from "@lucide/svelte/icons/bookmark";
+import GitBranchIcon from "@lucide/svelte/icons/git-branch";
 import type { RepositoryLogRevision } from "./graph/model.js";
 import { commitCardSearch } from "./commit-cards.js";
 
@@ -9,10 +14,24 @@ export function repositoryCommitTags(commit?: LocalGraphCommit): TagListItem[] {
   if (!commit) return [];
   return [
     ...(commit.parents.length > 1
-      ? [{ id: "merge", label: "Merge", variant: "secondary" as const }]
+      ? [
+          {
+            id: "merge",
+            label: "Merge",
+            variant: "secondary" as const,
+            icon: GitMergeIcon,
+          },
+        ]
       : []),
     ...(commit.divergent
-      ? [{ id: "divergent", label: "Divergent", tone: "warning" as const }]
+      ? [
+          {
+            id: "divergent",
+            label: "Divergent",
+            tone: "warning" as const,
+            icon: GitBranchIcon,
+          },
+        ]
       : []),
     ...(commit.conflicted
       ? [
@@ -29,6 +48,7 @@ export function repositoryCommitTags(commit?: LocalGraphCommit): TagListItem[] {
       .map((bookmark) => ({
         id: `bookmark:${JSON.stringify([bookmark.name, bookmark.remote])}`,
         label: `${bookmark.name}${bookmark.remote ? `@${bookmark.remote}` : ""}`,
+        icon: BookmarkIcon,
         // Neutral bookmarks need an opaque chip on selected graph rows.
         variant: "secondary" as const,
         tone: bookmark.conflicted
@@ -39,6 +59,7 @@ export function repositoryCommitTags(commit?: LocalGraphCommit): TagListItem[] {
       })),
     ...commit.workspaces.map((workspace) => ({
       id: `workspace:${workspace}`,
+      icon: FolderGitIcon,
       label:
         workspace === "default"
           ? "Working copy"
@@ -54,7 +75,16 @@ export function repositoryGraphTags(
 ): TagListItem[] {
   if (commit) return repositoryCommitTags(commit);
   return [
-    ...(revision.reason === "merge" ? [{ id: "merge", label: "Merge" }] : []),
+    ...(revision.reason === "merge"
+      ? [
+          {
+            id: "merge",
+            label: "Merge",
+            variant: "secondary" as const,
+            icon: GitMergeIcon,
+          },
+        ]
+      : []),
     ...(revision.conflicted
       ? [
           {
@@ -68,6 +98,13 @@ export function repositoryGraphTags(
     ...revision.tags.map((label, index) => ({
       id: `operation:${index}:${label}`,
       label,
+      variant: "secondary" as const,
+      icon:
+        label === "Snapshot"
+          ? CameraIcon
+          : label === revision.workspace
+            ? FolderGitIcon
+            : undefined,
     })),
   ];
 }

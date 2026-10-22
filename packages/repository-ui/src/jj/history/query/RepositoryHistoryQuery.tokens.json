@@ -1,0 +1,19 @@
+{
+  "component": "RepositoryHistoryQuery",
+  "variables": [
+    {
+      "name": "--ui-repository-history-query-padding",
+      "default": "0.5rem 0.75rem",
+      "description": "Source-faithful inset around the shared query editor.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/query/RepositoryHistoryQuery.svelte"
+    },
+    {
+      "name": "--ui-repository-history-query-gap",
+      "default": "0.75rem",
+      "description": "Source-faithful separation before the optional query context.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/query/RepositoryHistoryQuery.svelte"
+    }
+  ]
+}

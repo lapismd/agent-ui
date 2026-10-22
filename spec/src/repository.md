@@ -54,6 +54,18 @@ and expose bounds for operations, changed revisions and paths. Hosts MUST be
 able to supply typed header, operation, metadata, file and diff actions without
 moving routing, admission or mutation execution into the shared UI. Conflicts
 MUST be read against the selected recorded commit/change pair.
+Known conflicted rows MUST display a Conflicted badge and a subtle semantic
+destructive tint in light and dark themes. Operation paging MUST span its row
+with a centered, muted label.
+Operation chips MUST remain distinct during selection and use icons for known
+metadata. Dense comparisons MUST include unchanged sections large enough to
+demonstrate the shared diff reader's context expansion.
+JJ Log and Op Log MUST share the source-adapted query editor presentation,
+syntax highlighting, explicit completion and host-provided vocabulary while
+retaining their distinct revset and operation query languages. Hosts retain
+validation and query execution. Dense examples MUST exercise several graph
+lanes, merges, continuation and scrolling in both logs. Changed-file rows MUST
+retain known conflicts and supplied counts, with loaded descendant totals.
 
 ### Acceptance details
 

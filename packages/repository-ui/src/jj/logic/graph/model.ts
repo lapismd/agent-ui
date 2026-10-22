@@ -11,6 +11,7 @@ export type RepositoryLogRevision = {
   reason: "checkpoint" | "merge";
   author: string;
   host?: string;
+  workspace?: string;
   millis: number | bigint;
   tags: string[];
   conflicted?: boolean;
@@ -53,6 +54,7 @@ export function operationRows(
     reason: node.parents.length > 1 ? "merge" : "checkpoint",
     author: node.user,
     host: node.host,
+    workspace: node.workspace ?? undefined,
     millis: node.end.millis,
     tags: [
       ...(node.is_snapshot ? ["Snapshot"] : []),

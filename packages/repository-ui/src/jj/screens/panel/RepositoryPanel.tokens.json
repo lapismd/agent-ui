@@ -10,14 +10,14 @@
     },
     {
       "name": "--ui-repository-panel-query-gap",
-      "default": "0.5rem",
-      "description": "Spacing between query controls.",
+      "default": "0.75rem",
+      "description": "Separation before the optional syntax context.",
       "owner": "@lapismd/repository-ui",
       "source": "jj/screens/panel/RepositoryLogQuery.svelte"
     },
     {
       "name": "--ui-repository-panel-query-padding",
-      "default": "0.5rem",
+      "default": "0.5rem 0.75rem",
       "description": "Outer inset for the optional native revset form.",
       "owner": "@lapismd/repository-ui",
       "source": "jj/screens/panel/RepositoryLogQuery.svelte"

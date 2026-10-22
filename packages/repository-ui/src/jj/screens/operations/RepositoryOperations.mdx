@@ -115,6 +115,10 @@ Select both recorded commit endpoints; no pair is invented.
 
 Inspect captured conflicts for the exact selected revision, retaining local
 staging/preview without native execution.
+The selected operation gains a Conflicted badge and semantic red tint only when
+its recorded after-revisions report conflicts. Unknown operations are not
+inferred to be conflict-free. Neutral chips remain opaque during selection,
+with icons for recorded Snapshot, Merge and workspace labels.
 
 <Canvas of={Stories.Conflicts} />
 
@@ -162,6 +166,9 @@ revisions and paths retain their 500-item bounds with explicit status. Query
 changes clear dependent selections, stale replies are discarded and invalid
 continuations are reported through the injected feedback port. Workspace is
 retained host navigation context, not an invented operation-query predicate.
+More operations spans the entire row with a centered, muted label. The
+`src/history/controller.ts` example retains a long unchanged section between
+edits, exercising the shared diff reader's unmodified-line expansion controls.
 The in-memory filter fixture demonstrates `description:"rebase"`, `none` and
 `invalid`; it is not an implementation of the native query grammar.
 

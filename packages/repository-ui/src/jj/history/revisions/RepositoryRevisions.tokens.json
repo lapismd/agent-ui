@@ -2,6 +2,13 @@
   "component": "RepositoryRevisions",
   "variables": [
     {
+      "name": "--ui-repository-revisions-more-foreground",
+      "default": "var(--muted-foreground)",
+      "description": "Muted label on the full-width centered revision paging button.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/revisions/RepositoryRevisions.svelte"
+    },
+    {
       "name": "--ui-repository-revisions-message-background",
       "default": "transparent",
       "description": "Markdown preview surface inside the expanded commit message; transparent retains its parent panel background.",

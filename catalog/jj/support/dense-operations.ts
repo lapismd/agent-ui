@@ -6,6 +6,7 @@ import { richCommitMessage } from "./reference/rich-commit.js";
 import { attachDenseHistory } from "./dense-history.js";
 import { commitDetail } from "./reference/commit-detail.js";
 import { stats } from "./reference/query-stats.js";
+import { branchingParents } from "./branching-history.js";
 
 export function attachDenseOperations(reader: HistoryReader, variant: string) {
   const { commits, changes } = attachDenseHistory(reader);
@@ -35,10 +36,14 @@ export function attachDenseOperations(reader: HistoryReader, variant: string) {
     }),
   );
   nodes.forEach((node, i) => {
-    node.parents = nodes[i + 1] ? [nodes[i + 1].id] : [];
-    if (i === 3) node.parents.push(nodes[i + 3].id);
+    node.parents = branchingParents(
+      nodes.map((node) => node.id),
+      i,
+    );
   });
   if (variant === "RootOperation") nodes[0].parents = [];
+  if (variant === "MergeParents")
+    nodes[3].parents = [nodes[4].id, nodes[20].id];
   const read = reader.read;
   let failPaths = variant === "FailedRead";
   reader.read = async (handle, query) => {

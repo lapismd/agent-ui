@@ -23,6 +23,10 @@ export function listingFiles(
 ): FileListingFile[] {
   return paths.map((change) => ({
     path: change.path,
+    conflicted:
+      change.after.length > 1 ||
+      (change.content.status === "unavailable" &&
+        change.content.reason === "conflict"),
     ...changeStats(selected?.path === change.path ? selected : change),
   }));
 }

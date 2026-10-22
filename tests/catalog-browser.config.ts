@@ -9,6 +9,8 @@ export default defineConfig({
     "jj-review.pw.ts",
     "jj-log-parity.pw.ts",
     "jj-operation-parity.pw.ts",
+    "jj-operation-presentation.pw.ts",
+    "jj-history-review.pw.ts",
     "file-type-icons.pw.ts",
   ],
   workers: 1,

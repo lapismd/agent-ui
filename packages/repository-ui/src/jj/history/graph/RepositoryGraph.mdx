@@ -54,6 +54,11 @@ A valid successful result with no content. The production component displays the
 
 Selection delegates the full event ID. Author/profile and copy actions remain independent of row selection. An empty graph renders Empty with an icon and does not fabricate a revision. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
 
+Known conflicts display a Conflicted badge and a subtle destructive theme tint,
+including during selection and hover. Row content follows jj-store’s repositoryLogContentLeft for each row, so avatars move with the active lanes rather than aligning to a global column. The graph reserves 20rem beside its lanes and scrolls when constrained. Neutral operation chips use an opaque
+secondary surface so they remain distinct on selected rows; Snapshot, Merge and
+workspace chips carry their corresponding icons.
+
 ## Styling variables
 
 Defaults retain the Desktop presentation. Set documented variables on an

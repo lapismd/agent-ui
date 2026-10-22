@@ -8,6 +8,20 @@ import type { OperationState } from "./operation-state.js";
 import { parentCandidates } from "./parent-candidates.js";
 import { check } from "./history-selection.js";
 import { operationParents } from "./operation-parent.js";
+import { operationRows } from "./graph/model.js";
+
+/** Only mark conflicts reported by the selected operation's recorded after revisions. */
+export function operationGraphRows(state: OperationState) {
+  const conflicted = state.commits.some(
+    (commit) =>
+      commit.conflicted &&
+      state.files.groups.some((group) => group.after.includes(commit.id)),
+  );
+  return operationRows(state.nodes).map((row) => ({
+    ...row,
+    conflicted: row.eventId === state.selected?.id && conflicted,
+  }));
+}
 
 type MetadataScope = {
   handle?: Handle;

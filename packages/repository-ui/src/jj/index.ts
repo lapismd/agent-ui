@@ -30,6 +30,8 @@ export * from "./logic/history-source.js";
 export * from "./logic/workspaces.js";
 export * from "./logic/blame-model.js";
 export { commitRows, operationRows } from "./logic/graph/model.js";
+export { default as RepositoryHistoryQuery } from "./history/query/RepositoryHistoryQuery.svelte";
+export type { RepositoryHistoryQueryInfo } from "./history/query/types.js";
 
 export {
   provideRepositoryAuthorAvatars,

@@ -135,9 +135,7 @@ test("dense log uses shared headers, exact host actions and binary/renamed diffs
   await files
     .getByRole("radio", { name: "Show files as list", exact: true })
     .click();
-  await files
-    .getByRole("button", { name: "assets/repository-graph.png", exact: true })
-    .click();
+  await files.locator('[data-file-path="assets/repository-graph.png"]').click();
   await expect(page.getByText("Binary file", { exact: true })).toBeVisible();
   await expect(state(page)).toHaveAttribute(
     "data-state",
@@ -150,9 +148,7 @@ test("dense log uses shared headers, exact host actions and binary/renamed diffs
     "data-actions",
     /file:assets\/repository-graph.png/,
   );
-  await files
-    .getByRole("button", { name: "docs/history/query-guide.md", exact: true })
-    .click();
+  await files.locator('[data-file-path="docs/history/query-guide.md"]').click();
   await expect(
     page.getByText("Renamed from docs/history.md", { exact: true }),
   ).toBeVisible();
@@ -166,13 +162,13 @@ test("native revset search retains the operation, clears selection and recovers 
   await page
     .getByRole("button", { name: "Search revisions", exact: true })
     .click();
-  const query = page.getByRole("textbox", {
+  const query = page.getByRole("searchbox", {
     name: "Revision query",
     exact: true,
   });
   await query.fill("conflicts()");
   await query.press("Enter");
-  await expect(page.locator(".repository-graph-select")).toHaveCount(1);
+  await expect(page.locator(".repository-graph-select")).toHaveCount(2);
   await expect(state(page)).toHaveAttribute(
     "data-state",
     /"revset":"conflicts\(\)"/,
@@ -192,9 +188,7 @@ test("native revset search retains the operation, clears selection and recovers 
     "data-errors",
     /rejected this revision query/,
   );
-  await page
-    .getByRole("button", { name: "Clear revision query", exact: true })
-    .click();
+  await page.getByRole("button", { name: "Clear search", exact: true }).click();
   await expect(page.locator(".repository-graph-select")).toHaveCount(12);
   await expect(state(page)).toHaveAttribute(
     "data-state",
@@ -218,7 +212,7 @@ test("graph and changed-file paging preserve selection and bounded examples expl
     .click();
   await expect(
     page.getByRole("region", { name: "Changed files", exact: true }),
-  ).toContainText("15");
+  ).toContainText("16");
   await open(page, "bounded-history");
   await expect(page.locator(".repository-graph-select")).toHaveCount(6);
   await expect(

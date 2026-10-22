@@ -49,18 +49,14 @@ test("dense operation history retains exact host callbacks and binary/renamed co
   await files
     .getByRole("radio", { name: "Show files as list", exact: true })
     .click();
-  await files
-    .getByRole("button", { name: "assets/repository-graph.png", exact: true })
-    .click();
+  await files.locator('[data-file-path="assets/repository-graph.png"]').click();
   await expect(page.getByText("Binary file", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Open file", exact: true }).click();
   await expect(state(page)).toHaveAttribute(
     "data-actions",
     /file:ababab.*assets\/repository-graph.png/,
   );
-  await files
-    .getByRole("button", { name: "docs/history/query-guide.md", exact: true })
-    .click();
+  await files.locator('[data-file-path="docs/history/query-guide.md"]').click();
   await expect(
     page.getByText("Renamed from docs/history.md", { exact: true }),
   ).toBeVisible();
@@ -74,7 +70,7 @@ test("native operation filters recover from empty and rejected queries without c
   await page
     .getByRole("button", { name: "Search operations", exact: true })
     .click();
-  const input = page.getByRole("textbox", {
+  const input = page.getByRole("searchbox", {
     name: "Operation query",
     exact: true,
   });
@@ -96,9 +92,7 @@ test("native operation filters recover from empty and rejected queries without c
     "data-errors",
     /rejected this operation query/,
   );
-  await page
-    .getByRole("button", { name: "Clear operation query", exact: true })
-    .click();
+  await page.getByRole("button", { name: "Clear search", exact: true }).click();
   await expect(page.locator(".repository-graph-select")).toHaveCount(12);
   await expect(state(page)).toHaveAttribute("data-errors", "[]");
   await expect(state(page)).toHaveAttribute(
@@ -124,7 +118,7 @@ test("operation paging and bounds retain selected comparisons and a fixed footer
     .click();
   await expect(
     page.getByRole("region", { name: "Changed files", exact: true }),
-  ).toContainText("15");
+  ).toContainText("16");
   await open(page, "bounded-history");
   await expect(page.locator(".repository-graph-select")).toHaveCount(6);
   const notice = page.getByText(

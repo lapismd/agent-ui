@@ -61,7 +61,7 @@ Clean package acceptance MUST compile documented examples for both packages
 and exclude their catalog material; static catalog checks MUST audit both family
 inventories and specification pages.
 The development catalog MUST prebundle its actual icon/runtime dependencies,
-including the public FileTypeIcon subpath, through both the Storybook dev
+including the public FileTypeIcon and filter subpaths plus the shared CodeMirror query runtime, through both the Storybook dev
 `viteFinal` hook and Vitest configuration,
 retain strict compile/runtime diagnostics and qualify changed startup behavior
 in a cold process. Browser documentation checks MUST bring lazy Canvas previews

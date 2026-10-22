@@ -2,6 +2,20 @@
   "component": "RepositoryGraph",
   "variables": [
     {
+      "name": "--ui-repository-graph-content-min-width",
+      "default": "20rem",
+      "description": "jj-store content reserve beside graph lanes; constrained columns scroll rather than crowding text and avatars.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/graph/RepositoryGraph.svelte"
+    },
+    {
+      "name": "--ui-repository-graph-conflict-background",
+      "default": "color-mix(in srgb, var(--destructive) 8%, var(--background))",
+      "description": "Subtle conflict surface; selection and hover retain the semantic destructive tint.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/graph/RepositoryGraph.svelte"
+    },
+    {
       "name": "--ui-repository-graph-font-size",
       "default": "0.875rem",
       "description": "Original revision/operation graph rows, tags, author cards and row selection. Original size default.",

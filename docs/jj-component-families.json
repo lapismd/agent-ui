@@ -138,6 +138,11 @@
       "primary": "jj/screens/operations/RepositoryOperations",
       "purpose": "Complete Desktop operation log, metadata comparison and changed-file inspector.",
       "parts": ["jj/screens/operations/RepositoryOperationQuery.svelte"]
+    },
+    {
+      "primary": "jj/history/query/RepositoryHistoryQuery",
+      "purpose": "Shared source-adapted JJ and operation query editor with host vocabulary and completion.",
+      "parts": []
     }
   ],
   "deferred": [

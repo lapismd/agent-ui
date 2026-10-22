@@ -4,6 +4,7 @@ import { stats } from "./reference/query-stats.js";
 import { commitDetail } from "./reference/commit-detail.js";
 import { denseChanges } from "./dense-diffs.js";
 import { richCommitMessage } from "./reference/rich-commit.js";
+import { branchingParents } from "./branching-history.js";
 export function attachDenseHistory(reader: HistoryReader) {
   const hash = (index: number) =>
     (Math.imul(index + 1, 2654435761) >>> 0).toString(16).padStart(8, "0");
@@ -28,7 +29,7 @@ export function attachDenseHistory(reader: HistoryReader) {
     workspaces:
       i === 0 ? ["default", "review"] : i === 5 ? ["agent-review"] : [],
     divergent: i === 4,
-    conflicted: i === 4,
+    conflicted: i === 0 || i === 4,
     bookmarks: (i === 0
       ? [
           "main",
@@ -51,7 +52,10 @@ export function attachDenseHistory(reader: HistoryReader) {
     })),
   }));
   commits.forEach((item, i) => {
-    item.parents = commits[i + 1] ? [commits[i + 1].id] : [];
+    item.parents = branchingParents(
+      commits.map((commit) => commit.id),
+      i,
+    );
     if (i === 2) item.parents.push(commits[i + 3].id);
   });
   const read = reader.read;
@@ -121,13 +125,7 @@ export function attachDenseHistory(reader: HistoryReader) {
       const offset = query.query.anchor
         ? denseChanges.findIndex((row) => row.path === query.query.anchor) + 1
         : 0;
-      const page = denseChanges.slice(offset, offset + 8).map((change) => ({
-        ...change,
-        content: {
-          status: "unavailable" as const,
-          reason: "not_requested" as const,
-        },
-      }));
+      const page = denseChanges.slice(offset, offset + 8);
       return {
         kind: "diff_paths",
         data: {

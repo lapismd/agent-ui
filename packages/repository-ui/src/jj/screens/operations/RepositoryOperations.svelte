@@ -2,6 +2,7 @@
 <script lang="ts">
   import RepositoryOperationEmpty from "../../operations/operation-column/RepositoryOperationEmpty.svelte";
   import type { Snippet } from "svelte";
+  import type { RepositoryHistoryQueryInfo } from "../../history/query/types.js";
   import type { OperationState } from "../../logic/operation-state.js";
   import SearchIcon from "@lucide/svelte/icons/search";
   import RepositoryOperationQuery from "./RepositoryOperationQuery.svelte";
@@ -18,7 +19,7 @@
   import * as ColumnCanvas from "@lapismd/design-core/shadcn/column-canvas";
   import type { OperationController } from "../../logic/operation-controller.js";
   import { initialOperationState } from "../../logic/operation-state.js";
-  import { operationRows } from "../../logic/graph/model.js";
+  import { operationGraphRows } from "../../logic/operation-metadata.js";
   import { createLogCanvas } from "../../logic/log-canvas.js";
   import RepositoryOperationFiles from "../../operations/operation-files/RepositoryOperationFiles.svelte";
   import RepositoryOperationColumn from "../../operations/operation-column/RepositoryOperationColumn.svelte";
@@ -30,7 +31,8 @@
     initialOperation,
     copyText,
     onHistory,
-    searchable = false,
+    searchable = true,
+    queryInfo,
     headerControls,
     headerActions,
     operationActions,
@@ -45,6 +47,7 @@
     copyText(value: string): Promise<void>;
     onHistory?(operation: string): void;
     searchable?: boolean;
+    queryInfo?: RepositoryHistoryQueryInfo;
     headerControls?: Snippet<[OperationState]>;
     headerActions?: Snippet<[OperationState]>;
     operationActions?: Snippet<[OperationState]>;
@@ -69,7 +72,7 @@
       ...(snapshot.operation ? [snapshot.operation] : []),
     ]),
   ]);
-  const rows = $derived(operationRows(snapshot.nodes));
+  const rows = $derived(operationGraphRows(snapshot));
   const selection = $derived(
     `${snapshot.selected?.id ?? ""}/${snapshot.files.path ?? ""}`,
   );
@@ -147,6 +150,7 @@
             onRefresh={() => controller.refresh()}
           />
           {#if searchable && queryOpen}<RepositoryOperationQuery
+              info={queryInfo}
               {controller}
               busy={snapshot.busy}
             />{/if}
@@ -238,6 +242,8 @@
                 </RepositoryGraph>{/if}
               {#if snapshot.next}<Button
                   size="sm"
+                  variant="ghost"
+                  style="width: 100%; font-weight: 400; color: var(--ui-repository-operations-more-foreground, var(--muted-foreground))"
                   disabled={snapshot.busy}
                   onclick={() => controller.more()}>More operations</Button
                 >{/if}

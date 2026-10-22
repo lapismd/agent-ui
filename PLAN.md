@@ -68,3 +68,5 @@ lookup, notifications, persistence and agent dispatch remain injected. Mentions
 are references by default, with explicit host-configured routing. Complete
 Threads, Workflows and settings are deferred. Actual downstream adoption and
 publication require separate approval.
+
+Implemented review follow-up aligns JJ/Op Log paging, conflict and chip presentation, loaded file/folder stats, sixteen-lane graph examples and source-adapted query completion. Targeted checks only; repository browsing and downstream adoption remain gated.

@@ -2,15 +2,22 @@
   "component": "RepositoryOperations",
   "variables": [
     {
+      "name": "--ui-repository-operations-more-foreground",
+      "default": "var(--muted-foreground)",
+      "description": "Muted label on the full-width, centered operation paging button.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/screens/operations/RepositoryOperations.svelte"
+    },
+    {
       "name": "--ui-repository-operations-query-gap",
-      "default": "0.5rem",
-      "description": "Spacing between native operation query controls.",
+      "default": "0.75rem",
+      "description": "Separation before the optional syntax context.",
       "owner": "@lapismd/repository-ui",
       "source": "jj/screens/operations/RepositoryOperationQuery.svelte"
     },
     {
       "name": "--ui-repository-operations-query-padding",
-      "default": "0.5rem",
+      "default": "0.5rem 0.75rem",
       "description": "Inset of the optional operation metadata filter.",
       "owner": "@lapismd/repository-ui",
       "source": "jj/screens/operations/RepositoryOperationQuery.svelte"

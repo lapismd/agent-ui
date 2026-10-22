@@ -128,6 +128,8 @@
     </RepositoryGraph>{/if}
   {#if state.next}<Button
       size="sm"
+      variant="ghost"
+      style="width: 100%; font-weight: 400; color: var(--ui-repository-revisions-more-foreground, var(--muted-foreground))"
       disabled={state.busy}
       onclick={() => controller.moreCommits()}>More revisions</Button
     >{/if}

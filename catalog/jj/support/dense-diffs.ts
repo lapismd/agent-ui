@@ -3,6 +3,7 @@ const text = (
   path: string,
   before: string,
   after: string,
+  context = "\nexport { history };\n",
 ): LocalFileDiffChange => ({
   path,
   before: [],
@@ -23,13 +24,14 @@ const text = (
         kind: "matching",
         before_start: 1 + before.split("\n").length - 1,
         after_start: 1 + after.split("\n").length - 1,
-        before: "\nexport { history };\n",
-        after: "\nexport { history };\n",
+        before: context,
+        after: context,
       },
       {
         kind: "different",
-        before_start: 3 + before.split("\n").length - 1,
-        after_start: 3 + after.split("\n").length - 1,
+        before_start:
+          before.split("\n").length + context.split("\n").length - 1,
+        after_start: after.split("\n").length + context.split("\n").length - 1,
         before: "const pageSize = 50;\n",
         after:
           "const pageSize = Math.min(limit, 50);\nconst queryClock = host.now();\n",
@@ -42,6 +44,19 @@ export const denseChanges: LocalFileDiffChange[] = [
     "src/history/controller.ts",
     "const history = read('all()');\n",
     "const history = read({\n  revset: query.revset,\n  operation: pinned.operation,\n  workspace: pinned.workspace,\n});\n",
+    [
+      "",
+      "const queryPresets = [",
+      ...Array.from(
+        { length: 64 },
+        (_, i) =>
+          `  { label: "History preset ${i + 1}", revset: "ancestors(@, ${i + 1})" },`,
+      ),
+      "];",
+      "",
+      "export { history };",
+      "",
+    ].join("\n"),
   ),
   text(
     "src/history/graph.ts",
@@ -61,6 +76,27 @@ export const denseChanges: LocalFileDiffChange[] = [
     "expect(selection).toBeTruthy();\n",
     "expect(selection.operation).toBe(pin.operation);\nexpect(selection.commit).toBe(commit.id);\n",
   ),
+  {
+    path: "src/history/query.ts",
+    before: [],
+    after: [
+      null,
+      {
+        type: "file",
+        id: "aa".repeat(20),
+        executable: false,
+        copy: { kind: "placeholder" },
+      },
+      {
+        type: "file",
+        id: "bb".repeat(20),
+        executable: false,
+        copy: { kind: "placeholder" },
+      },
+    ],
+    sources: [],
+    content: { status: "unavailable", reason: "conflict" },
+  },
   {
     path: "assets/repository-graph.png",
     before: [],

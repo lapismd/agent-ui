@@ -3,6 +3,7 @@
   import FileQuestionIcon from "@lucide/svelte/icons/file-question-mark";
   import * as Empty from "@lapismd/design-core/shadcn/empty";
   import type { Snippet } from "svelte";
+  import { observeRevisionRow } from "./observe-revision-row.js";
   import type { LocalGraphCommit } from "@lapismd/jj-history";
   import RepositoryAuthorAvatar from "../../foundations/author-avatar/RepositoryAuthorAvatar.svelte";
   import RepositoryOperationMessage from "../../operations/operation-message/RepositoryOperationMessage.svelte";
@@ -12,6 +13,7 @@
   import {
     buildRepositoryLogGraph,
     repositoryLogSvgWidth,
+    repositoryLogContentLeft,
   } from "../../../history/repository-log-graph.js";
   import { timestampLabel } from "../../logic/history-state.js";
   import RepositoryGraphSvg from "../graph-svg/RepositoryGraphSvg.svelte";
@@ -45,13 +47,12 @@
   const rows = $derived(buildRepositoryLogGraph(revisions));
   const width = $derived(repositoryLogSvgWidth(rows));
   let heights = $state<Record<string, number>>({});
-  function measure(node: HTMLElement, id: string) {
-    const observer = new ResizeObserver(() => {
-      const height = node.getBoundingClientRect().height;
-      if (heights[id] !== height) heights[id] = height;
+  function measure(node: HTMLDivElement, id: string) {
+    return observeRevisionRow(node, (height, itemHeight) => {
+      if (heights[`row:${id}`] !== height) heights[`row:${id}`] = height;
+      if (heights[`graph:${id}`] !== itemHeight)
+        heights[`graph:${id}`] = itemHeight;
     });
-    observer.observe(node);
-    return { destroy: () => observer.disconnect() };
   }
   function selectRow(event: MouseEvent, id: string) {
     const target = event.target;
@@ -67,7 +68,11 @@
   }
 </script>
 
-<ol class="repository-graph" aria-label={label}>
+<ol
+  class="repository-graph"
+  aria-label={label}
+  style:--graph-lane-width={`${width}px`}
+>
   {#if !rows.length}<li>
       <Empty.Root role="status"
         ><Empty.Header
@@ -87,14 +92,14 @@
     {@const tagsId = `${id}-tags-${row.revision.eventId}`}
     <li
       class:selected={selectedId === row.revision.eventId}
-      use:measure={`graph:${row.revision.eventId}`}
+      class:conflicted={commit?.conflicted || row.revision.conflicted}
     >
       <!-- Existing selection button owns keyboard input; extend only its pointer hit area. -->
       <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
       <div
         class="repository-graph-row"
-        style:padding-left={`${width}px`}
-        use:measure={`row:${row.revision.eventId}`}
+        style:padding-left={`${repositoryLogContentLeft(row)}px`}
+        use:measure={row.revision.eventId}
         onclick={(event) => selectRow(event, row.revision.eventId)}
       >
         <RepositoryGraphSvg
@@ -167,7 +172,10 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    min-width: 0;
+    min-width: calc(
+      var(--graph-lane-width) +
+        var(--ui-repository-graph-content-min-width, 20rem)
+    );
   }
   .repository-graph-row {
     position: relative;
@@ -187,6 +195,27 @@
   }
   .selected {
     background: color-mix(in srgb, var(--foreground) 12%, var(--background));
+  }
+  .conflicted {
+    --conflict-surface: var(
+      --ui-repository-graph-conflict-background,
+      color-mix(in srgb, var(--destructive) 8%, var(--background))
+    );
+    background: var(--conflict-surface);
+  }
+  .conflicted.selected {
+    background: color-mix(
+      in srgb,
+      var(--foreground) 12%,
+      var(--conflict-surface)
+    );
+  }
+  .conflicted > .repository-graph-row:hover {
+    background: color-mix(
+      in srgb,
+      var(--foreground) 7%,
+      var(--conflict-surface)
+    );
   }
   .repository-graph-select {
     display: flex;
