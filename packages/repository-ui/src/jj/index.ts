@@ -65,3 +65,13 @@ export { default as RepositoryBranches } from "./screens/branches/RepositoryBran
 export { RepositoryBranchesController } from "./branches/logic/controller.js";
 export { createBranchesCanvas } from "./screens/branches/canvas.js";
 export * from "./branches/logic/types.js";
+
+export { default as RepositoryStackWorkspace } from "./screens/stack-workspace/RepositoryStackWorkspace.svelte";
+export { default as RepositoryStackLane } from "./workspace/stack-lane/RepositoryStackLane.svelte";
+export { default as RepositoryWorkspaceFiles } from "./workspace/source-files/RepositoryWorkspaceFiles.svelte";
+export { default as RepositoryWorkspaceDiff } from "./workspace/diff/RepositoryWorkspaceDiff.svelte";
+export type {
+  RepositoryStackHost,
+  RepositoryStackSlots,
+} from "./workspace/stack-lane/types.js";
+export { createStackWorkspaceCanvas } from "./screens/stack-workspace/canvas.js";

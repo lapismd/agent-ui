@@ -10,6 +10,8 @@ export type RepositoryLogRevision = {
   message: string;
   reason: "checkpoint" | "merge";
   author: string;
+  /** Optional recorded email for graphs that do not use the JJ History transport model. */
+  authorEmail?: string;
   host?: string;
   workspace?: string;
   millis: number | bigint;
@@ -27,6 +29,7 @@ export function commitRows(
     message: commit.description.split("\n")[0] || "No description",
     reason: commit.parents.length > 1 ? "merge" : "checkpoint",
     author: commit.author.name,
+    authorEmail: commit.author.email,
     millis: commit.author.timestamp.millis,
     conflicted: commit.conflicted,
     tags: [

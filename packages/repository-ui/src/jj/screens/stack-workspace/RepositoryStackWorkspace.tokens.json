@@ -1,0 +1,19 @@
+{
+  "component": "RepositoryStackWorkspace",
+  "variables": [
+    {
+      "name": "--ui-repository-stack-workspace-height",
+      "default": "100%",
+      "description": "Enclosing host pane height.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/screens/stack-workspace/stack-workspace.css"
+    },
+    {
+      "name": "--ui-repository-stack-footer-font-size",
+      "default": "0.75rem",
+      "description": "Recorded workspace footer typography.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/screens/stack-workspace/stack-workspace.css"
+    }
+  ]
+}

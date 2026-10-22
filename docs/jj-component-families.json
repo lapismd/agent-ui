@@ -213,6 +213,33 @@
       "primary": "jj/screens/branches/RepositoryBranches",
       "purpose": "Source-adapted Branches canvas with captured-reference controller, shared graph/files/diff and host-controlled actions.",
       "parts": ["jj/screens/branches/RepositoryBranchesStatus.svelte"]
+    },
+    {
+      "primary": "jj/screens/stack-workspace/RepositoryStackWorkspace",
+      "purpose": "Source-adapted complete Stacks/Workspace AppShell with fixed lanes, original geometry, host-owned controllers and independent adjacent diffs.",
+      "parts": [
+        "jj/screens/stack-workspace/RepositoryStackCanvas.svelte",
+        "jj/screens/stack-workspace/RepositoryStackToolbar.svelte",
+        "jj/screens/stack-workspace/RepositoryTargetHistory.svelte"
+      ]
+    },
+    {
+      "primary": "jj/workspace/stack-lane/RepositoryStackLane",
+      "purpose": "Grouped source bookmark cards, recorded graph, supplied metadata, selected source files and host-provided actions in the original stack column.",
+      "parts": ["jj/workspace/stack-lane/RepositoryStackCard.svelte"]
+    },
+    {
+      "primary": "jj/workspace/source-files/RepositoryWorkspaceFiles",
+      "purpose": "Operation/read-key-pinned source listing with supplied file counts, cumulative loaded folder statistics, conflicts, paging and explicit selections.",
+      "parts": [
+        "jj/workspace/source-files/RepositoryWorkspaceStatus.svelte",
+        "jj/workspace/source-files/RepositoryUnstagedColumn.svelte"
+      ]
+    },
+    {
+      "primary": "jj/workspace/diff/RepositoryWorkspaceDiff",
+      "purpose": "Independent per-origin recorded diff with native hunk context, unified/split controls, wrapping, lazy reads and explicit unavailable/binary states.",
+      "parts": []
     }
   ],
   "deferred": [

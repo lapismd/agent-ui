@@ -50,7 +50,15 @@ A valid successful result with no content. The production component displays the
 
 <Canvas of={Stories.Empty} />
 
+### Host actions
+
+Hosts can inject per-revision actions without changing selection.
+
+<Canvas of={Stories.HostActions} />
+
 ## Behavior and accessibility
+
+The optional `rowActions` snippet receives the recorded revision, including `authorEmail` when supplied. This supports stack rows without fabricating transport commit objects.
 
 Selection delegates the full event ID. Author/profile and copy actions remain independent of row selection. An empty graph renders Empty with an icon and does not fabricate a revision. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
 

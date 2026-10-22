@@ -50,6 +50,12 @@ prepared local review package. Branch row and chip surface changes MUST retain e
 
 **Requirement.** Production packages MUST consume public Design Core primitives and injected host ports without application-private imports, credentials, native transports or catalog dependencies.
 
+The user authorized Stacks and Workspace presentation after Branches. The new
+families MUST copy the source canvas/lane/card/files/history geometry, reuse the
+portable stack controller and share existing graph/diff primitives. Host-owned
+navigation/actions and controller lifetime remain explicit; transfers, mutation
+dialogs and forge transport wait for their separate slices and review.
+
 ### Acceptance details
 
 - Public Design Core exports MUST own shared filename artwork, while Agent/JJ components pass exact file paths and preserve semantic action/status icons.
@@ -58,6 +64,12 @@ prepared local review package. Branch row and chip surface changes MUST retain e
 ## AUI-GOV-002 — Complete review
 
 **Requirement.** Storybook MUST demonstrate complete production screens with isolated in-memory adapters and MUST NOT require live services. Consumer migration and publication MUST wait for explicit user review approval.
+
+The user authorized Stacks and Workspace presentation after Branches. The new
+families MUST copy the source canvas/lane/card/files/history geometry, reuse the
+portable stack controller and share existing graph/diff primitives. Host-owned
+navigation/actions and controller lifetime remain explicit; transfers, mutation
+dialogs and forge transport wait for their separate slices and review.
 
 ### Acceptance details
 
@@ -116,6 +128,12 @@ complete logs, including text sizes and independence from the code font.
 Log canvas qualification MUST exercise the trailing resize hint, pointer and
 keyboard resizing of the final Diff column, and retained horizontal access in
 small panes in both complete logs.
+
+The user authorized Stacks and Workspace presentation after Branches. The new
+families MUST copy the source canvas/lane/card/files/history geometry, reuse the
+portable stack controller and share existing graph/diff primitives. Host-owned
+navigation/actions and controller lifetime remain explicit; transfers, mutation
+dialogs and forge transport wait for their separate slices and review.
 
 ### Acceptance details
 

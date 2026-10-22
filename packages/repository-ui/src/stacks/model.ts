@@ -9,6 +9,10 @@ import type {
 export type WorkspaceHunk = { id: string; label: string; patch: string };
 export type WorkspaceFile = {
   path: string;
+  /** Complete host-supplied file counts; omitted values remain unknown. */
+  additions?: number;
+  deletions?: number;
+  conflicted?: boolean;
   /** A net comparison resolved to one exact mutable native commit delta. */
   selectionSource?: string;
   /** Complete bounded display patch; never selection authority. */

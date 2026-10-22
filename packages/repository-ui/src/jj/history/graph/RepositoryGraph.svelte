@@ -30,6 +30,7 @@
     operationTitles = false,
     onCopyError,
     showAuthor = true,
+    rowActions,
   }: {
     revisions: RepositoryLogRevision[];
     commits?: readonly LocalGraphCommit[];
@@ -42,6 +43,8 @@
     operationTitles?: boolean;
     onCopyError?(error: unknown): void;
     showAuthor?: boolean;
+    /** Host actions receive the recorded row and remain independent of selection. */
+    rowActions?: Snippet<[RepositoryLogRevision]>;
   } = $props();
   const id = $props.id();
   const rows = $derived(buildRepositoryLogGraph(revisions));
@@ -110,7 +113,7 @@
         />
         {#if showAuthor}<RepositoryAuthorAvatar
             name={row.revision.author}
-            email={commit?.author.email}
+            email={commit?.author.email ?? row.revision.authorEmail}
             handle={row.revision.host
               ? `${row.revision.author}@${row.revision.host}`
               : undefined}
@@ -156,6 +159,7 @@
           {commitLabel}
           placement="inline"
         />
+        {@render rowActions?.(row.revision)}
       </div>
       {#if selectedId === row.revision.eventId && selectedFiles}<div
           class="repository-inline-files"

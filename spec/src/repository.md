@@ -177,10 +177,27 @@ MUST retain horizontal scrolling and independently resizable columns.
 
 **Requirement.** Stack workspace screens MUST retain named workspace, branch, commit, file and hunk selections through navigation, resize and refresh using an injected adapter.
 
+The presentation slice MUST adapt JJ Store's fixed Branches/Stacks and Workspace
+canvases, original column geometry, grouped bookmark cards, applied stack lanes,
+unstaged files, target history and per-origin adjacent diff columns. It MUST reuse
+the host-owned portable StackWorkspaceController and operation/read-key-pinned
+adapter. The UI may request bounded reads but MUST NOT preview or apply commands
+on mount. Workspace changes, command requests, clipboard and custom header,
+branch, revision, file and diff actions MUST remain explicit host callbacks or
+snippets. Transfers, mutation dialogs and forge transport remain separate slices.
+Normal rows and cards MUST retain theme surfaces, keyboard selection, semantic
+conflicts, explicit immutable/alias/shared tags and icon-bearing Empty/unavailable
+states. Unknown file counts MUST stay absent; supplied counts and loaded
+folder totals MUST remain accurate. Refresh, view changes and independent
+column resizing MUST preserve retained source/file selections and drafts when
+still present in the same scope. Controller disposal belongs to the host.
+
 ### Acceptance details
 
-- Public types express the boundary.
-- Focused tests and production-component stories verify the behavior.
+- Complete in-memory Stacks and Workspace screens MUST use the same production lanes, source files, graph and diff components, with exact host action contexts.
+- Dense examples MUST include multiple applied lanes, grouped/shared heads, conflicts, long messages/tags, paged history/files, binary/unavailable diffs and independent adjacent file selections.
+- Focused controller, interaction/accessibility, cold browser and source-layout checks MUST precede a screen-review pause; broad checks wait until final review.
+- Component families MUST own public examples, styling contracts, governed states and source/provenance records; host selection/persistence callbacks MUST retain original identities.
 
 ## RUI-DRAG-001 — Drag and keyboard
 

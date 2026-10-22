@@ -1,0 +1,19 @@
+{
+  "component": "RepositoryWorkspaceFiles",
+  "variables": [
+    {
+      "name": "--ui-repository-workspace-files-background",
+      "default": "var(--background)",
+      "description": "Opaque source listing surface.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/workspace/source-files/RepositoryWorkspaceFiles.svelte"
+    },
+    {
+      "name": "--ui-repository-workspace-files-font-size",
+      "default": "0.8125rem",
+      "description": "Source listing header typography.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/workspace/source-files/RepositoryWorkspaceFiles.svelte"
+    }
+  ]
+}

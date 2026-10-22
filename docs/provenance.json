@@ -1,7 +1,7 @@
 {
   "sources": {
     "lapis-desktop": "f8f3446e (Agent) and 52516ae9 (JJ); exact copied-file hashes in desktop-layout-sources.json",
-    "jj-store": "f58b9363 (Files/history references), 87f2f603 (Branches); exact per-file revisions/hashes in desktop-layout-sources.json",
+    "jj-store": "f58b9363 (Files/history), 87f2f603 (Branches, Stacks/Workspace); exact per-file revisions/hashes in desktop-layout-sources.json",
     "design-core": "npm range ^0.6.0; local source-inclusive column-fit review archive from 1981b801 (includes warning-tag fix 36c8412e), SHA-256 f4b58f28cdeaf50cdf12d4fc73e46d952afd3143b2b7df6ac3d8007b63621c12; see spec/records/2026-10-22-column-fit-toggle.md",
     "mira-mde": "npm range ~0.1.0; safe task marker source fix 0a72edf8; local validation archive SHA-256 c9e024d35e013676905120347bbfe3ca832f3e9e4f4ede74a7dc2b25161078b4; no tracked dependency substitution"
   },
@@ -1006,6 +1006,95 @@
       "source": "web/src/lib/projects/presentation.ts",
       "destination": "packages/repository-ui/src/jj/branches/logic/types.ts",
       "use": "Retain Bookmark presentation fields with explicit remote identity; combine RepositoryWorkingCopy fields from projects/repository-log.ts and typed pinned read-port/controller state."
+    },
+    {
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspace.svelte",
+      "destination": "packages/repository-ui/src/jj/screens/stack-workspace/RepositoryStackWorkspace.svelte",
+      "use": "Retain embedded AppShell, toolbar/canvas/footer; replace native links/setup/notifications/command dialogs with injected controller states and typed host callbacks. Navigation labels are Stacks and Workspace; other application routes remain host-owned.",
+      "sourceRepository": "jj-store",
+      "sourceRevision": "87f2f603"
+    },
+    {
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceCanvas.svelte",
+      "destination": "packages/repository-ui/src/jj/screens/stack-workspace/RepositoryStackCanvas.svelte",
+      "use": "Retain fixed leading column, scrolling adjacent lanes and per-origin diffs, widths and tail spacer. Extract canvas defaults; replace native branch command with the owned public picker and exact bookmark keys. Transfer/forge panels and drop handlers are deferred.",
+      "sourceRepository": "jj-store",
+      "sourceRevision": "87f2f603"
+    },
+    {
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStacksNavigation.svelte",
+      "destination": "packages/repository-ui/src/jj/screens/stack-workspace/RepositoryStackToolbar.svelte",
+      "use": "Retain tab navigation and right workspace controls through public Toolbar/Tabs/Select. Limit navigation to this presentation slice and delegate named workspace selection and custom actions to hosts.",
+      "sourceRepository": "jj-store",
+      "sourceRevision": "87f2f603"
+    },
+    {
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStackTargetHistory.svelte",
+      "destination": "packages/repository-ui/src/jj/screens/stack-workspace/RepositoryTargetHistory.svelte",
+      "use": "Retain target history column/card, author/time/tags, selected files and history paging. Reuse the shared graph, avatars and scoped files; omit source-only drag/forge/actions.",
+      "sourceRepository": "jj-store",
+      "sourceRevision": "87f2f603"
+    },
+    {
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStackLane.svelte",
+      "destination": "packages/repository-ui/src/jj/workspace/stack-lane/RepositoryStackLane.svelte",
+      "use": "Retain stack column header, stage/start-commit cards, grouped bookmarks and paging. Use public generic graph and host slots; commands request host handling without execution; transfer and forge controls are deferred.",
+      "sourceRepository": "jj-store",
+      "sourceRevision": "87f2f603"
+    },
+    {
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStackBookmarkCard.svelte",
+      "destination": "packages/repository-ui/src/jj/workspace/stack-lane/RepositoryStackCard.svelte",
+      "use": "Fold source bookmark header into the private card, retain branch selection, shared/alias tags, author/time and grouped graph/files. Replace application-only graph/forge/drag controls with public graph, scoped files and host snippets.",
+      "sourceRepository": "jj-store",
+      "sourceRevision": "87f2f603"
+    },
+    {
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStackSourceFiles.svelte",
+      "destination": "packages/repository-ui/src/jj/workspace/source-files/RepositoryWorkspaceFiles.svelte",
+      "use": "Retain source-bound lazy loading, cancellation, selected path and paging. Replace application notices with icon-bearing unavailable/retry states and source file wrapper with public FileListing. Preserve supplied counts instead of synthesizing hunk counts; expose host actions.",
+      "sourceRepository": "jj-store",
+      "sourceRevision": "87f2f603"
+    },
+    {
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStackUnstaged.svelte",
+      "destination": "packages/repository-ui/src/jj/workspace/source-files/RepositoryUnstagedColumn.svelte",
+      "use": "Retain fixed Unstaged header/body and selected file diff origin; use scoped shared files, generic navigation and host file actions; transfer controls deferred. Distinct column/list landmark names.",
+      "sourceRepository": "jj-store",
+      "sourceRevision": "87f2f603"
+    },
+    {
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceDiff.svelte",
+      "destination": "packages/repository-ui/src/jj/workspace/diff/RepositoryWorkspaceDiff.svelte",
+      "use": "Retain adjacent per-origin column, path, close, lazy diff reads, hunk cards and context. Replace application diff preferences with shared unified/split/wrap controls, explicit host actions and icon-bearing states; omit transfer buttons.",
+      "sourceRepository": "jj-store",
+      "sourceRevision": "87f2f603"
+    },
+    {
+      "source": "web/src/lib/ui/store-stack-workspace/stack-workspace.css",
+      "destination": "packages/repository-ui/src/jj/workspace/stack-lane/stack-lane.css",
+      "use": "Retain bookmark/card/title/stage spacing and semantic hover/selection; namespace workspace classes, split lane-only display rules, expose native variables. Omit transfer and forge styles.",
+      "sourceRepository": "jj-store",
+      "sourceRevision": "87f2f603"
+    },
+    {
+      "source": "web/src/lib/ui/store-stack-workspace/stack-workspace-layout.css",
+      "destination": "packages/repository-ui/src/jj/screens/stack-workspace/stack-workspace.css",
+      "use": "Retain flex canvas, leading inset, footer/control alignment and trailing spacer; namespace own classes, expose shell variables, keep viewport mechanics owned by public primitives and omit transfer/application routes.",
+      "sourceRepository": "jj-store",
+      "sourceRevision": "87f2f603"
+    },
+    {
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceCanvas.svelte",
+      "destination": "packages/repository-ui/src/jj/screens/stack-workspace/canvas.ts",
+      "use": "Extract unchanged Branches 320/260/520, Unstaged 330/260/520, lane/target 390/310/640 and diff 580/360/980 dimensions into a public host-persistence-aware factory.",
+      "sourceRepository": "jj-store",
+      "sourceRevision": "87f2f603"
+    },
+    {
+      "source": "web/src/lib/controller/stack-workspace/card-selection.ts",
+      "destination": "packages/repository-ui/src/stacks/card-selection.ts",
+      "use": "Exact retained card selection mapping with SPDX notice."
     }
   ]
 }

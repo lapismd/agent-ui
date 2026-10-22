@@ -6,7 +6,7 @@
 | Desktop JJ history                          | Awaiting visual review | 20 documented families; JJ Log, Op Log, file history, blame, conflicts and restore        |
 | Repository file browsing                    | Awaiting visual review | Five documented families, pinned read-only controller and complete in-memory Files screen |
 | Repository Branches                         | Awaiting visual review | Source-adapted reference cards, exact-target controller and shared graph/diff canvas      |
-| JJ workspace                                | Deferred               | Workspace and transfers follow the Branches review gate                                   |
+| Stacks and Workspace presentation           | Awaiting screen review | Source-adapted lanes, unstaged/source files, target history and adjacent diff review      |
 | Downstream adoption and publication         | Review gate            | No application/service changes, deployment or publication                                 |
 
 The user authorized the Desktop-first JJ slice and requested a pause for review
@@ -57,7 +57,7 @@ and pausing for review before the next. Broad suites wait for final screen revie
 3. Op Log: pinned comparisons, native metadata filters, host actions, conflicts and dense operation examples — implemented with targeted checks; awaiting review before repository browsing.
 4. Repository file browser: directory rows, file tree, breadcrumbs, code/documents and existing history/blame — implemented with focused checks; awaiting review.
 5. Repository Branches: Files provides the overview; source-adapted bookmark/working-copy cards, exact-target graph/diff and host actions — implemented with targeted checks; awaiting review.
-6. Workspace presentation: original columns, stack cards, source files, target history and retained selection.
+6. Stacks and Workspace presentation: now authorized; original columns, stack cards, source files, target history and retained selection. Pause before transfers and commands.
 7. Workspace transfers: file/folder/hunk drag/drop, keyboard alternatives and exact preview/apply/recovery.
 8. Stack and commit operations: original supported menus, drafts, placement controls and conflict surfaces.
 9. Projects: directory/details, linked repositories and host-owned metadata/access.
@@ -209,3 +209,9 @@ Branches chip review adds a theme body fill and visible outline while preserving
 the existing selected/hover row colours. Ancestor paint inspection confirms
 opaque white normal rows; evidence is in
 `spec/records/2026-10-23-branch-chip-contrast.md`.
+
+Stacks and Workspace presentation is implemented in four governed families with
+complete screens, scoped paging and independent adjacent diffs. Hosts retain
+commands, routing, controller lifetime, layout persistence and optional action/
+composer snippets. See `spec/records/2026-10-23-stack-workspace-presentation.md`.
+Pause for review before transfers, mutation dialogs and forge execution.

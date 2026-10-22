@@ -1,0 +1,19 @@
+{
+  "component": "RepositoryWorkspaceDiff",
+  "variables": [
+    {
+      "name": "--ui-repository-workspace-diff-gap",
+      "default": "0.5rem",
+      "description": "Space between recorded hunk cards.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/workspace/diff/RepositoryWorkspaceDiff.svelte"
+    },
+    {
+      "name": "--ui-repository-workspace-hunk-font-size",
+      "default": "0.6875rem",
+      "description": "Recorded hunk heading typography.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/workspace/diff/RepositoryWorkspaceDiff.svelte"
+    }
+  ]
+}

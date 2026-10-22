@@ -1,0 +1,85 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryWorkspaceDiff.stories";
+import { Basic, Styling } from "./RepositoryWorkspaceDiff.example-sources";
+import tokens from "./RepositoryWorkspaceDiff.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Workspace file diff
+
+Independent per-origin recorded diff with native hunk context, unified/split controls, wrapping, lazy reads and explicit unavailable/binary states.
+
+## Usage
+
+Use the host-retained StackWorkspaceController and exact recorded repository, operation, readKey and source identities. The host constructs, refreshes and closes its controller; rendering never calls preview/apply or mutates repositories. Timestamps and now are Unix seconds.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part              | Responsibility                                                                                                       |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------- |
+| Controller        | Operation/read-key scope, bounded reads, retained selections and owned cancellation.                                 |
+| Public primitives | AppShell/Column Canvas, graph, file artwork/statistics, diff and icon-bearing Empty states.                          |
+| Host slots        | Header, column, branch, commit, source-file, diff and composer actions keep effects and policy outside presentation. |
+
+## Variations
+
+### Basic
+
+Recorded basic presentation through the production controller and in-memory ports.
+
+<Canvas of={Stories.Basic} />
+
+### Binary
+
+Recorded binary presentation through the production controller and in-memory ports.
+
+<Canvas of={Stories.Binary} />
+
+### Empty
+
+Recorded empty presentation through the production controller and in-memory ports.
+
+<Canvas of={Stories.Empty} />
+
+### Loading
+
+Recorded loading presentation through the production controller and in-memory ports.
+
+<Canvas of={Stories.Loading} />
+
+### Unavailable
+
+Recorded unavailable presentation through the production controller and in-memory ports.
+
+<Canvas of={Stories.Unavailable} />
+
+## Behavior and accessibility
+
+Column widths match JJ Store: Branches 320 (260–520), Unstaged 330 (260–520), stack/target lanes 390 (310–640) and diff 580 (360–980) pixels. Fixed leading columns, independent bodies, original graph rows, collapse and keyboard/pointer resizing remain shared primitives. Workspace uses applied topology, while Stacks shows the selected captured branch.
+
+Selecting a branch aggregate or a commit reveals its exact files. File selections retain independent originating columns. Target history is read-only and never enters applied membership. Native conflict/binary/unloaded/empty states stay distinct. Supplied counts are preserved; unknown counts remain absent and folder totals describe loaded descendants.
+
+Hosts provide copyText, optional onCommand/onSelectWorkspace and optional headerActions, columnActions, branchActions, commitActions, fileActions, diffActions and composer snippets. Actions receive recorded objects and do not select unrelated rows. Hosts own navigation, settings/persistence, notifications, preview/apply and controller lifetime. Composer slots can bind the existing per-workspace drafts. Transfers, mutation dialogs and forge execution are outside this slice.
+
+## Styling variables
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Complete Stacks/Workspace screens compose the same documented lanes, source files and independent diff columns. Small source-file examples use padded bounded pages; lanes/diffs retain their actual Column Canvas context. Override only public tokens or native root style props. RUI-STACK-001 governs this presentation review; stories remain visual-pending and broader checks wait for final review.

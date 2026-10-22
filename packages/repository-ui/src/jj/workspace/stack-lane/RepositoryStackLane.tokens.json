@@ -1,0 +1,26 @@
+{
+  "component": "RepositoryStackLane",
+  "variables": [
+    {
+      "name": "--ui-repository-stack-branch-gap",
+      "default": "0.75rem",
+      "description": "Vertical connection between grouped bookmark cards.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/workspace/stack-lane/stack-lane.css"
+    },
+    {
+      "name": "--ui-repository-stack-card-background",
+      "default": "var(--background)",
+      "description": "Opaque stack card surface.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/workspace/stack-lane/stack-lane.css"
+    },
+    {
+      "name": "--ui-repository-stack-title-font-size",
+      "default": "0.8125rem",
+      "description": "Recorded bookmark title typography.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/workspace/stack-lane/stack-lane.css"
+    }
+  ]
+}

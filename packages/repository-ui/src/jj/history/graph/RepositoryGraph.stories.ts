@@ -1,3 +1,4 @@
+import { expect, userEvent, within } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/svelte-vite";
 import { assertJjStory } from "../../../../../../catalog/jj/support/assert-story.js";
 import Component from "./RepositoryGraph.svelte";
@@ -37,5 +38,23 @@ export const Empty: Story = {
   }),
   play: async ({ canvasElement }) => {
     await assertJjStory(canvasElement, "RepositoryGraph", "Empty");
+  },
+};
+
+export const HostActions: Story = {
+  render: () => ({
+    Component: Fixture,
+    props: { part: "RepositoryGraph", variant: "RowActions" },
+  }),
+  play: async ({ canvasElement }) => {
+    await assertJjStory(canvasElement, "RepositoryGraph", "RowActions");
+    await userEvent.click(
+      within(canvasElement).getAllByRole("button", {
+        name: /Inspect revision/,
+      })[0]!,
+    );
+    expect(
+      canvasElement.querySelectorAll(".repository-graph > li.selected").length,
+    ).toBe(0);
   },
 };

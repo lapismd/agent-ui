@@ -14,7 +14,7 @@
 | RUI-BROWSE-001  | Partial     | Seven documented families, exact-pin read-only controller, complete Files stories and focused evidence in `spec/records/2026-10-22-repository-browser.md`; visual review pending                                                                                                      |
 | RUI-BRANCH-001  | Partial     | Two documented Branches families; exact-target controller, focused stories/browser evidence; visual review pending                                                                                                                                                                    |
 | RUI-HISTORY-001 | Partial     | JJ Log and Op Log controller/host parity and shared presentation/query follow-up; exact targeted counts and review limits in `spec/records/2026-10-22-op-log-parity.md`; repository browsing has its own review slice; follow-up in `spec/records/2026-10-22-history-presentation.md` |
-| RUI-STACK-001   | In progress | Original controller regressions retained; workspace screen review remains later                                                                                                                                                                                                       |
+| RUI-STACK-001   | Partial     | Source-adapted Stacks/Workspace presentation; focused evidence in `spec/records/2026-10-23-stack-workspace-presentation.md`; broad checks deferred                                                                                                                                    |
 | RUI-DRAG-001    | In progress | Original drop regressions retained; jj-store workspace slice remains later                                                                                                                                                                                                            |
 | RUI-COMMAND-001 | Partial     | Guarded restore, original-request recovery and local conflict staging verified; native host integration deferred                                                                                                                                                                      |
 | RUI-FORGE-001   | In progress | Forge and repository settings remain later sections                                                                                                                                                                                                                                   |
@@ -86,3 +86,11 @@ qualification remain pending.
 
 The RUI-BRANCH-001 hover-chip visibility and opaque row-paint review is recorded
 in `spec/records/2026-10-23-branch-chip-contrast.md`.
+
+## Stacks and Workspace slice
+
+RUI-STACK-001 presentation evidence and before/after counts are in
+`spec/records/2026-10-23-stack-workspace-presentation.md`. The source-adapted
+complete screens reuse the portable controller and shared graph/files/diff.
+Review pauses before transfers, mutation dialogs, forge execution and downstream
+adoption; broad qualification waits until final human screen review.

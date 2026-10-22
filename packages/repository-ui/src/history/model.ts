@@ -5,6 +5,7 @@ export type RepositoryLogRevision = {
   message: string;
   reason: "checkpoint" | "merge";
   author: string;
+  authorEmail?: string;
   host?: string;
   millis: number | bigint;
   tags: string[];

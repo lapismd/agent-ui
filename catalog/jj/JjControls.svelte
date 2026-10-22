@@ -45,6 +45,16 @@
     >Host source controls</Button
   >{/snippet}
 
+{#snippet graphActions(
+  row: import("../../packages/repository-ui/src/jj/logic/graph/model.js").RepositoryLogRevision,
+)}<Button
+    variant="ghost"
+    size="icon-xs"
+    aria-label={`Inspect revision ${row.eventId}`}
+    onclick={() => demo.state.actions.push(`inspect:${row.eventId}`)}
+    ><ExternalLinkIcon aria-hidden="true" /></Button
+  >{/snippet}
+
 {#snippet content()}
   {#if part === "RepositoryShell"}<p>
       Recorded repository content in the original embedded AppShell.
@@ -101,6 +111,7 @@
       onSelect={(id) => (selected = id)}
       copyText={demo.copyText}
       operationTitles={variant === "Operations"}
+      rowActions={variant === "RowActions" ? graphActions : undefined}
     />
   {:else if part === "RepositoryChangedFiles"}<RepositoryChangedFiles
       files={variant === "Empty"

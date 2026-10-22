@@ -8,12 +8,13 @@ implementation. Apply the parent workspace guidance. This repository owns
 
 Deliver one user-authorized section at a time with complete Storybook screens
 using production UI controllers and isolated in-memory adapters. The current
-section is repository Branches, authorized after Files. Files is the repository
-overview. Copy JJ Store's bookmark/working-copy command cards and Branches canvas,
-reuse the shared graph/files/diff and bind captured references through typed
-read-only host ports. Preserve local/remote identities, conflicted/deleted
-targets, exact ancestry, paging, host actions and controller lifetime. Stop for
-review before workspace presentation and transfers.
+section is Stacks and Workspace presentation, authorized after Branches. Files
+provides the repository overview. Copy JJ Store's stack lanes/bookmark cards,
+unstaged and source files, target history and adjacent diff canvas; reuse the
+existing portable stack controller and shared graph/files/diff primitives.
+Preserve workspace/operation/source identities, topology, paging, independent
+selections, host actions and controller lifetime. Stop for review before
+transfers, mutation dialogs, forge integration and downstream adoption.
 Stop for explicit user review after this slice and before modifying
 Lapis Desktop, jj-store, downstream services, publishing or deploying anything.
 The approved plan authorizes generic fixes in Design Core; source applications
