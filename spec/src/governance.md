@@ -23,6 +23,9 @@ an explicit owner in the JJ family inventory. Source fingerprints MUST be
 refreshed only after comparing the prior original layout and recording the
 specific adaptation; review stops before Op Log work begins.
 
+The user has now authorized the pending footer/command corrections followed by
+the Op Log portability slice, with targeted checks and separate verified commits.
+
 ## AUI-GOV-001 — Source ownership
 
 **Requirement.** Production packages MUST consume public Design Core primitives and injected host ports without application-private imports, credentials, native transports or catalog dependencies.

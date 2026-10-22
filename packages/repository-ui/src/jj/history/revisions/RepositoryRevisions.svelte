@@ -7,6 +7,7 @@
   import { Button } from "@lapismd/design-core/shadcn/button";
   import type { HistoryController } from "../../logic/history-controller.js";
   import { type HistoryState } from "../../logic/history-state.js";
+  import RepositoryHistoryLimit from "./RepositoryHistoryLimit.svelte";
   let {
     state,
     controller,
@@ -23,6 +24,7 @@
     comparisonUnavailable,
     actions,
     fileActions,
+    showLimitNotice = true,
   }: {
     state: HistoryState;
     controller: Pick<
@@ -47,6 +49,7 @@
     comparisonUnavailable?: string;
     actions?: Snippet<[LocalGraphCommit]>;
     fileActions?: Snippet<[HistoryState]>;
+    showLimitNotice?: boolean;
     copyText(value: string): Promise<void>;
   } = $props();
   import RepositoryRevisionFiles from "../revision-files/RepositoryRevisionFiles.svelte";
@@ -128,17 +131,13 @@
       disabled={state.busy}
       onclick={() => controller.moreCommits()}>More revisions</Button
     >{/if}
-  {#if state.limitReached}<p role="status">
-      Showing the first {state.displayLimit} revisions. Refine the query to narrow
-      the results.
-    </p>{/if}
+  {#if showLimitNotice && state.limitReached}<RepositoryHistoryLimit
+      limit={state.displayLimit}
+    />{/if}
 </div>
 
 <style>
   .repository-revisions {
     min-width: 0;
-  }
-  p {
-    padding: var(--ui-repository-revisions-padding, 0.75rem);
   }
 </style>

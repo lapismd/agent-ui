@@ -79,6 +79,31 @@ test("Op Log metadata retains a complete long recorded message", async ({
   ).toContainText(
     "The final paragraph is intentionally below the preview fold",
   );
+  const command = page.getByRole("region", {
+    name: "Recorded operation command",
+    exact: true,
+  });
+  const toggle = command.getByRole("button", {
+    name: "View more of operation command",
+    exact: true,
+  });
+  await expect(toggle).toHaveAttribute("aria-expanded", "false");
+  const before = await command.locator("pre").innerText();
+  await toggle.click();
+  await expect(
+    command.getByRole("button", {
+      name: "View less of operation command",
+      exact: true,
+    }),
+  ).toHaveAttribute("aria-expanded", "true");
+  await command
+    .getByRole("button", {
+      name: "View less of operation command",
+      exact: true,
+    })
+    .click();
+  await expect(toggle).toHaveAttribute("aria-expanded", "false");
+  expect(await command.locator("pre").innerText()).toBe(before);
 });
 
 test("dense log uses shared headers, exact host actions and binary/renamed diffs", async ({
@@ -205,6 +230,26 @@ test("graph and changed-file paging preserve selection and bounded examples expl
   await expect(
     page.getByRole("button", { name: "More revisions", exact: true }),
   ).toHaveCount(0);
+  const notice = page.getByText(
+    "Showing the first 6 revisions. Refine the query to narrow the results.",
+    { exact: true },
+  );
+  const column = page.locator(
+    '[data-column-id="revisions"][data-ui-part="column"]',
+  );
+  const bottomGap = async () => {
+    const parent = await column.boundingBox(),
+      child = await notice.boundingBox();
+    return Math.abs(parent!.y + parent!.height - child!.y - child!.height);
+  };
+  expect(await bottomGap()).toBeLessThanOrEqual(2);
+  const viewport = column
+    .locator('[data-ui-part="scroll-area-viewport"]')
+    .first();
+  await viewport.evaluate((node) => {
+    node.scrollTop = node.scrollHeight;
+  });
+  expect(await bottomGap()).toBeLessThanOrEqual(2);
 });
 
 test("host header controls replace defaults while shared actions and toggle remain", async ({

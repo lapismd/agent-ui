@@ -3,6 +3,7 @@
   import type { Snippet } from "svelte";
   import type { LocalGraphCommit } from "@lapismd/jj-history";
   import type { HistoryState } from "../../logic/history-state.js";
+  import RepositoryHistoryLimit from "../../history/revisions/RepositoryHistoryLimit.svelte";
   import SearchIcon from "@lucide/svelte/icons/search";
   import { Button } from "@lapismd/design-core/shadcn/button";
   import RepositoryLogQuery from "./RepositoryLogQuery.svelte";
@@ -203,6 +204,7 @@
 
             {#if snapshot.snapshot}
               <RepositoryRevisions
+                showLimitNotice={false}
                 actions={revisionActions}
                 {fileActions}
                 state={snapshot}
@@ -217,6 +219,9 @@
               />
             {/if}
           </ColumnCanvas.Body>
+          {#if snapshot.limitReached}<RepositoryHistoryLimit
+              limit={snapshot.displayLimit}
+            />{/if}
         </ColumnCanvas.Column>
         <RepositoryDiffColumn
           actions={diffActions ? selectedDiffActions : undefined}

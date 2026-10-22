@@ -13,7 +13,7 @@
       "default": "0.75rem",
       "description": "The graph and selected revision body with message, parent comparison and changed paths. Original padding default.",
       "owner": "@lapismd/repository-ui",
-      "source": "jj/history/revisions/RepositoryRevisions.svelte"
+      "source": "jj/history/revisions/RepositoryHistoryLimit.svelte"
     }
   ]
 }

@@ -44,6 +44,10 @@ truncation, folder affordances and explicit navigation identities.
 
 **Requirement.** Commit, operation, evolution, file history and blame screens MUST preserve explicit pins, parent comparisons and bounded paging. Missing content MUST remain distinct from empty content.
 
+Bounded history notices MUST remain outside the scrolling column body at its
+bottom edge, and long recorded command arguments MUST offer keyboard-accessible
+View more/View less without altering captured text.
+
 ### Acceptance details
 
 - JJ Log MUST retain its exact operation and workspace while applying a host-configured revset query, clearing dependent revision/file selections and discarding late replies.
