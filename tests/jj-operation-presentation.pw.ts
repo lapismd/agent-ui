@@ -74,22 +74,45 @@ for (const mode of ["light", "dark"]) {
   });
 }
 
-test("Op Log reveals retained context between separated edits", async ({
-  page,
-}) => {
-  await page.goto(
-    "/iframe.html?id=jj-complete-screens-op-log--conflicts&viewMode=story",
-  );
-  await page.locator('[data-file-path="src/history/controller.ts"]').click();
-  const diff = page.getByRole("region", {
-    name: "Changes to src/history/controller.ts",
-    exact: true,
-  });
-  const reveal = diff
-    .getByRole("button", { name: /Show (all )?\d+ (unmodified )?lines/ })
-    .first();
-  await expect(reveal).toBeVisible();
-  await expect(diff.getByText(/History preset 32/)).toHaveCount(0);
-  await reveal.click();
-  await expect(diff.getByText(/History preset 32/)).toBeVisible();
-});
+for (const kind of ["jj-log", "op-log"])
+  for (const layout of ["unified", "split"])
+    test(`${kind} reveals and hides retained context in ${layout} view`, async ({
+      page,
+    }) => {
+      await page.goto(
+        `/iframe.html?id=jj-complete-screens-${kind}--dense-history&viewMode=story`,
+      );
+      await page
+        .locator('[data-file-path="src/history/controller.ts"]')
+        .click();
+      await page
+        .getByRole("radio", {
+          name: layout === "split" ? "Split" : "Unified",
+          exact: true,
+        })
+        .click();
+      const diff = page.getByRole("region", {
+        name: "Changes to src/history/controller.ts",
+        exact: true,
+      });
+      const reveal = diff
+        .getByRole("button", { name: /Show (all )?\d+ (unmodified )?lines/ })
+        .first();
+      await expect(reveal).toBeVisible();
+      await expect(diff.getByText(/History preset 32/)).toHaveCount(0);
+      await reveal.click();
+      await expect(diff.getByText(/History preset 32/).first()).toBeVisible();
+      if (layout === "split") {
+        for (const pane of ["Previous revision", "Later revision"])
+          await expect(
+            diff
+              .getByRole("region", { name: pane, exact: true })
+              .getByText(/History preset 32/),
+          ).toBeVisible();
+      }
+      await diff
+        .getByRole("button", { name: /Hide \d+ unmodified lines/ })
+        .first()
+        .click();
+      await expect(diff.getByText(/History preset 32/)).toHaveCount(0);
+    });

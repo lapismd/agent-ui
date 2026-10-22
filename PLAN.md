@@ -74,3 +74,7 @@ Implemented review follow-up aligns JJ/Op Log paging, conflict and chip presenta
 The graph review now widens and narrows gradually in both logs so lane-dependent
 avatars can be inspected across successive rows. Expanded search help adopts
 JJ Store's icon-bearing informational alerts in the shared query component.
+
+The long-diff review exposed missing context folding in Design Core's split
+reader. The source fix and local review package now pass reveal/hide checks in
+both JJ and Op Log unified/split layouts; the corrected screen awaits review.

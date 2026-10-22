@@ -77,6 +77,9 @@ covering Transcript documentation, complete Agent screens and reference fixtures
 missing or failed imports MUST prevent readiness, and repair MUST permit retry.
 Large shared-package chunks MUST pass the supported Vite asset-URL scanner;
 catalog configuration MUST NOT disable its transforms or suppress import errors.
+History diff qualification MUST exercise context reveal and hide in both
+unified and split layouts in JJ Log and Op Log, including synchronized split
+panes; a single-layout pass cannot stand for both presentations.
 
 ### Acceptance details
 

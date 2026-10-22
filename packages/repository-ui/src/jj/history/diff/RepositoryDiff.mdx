@@ -52,7 +52,7 @@ A refused or failed read, distinct from a successful empty result. The productio
 
 ### Complex
 
-Multiple changed regions separated by retained context use the ordinary diff reader.
+Multiple changed regions separated by retained context use the ordinary diff reader. Long unchanged sections collapse with incremental or full reveal controls in unified and split views. Either split pane controls the same expanded context in both panes.
 
 <Canvas of={Stories.Complex} />
 
@@ -70,7 +70,7 @@ A recorded rename identifies its original path above the shared diff.
 
 ## Behavior and accessibility
 
-Unavailable is distinct from an empty textual diff. Split mode fills its bounded parent; compact previews fit their content. File authorization and content retrieval remain host-owned. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+Unavailable is distinct from an empty textual diff. Split mode fills its bounded parent; compact previews fit their content. The shared Design Core reader hides long unchanged sections in both layouts; use the top/bottom incremental controls or Show all, then Hide to collapse the section again. Split panes retain old/new line numbers and share expansion state. File authorization and content retrieval remain host-owned. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
 
 ## Styling variables
 

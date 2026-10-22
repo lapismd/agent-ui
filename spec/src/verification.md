@@ -37,3 +37,6 @@ User approval of the Agent presentation remains pending.
 The progressive history graph and source-style query-help follow-up for
 RUI-HISTORY-001 / AUI-GOV-003 is recorded in
 `spec/records/2026-10-22-history-graph-help.md`; visual review remains pending.
+
+The RUI-HISTORY-001 split/unified context-folding follow-up is recorded in
+`spec/records/2026-10-22-history-diff-context.md`.

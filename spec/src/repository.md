@@ -59,7 +59,8 @@ destructive tint in light and dark themes. Operation paging MUST span its row
 with a centered, muted label.
 Operation chips MUST remain distinct during selection and use icons for known
 metadata. Dense comparisons MUST include unchanged sections large enough to
-demonstrate the shared diff reader's context expansion.
+demonstrate the shared diff reader's context expansion and collapse in both
+unified and split layouts, including synchronized split-pane controls.
 JJ Log and Op Log MUST share the source-adapted query editor presentation,
 syntax highlighting, explicit completion and host-provided vocabulary while
 retaining their distinct revset and operation query languages. Hosts retain
