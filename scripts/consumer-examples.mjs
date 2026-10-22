@@ -2,7 +2,10 @@ import { readFileSync } from "node:fs";
 import ts from "typescript";
 import { walk } from "./agent-foundation-audit.mjs";
 export function documentedExamples() {
-  return walk("packages/agent-ui/src")
+  return [
+    ...walk("packages/agent-ui/src"),
+    ...walk("packages/repository-ui/src/jj"),
+  ]
     .filter((file) => file.endsWith(".example-sources.ts"))
     .flatMap((file) => {
       const source = ts.createSourceFile(

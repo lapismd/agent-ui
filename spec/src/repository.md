@@ -1,5 +1,32 @@
 # Repository
 
+The current review slice copies Desktop JJ history components and controllers
+through public, operation-pinned HistoryReader ports, with complete in-memory
+examples under JJ. Native admission, repository access, notification policy,
+avatar resolution and preference persistence stay host-owned.
+
+## RUI-FOUND-001 — Component foundations
+
+**Requirement.** JJ foundations MUST follow the same per-folder documentation, styling contracts and fail-closed specification enforcement as Agent foundations.
+
+### Acceptance details
+
+- Every independent family MUST own its component, stories, MDX, complete public usage/styling examples and audited CSS-variable defaults.
+- Complete screens MUST compose the same source-copied production components and host-owned controllers as the standalone foundations.
+- Empty and unavailable states MUST use public shadcn Empty with an icon and applicable retry actions, and small standalone controls MUST use padded bounded previews or their real composition context.
+- New components, missing family structure, undocumented variations and token drift MUST fail validation while frozen pre-review scaffolding remains explicitly deferred.
+
+## RUI-DESKTOP-001 — Desktop history review
+
+**Requirement.** The Desktop JJ slice MUST preserve the original AppShell/Column Canvas layouts and controller flow for JJ Log, Op Log, file history, blame, conflicts and restore presentation.
+
+### Acceptance details
+
+- Copied source revisions, licenses, fingerprints and intentional host bindings MUST remain reviewable without changing source applications.
+- In-memory stories MUST cover meaningful populated, empty, loading, unavailable, recovery, pinned selection and comparison states without contacting native services.
+- Exact pin/lifetime tests, interaction/accessibility, public-package examples and source-layout comparison MUST precede the explicit user review gate.
+- Expanding an operation with one fully loaded change group MUST select that group and show its recorded changed paths, while multiple or paged groups and ambiguous endpoints MUST retain explicit selection; unavailable comparisons MUST never invent endpoints.
+
 ## RUI-BROWSE-001 — Repository browsing
 
 **Requirement.** Repository screens MUST preserve host-issued operation, revision and path identities while composing file, directory, code and document views through public primitives.

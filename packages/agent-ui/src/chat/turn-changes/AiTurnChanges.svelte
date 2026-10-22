@@ -1,5 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0; adapted from jj-store StoreAgentChangesPanel.svelte. -->
 <script lang="ts">
+  import * as Empty from "@lapismd/design-core/shadcn/empty";
   import { onMount, untrack } from "svelte";
   import { Button } from "@lapismd/design-core/shadcn/button";
   import {
@@ -128,13 +129,19 @@
       The ending boundary is incomplete. Automatic undo is unavailable.
     </p>
   {:else if loading}<p role="status"><Spinner />Loading saved changes…</p>
-  {:else if unavailable}<p>
-      Saved changes are unavailable. <Button
-        variant="ghost"
-        size="sm"
-        onclick={() => attempt++}>Retry file changes</Button
-      >
-    </p>
+  {:else if unavailable}<Empty.Root role="status"
+      ><Empty.Header
+        ><Empty.Media variant="icon"
+          ><FileDiffIcon aria-hidden="true" /></Empty.Media
+        ><Empty.Title>Saved changes unavailable</Empty.Title><Empty.Description
+          >Saved changes are unavailable.</Empty.Description
+        ></Empty.Header
+      ><Empty.Content
+        ><Button variant="outline" size="sm" onclick={() => attempt++}
+          >Retry file changes</Button
+        ></Empty.Content
+      ></Empty.Root
+    >
   {:else if summary}
     {#if summary.files.length}<div class="listing">
         <FileListing
@@ -143,7 +150,15 @@
           onSelectPath={(path) => void inspection.show(record, path)}
         />
       </div>
-    {:else}<p>No saved file changes in this turn.</p>{/if}
+    {:else}<Empty.Root role="status"
+        ><Empty.Header
+          ><Empty.Media variant="icon"
+            ><FileDiffIcon aria-hidden="true" /></Empty.Media
+          ><Empty.Title>No saved file changes</Empty.Title><Empty.Description
+            >No saved file changes in this turn.</Empty.Description
+          ></Empty.Header
+        ></Empty.Root
+      >{/if}
     <footer>
       <RepositoryIdentifiers
         {copyText}

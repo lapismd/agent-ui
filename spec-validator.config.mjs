@@ -7,6 +7,7 @@ export default defineConfig(headingRequirements(), {
   name: "agent-ui",
   plugins: [
     "./scripts/agent-foundation-audit.mjs",
+    "./scripts/jj-foundation-audit.mjs",
     "./scripts/transcript-coverage-audit.mjs",
   ],
   idPattern: /^(?:AUI|RUI)-[A-Z]+-\d{3}$/,
@@ -24,7 +25,11 @@ export default defineConfig(headingRequirements(), {
   validators: {
     summary: true,
     storybookCatalog: {
-      roots: ["packages/agent-ui/src", "catalog"],
+      roots: [
+        "packages/agent-ui/src",
+        "packages/repository-ui/src/jj",
+        "catalog",
+      ],
       packageName: "@lapismd/agent-ui",
     },
     governance: { extras: ["AGENTS.md", "README.md"] },

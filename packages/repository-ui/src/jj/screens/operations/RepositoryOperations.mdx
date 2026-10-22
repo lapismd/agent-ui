@@ -1,0 +1,84 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryOperations.stories";
+import { Basic, Styling } from "./RepositoryOperations.example-sources";
+import tokens from "./RepositoryOperations.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Op Log
+
+Complete Desktop operation log, metadata comparison and changed-file inspector.
+
+## Usage
+
+Mount the complete Op Log with its independent host-owned OperationController. It composes the original graph and metadata/file inspector rather than sharing the JJ Log’s mutable selection.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part                | Responsibility                                                          |
+| ------------------- | ----------------------------------------------------------------------- |
+| AppShell and header | Embedded shell, source/workspace controls, independent pin and refresh. |
+| Operation graph     | Recorded operation rows with expanded changed-file controls.            |
+| Comparison column   | Operation metadata and the selected file diff.                          |
+
+## Variations
+
+### Basic
+
+The ordinary populated presentation with recorded identities and explicit callbacks.
+
+<Canvas of={Stories.Basic} />
+
+### Empty
+
+A valid successful result with no content. The production component displays the shared Empty pattern with an icon.
+
+<Canvas of={Stories.Empty} />
+
+### Loading
+
+A pending in-memory read holds the original loading geometry without contacting a repository.
+
+<Canvas of={Stories.Loading} />
+
+### Unavailable
+
+A refused or failed read, distinct from a successful empty result. The production Empty state names the failure and leaves explicit recovery reachable.
+
+<Canvas of={Stories.Unavailable} />
+
+### Metadata
+
+A recorded operation description containing a commit ID and original command arguments.
+
+<Canvas of={Stories.Metadata} />
+
+## Behavior and accessibility
+
+Expanding a complete single-change operation selects that change and shows its files immediately. Multiple/paged changes require a choice from Revisions; ambiguous pairs require both endpoints. Selecting a file uses the same pinned handle. onHistory delegates the selected operation to host navigation. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+
+## Styling variables
+
+Defaults retain the Desktop presentation. Set documented variables on an
+ancestor; avoid selector overrides and dependency-internal imports. Brand and
+light/dark controls remain independent in Storybook.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Complete screens compose this same implementation. Small controls use a padded, bounded standalone preview; shell and column families retain their required production context. Docs shell previews are bounded to 40rem and flush; Canvas screens fill their parent. Host services and downstream integration remain behind the review gate.

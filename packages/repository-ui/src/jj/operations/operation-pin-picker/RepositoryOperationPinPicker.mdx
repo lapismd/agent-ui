@@ -1,0 +1,65 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryOperationPinPicker.stories";
+import { Basic, Styling } from "./RepositoryOperationPinPicker.example-sources";
+import tokens from "./RepositoryOperationPinPicker.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Pin picker
+
+Full pinned-operation identity with searchable recorded operation metadata.
+
+## Usage
+
+Supply the current pin alongside observed operation heads. Keep a historical pin in the choices even when refresh discovers another head.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part         | Responsibility                                               |
+| ------------ | ------------------------------------------------------------ |
+| Trigger      | Compact pin label with full native operation identity.       |
+| Command list | ID search, optional operation cards and selected indication. |
+
+## Variations
+
+### Basic
+
+The ordinary populated presentation with recorded identities and explicit callbacks.
+
+<Canvas of={Stories.Basic} />
+
+### Multiple
+
+Several full operation pins with searchable recorded operation cards.
+
+<Canvas of={Stories.Multiple} />
+
+## Behavior and accessibility
+
+Selecting an option delegates its full operation ID. Opening/searching performs no repository writes. Missing metadata must not invent a Git commit or JJ change identity. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+
+## Styling variables
+
+Defaults retain the Desktop presentation. Set documented variables on an
+ancestor; avoid selector overrides and dependency-internal imports. Brand and
+light/dark controls remain independent in Storybook.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Complete screens compose this same implementation. Small controls use a padded, bounded standalone preview; shell and column families retain their required production context. Docs shell previews are bounded to 40rem and flush; Canvas screens fill their parent. Host services and downstream integration remain behind the review gate.

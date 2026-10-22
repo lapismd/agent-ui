@@ -1,0 +1,71 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryRestoreDialog.stories";
+import { Basic, Styling } from "./RepositoryRestoreDialog.example-sources";
+import tokens from "./RepositoryRestoreDialog.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Restore dialog
+
+Original guarded file/vault restore preview and retained-request recovery confirmation.
+
+## Usage
+
+Prepare a RestoreController from an explicit restore action. The host supplies preview/apply services and an admission guard; mounting the dialog never applies a restore.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part         | Responsibility                                                                |
+| ------------ | ----------------------------------------------------------------------------- |
+| Confirmation | Exact file or vault preview and guarded action.                               |
+| Recovery     | Original request retained after an unknown outcome, without automatic replay. |
+
+## Variations
+
+### Basic
+
+The ordinary populated presentation with recorded identities and explicit callbacks.
+
+<Canvas of={Stories.Basic} />
+
+### Vault
+
+A whole-vault preview with added, modified and deleted counts.
+
+<Canvas of={Stories.Vault} />
+
+### Recovery
+
+An interrupted restore retains the original request for explicit receipt recovery.
+
+<Canvas of={Stories.Recovery} />
+
+## Behavior and accessibility
+
+Closing a preview cancels presentation only. Apply uses the exact preview proof and original request ID. Persist pending requests in the host and recover them explicitly; the library does not infer execution success. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+
+## Styling variables
+
+Defaults retain the Desktop presentation. Set documented variables on an
+ancestor; avoid selector overrides and dependency-internal imports. Brand and
+light/dark controls remain independent in Storybook.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Complete screens compose this same implementation. Small controls use a padded, bounded standalone preview; shell and column families retain their required production context. Docs shell previews are bounded to 40rem and flush; Canvas screens fill their parent. Host services and downstream integration remain behind the review gate.

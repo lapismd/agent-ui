@@ -206,7 +206,10 @@
       "destination": "packages/agent-ui/src/identity/agent-avatar.ts",
       "sourceSha256": "1943e25b2522771430ad929bccd168b9c3de5f84a63980e9b3fa1879829a3e30",
       "adaptations": [
-        { "before": "local: \"/lapis-logo.svg\"", "after": "local: lapisIcon" },
+        {
+          "before": "local: \"/lapis-logo.svg\"",
+          "after": "local: lapisIcon"
+        },
         {
           "before": "import cursorIcon",
           "after": "import lapisIcon from \"./assets/lapis.svg\";\nimport cursorIcon"
@@ -568,7 +571,10 @@
           "before": "  import { composerReferences } from \"./composer-references.ts\";\n",
           "after": ""
         },
-        { "before": "    app,", "after": "    extensions = []," },
+        {
+          "before": "    app,",
+          "after": "    extensions = [],"
+        },
         {
           "before": "    app?: App;",
           "after": "    extensions?: ComponentProps<typeof MarkdownComposer>[\"extensions\"];"
@@ -587,7 +593,10 @@
       ],
       "destinationSha256": "29d375483f27b2076b5a47690a4f98c49b54a411bc2c28e9dd17d65ae002469c",
       "layoutAdaptations": [
-        { "before": "extensions={[references]}", "after": "{extensions}" },
+        {
+          "before": "extensions={[references]}",
+          "after": "{extensions}"
+        },
         {
           "before": "--ui-markdown-composer-min-height: calc(2 * 1.4rem + 1rem);",
           "after": "--ui-markdown-composer-min-height: var(--ui-agent-composer-min-height, calc(2 * 1.4rem + 1rem));"
@@ -661,12 +670,18 @@
           "before": "status={`${agent} · ${composerState.selectedModel || \"Automatic model\"} · ${panel.conversationsState.scopePathLabel}`}",
           "after": "{status}"
         },
-        { "before": "busy={controller.busy}", "after": "{busy}" },
+        {
+          "before": "busy={controller.busy}",
+          "after": "{busy}"
+        },
         {
           "before": "loading={!loaded || !!panelProps.initializing}",
           "after": "{loading}"
         },
-        { "before": "onSelect={select}", "after": "{onSelect}" },
+        {
+          "before": "onSelect={select}",
+          "after": "{onSelect}"
+        },
         {
           "before": "harness={composerState.selectedAgent}",
           "after": "{harness}"
@@ -675,7 +690,10 @@
           "before": "disabled={!!panelProps.initializing || controller.busy}",
           "after": "disabled={loading || busy}"
         },
-        { "before": "onclick={create}", "after": "onclick={onCreate}" },
+        {
+          "before": "onclick={create}",
+          "after": "onclick={onCreate}"
+        },
         {
           "before": "{view}\n      onChange={onViewChange}",
           "after": "bind:view\n      onChange={onViewChange}"
@@ -684,7 +702,10 @@
           "before": "<ChatConversationMenu\n      {panelProps}\n      {controller}\n      actions={panel.actions}\n      {composerState}\n    />",
           "after": "{@render menu?.()}"
         },
-        { "before": "{rows.length}", "after": "{items.length}" }
+        {
+          "before": "{rows.length}",
+          "after": "{items.length}"
+        }
       ],
       "destinationSha256": "9597708a4f5480d6ce131f70d911fae6695f8b4024e09defd3ca5aba5d58a929",
       "layoutAdaptations": [
@@ -696,12 +717,18 @@
           "before": "status={`${agent} · ${composerState.selectedModel || \"Automatic model\"} · ${panel.conversationsState.scopePathLabel}`}",
           "after": "{status}"
         },
-        { "before": "busy={controller.busy}", "after": "{busy}" },
+        {
+          "before": "busy={controller.busy}",
+          "after": "{busy}"
+        },
         {
           "before": "loading={!loaded || !!panelProps.initializing}",
           "after": "{loading}"
         },
-        { "before": "onSelect={select}", "after": "{onSelect}" },
+        {
+          "before": "onSelect={select}",
+          "after": "{onSelect}"
+        },
         {
           "before": "harness={composerState.selectedAgent}",
           "after": "{harness}"
@@ -710,13 +737,22 @@
           "before": "disabled={!!panelProps.initializing || controller.busy}",
           "after": "disabled={loading || busy}"
         },
-        { "before": "onclick={create}", "after": "onclick={onCreate}" },
-        { "before": "      {view}", "after": "      bind:view" },
+        {
+          "before": "onclick={create}",
+          "after": "onclick={onCreate}"
+        },
+        {
+          "before": "      {view}",
+          "after": "      bind:view"
+        },
         {
           "before": "<ChatConversationMenu\n      {panelProps}\n      {controller}\n      actions={panel.actions}\n      {composerState}\n    />",
           "after": "{@render menu?.()}"
         },
-        { "before": "{rows.length}", "after": "{items.length}" }
+        {
+          "before": "{rows.length}",
+          "after": "{items.length}"
+        }
       ],
       "layoutSha256": "09d77f95c54f8e2168203fbe348c8ec6940c06ddaed0c4434f748afd3402ecb1"
     },
@@ -991,7 +1027,10 @@
           "before": "../conversations/transcript-store.ts",
           "after": "./models.js"
         },
-        { "before": "../conversations/types.ts", "after": "./models.js" }
+        {
+          "before": "../conversations/types.ts",
+          "after": "./models.js"
+        }
       ],
       "destinationSha256": "ffd9643bff626dd12a41a6016fbb2b4dc678a996f0d99db82cb59f412ff4e1a4"
     },
@@ -1197,10 +1236,22 @@
       "adaptations": [],
       "destinationSha256": "409ca2876cfc84aec5b3993837d4d256a32d7b0ecfb870ab3dca464cb02dc62a",
       "layoutAdaptations": [
-        { "before": "!!props.sources", "after": "!!imports.available" },
-        { "before": "!!props.onOpen", "after": "!!imports.canOpen" },
-        { "before": "            app={props.app}\n", "after": "" },
-        { "before": "{props.sources", "after": "{imports.available" }
+        {
+          "before": "!!props.sources",
+          "after": "!!imports.available"
+        },
+        {
+          "before": "!!props.onOpen",
+          "after": "!!imports.canOpen"
+        },
+        {
+          "before": "            app={props.app}\n",
+          "after": ""
+        },
+        {
+          "before": "{props.sources",
+          "after": "{imports.available"
+        }
       ],
       "layoutSha256": "f9fa83ac18f4cdb36ac85886ad3b0a373e8fd441638b6ec913e3bf8197abc8df"
     },
@@ -1246,7 +1297,12 @@
       "sourceSha256": "2d6b87af814c0157b31e4df297f4f0df235ee5c1c425a0c81b19828ee06db9bf",
       "adaptations": [],
       "destinationSha256": "8c5e8691ab462a537895b03380473758f03abc61f84002c7559d79131cea342c",
-      "layoutAdaptations": [{ "before": "        {app}\n", "after": "" }],
+      "layoutAdaptations": [
+        {
+          "before": "        {app}\n",
+          "after": ""
+        }
+      ],
       "layoutSha256": "d2ee6eea66191bf3228579944e22dc6df586b80faad248e4aedf18b3b66cf489"
     },
     {
@@ -1266,20 +1322,36 @@
       "adaptations": [
         {
           "description": "Explicit host ports and normalized capture replace App/native authority; original presentation retained. Read failures and async lifetime are guarded."
-        }
-      ],
-      "destinationSha256": "dfa016676667598162407495a3bcbbc390c452209b675042edc7288b441e5f22",
-      "layoutAdaptations": [
-        {
-          "before": "encodeJjChangeId((record.after ?? record.before).change_id)",
-          "after": "(record.after ?? record.before).change_id"
         },
         {
-          "before": "padding: 0.75rem;",
-          "after": "padding: var(--ui-agent-turn-changes-padding, 0.75rem);"
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
         }
       ],
-      "layoutSha256": "5300ab223d9e024596e8f898a2a165080afb8be00ecb6d70abee1deb0a3ce72d"
+      "destinationSha256": "859743b8f987f7e22e3f571bf39f9d2536ec4171a3c8a7dee63265398e0fff51",
+      "layoutAdaptations": [
+        {
+          "before": "      The ending boundary is incomplete. Automatic undo is unavailable.\n    </p>\n  {:else if loading}<p role=\"status\"><Spinner />Loading saved changes…</p>\n  {:else if unavailable}<p>\n      Saved changes are unavailable. <Button\n        variant=\"ghost\"\n        size=\"sm\"\n        onclick={() => attempt++}>Retry file changes</Button\n      >\n    </p>\n  {:else if summary}\n    {#if summary.files.length}<div class=\"listing\">\n        <FileListing\n",
+          "after": "      The ending boundary is incomplete. Automatic undo is unavailable.\n    </p>\n  {:else if loading}<p role=\"status\"><Spinner />Loading saved changes…</p>\n  {:else if unavailable}<Empty.Root role=\"status\"\n      ><Empty.Header\n        ><Empty.Media variant=\"icon\"\n          ><FileDiffIcon aria-hidden=\"true\" /></Empty.Media\n        ><Empty.Title>Saved changes unavailable</Empty.Title><Empty.Description\n          >Saved changes are unavailable.</Empty.Description\n        ></Empty.Header\n      ><Empty.Content\n        ><Button variant=\"outline\" size=\"sm\" onclick={() => attempt++}\n          >Retry file changes</Button\n        ></Empty.Content\n      ></Empty.Root\n    >\n  {:else if summary}\n    {#if summary.files.length}<div class=\"listing\">\n        <FileListing\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        },
+        {
+          "before": "          onSelectPath={(path) => void inspection.show(record, path)}\n        />\n      </div>\n    {:else}<p>No saved file changes in this turn.</p>{/if}\n    <footer>\n      <RepositoryIdentifiers\n        {copyText}\n        placement=\"inline\"\n        commitId={(record.after ?? record.before).commit}\n        changeId={encodeJjChangeId((record.after ?? record.before).change_id)}\n      />\n      <span>Observed during this turn</span>\n      {#if summary.files.length > 3}<Button\n",
+          "after": "          onSelectPath={(path) => void inspection.show(record, path)}\n        />\n      </div>\n    {:else}<Empty.Root role=\"status\"\n        ><Empty.Header\n          ><Empty.Media variant=\"icon\"\n            ><FileDiffIcon aria-hidden=\"true\" /></Empty.Media\n          ><Empty.Title>No saved file changes</Empty.Title><Empty.Description\n            >No saved file changes in this turn.</Empty.Description\n          ></Empty.Header\n        ></Empty.Root\n      >{/if}\n    <footer>\n      <RepositoryIdentifiers\n        {copyText}\n        placement=\"inline\"\n        commitId={(record.after ?? record.before).commit}\n        changeId={(record.after ?? record.before).change_id}\n      />\n      <span>Observed during this turn</span>\n      {#if summary.files.length > 3}<Button\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        },
+        {
+          "before": "    align-items: center;\n    gap: 0.5rem;\n    flex-wrap: wrap;\n    padding: 0.75rem;\n    border-bottom: 1px solid var(--border);\n  }\n  header > :global(svg) {\n",
+          "after": "    align-items: center;\n    gap: 0.5rem;\n    flex-wrap: wrap;\n    padding: var(--ui-agent-turn-changes-padding, 0.75rem);\n    border-bottom: 1px solid var(--border);\n  }\n  header > :global(svg) {\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "layoutSha256": "eda4794bd386036f78af3886feb8a497a32daddb8ea4d562fbfb268b38921c01"
     },
     {
       "sourceRepository": "lapis-desktop",
@@ -1344,11 +1416,26 @@
       "adaptations": [
         {
           "description": "Explicit host ports and normalized capture replace App/native authority; original presentation retained. Read failures and async lifetime are guarded."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
         }
       ],
-      "destinationSha256": "23cf91439936609fa2bb188ac792d65928e57579c1119c015402153da161ed51",
-      "layoutAdaptations": [],
-      "layoutSha256": "92f70fd655489ac9dbf8b360d9587bd1294621607fa61ddedc68db314d54f3bb"
+      "destinationSha256": "f5aed1796d879732820fb0a2272cfe06ed42454ebf42f57654c5ff44d41a6e1d",
+      "layoutAdaptations": [
+        {
+          "before": "  }}\n>\n  <AlertDialog.Content>\n    <AlertDialog.Header>\n      <AlertDialog.Title>History checkpoint unavailable</AlertDialog.Title>\n      <AlertDialog.Description\n        >Your prompt is retained. Retry saving the starting checkpoint, or\n        explicitly continue this turn without a saved comparison or undo\n        protection.</AlertDialog.Description\n      >\n    </AlertDialog.Header>\n    <AlertDialog.Footer>\n      <AlertDialog.Cancel onclick={() => history.cancelPending()}\n        >Cancel</AlertDialog.Cancel\n",
+          "after": "  }}\n>\n  <AlertDialog.Content>\n    <Empty.Root\n      ><Empty.Header\n        ><Empty.Media variant=\"icon\"\n          ><FileQuestionIcon aria-hidden=\"true\" /></Empty.Media\n        >\n        <AlertDialog.Title>History checkpoint unavailable</AlertDialog.Title>\n        <AlertDialog.Description\n          >Your prompt is retained. Retry saving the starting checkpoint, or\n          explicitly continue this turn without a saved comparison or undo\n          protection.</AlertDialog.Description\n        >\n      </Empty.Header></Empty.Root\n    >\n    <AlertDialog.Footer>\n      <AlertDialog.Cancel onclick={() => history.cancelPending()}\n        >Cancel</AlertDialog.Cancel\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "layoutSha256": "627f1f348475f2730627d22b79790f34226c15ea099800aef46c5bd880c25c76"
     },
     {
       "sourceRepository": "lapis-desktop",
@@ -1441,7 +1528,10 @@
       ],
       "destinationSha256": "f5f6af5ac35a1004fa2a67e30395ad32c4ee380e213b0f21eafa98d3d639aad6",
       "layoutAdaptations": [
-        { "before": "item.path && app", "after": "item.path && onOpenPath" }
+        {
+          "before": "item.path && app",
+          "after": "item.path && onOpenPath"
+        }
       ],
       "layoutSha256": "44aa01a35d9f17fd43068bd53955ed99991f7d1d4efb7ffb9d6c490de02c3a04"
     },
@@ -1516,6 +1606,1774 @@
         }
       ],
       "destinationSha256": "4179faa56f95b92bcd0682198d329908316dad62924063b4ddb8e53583743676"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryRevisionOption.svelte",
+      "destination": "packages/repository-ui/src/jj/history/revision-option/RepositoryRevisionOption.svelte",
+      "sourceSha256": "bfe88e9669d2bc437adf8926713376f02422fa39f74476dcb1f0b6d2a56eed6f",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "8c5c262f4f1565bc059237192b91f0afb4dd21f4af596ccc1d0e5ee3fda07d59",
+      "layoutSha256": "23a7e9bf455d05ea04e7d113a9359b02708e0961cf2d2cd872cffdae60c4affd"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryCommitPicker.svelte",
+      "destination": "packages/repository-ui/src/jj/history/commit-picker/RepositoryCommitPicker.svelte",
+      "sourceSha256": "8260e5702eda99c95b4317a171cb534f6ef84521bba949e6d20648d87ac7d8e1",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "50d1ab5fae04af7af1efa16f0d6d1dac821d599a118103816489578a06c5b2d4",
+      "layoutSha256": "2cb622719622bd6de1075280d3248ae3bba1a1ec6a3cfb710f645870efc5ca9a"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/repository-commit-picker.css",
+      "destination": "packages/repository-ui/src/jj/styles/repository-commit-picker.css",
+      "sourceSha256": "d5b482af4552b181f71c43865d011055398b4b82f4bf54eb493461085dad7005",
+      "adaptations": [
+        {
+          "description": "Owned original repository styles; no application host override."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "  flex-direction: row;\n  align-items: center;\n  justify-content: space-between;\n  gap: 0.25rem;\n  min-height: 0;\n  padding: 0;\n  margin: 0;\n",
+          "after": "  flex-direction: row;\n  align-items: center;\n  justify-content: space-between;\n  gap: var(--ui-repository-commit-picker-gap, 0.25rem);\n  min-height: 0;\n  padding: 0;\n  margin: 0;\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "destinationSha256": "dcd29669435f554ac19fd11b8003c05251f944ff61d94cc8516e8516dbf9d6aa",
+      "layoutSha256": "3a412705d98bb25349d69270df68559c0b3bab827163292ce14211216450c470"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryWorkspacePicker.svelte",
+      "destination": "packages/repository-ui/src/jj/history/workspace-picker/RepositoryWorkspacePicker.svelte",
+      "sourceSha256": "37de13ceaa3a02a7a151f7727e6d8125964742ed469098d1561b1d3fc5447cab",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "    flex: 0 1 auto;\n    height: 1.75rem;\n    padding-inline: 0.45rem;\n    font-size: 0.75rem;\n    --ui-button-radius: var(--radius);\n  }\n  :global(.repository-review-workspace-trigger > span) {\n",
+          "after": "    flex: 0 1 auto;\n    height: 1.75rem;\n    padding-inline: 0.45rem;\n    font-size: var(--ui-repository-workspace-picker-font-size, 0.75rem);\n    --ui-button-radius: var(--radius);\n  }\n  :global(.repository-review-workspace-trigger > span) {\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "destinationSha256": "1b81e3237220f19de5b5b0b57c2cf2a0f502f6bcec9c76958965af246b12619e",
+      "layoutSha256": "8809927d0f640c1414dfc9a2198cc13d105f17237d435e36333ecc8e34ef312b"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryShell.svelte",
+      "destination": "packages/repository-ui/src/jj/foundations/shell/RepositoryShell.svelte",
+      "sourceSha256": "e347d70f364f2ea3ac0d8946b7b240e08de57916ba084718f32d1b83bf9e999b",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "\n<style>\n  .repository-shell {\n    height: 100%;\n    min-width: 0;\n    min-height: 0;\n    --ui-shell-height: 100%;\n",
+          "after": "\n<style>\n  .repository-shell {\n    height: var(--ui-repository-shell-height, 100%);\n    min-width: 0;\n    min-height: 0;\n    --ui-shell-height: 100%;\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "destinationSha256": "96ea507615b4d92b2e081e721b69c6cc98f52beb3b1998f9dffcc3ee2fee8ea2",
+      "layoutSha256": "cd4aea9b8af4c484b4caa00dae72a1faec34421f701bfbdbe45ec024ef6b75b4"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/repository-column-chrome.css",
+      "destination": "packages/repository-ui/src/jj/styles/repository-column-chrome.css",
+      "sourceSha256": "26928b4af55a0dd4995c0da08e19548b0e4a91470dacbc0e4af3188a097890dc",
+      "adaptations": [
+        {
+          "description": "Owned original repository styles; no application host override."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "26928b4af55a0dd4995c0da08e19548b0e4a91470dacbc0e4af3188a097890dc",
+      "layoutSha256": "493c318bc25e2fdc59459581fb049e32fddcac54cd945e9e1fb66ff058f393d8"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/repository-review-identifiers.css",
+      "destination": "packages/repository-ui/src/jj/styles/repository-review-identifiers.css",
+      "sourceSha256": "908897107979a8c853446b7d4f6196780ff79bdfbd7a51e8bf273a60676621c6",
+      "adaptations": [
+        {
+          "description": "Owned original repository styles; no application host override."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "908897107979a8c853446b7d4f6196780ff79bdfbd7a51e8bf273a60676621c6",
+      "layoutSha256": "a2169713005c680b8892d34e45313f3e43723dc1d9fbbe50b9c142da6b8b50ec"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/repository-picker-options.css",
+      "destination": "packages/repository-ui/src/jj/styles/repository-picker-options.css",
+      "sourceSha256": "1acfc452e961d6401076afed0348a9546adbd245c9f575107ef55ae6e7a41c37",
+      "adaptations": [
+        {
+          "description": "Owned original repository styles; no application host override."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "1acfc452e961d6401076afed0348a9546adbd245c9f575107ef55ae6e7a41c37",
+      "layoutSha256": "66ad9b780b8e432efc55d24bec8bf4d8c3ccad17fc562bd0afba65535c4bcc2e"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositorySourcePicker.svelte",
+      "destination": "packages/repository-ui/src/jj/history/source-picker/RepositorySourcePicker.svelte",
+      "sourceSha256": "a01b00d6652be517296b46a33e8a05bf05e0372a38ab94911842e7fe8b1fe473",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "            {/each}\n          </CommandView.Group>{/if}\n      </CommandView.List>\n    </CommandView.Root>\n  </Popover.Content>\n</Popover.Root>\n",
+          "after": "            {/each}\n          </CommandView.Group>{/if}\n      </CommandView.List>\n      {#if !loading && !original}<Empty.Root role=\"status\"\n          ><Empty.Header\n            ><Empty.Media variant=\"icon\"\n              ><FileQuestionIcon aria-hidden=\"true\" /></Empty.Media\n            ><Empty.Title>Original repository unavailable</Empty.Title\n            ><Empty.Description\n              >Automatic vault history is still available. Select an existing\n              repository in the host to inspect its original history.</Empty.Description\n            ></Empty.Header\n          ></Empty.Root\n        >{/if}\n    </CommandView.Root>\n  </Popover.Content>\n</Popover.Root>\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        },
+        {
+          "before": "<style>\n  .loading {\n    display: grid;\n    gap: 0.5rem;\n    padding: 0.75rem;\n  }\n</style>",
+          "after": "<style>\n  .loading {\n    display: grid;\n    gap: var(--ui-repository-source-picker-gap, 0.5rem);\n    padding: 0.75rem;\n  }\n</style>",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "destinationSha256": "4941e81ca0ad6e9baf791f2eafd6ab2aa7ee4b0cc0e7a94d601cbe588dd02525",
+      "layoutSha256": "3cf0a7c4eedb08f5eef6f0dcc56e30d7076de72e12a531c24aab746f72ec4b9e"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryOperationTarget.svelte",
+      "destination": "packages/repository-ui/src/jj/operations/operation-target/RepositoryOperationTarget.svelte",
+      "sourceSha256": "ed93b6ae7a04fbe5a3e431831d43528c09751b86285dd2be0fde686edfb84f48",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "0ae3077ff725d38cbbb85088c5f0b6d189b76679e11baf5f6708ffd1c7dadc60",
+      "layoutSha256": "6ba87abb83f13ce9506f6841762e2b9d1ae9152c43174dfd42371a6ca167daa6"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryDiffColumn.svelte",
+      "destination": "packages/repository-ui/src/jj/history/diff-column/RepositoryDiffColumn.svelte",
+      "sourceSha256": "d0fdef28258b04276a939a42121b2eb5643bb9946998984a3487d0cc6b65fa94",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "5b45a3ccf1de0bc04ffb19c87f2a59a73ae5654724cfb5b18c436c3119e3611e",
+      "layoutSha256": "41be503753ad419b0e338d3eeb61ad09295f52b74c155c5489219cc13527d9b4"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryOperationColumn.svelte",
+      "destination": "packages/repository-ui/src/jj/operations/operation-column/RepositoryOperationColumn.svelte",
+      "sourceSha256": "e4162637842a85babf886f2f3dda2f73c73cc6e27ad14efadbea1969e34cf5aa",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "2faf63cad687599630f1d38baced6ff4dcd1c3ce8c492446b728f53f8762afde",
+      "layoutSha256": "44a94d480a00cb6dfe8199f3b8ecc08ffd3edae4c98ab81889f98c3f852e7644"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/repository-operation-column.css",
+      "destination": "packages/repository-ui/src/jj/styles/repository-operation-column.css",
+      "sourceSha256": "44cd5966e6dcad7800e63b6cb606084a520679f567cddbc437e45dba356f13c0",
+      "adaptations": [
+        {
+          "description": "Owned original repository styles; no application host override."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "  color: inherit;\n  background: transparent;\n  font: inherit;\n  font-size: 0.875rem;\n  font-weight: 600;\n  text-align: left;\n  cursor: pointer;\n",
+          "after": "  color: inherit;\n  background: transparent;\n  font: inherit;\n  font-size: var(--ui-repository-operation-column-font-size, 0.875rem);\n  font-weight: 600;\n  text-align: left;\n  cursor: pointer;\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "destinationSha256": "a4189fa60bf26580077897417168e33f0e95e379a3f01bd0bb4c84516437ad95",
+      "layoutSha256": "a7c0f9d4ec3bc4756473da826d7b7407a6fd2333f6792a1079060eb7d0913b3a"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryOperations.svelte",
+      "destination": "packages/repository-ui/src/jj/screens/operations/RepositoryOperations.svelte",
+      "sourceSha256": "bccea17ad7d1c4b146a40213ea512e6ef5d3a1eeedb1bbb4772234b6221be822",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "            {#if state.phase === \"loading\"}<RepositorySkeleton\n                label=\"Preparing operation log…\"\n              />\n            {:else if state.phase === \"unavailable\"}<p role=\"status\">\n                Operation log is unavailable for this vault. Refresh to try\n                again.\n              </p>\n            {:else if !state.headsReady}<RepositorySkeleton\n                label=\"Loading repository operations…\"\n              />\n            {:else if !state.operation}<p role=\"status\">\n                {state.heads.length > 1\n                  ? \"Choose an operation to inspect its ancestry.\"\n                  : \"No repository operations available.\"}\n              </p>{/if}\n            {#if state.snapshot}\n              {#if state.selected && !state.nodes.some((node) => node.id === state.selected?.id)}\n                <section aria-label=\"Selected operation outside loaded graph\">\n",
+          "after": "            {#if state.phase === \"loading\"}<RepositorySkeleton\n                label=\"Preparing operation log…\"\n              />\n            {:else if state.phase === \"unavailable\"}<Empty.Root role=\"status\"\n                ><Empty.Header\n                  ><Empty.Media variant=\"icon\"\n                    ><FileQuestionIcon aria-hidden=\"true\" /></Empty.Media\n                  ><Empty.Title>Operation log unavailable</Empty.Title\n                  ><Empty.Description\n                    >Operation log is unavailable for this vault. Refresh to try\n                    again.</Empty.Description\n                  ></Empty.Header\n                ></Empty.Root\n              >\n            {:else if !state.headsReady}<RepositorySkeleton\n                label=\"Loading repository operations…\"\n              />\n            {:else if !state.operation}<Empty.Root role=\"status\"\n                ><Empty.Header\n                  ><Empty.Media variant=\"icon\"\n                    ><FileQuestionIcon aria-hidden=\"true\" /></Empty.Media\n                  ><Empty.Title\n                    >{state.heads.length > 1\n                      ? \"Choose an operation\"\n                      : \"No repository operations\"}</Empty.Title\n                  ><Empty.Description\n                    >{state.heads.length > 1\n                      ? \"Choose an operation to inspect its ancestry.\"\n                      : \"No repository operations available.\"}</Empty.Description\n                  ></Empty.Header\n                ></Empty.Root\n              >{/if}\n            {#if state.snapshot}\n              {#if state.selected && !state.nodes.some((node) => node.id === state.selected?.id)}\n                <section aria-label=\"Selected operation outside loaded graph\">\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        },
+        {
+          "before": "              {#if !state.ready && !state.busy}<p role=\"status\">\n                  Operations are unavailable. Refresh to try again.\n                </p>\n              {:else if state.ready && !state.nodes.length}<p>\n                  No operations in this history.\n                </p>{/if}\n              <RepositoryGraph\n                operationTitles\n                {copyText}\n                commitLabel=\"operation ID\"\n                revisions={rows}\n                selectedId={state.selected?.id}\n                label=\"Operation graph\"\n                onSelect={(id) => {\n                  const node = state.nodes.find((item) => item.id === id);\n                  if (node)\n                    void (state.selected?.id === id\n                      ? controller.clearSelection()\n                      : controller.select(node));\n                }}\n              >\n                {#snippet selectedFiles()}<RepositoryOperationFiles\n                    {copyText}\n                    commits={state.commits}\n                    onHistory={onHistory && state.selected\n                      ? () => onHistory?.(state.selected!.id)\n                      : undefined}\n                    {state}\n                    {controller}\n                    onOpenDiff={() => canvas.open(\"diff\")}\n                    onOpenDetails={() => canvas.open(\"diff\")}\n                  />{/snippet}\n              </RepositoryGraph>\n              {#if state.next}<Button\n                  size=\"sm\"\n                  disabled={state.busy}\n",
+          "after": "              {#if !state.ready && !state.busy}<p role=\"status\">\n                  Operations are unavailable. Refresh to try again.\n                </p>\n              {:else if state.ready && !state.nodes.length}<Empty.Root\n                  role=\"status\"\n                  ><Empty.Header\n                    ><Empty.Media variant=\"icon\"\n                      ><FileQuestionIcon aria-hidden=\"true\" /></Empty.Media\n                    ><Empty.Title>No operations</Empty.Title><Empty.Description\n                      >No operations in this history.</Empty.Description\n                    ></Empty.Header\n                  ></Empty.Root\n                >{/if}\n              {#if state.nodes.length}<RepositoryGraph\n                  operationTitles\n                  {copyText}\n                  commitLabel=\"operation ID\"\n                  revisions={rows}\n                  selectedId={state.selected?.id}\n                  label=\"Operation graph\"\n                  onSelect={(id) => {\n                    const node = state.nodes.find((item) => item.id === id);\n                    if (node)\n                      void (state.selected?.id === id\n                        ? controller.clearSelection()\n                        : controller.select(node));\n                  }}\n                >\n                  {#snippet selectedFiles()}<RepositoryOperationFiles\n                      {copyText}\n                      commits={state.commits}\n                      onHistory={onHistory && state.selected\n                        ? () => onHistory?.(state.selected!.id)\n                        : undefined}\n                      {state}\n                      {controller}\n                      onOpenDiff={() => canvas.open(\"diff\")}\n                      onOpenDetails={() => canvas.open(\"diff\")}\n                    />{/snippet}\n                </RepositoryGraph>{/if}\n              {#if state.next}<Button\n                  size=\"sm\"\n                  disabled={state.busy}\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        },
+        {
+          "before": "    min-height: 0;\n    background: var(--ui-workspace-view-background, var(--background));\n    color: var(--ui-workspace-view-foreground, var(--foreground));\n    font-size: 0.875rem;\n  }\n  .operation-columns {\n    display: block;\n",
+          "after": "    min-height: 0;\n    background: var(--ui-workspace-view-background, var(--background));\n    color: var(--ui-workspace-view-foreground, var(--foreground));\n    font-size: var(--ui-repository-operations-font-size, 0.875rem);\n  }\n  .operation-columns {\n    display: block;\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "destinationSha256": "42970c8515930eca2012773db369383f1ac77808a4340c5199915632790430ef",
+      "layoutSha256": "ebed48c59d6e4e831fc65fdeb48d112efa217a06ae7ae2d83ada410d58104366"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryOperationPinPicker.svelte",
+      "destination": "packages/repository-ui/src/jj/operations/operation-pin-picker/RepositoryOperationPinPicker.svelte",
+      "sourceSha256": "95fbab440119d892670d4b20348ab2eea291fd40e8880a0b2cdae5fcad42d35d",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "    flex: 0 1 auto;\n    height: 1.75rem;\n    padding-inline: 0.45rem;\n    font-size: 0.75rem;\n    --ui-button-radius: var(--radius);\n  }\n  :global(.repository-review-operation-pin-trigger > span) {\n",
+          "after": "    flex: 0 1 auto;\n    height: 1.75rem;\n    padding-inline: 0.45rem;\n    font-size: var(--ui-repository-operation-pin-picker-font-size, 0.75rem);\n    --ui-button-radius: var(--radius);\n  }\n  :global(.repository-review-operation-pin-trigger > span) {\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "destinationSha256": "505a1f0cf6a7ed473a1c5188ba5a537c51ee9b9bbb65448edd7a3ee42a6229ed",
+      "layoutSha256": "b8848fb1acdc1a7f58c62b86680b7cc2eda443055aef09aa4147123bff90dabd"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryDiffControls.svelte",
+      "destination": "packages/repository-ui/src/jj/history/diff-controls/RepositoryDiffControls.svelte",
+      "sourceSha256": "100ab4d0bb91fa5bc8a069c6a97d2bca94e13e78c2953584f0d7bfb37fe9ba43",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "c3098ab9558fe8786a798ef8a1bceee2b6f946eeceafaf0d2998117e1fcb2af2",
+      "layoutSha256": "716f71accbf7b065c710d08e6e9f03c89dd560996f37c8ccabb8c3cb0beb3eb9"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryRevisionActions.svelte",
+      "destination": "packages/repository-ui/src/jj/history/revision-actions/RepositoryRevisionActions.svelte",
+      "sourceSha256": "e2b81fc368040a71eb9bd4acb6f092f23f9f587361413eb2701df1dd962e8872",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "384ff9985488ecb3a18e40f2fb857cfaeb32b103b998d8af42a612f486746ba2",
+      "layoutSha256": "4cc80c3d9c781ade708b48c9e6db6628e2de317a1236d52ff197c7d82c27f283"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryAuthorAvatar.svelte",
+      "destination": "packages/repository-ui/src/jj/foundations/author-avatar/RepositoryAuthorAvatar.svelte",
+      "sourceSha256": "807ef0904fdc6545bfd68179e3277ad40d646aade60344c0706aac2a023a8825",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Hosts supply resolved avatarUrl; no shared component resolves profiles or contacts Gravatar."
+        },
+        {
+          "description": "Host supplies avatarUrl; no profile lookup is performed by the reusable component."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "<span\n  class=\"repository-review-author-avatar\"\n  onpointerdown={(event) => event.stopPropagation()}\n  onclick={(event) => event.stopPropagation()}\n  onkeydown={(event) => {\n",
+          "after": "<span\n  class=\"repository-review-author-avatar\"\n  data-size={size}\n  onpointerdown={(event) => event.stopPropagation()}\n  onclick={(event) => event.stopPropagation()}\n  onkeydown={(event) => {\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        },
+        {
+          "before": "    flex: none;\n    align-items: center;\n    pointer-events: auto;\n    --ui-author-card-avatar-size: 1.75rem;\n  }\n</style>",
+          "after": "    flex: none;\n    align-items: center;\n    pointer-events: auto;\n    --ui-avatar-size: var(--ui-repository-author-avatar-size, 1.25rem);\n    --ui-author-card-avatar-size: var(\n      --ui-repository-author-avatar-size,\n      1.75rem\n    );\n  }\n  .repository-review-author-avatar[data-size=\"sm\"] {\n    --ui-avatar-size: var(--ui-repository-author-avatar-size, 1.5rem);\n  }\n  .repository-review-author-avatar[data-size=\"lg\"] {\n    --ui-avatar-size: var(--ui-repository-author-avatar-size, 3rem);\n  }\n  .repository-review-author-avatar[data-size=\"xl\"] {\n    --ui-avatar-size: var(--ui-repository-author-avatar-size, 5rem);\n  }\n  .repository-review-author-avatar[data-size=\"2xl\"] {\n    --ui-avatar-size: var(--ui-repository-author-avatar-size, 8rem);\n  }\n  .repository-review-author-avatar[data-size=\"3xl\"] {\n    --ui-avatar-size: var(--ui-repository-author-avatar-size, 10rem);\n  }\n</style>",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "destinationSha256": "5a21257f1efe209e1c6d93062345308149be6df93ddd63cdeb58fb6c0476372e",
+      "layoutSha256": "8976269c50646a6848d5cbf1506ca092ff850cd61b33f94a470c0fe7f3295558"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryLogHeader.svelte",
+      "destination": "packages/repository-ui/src/jj/history/log-header/RepositoryLogHeader.svelte",
+      "sourceSha256": "4de6832da9a7959e83e0a2865f5bb491dbc0687a129368f3f4deaec9d610db32",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "  .repository-log-actions {\n    display: flex;\n    align-items: center;\n    gap: 0.25rem;\n    min-width: 0;\n    flex: 0 1 auto;\n    justify-content: flex-end;\n",
+          "after": "  .repository-log-actions {\n    display: flex;\n    align-items: center;\n    gap: var(--ui-repository-log-header-gap, 0.25rem);\n    min-width: 0;\n    flex: 0 1 auto;\n    justify-content: flex-end;\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "destinationSha256": "13b9445d05ed3a59f8982ffeb80a146be03206013a9c82c62fef7729c2e9d946",
+      "layoutSha256": "721adbf3966ab406157eb1df43534f70591895c70817092e8a2f1b04708c35d2"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryPickerSearch.svelte",
+      "destination": "packages/repository-ui/src/jj/history/picker-search/RepositoryPickerSearch.svelte",
+      "sourceSha256": "f7db277e7ab8307b033859c33f539f21d7f3f8b08350cab0239dc6f6e1e62d81",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "d4da61deeaa9059ca27d668f214455febebdced837fea1fa6685e104cea7ab4f",
+      "layoutSha256": "144a4769e4d3d302f8f2eb92f101367661e1a42034300c3fcc305317914b3705"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryOperationFiles.svelte",
+      "destination": "packages/repository-ui/src/jj/operations/operation-files/RepositoryOperationFiles.svelte",
+      "sourceSha256": "d2eb7b6a5d1145e068b2c2b0d6d697f8f5ddd2fdd21fdc96639671e56d0ebad2",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "        No revision content changes in this operation.\n      </p>\n    {:else}\n      {#if files.group?.comparison.status === \"select\"}\n        <p>Choose both revisions for this comparison.</p>\n        <label\n",
+          "after": "        No revision content changes in this operation.\n      </p>\n    {:else}\n      {#if !files.group}<p>Choose a changed revision to see its files.</p>{/if}\n      {#if files.group?.comparison.status === \"select\"}\n        <p>Choose both revisions for this comparison.</p>\n        <label\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "destinationSha256": "7a953a188797d6d76af22186bfda27d6886ae3ba5fedeb53f9667ef451ded23e",
+      "layoutSha256": "089a92488a02a9796fe68f43f99f1885e92d5a7f1c836981b9ae0fa4293f3435"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryGraph.svelte",
+      "destination": "packages/repository-ui/src/jj/history/graph/RepositoryGraph.svelte",
+      "sourceSha256": "3f9a1addd6053194def3542a5309094727d808f1f1a3422680a8f5878d161d33",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "<ol class=\"repository-graph\" aria-label={label}>\n  {#each rows as row (row.revision.eventId)}\n    {@const commit = commits.find(\n      (commit) => commit.id === row.revision.eventId,\n",
+          "after": "<ol class=\"repository-graph\" aria-label={label}>\n  {#if !rows.length}<li>\n      <Empty.Root role=\"status\"\n        ><Empty.Header\n          ><Empty.Media variant=\"icon\"\n            ><FileQuestionIcon aria-hidden=\"true\" /></Empty.Media\n          ><Empty.Title>No revisions</Empty.Title><Empty.Description\n            >No revisions are available in this graph.</Empty.Description\n          ></Empty.Header\n        ></Empty.Root\n      >\n    </li>{/if}\n  {#each rows as row (row.revision.eventId)}\n    {@const commit = commits.find(\n      (commit) => commit.id === row.revision.eventId,\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        },
+        {
+          "before": "    gap: 0.25rem;\n  }\n  strong {\n    font-size: 0.875rem;\n    font-weight: 500;\n    overflow-wrap: anywhere;\n  }\n",
+          "after": "    gap: 0.25rem;\n  }\n  strong {\n    font-size: var(--ui-repository-graph-font-size, 0.875rem);\n    font-weight: 500;\n    overflow-wrap: anywhere;\n  }\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "destinationSha256": "73e095b86ddf87aa9a3627c57aad817063f110869b8acb8ae1610dd9fc7c7c4b",
+      "layoutSha256": "a260dd5ba5813126b8dc96ab472a076870b8ae43fbd1219774747b380df9e6aa"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryPanel.svelte",
+      "destination": "packages/repository-ui/src/jj/screens/panel/RepositoryPanel.svelte",
+      "sourceSha256": "ab0554df11bb3a36d0505519cb297423287565e2c2e14c1d7c51136ce78267d2",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "            {#if snapshot.phase === \"loading\"}<RepositorySkeleton\n                label=\"Preparing repository history…\"\n              />\n            {:else if snapshot.phase === \"unavailable\"}<p role=\"status\">\n                Repository history is unavailable for this vault. Refresh to try\n                again.\n              </p>\n            {:else if !snapshot.headsReady}<RepositorySkeleton\n                label=\"Loading repository operations…\"\n              />\n            {:else if !snapshot.operation}<p role=\"status\">\n                {snapshot.heads.length > 1\n                  ? \"Choose an operation to inspect its history.\"\n                  : \"No repository operations available.\"}\n              </p>\n            {/if}\n\n            {#if snapshot.snapshot}\n",
+          "after": "            {#if snapshot.phase === \"loading\"}<RepositorySkeleton\n                label=\"Preparing repository history…\"\n              />\n            {:else if snapshot.phase === \"unavailable\"}<Empty.Root role=\"status\"\n                ><Empty.Header\n                  ><Empty.Media variant=\"icon\"\n                    ><FileQuestionIcon aria-hidden=\"true\" /></Empty.Media\n                  ><Empty.Title>Repository history unavailable</Empty.Title\n                  ><Empty.Description\n                    >Repository history is unavailable for this vault. Refresh\n                    to try again.</Empty.Description\n                  ></Empty.Header\n                ></Empty.Root\n              >\n            {:else if !snapshot.headsReady}<RepositorySkeleton\n                label=\"Loading repository operations…\"\n              />\n            {:else if !snapshot.operation}<Empty.Root role=\"status\"\n                ><Empty.Header\n                  ><Empty.Media variant=\"icon\"\n                    ><FileQuestionIcon aria-hidden=\"true\" /></Empty.Media\n                  ><Empty.Title\n                    >{snapshot.heads.length > 1\n                      ? \"Choose an operation\"\n                      : \"No repository operations\"}</Empty.Title\n                  ><Empty.Description\n                    >{snapshot.heads.length > 1\n                      ? \"Choose an operation to inspect its history.\"\n                      : \"No repository operations available.\"}</Empty.Description\n                  ></Empty.Header\n                ></Empty.Root\n              >\n            {/if}\n\n            {#if snapshot.snapshot}\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        },
+        {
+          "before": "    flex-direction: column;\n    color: var(--ui-workspace-view-foreground, var(--foreground));\n    background: var(--ui-workspace-view-background, var(--background));\n    font-size: 0.875rem;\n  }\n  p {\n    margin: 0;\n    padding: 1rem;\n  }\n  .repository-columns {\n    display: block;\n",
+          "after": "    flex-direction: column;\n    color: var(--ui-workspace-view-foreground, var(--foreground));\n    background: var(--ui-workspace-view-background, var(--background));\n    font-size: var(--ui-repository-panel-font-size, 0.875rem);\n  }\n  .repository-columns {\n    display: block;\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "destinationSha256": "99954935372b02d6d2455ff0f81fd3b0939d910135e85b4cd9b855bc641c69e0",
+      "layoutSha256": "b38fb8cfacdba1a03a73ce1bc0d90578b5d50f2eb325d14dc28483414b740fab"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryOperationRail.svelte",
+      "destination": "packages/repository-ui/src/jj/operations/operation-rail/RepositoryOperationRail.svelte",
+      "sourceSha256": "a08a8ab1cdcf8bee572a415670ffd1f5f67cd45be50ad777884378e3062c7457",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "c1739de60c4412e9971bc4f220e009a79cb2209e830c8d85aaaac71eca8d4ea4",
+      "layoutSha256": "6347b2e7284bdc9863eadea5ad004b26ac503805565e4da090f57d06040dc892"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryOperationOption.svelte",
+      "destination": "packages/repository-ui/src/jj/operations/operation-option/RepositoryOperationOption.svelte",
+      "sourceSha256": "b727ba94cce3cf25a9e6e9a1e7c619809e5ccfc6a3400d565f5455667ed28f0b",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "087d98c2fc200147f1e32a4236660f550010bdffca7e8a3480bf5c8443f13d8f",
+      "layoutSha256": "6f029482cdbf4a804158f731820f9f7eea56bc56be4857d3c05f6ada2c2f1413"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryOperationMessage.svelte",
+      "destination": "packages/repository-ui/src/jj/operations/operation-message/RepositoryOperationMessage.svelte",
+      "sourceSha256": "cd2a49091dde2f67e8413e215ee6c8f8ebebf307dc9c1236b9817bda641c4569",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "d0f31599fd40c767bea10819865d72c68950749b52b2509745acf9ab017e88e3",
+      "layoutSha256": "8c65194d9948dfaa3039c71b6408ea46688b8d3ee267ec4c414b14e505feaec6"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryComparisonTime.svelte",
+      "destination": "packages/repository-ui/src/jj/history/comparison-time/RepositoryComparisonTime.svelte",
+      "sourceSha256": "ab9eba149566baf8c49ad65a9cbfddf3818e4fa9d614f6a874ad8ab511a10677",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "49bae4be7c245ddde245acc80ce5ddece69abbf99b1fd9a603e4967b6744aa73",
+      "layoutSha256": "26da87747d623cd5b3b0a2ec6cbfbcf0c590f5a9ff981eb76ac964d28bca02c4"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryDiff.svelte",
+      "destination": "packages/repository-ui/src/jj/history/diff/RepositoryDiff.svelte",
+      "sourceSha256": "9cda6ed23f9309850bb63b64741e736340911c84b56040c06e6f13bdf6a7690a",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "  data-view-mode={viewMode}\n  aria-label={`Changes to ${change.path}`}\n>\n  {#if \"unavailable\" in content}<p role=\"status\">\n      Preview unavailable: {content.unavailable}.\n    </p>\n  {:else}<FileDiff\n      path={change.path}\n      oldText={content.oldText}\n",
+          "after": "  data-view-mode={viewMode}\n  aria-label={`Changes to ${change.path}`}\n>\n  {#if \"unavailable\" in content}<Empty.Root role=\"status\"\n      ><Empty.Header\n        ><Empty.Media variant=\"icon\"\n          ><FileQuestionIcon aria-hidden=\"true\" /></Empty.Media\n        ><Empty.Title>Preview unavailable</Empty.Title><Empty.Description\n          >This file cannot be shown as text: {content.unavailable}.</Empty.Description\n        ></Empty.Header\n      ></Empty.Root\n    >\n  {:else}<FileDiff\n      path={change.path}\n      oldText={content.oldText}\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        },
+        {
+          "before": "    display: flex;\n    flex-direction: column;\n    min-width: 0;\n    min-height: 16rem;\n  }\n  .repository-diff[data-view-mode=\"split\"] {\n    height: 100%;\n",
+          "after": "    display: flex;\n    flex-direction: column;\n    min-width: 0;\n    min-height: var(--ui-repository-diff-min-height, 16rem);\n  }\n  .repository-diff[data-view-mode=\"split\"] {\n    height: 100%;\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        },
+        {
+          "before": "  .repository-diff[data-compact] {\n    min-height: 0;\n  }\n  p {\n    padding: 1rem;\n    color: var(--muted-foreground);\n  }\n</style>",
+          "after": "  .repository-diff[data-compact] {\n    min-height: 0;\n  }\n</style>",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "destinationSha256": "ac3245aae3f19e827cb9e4c1470f655b2ba21b80edf9d6746cd7cdbe7f13b0b8",
+      "layoutSha256": "2ccd8da5d5aa5e99c04ed138583d1949a3f0e024a44a42baba62762a28e43ce0"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryOperationArguments.svelte",
+      "destination": "packages/repository-ui/src/jj/operations/operation-arguments/RepositoryOperationArguments.svelte",
+      "sourceSha256": "3f7c8ff44b4d0c638d76571fb9accfef978c6f967599906129f47a7acfa96c75",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "b74eb4d4b47b8a22bf62eb824af62a796c5dc53c35d8b4ba30b4445d731902e4",
+      "layoutSha256": "e6cf5f14e85a40142f26b519b5b3b5ea9bf215ed1e9c4849b3b6e4faa04ab965"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryIdentifiers.svelte",
+      "destination": "packages/repository-ui/src/jj/foundations/identifiers/RepositoryIdentifiers.svelte",
+      "sourceSha256": "332bb5e006c6c556cdd6e62300621cd16f8427920e99d7a51ab108d29258dfb7",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "09133bf8d2d817d567e073d6eb1542bc11a412f5d815a9808eda510ac3d7bb18",
+      "layoutSha256": "71765e96a99aacec38b23e50fc56b8d6ef0de7dbde9baa3d1977e0217656c44f"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/repository-identifiers.css",
+      "destination": "packages/repository-ui/src/jj/styles/repository-identifiers.css",
+      "sourceSha256": "7e81370496fddd81f21b3e25e212a45a557f4c81a461da78ebe183744a65393b",
+      "adaptations": [
+        {
+          "description": "Owned original repository styles; no application host override."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "  color: var(--foreground);\n  background: color-mix(in srgb, currentcolor 4%, var(--background));\n  font-family: var(--font-mono, monospace);\n  font-size: 0.6875rem;\n  transition: grid-template-columns 160ms ease;\n}\n\n",
+          "after": "  color: var(--foreground);\n  background: color-mix(in srgb, currentcolor 4%, var(--background));\n  font-family: var(--font-mono, monospace);\n  font-size: var(--ui-repository-identifiers-font-size, 0.6875rem);\n  transition: grid-template-columns 160ms ease;\n}\n\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "destinationSha256": "7e79f17677ee18d342ef54f37884e8e86dacd7fd47d0a580fc43869999501a04",
+      "layoutSha256": "b644d8ab47922d1eec1b94c4a8f4d32d3e17109c71b9837e798521447938de45"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryRevisionPicker.svelte",
+      "destination": "packages/repository-ui/src/jj/history/revision-picker/RepositoryRevisionPicker.svelte",
+      "sourceSha256": "16fd0bd20c598482d1991c2efc802e467c3dfd3ec6e3ce2670bf658cbc72cdd3",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "296a0ded56c92ef14ddc205dc1291f9850dd2cadd5a810d159169610825c6d81",
+      "layoutSha256": "456efbd84d38e28a45732c2a86af661897dee5552e607f519e7e3cda5a440799"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryRestoreDialog.svelte",
+      "destination": "packages/repository-ui/src/jj/history/restore-dialog/RepositoryRestoreDialog.svelte",
+      "sourceSha256": "c444038ac98354fcf4aee2dda9e358544279400835eda9be54aa9b903d4efef5",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "  .restore-skeleton {\n    display: flex;\n    flex-direction: column;\n    gap: 0.5rem;\n  }\n</style>",
+          "after": "  .restore-skeleton {\n    display: flex;\n    flex-direction: column;\n    gap: var(--ui-repository-restore-dialog-gap, 0.5rem);\n  }\n</style>",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "destinationSha256": "07c404307e127c8aa99c213236b0e5d361bcfb581c8552482aef29d5dd2a1ec6",
+      "layoutSha256": "b4a912fbf765da03d1cbe5d5fc5fed5608f8a1a11ee53e91d8b2348cfb6fc6ae"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositorySkeleton.svelte",
+      "destination": "packages/repository-ui/src/jj/foundations/skeleton/RepositorySkeleton.svelte",
+      "sourceSha256": "dbe6ca0ef7d5cdd35e4d078330190d84d8db96daa8d9b00ff4cb67542d45dd12",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "  .skeleton-row {\n    display: flex;\n    align-items: center;\n    gap: 0.65rem;\n    min-height: 4.5rem;\n  }\n  .skeleton-row.compact {\n",
+          "after": "  .skeleton-row {\n    display: flex;\n    align-items: center;\n    gap: var(--ui-repository-skeleton-gap, 0.65rem);\n    min-height: 4.5rem;\n  }\n  .skeleton-row.compact {\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "destinationSha256": "ae2b9de8fc06d27970704a0ddfee2921a64cc505bfedd7c2bf2b93260e5e6c44",
+      "layoutSha256": "867042c430a926ae625462a3dd8bbce52a13255ddd4e127cf078fb0c81e34bef"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryFileHistory.svelte",
+      "destination": "packages/repository-ui/src/jj/history/file-history/RepositoryFileHistory.svelte",
+      "sourceSha256": "df78d0f1768d69ca3d3c98e146d2049866fbf9477c3cbaab05e88b031da02d5c",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "        </Empty.Header>\n      </Empty.Root>\n    {:else}\n      <RepositoryGraph\n        revisions={rows}\n        commits={state.commits}\n        label=\"File revision graph\"\n        {copyText}\n        showAuthor={false}\n        onSelect={onOpen}\n      />\n      {#if state.busy}<RepositorySkeleton\n          kind=\"file-history\"\n          label=\"Loading file history…\"\n        />\n      {:else if state.phase === \"unavailable\"}<p role=\"status\">\n          File history is unavailable. Refresh to try again.\n        </p>\n      {:else if !state.operation}<p role=\"status\">\n          {state.heads.length > 1\n            ? \"Choose an operation to inspect this file.\"\n",
+          "after": "        </Empty.Header>\n      </Empty.Root>\n    {:else}\n      {#if state.commits.length}<RepositoryGraph\n          revisions={rows}\n          commits={state.commits}\n          label=\"File revision graph\"\n          {copyText}\n          showAuthor={false}\n          onSelect={onOpen}\n        />{/if}\n      {#if state.busy}<RepositorySkeleton\n          kind=\"file-history\"\n          label=\"Loading file history…\"\n        />\n      {:else if state.phase === \"unavailable\"}<Empty.Root role=\"status\"\n          ><Empty.Header\n            ><Empty.Media variant=\"icon\"\n              ><FileQuestionIcon aria-hidden=\"true\" /></Empty.Media\n            ><Empty.Title>File history unavailable</Empty.Title\n            ><Empty.Description\n              >Refresh to try reading this file’s history again.</Empty.Description\n            ></Empty.Header\n          ></Empty.Root\n        >\n      {:else if !state.operation}<p role=\"status\">\n          {state.heads.length > 1\n            ? \"Choose an operation to inspect this file.\"\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        },
+        {
+          "before": "    min-width: 0;\n    color: var(--foreground);\n    background: var(--background);\n    font-size: 0.8125rem;\n  }\n  header {\n    display: flex;\n",
+          "after": "    min-width: 0;\n    color: var(--foreground);\n    background: var(--background);\n    font-size: var(--ui-repository-file-history-font-size, 0.8125rem);\n  }\n  header {\n    display: flex;\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "destinationSha256": "aaa28a0993c674906db63bdc2369ca07cee00ea8a532500b4056fa964f36f75f",
+      "layoutSha256": "14aafe6c47e5c3d806b1ad1247ce295111caa0a7c0c73a58e63177af4026ea75"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryFileTitle.svelte",
+      "destination": "packages/repository-ui/src/jj/history/file-title/RepositoryFileTitle.svelte",
+      "sourceSha256": "77f122c8cc85cedc0de114a30188209e5c3198a4c30ad9578e848ee5a6f10531",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "d5e201b5bfabbeb02f9f38ce4d6fc363df5bfa310ce7945e1b4f17b93064b0d7",
+      "layoutSha256": "de1a4f0419af49da5cb2fd346e8b1bba0343fc8bfce4df6cc8b7d4ec82681576"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryRevisionFiles.svelte",
+      "destination": "packages/repository-ui/src/jj/history/revision-files/RepositoryRevisionFiles.svelte",
+      "sourceSha256": "0066eca13b8366db72ab56e1c440dfc61ffa2b5dcd168b3fb32b20d282bfdb94",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "d9331177aec7bd702354f7dd8980af21b1f1f98cdb3fc1dfadf482f3868a512f",
+      "layoutSha256": "8f9688f655f228375d6abf28007af0b8d10d7525823746dbfce2a607b2f2f970"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryChangedFiles.svelte",
+      "destination": "packages/repository-ui/src/jj/history/changed-files/RepositoryChangedFiles.svelte",
+      "sourceSha256": "3d8bddb37da0b827c0c9dc65d8aa944115dcb92103f95f27818b88bc1e74ca4f",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "        kind=\"files\"\n        label=\"Loading changed files…\"\n      />\n    {:else}<FileListing\n        {files}\n        {mode}\n        {selectedPath}\n",
+          "after": "        kind=\"files\"\n        label=\"Loading changed files…\"\n      />\n    {:else if !files.length}<Empty.Root role=\"status\"\n        ><Empty.Header\n          ><Empty.Media variant=\"icon\"\n            ><FileQuestionIcon aria-hidden=\"true\" /></Empty.Media\n          ><Empty.Title>No changed files</Empty.Title><Empty.Description\n            >No files changed in this comparison.</Empty.Description\n          ></Empty.Header\n        ></Empty.Root\n      >{:else}<FileListing\n        {files}\n        {mode}\n        {selectedPath}\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        },
+        {
+          "before": "  strong {\n    flex: 1;\n    min-width: 0;\n    font-size: 0.8125rem;\n  }\n  .file-count {\n    display: inline-flex;\n",
+          "after": "  strong {\n    flex: 1;\n    min-width: 0;\n    font-size: var(--ui-repository-changed-files-font-size, 0.8125rem);\n  }\n  .file-count {\n    display: inline-flex;\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "destinationSha256": "fe179f37548785565babbe9751c64f24d8ccc018a6d3bc39b371c97e3c1dc5ab",
+      "layoutSha256": "c7048681548ebfe7fd553c5477dc61643bcfac748000a5a113f826b0a8b40729"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryCommitMessage.svelte",
+      "destination": "packages/repository-ui/src/jj/history/commit-message/RepositoryCommitMessage.svelte",
+      "sourceSha256": "e31226f3a285ce2fd2497b612ba835caf2c0e092571bb7025034ac331593a715",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "1566adc7a16985f265ec393f21f4a3e29fafa1306ec3c4be7317da057d6162cc",
+      "layoutSha256": "8b74c1016998eb10f83da86af6bb0570c41859fecef05788a05f1d963065a4eb"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryParentSummary.svelte",
+      "destination": "packages/repository-ui/src/jj/history/parent-summary/RepositoryParentSummary.svelte",
+      "sourceSha256": "9a2fadb7d7f8d551c38fc53c57debad1ec3d3c28e0bfcfeeb6a66431a798e49e",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "79b5423469db1dd0ecb7d659bb05af775098ba078d181a74497b0d24c09e0633",
+      "layoutSha256": "60a3cabecea4305a8b0e8f1b5965ad1f1944fb5b8ea3f1150c87b74561a718dd"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryOperationParentPicker.svelte",
+      "destination": "packages/repository-ui/src/jj/operations/operation-parent-picker/RepositoryOperationParentPicker.svelte",
+      "sourceSha256": "0d173bfdf38e390aa72c2e3e01119de818de1eef2e94538580c15f010752164c",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "698e103f9b88054a8e13a4079a5c99fdd353214ea39bd9ce25a1295ee999e541",
+      "layoutSha256": "b0d4f745b9562b02b34cbb0e881d63a2fbd36efffaf4beca1cc36563763c7b26"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryComparisonBar.svelte",
+      "destination": "packages/repository-ui/src/jj/history/comparison-bar/RepositoryComparisonBar.svelte",
+      "sourceSha256": "dd6f833feeb7887f8cd444798109db8b7a349edb7fbdf26c67f2d83cc591738a",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "541149ebd925e33cbbe8df57b30a602aa7c37414430052d6c7fae287b40530ed",
+      "layoutSha256": "4ada173f2f760d12bb38db9ba530ed4671e65c85b54c23320a5c54fb0089c59a"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryGraphSvg.svelte",
+      "destination": "packages/repository-ui/src/jj/history/graph-svg/RepositoryGraphSvg.svelte",
+      "sourceSha256": "db766853311e2d989c94af940f6e8cbae0b0abbcf5b49c0b66c0ad5f1246b662",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "128f811b1b053f6fb62cdd8740df61d4a3a89b24b74eda6a87078934430cd2e3",
+      "layoutSha256": "3dcc7ffadfcdbccbf85a8a71b703c956993e277e16e3ce04c9803da5c482c375"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryRevisions.svelte",
+      "destination": "packages/repository-ui/src/jj/history/revisions/RepositoryRevisions.svelte",
+      "sourceSha256": "2406520f43bcb9920122becb12ef8439ee188ffbdba75d85ca973603c864ed73",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "<div class=\"repository-revisions\">\n  {#if !state.commitsReady && !state.busy}<p role=\"status\">\n      Revisions are unavailable. Refresh to try again.\n    </p>\n  {:else if state.commitsReady && !state.commits.length && !state.busy}<p>\n      No revisions in this operation.\n    </p>{/if}\n  <RepositoryGraph\n    commits={state.commits}\n    {revisions}\n    {copyText}\n    selectedId={state.revision?.id}\n    label={graphLabel}\n    onSelect={(id) => {\n      const commit = state.commits.find((item) => item.id === id);\n      if (state.revision?.id === id) void controller.clearRevision();\n      else if (commit) void controller.selectRevision(commit);\n    }}\n  >\n    {#snippet selectedFiles()}\n      {#if onOpenEvolution || onRestoreVault || (state.revision?.conflicted && onResolveConflicts)}<RepositoryRevisionActions\n          expanded={evolutionOpen}\n          onEvolution={onOpenEvolution}\n          onResolve={state.revision?.conflicted\n            ? onResolveConflicts\n            : undefined}\n          onRestore={onRestoreVault}\n        />{/if}\n      <RepositoryCommitMessage\n        description={state.revision?.description ?? \"\"}\n      />\n      {#if !comparisonUnavailable}<RepositoryRevisionFiles\n          {copyText}\n          {state}\n          {controller}\n          {onOpenDiff}\n          {comparisonTargets}\n          {comparisonLabel}\n          separateActions={!hasMessageBody &&\n            Boolean(\n              onOpenEvolution ||\n              onRestoreVault ||\n              (state.revision?.conflicted && onResolveConflicts),\n            )}\n        />{/if}{/snippet}\n  </RepositoryGraph>\n  {#if state.next}<Button\n      size=\"sm\"\n      disabled={state.busy}\n",
+          "after": "<div class=\"repository-revisions\">\n  {#if !state.commitsReady && !state.busy}<Empty.Root role=\"status\"\n      ><Empty.Header\n        ><Empty.Media variant=\"icon\"\n          ><FileQuestionIcon aria-hidden=\"true\" /></Empty.Media\n        ><Empty.Title>Revisions unavailable</Empty.Title><Empty.Description\n          >Refresh to try reading the pinned operation again.</Empty.Description\n        ></Empty.Header\n      ></Empty.Root\n    >\n  {:else if state.commitsReady && !state.commits.length && !state.busy}<Empty.Root\n      role=\"status\"\n      ><Empty.Header\n        ><Empty.Media variant=\"icon\"\n          ><FileQuestionIcon aria-hidden=\"true\" /></Empty.Media\n        ><Empty.Title>No revisions</Empty.Title><Empty.Description\n          >No revisions in this operation.</Empty.Description\n        ></Empty.Header\n      ></Empty.Root\n    >{/if}\n  {#if revisions.length}<RepositoryGraph\n      commits={state.commits}\n      {revisions}\n      {copyText}\n      selectedId={state.revision?.id}\n      label={graphLabel}\n      onSelect={(id) => {\n        const commit = state.commits.find((item) => item.id === id);\n        if (state.revision?.id === id) void controller.clearRevision();\n        else if (commit) void controller.selectRevision(commit);\n      }}\n    >\n      {#snippet selectedFiles()}\n        {#if onOpenEvolution || onRestoreVault || (state.revision?.conflicted && onResolveConflicts)}<RepositoryRevisionActions\n            expanded={evolutionOpen}\n            onEvolution={onOpenEvolution}\n            onResolve={state.revision?.conflicted\n              ? onResolveConflicts\n              : undefined}\n            onRestore={onRestoreVault}\n          />{/if}\n        <RepositoryCommitMessage\n          description={state.revision?.description ?? \"\"}\n        />\n        {#if !comparisonUnavailable}<RepositoryRevisionFiles\n            {copyText}\n            {state}\n            {controller}\n            {onOpenDiff}\n            {comparisonTargets}\n            {comparisonLabel}\n            separateActions={!hasMessageBody &&\n              Boolean(\n                onOpenEvolution ||\n                onRestoreVault ||\n                (state.revision?.conflicted && onResolveConflicts),\n              )}\n          />{/if}{/snippet}\n    </RepositoryGraph>{/if}\n  {#if state.next}<Button\n      size=\"sm\"\n      disabled={state.busy}\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        },
+        {
+          "before": "    min-width: 0;\n  }\n  p {\n    padding: 0.75rem;\n  }\n</style>",
+          "after": "    min-width: 0;\n  }\n  p {\n    padding: var(--ui-repository-revisions-padding, 0.75rem);\n  }\n</style>",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "destinationSha256": "b26780cf002c18a600cb8d628665de171a661e329076591e435eb49719020ebb",
+      "layoutSha256": "fccdcd41252217c2e4669d98233c5a30a6eaa7dd167771a92bfe2f4259b3e445"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/blame/RepositoryBlameRows.svelte",
+      "destination": "packages/repository-ui/src/jj/blame/blame-rows/RepositoryBlameRows.svelte",
+      "sourceSha256": "6ee26065f2907e98cfdcef7be56da4faae02f760161d9d51601ebd86de1c586d",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "4edb9bad3fee09a1f9150ffc67eb39042788a2bbc9fe376a343ed2e42f9a8cfb",
+      "layoutSha256": "9d1a95ca69655a802325ae05245fbe6a6293ea0d08bb2b8bedf649513dd79d5a"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/blame/RepositoryBlameCommitTitle.svelte",
+      "destination": "packages/repository-ui/src/jj/blame/blame-commit-title/RepositoryBlameCommitTitle.svelte",
+      "sourceSha256": "1ba2313ad54edf497c4863033b802ac75b42082d88a8bfc62b072a43cf970fcc",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "667006af9915864eb1932ccff2fe1c4f2f8c52c1b7d6756c39fa55325d52bd2e",
+      "layoutSha256": "377d14f6dd48ce42dfdabfbaa049b2af36ff328c17a82207f2893ef916277463"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/blame/RepositoryBlameView.svelte",
+      "destination": "packages/repository-ui/src/jj/blame/blame-view/RepositoryBlameView.svelte",
+      "sourceSha256": "5fbf3423dcbfc1a3d9f37b5f43b531cd085fa8151d77cc9ef7e392f999689d8f",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "    height: 100%;\n    min-height: 0;\n    position: relative;\n    font-size: var(--community-text-secondary, 0.875rem);\n  }\n  .store-blame__track {\n    min-width: 100%;\n",
+          "after": "    height: 100%;\n    min-height: 0;\n    position: relative;\n    font-size: var(--ui-repository-blame-source-font-size, 0.875rem);\n  }\n  .store-blame__track {\n    min-width: 100%;\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "destinationSha256": "6ed434b0ace0697345d246635af74c6ecd7dc9d5ef6fe3de039583bce274cb19",
+      "layoutSha256": "effebd2b2cab77dedbe95fa89312eba5ffe2a3d749040762e075ee06c1501a2c"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/blame/RepositoryBlamePanel.svelte",
+      "destination": "packages/repository-ui/src/jj/blame/blame-panel/RepositoryBlamePanel.svelte",
+      "sourceSha256": "3b7d6a42bd9d7c27dcdaeb7b3db8686b001b200262c43d05c85becd1067f96b1",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Blame wrap remains controlled and defaults true; preference persistence is host-owned."
+        },
+        {
+          "description": "Host-owned bindable wrap preference and onWrapChange replace application storage."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "                pressed={wrap}\n                onPressedChange={(pressed) => {\n                  wrap = pressed;\n                  saveBlameWrap(pressed);\n                }}\n                size=\"sm\"\n                class=\"wrap-toggle\"\n",
+          "after": "                pressed={wrap}\n                onPressedChange={(pressed) => {\n                  wrap = pressed;\n                  onWrapChange?.(pressed);\n                }}\n                size=\"sm\"\n                class=\"wrap-toggle\"\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        },
+        {
+          "before": "        onclick={() => controller.refresh()}><RefreshCwIcon /></Button\n      >\n    </header>\n    {#if viewState.status === \"failed\"}<p role=\"status\">\n        Blame is unavailable. Refresh to try again.\n      </p>{/if}\n    <div class=\"blame-body\">\n      {#if viewState.contents === undefined && viewState.busy}<RepositorySkeleton\n          kind=\"blame\"\n",
+          "after": "        onclick={() => controller.refresh()}><RefreshCwIcon /></Button\n      >\n    </header>\n    {#if viewState.status === \"failed\"}<Empty.Root role=\"status\"\n        ><Empty.Header\n          ><Empty.Media variant=\"icon\"\n            ><FileQuestionIcon aria-hidden=\"true\" /></Empty.Media\n          ><Empty.Title>Blame unavailable</Empty.Title><Empty.Description\n            >Refresh to try reading the recorded file attribution again.</Empty.Description\n          ></Empty.Header\n        ></Empty.Root\n      >{/if}\n    <div class=\"blame-body\">\n      {#if viewState.contents === undefined && viewState.busy}<RepositorySkeleton\n          kind=\"blame\"\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        },
+        {
+          "before": "    height: 100%;\n    min-height: 0;\n    min-width: 0;\n    font-size: 0.875rem;\n  }\n  header {\n    display: flex;\n",
+          "after": "    height: 100%;\n    min-height: 0;\n    min-width: 0;\n    font-size: var(--ui-repository-blame-panel-font-size, 0.875rem);\n  }\n  header {\n    display: flex;\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        },
+        {
+          "before": "    height: 1.75rem;\n    padding: 0;\n  }\n  p {\n    padding: 0.75rem;\n    margin: 0;\n    color: var(--muted-foreground);\n  }\n  .blame-body {\n    flex: 1;\n    min-height: 0;\n",
+          "after": "    height: 1.75rem;\n    padding: 0;\n  }\n  .blame-body {\n    flex: 1;\n    min-height: 0;\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "destinationSha256": "bdfd0d55fce9914a4289ddae7b471d80af8b7d78a73a0dda5ecb51ccd1f7142f",
+      "layoutSha256": "202c9d166e90b21de37a12cdd3f19004066c64ad3739654c69f7cb4a41fcd2b2"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/blame/RepositoryBlameGroup.svelte",
+      "destination": "packages/repository-ui/src/jj/blame/blame-group/RepositoryBlameGroup.svelte",
+      "sourceSha256": "147e86eda2b0db7e928e90a06f7a4b84ffff361b4ec2d071e71626a63aa56801",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "5c4df32a2dbeacb6de25110fc3ac2b62a991b94da45981fc0e69efccdc8268fa",
+      "layoutSha256": "ebcba882eb5aefb7cc636b7c728af3234e84cc6e0f046ed8f262726d21179fef"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/conflicts/RepositoryConflictText.svelte",
+      "destination": "packages/repository-ui/src/jj/conflicts/conflict-text/RepositoryConflictText.svelte",
+      "sourceSha256": "ddedd54995248dd27764f835e2c8e1ce8c94f64fd8be9633ec02a1ac7440a619",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "95f5f5a8420beca57211c5ef51d7f829bd3077faa9f7ddfbe4a08f0126cb05a8",
+      "layoutSha256": "9cc989672cbb39c14450a851a82e4f6b30ec1e987d05f2551be1ea29980fa74c"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/conflicts/RepositoryConflictResolution.svelte",
+      "destination": "packages/repository-ui/src/jj/conflicts/conflict-resolution/RepositoryConflictResolution.svelte",
+      "sourceSha256": "6144ce00422362afe10e501f82f1cadd295679f0e718a8630b67ee63b90f11f0",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "        kind=\"conflicts\"\n        label=\"Loading native conflict details…\"\n      />\n    {:else}<p role=\"status\">Conflict details are unavailable.</p>\n      <Button variant=\"outline\" size=\"sm\" onclick={onLoad}\n        >Retry conflict details</Button\n      >\n    {/if}\n  {:else if !conflicts.length}<p>\n      No conflict descriptors are available for this revision.\n    </p>\n  {:else if preview}\n    <section\n      class=\"store-conflict-preview\"\n",
+          "after": "        kind=\"conflicts\"\n        label=\"Loading native conflict details…\"\n      />\n    {:else}<Empty.Root role=\"status\"\n        ><Empty.Header\n          ><Empty.Media variant=\"icon\"\n            ><FileQuestionIcon aria-hidden=\"true\" /></Empty.Media\n          ><Empty.Title>Conflict details unavailable</Empty.Title\n          ><Empty.Description\n            >The recorded conflict details could not be read.</Empty.Description\n          ></Empty.Header\n        ><Empty.Content\n          ><Button variant=\"outline\" size=\"sm\" onclick={onLoad}\n            >Retry conflict details</Button\n          ></Empty.Content\n        ></Empty.Root\n      >\n    {/if}\n  {:else if !conflicts.length}<Empty.Root role=\"status\"\n      ><Empty.Header\n        ><Empty.Media variant=\"icon\"\n          ><FileQuestionIcon aria-hidden=\"true\" /></Empty.Media\n        ><Empty.Title>No conflicts</Empty.Title><Empty.Description\n          >No conflict descriptors are available for this revision.</Empty.Description\n        ></Empty.Header\n      ></Empty.Root\n    >\n  {:else if preview}\n    <section\n      class=\"store-conflict-preview\"\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "destinationSha256": "f0827ce9aa0ffbc2767aa0cab03c18294fefb53113e56f0b9646e66dbd2e569c",
+      "layoutSha256": "21b74326db2771ad845f0d6f7e44e6ec21e84621297a13e2acfad3959b00b48b"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/conflicts/RepositoryConflictBody.svelte",
+      "destination": "packages/repository-ui/src/jj/conflicts/conflict-body/RepositoryConflictBody.svelte",
+      "sourceSha256": "f0a2e20089631a526850d88b8c70f86edbd8494b36b6a1569c176677a3a00604",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "9b79e4c3d68d9156e720d29b4eb63ce1f363ff0f33c5eab52744e04b9834fd02",
+      "layoutSha256": "9e35e12e2886e04a4556879510a8e01fa1309bcf0a3669bceb884553e3e92592"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/conflicts/RepositoryConflictFileTree.svelte",
+      "destination": "packages/repository-ui/src/jj/conflicts/conflict-file-tree/RepositoryConflictFileTree.svelte",
+      "sourceSha256": "6d4a6f586d2b8c2c16b926d67b72febddd1816f109d9c979fc45256a360eae35",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "d413c85e23e6aaa22ad70a2776f966b023ebb6a62beca1f701dffdd25b7f4a1e",
+      "layoutSha256": "8fd74bc22c259a502adc8a8f433e814e8c209b098a7e9d877365609c3c858a35"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/conflicts/repository-conflict-file-tree.css",
+      "destination": "packages/repository-ui/src/jj/styles/repository-conflict-file-tree.css",
+      "sourceSha256": "48b91338a629552ea233e702267f9d73788f38091f12e5a5e3bd25a4148df34e",
+      "adaptations": [
+        {
+          "description": "Owned original repository styles; no application host override."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "48b91338a629552ea233e702267f9d73788f38091f12e5a5e3bd25a4148df34e",
+      "layoutSha256": "2eb32d32776e09fe7eaaf66afa4b861a8fb0225af770b9a0e074d2335bff20f8"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/conflicts/RepositorySidebarToggleIcon.svelte",
+      "destination": "packages/repository-ui/src/jj/conflicts/sidebar-toggle-icon/RepositorySidebarToggleIcon.svelte",
+      "sourceSha256": "f91d987ceafc8b16022f40a2d07c100b68bd526075db55c8eaa477b272da9559",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "a54c9678c0d3c3f27a6b46251cc3701aff0b4f26cfe6704e65ba9c0be9b6d22f",
+      "layoutSha256": "c37b53de4a63bc358facd6519206a25cf58f56116a2ea01f9eaca59ab3498264"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/conflicts/RepositoryConflictActions.svelte",
+      "destination": "packages/repository-ui/src/jj/conflicts/conflict-actions/RepositoryConflictActions.svelte",
+      "sourceSha256": "6b4e726014c0618bb7a3a0ad3a5c364f6133e07f4af16c26a2e3d4ff5fcf52d8",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "76891f753b9dd4b2873c86deed980e2f91dc2754e8957fbcef89e61b2a8d06b3",
+      "layoutSha256": "45bfc352b47736afe91bd1885cbd4893b8dfcd98c5fd8147521d8e626370ab8b"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/conflicts/RepositoryConflictSurface.svelte",
+      "destination": "packages/repository-ui/src/jj/conflicts/conflict-surface/RepositoryConflictSurface.svelte",
+      "sourceSha256": "46296b37f72d887df9b54c01b1139badacc6f3452c2910e232c15fc148898571",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "617cb8e5f6678837321e26b7b1f3f721e9db14e87370ce9be6946cfbd3fd59e5",
+      "layoutSha256": "29ffdbd114483f2c01823981c7ed1514f181ba5a96d17ae272411443163efee0"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/conflicts/repository-conflicts.css",
+      "destination": "packages/repository-ui/src/jj/styles/repository-conflicts.css",
+      "sourceSha256": "146bca878cbd43ecee4b0fa094d48087305dc11594433bf45ef9aa07937e05aa",
+      "adaptations": [
+        {
+          "description": "Owned original repository styles; no application host override."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "  min-width: 0;\n  margin: 0;\n  overflow: hidden;\n  font-size: 0.875rem;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n",
+          "after": "  min-width: 0;\n  margin: 0;\n  overflow: hidden;\n  font-size: var(--ui-repository-conflict-resolution-font-size, 0.875rem);\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n",
+          "description": "Reviewed source-default token exposure, host preference binding or user-requested Empty/icon and operation-selection presentation."
+        }
+      ],
+      "destinationSha256": "09893b2c576a290fd361853c4858831aa443997c84bac7900ddedc6047e2f289",
+      "layoutSha256": "250af98be1c61842dfe246c93912b8c5b1495312e2a53b14e057105131a01046"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/conflicts/RepositoryConflictPath.svelte",
+      "destination": "packages/repository-ui/src/jj/conflicts/conflict-path/RepositoryConflictPath.svelte",
+      "sourceSha256": "c8e6cc0c4309e475b0b6e5813bf39e4a7941e5b8c59b318a4aa66fdf3720ccd2",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "layoutAdaptations": [],
+      "destinationSha256": "640a96de458286a2f6de359faadbfb41539663922da4cf81f3bd603bb58cff52",
+      "layoutSha256": "9346a1907b4bb0df1de29d16afcc6293cee377aa7f0edcbbd9a74c0345f1b017"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/conflict-menu.ts",
+      "destination": "packages/repository-ui/src/jj/logic/conflict-menu.ts",
+      "sourceSha256": "87713dadd07cf772a51a9bdd2f43b16e47620130c1641c17970a21947b3ca2c0",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "87713dadd07cf772a51a9bdd2f43b16e47620130c1641c17970a21947b3ca2c0"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/blame-model.ts",
+      "destination": "packages/repository-ui/src/jj/logic/blame-model.ts",
+      "sourceSha256": "1f922f52e2dbdba01d8e73692c163da379bb408de1a58bcd1b1275598ccb17fb",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "06f3579ee5036d27648a5183fe19bb8cfaf9f326644cc6551bab0cb28151e36d"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/blame-chunks.ts",
+      "destination": "packages/repository-ui/src/jj/logic/blame-chunks.ts",
+      "sourceSha256": "5faf431f712187616168dde8514118e544d7ca87750c746448a8affa26e221b9",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "29ac270722f7364815d6f565436be96da50c163ec9e5ba4e15fec40790632ea4"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/history-selection.ts",
+      "destination": "packages/repository-ui/src/jj/logic/history-selection.ts",
+      "sourceSha256": "2c9ea73d86c3199c89a2219cb0a6783a7b3039969495b2d2a7d4fdb9833c6279",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "433967d4e4ab29328357c4e422176d56b88d7d7c026d6e4291c8d6ed1bd0d30a"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/history-reader.ts",
+      "destination": "packages/repository-ui/src/jj/logic/history-reader.ts",
+      "sourceSha256": "3634e9b220355718f4c9d57c96f367c5ec8af89a4030f27d0d25b6cf2dd34871",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Only the public read port is extracted; application services stay in Desktop."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "d6ae0bd49fe85de054e932a311c594415573c99345f752650b56807068c93aa2"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/restore.ts",
+      "destination": "packages/repository-ui/src/jj/logic/restore.ts",
+      "sourceSha256": "1a96e74aa26a59997011b6d50e75c3139822d147190a85c461870f6e5a455acf",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "1a96e74aa26a59997011b6d50e75c3139822d147190a85c461870f6e5a455acf"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/blame-controller.ts",
+      "destination": "packages/repository-ui/src/jj/logic/blame-controller.ts",
+      "sourceSha256": "f51ea43f4f2baa6efcf474cea966938608b07f694cca21f264ca049ff328c957",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "c2f69dac62c437a1197bdb55f2b247e897a67586e7bab871fe0cbc837fbc4dc4"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/history-lifetime.ts",
+      "destination": "packages/repository-ui/src/jj/logic/history-lifetime.ts",
+      "sourceSha256": "2c919c7d9ed4c02826f00060ab7695919d95e833cd6b1f42e09be02d60f3ded0",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "d424898eea38494b6211a118e51a1969cbaadc363f8c057ee93b7f5036aa2f9d"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/history-controller.ts",
+      "destination": "packages/repository-ui/src/jj/logic/history-controller.ts",
+      "sourceSha256": "a7ec9c3293c37628afb51d56ffca6b73c69f7f9f2b997f5cbd6f917044f976e0",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "fce598563b49048ace31e3a9bff7c9a703ce65684cf209b07a1efbcd525187dd"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/history-state.ts",
+      "destination": "packages/repository-ui/src/jj/logic/history-state.ts",
+      "sourceSha256": "e7016ae6e286711702ca01a41660d5135d347fe6b57d59e90ca2012809ed2c87",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "e7016ae6e286711702ca01a41660d5135d347fe6b57d59e90ca2012809ed2c87"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/graph/model.ts",
+      "destination": "packages/repository-ui/src/jj/logic/graph/model.ts",
+      "sourceSha256": "4e7e2aba6df821376d021b93e2ae80e2fe9ee589830c4764f874041f85e84fcb",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "4e7e2aba6df821376d021b93e2ae80e2fe9ee589830c4764f874041f85e84fcb"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/revision-comparison.ts",
+      "destination": "packages/repository-ui/src/jj/logic/revision-comparison.ts",
+      "sourceSha256": "4a91605abf89064cc8d1e1b201beb1f4325b0282f04cb56988d0bd06a8102f99",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "b057e8d684f381c791a39626f11b9c4768344ffc767a5a4a48d72ef651040fca"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/history-graph.ts",
+      "destination": "packages/repository-ui/src/jj/logic/history-graph.ts",
+      "sourceSha256": "4cdbac668e44adf826e1d4228b340557da7c6ce1b9817007460e419433c2334c",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "be1850f3e23121f9fcd9beff0d53f12f96e4a844b43863e56c08bc34017d96c1"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/parent-candidates.ts",
+      "destination": "packages/repository-ui/src/jj/logic/parent-candidates.ts",
+      "sourceSha256": "2882c612a2eb56f31338e3678229210c1c4a844519ff68827f672748bf6ebd90",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "762605fc402579ad3a40f717834b8e180f161c8a27fc96c2c4e5df6dad353055"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/history-files.ts",
+      "destination": "packages/repository-ui/src/jj/logic/history-files.ts",
+      "sourceSha256": "29562cdbdd3c2e7ed0965e1ebe96a059ca2b45bbd51877bcc115dffab0fd156d",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "29562cdbdd3c2e7ed0965e1ebe96a059ca2b45bbd51877bcc115dffab0fd156d"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/file-history-controller.ts",
+      "destination": "packages/repository-ui/src/jj/logic/file-history-controller.ts",
+      "sourceSha256": "a3373f7163120b2d929546b211be156166cc61c9595bd000f7638e8af675563e",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "a28aaad7013f856c37c54508ee205cc427c54d1490da88fd014c56784fe1b5b8"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/operation-metadata.ts",
+      "destination": "packages/repository-ui/src/jj/logic/operation-metadata.ts",
+      "sourceSha256": "b66534e35ffe1c43dd5a7d0ed22c6c34a999fab6a2cf65307fb2dbafcbc82c96",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "4f15f3b38a6e9e437d5e3cb9d8766262159da70f20e3ab1643044de83d1e3175"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/operation-state.ts",
+      "destination": "packages/repository-ui/src/jj/logic/operation-state.ts",
+      "sourceSha256": "964e2e8939c0b4452d1f3de751c798b2b7ad5d12d1fd1306deffcdb3e60a147c",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "9747110419222a984113900d5f87135844e3a1974c0d5fbed01c9074ebd99f78"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/operation-files.ts",
+      "destination": "packages/repository-ui/src/jj/logic/operation-files.ts",
+      "sourceSha256": "4cb564a3462758ebde8d7d844078efef92efb4e020a70f88b2b6f727f882ef5a",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "User-requested auto-selection only for a complete single change group; multiple/paged groups and ambiguous endpoints retain explicit choices, using the original pinned handle and stale-response fences."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "1583c042be16bc1f76f2fe71dc3d9b17fecb5e6038607688db185307ed8b874e"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/tags.ts",
+      "destination": "packages/repository-ui/src/jj/logic/tags.ts",
+      "sourceSha256": "36c0518067be542b6335d3be74b9ab761d5549c3b1c48f58fb6d4a25676876ed",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "eb9154e99c86c57f63b648e9326c332dbef988f6857325ea34495fbba4c839fa"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/commit-cards.ts",
+      "destination": "packages/repository-ui/src/jj/logic/commit-cards.ts",
+      "sourceSha256": "dfdc1b295955549a21f619b01c562a406947f3c8e44c915cee0bc7c3c0629059",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "1f5d3c3d396013740a479b827898daf3e48cf9365b2d6b5177b1e4b666039a9c"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/operation-command.ts",
+      "destination": "packages/repository-ui/src/jj/logic/operation-command.ts",
+      "sourceSha256": "a617aa83eb272153a01ddfe9ea48ba44a1174b23ae5112a3c830818a3b46fc7c",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "a617aa83eb272153a01ddfe9ea48ba44a1174b23ae5112a3c830818a3b46fc7c"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/operation-message.ts",
+      "destination": "packages/repository-ui/src/jj/logic/operation-message.ts",
+      "sourceSha256": "8f9b95ef30c93cb3e1273e8f6625131e95b6318adb5f44ef285a62b8f8c988a2",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "8f9b95ef30c93cb3e1273e8f6625131e95b6318adb5f44ef285a62b8f8c988a2"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/history-source.ts",
+      "destination": "packages/repository-ui/src/jj/logic/history-source.ts",
+      "sourceSha256": "e6edaa49e2752f7e966e42183736a1402eaf0ccba5af62bb7e23875d97bb43bc",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "e6edaa49e2752f7e966e42183736a1402eaf0ccba5af62bb7e23875d97bb43bc"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/workspaces.ts",
+      "destination": "packages/repository-ui/src/jj/logic/workspaces.ts",
+      "sourceSha256": "2e0e0e10f6bf3360de65ed6deb03d11fdfa0912e7e1e3a07a028488f88fbe4c3",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "2e0e0e10f6bf3360de65ed6deb03d11fdfa0912e7e1e3a07a028488f88fbe4c3"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/log-canvas.ts",
+      "destination": "packages/repository-ui/src/jj/logic/log-canvas.ts",
+      "sourceSha256": "dde00874f3e182c9bf5487c9f802e970dbea48027632f24bef61ddf7fdb7b356",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "dde00874f3e182c9bf5487c9f802e970dbea48027632f24bef61ddf7fdb7b356"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/open-history-revision.ts",
+      "destination": "packages/repository-ui/src/jj/logic/open-history-revision.ts",
+      "sourceSha256": "3fa32fef5c20d77ecf88ab6467f2d5d85de144bdde6ab68e5d634d69feecbc1e",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "fedbd057dbd76647a518247449d6adb3ab23aca52dd18da2a57a628c4753680c"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/operation-controller.ts",
+      "destination": "packages/repository-ui/src/jj/logic/operation-controller.ts",
+      "sourceSha256": "7647d5a79cb86bd94c8535ccbc610da8c8ced3021e20afe2023a501e1512c8ab",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "a77f107c2008869ba47ecd7b40453bc521056f81e88a8be029f9949a0e624ed8"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/operation-graph.ts",
+      "destination": "packages/repository-ui/src/jj/logic/operation-graph.ts",
+      "sourceSha256": "e48304bc889b02c955a8690780c0f0381d426b5d931458f90380aab9d1326a8d",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "13d7f22ce424211fd9c3b3e4febacffdd34c1f582a1e0e33ea7cdc9e7d79c9d9"
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/operation-parent.ts",
+      "destination": "packages/repository-ui/src/jj/logic/operation-parent.ts",
+      "sourceSha256": "c897a28a98a6a61b5844f0be837e10e77729a6d2a13d000be7d6d39186e984b3",
+      "adaptations": [
+        {
+          "description": "Relative imports relocated to owned JJ feature folders; public history protocol types retained."
+        },
+        {
+          "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        }
+      ],
+      "destinationSha256": "429a476bff372c4ee1ff3010034da3919779931c872eb2e194a83e1b721e5bc2"
     }
   ],
   "fingerprintFormat": "Prettier normalized source; Svelte layout excludes script and comments. Explicit host bindings are applied before comparison.",

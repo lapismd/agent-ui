@@ -1,0 +1,78 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryConflictResolution.stories";
+import { Basic, Styling } from "./RepositoryConflictResolution.example-sources";
+import tokens from "./RepositoryConflictResolution.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Conflicts
+
+Copied conflict browser, captured terms, local drafts, staging and preview without native execution.
+
+## Usage
+
+Mount this surface in RepositoryShell’s surface snippet. Supply immutable conflict descriptors read at the selected revision; the local draft/staging UI does not apply repository changes.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part                | Responsibility                                                     |
+| ------------------- | ------------------------------------------------------------------ |
+| Surface header      | Conflict file-browser toggle and close action.                     |
+| Browser and editor  | Literal paths, captured terms and editable local resolution.       |
+| Actions and preview | Stage replacement/deletion, inspect a draft and return to editing. |
+
+## Variations
+
+### Basic
+
+The ordinary populated presentation with recorded identities and explicit callbacks.
+
+<Canvas of={Stories.Basic} />
+
+### Loading
+
+A pending in-memory read holds the original loading geometry without contacting a repository.
+
+<Canvas of={Stories.Loading} />
+
+### Unavailable
+
+A refused or failed read, distinct from a successful empty result. The production Empty state names the failure and leaves explicit recovery reachable.
+
+<Canvas of={Stories.Unavailable} />
+
+### Empty
+
+A valid successful result with no content. The production component displays the shared Empty pattern with an icon.
+
+<Canvas of={Stories.Empty} />
+
+## Behavior and accessibility
+
+Editing a staged replacement invalidates that stage. Preview locks the editor until Back. Changing the selected revision should remount the component so another revision cannot inherit drafts. Loading, unavailable and no-conflict states remain distinct. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+
+## Styling variables
+
+Defaults retain the Desktop presentation. Set documented variables on an
+ancestor; avoid selector overrides and dependency-internal imports. Brand and
+light/dark controls remain independent in Storybook.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Complete screens compose this same implementation. Small controls use a padded, bounded standalone preview; shell and column families retain their required production context. Docs shell previews are bounded to 40rem and flush; Canvas screens fill their parent. Host services and downstream integration remain behind the review gate.

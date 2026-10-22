@@ -1,0 +1,72 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryRevisions.stories";
+import { Basic, Styling } from "./RepositoryRevisions.example-sources";
+import tokens from "./RepositoryRevisions.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Revision details
+
+The graph and selected revision body with message, parent comparison and changed paths.
+
+## Usage
+
+Use this compound body with a HistoryController snapshot. It is the production JJ Log body: graph rows, expanded message, exact parent picker and changed files.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part                 | Responsibility                                                      |
+| -------------------- | ------------------------------------------------------------------- |
+| Graph                | Pinned revisions and source geometry.                               |
+| Revision body        | Commit message and optional conflict, evolution or restore actions. |
+| Comparison and files | Recorded parent pair and bounded changed paths.                     |
+
+## Variations
+
+### Basic
+
+The ordinary populated presentation with recorded identities and explicit callbacks.
+
+<Canvas of={Stories.Basic} />
+
+### Merge
+
+A revision with more than one recorded parent; choose the exact comparison explicitly.
+
+<Canvas of={Stories.Merge} />
+
+### Unavailable
+
+A refused or failed read, distinct from a successful empty result. The production Empty state names the failure and leaves explicit recovery reachable.
+
+<Canvas of={Stories.Unavailable} />
+
+## Behavior and accessibility
+
+Selecting a revision expands it; selecting it again clears that selection and fences stale reads. Merge revisions require an explicit parent. The controller, not the view, owns reads and cleanup. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+
+## Styling variables
+
+Defaults retain the Desktop presentation. Set documented variables on an
+ancestor; avoid selector overrides and dependency-internal imports. Brand and
+light/dark controls remain independent in Storybook.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Complete screens compose this same implementation. Small controls use a padded, bounded standalone preview; shell and column families retain their required production context. Docs shell previews are bounded to 40rem and flush; Canvas screens fill their parent. Host services and downstream integration remain behind the review gate.

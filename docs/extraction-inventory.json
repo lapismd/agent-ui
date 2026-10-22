@@ -972,7 +972,8 @@
     "path": "src/components/repository/RepositoryAuthorAvatar.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/foundations/author-avatar/RepositoryAuthorAvatar.svelte"
   },
   {
     "repository": "lapis-desktop",
@@ -986,252 +987,288 @@
     "path": "src/components/repository/RepositoryChangedFiles.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/history/changed-files/RepositoryChangedFiles.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryCommitMessage.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/history/commit-message/RepositoryCommitMessage.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryCommitPicker.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/history/commit-picker/RepositoryCommitPicker.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryComparisonBar.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/history/comparison-bar/RepositoryComparisonBar.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryComparisonTime.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/history/comparison-time/RepositoryComparisonTime.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryDiff.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/history/diff/RepositoryDiff.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryDiffColumn.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/history/diff-column/RepositoryDiffColumn.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryDiffControls.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/history/diff-controls/RepositoryDiffControls.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryFileHistory.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/history/file-history/RepositoryFileHistory.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryFileTitle.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/history/file-title/RepositoryFileTitle.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryGraph.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/history/graph/RepositoryGraph.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryGraphSvg.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/history/graph-svg/RepositoryGraphSvg.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryIdentifiers.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/foundations/identifiers/RepositoryIdentifiers.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryLogHeader.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/history/log-header/RepositoryLogHeader.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryOperationArguments.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/operations/operation-arguments/RepositoryOperationArguments.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryOperationColumn.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/operations/operation-column/RepositoryOperationColumn.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryOperationFiles.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/operations/operation-files/RepositoryOperationFiles.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryOperationMessage.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/operations/operation-message/RepositoryOperationMessage.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryOperationOption.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/operations/operation-option/RepositoryOperationOption.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryOperationParentPicker.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/operations/operation-parent-picker/RepositoryOperationParentPicker.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryOperationPinPicker.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/operations/operation-pin-picker/RepositoryOperationPinPicker.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryOperationRail.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/operations/operation-rail/RepositoryOperationRail.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryOperationTarget.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/operations/operation-target/RepositoryOperationTarget.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryOperations.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/screens/operations/RepositoryOperations.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryPanel.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/screens/panel/RepositoryPanel.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryParentSummary.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/history/parent-summary/RepositoryParentSummary.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryPickerSearch.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/history/picker-search/RepositoryPickerSearch.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryRestoreDialog.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/history/restore-dialog/RepositoryRestoreDialog.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryRevisionActions.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/history/revision-actions/RepositoryRevisionActions.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryRevisionFiles.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/history/revision-files/RepositoryRevisionFiles.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryRevisionOption.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/history/revision-option/RepositoryRevisionOption.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryRevisionPicker.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/history/revision-picker/RepositoryRevisionPicker.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryRevisions.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/history/revisions/RepositoryRevisions.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositoryShell.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/foundations/shell/RepositoryShell.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositorySkeleton.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/foundations/skeleton/RepositorySkeleton.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/RepositorySourcePicker.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/history/source-picker/RepositorySourcePicker.svelte"
   },
   {
     "repository": "lapis-desktop",
@@ -1252,7 +1289,8 @@
     "path": "src/components/repository/RepositoryWorkspacePicker.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/history/workspace-picker/RepositoryWorkspacePicker.svelte"
   },
   {
     "repository": "lapis-desktop",
@@ -1399,35 +1437,40 @@
     "path": "src/components/repository/blame/RepositoryBlameCommitTitle.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/blame/blame-commit-title/RepositoryBlameCommitTitle.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/blame/RepositoryBlameGroup.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/blame/blame-group/RepositoryBlameGroup.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/blame/RepositoryBlamePanel.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/blame/blame-panel/RepositoryBlamePanel.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/blame/RepositoryBlameRows.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/blame/blame-rows/RepositoryBlameRows.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/blame/RepositoryBlameView.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/blame/blame-view/RepositoryBlameView.svelte"
   },
   {
     "repository": "lapis-desktop",
@@ -1448,70 +1491,80 @@
     "path": "src/components/repository/conflicts/RepositoryConflictActions.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/conflicts/conflict-actions/RepositoryConflictActions.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/conflicts/RepositoryConflictBody.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/conflicts/conflict-body/RepositoryConflictBody.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/conflicts/RepositoryConflictFileTree.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/conflicts/conflict-file-tree/RepositoryConflictFileTree.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/conflicts/RepositoryConflictPath.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/conflicts/conflict-path/RepositoryConflictPath.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/conflicts/RepositoryConflictResolution.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/conflicts/conflict-resolution/RepositoryConflictResolution.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/conflicts/RepositoryConflictSurface.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/conflicts/conflict-surface/RepositoryConflictSurface.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/conflicts/RepositoryConflictText.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/conflicts/conflict-text/RepositoryConflictText.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/conflicts/RepositorySidebarToggleIcon.svelte",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/conflicts/sidebar-toggle-icon/RepositorySidebarToggleIcon.svelte"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/conflicts/repository-conflict-file-tree.css",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/styles/repository-conflict-file-tree.css"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/conflicts/repository-conflicts.css",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/styles/repository-conflicts.css"
   },
   {
     "repository": "lapis-desktop",
@@ -1539,14 +1592,16 @@
     "path": "src/components/repository/repository-column-chrome.css",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/styles/repository-column-chrome.css"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/repository-commit-picker.css",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/styles/repository-commit-picker.css"
   },
   {
     "repository": "lapis-desktop",
@@ -1560,7 +1615,8 @@
     "path": "src/components/repository/repository-identifiers.css",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/styles/repository-identifiers.css"
   },
   {
     "repository": "lapis-desktop",
@@ -1574,14 +1630,16 @@
     "path": "src/components/repository/repository-operation-column.css",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/styles/repository-operation-column.css"
   },
   {
     "repository": "lapis-desktop",
     "path": "src/components/repository/repository-picker-options.css",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/styles/repository-picker-options.css"
   },
   {
     "repository": "lapis-desktop",
@@ -1595,7 +1653,8 @@
     "path": "src/components/repository/repository-review-identifiers.css",
     "classification": "shared-presentation-candidate",
     "destinationPackage": "@lapismd/repository-ui",
-    "status": "mapped"
+    "status": "extracted-desktop-jj-review",
+    "destination": "packages/repository-ui/src/jj/styles/repository-review-identifiers.css"
   },
   {
     "repository": "lapis-desktop",

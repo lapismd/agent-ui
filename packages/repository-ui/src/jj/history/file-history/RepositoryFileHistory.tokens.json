@@ -1,0 +1,12 @@
+{
+  "component": "RepositoryFileHistory",
+  "variables": [
+    {
+      "name": "--ui-repository-file-history-font-size",
+      "default": "0.8125rem",
+      "description": "Independent active-file pin, graph, explicit parent navigation and blame action. Original size default.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/file-history/RepositoryFileHistory.svelte"
+    }
+  ]
+}

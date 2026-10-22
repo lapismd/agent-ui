@@ -53,6 +53,8 @@ const preview: Preview = {
           ["Introduction", "Agent", "Governance", "Repository", "Verification"],
           "Agents",
           ["Foundations", "Chat", "History", "Catalog", "Complete screens"],
+          "JJ",
+          ["Foundations", "History", "Operations", "Complete screens"],
           "Review",
         ],
       },

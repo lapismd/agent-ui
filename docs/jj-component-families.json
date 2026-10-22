@@ -1,0 +1,203 @@
+{
+  "families": [
+    {
+      "primary": "jj/foundations/shell/RepositoryShell",
+      "purpose": "Original embedded AppShell boundary with pane-sized main area and overlay surface.",
+      "parts": []
+    },
+    {
+      "primary": "jj/foundations/author-avatar/RepositoryAuthorAvatar",
+      "purpose": "Recorded author identity with independent hover/focus profile activation.",
+      "parts": []
+    },
+    {
+      "primary": "jj/foundations/identifiers/RepositoryIdentifiers",
+      "purpose": "Exact commit/change identifiers with compact, expanded, keyboard and copy feedback.",
+      "parts": []
+    },
+    {
+      "primary": "jj/foundations/skeleton/RepositorySkeleton",
+      "purpose": "Representative loading geometry for repository reads with accessible status.",
+      "parts": []
+    },
+    {
+      "primary": "jj/history/log-header/RepositoryLogHeader",
+      "purpose": "Source, workspace and pinned-operation controls in the original Column Canvas header.",
+      "parts": []
+    },
+    {
+      "primary": "jj/history/source-picker/RepositorySourcePicker",
+      "purpose": "Explicit host-owned choice between automatic history and the original repository.",
+      "parts": []
+    },
+    {
+      "primary": "jj/history/workspace-picker/RepositoryWorkspacePicker",
+      "purpose": "Recorded workspace and repository overview selection without inferring native authority.",
+      "parts": []
+    },
+    {
+      "primary": "jj/history/commit-picker/RepositoryCommitPicker",
+      "purpose": "Explicit parent comparison with exact IDs, metadata, search and unavailable choices.",
+      "parts": [
+        "jj/history/revision-picker/RepositoryRevisionPicker.svelte",
+        "jj/history/revision-option/RepositoryRevisionOption.svelte",
+        "jj/history/picker-search/RepositoryPickerSearch.svelte",
+        "jj/history/parent-summary/RepositoryParentSummary.svelte",
+        "jj/history/comparison-bar/RepositoryComparisonBar.svelte",
+        "jj/history/comparison-time/RepositoryComparisonTime.svelte"
+      ]
+    },
+    {
+      "primary": "jj/history/graph/RepositoryGraph",
+      "purpose": "Original revision/operation graph rows, tags, author cards and row selection.",
+      "parts": ["jj/history/graph-svg/RepositoryGraphSvg.svelte"]
+    },
+    {
+      "primary": "jj/history/revisions/RepositoryRevisions",
+      "purpose": "The graph and selected revision body with message, parent comparison and changed paths.",
+      "parts": [
+        "jj/history/revision-actions/RepositoryRevisionActions.svelte",
+        "jj/history/commit-message/RepositoryCommitMessage.svelte",
+        "jj/history/revision-files/RepositoryRevisionFiles.svelte"
+      ]
+    },
+    {
+      "primary": "jj/history/changed-files/RepositoryChangedFiles",
+      "purpose": "Original bounded tree/list of changed paths with explicit selection and paging.",
+      "parts": []
+    },
+    {
+      "primary": "jj/history/diff/RepositoryDiff",
+      "purpose": "Recorded diff with unified/split rendering, explicit unavailable content and source controls.",
+      "parts": [
+        "jj/history/diff-column/RepositoryDiffColumn.svelte",
+        "jj/history/diff-controls/RepositoryDiffControls.svelte",
+        "jj/history/file-title/RepositoryFileTitle.svelte"
+      ]
+    },
+    {
+      "primary": "jj/history/file-history/RepositoryFileHistory",
+      "purpose": "Independent active-file pin, graph, explicit parent navigation and blame action.",
+      "parts": []
+    },
+    {
+      "primary": "jj/operations/operation-pin-picker/RepositoryOperationPinPicker",
+      "purpose": "Full pinned-operation identity with searchable recorded operation metadata.",
+      "parts": [
+        "jj/operations/operation-option/RepositoryOperationOption.svelte"
+      ]
+    },
+    {
+      "primary": "jj/operations/operation-column/RepositoryOperationColumn",
+      "purpose": "Original operation metadata and comparison inspector with files and recorded targets.",
+      "parts": [
+        "jj/operations/operation-arguments/RepositoryOperationArguments.svelte",
+        "jj/operations/operation-files/RepositoryOperationFiles.svelte",
+        "jj/operations/operation-message/RepositoryOperationMessage.svelte",
+        "jj/operations/operation-parent-picker/RepositoryOperationParentPicker.svelte",
+        "jj/operations/operation-rail/RepositoryOperationRail.svelte",
+        "jj/operations/operation-target/RepositoryOperationTarget.svelte"
+      ]
+    },
+    {
+      "primary": "jj/blame/blame-panel/RepositoryBlamePanel",
+      "purpose": "Recorded file text and virtualized attribution with controlled wrapping and pinned navigation.",
+      "parts": [
+        "jj/blame/blame-view/RepositoryBlameView.svelte",
+        "jj/blame/blame-rows/RepositoryBlameRows.svelte",
+        "jj/blame/blame-group/RepositoryBlameGroup.svelte",
+        "jj/blame/blame-commit-title/RepositoryBlameCommitTitle.svelte"
+      ]
+    },
+    {
+      "primary": "jj/conflicts/conflict-resolution/RepositoryConflictResolution",
+      "purpose": "Copied conflict browser, captured terms, local drafts, staging and preview without native execution.",
+      "parts": [
+        "jj/conflicts/conflict-actions/RepositoryConflictActions.svelte",
+        "jj/conflicts/conflict-body/RepositoryConflictBody.svelte",
+        "jj/conflicts/conflict-file-tree/RepositoryConflictFileTree.svelte",
+        "jj/conflicts/conflict-path/RepositoryConflictPath.svelte",
+        "jj/conflicts/conflict-surface/RepositoryConflictSurface.svelte",
+        "jj/conflicts/conflict-text/RepositoryConflictText.svelte",
+        "jj/conflicts/sidebar-toggle-icon/RepositorySidebarToggleIcon.svelte"
+      ]
+    },
+    {
+      "primary": "jj/history/restore-dialog/RepositoryRestoreDialog",
+      "purpose": "Original guarded file/vault restore preview and retained-request recovery confirmation.",
+      "parts": []
+    },
+    {
+      "primary": "jj/screens/panel/RepositoryPanel",
+      "purpose": "Complete Desktop JJ Log AppShell and adaptive Column Canvas with an in-memory history controller.",
+      "parts": []
+    },
+    {
+      "primary": "jj/screens/operations/RepositoryOperations",
+      "purpose": "Complete Desktop operation log, metadata comparison and changed-file inspector.",
+      "parts": []
+    }
+  ],
+  "deferred": [
+    {
+      "path": "screens/ForgeScreen.svelte",
+      "sha256": "97c9651cd071577957a8ad489abf0971d23d3dea4293a28e3fb3f9ab461e1c30"
+    },
+    {
+      "path": "screens/StackDropZone.svelte",
+      "sha256": "1d51637f2fa2689564372b02a7e403fe50509344fe0dde2a9090844e42317fd6"
+    },
+    {
+      "path": "screens/StackLane.svelte",
+      "sha256": "6ea45f32c54a13e59d9053fb462ce7199509f8692e5c5c34fa8f067d96889ff4"
+    },
+    {
+      "path": "screens/RepositoryConflicts.svelte",
+      "sha256": "0f42b99eb0e442b7e1841b00bcbc4673d3cddcf142b8293d69a27c4b39b5f474"
+    },
+    {
+      "path": "screens/RepositoryHistory.svelte",
+      "sha256": "aea6ae492db54300276583c664b2c25c7df85d2c1d9b795449fa2eddcdae0b80"
+    },
+    {
+      "path": "screens/RepositorySettings.svelte",
+      "sha256": "bcd8fa16b042bdcb511745c2b39c9e6a34994d8a9003716db8606d8965d1679e"
+    },
+    {
+      "path": "screens/StackCommandDialog.svelte",
+      "sha256": "8191b6873058341690bb825b56f27d101e9479d3ccdc29153eeaeaa8e77b95ac"
+    },
+    {
+      "path": "screens/RepositoryActionDialog.svelte",
+      "sha256": "56f76308b4bd947bbd6524e3ea13b9ab6223662382c31952727725847e622476"
+    },
+    {
+      "path": "screens/RepositoryWorkbench.svelte",
+      "sha256": "a63735ce826ca461566a8d73a2e9ed505037f352a4b1fd8e52c99c2fd5a35f7f"
+    },
+    {
+      "path": "screens/StackSourceFiles.svelte",
+      "sha256": "f43b07a27b8c47828fc84bae77536ef22a020c905fcc3ed3af3157a70df449a4"
+    },
+    {
+      "path": "screens/StackDiff.svelte",
+      "sha256": "160be4d708e57f820af5eea657e36296fb5439eba6a9e5469eae51ad52317168"
+    },
+    {
+      "path": "screens/RepositoryFiles.svelte",
+      "sha256": "e620055bb1b32d0c4ca991cdd94a853562b042177f20078aa3d313789a3d883c"
+    },
+    {
+      "path": "screens/RepositoryGraphSvg.svelte",
+      "sha256": "e6e42e387e168095e801f13a36d50d5cd26fe1dcaf42b676fe7a872f9387b1cb"
+    },
+    {
+      "path": "screens/RepositoryBlame.svelte",
+      "sha256": "51108cf8d504707c8befcda0e740d234ce84b2a987a5366e46328ff106932c46"
+    },
+    {
+      "path": "screens/StackWorkspaceScreen.svelte",
+      "sha256": "81f46635cf8823405339aea0055428a8b70a567427a26aeb03610687f69eb8d3"
+    }
+  ]
+}

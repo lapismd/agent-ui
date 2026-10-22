@@ -35,8 +35,8 @@
 
 **Requirement.** Shared screens MUST copy Desktop's sessions, history, catalog, imports and recorded preview layouts and styles through capability-aware host interfaces, with pixel-perfect parity at matching viewport, theme, fonts and data.
 
-Complete and review the Agent section before continuing Repository or Combined
-screens. Standalone settings, agent management, clients, models, compute and memory
+The Agent section remains awaiting visual approval; the user has separately
+authorized the Desktop JJ review slice. Standalone settings, agent management, clients, models, compute and memory
 pages are excluded. Inline chat controls remain part of the conversation.
 Storybook MUST mount each complete source-derived screen with in-memory
 controllers. Do not add invented application navigation or replacement layouts.
@@ -87,6 +87,9 @@ view toggle, with accessible action labels and separate raw capture where needed
 ## AUI-VERIFY-001 — Foundation qualification
 
 **Requirement.** Foundation changes MUST pass strict compile/runtime diagnostics, documentation and token audits, interaction/accessibility and keyboard/pointer checks, package acceptance and static catalog verification.
+
+Empty and unavailable stories MUST render the public shadcn Empty pattern with a
+relevant icon in the owning production component.
 
 ### Acceptance details
 

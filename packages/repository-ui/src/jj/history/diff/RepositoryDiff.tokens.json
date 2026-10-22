@@ -1,0 +1,12 @@
+{
+  "component": "RepositoryDiff",
+  "variables": [
+    {
+      "name": "--ui-repository-diff-min-height",
+      "default": "16rem",
+      "description": "Recorded diff with unified/split rendering, explicit unavailable content and source controls. Original height default.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/diff/RepositoryDiff.svelte"
+    }
+  ]
+}

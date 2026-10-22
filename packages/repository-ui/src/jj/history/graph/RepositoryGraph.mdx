@@ -1,0 +1,72 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryGraph.stories";
+import { Basic, Styling } from "./RepositoryGraph.example-sources";
+import tokens from "./RepositoryGraph.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Revision graph
+
+Original revision/operation graph rows, tags, author cards and row selection.
+
+## Usage
+
+Convert pinned commit or operation records with commitRows/operationRows, then render this graph in a bounded log body. The selectedFiles snippet puts the selected revision’s file controls directly below its row.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part             | Responsibility                                                            |
+| ---------------- | ------------------------------------------------------------------------- |
+| Graph lanes      | Original connector geometry and continuation lanes.                       |
+| Revision row     | Author, description, timestamps, tags and independent identifier actions. |
+| Expanded content | The selected row’s production changed-file controls.                      |
+
+## Variations
+
+### Basic
+
+The ordinary populated presentation with recorded identities and explicit callbacks.
+
+<Canvas of={Stories.Basic} />
+
+### Operations
+
+The same graph rows display native operation descriptions and actor/host metadata.
+
+<Canvas of={Stories.Operations} />
+
+### Empty
+
+A valid successful result with no content. The production component displays the shared Empty pattern with an icon.
+
+<Canvas of={Stories.Empty} />
+
+## Behavior and accessibility
+
+Selection delegates the full event ID. Author/profile and copy actions remain independent of row selection. An empty graph renders Empty with an icon and does not fabricate a revision. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+
+## Styling variables
+
+Defaults retain the Desktop presentation. Set documented variables on an
+ancestor; avoid selector overrides and dependency-internal imports. Brand and
+light/dark controls remain independent in Storybook.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Complete screens compose this same implementation. Small controls use a padded, bounded standalone preview; shell and column families retain their required production context. Docs shell previews are bounded to 40rem and flush; Canvas screens fill their parent. Host services and downstream integration remain behind the review gate.

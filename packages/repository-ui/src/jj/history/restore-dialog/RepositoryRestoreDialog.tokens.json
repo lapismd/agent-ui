@@ -1,0 +1,12 @@
+{
+  "component": "RepositoryRestoreDialog",
+  "variables": [
+    {
+      "name": "--ui-repository-restore-dialog-gap",
+      "default": "0.5rem",
+      "description": "Original guarded file/vault restore preview and retained-request recovery confirmation. Original gap default.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/restore-dialog/RepositoryRestoreDialog.svelte"
+    }
+  ]
+}

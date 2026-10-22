@@ -1,0 +1,19 @@
+{
+  "component": "RepositoryBlamePanel",
+  "variables": [
+    {
+      "name": "--ui-repository-blame-panel-font-size",
+      "default": "0.875rem",
+      "description": "Recorded file text and virtualized attribution with controlled wrapping and pinned navigation. Original size default.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/blame/blame-panel/RepositoryBlamePanel.svelte"
+    },
+    {
+      "name": "--ui-repository-blame-source-font-size",
+      "default": "0.875rem",
+      "description": "Monospace source text and line numbers; attribution author and time retain Desktop\u2019s 0.75rem.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/blame/blame-view/RepositoryBlameView.svelte"
+    }
+  ]
+}

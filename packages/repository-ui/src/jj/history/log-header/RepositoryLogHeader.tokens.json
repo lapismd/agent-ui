@@ -1,0 +1,12 @@
+{
+  "component": "RepositoryLogHeader",
+  "variables": [
+    {
+      "name": "--ui-repository-log-header-gap",
+      "default": "0.25rem",
+      "description": "Source, workspace and pinned-operation controls in the original Column Canvas header. Original gap default.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/log-header/RepositoryLogHeader.svelte"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "component": "RepositoryShell",
+  "variables": [
+    {
+      "name": "--ui-repository-shell-height",
+      "default": "100%",
+      "description": "Original embedded AppShell boundary with pane-sized main area and overlay surface. Original height default.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/foundations/shell/RepositoryShell.svelte"
+    }
+  ]
+}

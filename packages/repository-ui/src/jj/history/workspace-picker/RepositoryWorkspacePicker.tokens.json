@@ -1,0 +1,12 @@
+{
+  "component": "RepositoryWorkspacePicker",
+  "variables": [
+    {
+      "name": "--ui-repository-workspace-picker-font-size",
+      "default": "0.75rem",
+      "description": "Recorded workspace and repository overview selection without inferring native authority. Original size default.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/workspace-picker/RepositoryWorkspacePicker.svelte"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "component": "RepositoryOperationColumn",
+  "variables": [
+    {
+      "name": "--ui-repository-operation-column-font-size",
+      "default": "0.875rem",
+      "description": "Original operation metadata and comparison inspector with files and recorded targets. Original size default.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/styles/repository-operation-column.css"
+    }
+  ]
+}

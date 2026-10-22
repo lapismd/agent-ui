@@ -64,6 +64,12 @@ The summary card uses FileListing and FileChangeStats. Its header exposes view a
 
 <Canvas of={Stories.Unavailable} />
 
+### Recovery
+
+Explicit retry recovers the same recorded comparison through the in-memory port.
+
+<Canvas of={Stories.Recovery} />
+
 ## Behavior and accessibility
 
 Visible cards request read-only comparisons. Undo first requests a preview and requires confirmation of that exact host request. Unavailable comparisons and files expose retry; incomplete and bounded captures disable whole-turn undo. Dispose the controller with the host.

@@ -4,6 +4,8 @@ export default {
   stories: [
     "../packages/agent-ui/src/**/*.stories.ts",
     "../packages/agent-ui/src/**/*.mdx",
+    "../packages/repository-ui/src/jj/**/*.stories.ts",
+    "../packages/repository-ui/src/jj/**/*.mdx",
     "../catalog/Agent*.stories.ts",
     "../catalog/Progress.mdx",
     "../catalog/specification/*.mdx",

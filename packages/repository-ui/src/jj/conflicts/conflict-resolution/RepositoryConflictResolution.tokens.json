@@ -1,0 +1,12 @@
+{
+  "component": "RepositoryConflictResolution",
+  "variables": [
+    {
+      "name": "--ui-repository-conflict-resolution-font-size",
+      "default": "0.875rem",
+      "description": "Copied conflict browser, captured terms, local drafts, staging and preview without native execution. Original size default.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/styles/repository-conflicts.css"
+    }
+  ]
+}

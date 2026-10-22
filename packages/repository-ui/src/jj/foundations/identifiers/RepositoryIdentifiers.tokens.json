@@ -1,0 +1,12 @@
+{
+  "component": "RepositoryIdentifiers",
+  "variables": [
+    {
+      "name": "--ui-repository-identifiers-font-size",
+      "default": "0.6875rem",
+      "description": "Exact commit/change identifiers with compact, expanded, keyboard and copy feedback. Original size default.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/styles/repository-identifiers.css"
+    }
+  ]
+}

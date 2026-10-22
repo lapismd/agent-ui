@@ -1,0 +1,72 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryOperationColumn.stories";
+import { Basic, Styling } from "./RepositoryOperationColumn.example-sources";
+import tokens from "./RepositoryOperationColumn.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Operation details
+
+Original operation metadata and comparison inspector with files and recorded targets.
+
+## Usage
+
+Place the inspector beside the operation list in the same ColumnCanvas.Root. Supply the OperationController snapshot and keep its diff column reachable through compact navigation.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part           | Responsibility                                                                           |
+| -------------- | ---------------------------------------------------------------------------------------- |
+| Operation card | Description, actor/host rail, explicit parent comparison and recorded command arguments. |
+| File card      | Selected path, line totals and unified/split/wrap controls.                              |
+| Preview        | The shared RepositoryDiff or a meaningful Empty state.                                   |
+
+## Variations
+
+### Basic
+
+The ordinary populated presentation with recorded identities and explicit callbacks.
+
+<Canvas of={Stories.Basic} />
+
+### Loading
+
+A pending in-memory read holds the original loading geometry without contacting a repository.
+
+<Canvas of={Stories.Loading} />
+
+### Unavailable
+
+A refused or failed read, distinct from a successful empty result. The production Empty state names the failure and leaves explicit recovery reachable.
+
+<Canvas of={Stories.Unavailable} />
+
+## Behavior and accessibility
+
+Operation metadata and the file diff share one column. A file selection retains the original pin and exact revision endpoints. Collapsing metadata must preserve the selected diff and its vertical fill. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+
+## Styling variables
+
+Defaults retain the Desktop presentation. Set documented variables on an
+ancestor; avoid selector overrides and dependency-internal imports. Brand and
+light/dark controls remain independent in Storybook.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Complete screens compose this same implementation. Small controls use a padded, bounded standalone preview; shell and column families retain their required production context. Docs shell previews are bounded to 40rem and flush; Canvas screens fill their parent. Host services and downstream integration remain behind the review gate.

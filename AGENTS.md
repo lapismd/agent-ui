@@ -61,6 +61,11 @@ Catalog adapters simulate effects only and never enter production exports.
 - Host adapters own routing, persistence, admission, execution and notifications;
   UI callbacks request explicit actions. Mounting may read through an injected
   port but must never issue a mutation.
+- Empty and unavailable states use public shadcn Empty with a relevant icon,
+  distinct title/description and applicable retry action. Apply it in production
+  building blocks so complete screens share the same presentation.
+- Show small standalone controls on padded, bounded preview surfaces; use the
+  real shell/column context only where it is part of the component contract.
 - Keep independent brand and light/dark controls and semantic GFM tables. Bound
   shell previews to 40rem and remove wrapper padding only in Markdown docs;
   Canvas complete screens retain the full viewport.

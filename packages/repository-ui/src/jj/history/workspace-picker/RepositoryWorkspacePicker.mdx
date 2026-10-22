@@ -1,0 +1,65 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryWorkspacePicker.stories";
+import { Basic, Styling } from "./RepositoryWorkspacePicker.example-sources";
+import tokens from "./RepositoryWorkspacePicker.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Workspace picker
+
+Recorded workspace and repository overview selection without inferring native authority.
+
+## Usage
+
+Supply workspace names recorded at the current operation. Null selects the repository overview; a string selects that exact recorded workspace.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part               | Responsibility                                   |
+| ------------------ | ------------------------------------------------ |
+| Trigger            | Current workspace or repository-overview label.  |
+| Search and choices | Keyboard-searchable names and recorded metadata. |
+
+## Variations
+
+### Basic
+
+The ordinary populated presentation with recorded identities and explicit callbacks.
+
+<Canvas of={Stories.Basic} />
+
+### Disabled
+
+The workspace trigger remains visible but cannot change selection.
+
+<Canvas of={Stories.Disabled} />
+
+## Behavior and accessibility
+
+onOpen can load metadata through the existing pinned reader. Disabled prevents changes during unavailable admission; a workspace label never creates native authority. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+
+## Styling variables
+
+Defaults retain the Desktop presentation. Set documented variables on an
+ancestor; avoid selector overrides and dependency-internal imports. Brand and
+light/dark controls remain independent in Storybook.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Complete screens compose this same implementation. Small controls use a padded, bounded standalone preview; shell and column families retain their required production context. Docs shell previews are bounded to 40rem and flush; Canvas screens fill their parent. Host services and downstream integration remain behind the review gate.

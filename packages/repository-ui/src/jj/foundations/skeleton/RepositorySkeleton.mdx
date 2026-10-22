@@ -1,0 +1,83 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositorySkeleton.stories";
+import { Basic, Styling } from "./RepositorySkeleton.example-sources";
+import tokens from "./RepositorySkeleton.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Loading skeleton
+
+Representative loading geometry for repository reads with accessible status.
+
+## Usage
+
+Use a skeleton while an injected read is pending. Choose geometry that matches the log, changed files, diff, file history, blame or conflict surface being prepared.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part             | Responsibility                                           |
+| ---------------- | -------------------------------------------------------- |
+| Status host      | Accessible loading label and busy presentation.          |
+| Placeholder rows | Source-copied widths and spacing for the requested kind. |
+
+## Variations
+
+### Basic
+
+The ordinary populated presentation with recorded identities and explicit callbacks.
+
+<Canvas of={Stories.Basic} />
+
+### Files
+
+The files geometry for this family, using the same production implementation.
+
+<Canvas of={Stories.Files} />
+
+### Diff
+
+The diff geometry for this family, using the same production implementation.
+
+<Canvas of={Stories.Diff} />
+
+### Blame
+
+The blame geometry for this family, using the same production implementation.
+
+<Canvas of={Stories.Blame} />
+
+### Conflicts
+
+The conflicts geometry for this family, using the same production implementation.
+
+<Canvas of={Stories.Conflicts} />
+
+## Behavior and accessibility
+
+Skeletons are presentational. The owning controller decides when preparation has completed or failed; an unavailable read must become an Empty state rather than an indefinite skeleton. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+
+## Styling variables
+
+Defaults retain the Desktop presentation. Set documented variables on an
+ancestor; avoid selector overrides and dependency-internal imports. Brand and
+light/dark controls remain independent in Storybook.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Complete screens compose this same implementation. Small controls use a padded, bounded standalone preview; shell and column families retain their required production context. Docs shell previews are bounded to 40rem and flush; Canvas screens fill their parent. Host services and downstream integration remain behind the review gate.

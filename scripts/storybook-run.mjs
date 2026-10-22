@@ -74,6 +74,7 @@ for (const listener of auxiliaryPorts) {
  */
 const restartWatchPaths = [
   path.join(root, ".storybook/main.ts"),
+  path.join(root, ".storybook/dependency-optimization.ts"),
   path.join(root, ".storybook/manager.ts"),
   path.join(root, "vite.config.ts"),
 ];

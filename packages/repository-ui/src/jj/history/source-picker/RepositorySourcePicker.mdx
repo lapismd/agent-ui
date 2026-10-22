@@ -1,0 +1,66 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositorySourcePicker.stories";
+import { Basic, Styling } from "./RepositorySourcePicker.example-sources";
+import tokens from "./RepositorySourcePicker.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Source picker
+
+Explicit host-owned choice between automatic history and the original repository.
+
+## Usage
+
+Provide a HistorySourcePicker owned by the host. Automatic vault checkpoints and original repository history remain distinct data sources; selecting one delegates admission and routing.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part               | Responsibility                                            |
+| ------------------ | --------------------------------------------------------- |
+| Trigger            | Compact Backup or Original label.                         |
+| Source list        | Command View choices and filled selection icon.           |
+| Unavailable notice | Empty with icon when no original repository is available. |
+
+## Variations
+
+### Basic
+
+The ordinary populated presentation with recorded identities and explicit callbacks.
+
+<Canvas of={Stories.Basic} />
+
+### OriginalUnavailable
+
+Open the source picker to see automatic history alongside an icon-bearing notice that original repository history is unavailable.
+
+<Canvas of={Stories.OriginalUnavailable} />
+
+## Behavior and accessibility
+
+Opening calls picker.load; failures go to picker.report. Selecting another source calls picker.select once. No component initializes or mutates a repository. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+
+## Styling variables
+
+Defaults retain the Desktop presentation. Set documented variables on an
+ancestor; avoid selector overrides and dependency-internal imports. Brand and
+light/dark controls remain independent in Storybook.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Complete screens compose this same implementation. Small controls use a padded, bounded standalone preview; shell and column families retain their required production context. Docs shell previews are bounded to 40rem and flush; Canvas screens fill their parent. Host services and downstream integration remain behind the review gate.

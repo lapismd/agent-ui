@@ -52,7 +52,15 @@ for (const row of ledger.copies) {
       : original,
     row.destination,
   );
-  const extracted = await layout(destination, row.destination);
+  // Both sides pass through formatting again after stripping scripts/comments;
+  // otherwise comment-only blank lines can create a false layout difference.
+  const extractedLayout = await layout(destination, row.destination);
+  const extracted = await layout(
+    row.destination.endsWith(".svelte")
+      ? `<script lang="ts"></script>\n${extractedLayout}`
+      : extractedLayout,
+    row.destination,
+  );
   if (original !== extracted || sha256(extracted) !== row.layoutSha256)
     throw new Error(`Original layout differs: ${row.destination}`);
   compared++;

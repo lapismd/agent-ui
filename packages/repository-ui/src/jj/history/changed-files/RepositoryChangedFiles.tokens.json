@@ -1,0 +1,12 @@
+{
+  "component": "RepositoryChangedFiles",
+  "variables": [
+    {
+      "name": "--ui-repository-changed-files-font-size",
+      "default": "0.8125rem",
+      "description": "Original bounded tree/list of changed paths with explicit selection and paging. Original size default.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/changed-files/RepositoryChangedFiles.svelte"
+    }
+  ]
+}

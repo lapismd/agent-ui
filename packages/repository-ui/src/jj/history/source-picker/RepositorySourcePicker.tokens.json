@@ -1,0 +1,12 @@
+{
+  "component": "RepositorySourcePicker",
+  "variables": [
+    {
+      "name": "--ui-repository-source-picker-gap",
+      "default": "0.5rem",
+      "description": "Explicit host-owned choice between automatic history and the original repository. Original gap default.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/source-picker/RepositorySourcePicker.svelte"
+    }
+  ]
+}

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import * as Empty from "@lapismd/design-core/shadcn/empty";
+  import FileQuestionIcon from "@lucide/svelte/icons/file-question-mark";
   import * as AlertDialog from "@lapismd/design-core/shadcn/alert-dialog";
   import { Button } from "@lapismd/design-core/shadcn/button";
   import RefreshIcon from "@lucide/svelte/icons/refresh-cw";
@@ -18,14 +20,19 @@
   }}
 >
   <AlertDialog.Content>
-    <AlertDialog.Header>
-      <AlertDialog.Title>History checkpoint unavailable</AlertDialog.Title>
-      <AlertDialog.Description
-        >Your prompt is retained. Retry saving the starting checkpoint, or
-        explicitly continue this turn without a saved comparison or undo
-        protection.</AlertDialog.Description
-      >
-    </AlertDialog.Header>
+    <Empty.Root
+      ><Empty.Header
+        ><Empty.Media variant="icon"
+          ><FileQuestionIcon aria-hidden="true" /></Empty.Media
+        >
+        <AlertDialog.Title>History checkpoint unavailable</AlertDialog.Title>
+        <AlertDialog.Description
+          >Your prompt is retained. Retry saving the starting checkpoint, or
+          explicitly continue this turn without a saved comparison or undo
+          protection.</AlertDialog.Description
+        >
+      </Empty.Header></Empty.Root
+    >
     <AlertDialog.Footer>
       <AlertDialog.Cancel onclick={() => history.cancelPending()}
         >Cancel</AlertDialog.Cancel

@@ -2,8 +2,11 @@ import { cp, mkdir, rm } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import path from "node:path";
 const root = path.resolve(import.meta.dirname, "..");
-const owner = path.join(root, "packages/agent-ui");
-const stage = path.join(owner, ".cache/agent-ui-package");
+const name = process.argv[2] ?? "agent-ui";
+if (!["agent-ui", "repository-ui"].includes(name))
+  throw new Error("Unknown package");
+const owner = path.join(root, "packages", name);
+const stage = path.join(owner, ".cache/package");
 const input = path.join(stage, "src");
 const catalogFile =
   /(?:\.stories\.|\.example-sources\.|\.tokens\.json$|\.mdx$)/;

@@ -1,0 +1,65 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryShell.stories";
+import { Basic, Styling } from "./RepositoryShell.example-sources";
+import tokens from "./RepositoryShell.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Shell
+
+Original embedded AppShell boundary with pane-sized main area and overlay surface.
+
+## Usage
+
+Wrap one embedded repository pane in this AppShell boundary. Supply ordinary content and an optional surface snippet for conflict inspection. The shell owns only presentation lifetime; the workspace still owns routing and repository services.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part         | Responsibility                                                                 |
+| ------------ | ------------------------------------------------------------------------------ |
+| Main body    | Inset, bounded AppShell main/body with the original border, radius and shadow. |
+| Surface slot | AppShell surface host for conflict inspection without replacing the workspace. |
+
+## Variations
+
+### Basic
+
+The ordinary populated presentation with recorded identities and explicit callbacks.
+
+<Canvas of={Stories.Basic} />
+
+### Narrow
+
+The narrow geometry for this family, using the same production implementation.
+
+<Canvas of={Stories.Narrow} />
+
+## Behavior and accessibility
+
+Size the parent pane explicitly. Shell disposal releases its AppShell controller; it does not close a host-owned history reader. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+
+## Styling variables
+
+Defaults retain the Desktop presentation. Set documented variables on an
+ancestor; avoid selector overrides and dependency-internal imports. Brand and
+light/dark controls remain independent in Storybook.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Complete screens compose this same implementation. Small controls use a padded, bounded standalone preview; shell and column families retain their required production context. Docs shell previews are bounded to 40rem and flush; Canvas screens fill their parent. Host services and downstream integration remain behind the review gate.

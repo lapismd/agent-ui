@@ -2,14 +2,14 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 <Meta title="Review/Progress" />
 
-# Agent screens — review slice
+# Agent and Desktop JJ review
 
 This catalog contains Chat, History, Catalog, Imports and Recorded transcripts.
 The screens copy Desktop’s original AppShell markup and CSS and use isolated
 in-memory controllers. Inline chat controls are retained; standalone Agents,
 Clients, Models, Compute, Memory and Settings pages have been removed.
 
-Repository and Combined screens are deferred until Agent review is complete.
+The user has authorized the Desktop JJ slice; Agent visual review remains pending. JJ now includes 20 documented families and complete JJ Log/Op Log screens, plus file history, multi-author blame, conflict inspection and restore. Workspace drag/drop, forge and the broader jj-store consolidation remain later work.
 The source ledger records the copied files and explicit host bindings. The
 pixel comparison lane checks the session shell, header, footer, list and tool
 inspector against the original Desktop source at three widths in both themes.
@@ -34,4 +34,4 @@ and light/dark controls are independent; docs-only shell previews are bounded to
 
 `pnpm spec:validate` rejects missing family structure and drifted token defaults.
 Clean-package acceptance compiles documented public examples and excludes catalog
-fixtures. Full Agent visual review remains pending; downstream work stays gated.
+fixtures. Both sections remain visual-pending. Downstream work stays gated, and this Desktop JJ slice stops for user review.

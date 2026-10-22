@@ -64,6 +64,7 @@ try {
         ...dependencies,
         svelte: "5.57.2",
         "@lapismd/design-core": "^0.6.0",
+        "@lapismd/jj-history": "^0.1.0",
       },
       devDependencies: {
         vite: "7.3.2",
@@ -100,7 +101,17 @@ try {
     path.join(temporary, "vite.config.js"),
     `import {defineConfig} from 'vite';import {svelte} from '@sveltejs/vite-plugin-svelte';export default defineConfig({plugins:[svelte()],build:{lib:{entry:'main.ts',formats:['es']},rollupOptions:{external:['svelte']}}});`,
   );
-  run("pnpm", ["install", "--ignore-scripts", "--no-frozen-lockfile"]);
+  // An explicit review overlay may resolve unpublished siblings from packed
+  // public exports; portable manifests and ordinary registry installs stay intact.
+  const reviewPnpmfile = process.env.AGENT_UI_REVIEW_PNPMFILE;
+  run("pnpm", [
+    ...(reviewPnpmfile
+      ? [`--config.pnpmfile=${path.resolve(root, reviewPnpmfile)}`]
+      : []),
+    "install",
+    "--ignore-scripts",
+    "--no-frozen-lockfile",
+  ]);
   run("pnpm", [
     "exec",
     "svelte-check",

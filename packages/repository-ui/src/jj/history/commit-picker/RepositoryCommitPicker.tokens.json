@@ -1,0 +1,12 @@
+{
+  "component": "RepositoryCommitPicker",
+  "variables": [
+    {
+      "name": "--ui-repository-commit-picker-gap",
+      "default": "0.25rem",
+      "description": "Explicit parent comparison with exact IDs, metadata, search and unavailable choices. Original gap default.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/styles/repository-commit-picker.css"
+    }
+  ]
+}

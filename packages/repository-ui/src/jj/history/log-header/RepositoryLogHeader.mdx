@@ -1,0 +1,66 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryLogHeader.stories";
+import { Basic, Styling } from "./RepositoryLogHeader.example-sources";
+import tokens from "./RepositoryLogHeader.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Log header
+
+Source, workspace and pinned-operation controls in the original Column Canvas header.
+
+## Usage
+
+Place this header inside a public ColumnCanvas.Column. It composes the same source, workspace, operation-pin and refresh controls used by the complete JJ Log and Op Log.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part                 | Responsibility                                                   |
+| -------------------- | ---------------------------------------------------------------- |
+| Title and count      | Column Canvas title/count and its collapse control.              |
+| Source and workspace | Independent host source selection and recorded workspace filter. |
+| Pin and refresh      | Exact operation selector and explicit head refresh.              |
+
+## Variations
+
+### Basic
+
+The ordinary populated presentation with recorded identities and explicit callbacks.
+
+<Canvas of={Stories.Basic} />
+
+### Busy
+
+Header refresh is busy while the source/workspace/pin controls retain their geometry.
+
+<Canvas of={Stories.Busy} />
+
+## Behavior and accessibility
+
+Refresh may observe new heads but must not move an existing pin. Workspace/source selection is delegated to the supplied callbacks. Keep the header mounted through loading and failure. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+
+## Styling variables
+
+Defaults retain the Desktop presentation. Set documented variables on an
+ancestor; avoid selector overrides and dependency-internal imports. Brand and
+light/dark controls remain independent in Storybook.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Complete screens compose this same implementation. Small controls use a padded, bounded standalone preview; shell and column families retain their required production context. Docs shell previews are bounded to 40rem and flush; Canvas screens fill their parent. Host services and downstream integration remain behind the review gate.

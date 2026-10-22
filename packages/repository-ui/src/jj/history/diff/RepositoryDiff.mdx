@@ -1,0 +1,72 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryDiff.stories";
+import { Basic, Styling } from "./RepositoryDiff.example-sources";
+import tokens from "./RepositoryDiff.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Diff
+
+Recorded diff with unified/split rendering, explicit unavailable content and source controls.
+
+## Usage
+
+Pass a LocalFileDiffChange returned for the current pinned from/to/path tuple. This wrapper maps recorded text hunks to the public Design Core FileDiff.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part              | Responsibility                                                |
+| ----------------- | ------------------------------------------------------------- |
+| Preview region    | Accessible Changes to path label.                             |
+| Diff reader       | Unified or split panes with controlled wrapping.              |
+| Unavailable state | Empty with an icon for binary, structural or refused content. |
+
+## Variations
+
+### Basic
+
+The ordinary populated presentation with recorded identities and explicit callbacks.
+
+<Canvas of={Stories.Basic} />
+
+### Split
+
+Both recorded revision texts fill a bounded split diff.
+
+<Canvas of={Stories.Split} />
+
+### Unavailable
+
+A refused or failed read, distinct from a successful empty result. The production Empty state names the failure and leaves explicit recovery reachable.
+
+<Canvas of={Stories.Unavailable} />
+
+## Behavior and accessibility
+
+Unavailable is distinct from an empty textual diff. Split mode fills its bounded parent; compact previews fit their content. File authorization and content retrieval remain host-owned. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+
+## Styling variables
+
+Defaults retain the Desktop presentation. Set documented variables on an
+ancestor; avoid selector overrides and dependency-internal imports. Brand and
+light/dark controls remain independent in Storybook.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Complete screens compose this same implementation. Small controls use a padded, bounded standalone preview; shell and column families retain their required production context. Docs shell previews are bounded to 40rem and flush; Canvas screens fill their parent. Host services and downstream integration remain behind the review gate.

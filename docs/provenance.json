@@ -1,8 +1,8 @@
 {
   "sources": {
-    "lapis-desktop": "f8f3446e (working-tree file hashes in desktop-layout-sources.json)",
+    "lapis-desktop": "f8f3446e (Agent) and 52516ae9 (JJ); exact copied-file hashes in desktop-layout-sources.json",
     "jj-store": "f58b9363",
-    "design-core": "npm 0.6.0"
+    "design-core": "npm range ^0.6.0; explicit local review archive at source commit 749de753"
   },
   "license": "Apache-2.0",
   "upstreamNotices": [
@@ -174,6 +174,629 @@
       "source": "catalog/fixtures/stack-workspace/preview.ts",
       "destination": "catalog/support/stacks/preview.ts",
       "use": "Isolated in-memory execution; excluded from package exports."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryRevisionOption.svelte",
+      "destination": "packages/repository-ui/src/jj/history/revision-option/RepositoryRevisionOption.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryCommitPicker.svelte",
+      "destination": "packages/repository-ui/src/jj/history/commit-picker/RepositoryCommitPicker.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/repository-commit-picker.css",
+      "destination": "packages/repository-ui/src/jj/styles/repository-commit-picker.css",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryWorkspacePicker.svelte",
+      "destination": "packages/repository-ui/src/jj/history/workspace-picker/RepositoryWorkspacePicker.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryShell.svelte",
+      "destination": "packages/repository-ui/src/jj/foundations/shell/RepositoryShell.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/repository-column-chrome.css",
+      "destination": "packages/repository-ui/src/jj/styles/repository-column-chrome.css",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/repository-review-identifiers.css",
+      "destination": "packages/repository-ui/src/jj/styles/repository-review-identifiers.css",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/repository-picker-options.css",
+      "destination": "packages/repository-ui/src/jj/styles/repository-picker-options.css",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositorySourcePicker.svelte",
+      "destination": "packages/repository-ui/src/jj/history/source-picker/RepositorySourcePicker.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryOperationTarget.svelte",
+      "destination": "packages/repository-ui/src/jj/operations/operation-target/RepositoryOperationTarget.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryDiffColumn.svelte",
+      "destination": "packages/repository-ui/src/jj/history/diff-column/RepositoryDiffColumn.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryOperationColumn.svelte",
+      "destination": "packages/repository-ui/src/jj/operations/operation-column/RepositoryOperationColumn.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/repository-operation-column.css",
+      "destination": "packages/repository-ui/src/jj/styles/repository-operation-column.css",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryOperations.svelte",
+      "destination": "packages/repository-ui/src/jj/screens/operations/RepositoryOperations.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryOperationPinPicker.svelte",
+      "destination": "packages/repository-ui/src/jj/operations/operation-pin-picker/RepositoryOperationPinPicker.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryDiffControls.svelte",
+      "destination": "packages/repository-ui/src/jj/history/diff-controls/RepositoryDiffControls.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryRevisionActions.svelte",
+      "destination": "packages/repository-ui/src/jj/history/revision-actions/RepositoryRevisionActions.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryAuthorAvatar.svelte",
+      "destination": "packages/repository-ui/src/jj/foundations/author-avatar/RepositoryAuthorAvatar.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryLogHeader.svelte",
+      "destination": "packages/repository-ui/src/jj/history/log-header/RepositoryLogHeader.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryPickerSearch.svelte",
+      "destination": "packages/repository-ui/src/jj/history/picker-search/RepositoryPickerSearch.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryOperationFiles.svelte",
+      "destination": "packages/repository-ui/src/jj/operations/operation-files/RepositoryOperationFiles.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryGraph.svelte",
+      "destination": "packages/repository-ui/src/jj/history/graph/RepositoryGraph.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryPanel.svelte",
+      "destination": "packages/repository-ui/src/jj/screens/panel/RepositoryPanel.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryOperationRail.svelte",
+      "destination": "packages/repository-ui/src/jj/operations/operation-rail/RepositoryOperationRail.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryOperationOption.svelte",
+      "destination": "packages/repository-ui/src/jj/operations/operation-option/RepositoryOperationOption.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryOperationMessage.svelte",
+      "destination": "packages/repository-ui/src/jj/operations/operation-message/RepositoryOperationMessage.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryComparisonTime.svelte",
+      "destination": "packages/repository-ui/src/jj/history/comparison-time/RepositoryComparisonTime.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryDiff.svelte",
+      "destination": "packages/repository-ui/src/jj/history/diff/RepositoryDiff.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryOperationArguments.svelte",
+      "destination": "packages/repository-ui/src/jj/operations/operation-arguments/RepositoryOperationArguments.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryIdentifiers.svelte",
+      "destination": "packages/repository-ui/src/jj/foundations/identifiers/RepositoryIdentifiers.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/repository-identifiers.css",
+      "destination": "packages/repository-ui/src/jj/styles/repository-identifiers.css",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryRevisionPicker.svelte",
+      "destination": "packages/repository-ui/src/jj/history/revision-picker/RepositoryRevisionPicker.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryRestoreDialog.svelte",
+      "destination": "packages/repository-ui/src/jj/history/restore-dialog/RepositoryRestoreDialog.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositorySkeleton.svelte",
+      "destination": "packages/repository-ui/src/jj/foundations/skeleton/RepositorySkeleton.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryFileHistory.svelte",
+      "destination": "packages/repository-ui/src/jj/history/file-history/RepositoryFileHistory.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryFileTitle.svelte",
+      "destination": "packages/repository-ui/src/jj/history/file-title/RepositoryFileTitle.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryRevisionFiles.svelte",
+      "destination": "packages/repository-ui/src/jj/history/revision-files/RepositoryRevisionFiles.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryChangedFiles.svelte",
+      "destination": "packages/repository-ui/src/jj/history/changed-files/RepositoryChangedFiles.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryCommitMessage.svelte",
+      "destination": "packages/repository-ui/src/jj/history/commit-message/RepositoryCommitMessage.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryParentSummary.svelte",
+      "destination": "packages/repository-ui/src/jj/history/parent-summary/RepositoryParentSummary.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryOperationParentPicker.svelte",
+      "destination": "packages/repository-ui/src/jj/operations/operation-parent-picker/RepositoryOperationParentPicker.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryComparisonBar.svelte",
+      "destination": "packages/repository-ui/src/jj/history/comparison-bar/RepositoryComparisonBar.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryGraphSvg.svelte",
+      "destination": "packages/repository-ui/src/jj/history/graph-svg/RepositoryGraphSvg.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/RepositoryRevisions.svelte",
+      "destination": "packages/repository-ui/src/jj/history/revisions/RepositoryRevisions.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/blame/RepositoryBlameRows.svelte",
+      "destination": "packages/repository-ui/src/jj/blame/blame-rows/RepositoryBlameRows.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/blame/RepositoryBlameCommitTitle.svelte",
+      "destination": "packages/repository-ui/src/jj/blame/blame-commit-title/RepositoryBlameCommitTitle.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/blame/RepositoryBlameView.svelte",
+      "destination": "packages/repository-ui/src/jj/blame/blame-view/RepositoryBlameView.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/blame/RepositoryBlamePanel.svelte",
+      "destination": "packages/repository-ui/src/jj/blame/blame-panel/RepositoryBlamePanel.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/blame/RepositoryBlameGroup.svelte",
+      "destination": "packages/repository-ui/src/jj/blame/blame-group/RepositoryBlameGroup.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/conflicts/RepositoryConflictText.svelte",
+      "destination": "packages/repository-ui/src/jj/conflicts/conflict-text/RepositoryConflictText.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/conflicts/RepositoryConflictResolution.svelte",
+      "destination": "packages/repository-ui/src/jj/conflicts/conflict-resolution/RepositoryConflictResolution.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/conflicts/RepositoryConflictBody.svelte",
+      "destination": "packages/repository-ui/src/jj/conflicts/conflict-body/RepositoryConflictBody.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/conflicts/RepositoryConflictFileTree.svelte",
+      "destination": "packages/repository-ui/src/jj/conflicts/conflict-file-tree/RepositoryConflictFileTree.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/conflicts/repository-conflict-file-tree.css",
+      "destination": "packages/repository-ui/src/jj/styles/repository-conflict-file-tree.css",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/conflicts/RepositorySidebarToggleIcon.svelte",
+      "destination": "packages/repository-ui/src/jj/conflicts/sidebar-toggle-icon/RepositorySidebarToggleIcon.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/conflicts/RepositoryConflictActions.svelte",
+      "destination": "packages/repository-ui/src/jj/conflicts/conflict-actions/RepositoryConflictActions.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/conflicts/RepositoryConflictSurface.svelte",
+      "destination": "packages/repository-ui/src/jj/conflicts/conflict-surface/RepositoryConflictSurface.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/conflicts/repository-conflicts.css",
+      "destination": "packages/repository-ui/src/jj/styles/repository-conflicts.css",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/components/repository/conflicts/RepositoryConflictPath.svelte",
+      "destination": "packages/repository-ui/src/jj/conflicts/conflict-path/RepositoryConflictPath.svelte",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/conflict-menu.ts",
+      "destination": "packages/repository-ui/src/jj/logic/conflict-menu.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/blame-model.ts",
+      "destination": "packages/repository-ui/src/jj/logic/blame-model.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/blame-chunks.ts",
+      "destination": "packages/repository-ui/src/jj/logic/blame-chunks.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/history-selection.ts",
+      "destination": "packages/repository-ui/src/jj/logic/history-selection.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/history-reader.ts",
+      "destination": "packages/repository-ui/src/jj/logic/history-reader.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/restore.ts",
+      "destination": "packages/repository-ui/src/jj/logic/restore.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/blame-controller.ts",
+      "destination": "packages/repository-ui/src/jj/logic/blame-controller.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/history-lifetime.ts",
+      "destination": "packages/repository-ui/src/jj/logic/history-lifetime.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/history-controller.ts",
+      "destination": "packages/repository-ui/src/jj/logic/history-controller.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/history-state.ts",
+      "destination": "packages/repository-ui/src/jj/logic/history-state.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/graph/model.ts",
+      "destination": "packages/repository-ui/src/jj/logic/graph/model.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/revision-comparison.ts",
+      "destination": "packages/repository-ui/src/jj/logic/revision-comparison.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/history-graph.ts",
+      "destination": "packages/repository-ui/src/jj/logic/history-graph.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/parent-candidates.ts",
+      "destination": "packages/repository-ui/src/jj/logic/parent-candidates.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/history-files.ts",
+      "destination": "packages/repository-ui/src/jj/logic/history-files.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/file-history-controller.ts",
+      "destination": "packages/repository-ui/src/jj/logic/file-history-controller.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/operation-metadata.ts",
+      "destination": "packages/repository-ui/src/jj/logic/operation-metadata.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/operation-state.ts",
+      "destination": "packages/repository-ui/src/jj/logic/operation-state.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/operation-files.ts",
+      "destination": "packages/repository-ui/src/jj/logic/operation-files.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/tags.ts",
+      "destination": "packages/repository-ui/src/jj/logic/tags.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/commit-cards.ts",
+      "destination": "packages/repository-ui/src/jj/logic/commit-cards.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/operation-command.ts",
+      "destination": "packages/repository-ui/src/jj/logic/operation-command.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/operation-message.ts",
+      "destination": "packages/repository-ui/src/jj/logic/operation-message.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/history-source.ts",
+      "destination": "packages/repository-ui/src/jj/logic/history-source.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/workspaces.ts",
+      "destination": "packages/repository-ui/src/jj/logic/workspaces.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/log-canvas.ts",
+      "destination": "packages/repository-ui/src/jj/logic/log-canvas.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/open-history-revision.ts",
+      "destination": "packages/repository-ui/src/jj/logic/open-history-revision.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/operation-controller.ts",
+      "destination": "packages/repository-ui/src/jj/logic/operation-controller.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/operation-graph.ts",
+      "destination": "packages/repository-ui/src/jj/logic/operation-graph.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+    },
+    {
+      "sourceRepository": "lapis-desktop",
+      "sourceRevision": "52516ae9",
+      "source": "src/lib/repository/operation-parent.ts",
+      "destination": "packages/repository-ui/src/jj/logic/operation-parent.ts",
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
     }
   ]
 }

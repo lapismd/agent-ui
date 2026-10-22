@@ -1,7 +1,6 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
-const sourceRoot = "packages/agent-ui/src";
-const manifestPath = "docs/agent-component-families.json";
+import { createHash } from "node:crypto";
 export function walk(directory) {
   if (!existsSync(directory)) return [];
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -21,17 +20,31 @@ function fallback(source, name) {
       return source.slice(from, index);
   }
 }
-export function auditFoundations(root) {
+export function auditFoundations(root, options = {}) {
+  const sourceRoot = options.sourceRoot ?? "packages/agent-ui/src";
+  const manifestPath =
+    options.manifestPath ?? "docs/agent-component-families.json";
+  const rule = options.rule ?? "AUI-FOUND-001";
+  const namespace = options.namespace ?? "AUI";
+  const titlePrefix = options.titlePrefix ?? "Agents";
+  const packageName = options.packageName ?? "@lapismd/agent-ui";
+  const tokenPrefix = options.tokenPrefix ?? "--ui-agent-";
   const findings = [];
   const read = (file) =>
     existsSync(path.join(root, file))
       ? readFileSync(path.join(root, file), "utf8")
       : "";
   const report = (file, code, message) =>
-    findings.push({ code, rule: "AUI-FOUND-001", file, line: 1, message });
-  let families;
+    findings.push({
+      code: code.replace(/^AUI/, namespace),
+      rule,
+      file,
+      line: 1,
+      message,
+    });
+  let families, deferred;
   try {
-    families = JSON.parse(read(manifestPath)).families;
+    ({ families, deferred = [] } = JSON.parse(read(manifestPath)));
   } catch {
     report(
       manifestPath,
@@ -51,6 +64,16 @@ export function auditFoundations(root) {
       "MDX must enable the same GFM table parser as Design Core",
     );
   const members = new Set();
+  for (const item of deferred) {
+    const file = `${sourceRoot}/${item.path}`;
+    if (createHash("sha256").update(read(file)).digest("hex") !== item.sha256)
+      report(
+        file,
+        "AUI-DOCS-DEFERRED",
+        "Pre-review scaffold changed; extract it into a documented family before modifying",
+      );
+    members.add(item.path);
+  }
   const primaryStories = new Set();
   const allTokens = new Set();
   for (const family of families) {
@@ -99,7 +122,7 @@ export function auditFoundations(root) {
     const mdx = read(prefix + ".mdx");
     const examples = read(prefix + ".example-sources.ts");
     if (
-      !/title:\s*["']Agents\//.test(stories) ||
+      !new RegExp(String.raw`title:\s*["']${titlePrefix}/`).test(stories) ||
       !actualComponent ||
       !new RegExp(`component:\\s*${actualComponent}\\b`).test(stories) ||
       !stories.includes(`./${path.basename(primary)}.svelte`)
@@ -107,7 +130,7 @@ export function auditFoundations(root) {
       report(
         prefix + ".stories.ts",
         "AUI-DOCS-STORY",
-        "Stories must name the actual colocated production component under Agents",
+        `Stories must name the actual colocated production component under ${titlePrefix}`,
       );
     if (
       !stories.includes("visual-pending") ||
@@ -162,7 +185,7 @@ export function auditFoundations(root) {
           `Missing rendered ${variation} variation`,
         );
     if (
-      !examples.includes("@lapismd/agent-ui") ||
+      !examples.includes(packageName) ||
       !examples.includes("export const Basic") ||
       !examples.includes("export const Styling") ||
       /(?:\.stories\.|catalog\/|\.\/|\.\.\/|args\.)/.test(examples)
@@ -249,7 +272,9 @@ export function auditFoundations(root) {
         "New story family requires a colocated documentation contract",
       );
     if (/\.(?:css|svelte)$/.test(relative) && !relative.includes(".stories."))
-      for (const match of source.matchAll(/--ui-agent-[a-z0-9-]+/g))
+      for (const match of source.matchAll(
+        new RegExp(`${tokenPrefix}[a-z0-9-]+`, "g"),
+      ))
         if (!allTokens.has(match[0]))
           report(
             relative,

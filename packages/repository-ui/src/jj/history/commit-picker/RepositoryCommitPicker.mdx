@@ -1,0 +1,72 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryCommitPicker.stories";
+import { Basic, Styling } from "./RepositoryCommitPicker.example-sources";
+import tokens from "./RepositoryCommitPicker.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Comparison picker
+
+Explicit parent comparison with exact IDs, metadata, search and unavailable choices.
+
+## Usage
+
+Supply the exact recorded parent IDs and their available commit cards. Use this for a merge comparison rather than choosing a convenient branch tip.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part           | Responsibility                                                 |
+| -------------- | -------------------------------------------------------------- |
+| Trigger        | Current comparison target.                                     |
+| Search list    | Author, description, Git/JJ IDs and tags for recorded parents. |
+| Preview footer | Metadata for the highlighted option.                           |
+
+## Variations
+
+### Basic
+
+The ordinary populated presentation with recorded identities and explicit callbacks.
+
+<Canvas of={Stories.Basic} />
+
+### Loading
+
+A pending in-memory read holds the original loading geometry without contacting a repository.
+
+<Canvas of={Stories.Loading} />
+
+### MissingParent
+
+A parent ID is retained even when its metadata card is absent.
+
+<Canvas of={Stories.MissingParent} />
+
+## Behavior and accessibility
+
+Only supplied parents can be selected. Missing cards remain labelled by their exact ID while the host loads metadata. Search and keyboard navigation must not silently choose a comparison. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+
+## Styling variables
+
+Defaults retain the Desktop presentation. Set documented variables on an
+ancestor; avoid selector overrides and dependency-internal imports. Brand and
+light/dark controls remain independent in Storybook.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Complete screens compose this same implementation. Small controls use a padded, bounded standalone preview; shell and column families retain their required production context. Docs shell previews are bounded to 40rem and flush; Canvas screens fill their parent. Host services and downstream integration remain behind the review gate.

@@ -1,0 +1,4 @@
+export const Basic =
+  '<script lang="ts">\n  import { RepositoryChangedFiles } from "@lapismd/repository-ui/jj";\n  let selected = $state<string>();\n  const files = [{path:"Welcome.md", additions:2, deletions:1}, {path:"Notes/Plan.md", additions:12, deletions:0}];\n</script>\n<RepositoryChangedFiles files={files} selectedPath={selected} onSelect={(path) => { selected = path; }} onMore={() => {}} />';
+export const Styling =
+  '<script lang="ts">\n  import { RepositoryChangedFiles } from "@lapismd/repository-ui/jj";\n  let selected = $state<string>();\n  const files = [{path:"Welcome.md", additions:2, deletions:1}, {path:"Notes/Plan.md", additions:12, deletions:0}];\n</script>\n<div style="--ui-repository-changed-files-font-size:1rem">\n  <RepositoryChangedFiles files={files} selectedPath={selected} onSelect={(path) => { selected = path; }} onMore={() => {}} />\n</div>';

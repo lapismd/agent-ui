@@ -1,0 +1,12 @@
+{
+  "component": "RepositoryGraph",
+  "variables": [
+    {
+      "name": "--ui-repository-graph-font-size",
+      "default": "0.875rem",
+      "description": "Original revision/operation graph rows, tags, author cards and row selection. Original size default.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/graph/RepositoryGraph.svelte"
+    }
+  ]
+}

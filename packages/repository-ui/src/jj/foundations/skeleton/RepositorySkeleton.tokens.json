@@ -1,0 +1,12 @@
+{
+  "component": "RepositorySkeleton",
+  "variables": [
+    {
+      "name": "--ui-repository-skeleton-gap",
+      "default": "0.65rem",
+      "description": "Representative loading geometry for repository reads with accessible status. Original gap default.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/foundations/skeleton/RepositorySkeleton.svelte"
+    }
+  ]
+}

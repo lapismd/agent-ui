@@ -1,0 +1,90 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryPanel.stories";
+import { Basic, Styling } from "./RepositoryPanel.example-sources";
+import tokens from "./RepositoryPanel.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# JJ Log
+
+Complete Desktop JJ Log AppShell and adaptive Column Canvas with an in-memory history controller.
+
+## Usage
+
+Mount the complete embedded JJ Log with a host-owned HistoryController and copy callback. Optional source and restore ports add the same controls used by Desktop.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part        | Responsibility                                                        |
+| ----------- | --------------------------------------------------------------------- |
+| AppShell    | Original bounded embedded body and optional conflict surface.         |
+| Log column  | Shared header, graph, revision details and file listing.              |
+| Diff column | Shared diff reader, layout/wrap controls and optional restore dialog. |
+
+## Variations
+
+### Basic
+
+The ordinary populated presentation with recorded identities and explicit callbacks.
+
+<Canvas of={Stories.Basic} />
+
+### Empty
+
+A valid successful result with no content. The production component displays the shared Empty pattern with an icon.
+
+<Canvas of={Stories.Empty} />
+
+### Loading
+
+A pending in-memory read holds the original loading geometry without contacting a repository.
+
+<Canvas of={Stories.Loading} />
+
+### Unavailable
+
+A refused or failed read, distinct from a successful empty result. The production Empty state names the failure and leaves explicit recovery reachable.
+
+<Canvas of={Stories.Unavailable} />
+
+### Merge
+
+A revision with more than one recorded parent; choose the exact comparison explicitly.
+
+<Canvas of={Stories.Merge} />
+
+### RichHistory
+
+Desktop’s enriched commit metadata, descriptions, tags and identifiers.
+
+<Canvas of={Stories.RichHistory} />
+
+## Behavior and accessibility
+
+Mount reads through the injected controller. Host lifetime outlives pane remounts; initialOperation and initialRevision restore exact selections. Dispose the controller only after its final owner releases it. No native transport, routing or preference storage is constructed here. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+
+## Styling variables
+
+Defaults retain the Desktop presentation. Set documented variables on an
+ancestor; avoid selector overrides and dependency-internal imports. Brand and
+light/dark controls remain independent in Storybook.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Complete screens compose this same implementation. Small controls use a padded, bounded standalone preview; shell and column families retain their required production context. Docs shell previews are bounded to 40rem and flush; Canvas screens fill their parent. Host services and downstream integration remain behind the review gate.

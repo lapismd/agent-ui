@@ -1,0 +1,12 @@
+{
+  "component": "RepositoryOperations",
+  "variables": [
+    {
+      "name": "--ui-repository-operations-font-size",
+      "default": "0.875rem",
+      "description": "Complete Desktop operation log, metadata comparison and changed-file inspector. Original size default.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/screens/operations/RepositoryOperations.svelte"
+    }
+  ]
+}

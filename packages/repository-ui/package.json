@@ -49,14 +49,21 @@
       "types": "./dist/screens/index.d.ts",
       "svelte": "./dist/screens/index.js",
       "import": "./dist/screens/index.js"
+    },
+    "./jj": {
+      "types": "./dist/jj/index.d.ts",
+      "svelte": "./dist/jj/index.js",
+      "import": "./dist/jj/index.js"
     }
   },
   "scripts": {
-    "build": "svelte-package -i src -o dist --tsconfig tsconfig.json && publint"
+    "build": "node ../../scripts/build-agent-package.mjs repository-ui"
   },
   "dependencies": {
     "@lapismd/design-core": "^0.6.0",
-    "@lucide/svelte": "^1.57.0"
+    "@lucide/svelte": "^1.57.0",
+    "@tanstack/svelte-virtual": "^3.13.46",
+    "@lapismd/jj-history": "^0.1.0"
   },
   "peerDependencies": {
     "svelte": "^5.0.0"

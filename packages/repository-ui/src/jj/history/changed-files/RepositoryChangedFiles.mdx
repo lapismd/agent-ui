@@ -1,0 +1,77 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryChangedFiles.stories";
+import { Basic, Styling } from "./RepositoryChangedFiles.example-sources";
+import tokens from "./RepositoryChangedFiles.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Changed files
+
+Original bounded tree/list of changed paths with explicit selection and paging.
+
+## Usage
+
+Supply recorded FileListingFile entries for one exact comparison. Place the component beneath the selected revision or operation row; standalone stories show its own boundary on a padded surface.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part         | Responsibility                                            |
+| ------------ | --------------------------------------------------------- |
+| Header       | Changed-file count and tree/list/package view toggle.     |
+| File listing | Public FileListing with selected path and bounded paging. |
+
+## Variations
+
+### Basic
+
+The ordinary populated presentation with recorded identities and explicit callbacks.
+
+<Canvas of={Stories.Basic} />
+
+### Empty
+
+A valid successful result with no content. The production component displays the shared Empty pattern with an icon.
+
+<Canvas of={Stories.Empty} />
+
+### Loading
+
+A pending in-memory read holds the original loading geometry without contacting a repository.
+
+<Canvas of={Stories.Loading} />
+
+### Paged
+
+The bounded listing exposes an explicit request for the next page.
+
+<Canvas of={Stories.Paged} />
+
+## Behavior and accessibility
+
+onSelect returns the literal path to the owning controller. onMore requests another page; initialLoading and loading are distinct. An empty comparison uses Empty with an icon. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+
+## Styling variables
+
+Defaults retain the Desktop presentation. Set documented variables on an
+ancestor; avoid selector overrides and dependency-internal imports. Brand and
+light/dark controls remain independent in Storybook.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Complete screens compose this same implementation. Small controls use a padded, bounded standalone preview; shell and column families retain their required production context. Docs shell previews are bounded to 40rem and flush; Canvas screens fill their parent. Host services and downstream integration remain behind the review gate.

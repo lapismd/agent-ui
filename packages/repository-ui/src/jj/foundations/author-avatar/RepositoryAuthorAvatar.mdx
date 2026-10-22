@@ -1,0 +1,85 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryAuthorAvatar.stories";
+import {
+  Basic,
+  Styling,
+  HostResolver,
+} from "./RepositoryAuthorAvatar.example-sources";
+import tokens from "./RepositoryAuthorAvatar.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Author avatar
+
+Recorded author identity with independent hover/focus profile activation.
+
+## Usage
+
+Supply the recorded author name and email. Pass an optional avatarUrl resolved by the host, or call provideRepositoryAuthorAvatars during host component initialization to provide a cached resolver to all descendant graph/blame avatars; email identifies the profile but does not initiate a lookup inside this component.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part           | Responsibility                                                                      |
+| -------------- | ----------------------------------------------------------------------------------- |
+| Avatar trigger | Public AuthorCard with initials, deterministic fallback colour and selected size.   |
+| Profile card   | Hover or focus opens the name and email without selecting the surrounding revision. |
+
+## Variations
+
+### Basic
+
+The ordinary populated presentation with recorded identities and explicit callbacks.
+
+<Canvas of={Stories.Basic} />
+
+### Fallback
+
+Recorded name only, showing deterministic initials without an image lookup.
+
+<Canvas of={Stories.Fallback} />
+
+### Sizes
+
+All seven public Avatar sizes on a plain theme background, independent of repository chrome.
+
+<Canvas of={Stories.Sizes} />
+
+### Gravatar
+
+The catalog host resolves the SHA-256 Gravatar URL for dev@lapis.md and passes it as avatarUrl. Live image delivery depends on Gravatar; initials remain the fallback.
+
+<Canvas of={Stories.Gravatar} />
+
+## Behavior and accessibility
+
+The trigger stops row activation from pointer and Enter/Space events. Sizes use the public Avatar scale. The Gravatar story hashes dev@lapis.md in the catalog host and supplies the resulting URL; an unavailable image retains initials. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+
+## Styling variables
+
+Defaults retain the Desktop presentation. Set documented variables on an
+ancestor; avoid selector overrides and dependency-internal imports. Brand and
+light/dark controls remain independent in Storybook.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Provide a cached URL resolver from the owning host to enrich all graph and blame avatars. Explicit avatarUrl wins over this context; image lookup, policy and caching remain in the host.
+
+<Source code={HostResolver} language="tsx" />
+
+Complete screens compose this same implementation. Small controls use a padded, bounded standalone preview; shell and column families retain their required production context. Docs shell previews are bounded to 40rem and flush; Canvas screens fill their parent. Host services and downstream integration remain behind the review gate.

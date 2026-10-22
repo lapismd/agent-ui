@@ -1,0 +1,71 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryIdentifiers.stories";
+import { Basic, Styling } from "./RepositoryIdentifiers.example-sources";
+import tokens from "./RepositoryIdentifiers.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Identifiers
+
+Exact commit/change identifiers with compact, expanded, keyboard and copy feedback.
+
+## Usage
+
+Show full commit and native JJ change identifiers without turning one into the other. Choose inline placement beside metadata or overlay placement in a positioned owner.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part              | Responsibility                                                       |
+| ----------------- | -------------------------------------------------------------------- |
+| Commit identifier | Compact Git SHA with full accessible value and copy control.         |
+| Change identifier | Native reverse-hex change ID, independently expandable and copyable. |
+
+## Variations
+
+### Basic
+
+The ordinary populated presentation with recorded identities and explicit callbacks.
+
+<Canvas of={Stories.Basic} />
+
+### Inline
+
+Identifiers sit inline with metadata rather than overlaying a positioned owner.
+
+<Canvas of={Stories.Inline} />
+
+### CommitOnly
+
+The exact Git SHA remains usable when no JJ change ID was supplied.
+
+<Canvas of={Stories.CommitOnly} />
+
+## Behavior and accessibility
+
+Pass the exact host-issued strings. Copy uses the injected promise and reports failure through the optional error callback; displaying an ID grants no repository access. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+
+## Styling variables
+
+Defaults retain the Desktop presentation. Set documented variables on an
+ancestor; avoid selector overrides and dependency-internal imports. Brand and
+light/dark controls remain independent in Storybook.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Complete screens compose this same implementation. Small controls use a padded, bounded standalone preview; shell and column families retain their required production context. Docs shell previews are bounded to 40rem and flush; Canvas screens fill their parent. Host services and downstream integration remain behind the review gate.

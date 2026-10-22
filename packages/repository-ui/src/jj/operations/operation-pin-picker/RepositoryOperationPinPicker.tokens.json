@@ -1,0 +1,12 @@
+{
+  "component": "RepositoryOperationPinPicker",
+  "variables": [
+    {
+      "name": "--ui-repository-operation-pin-picker-font-size",
+      "default": "0.75rem",
+      "description": "Full pinned-operation identity with searchable recorded operation metadata. Original size default.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/operations/operation-pin-picker/RepositoryOperationPinPicker.svelte"
+    }
+  ]
+}

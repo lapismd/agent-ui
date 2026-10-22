@@ -1,0 +1,90 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryBlamePanel.stories";
+import { Basic, Styling } from "./RepositoryBlamePanel.example-sources";
+import tokens from "./RepositoryBlamePanel.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Blame
+
+Recorded file text and virtualized attribution with controlled wrapping and pinned navigation.
+
+## Usage
+
+Retain a BlameController and open it with an exact operation, commit and path. This panel renders the recorded file beside attributed commit groups; it never computes attribution from the working copy.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part               | Responsibility                                                                 |
+| ------------------ | ------------------------------------------------------------------------------ |
+| Header             | Path, exact identifiers, controlled wrap and refresh.                          |
+| Attribution gutter | Author avatar/name, commit subject/card and relative time.                     |
+| Source track       | Virtualized syntax-highlighted source, stable line numbers and group dividers. |
+
+## Variations
+
+### Basic
+
+The ordinary populated presentation with recorded identities and explicit callbacks.
+
+<Canvas of={Stories.Basic} />
+
+### Loading
+
+A pending in-memory read holds the original loading geometry without contacting a repository.
+
+<Canvas of={Stories.Loading} />
+
+### Unavailable
+
+A refused or failed read, distinct from a successful empty result. The production Empty state names the failure and leaves explicit recovery reachable.
+
+<Canvas of={Stories.Unavailable} />
+
+### NoWrap
+
+The complete multi-author source fixture with horizontal scrolling and unwrapped lines; toggle Wrap text to compare the same content.
+
+<Canvas of={Stories.NoWrap} />
+
+### Comprehensive
+
+The copied Desktop large-source fixture: twelve commit subjects, six authors, irregular attribution groups, commit statistics, syntax highlighting, virtual scrolling and sticky origins.
+
+<Canvas of={Stories.Comprehensive} />
+
+### LongLines
+
+The same large source with very long comment and path lines to exercise wrapping and horizontal scrolling.
+
+<Canvas of={Stories.LongLines} />
+
+## Behavior and accessibility
+
+Source text and line numbers use Desktop’s 0.875rem (14px); attribution name/time use 0.75rem (12px). Long groups retain a sticky origin and large files remain virtualized. Bind wrap and persist it in the host through onWrapChange when desired. Commit hover cards expose statistics and onOpen delegates the exact commit ID. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+
+## Styling variables
+
+Defaults retain the Desktop presentation. Set documented variables on an
+ancestor; avoid selector overrides and dependency-internal imports. Brand and
+light/dark controls remain independent in Storybook.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Complete screens compose this same implementation. Small controls use a padded, bounded standalone preview; shell and column families retain their required production context. Docs shell previews are bounded to 40rem and flush; Canvas screens fill their parent. Host services and downstream integration remain behind the review gate.

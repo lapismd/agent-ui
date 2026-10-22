@@ -2,14 +2,25 @@ import { readFile } from "node:fs/promises";
 const index = JSON.parse(
   await readFile(process.argv[2] ?? "storybook-static/index.json", "utf8"),
 );
-const inventory = JSON.parse(
-  await readFile("docs/agent-component-families.json", "utf8"),
+const inventories = await Promise.all(
+  [
+    ["agent-ui", "agent"],
+    ["repository-ui", "jj"],
+  ].map(async ([owner, name]) => ({
+    owner,
+    ...JSON.parse(
+      await readFile(`docs/${name}-component-families.json`, "utf8"),
+    ),
+  })),
+);
+const families = inventories.flatMap((inventory) =>
+  inventory.families.map((family) => ({ ...family, owner: inventory.owner })),
 );
 const entries = Object.values(index.entries);
 let stories = 0;
-for (const family of inventory.families) {
+for (const family of families) {
   const source = await readFile(
-    `packages/agent-ui/src/${family.primary}.stories.ts`,
+    `packages/${family.owner}/src/${family.primary}.stories.ts`,
     "utf8",
   );
   const title = /title:\s*["']([^"']+)["']/.exec(source)?.[1];
@@ -35,7 +46,7 @@ for (const family of inventory.families) {
 for (const entry of entries)
   if (
     entry.type === "story" &&
-    (!entry.title.startsWith("Agents/") ||
+    (!/^(Agents|JJ)\//.test(entry.title) ||
       !entry.tags?.includes("visual-pending"))
   )
     throw Error(`Unexpected or ungoverned review story: ${entry.id}`);
@@ -54,5 +65,5 @@ for (const title of [
   )
     throw Error(`Missing specification chapter: ${title}`);
 console.log(
-  `Static catalog: ${inventory.families.length} documented foundation families, ${stories} foundation variations, all review stories visual-pending, 5 specification chapters.`,
+  `Static catalog: ${families.length} documented foundation families, ${stories} foundation variations, all review stories visual-pending, 5 specification chapters.`,
 );

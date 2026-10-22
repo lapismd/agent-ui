@@ -1,0 +1,12 @@
+{
+  "component": "RepositoryAuthorAvatar",
+  "variables": [
+    {
+      "name": "--ui-repository-author-avatar-size",
+      "default": "1.25rem",
+      "description": "Optional trigger diameter override at every Avatar size; absent uses xs 1.25rem, sm 1.5rem, md 1.75rem, lg 3rem, xl 5rem, 2xl 8rem and 3xl 10rem.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/foundations/author-avatar/RepositoryAuthorAvatar.svelte"
+    }
+  ]
+}

@@ -56,7 +56,7 @@ export const Incomplete: Story = {
 export const Bounded: Story = {
   render: () => ({ Component: Fixture, props: { state: "bounded" } }),
 };
-export const Unavailable: Story = {
+export const Recovery: Story = {
   render: () => ({ Component: Fixture, props: { state: "unavailable" } }),
   play: async ({ canvasElement }) => {
     const c = within(canvasElement);
@@ -64,5 +64,16 @@ export const Unavailable: Story = {
       await c.findByRole("button", { name: "Retry file changes" }),
     );
     await expect(await c.findByText("4 files changed")).toBeVisible();
+  },
+};
+
+export const Unavailable: Story = {
+  render: () => ({ Component: Fixture, props: { state: "unavailable" } }),
+  play: async ({ canvasElement }) => {
+    const c = within(canvasElement);
+    await expect(await c.findByText("Saved changes unavailable")).toBeVisible();
+    await expect(
+      canvasElement.querySelector('[data-ui-part="empty-media"] svg'),
+    ).toBeVisible();
   },
 };
