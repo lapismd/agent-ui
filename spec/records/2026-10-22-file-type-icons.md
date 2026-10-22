@@ -160,3 +160,24 @@ The docs probe scopes its semantic styling table to its heading and waits for
 the owned DOM rather than unrelated asset loading. Row, variable and value
 assertions remain intact. Strict types, architecture, source ledger and formatting
 pass. Full final qualification is running against V3 and this readiness boundary.
+
+## User-directed closeout
+
+On 22 October the user requested: “commit all changes and update downstream
+repos without running any further tests.” The owned aggregate and browser
+descendants were stopped; no further tests were started.
+
+Before cancellation the final combined tree passed strict types, architecture,
+source-ledger and formatting checks, all 103 unit cases, and all 688 Storybook
+interaction/accessibility cases (172 in each theme/viewport combination). The
+final browser lane completed 11 passing cases out of 28 before cancellation;
+17 cases remain incomplete. Its later static/package/spec aggregate stages
+were not reached. Earlier focused cold-browser and packed-output evidence
+above is retained without claiming that the complete final aggregate passed.
+
+The user now authorizes local downstream icon/dependency integration. This
+supersedes the earlier application review boundary for this requested slice.
+Published manifests and lockfiles retain registry ranges; unpublished output
+is consumed only through documented ignored local archive overlays. Package
+publication, pushes, deployment and native-service restarts remain outside
+this closeout. Changed stories remain visual-pending.
