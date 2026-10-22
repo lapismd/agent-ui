@@ -30,3 +30,23 @@ export const Busy: Story = {
     await assertJjStory(canvasElement, "RepositoryLogHeader", "Busy");
   },
 };
+
+export const HostActions: Story = {
+  render: () => ({
+    Component: Fixture,
+    props: { part: "RepositoryLogHeader", variant: "HostActions" },
+  }),
+  play: async ({ canvasElement }) => {
+    await assertJjStory(canvasElement, "RepositoryLogHeader", "HostActions");
+  },
+};
+
+export const HostControls: Story = {
+  render: () => ({
+    Component: Fixture,
+    props: { part: "RepositoryLogHeader", variant: "HostControls" },
+  }),
+  play: async ({ canvasElement }) => {
+    await assertJjStory(canvasElement, "RepositoryLogHeader", "HostControls");
+  },
+};

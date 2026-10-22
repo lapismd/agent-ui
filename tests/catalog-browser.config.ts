@@ -7,6 +7,7 @@ export default defineConfig({
     "transcript-review.pw.ts",
     "chat-references.pw.ts",
     "jj-review.pw.ts",
+    "jj-log-parity.pw.ts",
   ],
   workers: 1,
   outputDir: "../.local/catalog-browser",

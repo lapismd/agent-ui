@@ -7,6 +7,20 @@
       "description": "Complete Desktop JJ Log AppShell and adaptive Column Canvas with an in-memory history controller. Original size default.",
       "owner": "@lapismd/repository-ui",
       "source": "jj/screens/panel/RepositoryPanel.svelte"
+    },
+    {
+      "name": "--ui-repository-panel-query-gap",
+      "default": "0.5rem",
+      "description": "Spacing between query controls.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/screens/panel/RepositoryLogQuery.svelte"
+    },
+    {
+      "name": "--ui-repository-panel-query-padding",
+      "default": "0.5rem",
+      "description": "Outer inset for the optional native revset form.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/screens/panel/RepositoryLogQuery.svelte"
     }
   ]
 }

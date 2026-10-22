@@ -16,6 +16,13 @@ references and actions. Each section MUST stop for screen review. Iteration MUST
 use targeted checks; broad qualification MUST wait until the final screen review.
 Design Core owns generic fixes; application adoption and publication remain gated.
 
+The next authorized section is JJ Log portability. Its optional host controls
+MUST retain the original shell defaults, and its native revset examples MUST
+remain distinct from host-owned indexed search. New private query UI MUST have
+an explicit owner in the JJ family inventory. Source fingerprints MUST be
+refreshed only after comparing the prior original layout and recording the
+specific adaptation; review stops before Op Log work begins.
+
 ## AUI-GOV-001 — Source ownership
 
 **Requirement.** Production packages MUST consume public Design Core primitives and injected host ports without application-private imports, credentials, native transports or catalog dependencies.

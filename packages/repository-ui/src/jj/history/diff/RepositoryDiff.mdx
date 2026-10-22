@@ -50,6 +50,24 @@ A refused or failed read, distinct from a successful empty result. The productio
 
 <Canvas of={Stories.Unavailable} />
 
+### Complex
+
+Multiple changed regions separated by retained context use the ordinary diff reader.
+
+<Canvas of={Stories.Complex} />
+
+### Binary
+
+Recorded binary content uses the icon-bearing Empty state without fabricated text.
+
+<Canvas of={Stories.Binary} />
+
+### Renamed
+
+A recorded rename identifies its original path above the shared diff.
+
+<Canvas of={Stories.Renamed} />
+
 ## Behavior and accessibility
 
 Unavailable is distinct from an empty textual diff. Split mode fills its bounded parent; compact previews fit their content. File authorization and content retrieval remain host-owned. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.

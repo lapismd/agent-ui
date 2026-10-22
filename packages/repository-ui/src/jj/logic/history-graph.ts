@@ -2,11 +2,22 @@ import type { Handle } from "@lapismd/jj-history";
 import type { HistoryReader } from "./history-reader.js";
 import type { HistoryState } from "./history-state.js";
 import { check } from "./history-selection.js";
+import {
+  historyBounds,
+  type HistoryControllerOptions,
+} from "./history-options.js";
 
 type Scope = { handle?: Handle; state: HistoryState; closed: boolean };
 /** Bounded commit paging; the controller retains its reader/lifetime authority. */
 export class HistoryGraph {
   #epoch = 0;
+  #query?: {
+    graph: "log";
+    revset: string;
+    workspace: string | null;
+    user_email: string;
+    at_time_millis: number;
+  };
   readonly reader: HistoryReader;
   readonly scope: () => Scope;
   readonly publish: (state: Partial<HistoryState>) => void;
@@ -14,6 +25,7 @@ export class HistoryGraph {
     reader: HistoryReader,
     scope: () => Scope,
     publish: HistoryGraph["publish"],
+    readonly options: HistoryControllerOptions = {},
   ) {
     this.reader = reader;
     this.scope = scope;
@@ -44,6 +56,7 @@ export class HistoryGraph {
       commits: [response.data.commit],
       commitsReady: true,
       next: null,
+      limitReached: false,
     });
     return response.data.commit;
   }
@@ -69,18 +82,20 @@ export class HistoryGraph {
     const { handle, state, closed } = this.scope();
     const operation = state.operation;
     if (closed || !handle || !operation || (append && !state.next)) return;
+    const bounds = historyBounds(this.options);
+    if (!append)
+      this.#query = {
+        graph: "log",
+        revset: state.revset,
+        workspace: state.workspace,
+        user_email: this.options.userEmail ?? "",
+        at_time_millis: (this.options.now ?? Date.now)(),
+      };
+    const query = this.#query;
+    if (!query) return;
     const response = await this.reader.read(handle, {
       kind: "graph",
-      query: [
-        {
-          graph: "log",
-          revset: "all()",
-          workspace: state.workspace,
-          user_email: "",
-          at_time_millis: Date.now(),
-        },
-        { limit: 50, after: append ? state.next : null },
-      ],
+      query: [query, { limit: bounds.page, after: append ? state.next : null }],
     });
     const current = this.scope();
     if (epoch !== this.#epoch || current.handle !== handle || current.closed)
@@ -93,13 +108,26 @@ export class HistoryGraph {
     const commits = response.data.data.nodes.map((node) => node.commit);
     const retained = append ? current.state.commits : [];
     check(
-      !commits.some((commit) => retained.some((item) => item.id === commit.id)),
+      new Set(commits.map((commit) => commit.id)).size === commits.length &&
+        !commits.some((commit) =>
+          retained.some((item) => item.id === commit.id),
+        ) &&
+        (!response.data.next || commits.length > 0) &&
+        (!append ||
+          !response.data.next ||
+          response.data.next.id !== state.next?.id),
     );
-    const combined = [...retained, ...commits].slice(0, 200);
+    const all = [...retained, ...commits],
+      combined = all.slice(0, bounds.max);
+    const limitReached =
+      all.length > bounds.max ||
+      (combined.length === bounds.max && !!response.data.next);
     this.publish({
       commits: combined,
       commitsReady: true,
-      next: combined.length < 200 ? response.data.next : null,
+      next: combined.length < bounds.max ? response.data.next : null,
+      limitReached,
+      displayLimit: bounds.max,
     });
   }
 }

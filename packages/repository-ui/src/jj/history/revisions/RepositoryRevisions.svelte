@@ -1,5 +1,7 @@
 <!-- SPDX-License-Identifier: Apache-2.0; copied from Lapis Desktop with explicit host boundaries. -->
 <script lang="ts">
+  import type { Snippet } from "svelte";
+  import type { LocalGraphCommit } from "@lapismd/jj-history";
   import FileQuestionIcon from "@lucide/svelte/icons/file-question-mark";
   import * as Empty from "@lapismd/design-core/shadcn/empty";
   import { Button } from "@lapismd/design-core/shadcn/button";
@@ -19,6 +21,8 @@
     comparisonTargets,
     comparisonLabel,
     comparisonUnavailable,
+    actions,
+    fileActions,
   }: {
     state: HistoryState;
     controller: Pick<
@@ -41,6 +45,8 @@
     comparisonTargets?: readonly string[];
     comparisonLabel?: string;
     comparisonUnavailable?: string;
+    actions?: Snippet<[LocalGraphCommit]>;
+    fileActions?: Snippet<[HistoryState]>;
     copyText(value: string): Promise<void>;
   } = $props();
   import RepositoryRevisionFiles from "../revision-files/RepositoryRevisionFiles.svelte";
@@ -87,18 +93,22 @@
       }}
     >
       {#snippet selectedFiles()}
-        {#if onOpenEvolution || onRestoreVault || (state.revision?.conflicted && onResolveConflicts)}<RepositoryRevisionActions
+        {#if actions || onOpenEvolution || onRestoreVault || (state.revision?.conflicted && onResolveConflicts)}<RepositoryRevisionActions
             expanded={evolutionOpen}
             onEvolution={onOpenEvolution}
             onResolve={state.revision?.conflicted
               ? onResolveConflicts
               : undefined}
             onRestore={onRestoreVault}
-          />{/if}
+            >{#if state.revision}{@render actions?.(
+                state.revision,
+              )}{/if}</RepositoryRevisionActions
+          >{/if}
         <RepositoryCommitMessage
           description={state.revision?.description ?? ""}
         />
         {#if !comparisonUnavailable}<RepositoryRevisionFiles
+            actions={fileActions}
             {copyText}
             {state}
             {controller}
@@ -118,7 +128,10 @@
       disabled={state.busy}
       onclick={() => controller.moreCommits()}>More revisions</Button
     >{/if}
-  {#if state.commits.length === 200}<p>Showing the first 200 revisions.</p>{/if}
+  {#if state.limitReached}<p role="status">
+      Showing the first {state.displayLimit} revisions. Refine the query to narrow
+      the results.
+    </p>{/if}
 </div>
 
 <style>

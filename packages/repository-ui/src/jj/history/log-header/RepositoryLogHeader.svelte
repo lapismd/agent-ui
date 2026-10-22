@@ -1,5 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0; copied from Lapis Desktop with explicit host boundaries. -->
 <script lang="ts">
+  import type { Snippet } from "svelte";
   import RepositorySourcePicker from "../source-picker/RepositorySourcePicker.svelte";
   import type { HistorySourcePicker } from "../../logic/history-source.js";
   import type { LocalGraphOperationNode } from "@lapismd/jj-history";
@@ -25,6 +26,8 @@
     workspace,
     onWorkspaceSelect,
     onWorkspaceOpen,
+    controls,
+    actions,
   }: {
     sources?: HistorySourcePicker;
     title: string;
@@ -41,6 +44,10 @@
     workspace: string | null;
     onWorkspaceSelect(workspace: string | null): void;
     onWorkspaceOpen?(): void;
+    /** Replaces the default source/workspace/pin/refresh controls, keeping the column toggle. */
+    controls?: Snippet;
+    /** Additional host actions, composed before the column toggle. */
+    actions?: Snippet;
   } = $props();
 </script>
 
@@ -50,30 +57,33 @@
     <ColumnCanvas.Count>{count}</ColumnCanvas.Count>
   </div>
   <div class="repository-log-actions">
-    {#if sources}<RepositorySourcePicker picker={sources} />{/if}
-    <RepositoryWorkspacePicker
-      {workspaces}
-      selected={workspace}
-      disabled={!operation}
-      onSelect={onWorkspaceSelect}
-      onOpen={onWorkspaceOpen}
-    />
-    <RepositoryOperationPinPicker
-      {operations}
-      {operation}
-      {nodes}
-      label={selectionLabel}
-      {onSelect}
-      {copyText}
-    />
-    <Button
-      variant="ghost"
-      size="icon-xs"
-      aria-label="Refresh"
-      title="Refresh"
-      disabled={busy}
-      onclick={onRefresh}><RefreshIcon aria-hidden="true" /></Button
-    >
+    {#if controls}{@render controls()}{:else}
+      {#if sources}<RepositorySourcePicker picker={sources} />{/if}
+      <RepositoryWorkspacePicker
+        {workspaces}
+        selected={workspace}
+        disabled={!operation}
+        onSelect={onWorkspaceSelect}
+        onOpen={onWorkspaceOpen}
+      />
+      <RepositoryOperationPinPicker
+        {operations}
+        {operation}
+        {nodes}
+        label={selectionLabel}
+        {onSelect}
+        {copyText}
+      />
+      <Button
+        variant="ghost"
+        size="icon-xs"
+        aria-label="Refresh"
+        title="Refresh"
+        disabled={busy}
+        onclick={onRefresh}><RefreshIcon aria-hidden="true" /></Button
+      >
+    {/if}
+    {@render actions?.()}
     <ColumnCanvas.Toggle columnTitle={title} />
   </div>
 </ColumnCanvas.Header>

@@ -1,5 +1,7 @@
 <!-- SPDX-License-Identifier: Apache-2.0; copied from Lapis Desktop with explicit host boundaries. -->
 <script lang="ts">
+  import type { Snippet } from "svelte";
+  import { Button } from "@lapismd/design-core/shadcn/button";
   import FileQuestionIcon from "@lucide/svelte/icons/file-question-mark";
   import * as Empty from "@lapismd/design-core/shadcn/empty";
   import RepositorySkeleton from "../../foundations/skeleton/RepositorySkeleton.svelte";
@@ -18,6 +20,7 @@
     hasMore = false,
     onSelect,
     onMore,
+    actions,
   }: {
     files: FileListingFile[];
     selectedPath?: string;
@@ -26,6 +29,7 @@
     hasMore?: boolean;
     onSelect(path: string): void;
     onMore(): void;
+    actions?: Snippet;
   } = $props();
   let mode = $state<FileListingViewMode>("tree");
 </script>
@@ -39,6 +43,7 @@
     <strong>Changed files</strong><span class="file-count"
       >{#if initialLoading}<Skeleton />{:else}{files.length}{/if}</span
     ><FileListingViewModeToggle bind:mode />
+    {@render actions?.()}
   </header>
   <div class="file-list">
     {#if initialLoading}<RepositorySkeleton
@@ -63,6 +68,12 @@
         onSelectPath={onSelect}
         onLoadMore={onMore}
       />{/if}
+    {#if hasMore && !initialLoading}<Button
+        size="sm"
+        variant="ghost"
+        disabled={loading}
+        onclick={onMore}>More changed files</Button
+      >{/if}
   </div>
 </section>
 

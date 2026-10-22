@@ -7,6 +7,20 @@
       "description": "Recorded diff with unified/split rendering, explicit unavailable content and source controls. Original height default.",
       "owner": "@lapismd/repository-ui",
       "source": "jj/history/diff/RepositoryDiff.svelte"
+    },
+    {
+      "name": "--ui-repository-diff-source-padding",
+      "default": "0.5rem",
+      "description": "Inset for recorded rename/copy provenance.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/diff/RepositoryDiff.svelte"
+    },
+    {
+      "name": "--ui-repository-diff-source-font-size",
+      "default": "0.8125rem",
+      "description": "Text size for recorded rename/copy provenance.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/diff/RepositoryDiff.svelte"
     }
   ]
 }

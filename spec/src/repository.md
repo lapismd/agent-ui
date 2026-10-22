@@ -42,8 +42,10 @@ avatar resolution and preference persistence stay host-owned.
 
 ### Acceptance details
 
-- Public types express the boundary.
-- Focused tests and production-component stories verify the behavior.
+- JJ Log MUST retain its exact operation and workspace while applying a host-configured revset query, clearing dependent revision/file selections and discarding late replies.
+- Graph paging MUST retain the query's identity and evaluation clock, reject duplicate identities and repeated cursors, and expose an explicit bounded-result state.
+- Complete screens MUST expose header controls, additional header/diff actions and selected-revision actions through public snippets with typed selection context and source-faithful defaults.
+- Production building blocks and complete in-memory screens MUST demonstrate dense tags, merges, conflicts, paged and bounded history, text/binary diffs, unavailable reads and long messages on parent-matched surfaces with expansion/collapse and complete multiline Op Log command arguments.
 
 ## RUI-STACK-001 — Workspace
 

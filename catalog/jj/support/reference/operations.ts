@@ -4,6 +4,7 @@ import type {
   LocalCodeQuery,
   LocalCodeResponse,
 } from "@lapismd/jj-history";
+import { richCommitMessage } from "./rich-commit.js";
 import {
   historyFixture,
   operation,
@@ -93,8 +94,7 @@ export function operationFixture(scenario = "operation-ready") {
   if (scenario === "operation-rich") {
     nodes[0].description =
       "describe commit 5ae7211b218e61eae163d39677075f5165c90ce8";
-    nodes[0].attributes.args =
-      "jj describe -r @ -m 'Keep repository history beside the notes'";
+    nodes[0].attributes.args = `jj describe -r @ -m '${richCommitMessage.replaceAll("'", "'\\''")}'`;
   }
   let parentPages = 0;
   f.reader.read = async (

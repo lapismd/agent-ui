@@ -6,7 +6,11 @@ import {
   ArgTypes,
 } from "@storybook/addon-docs/blocks";
 import * as Stories from "./RepositoryLogHeader.stories";
-import { Basic, Styling } from "./RepositoryLogHeader.example-sources";
+import {
+  Basic,
+  Styling,
+  HostActions,
+} from "./RepositoryLogHeader.example-sources";
 import tokens from "./RepositoryLogHeader.tokens.json";
 import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
 
@@ -44,9 +48,26 @@ Header refresh is busy while the source/workspace/pin controls retain their geom
 
 <Canvas of={Stories.Busy} />
 
+### HostActions
+
+Append host actions before the preserved Column Canvas toggle.
+
+<Canvas of={Stories.HostActions} />
+<Source code={HostActions} language="tsx" />
+
+### HostControls
+
+Replace source/workspace/pin/refresh controls with host-owned UI.
+
+<Canvas of={Stories.HostControls} />
+
 ## Behavior and accessibility
 
 Refresh may observe new heads but must not move an existing pin. Workspace/source selection is delegated to the supplied callbacks. Keep the header mounted through loading and failure. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+
+`actions` appends host controls before the shared toggle. `controls` replaces
+only the built-in source/workspace/pin/refresh controls. Hosts retain routing,
+capability checks and execution; the default header layout is unchanged.
 
 ## Styling variables
 

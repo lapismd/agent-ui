@@ -1,5 +1,8 @@
 <script lang="ts">
   import { onDestroy } from "svelte";
+  import { Button } from "@lapismd/design-core/shadcn/button";
+  import ExternalLinkIcon from "@lucide/svelte/icons/external-link";
+  import { listingFiles } from "../../packages/repository-ui/src/jj/logic/history-files.js";
   import type { JjDemo } from "./support/create-demo.svelte.js";
   import {
     RepositoryShell,
@@ -26,6 +29,21 @@
   const canvas = createLogCanvas();
   onDestroy(() => void canvas.dispose());
 </script>
+
+{#snippet actions()}<Button
+    variant="ghost"
+    size="icon-xs"
+    aria-label="Open repository"
+    title="Open repository"
+    onclick={() => demo.state.actions.push("open-repository")}
+    ><ExternalLinkIcon aria-hidden="true" /></Button
+  >{/snippet}
+{#snippet controls()}<Button
+    size="xs"
+    variant="outline"
+    onclick={() => demo.state.actions.push("host-controls")}
+    >Host source controls</Button
+  >{/snippet}
 
 {#snippet content()}
   {#if part === "RepositoryShell"}<p>
@@ -87,10 +105,12 @@
   {:else if part === "RepositoryChangedFiles"}<RepositoryChangedFiles
       files={variant === "Empty"
         ? []
-        : [
-            { path: "Welcome.md", additions: 2, deletions: 1 },
-            { path: "Notes/Plan.md", additions: 12, deletions: 0 },
-          ]}
+        : demo.dense
+          ? listingFiles(demo.dense.changes)
+          : [
+              { path: "Welcome.md", additions: 2, deletions: 1 },
+              { path: "Notes/Plan.md", additions: 12, deletions: 0 },
+            ]}
       selectedPath={selected || undefined}
       initialLoading={variant === "Loading"}
       hasMore={variant === "Paged"}
@@ -103,7 +123,11 @@
             ...demo.change,
             content: { status: "unavailable", reason: "binary" },
           }
-        : demo.change}
+        : demo.dense
+          ? demo.dense.changes[
+              variant === "Binary" ? 4 : variant === "Renamed" ? 2 : 0
+            ]
+          : demo.change}
       viewMode={variant === "Split" ? "split" : "unified"}
     />
   {/if}
@@ -115,6 +139,8 @@
       <ColumnCanvas.Column id="revisions" columnTitle="JJ Log">
         {#if part === "RepositoryLogHeader"}
           <RepositoryLogHeader
+            actions={variant === "HostActions" ? actions : undefined}
+            controls={variant === "HostControls" ? controls : undefined}
             title="JJ Log"
             count={demo.commits.length}
             sources={demo.source}

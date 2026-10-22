@@ -48,3 +48,13 @@ export const Paged: Story = {
     await assertJjStory(canvasElement, "RepositoryChangedFiles", "Paged");
   },
 };
+
+export const Complex: Story = {
+  render: () => ({
+    Component: Fixture,
+    props: { part: "RepositoryChangedFiles", variant: "Complex" },
+  }),
+  play: async ({ canvasElement }) => {
+    await assertJjStory(canvasElement, "RepositoryChangedFiles", "Complex");
+  },
+};

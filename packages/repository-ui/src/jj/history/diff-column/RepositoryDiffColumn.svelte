@@ -1,5 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0; copied from Lapis Desktop with explicit host boundaries. -->
 <script lang="ts">
+  import type { Snippet } from "svelte";
   import RepositorySkeleton from "../../foundations/skeleton/RepositorySkeleton.svelte";
   import RepositoryFileTitle from "../file-title/RepositoryFileTitle.svelte";
   import {
@@ -21,6 +22,7 @@
     label = "Revision changes",
     closeLabel = "Close Diff column",
     onRestore,
+    actions,
   }: {
     state: Pick<HistoryState, "path" | "diff" | "busy">;
     controller: { selectPath(path: string): Promise<void> };
@@ -28,6 +30,7 @@
     label?: string;
     closeLabel?: string;
     onRestore?(): void;
+    actions?: Snippet<[Pick<HistoryState, "path" | "diff" | "busy">]>;
   } = $props();
   let viewMode = $state<FileDiffViewMode>("split");
   let wrap = $state(false);
@@ -50,6 +53,7 @@
           onclick={onRestore}><RotateCcwIcon /></Button
         >{/if}
       <RepositoryDiffControls bind:viewMode bind:wrap />
+      {@render actions?.(snapshot)}
       <ColumnCanvas.Close aria-label={closeLabel} />
     </ColumnCanvas.HeaderActions>
   </ColumnCanvas.Header>

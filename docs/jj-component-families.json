@@ -130,7 +130,7 @@
     {
       "primary": "jj/screens/panel/RepositoryPanel",
       "purpose": "Complete Desktop JJ Log AppShell and adaptive Column Canvas with an in-memory history controller.",
-      "parts": []
+      "parts": ["jj/screens/panel/RepositoryLogQuery.svelte"]
     },
     {
       "primary": "jj/screens/operations/RepositoryOperations",

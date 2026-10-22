@@ -6,10 +6,13 @@ import type { HistoryReader } from "./history-reader.js";
 import {
   initialHistoryState,
   resetHistoryComparison,
+  resetHistoryQuery,
   type HistoryState,
 } from "./history-state.js";
 import { check, pause, prepared } from "./history-selection.js";
 import { HistoryLifetime } from "./history-lifetime.js";
+import type { HistoryControllerOptions } from "./history-options.js";
+export type { HistoryControllerOptions } from "./history-options.js";
 
 export class HistoryController {
   #state = initialHistoryState();
@@ -32,6 +35,7 @@ export class HistoryController {
     reader: HistoryReader,
     feedback: HistoryController["feedback"],
     wait = pause,
+    options: HistoryControllerOptions = {},
   ) {
     this.reader = reader;
     this.feedback = feedback;
@@ -54,6 +58,7 @@ export class HistoryController {
         closed: this.#closed,
       }),
       (patch) => this.#set(patch),
+      options,
     );
   }
   get state(): HistoryState {
@@ -120,6 +125,17 @@ export class HistoryController {
       this.#action(() => this.#selectOperation(operation)),
     );
   }
+  search(revset: string): Promise<void> {
+    this.#pinned = true;
+    this.#comparison++;
+    this.#files.reset();
+    return this.#run(() =>
+      this.#action(async () => {
+        this.#set(resetHistoryQuery(revset));
+        await this.#graph.load(false);
+      }),
+    );
+  }
   checkpointChanged(operation: string): Promise<void> {
     if (
       this.#closed ||
@@ -142,6 +158,7 @@ export class HistoryController {
     this.#handle = undefined;
     this.#set({
       ...initialHistoryState(),
+      revset: this.#state.revset,
       heads: this.#state.heads,
       headsReady: this.#state.headsReady,
       operation,

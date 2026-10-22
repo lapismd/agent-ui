@@ -25,4 +25,6 @@ export const richCommitMessage = [
   "3. Preserve the author's original paragraphs, lists and code examples.",
   "",
   "The final paragraph is intentionally below the preview fold, so this example demonstrates both the fade and the **View more** action.",
+  "",
+  "[Read the review notes](https://example.test/review-notes).",
 ].join("\n");

@@ -8,7 +8,8 @@ implementation. Apply the parent workspace guidance. This repository owns
 
 Deliver one user-authorized section at a time with complete Storybook screens
 using production UI controllers and isolated in-memory adapters. The current
-section is chat references, composer/preview parity and transcript actions.
+section is JJ Log controller parity, extensible headers and dense history/diff
+examples; stop for review before Op Log.
 Stop for explicit user review after this slice and before modifying
 Lapis Desktop, jj-store, downstream services, publishing or deploying anything.
 The approved plan authorizes generic fixes in Design Core; source applications

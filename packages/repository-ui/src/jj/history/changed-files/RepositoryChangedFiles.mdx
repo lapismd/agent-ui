@@ -55,9 +55,18 @@ The bounded listing exposes an explicit request for the next page.
 
 <Canvas of={Stories.Paged} />
 
+### Complex
+
+A dense multi-directory comparison including a renamed guide, binary image and oversized capture.
+
+<Canvas of={Stories.Complex} />
+
 ## Behavior and accessibility
 
 onSelect returns the literal path to the owning controller. onMore requests another page; initialLoading and loading are distinct. An empty comparison uses Empty with an icon. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+
+The optional `actions` snippet adds host controls beside the view-mode toggle.
+It uses the same header in complete JJ Log screens.
 
 ## Styling variables
 

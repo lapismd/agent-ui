@@ -17,6 +17,9 @@
     compact?: boolean;
   } = $props();
   const content = $derived(diffText(change));
+  const sources = $derived(
+    change.sources.filter((source) => source.kind !== "normal"),
+  );
 </script>
 
 <section
@@ -25,11 +28,18 @@
   data-view-mode={viewMode}
   aria-label={`Changes to ${change.path}`}
 >
+  {#each sources as source}<p class="diff-source">
+      {source.kind === "rename" ? "Renamed" : "Copied"} from {source.path}
+    </p>{/each}
   {#if "unavailable" in content}<Empty.Root role="status"
       ><Empty.Header
         ><Empty.Media variant="icon"
           ><FileQuestionIcon aria-hidden="true" /></Empty.Media
-        ><Empty.Title>Preview unavailable</Empty.Title><Empty.Description
+        ><Empty.Title
+          >{content.unavailable === "binary"
+            ? "Binary file"
+            : "Preview unavailable"}</Empty.Title
+        ><Empty.Description
           >This file cannot be shown as text: {content.unavailable}.</Empty.Description
         ></Empty.Header
       ></Empty.Root
@@ -44,6 +54,12 @@
 </section>
 
 <style>
+  .diff-source {
+    padding: var(--ui-repository-diff-source-padding, 0.5rem);
+    margin: 0;
+    color: var(--muted-foreground);
+    font-size: var(--ui-repository-diff-source-font-size, 0.8125rem);
+  }
   .repository-diff {
     display: flex;
     flex-direction: column;

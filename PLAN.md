@@ -38,14 +38,18 @@ and all downstream migration remain explicit user decisions.
 The approved plan delivers one complete section at a time, using focused checks
 and pausing for review before the next. Broad suites wait for final screen review.
 
-1. Chat references, composer/preview parity and configurable transcript actions — complete with focused checks; awaiting user review before JJ Log.
-2. JJ Log: portable controllers, header actions, search and dense examples.
+1. Chat references, composer/preview parity and configurable transcript actions — committed with focused checks; visual review remains pending.
+2. JJ Log: portable controllers, header actions, search and dense examples — implemented with targeted checks; awaiting visual review before Op Log.
 3. Op Log: pinned comparisons, conflicts and dense operation examples.
-4. Repository browser and branches: directory, files, documents and references.
-5. Workspace/Stacks: original UI, reconciled controllers and exact drag/drop.
-6. Projects/Tasks: scoped directories, details, forms and discussions.
-7. Agent directory/session parity: managed/recorded presentation and recovery.
-8. Embedded evolution, review, activity, agent-context and forge/checks panels.
+4. Repository file browser: directory rows, file tree, breadcrumbs, code/documents and file history.
+5. Repository overview and branches: navigation, selectors, bookmark/branch details and host actions.
+6. Workspace presentation: original columns, stack cards, source files, target history and retained selection.
+7. Workspace transfers: file/folder/hunk drag/drop, keyboard alternatives and exact preview/apply/recovery.
+8. Stack and commit operations: original supported menus, drafts, placement controls and conflict surfaces.
+9. Projects: directory/details, linked repositories and host-owned metadata/access.
+10. Tasks: lists, hierarchy, editing, references and comments with retained drafts.
+11. Agent directory and comparison: managed/recorded sessions, workspace changes and Compare Agents.
+12. Embedded evolution, review, activity, agent-context and forge/checks panels — each a separate review slice.
 
 Generic references and actions belong to Design Core; host navigation, identity
 lookup, notifications, persistence and agent dispatch remain injected. Mentions

@@ -9,6 +9,9 @@ import type {
 export interface HistoryState {
   phase: "idle" | "loading" | "ready" | "unavailable";
   busy: boolean;
+  revset: string;
+  limitReached: boolean;
+  displayLimit: number;
   workspace: string | null;
   conflicts: LocalConflictDescriptor[];
   conflictsReady: boolean;
@@ -31,6 +34,9 @@ export interface HistoryState {
 export const initialHistoryState = (): HistoryState => ({
   phase: "idle",
   busy: false,
+  revset: "all()",
+  limitReached: false,
+  displayLimit: 200,
   workspace: null,
   conflicts: [],
   conflictsReady: false,
@@ -85,5 +91,17 @@ export function resetHistoryComparison(): Partial<HistoryState> {
     nextPath: null,
     path: undefined,
     diff: undefined,
+  };
+}
+
+/** A new graph query invalidates every selection derived from its prior rows. */
+export function resetHistoryQuery(revset: string): Partial<HistoryState> {
+  return {
+    ...resetHistoryComparison(),
+    revset: revset.trim() || "all()",
+    commits: [],
+    commitsReady: false,
+    next: null,
+    limitReached: false,
   };
 }

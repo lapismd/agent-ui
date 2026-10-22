@@ -1,5 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0; copied from Lapis Desktop with explicit host boundaries. -->
 <script lang="ts">
+  import type { Snippet } from "svelte";
   import RepositoryCommitPicker from "../commit-picker/RepositoryCommitPicker.svelte";
   import { FileChangeStats } from "@lapismd/design-core/diff";
   import { changeStats } from "../../logic/history-files.js";
@@ -16,6 +17,7 @@
     comparisonTargets,
     comparisonLabel,
     separateActions = false,
+    actions,
   }: {
     state: HistoryState;
     controller: Pick<
@@ -27,10 +29,13 @@
     comparisonTargets?: readonly string[];
     comparisonLabel?: string;
     separateActions?: boolean;
+    actions?: Snippet<[HistoryState]>;
   } = $props();
   const files = $derived(listingFiles(state.paths, state.diff));
   const targets = $derived(comparisonTargets ?? state.revision?.parents ?? []);
 </script>
+
+{#snippet headerActions()}{@render actions?.(state)}{/snippet}
 
 {#if targets.length}
   <div class="revision-files" data-after-actions={separateActions || undefined}>
@@ -63,6 +68,7 @@
     </RepositoryCommitPicker>
     {#if state.base}
       {#if state.pathsReady || state.busy}<RepositoryChangedFiles
+          actions={actions ? headerActions : undefined}
           {files}
           selectedPath={state.path}
           initialLoading={!state.pathsReady && state.busy}

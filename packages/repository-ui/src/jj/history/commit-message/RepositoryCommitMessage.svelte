@@ -75,6 +75,10 @@
     padding: 0.75rem;
     border-radius: calc(var(--radius) * 0.8);
     background: color-mix(in srgb, var(--foreground) 5%, var(--background));
+    --mira-preview-background: var(
+      --ui-repository-revisions-message-background,
+      transparent
+    );
     --ui-chat-markdown-padding: 0;
     --ui-chat-markdown-font-size: 0.8125rem;
     --ui-chat-markdown-line-height: 1.5;

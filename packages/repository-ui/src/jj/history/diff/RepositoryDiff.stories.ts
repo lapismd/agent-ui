@@ -39,3 +39,33 @@ export const Unavailable: Story = {
     await assertJjStory(canvasElement, "RepositoryDiff", "Unavailable");
   },
 };
+
+export const Complex: Story = {
+  render: () => ({
+    Component: Fixture,
+    props: { part: "RepositoryDiff", variant: "Complex" },
+  }),
+  play: async ({ canvasElement }) => {
+    await assertJjStory(canvasElement, "RepositoryDiff", "Complex");
+  },
+};
+
+export const Binary: Story = {
+  render: () => ({
+    Component: Fixture,
+    props: { part: "RepositoryDiff", variant: "Binary" },
+  }),
+  play: async ({ canvasElement }) => {
+    await assertJjStory(canvasElement, "RepositoryDiff", "Binary");
+  },
+};
+
+export const Renamed: Story = {
+  render: () => ({
+    Component: Fixture,
+    props: { part: "RepositoryDiff", variant: "Renamed" },
+  }),
+  play: async ({ canvasElement }) => {
+    await assertJjStory(canvasElement, "RepositoryDiff", "Renamed");
+  },
+};

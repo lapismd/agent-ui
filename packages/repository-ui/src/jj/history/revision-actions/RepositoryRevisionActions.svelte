@@ -1,5 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0; copied from Lapis Desktop with explicit host boundaries. -->
 <script lang="ts">
+  import type { Snippet } from "svelte";
   import { Button } from "@lapismd/design-core/shadcn/button";
   import HistoryIcon from "@lucide/svelte/icons/history";
   import GitMergeIcon from "@lucide/svelte/icons/git-merge";
@@ -9,11 +10,13 @@
     onEvolution,
     onResolve,
     onRestore,
+    children,
   }: {
     expanded?: boolean;
     onEvolution?(): void;
     onResolve?(): void;
     onRestore?(): void;
+    children?: Snippet;
   } = $props();
 </script>
 
@@ -39,6 +42,7 @@
   {#if onRestore}<Button size="xs" variant="outline" onclick={onRestore}
       ><RotateCcwIcon data-icon="inline-start" />Restore vault…</Button
     >{/if}
+  {@render children?.()}
 </div>
 
 <style>

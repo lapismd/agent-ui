@@ -6,7 +6,12 @@ import {
   ArgTypes,
 } from "@storybook/addon-docs/blocks";
 import * as Stories from "./RepositoryPanel.stories";
-import { Basic, Styling } from "./RepositoryPanel.example-sources";
+import {
+  Basic,
+  Styling,
+  HostActions,
+  Bounded,
+} from "./RepositoryPanel.example-sources";
 import tokens from "./RepositoryPanel.tokens.json";
 import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
 
@@ -68,9 +73,54 @@ Desktop’s enriched commit metadata, descriptions, tags and identifiers.
 
 <Canvas of={Stories.RichHistory} />
 
+### DenseHistory
+
+Dense graph, tag overflow, contextual actions and paged changed files.
+
+<Canvas of={Stories.DenseHistory} />
+
+### PagedHistory
+
+Additional graph pages retain the selected revision and query clock.
+
+<Canvas of={Stories.PagedHistory} />
+
+### BoundedHistory
+
+A six-row display bound remains explicit and can be narrowed with a query.
+
+<Canvas of={Stories.BoundedHistory} />
+<Source code={Bounded} language="tsx" />
+
+### HostActions
+
+Host callbacks receive the current operation, revision, file list and diff context.
+
+<Canvas of={Stories.HostActions} />
+<Source code={HostActions} language="tsx" />
+
+### HostControls
+
+Host source controls replace the default selectors while shared actions remain.
+
+<Canvas of={Stories.HostControls} />
+
 ## Behavior and accessibility
 
 Mount reads through the injected controller. Host lifetime outlives pane remounts; initialOperation and initialRevision restore exact selections. Dispose the controller only after its final owner releases it. No native transport, routing or preference storage is constructed here. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
+
+Built-in search is opt-in with `searchable` and accepts native JJ revsets;
+`HistoryController.search()` keeps the exact operation/workspace and clears
+selected revision/file comparisons. Blank queries reset to `all()`. The host
+supplies user email and an evaluation clock through `HistoryControllerOptions`;
+paging retains that clock. Indexed/full-text search remains a host service and
+can provide its own controls through `headerControls`.
+
+Use `headerActions`, `headerControls`, `revisionActions`, `fileActions` and
+`diffActions` for host-specific navigation, review and command controls. Snippets
+receive the displayed selection context; rendering cannot execute an action.
+The default source/workspace/pin/refresh controls remain when no replacement is
+provided, and the shared column toggle always remains present.
 
 ## Styling variables
 

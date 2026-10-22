@@ -1,5 +1,11 @@
 <!-- SPDX-License-Identifier: Apache-2.0; copied from Lapis Desktop with explicit host boundaries. -->
 <script lang="ts">
+  import type { Snippet } from "svelte";
+  import type { LocalGraphCommit } from "@lapismd/jj-history";
+  import type { HistoryState } from "../../logic/history-state.js";
+  import SearchIcon from "@lucide/svelte/icons/search";
+  import { Button } from "@lapismd/design-core/shadcn/button";
+  import RepositoryLogQuery from "./RepositoryLogQuery.svelte";
   import FileQuestionIcon from "@lucide/svelte/icons/file-question-mark";
   import * as Empty from "@lapismd/design-core/shadcn/empty";
   import type { HistorySourcePicker } from "../../logic/history-source.js";
@@ -26,6 +32,12 @@
     initialLoad,
     copyText,
     restore,
+    searchable = false,
+    headerControls,
+    headerActions,
+    diffActions,
+    revisionActions,
+    fileActions,
   }: {
     sources?: HistorySourcePicker;
     controller: HistoryController;
@@ -34,9 +46,16 @@
     initialLoad?: Promise<void>;
     copyText(value: string): Promise<void>;
     restore?: RestoreController;
+    searchable?: boolean;
+    headerControls?: Snippet<[HistoryState]>;
+    headerActions?: Snippet<[HistoryState]>;
+    diffActions?: Snippet<[HistoryState]>;
+    revisionActions?: Snippet<[LocalGraphCommit]>;
+    fileActions?: Snippet<[HistoryState]>;
   } = $props();
   let snapshot = $state(initialHistoryState());
   let conflictsOpen = $state(false);
+  let queryOpen = $state(false);
   const selectionContext = $derived(
     `${snapshot.operation ?? ""}/${snapshot.revision?.id ?? ""}`,
   );
@@ -94,6 +113,23 @@
   });
 </script>
 
+{#snippet controls()}{@render headerControls?.(snapshot)}{/snippet}
+{#snippet selectedDiffActions(
+  _context: Pick<HistoryState, "path" | "diff" | "busy">,
+)}{@render diffActions?.(snapshot)}{/snippet}
+{#snippet actions()}
+  {#if searchable}<Button
+      variant="ghost"
+      size="icon-xs"
+      aria-label="Search revisions"
+      title="Search revisions"
+      aria-expanded={queryOpen}
+      onclick={() => (queryOpen = !queryOpen)}
+      ><SearchIcon aria-hidden="true" /></Button
+    >{/if}
+  {@render headerActions?.(snapshot)}
+{/snippet}
+
 <RepositoryShell>
   <section
     class="repository-panel"
@@ -111,6 +147,8 @@
           aria-label="Revisions"
         >
           <RepositoryLogHeader
+            controls={headerControls ? controls : undefined}
+            {actions}
             {sources}
             {copyText}
             workspaces={repositoryWorkspaces(snapshot.commits)}
@@ -124,6 +162,10 @@
             onSelect={(operation) => controller.selectOperation(operation)}
             onRefresh={() => controller.refresh()}
           />
+          {#if searchable && queryOpen}<RepositoryLogQuery
+              {controller}
+              busy={snapshot.busy}
+            />{/if}
           <ColumnCanvas.Body>
             {#if snapshot.phase === "loading"}<RepositorySkeleton
                 label="Preparing repository history…"
@@ -161,6 +203,8 @@
 
             {#if snapshot.snapshot}
               <RepositoryRevisions
+                actions={revisionActions}
+                {fileActions}
                 state={snapshot}
                 {controller}
                 {copyText}
@@ -175,6 +219,7 @@
           </ColumnCanvas.Body>
         </ColumnCanvas.Column>
         <RepositoryDiffColumn
+          actions={diffActions ? selectedDiffActions : undefined}
           state={snapshot}
           {controller}
           onRestore={restore && snapshot.revision && snapshot.path

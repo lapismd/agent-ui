@@ -2,6 +2,13 @@
   "component": "RepositoryRevisions",
   "variables": [
     {
+      "name": "--ui-repository-revisions-message-background",
+      "default": "transparent",
+      "description": "Markdown preview surface inside the expanded commit message; transparent retains its parent panel background.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/commit-message/RepositoryCommitMessage.svelte"
+    },
+    {
       "name": "--ui-repository-revisions-padding",
       "default": "0.75rem",
       "description": "The graph and selected revision body with message, parent comparison and changed paths. Original padding default.",

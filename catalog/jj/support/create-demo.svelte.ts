@@ -5,6 +5,7 @@ import {
   largeCommitStats,
 } from "./large-blame.js";
 import { holdPreparation } from "./hold-preparation.js";
+import { attachDenseHistory } from "./dense-history.js";
 import {
   HistoryController,
   OperationController,
@@ -57,6 +58,18 @@ export function createJjDemo(part: string, variant = "Basic") {
         ? "operation-detail-failure"
         : scenario;
   const fixture = operationFixture(scenarioForPart);
+  const dense = [
+    "DenseHistory",
+    "PagedHistory",
+    "BoundedHistory",
+    "HostActions",
+    "HostControls",
+    "Complex",
+    "Binary",
+    "Renamed",
+  ].includes(variant)
+    ? attachDenseHistory(fixture.reader)
+    : undefined;
   const largeBlame =
     part === "RepositoryBlamePanel" &&
     ["Comprehensive", "NoWrap", "LongLines"].includes(variant);
@@ -81,7 +94,19 @@ export function createJjDemo(part: string, variant = "Basic") {
       state.errors = [];
     },
   };
-  const history = new HistoryController(fixture.reader, feedback);
+  const history = new HistoryController(
+    fixture.reader,
+    feedback,
+    undefined,
+    dense
+      ? {
+          userEmail: "dev@lapis.md",
+          now: () => 1792674000000,
+          pageSize: 12,
+          maxCommits: variant === "BoundedHistory" ? 6 : 200,
+        }
+      : undefined,
+  );
   const operations = new OperationController(fixture.reader, feedback);
   const files = new FileHistoryController(fixture.reader, feedback);
   const blame = new BlameController(fixture.reader, feedback);
@@ -189,7 +214,8 @@ export function createJjDemo(part: string, variant = "Basic") {
     source,
     copyText,
     start,
-    commits: [fixture.latest, commit("22".repeat(20))],
+    commits: dense?.commits ?? [fixture.latest, commit("22".repeat(20))],
+    dense,
     nodes: [operationNode(), operationNode(otherOperation, [])],
     change: {
       path: "Welcome.md",
