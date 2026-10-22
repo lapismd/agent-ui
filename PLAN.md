@@ -204,3 +204,7 @@ pending before Workspace and broader checks.
 Branches row surface review uses the body background for unselected bookmark
 and working-copy rows (white in light mode), preserving hover/selection feedback.
 See `spec/records/2026-10-22-branch-row-background.md`.
+
+Branches follow-up removes the remaining selected-row grey fill: resting selected
+rows now share the body surface, with the primary left marker retaining selection.
+The current Basic page is refreshed for review.

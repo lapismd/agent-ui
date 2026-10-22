@@ -62,8 +62,9 @@ Injected branch and column actions.
 Command View owns search and arrow/Enter navigation. All, Workspace and Conflicted filters affect loaded cards only. The host supplies bounded continuation; filtering never changes the captured operation. Avatar and custom action activation stay separate from reference selection. Missing descriptions and deleted/multiple targets remain explicit. Working-copy cards retain their workspace identity.
 
 Working-copy selections share the bookmark rows' primary left-edge marker and
-semantic selected/hover surfaces. Unselected bookmark and working-copy rows use
-the body background (white in the light theme), matching JJ Store. Every card fills its column; long branch names
+semantic hover surfaces. Resting bookmark and working-copy rows, including the
+selected row, use the body background (white in the light theme). Selection is
+shown by the primary left-edge marker. Every card fills its column; long branch names
 truncate with a full-name title. Within cards narrower than 20rem, relative
 timestamps and optional heading badges hide to leave room for the name and
 author. Workspace identities and conflicted/deleted labels remain available.

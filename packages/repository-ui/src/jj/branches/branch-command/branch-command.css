@@ -48,7 +48,7 @@
 .repository-bookmark-cards .repository-working-copy-card[data-current="true"] {
   background: var(
     --ui-repository-branch-selected-background,
-    color-mix(in srgb, var(--foreground) 12%, var(--background))
+    var(--background)
   );
 }
 

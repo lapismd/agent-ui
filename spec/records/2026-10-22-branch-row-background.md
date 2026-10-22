@@ -32,3 +32,20 @@ that adaptation and retains source revisions and hashes.
 
 Stories remain visual-pending. Broad suites and baselines remain deferred until
 final screen review. No source application or Design Core changes are required.
+
+## Remaining selected-row fill
+
+The follow-up inspection found `main` was still grey at rest because the earlier
+change covered unselected rows only. Its computed fill was
+`color(srgb 0.896 0.896 0.896)`, while adjacent rows were white and no row was
+hovered. The selected-row default now uses `--background` as well; the primary
+3px left marker remains the selection indication. The host override and hover
+feedback remain supported. The same rule covers selected working copies.
+
+After HMR, the selected `main` row and adjacent unselected rows all paint
+`rgb(255, 255, 255)` while the selected marker remains 3px. Screenshot:
+`.local/branch-selected-background-review.png`. The same two story families pass
+17/17 in light mode and 17/17 with `CATALOG_THEME=dark`; failures remain zero.
+Repository UI build/publint, all 226 fingerprints, eight Branches fingerprints
+and four original-layout comparisons, `pnpm spec:check` and changed-file
+formatting pass. Broader qualification remains deferred.
