@@ -59,6 +59,11 @@ Filename icon qualification MUST include local catalog skills in the complete
 screen, preserving the copied row geometry and explicit host navigation.
 Geometry assertions MUST compare rendered source slots at the current browser
 zoom while retaining the declared icon size preset.
+Documentation table probes MUST target their owning section and retain complete
+semantic row and variable checks without traversing nested transcript tables.
+Cold browser startup MUST await a fail-closed client-compiler readiness probe
+covering Transcript documentation, complete Agent screens and reference fixtures;
+missing or failed imports MUST prevent readiness, and repair MUST permit retry.
 Large shared-package chunks MUST pass the supported Vite asset-URL scanner;
 catalog configuration MUST NOT disable its transforms or suppress import errors.
 

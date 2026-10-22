@@ -128,16 +128,35 @@ target the combined tree instead. No passing result is claimed for its cancelled
 dark-mode and remaining lanes.
 
 The combined prepared Design Core archive is
-`lapismd-design-core-0.6.0-agent-icons-reference-review-v2.tgz`, SHA-256
-`f0e8e1ce07be0f3495734b468983b668c639dcc27f19588243f058233872bdbf`.
+`lapismd-design-core-0.6.0-agent-icons-reference-review-v3.tgz`, SHA-256
+`a62a66af2569f1fdf526b11627e76725dfae5b769d222802120b210d73164443`.
 The ignored hook retains the reference slice's prepared Mira and JJ history
 dependencies and substitutes this combined public archive. The existing npm
 ranges and registry lockfile remain portable. Combined strict types and all
 97 units pass; the complete qualification is running against this tree.
-V2 includes the source's strict optional-property repairs; the earlier combined
-archive is superseded. One prior light/narrow full run timed out in the unchanged
+V3 includes the source's strict optional-property repairs and public Mira font
+binding for rootless/custom-size transcript readers; earlier combined archives
+are superseded. One prior light/narrow full run timed out in the unchanged
 Source Picker (171 passed, one failed). Its exact narrow family rerun passed both
 stories without changing the component, assertions or timeout. The final Catalog
 target passed one case with 19 intentionally unselected, and the live browser
 completed its icon-size and explicit-selection checks at fractional zoom. Its
 selection assertion now waits for the acknowledged host action.
+
+The first combined full theme/viewport matrix passed all 688 story/axe cases and
+97 units. Its browser suite passed 26 and failed two cases: first-document cold
+compilation exhausted the test clock, and the Classic reference flow failed at
+its inline chip check. Both exact cases passed in a fresh process; a fresh V3
+archive reproduced cold-clock exhaustion before the docs heading and during the
+Classic Enter event. No assertion or interaction timeout was changed.
+
+The catalog now adapts Design Core's fail-closed compiler readiness probe. Its
+unit wiring regression failed once (two existing cases passed), then all eight
+readiness/dependency units passed. Missing docs/screens, unsettled imports and
+failed transforms prevent readiness; successful repair permits retry. The browser
+server waits on that probe before starting tests. The final exact cold two-case
+run passed in 33.8s overall, with docs in 9.7s and Classic interactions in 3.6s.
+The docs probe scopes its semantic styling table to its heading and waits for
+the owned DOM rather than unrelated asset loading. Row, variable and value
+assertions remain intact. Strict types, architecture, source ledger and formatting
+pass. Full final qualification is running against V3 and this readiness boundary.

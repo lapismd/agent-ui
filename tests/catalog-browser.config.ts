@@ -18,7 +18,7 @@ export default defineConfig({
   webServer: {
     cwd: fileURLToPath(new URL("../", import.meta.url)),
     command: "STORYBOOK_PORT=7498 pnpm storybook --ci",
-    url: "http://127.0.0.1:7498",
+    url: "http://127.0.0.1:7498/__lapis_catalog_ready",
     reuseExistingServer: false,
     timeout: 60000,
   },

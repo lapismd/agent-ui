@@ -21,15 +21,19 @@ test.afterEach(({ page }) => {
 test("Markdown anatomy and styling tables render semantic rows", async ({
   page,
 }) => {
-  await page.goto("/iframe.html?id=agents-chat-transcript--docs&viewMode=docs");
+  await page.goto(
+    "/iframe.html?id=agents-chat-transcript--docs&viewMode=docs",
+    {
+      waitUntil: "domcontentloaded",
+    },
+  );
   await expect(page.locator("#transcript")).toBeVisible({ timeout: 30000 });
   const anatomy = page.locator("#anatomy + table");
   await expect(anatomy).toBeVisible();
   await expect(anatomy.getByRole("row")).toHaveCount(5);
   await expect(anatomy).toContainText("Captured items");
-  const styles = page
-    .getByRole("table")
-    .filter({ hasText: "--ui-transcript-max-width" });
+  const styles = page.locator("#styling-variables + p + table");
+  await expect(styles).toContainText("--ui-transcript-max-width");
   await expect(styles.getByRole("row")).toHaveCount(
     tokens.variables.length + 1,
   );
