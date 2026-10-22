@@ -1,0 +1,19 @@
+{
+  "component": "AgentComposerDrawer",
+  "variables": [
+    {
+      "name": "--ui-agent-drawer-document-inset",
+      "default": "2rem",
+      "description": "Document alignment with the editor text",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/composer-drawer/ChatComposerDrawer.svelte"
+    },
+    {
+      "name": "--ui-agent-drawer-gap",
+      "default": "0.375rem",
+      "description": "Disclosure and file-token gap",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/composer-drawer/ChatComposerDrawer.svelte"
+    }
+  ]
+}

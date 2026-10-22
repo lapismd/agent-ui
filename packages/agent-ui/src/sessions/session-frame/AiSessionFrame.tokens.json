@@ -1,0 +1,12 @@
+{
+  "component": "AgentSessionFrame",
+  "variables": [
+    {
+      "name": "--ui-agent-session-header-height",
+      "default": "3.25rem",
+      "description": "Header height inherited by the composed session header",
+      "owner": "@lapismd/agent-ui",
+      "source": "sessions/session-header/AiSessionHeader.svelte"
+    }
+  ]
+}

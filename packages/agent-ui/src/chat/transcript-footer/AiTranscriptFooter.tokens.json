@@ -1,0 +1,26 @@
+{
+  "component": "AgentChatFooter",
+  "variables": [
+    {
+      "name": "--ui-agent-footer-padding",
+      "default": "0",
+      "description": "Footer inset; preserves the embedded chat default",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/transcript-footer/AiTranscriptFooter.svelte"
+    },
+    {
+      "name": "--ui-agent-footer-gap",
+      "default": "0.25rem",
+      "description": "Space between footer regions",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/transcript-footer/AiTranscriptFooter.svelte"
+    },
+    {
+      "name": "--ui-agent-footer-controls-gap",
+      "default": "0.25rem",
+      "description": "Space between agent and composer controls",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/transcript-footer/AiTranscriptFooter.svelte"
+    }
+  ]
+}

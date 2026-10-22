@@ -35,6 +35,9 @@ importers:
       '@storybook/addon-vitest':
         specifier: 10.5.7
         version: 10.5.7(@vitest/browser-playwright@4.1.11)(@vitest/browser@4.1.11(vite@7.3.2(@types/node@24.19.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1))(vitest@4.1.11))(@vitest/runner@4.1.11)(react@19.2.7)(storybook@10.5.7(@types/react@19.3.0)(prettier@3.9.10)(react@19.2.7))(vitest@4.1.11)
+      '@storybook/icons':
+        specifier: ^2.2.0
+        version: 2.2.0(react@19.2.7)
       '@storybook/svelte-vite':
         specifier: 10.5.7
         version: 10.5.7(@sveltejs/vite-plugin-svelte@6.2.4(svelte@5.57.2)(vite@7.3.2(@types/node@24.19.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1)))(esbuild@0.28.2)(rollup@4.64.12)(storybook@10.5.7(@types/react@19.3.0)(prettier@3.9.10)(react@19.2.7))(svelte@5.57.2)(vite@7.3.2(@types/node@24.19.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1))
@@ -50,6 +53,9 @@ importers:
       '@types/pngjs':
         specifier: ^6.0.5
         version: 6.0.5
+      '@types/react':
+        specifier: ^19.3.0
+        version: 19.3.0
       '@vitest/browser-playwright':
         specifier: 4.1.11
         version: 4.1.11(playwright@1.61.1)(vite@7.3.2(@types/node@24.19.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1))(vitest@4.1.11)
@@ -74,6 +80,9 @@ importers:
       react-dom:
         specifier: 19.2.7
         version: 19.2.7(react@19.2.7)
+      remark-gfm:
+        specifier: ^4.0.1
+        version: 4.0.1
       storybook:
         specifier: 10.5.7
         version: 10.5.7(@types/react@19.3.0)(prettier@3.9.10)(react@19.2.7)

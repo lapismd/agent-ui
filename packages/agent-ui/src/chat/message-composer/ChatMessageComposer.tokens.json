@@ -1,0 +1,19 @@
+{
+  "component": "ChatMessageComposer",
+  "variables": [
+    {
+      "name": "--ui-agent-composer-min-height",
+      "default": "calc(2 * 1.4rem + 1rem)",
+      "description": "Framed editor minimum height",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/message-composer/ChatMessageComposer.svelte"
+    },
+    {
+      "name": "--ui-agent-composer-document-min-height",
+      "default": "calc(2 * 0.875rem * 1.65)",
+      "description": "Document editor minimum height",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/message-composer/ChatMessageComposer.svelte"
+    }
+  ]
+}

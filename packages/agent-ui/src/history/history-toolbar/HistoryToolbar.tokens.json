@@ -1,0 +1,19 @@
+{
+  "component": "AgentHistoryToolbar",
+  "variables": [
+    {
+      "name": "--ui-agent-history-toolbar-align",
+      "default": "center",
+      "description": "Search-filter action alignment",
+      "owner": "@lapismd/agent-ui",
+      "source": "history/panel.css"
+    },
+    {
+      "name": "--ui-agent-history-scope-padding",
+      "default": "0 0.5rem 0.4rem",
+      "description": "Creation-scope line inset",
+      "owner": "@lapismd/agent-ui",
+      "source": "history/panel.css"
+    }
+  ]
+}

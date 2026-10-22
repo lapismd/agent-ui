@@ -29,7 +29,7 @@
   flex: 0 0 auto;
   background: var(--ai-catalog-surface);
   --cv-search-filter-background: var(--ai-catalog-surface);
-  --cv-search-filter-justify: center;
+  --cv-search-filter-justify: var(--ui-agent-catalog-toolbar-align, center);
   --cv-search-filter-content-justify: center;
 }
 

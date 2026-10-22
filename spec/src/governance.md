@@ -1,5 +1,10 @@
 # Governance
 
+Component-family documentation is enforced by the repository-owned
+`agentFoundations` validator plugin, loaded by the published spec-validator.
+The inventory explicitly assigns private compound parts to documented families;
+a new independent component requires its own colocated contract.
+
 ## AUI-GOV-001 — Source ownership
 
 **Requirement.** Production packages MUST consume public Design Core primitives and injected host ports without application-private imports, credentials, native transports or catalog dependencies.

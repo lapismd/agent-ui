@@ -3,7 +3,7 @@
   display: flex;
   width: 100%;
   flex-direction: column;
-  gap: var(--ui-ai-request-gap);
+  gap: var(--ui-agent-request-gap, var(--ui-ai-request-gap, 0.5rem));
 }
 
 [data-ui-component="ai-agent-request"] [data-ui-part="request-heading"] {
@@ -14,7 +14,7 @@
 }
 
 [data-ui-component="ai-agent-request"] strong {
-  font-size: 0.875rem;
+  font-size: var(--ui-agent-request-title-size, 0.875rem);
 }
 
 [data-ui-component="ai-agent-request"] [data-ui-part="approval-details"] {

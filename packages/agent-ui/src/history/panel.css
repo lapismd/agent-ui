@@ -31,13 +31,13 @@
   flex: 0 0 auto;
   background: var(--ai-history-surface);
   --cv-search-filter-background: var(--ai-history-surface);
-  --cv-search-filter-justify: center;
+  --cv-search-filter-justify: var(--ui-agent-history-toolbar-align, center);
   --cv-search-filter-content-justify: center;
 }
 
 .ai-history .ai-history__creation-scope {
   margin: 0;
-  padding: 0 0.5rem 0.4rem;
+  padding: var(--ui-agent-history-scope-padding, 0 0.5rem 0.4rem);
   color: color-mix(
     in srgb,
     var(--ai-history-foreground) 68%,

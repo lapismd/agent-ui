@@ -1,0 +1,114 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./AgentTranscript.stories";
+import { Basic, Styling } from "./AgentTranscript.example-sources";
+import tokens from "./AgentTranscript.tokens.json";
+import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Transcript
+
+The shared production transcript body, composer, attachments, message queue and send feedback.
+
+## Usage
+
+Use the same AgentUiController and presentation adapter as AgentChatScreen. Keep that controller owned by the host across presentation changes. AgentChatScreen composes this component, so a fix here also fixes complete screens.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part               | Responsibility                                                              |
+| ------------------ | --------------------------------------------------------------------------- |
+| Captured items     | Immutable host messages, context, reasoning, tool activity and handoffs.    |
+| Block readers      | Markdown, code, patches, context and custom blocks.                         |
+| Inline review      | Exact-range draft and published comments on captured source.                |
+| Composer and queue | Retained authored draft, pending comments, waiting follow-ups and feedback. |
+
+## Variations
+
+### Basic
+
+All five item kinds and all five block kinds, Markdown tables/tasks/code, sent context, metadata, tool states and notices.
+
+<Canvas of={Stories.Basic} />
+
+### Classic
+
+The identical capture in Classic presentation.
+
+<Canvas of={Stories.Classic} />
+
+### InlineComments
+
+Draft prose and published code comments with exact source anchors.
+
+<Canvas of={Stories.InlineComments} />
+
+### StaleComments
+
+Retained quotes when the source revision changes.
+
+<Canvas of={Stories.StaleComments} />
+
+### Streaming
+
+In-memory captured output advances without contacting a runtime.
+
+<Canvas of={Stories.Streaming} />
+
+### QueuedMessages
+
+Queued and unknown recipient states retain exact submissions.
+
+<Canvas of={Stories.QueuedMessages} />
+
+### Error
+
+Visible error with the retained authored draft.
+
+<Canvas of={Stories.Error} />
+
+### Loading
+
+Read-in-progress feedback.
+
+<Canvas of={Stories.Loading} />
+
+### Empty
+
+The original empty conversation surface.
+
+<Canvas of={Stories.Empty} />
+
+## Behavior and accessibility
+
+Document and Classic retain the same controller, source revisions and comment anchors. Tool inspectors share the exact readers. Unknown outcomes retain the pending request and do not replay it. The public options forward history, Markdown hooks, custom blocks, supplements, thread navigation, message actions and reactions; host authority remains explicit. Sent-comment editing is not enabled by this Agent adapter.
+
+## Styling variables
+
+Set variables on an ancestor of the component. Defaults retain the original
+Desktop geometry. Use the brand dropdown for Default/Lapis and the separate
+light/dark button for color mode. Components inherit semantic Design Core colors.
+The table identifies the package that owns each variable; styles load with the
+owning component family.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+[Complete screens](?path=/docs/agent-complete-screens--docs) use these production
+components with the same controller flow. Documentation shell previews are
+bounded to 40rem; Canvas screens use the full viewport. Story data and simulated
+host effects stay outside published packages.

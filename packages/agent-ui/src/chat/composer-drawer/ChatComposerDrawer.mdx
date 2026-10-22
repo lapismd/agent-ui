@@ -1,0 +1,86 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./ChatComposerDrawer.stories";
+import { Basic, Styling } from "./ChatComposerDrawer.example-sources";
+import tokens from "./ChatComposerDrawer.tokens.json";
+import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Composer drawer
+
+Supplementary attachment and request content above the message editor, copied from Desktop.
+
+## Usage
+
+Use the drawer with the presentation adapter from the owning chat controller. Document mode renders the open disclosure above the writing surface; framed mode belongs in the composer drawer slot. Keep primary send and stop actions in the footer so collapsing the drawer never hides them.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part              | Responsibility                                               |
+| ----------------- | ------------------------------------------------------------ |
+| Root surface      | Supplementary content beside the controlled editor.          |
+| Disclosure toggle | Named keyboard and pointer collapse control with item count. |
+| Pending request   | Approval or question using exact host request identities.    |
+| Files             | Host-supplied attachments with explicit removal controls.    |
+
+## Variations
+
+### Basic
+
+Removable attachments with a collapsible count.
+
+<Canvas of={Stories.Basic} />
+
+### Framed
+
+The same content using the framed drawer surface.
+
+<Canvas of={Stories.Framed} />
+
+### Approval
+
+Explicit permission options.
+
+<Canvas of={Stories.Approval} />
+
+### Question
+
+Advertised answers and an optional free-text answer.
+
+<Canvas of={Stories.Question} />
+
+## Behavior and accessibility
+
+The disclosure label changes between Attachments, Permission requested and User input requested. Collapsed content is removed from keyboard navigation. Removing a file changes the host-owned attachment selection; answering a request sends only the exact advertised identity and answer.
+
+The documentation follows the Usage, Anatomy and Examples pattern in [Astryx Chat Composer Drawer](https://astryx.atmeta.com/components/ChatComposerDrawer), using this package’s Svelte APIs and the existing Desktop visuals.
+
+## Styling variables
+
+Set variables on an ancestor of the component. Defaults retain the original
+Desktop geometry. Use the brand dropdown for Default/Lapis and the separate
+light/dark button for color mode. Components inherit semantic Design Core colors.
+The table identifies the package that owns each variable; styles load with the
+owning component family.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+[Complete screens](?path=/docs/agent-complete-screens--docs) use these production
+components with the same controller flow. Documentation shell previews are
+bounded to 40rem; Canvas screens use the full viewport. Story data and simulated
+host effects stay outside published packages.

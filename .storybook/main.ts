@@ -1,8 +1,20 @@
 import type { StorybookConfig } from "@storybook/svelte-vite";
+import remarkGfm from "remark-gfm";
 export default {
-  stories: ["../catalog/Agent*.stories.ts", "../catalog/Progress.mdx"],
+  stories: [
+    "../packages/agent-ui/src/**/*.stories.ts",
+    "../packages/agent-ui/src/**/*.mdx",
+    "../catalog/Agent*.stories.ts",
+    "../catalog/Progress.mdx",
+    "../catalog/specification/*.mdx",
+  ],
   addons: [
-    "@storybook/addon-docs",
+    {
+      name: "@storybook/addon-docs",
+      options: {
+        mdxPluginOptions: { mdxCompileOptions: { remarkPlugins: [remarkGfm] } },
+      },
+    },
     "@storybook/addon-a11y",
     "@storybook/addon-themes",
     "@storybook/addon-vitest",

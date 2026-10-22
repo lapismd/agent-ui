@@ -1,0 +1,71 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./AiSessionFrame.stories";
+import { Basic, Styling } from "./AiSessionFrame.example-sources";
+import tokens from "./AiSessionFrame.tokens.json";
+import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Session frame
+
+The production embedded AppShell boundary used by Agent chat and recorded conversations.
+
+## Usage
+
+Give the frame a bounded parent height. Bind height to AgentSessionThread so its header, scrolling body and footer share the measured AppShell body. Supply navigation, bodySidebar and toolInspector snippets to reuse the original shell topology.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part                        | Responsibility                                                    |
+| --------------------------- | ----------------------------------------------------------------- |
+| AppShell root and main      | Embedded desktop shell with no invented outer application chrome. |
+| Body content                | Measured main region for AgentSessionThread.                      |
+| Sidebar and inspector slots | Host-controlled companion regions and tool surface.               |
+
+## Variations
+
+### Basic
+
+Production frame with header, transcript and footer.
+
+<Canvas of={Stories.Basic} />
+
+### Classic
+
+The same boundaries with Classic message presentation.
+
+<Canvas of={Stories.Classic} />
+
+## Behavior and accessibility
+
+ResizeObserver publishes body dimensions and disconnects on teardown. Compact layout follows the original 640px body-width boundary. Hiding main content makes it inert while an inspector owns that region.
+
+## Styling variables
+
+Set variables on an ancestor of the component. Defaults retain the original
+Desktop geometry. Use the brand dropdown for Default/Lapis and the separate
+light/dark button for color mode. Components inherit semantic Design Core colors.
+The table identifies the package that owns each variable; styles load with the
+owning component family.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+[Complete screens](?path=/docs/agent-complete-screens--docs) use these production
+components with the same controller flow. Documentation shell previews are
+bounded to 40rem; Canvas screens use the full viewport. Story data and simulated
+host effects stay outside published packages.

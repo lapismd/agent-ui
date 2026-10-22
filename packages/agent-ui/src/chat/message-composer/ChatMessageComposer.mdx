@@ -1,0 +1,77 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./ChatMessageComposer.stories";
+import { Basic, Styling } from "./ChatMessageComposer.example-sources";
+import tokens from "./ChatMessageComposer.tokens.json";
+import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Message composer
+
+The copied MarkdownComposer adapter used by the production Agent transcript.
+
+## Usage
+
+Bind value to the host-retained draft and forward onSend to the same TranscriptController used by the footer. Bind documentActions and render that snippet once in AgentChatFooter when the formatting toolbar is docked.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part                  | Responsibility                                         |
+| --------------------- | ------------------------------------------------------ |
+| Before or drawer slot | Attachment and pending-request content.                |
+| Markdown editor       | Controlled Mira input with the original avatar gutter. |
+| Document actions      | Bindable formatting snippet for the persistent footer. |
+
+## Variations
+
+### Basic
+
+Document writing surface.
+
+<Canvas of={Stories.Basic} />
+
+### Classic
+
+Framed editor with inline formatting.
+
+<Canvas of={Stories.Classic} />
+
+### Error
+
+Host feedback retains the authored draft.
+
+<Canvas of={Stories.Error} />
+
+## Behavior and accessibility
+
+Enter inserts a newline in both presentations; Ctrl/Command+Enter requests send. disabled blocks submission. The host clears the draft only after acknowledgement. Supply extensions and triggers through the public editor APIs for application-specific references.
+
+## Styling variables
+
+Set variables on an ancestor of the component. Defaults retain the original
+Desktop geometry. Use the brand dropdown for Default/Lapis and the separate
+light/dark button for color mode. Components inherit semantic Design Core colors.
+The table identifies the package that owns each variable; styles load with the
+owning component family.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+[Complete screens](?path=/docs/agent-complete-screens--docs) use these production
+components with the same controller flow. Documentation shell previews are
+bounded to 40rem; Canvas screens use the full viewport. Story data and simulated
+host effects stay outside published packages.

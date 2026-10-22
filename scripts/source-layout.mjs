@@ -46,6 +46,12 @@ for (const row of ledger.copies) {
       );
     original = original.replaceAll(adaptation.before, adaptation.after);
   }
+  original = await layout(
+    row.destination.endsWith(".svelte")
+      ? `<script lang="ts"></script>\n${original}`
+      : original,
+    row.destination,
+  );
   const extracted = await layout(destination, row.destination);
   if (original !== extracted || sha256(extracted) !== row.layoutSha256)
     throw new Error(`Original layout differs: ${row.destination}`);

@@ -1,0 +1,12 @@
+{
+  "component": "AgentCatalogToolbar",
+  "variables": [
+    {
+      "name": "--ui-agent-catalog-toolbar-align",
+      "default": "center",
+      "description": "Search-filter action alignment",
+      "owner": "@lapismd/agent-ui",
+      "source": "catalog/panel.css"
+    }
+  ]
+}

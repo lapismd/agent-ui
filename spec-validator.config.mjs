@@ -5,6 +5,7 @@ import {
 } from "@lapismd/spec-validator";
 export default defineConfig(headingRequirements(), {
   name: "agent-ui",
+  plugins: ["./scripts/agent-foundation-audit.mjs"],
   idPattern: /^(?:AUI|RUI)-[A-Z]+-\d{3}$/,
   ruleIds: {
     governance: "AUI-GOV-003",
@@ -15,9 +16,14 @@ export default defineConfig(headingRequirements(), {
     bookIgnore: "AUI-GOV-003",
     specFirst: "AUI-GOV-003",
     internal: "AUI-GOV-003",
+    storybookCatalog: "AUI-VERIFY-001",
   },
   validators: {
     summary: true,
+    storybookCatalog: {
+      roots: ["packages/agent-ui/src", "catalog"],
+      packageName: "@lapismd/agent-ui",
+    },
     governance: { extras: ["AGENTS.md", "README.md"] },
     fileLimits: { maxLines: 400, maxBytes: 32768 },
     verification: singleIdVerification(),

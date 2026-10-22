@@ -1,0 +1,19 @@
+{
+  "component": "AgentSessionList",
+  "variables": [
+    {
+      "name": "--ui-agent-session-list-padding",
+      "default": "0.5rem",
+      "description": "List inset",
+      "owner": "@lapismd/agent-ui",
+      "source": "sessions/session-list/AiSessionList.svelte"
+    },
+    {
+      "name": "--ui-agent-session-list-gap",
+      "default": "0.25rem",
+      "description": "Gap between groups and rows",
+      "owner": "@lapismd/agent-ui",
+      "source": "sessions/session-list/AiSessionList.svelte"
+    }
+  ]
+}

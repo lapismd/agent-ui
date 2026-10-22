@@ -1,0 +1,71 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./AiApprovalCard.stories";
+import { Basic, Styling } from "./AiApprovalCard.example-sources";
+import tokens from "./AiApprovalCard.tokens.json";
+import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Approval card
+
+A permission request with captured tool details and lettered host-advertised responses.
+
+## Usage
+
+Pass the original ApprovalRequest and respond using its request ID and chosen option ID. Treat labels as presentation. Keep the request visible while a host response is pending; remove it only when the host acknowledges.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part    | Responsibility                                  |
+| ------- | ----------------------------------------------- |
+| Heading | Host title and optional tool name.              |
+| Details | Captured description, path and diff.            |
+| Options | Lettered responses preserving exact option IDs. |
+
+## Variations
+
+### Basic
+
+Respond through the in-memory host and show acknowledgement.
+
+<Canvas of={Stories.Basic} />
+
+### Disabled
+
+Host operation blocks every response.
+
+<Canvas of={Stories.Disabled} />
+
+## Behavior and accessibility
+
+All options are ordinary named buttons. disabled blocks them during host work. Unknown option kinds remain host-defined; this component never expands permission or infers an approval.
+
+## Styling variables
+
+Set variables on an ancestor of the component. Defaults retain the original
+Desktop geometry. Use the brand dropdown for Default/Lapis and the separate
+light/dark button for color mode. Components inherit semantic Design Core colors.
+The table identifies the package that owns each variable; styles load with the
+owning component family.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+[Complete screens](?path=/docs/agent-complete-screens--docs) use these production
+components with the same controller flow. Documentation shell previews are
+bounded to 40rem; Canvas screens use the full viewport. Story data and simulated
+host effects stay outside published packages.

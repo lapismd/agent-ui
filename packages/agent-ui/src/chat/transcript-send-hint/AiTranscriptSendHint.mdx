@@ -1,0 +1,70 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./AiTranscriptSendHint.stories";
+import { Basic, Styling } from "./AiTranscriptSendHint.example-sources";
+import tokens from "./AiTranscriptSendHint.tokens.json";
+import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Send feedback
+
+The original keyboard hint and host delivery feedback below the transcript.
+
+## Usage
+
+Pass the presentation panel and current host error. Composer status takes priority over the fallback error. This keeps feedback consistent with the footer while the draft stays in the owning controller.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part          | Responsibility                               |
+| ------------- | -------------------------------------------- |
+| Status banner | Host feedback from the presentation adapter. |
+| Shortcut hint | Ctrl/Command+Enter send guidance.            |
+
+## Variations
+
+### Basic
+
+Keyboard hint without an error.
+
+<Canvas of={Stories.Basic} />
+
+### Error
+
+Visible retained-draft host feedback.
+
+<Canvas of={Stories.Error} />
+
+## Behavior and accessibility
+
+Feedback never triggers a retry or clears authored text. Unknown or refused submissions stay under host control. This component supplies presentation only; status recovery belongs to the controller and port.
+
+## Styling variables
+
+Set variables on an ancestor of the component. Defaults retain the original
+Desktop geometry. Use the brand dropdown for Default/Lapis and the separate
+light/dark button for color mode. Components inherit semantic Design Core colors.
+The table identifies the package that owns each variable; styles load with the
+owning component family.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+[Complete screens](?path=/docs/agent-complete-screens--docs) use these production
+components with the same controller flow. Documentation shell previews are
+bounded to 40rem; Canvas screens use the full viewport. Story data and simulated
+host effects stay outside published packages.

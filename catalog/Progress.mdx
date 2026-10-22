@@ -18,3 +18,20 @@ Full-screen visual review remains pending; no screenshot baselines are updated.
 Run `pnpm storybook:restart` to replace only this checkout’s catalog, and
 `pnpm storybook:stop` to stop it. Default port: 7490. Downstream apps, services,
 publication and deployment remain behind the user review gate.
+
+## Building blocks and documentation
+
+Agents now includes Session frame, Session header, Session list, Message composer,
+Footer, Composer drawer, Approval card, Question card, Transcript, Tool inspector,
+Send feedback and the History/Catalog toolbars. Complete screens compose the same
+production implementations. The transcript catalog covers captured message and
+block kinds, tools, Markdown, anchored comments, queues, streaming and feedback.
+
+Each family has colocated usage, anatomy, variation, accessibility, API and styling
+contracts. The canonical specification is available under Specification. Brand
+and light/dark controls are independent; docs-only shell previews are bounded to
+40rem without wrapper padding. Canvas remains full height.
+
+`pnpm spec:validate` rejects missing family structure and drifted token defaults.
+Clean-package acceptance compiles documented public examples and excludes catalog
+fixtures. Full Agent visual review remains pending; downstream work stays gated.

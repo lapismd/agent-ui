@@ -1,0 +1,33 @@
+{
+  "component": "AgentTranscript",
+  "variables": [
+    {
+      "name": "--ui-transcript-max-width",
+      "default": "62rem",
+      "description": "Document column maximum width",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/chat/transcript/chat-body.css"
+    },
+    {
+      "name": "--ui-transcript-font-size",
+      "default": "0.875rem",
+      "description": "Transcript text size",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/chat/transcript/chat-body.css"
+    },
+    {
+      "name": "--ui-transcript-line-height",
+      "default": "1.65",
+      "description": "Transcript text rhythm",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/chat/transcript/chat-body.css"
+    },
+    {
+      "name": "--ui-transcript-comment-font-size",
+      "default": "var(--conversation-prose-size, var(--ui-transcript-font-size, 0.875rem))",
+      "description": "Comment and review editor size",
+      "owner": "@lapismd/design-core",
+      "source": "@lapismd/design-core/src/shared/chat/transcript/comment-card.css"
+    }
+  ]
+}

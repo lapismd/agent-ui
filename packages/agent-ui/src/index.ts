@@ -4,3 +4,7 @@ export * from "./screens/index.js";
 export * from "./sessions/index.js";
 export { ImportController } from "./imports/controller.svelte.js";
 export type { ImportPresentationPort } from "./imports/controller.svelte.js";
+export { default as AgentHistoryToolbar } from "./history/history-toolbar/HistoryToolbar.svelte";
+export { HistoryController as AgentHistoryController } from "./history/controller.svelte.js";
+export { default as AgentCatalogToolbar } from "./catalog/catalog-toolbar/CatalogToolbar.svelte";
+export { CatalogController as AgentCatalogController } from "./catalog/controller.svelte.js";

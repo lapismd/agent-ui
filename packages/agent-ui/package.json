@@ -57,7 +57,7 @@
     }
   },
   "scripts": {
-    "build": "svelte-package -i src -o dist --tsconfig tsconfig.json && publint"
+    "build": "node ../../scripts/build-agent-package.mjs"
   },
   "dependencies": {
     "@lapismd/design-core": "^0.6.0",

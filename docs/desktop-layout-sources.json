@@ -4,17 +4,17 @@
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/sessions/AiSessionFrame.svelte",
-      "destination": "packages/agent-ui/src/sessions/AiSessionFrame.svelte",
+      "destination": "packages/agent-ui/src/sessions/session-frame/AiSessionFrame.svelte",
       "sourceSha256": "d5ece8e02aa01aeaa2146127ed3e603d3d55417057b1da0b798278509598d4b1",
       "adaptations": [],
-      "destinationSha256": "d5ece8e02aa01aeaa2146127ed3e603d3d55417057b1da0b798278509598d4b1",
+      "destinationSha256": "814a3eb6b43b673f871314d12524bc87511234d03e35f03a842d352ad81a4e8f",
       "layoutAdaptations": [],
       "layoutSha256": "85d5896791cdaefffb6257ff3eb16f031aa2983913dc08d46249f092ffe46787"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/sessions/AiSessionShell.svelte",
-      "destination": "packages/agent-ui/src/sessions/AiSessionShell.svelte",
+      "destination": "packages/agent-ui/src/sessions/session-shell/AiSessionShell.svelte",
       "sourceSha256": "d9ec482e59124cb71960081d70b1170815e8069b51eee16046ee5b76fab5890f",
       "adaptations": [
         {
@@ -22,24 +22,24 @@
           "after": "./model.js"
         }
       ],
-      "destinationSha256": "d554c9a14fbd180e04a90e390ea2eac763356c0082a9b93b0a5829870ce5d110",
+      "destinationSha256": "4e3bbf72b58251587ac0244864cd25bc94f0c61fa14833192fb421250b9ac1a6",
       "layoutAdaptations": [],
       "layoutSha256": "e03815a2c1f6b6ff783ab1b18bd39e6702edbcc561b48bc0984eb9582aa4a507"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/sessions/AiSessionThread.svelte",
-      "destination": "packages/agent-ui/src/sessions/AiSessionThread.svelte",
+      "destination": "packages/agent-ui/src/sessions/session-thread/AiSessionThread.svelte",
       "sourceSha256": "385b5404ed756a144c90d158362a926fc2c347b77556afe4585ae50379586e84",
       "adaptations": [],
-      "destinationSha256": "385b5404ed756a144c90d158362a926fc2c347b77556afe4585ae50379586e84",
+      "destinationSha256": "d46feca05a461786691e31db6af7b419840291b39e68162cc5f437e46c20bf0b",
       "layoutAdaptations": [],
       "layoutSha256": "d61a2d9f8694bc1b30dae545e246e4d50bf3527ae4c33654ba4d1ae7a70aa8f9"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/sessions/AiSessionHeader.svelte",
-      "destination": "packages/agent-ui/src/sessions/AiSessionHeader.svelte",
+      "destination": "packages/agent-ui/src/sessions/session-header/AiSessionHeader.svelte",
       "sourceSha256": "7e101c1ea9eefb36749b505fa770b0bedb674961e955f5746f41f6f1055fa582",
       "adaptations": [
         {
@@ -47,14 +47,27 @@
           "after": "../identity/agent-avatar.js"
         }
       ],
-      "destinationSha256": "460d6fbf997102ef07f1343146af3e8c4e7c980ab4d4c263bf073a2961357f5d",
-      "layoutAdaptations": [],
-      "layoutSha256": "4c88cc6d141a859f3fe5198f5ff18848f5acc828813277504492ef5e50d7b35e"
+      "destinationSha256": "5c3df6450fa272d05e3c84d03076975a23b4d4d5662b000b42bfa3476c0f8bef",
+      "layoutAdaptations": [
+        {
+          "before": "min-height: 3.25rem;",
+          "after": "min-height: var(--ui-agent-session-header-height, 3.25rem);"
+        },
+        {
+          "before": "font-size: 0.875rem;",
+          "after": "font-size: var(--ui-agent-session-header-title-size, 0.875rem);"
+        },
+        {
+          "before": "gap: 1rem;",
+          "after": "gap: var(--ui-agent-session-header-gap, 1rem);"
+        }
+      ],
+      "layoutSha256": "a12821e66b162a72c8cdb183e5336bec2507d578ff2bfc802e0a71c170a9e8e0"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/sessions/AiSessionList.svelte",
-      "destination": "packages/agent-ui/src/sessions/AiSessionList.svelte",
+      "destination": "packages/agent-ui/src/sessions/session-list/AiSessionList.svelte",
       "sourceSha256": "802d1f890babd8026ee0b06df026c3ef97cd3c9cd6fb4adacb77749b1d695382",
       "adaptations": [
         {
@@ -62,14 +75,23 @@
           "after": "./model.js"
         }
       ],
-      "destinationSha256": "f4472c05b38e0ad1c3a430b4c18f20ffd8bc7918283923cbc450297da38fab1c",
-      "layoutAdaptations": [],
-      "layoutSha256": "09eca1a31a8498052e4b9faa293df9eb45d4541f7069981768a35a54da103c87"
+      "destinationSha256": "4fee4b89f104cca45589c36f6ba6045def946b30c00b9dfda1909b910b899209",
+      "layoutAdaptations": [
+        {
+          "before": "padding: 0.5rem;",
+          "after": "padding: var(--ui-agent-session-list-padding, 0.5rem);"
+        },
+        {
+          "before": "gap: 0.25rem;",
+          "after": "gap: var(--ui-agent-session-list-gap, 0.25rem);"
+        }
+      ],
+      "layoutSha256": "c1072e63ed9f05a0194e506138a8345a8a2d65ef6721d4f20eec600aefafa443"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/sessions/AiSessionRow.svelte",
-      "destination": "packages/agent-ui/src/sessions/AiSessionRow.svelte",
+      "destination": "packages/agent-ui/src/sessions/session-row/AiSessionRow.svelte",
       "sourceSha256": "0e63450915bee20255093400d0c8fd30ee05cda530cbd345534295d4e82296d2",
       "adaptations": [
         {
@@ -81,14 +103,14 @@
           "after": "../identity/agent-avatar.js"
         }
       ],
-      "destinationSha256": "93a603adc4ae39887c8940698d2178b8a5afd3a13498626e1bf434de7b80949d",
+      "destinationSha256": "a5f19c917cc7204b620e0753592c3b5bcc58f6aef30582a37e0da0e0fbe9461b",
       "layoutAdaptations": [],
       "layoutSha256": "02970dd0a153ad3a549202f0e4c2c594bf93db2b70464c9d1f33d85d8e994c4b"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/sessions/AiSessionFilters.svelte",
-      "destination": "packages/agent-ui/src/sessions/AiSessionFilters.svelte",
+      "destination": "packages/agent-ui/src/sessions/session-filters/AiSessionFilters.svelte",
       "sourceSha256": "374fa3a5fc9795e39d9f862400d2d4cf3691c3304a756a3cafc9389e2fd3526c",
       "adaptations": [
         {
@@ -96,14 +118,14 @@
           "after": "./model.js"
         }
       ],
-      "destinationSha256": "d710572b9fefbe4688fee7f1febfbd951d4436d8122e082e30ef24c0ee07edf5",
+      "destinationSha256": "d80abc5369f0e8cddaf833ebf2cfcac39590d2f0720699d84bf4876713ecfd1a",
       "layoutAdaptations": [],
       "layoutSha256": "4881f502da0e503c05736a6af572a0f84192611db781ae039a7925533f315e20"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/sessions/AiSessionSearch.svelte",
-      "destination": "packages/agent-ui/src/sessions/AiSessionSearch.svelte",
+      "destination": "packages/agent-ui/src/sessions/session-search/AiSessionSearch.svelte",
       "sourceSha256": "019e1377b4d3ee54287b68efd98e8ce4ac28b325f6fb49ac6e972e1173a6bbec",
       "adaptations": [],
       "destinationSha256": "019e1377b4d3ee54287b68efd98e8ce4ac28b325f6fb49ac6e972e1173a6bbec",
@@ -113,17 +135,17 @@
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/sessions/AiSessionTabs.svelte",
-      "destination": "packages/agent-ui/src/sessions/AiSessionTabs.svelte",
+      "destination": "packages/agent-ui/src/sessions/session-tabs/AiSessionTabs.svelte",
       "sourceSha256": "308a65b09e4f760cf7666f6084a174cfa07b8d400e9f0e0c15a6a2613b2af7bb",
       "adaptations": [],
-      "destinationSha256": "308a65b09e4f760cf7666f6084a174cfa07b8d400e9f0e0c15a6a2613b2af7bb",
+      "destinationSha256": "296aa2c96fa5473bd958186cf857c849c9e65299c321af79bf3e850bdc15c965",
       "layoutAdaptations": [],
       "layoutSha256": "16a03983e2d1b1b9a986d411aeff4f99d06c08b16ae7a4f1ac3d7275e15da03e"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/sessions/AiSessionMenu.svelte",
-      "destination": "packages/agent-ui/src/sessions/AiSessionMenu.svelte",
+      "destination": "packages/agent-ui/src/sessions/session-menu/AiSessionMenu.svelte",
       "sourceSha256": "aff6dbe8c10b8fb5be90b57be1bbf760e64a476542169e3f87185ac0bd597cc4",
       "adaptations": [],
       "destinationSha256": "aff6dbe8c10b8fb5be90b57be1bbf760e64a476542169e3f87185ac0bd597cc4",
@@ -133,7 +155,7 @@
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/sessions/AiSessionToggleIcon.svelte",
-      "destination": "packages/agent-ui/src/sessions/AiSessionToggleIcon.svelte",
+      "destination": "packages/agent-ui/src/sessions/session-toggle-icon/AiSessionToggleIcon.svelte",
       "sourceSha256": "7fb6c6be9bd80cc445b40f617beed1fb208831811c13f36469aa64b30817ec76",
       "adaptations": [],
       "destinationSha256": "7fb6c6be9bd80cc445b40f617beed1fb208831811c13f36469aa64b30817ec76",
@@ -143,7 +165,7 @@
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/sessions/TranscriptViewToggle.svelte",
-      "destination": "packages/agent-ui/src/sessions/TranscriptViewToggle.svelte",
+      "destination": "packages/agent-ui/src/sessions/transcript-view-toggle/TranscriptViewToggle.svelte",
       "sourceSha256": "3259fa55e4ed28293431d31580fdfb05f41ad9fcab449bbaaf2a36eb25ade135",
       "adaptations": [],
       "destinationSha256": "3259fa55e4ed28293431d31580fdfb05f41ad9fcab449bbaaf2a36eb25ade135",
@@ -230,17 +252,26 @@
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/AiTranscriptToolInspector.svelte",
-      "destination": "packages/agent-ui/src/chat/AiTranscriptToolInspector.svelte",
+      "destination": "packages/agent-ui/src/chat/transcript-tool-inspector/AiTranscriptToolInspector.svelte",
       "sourceSha256": "73cf0dcd555adabd73478526780135b55bcd5efc5c23b4a79b09faf42bc56b6c",
       "adaptations": [],
-      "destinationSha256": "73cf0dcd555adabd73478526780135b55bcd5efc5c23b4a79b09faf42bc56b6c",
-      "layoutAdaptations": [],
-      "layoutSha256": "6962249d264d812e0e8c5ef1632e5ae442bf4f7a87fbc74d8c8fbd0b06482653"
+      "destinationSha256": "672c6b46bed3a262dbac3ea3ca48a223705f028c59059b05375f5d8cf3649e9a",
+      "layoutAdaptations": [
+        {
+          "before": "padding: 1rem 2rem;",
+          "after": "padding: var(--ui-agent-inspector-padding, 1rem 2rem);"
+        },
+        {
+          "before": "font-size: 0.8125rem;",
+          "after": "font-size: var(--ui-agent-inspector-title-size, 0.8125rem);"
+        }
+      ],
+      "layoutSha256": "3ffd8ee1595fe627b7e71ac76b46fa69451a824a684a9a4c7d05a20e56fcdc57"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/AiTranscriptEmpty.svelte",
-      "destination": "packages/agent-ui/src/chat/AiTranscriptEmpty.svelte",
+      "destination": "packages/agent-ui/src/chat/transcript-empty/AiTranscriptEmpty.svelte",
       "sourceSha256": "da34f44a5c91340cd7a5f8bebb26ef20ef3377317f03b868a48a0e9568d85e9b",
       "adaptations": [],
       "destinationSha256": "da34f44a5c91340cd7a5f8bebb26ef20ef3377317f03b868a48a0e9568d85e9b",
@@ -250,7 +281,7 @@
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/AiTranscriptLoading.svelte",
-      "destination": "packages/agent-ui/src/chat/AiTranscriptLoading.svelte",
+      "destination": "packages/agent-ui/src/chat/transcript-loading/AiTranscriptLoading.svelte",
       "sourceSha256": "ae15b8c455751870cad0a3cf61230520862562f147c07bb1a121adc0a586b20d",
       "adaptations": [],
       "destinationSha256": "ae15b8c455751870cad0a3cf61230520862562f147c07bb1a121adc0a586b20d",
@@ -260,7 +291,7 @@
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/VaultPathLabel.svelte",
-      "destination": "packages/agent-ui/src/chat/VaultPathLabel.svelte",
+      "destination": "packages/agent-ui/src/chat/vault-path-label/VaultPathLabel.svelte",
       "sourceSha256": "785d624a3204264ff38b03003d2970f773df697d10343315bb8109742e6f7a73",
       "adaptations": [],
       "destinationSha256": "785d624a3204264ff38b03003d2970f773df697d10343315bb8109742e6f7a73",
@@ -270,7 +301,7 @@
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/ChatMentionPreference.svelte",
-      "destination": "packages/agent-ui/src/chat/ChatMentionPreference.svelte",
+      "destination": "packages/agent-ui/src/chat/mention-preference/ChatMentionPreference.svelte",
       "sourceSha256": "0f4b7fb0314279c06605180a138d867245a4f20d0a5c6ae3522cc48f51f10083",
       "adaptations": [],
       "destinationSha256": "0f4b7fb0314279c06605180a138d867245a4f20d0a5c6ae3522cc48f51f10083",
@@ -290,7 +321,7 @@
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/ChatMentionButton.svelte",
-      "destination": "packages/agent-ui/src/chat/ChatMentionButton.svelte",
+      "destination": "packages/agent-ui/src/chat/mention-button/ChatMentionButton.svelte",
       "sourceSha256": "1a98ad99713810d96ee3e3dcf36a7d8db1975257d05317524b2552ecaf0ff814",
       "adaptations": [
         {
@@ -298,14 +329,14 @@
           "after": "./presentation.js"
         }
       ],
-      "destinationSha256": "cf89b64aeb1756af7dbc543510ffd54f3df27da20bc97216150dadadd0457037",
+      "destinationSha256": "bf63cd54b677b197cf5ea2b8988cdd1b6fc156d4c9b53f7c0923e3b017728890",
       "layoutAdaptations": [],
       "layoutSha256": "8c41e48d1a6fe62a287dd572024686fc57ed88a9831eb5f8840323931bce00c2"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/ChatPeopleOptions.svelte",
-      "destination": "packages/agent-ui/src/chat/ChatPeopleOptions.svelte",
+      "destination": "packages/agent-ui/src/chat/people-options/ChatPeopleOptions.svelte",
       "sourceSha256": "a7ce0e414cd437fd90c78c080b23ebc4ee95a4e72f4c2363e40a06a3e5b43d70",
       "adaptations": [
         {
@@ -313,14 +344,14 @@
           "after": "./presentation.js"
         }
       ],
-      "destinationSha256": "a2982d6f43e9cdeb3cfacdf5d4ed7dee5a91f04cae0dbcab0819c620fb53717d",
+      "destinationSha256": "dffffbc50ef02449f0f7586c1aa7e80693e07343fece0d55123504823938d865",
       "layoutAdaptations": [],
       "layoutSha256": "af36b07166d08bf9c67a667a75f16350abe4204398925a86c9b46a4bc6621278"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/ChatAgentOptions.svelte",
-      "destination": "packages/agent-ui/src/chat/ChatAgentOptions.svelte",
+      "destination": "packages/agent-ui/src/chat/agent-options/ChatAgentOptions.svelte",
       "sourceSha256": "500bcdfda093e09b764f565af85df0e5364e7fb32bb9b0361a6a54f32a72aaf1",
       "adaptations": [
         {
@@ -328,14 +359,14 @@
           "after": "./presentation.js"
         }
       ],
-      "destinationSha256": "4140f7f112b53da5d36f883b82f9e79fdc4705a23ff4c0abed926340913be481",
+      "destinationSha256": "8660483be0dde3874b493640829603aef18173a585ae6471ee97107c9d84bb7c",
       "layoutAdaptations": [],
       "layoutSha256": "77e418a4029f437df85114cc830c3f8606be1d0282c86b1d0bc84287349a7af2"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/ChatAttachedFiles.svelte",
-      "destination": "packages/agent-ui/src/chat/ChatAttachedFiles.svelte",
+      "destination": "packages/agent-ui/src/chat/attached-files/ChatAttachedFiles.svelte",
       "sourceSha256": "16cd87d4e63f7d0df25271f97e7206e707360ac81a21fe4cd2d7cc458843ac94",
       "adaptations": [
         {
@@ -343,14 +374,14 @@
           "after": "./presentation.js"
         }
       ],
-      "destinationSha256": "d09dbce3a811168b23e844d3e465fab6f3284881cb68237b9b150543714f5537",
+      "destinationSha256": "85fb06736d935ff0a576423f0107a983e3e5f2c16a1147e530cba19b541d6b51",
       "layoutAdaptations": [],
       "layoutSha256": "7fd26b59e4369030cc24749e767589b1bf634a0688e2b75150cb0dc31a4a9105"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/ChatContextUsage.svelte",
-      "destination": "packages/agent-ui/src/chat/ChatContextUsage.svelte",
+      "destination": "packages/agent-ui/src/chat/context-usage/ChatContextUsage.svelte",
       "sourceSha256": "be6ca6dc2c393d0147e2a9b249181d724a6e69d5e782ba83e234b6746902399a",
       "adaptations": [
         {
@@ -358,14 +389,14 @@
           "after": "./presentation.js"
         }
       ],
-      "destinationSha256": "f65b7f671e64c494e9128828288678d37b626537bd9e6ded8d84ef3f0dab22ad",
+      "destinationSha256": "deaa76e893e46130bc83a8c1e2a9fb5f0e27ee538b15d6dc3824f256f0ecfe85",
       "layoutAdaptations": [],
       "layoutSha256": "71030fd6ab2011c23e5705746637fed5d61019e217fc0156af0e00c3b2aa7bc0"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/AiTranscriptFooter.svelte",
-      "destination": "packages/agent-ui/src/chat/AiTranscriptFooter.svelte",
+      "destination": "packages/agent-ui/src/chat/transcript-footer/AiTranscriptFooter.svelte",
       "sourceSha256": "20c1f5c55bb8a0eebf99d3f36e962a2dcf44a71151727749fd33b0cedfb46b92",
       "adaptations": [
         {
@@ -373,14 +404,23 @@
           "after": "./presentation.js"
         }
       ],
-      "destinationSha256": "6ba08fdc842e9561f897020bc7365d8eb594eb7e6aa9ea1cd1d3bf4474e11a05",
-      "layoutAdaptations": [],
-      "layoutSha256": "57fdfb0cef92ffaff4dbd6a540d201dcb10e6649647c70a211f45d46def6a148"
+      "destinationSha256": "cfc36db9ff90addc3ef54b707fa3f4be98ae2a3396400fc8f75479cc9384a96b",
+      "layoutAdaptations": [
+        {
+          "before": "gap: 0.25rem;",
+          "after": "gap: var(--ui-agent-footer-controls-gap, 0.25rem);"
+        },
+        {
+          "before": "<TranscriptFooter\n",
+          "after": "<TranscriptFooter\n  style=\"--ui-transcript-footer-padding:var(--ui-agent-footer-padding,0);--ui-transcript-footer-gap:var(--ui-agent-footer-gap,0.25rem)\"\n"
+        }
+      ],
+      "layoutSha256": "e4001c627890abc78fe573ba5cea6b1c17153fd1fb0046a158d388b81f229a15"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/ChatComposerOptions.svelte",
-      "destination": "packages/agent-ui/src/chat/ChatComposerOptions.svelte",
+      "destination": "packages/agent-ui/src/chat/composer-options/ChatComposerOptions.svelte",
       "sourceSha256": "a2e55e50d4a7a22b133d8ff010b576c19addbbb34fc3bf8910c973a006d7a2da",
       "adaptations": [
         {
@@ -392,14 +432,14 @@
           "after": "./presentation.js"
         }
       ],
-      "destinationSha256": "aa6318b6529e9fe09b2dcf7fe17ebc181a6ecd4a4619119e107189392c9c9506",
+      "destinationSha256": "7de6a690493cb7ac9b98a3afdb754524baf776c0bd9e4fc59568988fe0dd5582",
       "layoutAdaptations": [],
       "layoutSha256": "88b712f411724de9378b6466d4a5092b3791c4841905c60afc38f61c82b6274c"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/ChatAgentPicker.svelte",
-      "destination": "packages/agent-ui/src/chat/ChatAgentPicker.svelte",
+      "destination": "packages/agent-ui/src/chat/agent-picker/ChatAgentPicker.svelte",
       "sourceSha256": "d5e004a6a33a744dab2526b91df8789dbf4d3d89bdf5a7a713cc38ad0120c87d",
       "adaptations": [
         {
@@ -407,14 +447,14 @@
           "after": "./presentation.js"
         }
       ],
-      "destinationSha256": "0aecb7d0b962d330c580781080b2dff51a2d939e36f3df4fbdcddebc89e97d09",
+      "destinationSha256": "0c49d4772025b12dd7b91d1005b8f83aad42b328b947f4956e5e1a3b6be07320",
       "layoutAdaptations": [],
       "layoutSha256": "86e1c1cd18f512a5a25a3acb12fcc0552a64a38be1104b3a85d844996c721b8a"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/ChatScopeFooter.svelte",
-      "destination": "packages/agent-ui/src/chat/ChatScopeFooter.svelte",
+      "destination": "packages/agent-ui/src/chat/scope-footer/ChatScopeFooter.svelte",
       "sourceSha256": "da4ef2aa2a1d28d1ad5e7ce2e30a038ba2d3d2a9c62aefdc67cba692a4e32d88",
       "adaptations": [
         {
@@ -438,14 +478,14 @@
           "after": "./presentation.js"
         }
       ],
-      "destinationSha256": "8dd9fd219fa71cecf5a8db1fc29166b593a328c798c617879040097db8682d0a",
+      "destinationSha256": "c8797c0a85e850a6832e5b9fd68d00d8afbec2ffa2cb9d121a63f571d964b845",
       "layoutAdaptations": [],
       "layoutSha256": "4c1e62b2bf1b05448df9dbca1aac2c9c9a0c14332ee2d1fd77bb1095e1a861e3"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/ChatComposerActions.svelte",
-      "destination": "packages/agent-ui/src/chat/ChatComposerActions.svelte",
+      "destination": "packages/agent-ui/src/chat/composer-actions/ChatComposerActions.svelte",
       "sourceSha256": "c8b98de892ec7b2ac9fd6f7c4cc3c6293c5b70606a40c444dcc03ce4cd04f926",
       "adaptations": [
         {
@@ -469,14 +509,14 @@
           "after": "./presentation.js"
         }
       ],
-      "destinationSha256": "6e22e8747fe83bea17d1f4f72a57e7354748a58514973c0d1503ef190b2276bc",
+      "destinationSha256": "7080fad6c114991190f56723eaffcfd599bb017933d582468f75635807f13327",
       "layoutAdaptations": [],
       "layoutSha256": "cba9c166c8863441a2b178c68e0132612a7d2a8e01e33e0e3445f418d3ab3b14"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/ChatApprovalPolicy.svelte",
-      "destination": "packages/agent-ui/src/chat/ChatApprovalPolicy.svelte",
+      "destination": "packages/agent-ui/src/chat/approval-policy/ChatApprovalPolicy.svelte",
       "sourceSha256": "fb550fc8c2648e98199dcd3a22910225b7cfc35fb2b2c9c11dcac405beaf2676",
       "adaptations": [
         {
@@ -500,14 +540,14 @@
           "after": "panelProps.onError?.(error instanceof Error ? error : new Error(String(error)));"
         }
       ],
-      "destinationSha256": "40bfe76da8c67071dfda0ed802da8c456ac22d4fc3037653cfac0cdb0cc7af09",
+      "destinationSha256": "919f0a3bee5ceb4ce076a32ef0cc3f201b1950feb5ecfec8acdb4e50404915be",
       "layoutAdaptations": [],
       "layoutSha256": "5cb73ad59a6d9729bff8bae23faf1a5d29dac2e2f67f4cbba5dc3a3d7e955c6f"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/ChatMessageComposer.svelte",
-      "destination": "packages/agent-ui/src/chat/ChatMessageComposer.svelte",
+      "destination": "packages/agent-ui/src/chat/message-composer/ChatMessageComposer.svelte",
       "sourceSha256": "e512904d16a9c9a68fd212d7a5279f1e013a693a6e0fd75f903289ec9823f065",
       "adaptations": [
         {
@@ -543,19 +583,27 @@
           "after": "    {extensions}"
         }
       ],
-      "destinationSha256": "d84f29b14363d25194cab8bfc16c81e4ce39cedf3d35ce6d3bee6f79362e67da",
+      "destinationSha256": "9e5dcbb66b724ebb2f25e6dca08d50149c70ff21099db0acc00c4106b9d57eca",
       "layoutAdaptations": [
         {
           "before": "extensions={[references]}",
           "after": "{extensions}"
+        },
+        {
+          "before": "--ui-markdown-composer-min-height: calc(2 * 1.4rem + 1rem);",
+          "after": "--ui-markdown-composer-min-height: var(--ui-agent-composer-min-height, calc(2 * 1.4rem + 1rem));"
+        },
+        {
+          "before": "--ui-markdown-composer-document-min-height: calc(2 * 0.875rem * 1.65);",
+          "after": "--ui-markdown-composer-document-min-height: var(--ui-agent-composer-document-min-height, calc(2 * 0.875rem * 1.65));"
         }
       ],
-      "layoutSha256": "ce2e54435018d07e829501b79a604ea0beb9eb42654e5cf8b10e0e01bd8ebc78"
+      "layoutSha256": "7e006d3c96aaee678c8ec8aac5b3a66bf67b65642eeda1f0fecc1e928c891057"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/AiTranscriptSendHint.svelte",
-      "destination": "packages/agent-ui/src/chat/AiTranscriptSendHint.svelte",
+      "destination": "packages/agent-ui/src/chat/transcript-send-hint/AiTranscriptSendHint.svelte",
       "sourceSha256": "b44c43763bbf2e3941920e45971460d87a051516157014471ec6fba7f535185c",
       "adaptations": [
         {
@@ -575,14 +623,23 @@
           "after": "const { composerState }"
         }
       ],
-      "destinationSha256": "5b8aacd1f4f04ceb3a128132ea19288d364eca84166f3e8578e2f4cf22f167d7",
-      "layoutAdaptations": [],
-      "layoutSha256": "ae3e0d66bfcff388ecbcb36b14e92962f14332b1467ed7e4bf5214fb769a17b2"
+      "destinationSha256": "38855b25f1446b21d0d259290b84eba46b6368dce91e99830da34f320a15768f",
+      "layoutAdaptations": [
+        {
+          "before": "font-size: 0.6875rem;",
+          "after": "font-size: var(--ui-agent-send-hint-size, 0.6875rem);"
+        },
+        {
+          "before": "padding: 0.25rem 0.5rem;",
+          "after": "padding: var(--ui-agent-send-hint-padding, 0.25rem 0.5rem);"
+        }
+      ],
+      "layoutSha256": "2a0bfb1c00356b8dda2e3b0a59c3e62b9deab4a59217137feb8a2baa4b500ff4"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/sessions/AiChatSession.svelte",
-      "destination": "packages/agent-ui/src/sessions/AiChatSession.svelte",
+      "destination": "packages/agent-ui/src/sessions/chat-session/AiChatSession.svelte",
       "sourceSha256": "2a2a7875dab2007eb64d3c5e598a28e5f532cc0de88d9275555d71c9aaa3f16a",
       "adaptations": [
         {
@@ -590,7 +647,7 @@
           "after": "{title}"
         },
         {
-          "before": "status={`${agent} · ${composerState.selectedModel || \"Automatic model\"} · ${panel.conversationsState.scopePathLabel}`}",
+          "before": "status={`${agent} \u00b7 ${composerState.selectedModel || \"Automatic model\"} \u00b7 ${panel.conversationsState.scopePathLabel}`}",
           "after": "{status}"
         },
         {
@@ -630,14 +687,14 @@
           "after": "{items.length}"
         }
       ],
-      "destinationSha256": "45bbe54accc364d3550265e998852d79e0a1ef6192d7982337543dcf8cc35cc2",
+      "destinationSha256": "9597708a4f5480d6ce131f70d911fae6695f8b4024e09defd3ca5aba5d58a929",
       "layoutAdaptations": [
         {
           "before": "title={current?.metadata?.title ?? \"New conversation\"}",
           "after": "{title}"
         },
         {
-          "before": "status={`${agent} · ${composerState.selectedModel || \"Automatic model\"} · ${panel.conversationsState.scopePathLabel}`}",
+          "before": "status={`${agent} \u00b7 ${composerState.selectedModel || \"Automatic model\"} \u00b7 ${panel.conversationsState.scopePathLabel}`}",
           "after": "{status}"
         },
         {
@@ -682,7 +739,7 @@
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/AiApprovalCard.svelte",
-      "destination": "packages/agent-ui/src/chat/AiApprovalCard.svelte",
+      "destination": "packages/agent-ui/src/chat/approval-card/AiApprovalCard.svelte",
       "sourceSha256": "2f089308a557a2a538c59c1816d1a172d290a6bfc5c56e005987de548cb81e64",
       "adaptations": [
         {
@@ -690,14 +747,14 @@
           "after": "./requests.js"
         }
       ],
-      "destinationSha256": "45619d78f1fc5906ee5844535cdbb8cf0ed6000c07e0000c854eeb066e494891",
+      "destinationSha256": "d927804685f3e85607b3cbafc286bcd109f7cbbcb2fa7df927e50ed4104ae7dc",
       "layoutAdaptations": [],
       "layoutSha256": "4283212baea085d27042b91aab301a39b876a123114ea8c714fdc89a975381d5"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/AiQuestionCard.svelte",
-      "destination": "packages/agent-ui/src/chat/AiQuestionCard.svelte",
+      "destination": "packages/agent-ui/src/chat/question-card/AiQuestionCard.svelte",
       "sourceSha256": "881185b44da79de92f73704f44795756b999d87456aab1f8b98a7ab8cf5fc4c4",
       "adaptations": [
         {
@@ -705,7 +762,7 @@
           "after": "./requests.js"
         }
       ],
-      "destinationSha256": "9b7e0ffa05a95bc6bd81205c7cfd4583819662d7da2366608129b4471fcfe5e8",
+      "destinationSha256": "bef088c8c2342ac747c490a5ba287fcb76b4631c940c8f3e9ef3e87479da6efe",
       "layoutAdaptations": [],
       "layoutSha256": "29876294f7b9f8350d46af29947b8d9cb0fa6b1557610d747efbad5d9f85fe83"
     },
@@ -715,14 +772,23 @@
       "destination": "packages/agent-ui/src/chat/requests.css",
       "sourceSha256": "7a8d5795737b3ca9a554a8ed7a173f3f677c953cd98db27dfb5e406ca09aff76",
       "adaptations": [],
-      "destinationSha256": "7a8d5795737b3ca9a554a8ed7a173f3f677c953cd98db27dfb5e406ca09aff76",
-      "layoutAdaptations": [],
-      "layoutSha256": "df3ac5a434089ef378c54d383c7bacbeb8b7595c2659037a860be44810a7b7ca"
+      "destinationSha256": "123429e48cb039ec33eed493dac49b74866f3ab30d50013809f97308687da2e5",
+      "layoutAdaptations": [
+        {
+          "before": "gap: var(--ui-ai-request-gap);",
+          "after": "gap: var(--ui-agent-request-gap, var(--ui-ai-request-gap, 0.5rem));"
+        },
+        {
+          "before": "font-size: 0.875rem;",
+          "after": "font-size: var(--ui-agent-request-title-size, 0.875rem);"
+        }
+      ],
+      "layoutSha256": "e2d568787c61ebd2f0966be2d3dea06c1d0d030fdf7bec0b508cc0abf93f93f9"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/ChatComposerDrawer.svelte",
-      "destination": "packages/agent-ui/src/chat/ChatComposerDrawer.svelte",
+      "destination": "packages/agent-ui/src/chat/composer-drawer/ChatComposerDrawer.svelte",
       "sourceSha256": "79d9f5f4c68dc1ba3bfdc8962e7cb62b65f30c5709224470bac413e757075ed8",
       "adaptations": [
         {
@@ -738,74 +804,83 @@
           "after": "./presentation.js"
         }
       ],
-      "destinationSha256": "c5c2f93133ebdebcc9988ce878e1c7be0f82c9f4fb14f470d58171b8ef740e04",
-      "layoutAdaptations": [],
-      "layoutSha256": "b03f72355d3a7a824972867e1344782a1eb182958bbbea59c2c033376c66a1ac"
+      "destinationSha256": "1d386aa1790f7bbeda94b028c6898c1b57cb9a9d434e2257c38803d66a17be9c",
+      "layoutAdaptations": [
+        {
+          "before": "margin-inline-start: 2rem;",
+          "after": "margin-inline-start: var(--ui-agent-drawer-document-inset, 2rem);"
+        },
+        {
+          "before": "gap: 0.375rem;",
+          "after": "gap: var(--ui-agent-drawer-gap, 0.375rem);"
+        }
+      ],
+      "layoutSha256": "412cdbb9f165684f3bceb68fa5d4295a0445ea782d8823ae7f73c331a5cb2ad7"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/agents/AgentApprovalPolicySelect.svelte",
-      "destination": "packages/agent-ui/src/chat/agents/AgentApprovalPolicySelect.svelte",
+      "destination": "packages/agent-ui/src/chat/agents/approval-policy-select/AgentApprovalPolicySelect.svelte",
       "sourceSha256": "373b637130d760f456cac0983652f97814e36554c1eec68e8e569993eab741c9",
       "adaptations": [],
-      "destinationSha256": "514585f642e784183e6b15bb06e5152966ca9181fb288d87ba6165e6a982d072",
+      "destinationSha256": "daf9d26e28d7c4bc09111f9b4f72f24821580fad35d5f606266d027fdb8f7f7b",
       "layoutAdaptations": [],
       "layoutSha256": "795eae31359370e9859e501387261d1f69ca366a180935747b0480a5265b5c94"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/agents/AgentExecutionModeSelect.svelte",
-      "destination": "packages/agent-ui/src/chat/agents/AgentExecutionModeSelect.svelte",
+      "destination": "packages/agent-ui/src/chat/agents/execution-mode-select/AgentExecutionModeSelect.svelte",
       "sourceSha256": "059f819e29510b5eb9c2f14588a7f62a00daaa74d52d933174e3c94d1ef8db97",
       "adaptations": [],
-      "destinationSha256": "9c4f4a511453b394ecbc6a34635acba61eb36345912aac94305544f366f796a1",
+      "destinationSha256": "d8e34ad85a4c4a20e6da60c22f35c6b7a6825beeca00963ffac2ef633a8dd7e6",
       "layoutAdaptations": [],
       "layoutSha256": "a04c44f7974127f5254170f403184b3358d2c9413b65ff5490296ec0c890bcf6"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/agents/AgentIdentityFields.svelte",
-      "destination": "packages/agent-ui/src/chat/agents/AgentIdentityFields.svelte",
+      "destination": "packages/agent-ui/src/chat/agents/identity-fields/AgentIdentityFields.svelte",
       "sourceSha256": "9e860b83f4224962ef2b8fdb14069c833e60bf93e410ec6bebef4971c20650b5",
       "adaptations": [],
-      "destinationSha256": "f04e2605010523aef629ea1c943e46eb852531f28f00c8979b8ff20a2a0fbe3a",
+      "destinationSha256": "053cd074aa83ca532f1665207607d2609223ef4f88bd3ad4493296a6bc06c2b8",
       "layoutAdaptations": [],
       "layoutSha256": "ff1c003c1cfce531d13b7edc5bca50c6f78675fa0ad54cc3f543783faf8f4f42"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/agents/AgentProviderFields.svelte",
-      "destination": "packages/agent-ui/src/chat/agents/AgentProviderFields.svelte",
+      "destination": "packages/agent-ui/src/chat/agents/provider-fields/AgentProviderFields.svelte",
       "sourceSha256": "bcc194f7cc3598c7c0ed0c65355e9bd690d9decd0f68495ef62469a9010d0bdb",
       "adaptations": [],
-      "destinationSha256": "2d3bd051d519176ecf1a363c34bbb50fcc10a36f58c22e9ad2f54a69caf4ce8f",
+      "destinationSha256": "75b4db0a0366eb3ac54a76be766a084cd4af67d129ddfb3fbd53f1cce13635d3",
       "layoutAdaptations": [],
       "layoutSha256": "1a0fe4a80b8846eeb9cf3ae27c8a4db14256175759abae54c14ab679a95b4e14"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/agents/ChatAgentConfiguration.svelte",
-      "destination": "packages/agent-ui/src/chat/agents/ChatAgentConfiguration.svelte",
+      "destination": "packages/agent-ui/src/chat/agents/agent-configuration/ChatAgentConfiguration.svelte",
       "sourceSha256": "d132907453b7d7913672cf1ab6d72af44ca68366ceeed70a5d09af0f2012b1ef",
       "adaptations": [],
-      "destinationSha256": "660519727b322333c1256d699b9ccd63e8a9627dc9fe5780df9cae04e154113d",
+      "destinationSha256": "e065baa21dd0f16208c7f5ccb4b0b0aa778f2dcfbc6583641af78150dcd66d1c",
       "layoutAdaptations": [],
       "layoutSha256": "839d0512dc43af0af9c53df0644bbdf4d1ccbb338c9334c03ea28b61167fa2b2"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/agents/ChatAgentHarnessSelect.svelte",
-      "destination": "packages/agent-ui/src/chat/agents/ChatAgentHarnessSelect.svelte",
+      "destination": "packages/agent-ui/src/chat/agents/agent-harness-select/ChatAgentHarnessSelect.svelte",
       "sourceSha256": "7e9f31545fa4ce7ea3f98eca56b389464677218060d515e6a51116ff8e126ba9",
       "adaptations": [],
-      "destinationSha256": "7e9f31545fa4ce7ea3f98eca56b389464677218060d515e6a51116ff8e126ba9",
+      "destinationSha256": "ed08564bc30ff3346b9389241d7be0e0297ed8eab55e0a7fad71596f6aac8324",
       "layoutAdaptations": [],
       "layoutSha256": "0ab0ae5abcba62dcc0c0e7af49a94d21f68e579babe6225bea875f3f235bdf70"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/agents/ChatAgentIcon.svelte",
-      "destination": "packages/agent-ui/src/chat/agents/ChatAgentIcon.svelte",
+      "destination": "packages/agent-ui/src/chat/agents/agent-icon/ChatAgentIcon.svelte",
       "sourceSha256": "20c82e0681fe16a9ea207019ddc5e385900fbbe6c76b1b16957342cf53306c65",
       "adaptations": [],
       "destinationSha256": "20c82e0681fe16a9ea207019ddc5e385900fbbe6c76b1b16957342cf53306c65",
@@ -815,7 +890,7 @@
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/agents/ChatAgentModelSelect.svelte",
-      "destination": "packages/agent-ui/src/chat/agents/ChatAgentModelSelect.svelte",
+      "destination": "packages/agent-ui/src/chat/agents/agent-model-select/ChatAgentModelSelect.svelte",
       "sourceSha256": "39db51a99a47204b5444fcaf583de0b92a7113451dcc21182ece2679bd1d4a32",
       "adaptations": [],
       "destinationSha256": "39db51a99a47204b5444fcaf583de0b92a7113451dcc21182ece2679bd1d4a32",
@@ -833,60 +908,60 @@
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/ChatParticipantDialog.svelte",
-      "destination": "packages/agent-ui/src/chat/ChatParticipantDialog.svelte",
+      "destination": "packages/agent-ui/src/chat/participant-dialog/ChatParticipantDialog.svelte",
       "sourceSha256": "3db3c46bf4e50e95022088d9a1a8768991adc32408112f329401da2d90776448",
       "adaptations": [],
-      "destinationSha256": "58b84c711f14d6c977e413d953b2d02cc3d6f64945da8427cfec317f37e4c00c",
+      "destinationSha256": "4377ce4163260759b40a46d0c545b03fa02bae560442d8fd7bcb8cd63f640693",
       "layoutAdaptations": [],
       "layoutSha256": "3717d2b949636ff606829972ae41046df573faa9937eeb70530d3b8334590913"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/ChatAgentSelector.svelte",
-      "destination": "packages/agent-ui/src/chat/ChatAgentSelector.svelte",
+      "destination": "packages/agent-ui/src/chat/agent-selector/ChatAgentSelector.svelte",
       "sourceSha256": "7e8d3f6f478dca8d00a3593def35f0e87d8483e145f5a3fed7de3d255a7fbea6",
       "adaptations": [],
-      "destinationSha256": "6801faf3879f6afc25e44a79dda5b85a64fc5571cde5ed1087ed5075e3ba7303",
+      "destinationSha256": "85f559066e198458e153d32831f2ab8ff092cccbdd097aca222e58ee1af4795e",
       "layoutAdaptations": [],
       "layoutSha256": "ea1c57341118bfb8b70895b898727874eae60e71f0cd869d8ee8d60606c7b044"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/history/AiHistoryPanel.svelte",
-      "destination": "packages/agent-ui/src/history/AiHistoryPanel.svelte",
+      "destination": "packages/agent-ui/src/history/history-panel/AiHistoryPanel.svelte",
       "sourceSha256": "1a3712d5c6e0bac67444f0fc8efd5c208b7f0d5ed87a0cfaddfc6027dc4fbd4f",
       "adaptations": [],
-      "destinationSha256": "5e40e546ab7ab474b05c45aed70c0ae11a2c3ef2f142a91a068830ba8c5d33bc",
+      "destinationSha256": "6dbfd03d26b289a9ff6b7bdf50d25fa76c1bf089535a2d990f82228900b17e77",
       "layoutAdaptations": [],
       "layoutSha256": "8c0d6393cc3a110a15471be5c676749b63fc22f58d9167256f579a345f4f283e"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/history/HistoryToolbar.svelte",
-      "destination": "packages/agent-ui/src/history/HistoryToolbar.svelte",
+      "destination": "packages/agent-ui/src/history/history-toolbar/HistoryToolbar.svelte",
       "sourceSha256": "d1e57943af9883b89a2c26966f80e9ecf0514d83da59d380f960f6392abc7839",
       "adaptations": [],
-      "destinationSha256": "91c1c171c6adaf8449da36237398cacc1e227b8641977f1f859eff1e733b2191",
+      "destinationSha256": "d5f1d25ba9ff7ba0040ef172e0c21525d77c65757ced661826fcca2745717ffc",
       "layoutAdaptations": [],
       "layoutSha256": "a7d12d2f4d97a210769bdaefc5624c727778a2a22c040577d8bfa64cf4f5411c"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/history/HistoryFolder.svelte",
-      "destination": "packages/agent-ui/src/history/HistoryFolder.svelte",
+      "destination": "packages/agent-ui/src/history/history-folder/HistoryFolder.svelte",
       "sourceSha256": "842e175ab13bc938dcd0210d01146b6b488cabc4af3680c2fbf34093ec0b422c",
       "adaptations": [],
-      "destinationSha256": "6bb4c35a5747c7d7213548a03b1e3862a8ebfe01b77436e35b6cd02978dbc9fc",
+      "destinationSha256": "c49ef77a0066d33194cd7b16e4e9c9f4908092814e321a785cd660f876bc8d41",
       "layoutAdaptations": [],
       "layoutSha256": "26d6f4a8e5986908e8fa9aa4f3b86c630a11db23c2d1885538122e61b6682e3d"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/history/HistoryConversation.svelte",
-      "destination": "packages/agent-ui/src/history/HistoryConversation.svelte",
+      "destination": "packages/agent-ui/src/history/history-conversation/HistoryConversation.svelte",
       "sourceSha256": "e10bd900e6497fabda8e1e301d37e326c4688b969fb6d8f98313eabd39989857",
       "adaptations": [],
-      "destinationSha256": "a64eb5beb8af6cc0a9a84a62713b89bc21b1f33a6a990925399f3bfc9acb4f15",
+      "destinationSha256": "356d5e22f07708511d138ccc7ffcb6800bfb537772557401fd53ba9e4bfcea53",
       "layoutAdaptations": [],
       "layoutSha256": "6a39a21baaf81364fd7666da9b063673ec90c71a3f090ec43f1d6a721fda5d8d"
     },
@@ -896,9 +971,18 @@
       "destination": "packages/agent-ui/src/history/panel.css",
       "sourceSha256": "185803eb8920b54b1eb22b009fbc9a7bf9ef3cae8167f5fb78c3f1fa76d05929",
       "adaptations": [],
-      "destinationSha256": "185803eb8920b54b1eb22b009fbc9a7bf9ef3cae8167f5fb78c3f1fa76d05929",
-      "layoutAdaptations": [],
-      "layoutSha256": "7c1a4d8922128badc01ad5497250f951f26641954990ba1d3faf08dfb6d98f91"
+      "destinationSha256": "b4728a526491e9354e5df18e230e73d1d37249fe7b13dca04ea2a99eedace330",
+      "layoutAdaptations": [
+        {
+          "before": "padding: 0 0.5rem 0.4rem;",
+          "after": "padding: var(--ui-agent-history-scope-padding, 0 0.5rem 0.4rem);"
+        },
+        {
+          "before": "--cv-search-filter-justify: center;",
+          "after": "--cv-search-filter-justify: var(--ui-agent-history-toolbar-align, center);"
+        }
+      ],
+      "layoutSha256": "f3a3ba53c253bcb1f2f0cb87a57e76f92b55cbf401220159b5a44e8f290a67a5"
     },
     {
       "sourceRepository": "lapis-desktop",
@@ -933,20 +1017,20 @@
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/catalog/CatalogSkill.svelte",
-      "destination": "packages/agent-ui/src/catalog/CatalogSkill.svelte",
+      "destination": "packages/agent-ui/src/catalog/catalog-skill/CatalogSkill.svelte",
       "sourceSha256": "7d0430cb0924aba28cd1529c5e78a0d9c072003f1a3b55465b4b6b61e2a4e8d9",
       "adaptations": [],
-      "destinationSha256": "2c88354c0c589698ad13ab6312cded7bfeb04b087534d36b7ee520f9798086ae",
+      "destinationSha256": "9587b433bcc670c44cd2e920d6740a07465ac08e7ab562dbb22695a842db3423",
       "layoutAdaptations": [],
       "layoutSha256": "08e7310ba9561acbf8242553d8c50950f68c0e83c736f4f053b315b1c7fad719"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/catalog/AiCatalogPanel.svelte",
-      "destination": "packages/agent-ui/src/catalog/AiCatalogPanel.svelte",
+      "destination": "packages/agent-ui/src/catalog/catalog-panel/AiCatalogPanel.svelte",
       "sourceSha256": "84bd6df360283635cbfc2fe1f81f6b2eb6cb93966c157d14a878a47e550804cd",
       "adaptations": [],
-      "destinationSha256": "39e64f46084dd66e55f97cf5a6e17ceae4d2a5e4884a4e3605488b11a7af7ed4",
+      "destinationSha256": "737c6d28cd8308e468e8dd96c50a88d2038d96862b7754536d5d90741a6dc1c1",
       "layoutAdaptations": [],
       "layoutSha256": "4870f1ea906a0eaf329a92f18b38bf147ee5c5b9b915612f0c9bc4052c06f944"
     },
@@ -961,10 +1045,10 @@
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/catalog/CatalogCommand.svelte",
-      "destination": "packages/agent-ui/src/catalog/CatalogCommand.svelte",
+      "destination": "packages/agent-ui/src/catalog/catalog-command/CatalogCommand.svelte",
       "sourceSha256": "72a5ea5b689af7649bd999f3a5d8bf1b8d0b9e2ef4897c1f416454be7497c8d0",
       "adaptations": [],
-      "destinationSha256": "41ae4e7bac6c16b067633c3019576feb29d4a0c56167e05125c0a675ee94bc0f",
+      "destinationSha256": "1df34099cd65badbaf7a18fed9f463c7782305248dde6d49557c68ce95d1f197",
       "layoutAdaptations": [],
       "layoutSha256": "c40f07cdac70b2e0e343075845a63e447ed3ef19bb74404a3a0dfd2ce4d61996"
     },
@@ -979,30 +1063,30 @@
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/catalog/CatalogKind.svelte",
-      "destination": "packages/agent-ui/src/catalog/CatalogKind.svelte",
+      "destination": "packages/agent-ui/src/catalog/catalog-kind/CatalogKind.svelte",
       "sourceSha256": "8938944ab15cbac8cfe2d5023ec67fa8bcdc7c59dc9b8937f193d44730729a8e",
       "adaptations": [],
-      "destinationSha256": "8bce0e53cc2301d554c429297211ccfbdd15c51efa990a43cabc8c71540655ea",
+      "destinationSha256": "b1c35392705dd70765c15982304b3d2d7f32815c885f2d17002e3a50db2cfb6a",
       "layoutAdaptations": [],
       "layoutSha256": "950416957548777d69efee1732392afaac49d694531ea096c51a7f57d2938365"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/catalog/CatalogToolbar.svelte",
-      "destination": "packages/agent-ui/src/catalog/CatalogToolbar.svelte",
+      "destination": "packages/agent-ui/src/catalog/catalog-toolbar/CatalogToolbar.svelte",
       "sourceSha256": "ef6375c22fc220e2562fc7ca30015c7880f470ca7f6b06e26f1ade638c843d34",
       "adaptations": [],
-      "destinationSha256": "d2a8514698e3cce704efd08a6f667bf1d529733117391e2359eaeb940d2790fb",
+      "destinationSha256": "609832298d8d9560ab3bceb7c3a645d7ba0fcfe9a6955fcad3d4b1b41feb438e",
       "layoutAdaptations": [],
       "layoutSha256": "c9da7f796a36af03a423d90c2f8ef2bbd38e38bb29f4b679100778b4199d71c4"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/catalog/CatalogOwner.svelte",
-      "destination": "packages/agent-ui/src/catalog/CatalogOwner.svelte",
+      "destination": "packages/agent-ui/src/catalog/catalog-owner/CatalogOwner.svelte",
       "sourceSha256": "93fcc9acf18ecd52c01d6190563c555a91a8f2911db9049080fe57f0159b8e1b",
       "adaptations": [],
-      "destinationSha256": "f395bc70b84bbf5746bda611ec756aee50e82e806b02c7efbd2c5ab6baeee615",
+      "destinationSha256": "a8b8df462b47ad1e69522fbb25c4c5fd82b77144d4e484e5bf7f1ead9c0aa458",
       "layoutAdaptations": [],
       "layoutSha256": "986dcb856e045fb7367b599ef36bd19e6d7b7d81843b1a3328fdce908df76b25"
     },
@@ -1012,17 +1096,22 @@
       "destination": "packages/agent-ui/src/catalog/panel.css",
       "sourceSha256": "8f1fc644c09d5f2e1c1a9907e6019a9f8b23080593d893e024c96a5701ab70d5",
       "adaptations": [],
-      "destinationSha256": "8f1fc644c09d5f2e1c1a9907e6019a9f8b23080593d893e024c96a5701ab70d5",
-      "layoutAdaptations": [],
-      "layoutSha256": "b967b7c9c98641ec22a1b931560e1c438a8d1443afa2f9bd56be4af2512094f0"
+      "destinationSha256": "94797656e7301db8f865f6048e6f7890c968fb3ad553d83e0ba59dfe6fd15f23",
+      "layoutAdaptations": [
+        {
+          "before": "--cv-search-filter-justify: center;",
+          "after": "--cv-search-filter-justify: var(--ui-agent-catalog-toolbar-align, center);"
+        }
+      ],
+      "layoutSha256": "e25fdfe1c6e98a83eaf3dc242091da89ab92feab982602c43ab031575c3f086a"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/catalog/CatalogTool.svelte",
-      "destination": "packages/agent-ui/src/catalog/CatalogTool.svelte",
+      "destination": "packages/agent-ui/src/catalog/catalog-tool/CatalogTool.svelte",
       "sourceSha256": "c810ea1bc0d897108dad44316754b912f38f845a2705668d7e2e24800eeb9f8d",
       "adaptations": [],
-      "destinationSha256": "9978e887be6656e491cc60f230241b0f62bd9e93f975b9cc5b07d969a004f3c4",
+      "destinationSha256": "f843887bfc7749114fab70939bd7d5ef0b1f8f0d999c44d8b4196e861ad06c00",
       "layoutAdaptations": [],
       "layoutSha256": "9b25642a3b13b5ddb679262c271e08f0a813081aa6dbdcbfdb7449f6c7a7e403"
     },
@@ -1082,50 +1171,50 @@
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/imports/AiImportSources.svelte",
-      "destination": "packages/agent-ui/src/imports/AiImportSources.svelte",
+      "destination": "packages/agent-ui/src/imports/import-sources/AiImportSources.svelte",
       "sourceSha256": "2ea346d508af5dd76d18c119e824184674a362f641848307ffdccc356326f2ed",
       "adaptations": [],
-      "destinationSha256": "a0d2e075a74100725f17ac911b0658c49189facbbf95b0ce68103b76a799e8d3",
+      "destinationSha256": "ca67c511cdefe1589b94030ed66b487f8fe9335a5e7e4fda87964292d91de7b3",
       "layoutAdaptations": [],
       "layoutSha256": "ff682e1090608f8bbb7fa225fee99320cafe3042882c09c0c8a4303e4ac3612e"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/imports/AiImportHarness.svelte",
-      "destination": "packages/agent-ui/src/imports/AiImportHarness.svelte",
+      "destination": "packages/agent-ui/src/imports/import-harness/AiImportHarness.svelte",
       "sourceSha256": "5b0cceb6dced68d59c64a206222629bbe02be48208b7bc80dc34c456f89f342f",
       "adaptations": [],
-      "destinationSha256": "13063b61359be4413ad36ddb3bed00893eba9661ca5eeeac21ca4224ce66cfa9",
+      "destinationSha256": "0982d3c615556b297e03787d5bb058fb48cb1abd1cf112ede921f39755524bd6",
       "layoutAdaptations": [],
       "layoutSha256": "21af2cc4ca80bb918873d2fbfa1cb753799c92d2f3e8e8ac5454f07ae79837d8"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/imports/AiImportFooter.svelte",
-      "destination": "packages/agent-ui/src/imports/AiImportFooter.svelte",
+      "destination": "packages/agent-ui/src/imports/import-footer/AiImportFooter.svelte",
       "sourceSha256": "5e33a4e3653a8bd5c3abbe91fc7be95a06c5fb7c08cce2de49da75e00b89cfaa",
       "adaptations": [],
-      "destinationSha256": "cc63a8f62fc7ee6da4b24af0dcf8c18df13dd94d0ded10913baf1da406b26b8f",
+      "destinationSha256": "b6123f4ba8991558572c29943f6a6c82d3dea89613b5123b0932f3b484b9c9d7",
       "layoutAdaptations": [],
       "layoutSha256": "80d84bc0190d9021e5037f43b6a507d233e77c3599ed037aedda0f18c2871b35"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/imports/AiImportProgress.svelte",
-      "destination": "packages/agent-ui/src/imports/AiImportProgress.svelte",
+      "destination": "packages/agent-ui/src/imports/import-progress/AiImportProgress.svelte",
       "sourceSha256": "cb6c966152243c3860b7acece1c858f3c27b6728c4fa81e9735c7faed09db81d",
       "adaptations": [],
-      "destinationSha256": "7200c8d080bd1f831ce0ded66cd35aec85845d17720abffc2243f91609ea2658",
+      "destinationSha256": "117cb04657e84a5af2e923eb5bea195ba8412018564c34686947c43091d8f561",
       "layoutAdaptations": [],
       "layoutSha256": "f34c65f0946dc3db0b8e1674ce2d0db976feb9545d078d3586f2ab0e5541d710"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/imports/AiImportPanel.svelte",
-      "destination": "packages/agent-ui/src/imports/AiImportPanel.svelte",
+      "destination": "packages/agent-ui/src/imports/import-panel/AiImportPanel.svelte",
       "sourceSha256": "acd60f3b3bd6bc68d878e51146aa996f3b25584977d3b8a74eb30f55cda5938e",
       "adaptations": [],
-      "destinationSha256": "7d6f32b07e10a36ebb660ef59cd9f39b42ca9fda1e9d38b83d9d6cacb367b394",
+      "destinationSha256": "409ca2876cfc84aec5b3993837d4d256a32d7b0ecfb870ab3dca464cb02dc62a",
       "layoutAdaptations": [
         {
           "before": "!!props.sources",
@@ -1149,7 +1238,7 @@
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/chat/AiCommandReport.svelte",
-      "destination": "packages/agent-ui/src/chat/AiCommandReport.svelte",
+      "destination": "packages/agent-ui/src/chat/command-report/AiCommandReport.svelte",
       "sourceSha256": "0cd2dc5fc1a744f7bf88aed7a09f65a910da855206a06ceba1c0e0e3447dd65a",
       "adaptations": [],
       "destinationSha256": "0cd2dc5fc1a744f7bf88aed7a09f65a910da855206a06ceba1c0e0e3447dd65a",
@@ -1159,30 +1248,30 @@
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/sessions/AiRecordedTranscript.svelte",
-      "destination": "packages/agent-ui/src/sessions/AiRecordedTranscript.svelte",
+      "destination": "packages/agent-ui/src/sessions/recorded-transcript/AiRecordedTranscript.svelte",
       "sourceSha256": "03534498cefb8342916b9c62c708bf2aa4397554384b0fa3e3ff4aa3b3b38c8b",
       "adaptations": [],
-      "destinationSha256": "8db422d832517c9c93884eb7af0bfe7b5a98578e54fbc8fecb64322a05be2634",
+      "destinationSha256": "f9afa7e599b2048d32308dd71160d51673da179a3ccd5dae157281e7adffff33",
       "layoutAdaptations": [],
       "layoutSha256": "d6c0eb2dca319725fd1214c0f7a6f22c5b6752b0cc6d4939af9caefe84a6cac3"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/sessions/CaptureVersionPicker.svelte",
-      "destination": "packages/agent-ui/src/sessions/CaptureVersionPicker.svelte",
+      "destination": "packages/agent-ui/src/sessions/capture-version-picker/CaptureVersionPicker.svelte",
       "sourceSha256": "4791a2474b41760f8921d26bb2b52fa8ced02b6b5234e1099afc4246f74f30f4",
       "adaptations": [],
-      "destinationSha256": "1ffa584f5900805967f5d67c351093c53baa1a61eba6dfc0c35325ec8ed5a6da",
+      "destinationSha256": "37a5ea56cf48ee5c261144377e8544cfb3c687f36525bee8916b3ae3b5062046",
       "layoutAdaptations": [],
       "layoutSha256": "fa1ec83b2860f5925a070393bdc4ccc6c2449aabaac3a3a0fcb8edb5b812dab3"
     },
     {
       "sourceRepository": "lapis-desktop",
       "source": "src/components/ai/sessions/CapturedSessionBrowser.svelte",
-      "destination": "packages/agent-ui/src/sessions/CapturedSessionBrowser.svelte",
+      "destination": "packages/agent-ui/src/sessions/captured-session-browser/CapturedSessionBrowser.svelte",
       "sourceSha256": "2d6b87af814c0157b31e4df297f4f0df235ee5c1c425a0c81b19828ee06db9bf",
       "adaptations": [],
-      "destinationSha256": "823311033b58b8a9440705aa709c02348b37b0fa17f9fda73529defe2769d3b0",
+      "destinationSha256": "8c5e8691ab462a537895b03380473758f03abc61f84002c7559d79131cea342c",
       "layoutAdaptations": [
         {
           "before": "        {app}\n",
@@ -1201,5 +1290,6 @@
     }
   ],
   "fingerprintFormat": "Prettier normalized source; Svelte layout excludes script and comments. Explicit host bindings are applied before comparison.",
-  "sourceSnapshot": "Read-only source working trees. Per-file SHA-256 values identify the copied bytes; sourceRevision records the Desktop checkout parent."
+  "sourceSnapshot": "Read-only source working trees. Per-file SHA-256 values identify the copied bytes; sourceRevision records the Desktop checkout parent.",
+  "organization": "Components moved into per-family folders; relative imports were relocated. Layout adaptations below add documented CSS variables with unchanged source defaults. Original source hashes are retained."
 }

@@ -4,11 +4,13 @@ import {
   readFile,
   rm,
   readdir,
-  copyFile,
+  mkdir,
 } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import path from "node:path";
+import { execFileSync } from "node:child_process";
+import { documentedExamples } from "./consumer-examples.mjs";
 const root = process.cwd(),
   temporary = await mkdtemp(path.join(tmpdir(), "agent-ui-package-"));
 function run(command, args, cwd = temporary) {
@@ -24,6 +26,24 @@ try {
       path.join(root, "packages", name),
     );
   const archives = (await readdir(temporary)).filter((p) => p.endsWith(".tgz"));
+  for (const file of archives) {
+    const contents = execFileSync("tar", ["-tzf", path.join(temporary, file)], {
+      encoding: "utf8",
+    });
+    if (
+      /(?:\.stories\.|\.example-sources\.|\.tokens\.json|\.mdx|catalog\/agents|tsconfig\.json)/.test(
+        contents,
+      )
+    )
+      throw new Error(`Catalog material leaked into ${file}`);
+  }
+  const examples = documentedExamples();
+  await mkdir(path.join(temporary, "examples"));
+  for (const [index, example] of examples.entries())
+    await writeFile(
+      path.join(temporary, "examples", `Example${index}.svelte`),
+      example.code,
+    );
   const dependencies = Object.fromEntries(
     archives.map((file) => [
       "@lapismd/" +
@@ -65,7 +85,7 @@ try {
         allowJs: true,
         lib: ["ES2022", "DOM", "DOM.Iterable"],
       },
-      include: ["App.svelte", "main.ts"],
+      include: ["**/*.svelte", "main.ts"],
     }),
   );
   await writeFile(
@@ -74,7 +94,7 @@ try {
   );
   await writeFile(
     path.join(temporary, "main.ts"),
-    `import App from './App.svelte';import '@lapismd/agent-ui/styles.css';import '@lapismd/repository-ui/styles.css';export {App};`,
+    `import App from './App.svelte';import '@lapismd/agent-ui/styles.css';import '@lapismd/repository-ui/styles.css';export {App};\n${examples.map((_, index) => `export {default as Example${index}} from './examples/Example${index}.svelte';`).join("\n")}`,
   );
   await writeFile(
     path.join(temporary, "vite.config.js"),
@@ -89,7 +109,9 @@ try {
     "--fail-on-warnings",
   ]);
   run("pnpm", ["exec", "vite", "build"]);
-  console.log("Clean packed-package type and Vite consumption passed");
+  console.log(
+    `Clean packed-package type and Vite consumption passed; ${examples.length} documented examples compiled`,
+  );
 } finally {
   await rm(temporary, { recursive: true, force: true });
 }

@@ -1,0 +1,70 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./HistoryToolbar.stories";
+import { Basic, Styling } from "./HistoryToolbar.example-sources";
+import tokens from "./HistoryToolbar.tokens.json";
+import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Toolbar
+
+The copied history search and disclosure toolbar used by the complete screen.
+
+## Usage
+
+Create AgentHistoryController from the owning AgentUiController. Place the toolbar in the original ai-history root, and retain that controller while the host switches screens. Search changes are presentation state; host mutations stay explicit.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part    | Responsibility                                                   |
+| ------- | ---------------------------------------------------------------- |
+| Search  | Named controlled search field.                                   |
+| Actions | Original folder disclosure controls and new-conversation action. |
+
+## Variations
+
+### Basic
+
+Search updates the controlled query.
+
+<Canvas of={Stories.Basic} />
+
+### Clearing
+
+Clear restores the unfiltered presentation.
+
+<Canvas of={Stories.Clearing} />
+
+## Behavior and accessibility
+
+Search and clear update the same state used by the complete-screen rows. All toolbar actions keep their original accessible labels and keyboard behavior. The history creation scope remains the host scope.
+
+## Styling variables
+
+Set variables on an ancestor of the component. Defaults retain the original
+Desktop geometry. Use the brand dropdown for Default/Lapis and the separate
+light/dark button for color mode. Components inherit semantic Design Core colors.
+The table identifies the package that owns each variable; styles load with the
+owning component family.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+[Complete screens](?path=/docs/agent-complete-screens--docs) use these production
+components with the same controller flow. Documentation shell previews are
+bounded to 40rem; Canvas screens use the full viewport. Story data and simulated
+host effects stay outside published packages.

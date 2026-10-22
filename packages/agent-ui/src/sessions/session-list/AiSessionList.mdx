@@ -1,0 +1,83 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./AiSessionList.stories";
+import { Basic, Styling } from "./AiSessionList.example-sources";
+import tokens from "./AiSessionList.tokens.json";
+import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Session list
+
+Grouped conversation rows with active selection, loading skeletons and an empty state.
+
+## Usage
+
+Supply a stable item ID and a host-owned activeId. onSelect requests navigation; keep the controller alive while switching sessions. The list automatically reveals the selected group.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part                     | Responsibility                                        |
+| ------------------------ | ----------------------------------------------------- |
+| Group disclosure         | Keyboard-operable folder toggle.                      |
+| Session row              | Identity, title and status for one stable session ID. |
+| Loading or empty content | Mutually exclusive feedback for the host read state.  |
+
+## Variations
+
+### Basic
+
+Select a conversation in another group.
+
+<Canvas of={Stories.Basic} />
+
+### Loading
+
+A named loading status with skeleton rows.
+
+<Canvas of={Stories.Loading} />
+
+### Empty
+
+Host-authored empty-state guidance.
+
+<Canvas of={Stories.Empty} />
+
+### Busy
+
+Selection waits for the host operation.
+
+<Canvas of={Stories.Busy} />
+
+## Behavior and accessibility
+
+busy disables row selection. loading presents a named busy status. Empty text is supplied by the host. Folder disclosure state belongs to this mounted list; session selection belongs to the host.
+
+## Styling variables
+
+Set variables on an ancestor of the component. Defaults retain the original
+Desktop geometry. Use the brand dropdown for Default/Lapis and the separate
+light/dark button for color mode. Components inherit semantic Design Core colors.
+The table identifies the package that owns each variable; styles load with the
+owning component family.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+[Complete screens](?path=/docs/agent-complete-screens--docs) use these production
+components with the same controller flow. Documentation shell previews are
+bounded to 40rem; Canvas screens use the full viewport. Story data and simulated
+host effects stay outside published packages.

@@ -53,3 +53,36 @@ controllers. Do not add invented application navigation or replacement layouts.
 
 - Public types express the boundary.
 - Focused tests and production-component stories verify the behavior.
+
+## AUI-FOUND-001 — Component foundations
+
+**Requirement.** Agent foundations MUST have their own logical component folders with colocated stories, documentation and consumer-ready examples, and complete screens MUST compose those same production components.
+
+### Acceptance details
+
+- Transcript coverage MUST include every supported item/block kind, captured tools, error states and exact anchored comments.
+- Stories MUST use production controllers with isolated in-memory host effects.
+- Catalog-only stories and fixtures MUST be excluded from published package archives.
+- Specification validation MUST reject new unowned components, missing family files or usage/anatomy/variation/API documentation, unrendered variations, private example imports, undocumented variables and defaults that differ from their source.
+
+## AUI-THEME-001 — Styling and themes
+
+**Requirement.** Every documented foundation MUST expose audited styling variables with source-faithful default values, and Storybook MUST offer the same independent brand and light/dark controls as Design Core.
+
+### Acceptance details
+
+- Component docs MUST list variable names, defaults, ownership and usage examples.
+- Styling examples MUST override documented variables without CSS selector patches.
+- Theme and mode changes MUST retain controller, draft and comment identity.
+- Markdown documentation previews MUST bound shell examples to 40rem without preview-wrapper padding while Canvas screens retain the full viewport.
+
+## AUI-VERIFY-001 — Foundation qualification
+
+**Requirement.** Foundation changes MUST pass strict compile/runtime diagnostics, documentation and token audits, interaction/accessibility and keyboard/pointer checks, package acceptance and static catalog verification.
+
+### Acceptance details
+
+- Every component family MUST have complete highlighted consumer source and visual-pending metadata.
+- Svelte warnings and runtime diagnostics MUST fail the owning checks through rendering and teardown.
+- The full affected component and complete-screen matrix MUST run in both color modes and desktop/narrow viewports, including semantic Markdown tables and docs-only height limits.
+- Visual baselines MUST remain unchanged until explicit human approval.

@@ -1,0 +1,84 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./AiTranscriptFooter.stories";
+import { Basic, Styling } from "./AiTranscriptFooter.example-sources";
+import tokens from "./AiTranscriptFooter.tokens.json";
+import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Footer
+
+The real footer with agent selection, context, scope, composer options and send/stop actions.
+
+## Usage
+
+Create one presentation adapter for the owning AgentUiController. Pass its panel and the same transcript state to the footer and body. blocked reflects pending host operations; documentActions receives the composer formatting snippet.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part         | Responsibility                                          |
+| ------------ | ------------------------------------------------------- |
+| Actions      | Attachments, mentions and docked document formatting.   |
+| Controls     | Agent picker, context usage and composer options.       |
+| Workspace    | Current host-owned scope.                               |
+| Send control | Send, Queue or Stop derived from real controller state. |
+
+## Variations
+
+### Basic
+
+Idle editor and available controls.
+
+<Canvas of={Stories.Basic} />
+
+### BusyStop
+
+Busy response with a real simulated stop acknowledgement.
+
+<Canvas of={Stories.BusyStop} />
+
+### Attachments
+
+The same footer with attached files.
+
+<Canvas of={Stories.Attachments} />
+
+### Error
+
+Retained draft after host feedback.
+
+<Canvas of={Stories.Error} />
+
+## Behavior and accessibility
+
+onSend requests submission. Stop invokes the host cancel action and waits for acknowledgement. Changing agents and scope uses advertised host choices. The footer does not own persistence, execution or controller disposal.
+
+## Styling variables
+
+Set variables on an ancestor of the component. Defaults retain the original
+Desktop geometry. Use the brand dropdown for Default/Lapis and the separate
+light/dark button for color mode. Components inherit semantic Design Core colors.
+The table identifies the package that owns each variable; styles load with the
+owning component family.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+[Complete screens](?path=/docs/agent-complete-screens--docs) use these production
+components with the same controller flow. Documentation shell previews are
+bounded to 40rem; Canvas screens use the full viewport. Story data and simulated
+host effects stay outside published packages.

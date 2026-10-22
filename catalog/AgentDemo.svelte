@@ -1,24 +1,29 @@
 <script lang="ts">
   import { onDestroy, untrack } from "svelte";
   import { AgentWorkbench } from "../packages/agent-ui/src/screens/index.js";
-  import { AgentUiController } from "../packages/agent-ui/src/core/index.js";
+  import {
+    createDemo,
+    type AgentScenario,
+  } from "./agents/support/create-demo.svelte.js";
   import type { AgentScreen } from "../packages/agent-ui/src/core/models.js";
   import { memoryAgentImports } from "./support/agent-imports.svelte.js";
-  import { MemoryAgentPort } from "./support/agent-adapter.js";
   let {
     screen = "chat",
+    scenario = "default",
     fault = "none",
     requests = false,
     busy = false,
     empty = false,
   }: {
     screen?: AgentScreen;
+    scenario?: AgentScenario;
     fault?: "none" | "unknown" | "failed";
     requests?: boolean;
     busy?: boolean;
     empty?: boolean;
   } = $props();
-  const port = new MemoryAgentPort();
+  const demo = untrack(() => createDemo(scenario));
+  const { port, controller } = demo;
   port.fault = untrack(() => fault);
   port.snapshot.busy = untrack(() => busy);
   if (untrack(() => empty)) {
@@ -49,10 +54,7 @@
         ],
       },
     ];
-  const controller = new AgentUiController(
-    port,
-    structuredClone(port.snapshot),
-  );
+  controller.snapshot = structuredClone(port.snapshot);
   controller.screen = untrack(() => screen);
   const imports = memoryAgentImports(controller);
   void imports.load();
@@ -68,7 +70,7 @@
 
 <style>
   .agent-demo {
-    height: 100dvh;
+    height: var(--ui-agent-story-height, 100dvh);
     min-width: 0;
     min-height: 0;
   }

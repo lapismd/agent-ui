@@ -11,7 +11,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "types": ["svelte", "node", "vite/client"]
+    "types": ["svelte", "node", "vite/client"],
+    "jsx": "react-jsx"
   },
   "include": [
     "packages/**/*.ts",
@@ -19,7 +20,10 @@
     "catalog/**/*.ts",
     "catalog/**/*.svelte",
     ".storybook/**/*.ts",
-    "*.ts"
+    "*.ts",
+    "packages/**/*.tsx",
+    "catalog/**/*.tsx",
+    ".storybook/**/*.tsx"
   ],
   "exclude": ["node_modules", "**/dist", "storybook-static"]
 }

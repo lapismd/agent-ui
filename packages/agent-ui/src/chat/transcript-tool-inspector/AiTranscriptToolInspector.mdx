@@ -1,0 +1,71 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./AiTranscriptToolInspector.stories";
+import { Basic, Styling } from "./AiTranscriptToolInspector.example-sources";
+import tokens from "./AiTranscriptToolInspector.tokens.json";
+import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Tool inspector
+
+The original AppShell tool-detail surface with formatted, source and capture views.
+
+## Usage
+
+Open this surface from onInspectTool and retain the actual opener element. Pass the same TranscriptController as the body so exact comments and disclosure state are shared. Close from onDismiss and restore focus to the opener.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part          | Responsibility                                       |
+| ------------- | ---------------------------------------------------- |
+| Surface layer | AppShell overlay with return focus and dismissal.    |
+| Header        | Captured tool title, view selector and close button. |
+| Body readers  | Formatted blocks or the immutable raw capture.       |
+
+## Variations
+
+### Basic
+
+Open an actual captured source tool in the AppShell surface.
+
+<Canvas of={Stories.Basic} />
+
+### Classic
+
+Inspector shares the same underlying capture across presentation modes.
+
+<Canvas of={Stories.Classic} />
+
+## Behavior and accessibility
+
+The view selector offers Preview, Source and Capture for Markdown tools, and Formatted/Source for other tools. Escape dismisses the AppShell surface. Switching raw views changes presentation only; captured text and revision remain unchanged.
+
+## Styling variables
+
+Set variables on an ancestor of the component. Defaults retain the original
+Desktop geometry. Use the brand dropdown for Default/Lapis and the separate
+light/dark button for color mode. Components inherit semantic Design Core colors.
+The table identifies the package that owns each variable; styles load with the
+owning component family.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+[Complete screens](?path=/docs/agent-complete-screens--docs) use these production
+components with the same controller flow. Documentation shell previews are
+bounded to 40rem; Canvas screens use the full viewport. Story data and simulated
+host effects stay outside published packages.

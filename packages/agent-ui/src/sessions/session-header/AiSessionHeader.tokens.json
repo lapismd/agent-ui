@@ -1,0 +1,26 @@
+{
+  "component": "AgentSessionHeader",
+  "variables": [
+    {
+      "name": "--ui-agent-session-header-height",
+      "default": "3.25rem",
+      "description": "Minimum header height",
+      "owner": "@lapismd/agent-ui",
+      "source": "sessions/session-header/AiSessionHeader.svelte"
+    },
+    {
+      "name": "--ui-agent-session-header-title-size",
+      "default": "0.875rem",
+      "description": "Conversation title size",
+      "owner": "@lapismd/agent-ui",
+      "source": "sessions/session-header/AiSessionHeader.svelte"
+    },
+    {
+      "name": "--ui-agent-session-header-gap",
+      "default": "1rem",
+      "description": "Header content gap",
+      "owner": "@lapismd/agent-ui",
+      "source": "sessions/session-header/AiSessionHeader.svelte"
+    }
+  ]
+}

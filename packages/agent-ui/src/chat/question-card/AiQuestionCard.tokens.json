@@ -1,0 +1,19 @@
+{
+  "component": "AgentQuestionCard",
+  "variables": [
+    {
+      "name": "--ui-agent-request-gap",
+      "default": "var(--ui-ai-request-gap, 0.5rem)",
+      "description": "Request content gap",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/requests.css"
+    },
+    {
+      "name": "--ui-agent-request-title-size",
+      "default": "0.875rem",
+      "description": "Request title size",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/requests.css"
+    }
+  ]
+}

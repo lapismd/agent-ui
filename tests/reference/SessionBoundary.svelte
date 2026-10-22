@@ -5,9 +5,9 @@
     TranscriptFooter,
   } from "@lapismd/design-core/chat";
   import Original from "../../../lapis-desktop/src/components/ai/sessions/AiSessionShell.svelte";
-  import Extracted from "../../packages/agent-ui/src/sessions/AiSessionShell.svelte";
+  import Extracted from "../../packages/agent-ui/src/sessions/session-shell/AiSessionShell.svelte";
   import OriginalInspector from "../../../lapis-desktop/src/components/ai/chat/AiTranscriptToolInspector.svelte";
-  import ExtractedInspector from "../../packages/agent-ui/src/chat/AiTranscriptToolInspector.svelte";
+  import ExtractedInspector from "../../packages/agent-ui/src/chat/transcript-tool-inspector/AiTranscriptToolInspector.svelte";
   import { TranscriptController } from "@lapismd/design-core/chat";
   const params = new URLSearchParams(location.search);
   const Shell = params.get("source") === "desktop" ? Original : Extracted;

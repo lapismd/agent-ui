@@ -3,7 +3,8 @@ import { expect, within, userEvent, waitFor } from "storybook/test";
 import AgentDemo from "./AgentDemo.svelte";
 import { agentSource } from "./example-sources.js";
 const meta = {
-  title: "Agent/Complete screens",
+  id: "agent-complete-screens",
+  title: "Agents/Complete screens",
   component: AgentDemo,
   tags: ["visual-pending"],
   parameters: {

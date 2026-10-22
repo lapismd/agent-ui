@@ -1,4 +1,4 @@
-export { default as AgentWorkbench } from "./AgentWorkbench.svelte";
-export { default as AgentHistoryScreen } from "./AgentHistoryScreen.svelte";
-export { default as AgentCatalogScreen } from "./AgentCatalogScreen.svelte";
-export { default as AgentImportsScreen } from "./AgentImportsScreen.svelte";
+export { default as AgentWorkbench } from "./workbench/AgentWorkbench.svelte";
+export { default as AgentHistoryScreen } from "./history-screen/AgentHistoryScreen.svelte";
+export { default as AgentCatalogScreen } from "./catalog-screen/AgentCatalogScreen.svelte";
+export { default as AgentImportsScreen } from "./imports-screen/AgentImportsScreen.svelte";

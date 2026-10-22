@@ -1,0 +1,77 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./AiSessionHeader.stories";
+import { Basic, Styling } from "./AiSessionHeader.example-sources";
+import tokens from "./AiSessionHeader.tokens.json";
+import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Session header
+
+The original session header: conversation toggle, identity, title, status and host action slots.
+
+## Usage
+
+Place the header in AgentSessionThread, or compose it with AgentSessionFrame when the host owns the body. Bind expanded state to the same session list that the toggle reveals. Complete screens use this exact header.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part                 | Responsibility                                      |
+| -------------------- | --------------------------------------------------- |
+| Toggle               | Opens the host-owned conversation list.             |
+| Identity and heading | Harness avatar, truncated title and status.         |
+| Actions              | Host snippet for view selection or session actions. |
+
+## Variations
+
+### Basic
+
+Controlled conversation-list toggle.
+
+<Canvas of={Stories.Basic} />
+
+### LongTitle
+
+Long titles retain the source ellipsis and action geometry.
+
+<Canvas of={Stories.LongTitle} />
+
+### StylingVariables
+
+Override documented header dimensions on an ancestor.
+
+<Canvas of={Stories.StylingVariables} />
+
+## Behavior and accessibility
+
+The conversation control exposes its pressed state and retains its accessible label. Long titles truncate without displacing actions. The header owns no navigation or session lifetime.
+
+## Styling variables
+
+Set variables on an ancestor of the component. Defaults retain the original
+Desktop geometry. Use the brand dropdown for Default/Lapis and the separate
+light/dark button for color mode. Components inherit semantic Design Core colors.
+The table identifies the package that owns each variable; styles load with the
+owning component family.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+[Complete screens](?path=/docs/agent-complete-screens--docs) use these production
+components with the same controller flow. Documentation shell previews are
+bounded to 40rem; Canvas screens use the full viewport. Story data and simulated
+host effects stay outside published packages.

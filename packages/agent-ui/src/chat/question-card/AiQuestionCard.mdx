@@ -1,0 +1,77 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./AiQuestionCard.stories";
+import { Basic, Styling } from "./AiQuestionCard.example-sources";
+import tokens from "./AiQuestionCard.tokens.json";
+import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Question card
+
+Host-requested answers with advertised choices, optional free text and explicit submission.
+
+## Usage
+
+Supply UserInputRequest and send the returned UserInputAnswers with the exact request identity. Answers are keyed by question ID. Option answers preserve their labels as required by this public contract.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part             | Responsibility                                                |
+| ---------------- | ------------------------------------------------------------- |
+| Fieldset         | One named group for each question.                            |
+| Choices or input | Advertised options, optional Other, or a direct text input.   |
+| Submit           | Enabled only when every required answer has nonempty content. |
+
+## Variations
+
+### Basic
+
+Choose an advertised answer and submit.
+
+<Canvas of={Stories.Basic} />
+
+### FreeText
+
+A question with no advertised choices.
+
+<Canvas of={Stories.FreeText} />
+
+### Disabled
+
+Host work blocks input and submission.
+
+<Canvas of={Stories.Disabled} />
+
+## Behavior and accessibility
+
+Selecting a choice exposes aria-pressed. Other reveals a named answer input. Secret questions use a password field. The card trims answers at explicit submit and never changes host state on mount.
+
+## Styling variables
+
+Set variables on an ancestor of the component. Defaults retain the original
+Desktop geometry. Use the brand dropdown for Default/Lapis and the separate
+light/dark button for color mode. Components inherit semantic Design Core colors.
+The table identifies the package that owns each variable; styles load with the
+owning component family.
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+[Complete screens](?path=/docs/agent-complete-screens--docs) use these production
+components with the same controller flow. Documentation shell previews are
+bounded to 40rem; Canvas screens use the full viewport. Story data and simulated
+host effects stay outside published packages.

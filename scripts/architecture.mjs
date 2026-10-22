@@ -34,13 +34,13 @@ for (const file of [
       : 300;
   if (count > limit)
     findings.push(`${file}: ${count} counted lines exceeds ${limit}`);
-  if (file.includes("/src/")) {
+  if (file.includes("/src/") && !/\.stories\.|\.example-sources\./.test(file)) {
     const imports = [
       ...text.matchAll(/(?:from|import\s*\()\s*["']([^"']+)/g),
     ].map((m) => m[1]);
     for (const specifier of imports)
       if (
-        /(?:fixtures|\.test\.|@tauri|@lapis-notes|lapis-desktop|jj-store\/web|\/native\/)/.test(
+        /(?:fixtures|\.stories\.|\.example-sources\.|\.test\.|@tauri|@lapis-notes|lapis-desktop|jj-store\/web|\/native\/)/.test(
           specifier,
         ) ||
         /@lapismd\/(agent-ui|repository-ui)/.test(specifier) ||

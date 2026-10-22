@@ -1,0 +1,19 @@
+{
+  "component": "AgentSendHint",
+  "variables": [
+    {
+      "name": "--ui-agent-send-hint-size",
+      "default": "0.6875rem",
+      "description": "Keyboard hint text size",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/transcript-send-hint/AiTranscriptSendHint.svelte"
+    },
+    {
+      "name": "--ui-agent-send-hint-padding",
+      "default": "0.25rem 0.5rem",
+      "description": "Hint and feedback inset",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/transcript-send-hint/AiTranscriptSendHint.svelte"
+    }
+  ]
+}

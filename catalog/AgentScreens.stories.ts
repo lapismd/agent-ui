@@ -4,7 +4,8 @@ import { AgentWorkbench } from "../packages/agent-ui/src/screens/index.js";
 import AgentDemo from "./AgentDemo.svelte";
 import { agentSource } from "./example-sources.js";
 const meta = {
-  title: "Agent/Complete screens",
+  id: "agent-complete-screens",
+  title: "Agents/Complete screens",
   component: AgentWorkbench,
   tags: ["visual-pending"],
   parameters: {
@@ -117,4 +118,20 @@ export const CatalogToggle: Story = {
     await userEvent.click(checkbox);
     await expect(checkbox).not.toBeChecked();
   },
+};
+
+export const AllMessages: Story = {
+  render: () => ({ Component: AgentDemo, props: { scenario: "all" } }),
+};
+export const InlineComments: Story = {
+  render: () => ({ Component: AgentDemo, props: { scenario: "comments" } }),
+};
+export const ChatError: Story = {
+  render: () => ({ Component: AgentDemo, props: { scenario: "error" } }),
+};
+export const RefusedSubmission: Story = {
+  render: () => ({ Component: AgentDemo, props: { scenario: "refused" } }),
+};
+export const UnknownSubmission: Story = {
+  render: () => ({ Component: AgentDemo, props: { scenario: "unknown" } }),
 };
