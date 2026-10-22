@@ -1,11 +1,11 @@
 <!-- SPDX-License-Identifier: Apache-2.0; copied from Lapis Desktop with explicit host boundaries. -->
 <script lang="ts">
-  import FileTextIcon from "@lucide/svelte/icons/file-text";
+  import { FileTypeIcon } from "@lapismd/design-core/shadcn/file-type-icon";
   let { path }: { path?: string } = $props();
 </script>
 
 <span class="repository-review-file-title">
-  {#if path}<FileTextIcon aria-hidden="true" />{/if}
+  {#if path}<FileTypeIcon {path} size="s" />{/if}
   <span title={path}>{path ?? "Diff"}</span>
 </span>
 
@@ -15,12 +15,6 @@
     align-items: center;
     gap: 0.375rem;
     min-width: 0;
-  }
-  .repository-review-file-title :global(svg) {
-    flex: none;
-    width: 0.875rem;
-    height: 0.875rem;
-    color: var(--muted-foreground);
   }
   .repository-review-file-title > span {
     min-width: 0;

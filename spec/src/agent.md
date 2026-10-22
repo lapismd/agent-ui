@@ -102,6 +102,10 @@ view toggle, with accessible action labels and separate raw capture where needed
 Empty and unavailable stories MUST render the public shadcn Empty pattern with a
 relevant icon in the owning production component.
 
+Filename-bearing attachments, file-search results, saved-file headers and catalog
+files MUST use public Design Core FileTypeIcon; shared file lists and captured
+tool targets retain their Design Core-owned icons and status precedence.
+
 ### Acceptance details
 
 - Every component family MUST have complete highlighted consumer source and visual-pending metadata.

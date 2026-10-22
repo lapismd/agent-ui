@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Badge } from "@lapismd/design-core/shadcn/badge";
   import * as Tooltip from "@lapismd/design-core/shadcn/tooltip";
-  import FileIcon from "@lucide/svelte/icons/file";
+  import { FileTypeIcon } from "@lapismd/design-core/shadcn/file-type-icon";
   import XIcon from "@lucide/svelte/icons/x";
   import type { AttachmentsState } from "../presentation.js";
   let { attachmentsState }: { attachmentsState: AttachmentsState } = $props();
@@ -19,7 +19,9 @@
               class="file-label"
               aria-label={file.name}
             >
-              <FileIcon aria-hidden="true" /><span>{file.name}</span>
+              <FileTypeIcon path={file.path} size="xs" /><span class="file-name"
+                >{file.name}</span
+              >
             </button>
           {/snippet}
         </Tooltip.Trigger>
@@ -72,7 +74,7 @@
   .file-label {
     padding-inline-start: 0.25rem;
   }
-  .file-label span {
+  .file-name {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -91,7 +93,6 @@
     outline: 2px solid var(--ring);
     outline-offset: 2px;
   }
-  .file-label :global(svg),
   .remove :global(svg) {
     flex: 0 0 0.75rem;
     width: 0.75rem;

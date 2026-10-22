@@ -33,7 +33,7 @@ avatar resolution and preference persistence stay host-owned.
 
 ### Acceptance details
 
-- Public types express the boundary.
+- Filename-bearing rows and headers MUST use Design Core FileListing and FileTypeIcon through public exports, preserving file-type artwork and shared sizing tokens.
 - Focused tests and production-component stories verify the behavior.
 
 ## RUI-HISTORY-001 — History

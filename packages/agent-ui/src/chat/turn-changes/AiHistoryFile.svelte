@@ -7,7 +7,7 @@
   import { MarkdownContent } from "@lapismd/design-core/chat";
   import { CodeBlock } from "@lapismd/design-core/shadcn/code-block";
   import XIcon from "@lucide/svelte/icons/x";
-  import FileIcon from "@lucide/svelte/icons/file";
+  import { FileTypeIcon } from "@lapismd/design-core/shadcn/file-type-icon";
   import UndoIcon from "@lucide/svelte/icons/undo-2";
   import AiSessionTabs from "../../sessions/session-tabs/AiSessionTabs.svelte";
   import RepositoryDiff from "./RepositoryDiff.svelte";
@@ -48,7 +48,9 @@
 >
   <header>
     <div class="file-title">
-      <FileIcon /><strong title={inspection.path}>{inspection.path}</strong>
+      {#if inspection.path}<FileTypeIcon path={inspection.path} />{/if}<strong
+        title={inspection.path}>{inspection.path}</strong
+      >
     </div>
     <Toggle
       pressed={inspection.selected.includes(inspection.path ?? "")}
@@ -135,11 +137,6 @@
     gap: 0.5rem;
     flex: 1;
     min-width: 0;
-  }
-  .file-title :global(svg) {
-    width: 1rem;
-    height: 1rem;
-    flex: none;
   }
   strong {
     font-size: 0.8125rem;

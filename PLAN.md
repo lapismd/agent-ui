@@ -19,6 +19,9 @@ shell and controller composition. The Desktop backup/provider/settings subtree
 and App-owned footer contributions remain host integration or later work.
 
 The source ledger records exact revisions, hashes and reviewed adaptations.
+The file-icon follow-up refreshes the public Design Core review package for all
+FileListing consumers and replaces remaining filename icons in JJ headers,
+attachment chips/search, saved-file headers and file-backed catalog skills.
 The current user corrections add single-change Op Log expansion, rich multi-author
 blame, host-resolved author avatars, icon-bearing Empty/unavailable states and
 Design Core's cold-catalog dependency optimization. Visual baselines remain

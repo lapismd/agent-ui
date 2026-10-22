@@ -29,7 +29,7 @@ specific adaptation; review stops before Op Log work begins.
 
 ### Acceptance details
 
-- Public types express the boundary.
+- Public Design Core exports MUST own shared filename artwork, while Agent/JJ components pass exact file paths and preserve semantic action/status icons.
 - Focused tests and production-component stories verify the behavior.
 
 ## AUI-GOV-002 — Complete review
