@@ -67,8 +67,8 @@ try {
         "@lapismd/jj-history": "^0.1.0",
       },
       devDependencies: {
-        vite: "7.3.2",
-        "@sveltejs/vite-plugin-svelte": "6.2.4",
+        vite: "8.3.5",
+        "@sveltejs/vite-plugin-svelte": "7.3.1",
         "svelte-check": "^4.3.1",
         typescript: "~5.9.3",
       },

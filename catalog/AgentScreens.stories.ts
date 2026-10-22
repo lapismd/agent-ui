@@ -1,8 +1,10 @@
+import ReferenceDemo from "./agents/references/ReferenceDemo.svelte";
 import type { Meta, StoryObj } from "@storybook/svelte-vite";
 import { expect, within, userEvent, waitFor } from "storybook/test";
 import { AgentWorkbench } from "../packages/agent-ui/src/screens/index.js";
 import AgentDemo from "./AgentDemo.svelte";
 import { agentSource } from "./example-sources.js";
+import { References as referenceSource } from "../packages/agent-ui/src/chat/transcript/AgentTranscript.example-sources.js";
 const meta = {
   id: "agent-complete-screens",
   title: "Agents/Complete screens",
@@ -162,4 +164,48 @@ export const RefusedSubmission: Story = {
 };
 export const UnknownSubmission: Story = {
   render: () => ({ Component: AgentDemo, props: { scenario: "unknown" } }),
+};
+
+export const ChatReferences: StoryObj<typeof ReferenceDemo> = {
+  parameters: {
+    docs: { source: { code: referenceSource, language: "tsx", type: "code" } },
+  },
+  render: () => ({ Component: ReferenceDemo, props: { part: "screen" } }),
+};
+export const ChatJJStoreReferences: StoryObj<typeof ReferenceDemo> = {
+  parameters: {
+    docs: { source: { code: referenceSource, language: "tsx", type: "code" } },
+  },
+  render: () => ({
+    Component: ReferenceDemo,
+    props: { part: "screen", legacy: true },
+  }),
+};
+export const ChatHostRouting: StoryObj<typeof ReferenceDemo> = {
+  parameters: {
+    docs: { source: { code: referenceSource, language: "tsx", type: "code" } },
+  },
+  render: () => ({
+    Component: ReferenceDemo,
+    props: { part: "screen", legacy: true, dispatch: true },
+  }),
+};
+export const ChatReferencesClassic: StoryObj<typeof ReferenceDemo> = {
+  parameters: {
+    docs: { source: { code: referenceSource, language: "tsx", type: "code" } },
+  },
+  render: () => ({
+    Component: ReferenceDemo,
+    props: { part: "screen", classic: true },
+  }),
+};
+
+export const ChatReadOnlyReferences: StoryObj<typeof ReferenceDemo> = {
+  parameters: {
+    docs: { source: { code: referenceSource, language: "tsx", type: "code" } },
+  },
+  render: () => ({
+    Component: ReferenceDemo,
+    props: { part: "screen", disabledActions: true },
+  }),
 };

@@ -9,6 +9,8 @@
     Transcript,
     MessageQueue,
     type TranscriptProps,
+    chatReferenceDecorations,
+    chatReferenceTriggers,
   } from "@lapismd/design-core/chat";
   import type { AgentUiController } from "../../core/controller.svelte.js";
   import type { TranscriptPanelProps } from "../presentation.js";
@@ -44,6 +46,11 @@
     ),
   );
   const send = () => void controller.transcript.send();
+  const references = $derived(options.composer?.references);
+  const markdown = $derived({
+    ...options.markdown,
+    references: options.markdown?.references ?? references,
+  });
   const footerError = $derived.by(() => {
     const failure =
       controller.view === "document" ? controller.sendFailure : undefined;
@@ -62,6 +69,24 @@
 {/snippet}
 <Transcript
   {...options}
+  {markdown}
+  commentComposer={{
+    references,
+    triggers: [
+      ...(references
+        ? chatReferenceTriggers(
+            options.composer?.referenceSources ?? [],
+            references,
+          )
+        : []),
+      ...(options.composer?.triggers ?? []),
+    ],
+    ...options.commentComposer,
+  }}
+  inlineReferences={(block) => [
+    ...(references ? chatReferenceDecorations(block.text, references) : []),
+    ...(options.inlineReferences?.(block) ?? []),
+  ]}
   {items}
   view={controller.view}
   scrollButton
@@ -71,7 +96,7 @@
   logLabel="AI conversation messages"
   loading={controller.loading}
   commentState={controller.transcript}
-  canComment={!controller.loading}
+  canComment={controller.canComment}
   reactionsDisabled={options.reactionsDisabled ?? true}
   authorPopover={options.authorPopover ?? { interaction: "hover" }}
   {onInspectTool}
@@ -99,6 +124,7 @@
     />{/snippet}
   {#snippet composer(view)}
     <ChatMessageComposer
+      {...options.composer}
       bind:value={controller.transcript.message}
       bind:documentActions
       {view}

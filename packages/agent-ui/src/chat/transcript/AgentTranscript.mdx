@@ -6,7 +6,7 @@ import {
   ArgTypes,
 } from "@storybook/addon-docs/blocks";
 import * as Stories from "./AgentTranscript.stories";
-import { Basic, Styling } from "./AgentTranscript.example-sources";
+import { Basic, Styling, References } from "./AgentTranscript.example-sources";
 import tokens from "./AgentTranscript.tokens.json";
 import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
 
@@ -92,6 +92,30 @@ The original empty conversation surface.
 <Canvas of={Stories.ClassicError} />
 ### Context and handoff typography
 <Canvas of={Stories.Typography} />
+
+### Portable reference and action review
+
+Complete Chat reference stories use this same production Transcript and composer.
+The host's `composer.references` codec reaches Markdown previews, retained readers
+and inline comment editors. `composer.referenceSources` supplies suggestions;
+additional editor and preview extensions remain independent public hooks.
+Person/agent chips share jj-store's inline styling. Optional
+`references.getPopover(reference)` supplies host-owned profile content in preview,
+transcript readers and composer. Only editable composers offer exact token removal.
+
+`getMessageActions(messageId, block)` provides primary/overflow actions with
+capabilities and disabled explanations; reactions remain host-owned. Comment is
+icon-only. Wholly unavailable action bars are absent and invisible bars do not
+intercept tool controls. `actionTooltips=false` removes tooltip content.
+
+Use `AgentPort.resolveRecipients` only when the host explicitly derives recipients
+from the exact submitted text. Without it, references never add recipients.
+Unknown delivery retains the original request and resolved recipients.
+
+Supply `new AgentUiController(port, initial, { canComment })` to control inline
+comment admission without clearing retained drafts or changing reader controls.
+
+<Source code={References} language="tsx" />
 
 ## Behavior and accessibility
 

@@ -35,3 +35,20 @@ and light/dark controls are independent; docs-only shell previews are bounded to
 `pnpm spec:validate` rejects missing family structure and drifted token defaults.
 Clean-package acceptance compiles documented public examples and excludes catalog
 fixtures. Both sections remain visual-pending. Downstream work stays gated, and this Desktop JJ slice stops for user review.
+
+## Portable chat section
+
+The current section adds paired composer/Markdown examples and complete Chat
+screens with configurable links to people, agents, repositories and work items.
+People and agent mentions use jj-store's filled author chips, optional host
+profile previews and exact composer removal. The same codec reaches transcript
+readers and inline comments. Rich emoji/overflow actions share MessageActions;
+unavailable hover bars are omitted and tool toggles remain usable.
+
+Mentions remain references unless the host explicitly resolves recipients from
+the exact submission. See Chat references, Chat JJ Store references, Chat host
+routing and Chat read only references under Complete screens. Section 1 stops
+for review before JJ Log. Focused evidence is recorded in
+`spec/records/2026-10-22-chat-reference-review.md`; broad qualification waits for
+the final screen review. This checkout temporarily consumes a prepared Design
+Core archive; registry release and ordinary lockfile refresh remain pending.

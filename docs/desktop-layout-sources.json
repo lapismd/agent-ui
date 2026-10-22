@@ -605,9 +605,12 @@
         },
         {
           "description": "User-reviewed failed-send metadata belongs beneath the exact retained Document draft. Shared MessageMetadata preserves native styling; Classic composition is unchanged."
+        },
+        {
+          "description": "Approved portable chat section: shared reference codec/suggestions, custom emoji and host editor actions are forwarded to MarkdownComposer. Existing layout, draft metadata and avatar geometry are retained."
         }
       ],
-      "destinationSha256": "29d375483f27b2076b5a47690a4f98c49b54a411bc2c28e9dd17d65ae002469c",
+      "destinationSha256": "b35d82d98af395a79cc1be1c4c25b24e76019e10e4cc1766ee7420c8c7f72a80",
       "layoutAdaptations": [
         {
           "before": "extensions={[references]}",
@@ -632,9 +635,21 @@
         {
           "before": "\n</style>",
           "after": "\n  .draft-metadata {\n    padding-inline-start: 2rem;\n    min-width: 0;\n  }\n</style>"
+        },
+        {
+          "before": "placeholder=\"Ask about your notes…\"",
+          "after": "{placeholder}"
+        },
+        {
+          "before": "{triggers}",
+          "after": "triggers={suggestions}"
+        },
+        {
+          "before": "{extensions}",
+          "after": "extensions={[...(referenceExtension ? [referenceExtension] : []), ...extensions]}\n    {customEmojis}\n    {emojis}\n    {emojiText}\n    {additionalActions}"
         }
       ],
-      "layoutSha256": "5a556fb09a49ed165bc5bcee2ed4783575a6874c0243c3182867843b0222741a"
+      "layoutSha256": "be1c2ad4c143ca1c298aefe996ea51e5ad8e1c1d653449bed86eb62b7288cc8c"
     },
     {
       "sourceRepository": "lapis-desktop",

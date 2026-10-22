@@ -4,10 +4,11 @@
   import {
     MarkdownComposer,
     MessageMetadata,
+    createChatReferenceExtension,
+    chatReferenceTriggers,
     type MarkdownComposerHandle,
   } from "@lapismd/design-core/chat";
   import { Avatar } from "@lapismd/design-core/shadcn/avatar";
-  import type { ComposerTrigger } from "@lapismd/design-core/ai/chat";
   import type { AgentRecipientOption } from "../presentation.js";
   let {
     value = $bindable(""),
@@ -20,6 +21,13 @@
     agentOptions = [],
     people = [],
     extensions = [],
+    references,
+    referenceSources = [],
+    customEmojis = [],
+    emojis,
+    emojiText,
+    placeholder = "Ask about your notes…",
+    additionalActions,
     handle = $bindable(null),
     status,
     statusPosition = "bottom",
@@ -34,10 +42,19 @@
     disabled?: boolean;
     framedDrawer?: boolean;
     showHint?: boolean;
-    triggers?: ComposerTrigger[];
+    triggers?: ComponentProps<typeof MarkdownComposer>["triggers"];
     agentOptions?: readonly AgentRecipientOption[];
     people?: readonly import("../presentation.js").ComposerPersonOption[];
     extensions?: ComponentProps<typeof MarkdownComposer>["extensions"];
+    references?: import("@lapismd/design-core/chat").ChatReferenceOptions;
+    referenceSources?: readonly import("@lapismd/design-core/chat").ChatReferenceSource[];
+    customEmojis?: ComponentProps<typeof MarkdownComposer>["customEmojis"];
+    emojis?: ComponentProps<typeof MarkdownComposer>["emojis"];
+    emojiText?: ComponentProps<typeof MarkdownComposer>["emojiText"];
+    placeholder?: string;
+    additionalActions?: ComponentProps<
+      typeof MarkdownComposer
+    >["additionalActions"];
     handle?: MarkdownComposerHandle | null;
     status?: ComponentProps<typeof MarkdownComposer>["status"];
     statusPosition?: "top" | "bottom";
@@ -47,6 +64,40 @@
     drawer?: Snippet;
     onSend(): void;
   } = $props();
+  const referenceExtension = $derived(
+    references ? createChatReferenceExtension(references) : undefined,
+  );
+  const suggestions = $derived([
+    ...(references ? chatReferenceTriggers(referenceSources, references) : []),
+    ...triggers,
+    ...(!references && (people.length || agentOptions.length)
+      ? [
+          {
+            character: "@",
+            menuLabel: "People and agents",
+            searchSource: (query: string, signal: AbortSignal) =>
+              signal.aborted
+                ? []
+                : [
+                    ...people.map((person) => ({
+                      id: person.id,
+                      label: person.label,
+                      value: person.value,
+                    })),
+                    ...agentOptions.map((agent) => ({
+                      id: agent.id,
+                      label: agent.label,
+                      value: `@${agent.label}`,
+                    })),
+                  ].filter((person) =>
+                    person.label.toLowerCase().includes(query.toLowerCase()),
+                  ),
+            onSelect: (item: { id: string; label: string }) =>
+              `${people.find((person) => person.id === item.id)?.value ?? `@${item.label}`} `,
+          },
+        ]
+      : []),
+  ]);
 </script>
 
 <div class="transcript-composer">
@@ -64,12 +115,19 @@
     submitOnEnter={false}
     label="Message composer"
     inputLabel="Message"
-    placeholder="Ask about your notes…"
+    {placeholder}
     {disabled}
     {status}
     {statusPosition}
-    {triggers}
-    {extensions}
+    triggers={suggestions}
+    extensions={[
+      ...(referenceExtension ? [referenceExtension] : []),
+      ...extensions,
+    ]}
+    {customEmojis}
+    {emojis}
+    {emojiText}
+    {additionalActions}
     onSubmit={() => {
       if (!disabled) onSend();
     }}

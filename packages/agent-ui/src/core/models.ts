@@ -86,7 +86,17 @@ export type AgentOutcome =
   | { status: "acknowledged"; snapshot: AgentSnapshot }
   | { status: "unknown" }
   | { status: "refused"; reason: string };
+export interface AgentControllerOptions {
+  /** Host admission for inline comments; evaluated without changing retained drafts. */
+  canComment?(): boolean;
+}
 export interface AgentPort {
+  /** Explicit host opt-in: derive recipients from the exact authored snapshot. */
+  resolveRecipients?(input: {
+    session: string;
+    submission: TranscriptSubmission;
+    selected: readonly string[];
+  }): readonly string[];
   read(signal: AbortSignal): Promise<AgentSnapshot>;
   act(action: AgentAction): Promise<AgentOutcome>;
   status(id: string): Promise<AgentOutcome>;

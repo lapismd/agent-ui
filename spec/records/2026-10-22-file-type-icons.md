@@ -117,3 +117,19 @@ expressions retain exact matching with the supported API. The live in-app previe
 exposed a fractional transformed bounding rectangle at browser zoom; the story
 now checks the exact computed 16px CSS width and height instead. Source comparison
 again passed all 193 fingerprints and 140 adapted original layouts.
+
+## Combined reference review
+
+The independently committed chat-reference slice is merged with the icon slice,
+preserving both parent histories. The original four-mode follow-up was stopped
+after 93 units and both 164-case light-mode runs passed so qualification could
+target the combined tree instead. No passing result is claimed for its cancelled
+dark-mode and remaining lanes.
+
+The combined prepared Design Core archive is
+`lapismd-design-core-0.6.0-agent-icons-reference-review.tgz`, SHA-256
+`6f864a5ad9a77fb45255a8df9ceea10ec436ab2c39dfd9814bbec630f7b4baba`.
+The ignored hook retains the reference slice's prepared Mira and JJ history
+dependencies and substitutes this combined public archive. The existing npm
+ranges and registry lockfile remain portable. Combined strict types and all
+97 units pass; the complete qualification is running against this tree.

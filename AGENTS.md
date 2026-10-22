@@ -8,10 +8,11 @@ implementation. Apply the parent workspace guidance. This repository owns
 
 Deliver one user-authorized section at a time with complete Storybook screens
 using production UI controllers and isolated in-memory adapters. The current
-section is Desktop-derived JJ history; Agent visual review remains pending.
+section is chat references, composer/preview parity and transcript actions.
 Stop for explicit user review after this slice and before modifying
 Lapis Desktop, jj-store, downstream services, publishing or deploying anything.
-Source repositories are read-only references during this phase.
+The approved plan authorizes generic fixes in Design Core; source applications
+remain read-only references during this phase.
 
 ## Architecture
 
@@ -43,6 +44,10 @@ Catalog adapters simulate effects only and never enter production exports.
   accessibility, Styling variables, API and Composition. Render every variation,
   complete highlighted public-import usage and styling examples, and the audited
   variable table with names, exact defaults, purpose, owner and source.
+- Keep Mira editor and preview content styles stock, apart from removing the
+  centered note column and the host-requested compact shell inset; configure
+  optional features through public props and
+  keep custom reference/suggestion styling in its owning component.
 - Expose native CSS variables with source-faithful defaults; inherit semantic
   Design Core tokens. Fix primitive defects in their owner, without consumer
   selector patches or dependency-internal imports.
@@ -76,8 +81,11 @@ Catalog adapters simulate effects only and never enter production exports.
 
 Update the owning AUI/RUI requirement and verification before or with protected
 changes. Record actual commands/counts/gaps under `spec/records` and update
-`PLAN.md`. Start with the exact regression; then run affected suites and full
-check, test, package build, Storybook interaction/accessibility and spec checks.
+`PLAN.md`. Start with the exact regression; then run targeted type, unit,
+Storybook interaction/accessibility, browser and spec checks for the section.
+Commit focused verified sections with broad qualification explicitly pending.
+Pause for screen review after each section. Run broad suites and the complete
+package/static matrix only after the final screen review, as the user requested.
 Keep stories visual-pending; do not update screenshot baselines.
 Use native CSS and public tokens. Files have one feature responsibility; new
 production/scripts stay within 300 counted lines, stories 400, tests 500.

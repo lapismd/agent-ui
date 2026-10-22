@@ -19,7 +19,15 @@ export type AgentTranscriptOptions = Pick<
   | "beforeItems"
   | "afterItems"
   | "navigation"
+  | "getMessageActions"
+  | "actionTooltips"
+  | "inlineReferences"
+  | "readerExtensions"
+  | "customEmojis"
+  | "reactionEmojis"
+  | "commentComposer"
 > & {
+  composer?: AgentComposerOptions;
   icons?: Readonly<Record<string, import("svelte").Component>>;
   blocks?: Readonly<Record<string, AgentBlockPresentation>>;
   messages?: Readonly<Record<string, AgentMessagePresentation>>;
@@ -30,6 +38,20 @@ export type AgentTranscriptOptions = Pick<
   composerStatus?: import("@lapismd/design-core/ai/chat").ComposerStatus;
   composerStatusPosition?: "top" | "bottom";
   changes?: import("./turn-changes/controller.svelte.js").AiHistoryInspection;
+};
+/** Public editor hooks; lookup, syntax and recipient policy belong to the host. */
+export type AgentComposerOptions = Pick<
+  import("@lapismd/design-core/chat").MarkdownComposerProps,
+  | "triggers"
+  | "extensions"
+  | "customEmojis"
+  | "emojis"
+  | "emojiText"
+  | "placeholder"
+  | "additionalActions"
+> & {
+  references?: import("@lapismd/design-core/chat").ChatReferenceOptions;
+  referenceSources?: readonly import("@lapismd/design-core/chat").ChatReferenceSource[];
 };
 export type AgentInventory = {
   kind: "skills" | "tools";

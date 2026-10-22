@@ -31,6 +31,17 @@
 - Public types express the boundary.
 - Focused tests and production-component stories verify the behavior.
 
+## AUI-CHAT-004 — Portable references and actions
+
+**Requirement.** Complete chats MUST forward the host's composer, preview, reader and action configuration through the same public Design Core components used by standalone examples.
+
+### Acceptance details
+
+- Editor, Markdown preview and transcript references MUST preserve authored Markdown or registered host tokens, use shared InlineReference/ReferenceChip presentation and keep identity lookup, navigation and recipient dispatch host-owned.
+- Agent mentions MUST be references by default; only an explicit host policy may derive recipients from the exact submitted text.
+- Default Comment MUST be icon-only; configurable reactions and overflow actions MUST remain clear of tool controls, while wholly unavailable hover controls MUST be absent.
+- Paired editor/preview and complete-screen stories MUST demonstrate people/agents, repositories, GitHub/Forgejo link icons, emoji, spoilers, suggestions and retained source with stock Mira content styling, a line-number-free composer and targeted functional/accessibility evidence.
+
 ## AUI-SCREEN-001 — Agent screens
 
 **Requirement.** Shared screens MUST copy Desktop's sessions, history, catalog, imports and recorded preview layouts and styles through capability-aware host interfaces, with pixel-perfect parity at matching viewport, theme, fonts and data.

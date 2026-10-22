@@ -30,7 +30,10 @@ export type AgentScenario =
   | "attachments"
   | "approval"
   | "question";
-export function createDemo(scenario: AgentScenario = "default") {
+export function createDemo(
+  scenario: AgentScenario = "default",
+  controllerOptions?: import("../../../packages/agent-ui/src/core/models.js").AgentControllerOptions,
+) {
   const port = new MemoryAgentPort();
   const icons: NonNullable<AgentTranscriptOptions["icons"]> = {};
   const captureAbort = new AbortController();
@@ -90,6 +93,7 @@ export function createDemo(scenario: AgentScenario = "default") {
   const controller = new AgentUiController(
     port,
     structuredClone(port.snapshot),
+    controllerOptions,
   );
   const panel = createChatPresentation(() => controller);
   if (scenario === "loading") controller.loading = true;

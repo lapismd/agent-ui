@@ -5,6 +5,7 @@ export default defineConfig({
   testMatch: [
     "catalog-browser.pw.ts",
     "transcript-review.pw.ts",
+    "chat-references.pw.ts",
     "jj-review.pw.ts",
   ],
   workers: 1,
