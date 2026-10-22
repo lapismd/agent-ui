@@ -175,3 +175,5 @@ on final review; all new stories are visual-pending.
 Files review follow-up: Directory and File Preview metadata now reuse the same local expandable commit-description control as File History; no route/pin changes. Targeted evidence is appended to the Files record.
 
 Metadata card review: directory and file commit details expand inside the existing bordered card, using a shared attached muted body and single divider; targeted checks precede the same review pause.
+
+History sidebar review reduces the default and reset width from 480px to 420px; host sizing and independent resize bounds remain unchanged.

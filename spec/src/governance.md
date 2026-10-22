@@ -41,7 +41,7 @@ acceptance MUST cover directory navigation, stock Markdown/source, bounded
 virtual paging, tree disclosure/modes, pointer and keyboard resize, exact host
 action identities and the existing history/blame integration. Source apps stay
 read-only; copied layouts and CSS MUST retain exact source revisions and
-explicitly documented adaptations. Shared commit-detail disclosure MUST be composed by directory summaries, file metadata and file history, with one private implementation and per-owner documentation. Attached directory/file metadata detail surfaces MUST retain a single enclosing card and divider. Stop for review before overview or workspace.
+explicitly documented adaptations. Shared commit-detail disclosure MUST be composed by directory summaries, file metadata and file history, with one private implementation and per-owner documentation. Attached directory/file metadata detail surfaces MUST retain a single enclosing card and divider. The narrower history default preserves the existing host-layout binding, documented defaults, source comparisons and visual-review gate. Stop for review before overview or workspace.
 
 ## AUI-GOV-001 — Source ownership
 

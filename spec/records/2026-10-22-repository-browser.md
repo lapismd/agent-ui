@@ -199,3 +199,22 @@ metadata/history cases with the 8px top inset and expanded-button fill.
 Svelte-check has zero errors/warnings; architecture, package build/publint,
 three specification lanes and reviewed source/fingerprint checks pass. The
 user's full-suite and visual-review deferral remains in place.
+
+## Narrower default history sidebar
+
+The user requested a slightly narrower default history pane. Browser defaults,
+invalid-width fallback, double-click reset and the catalog host now use 420px
+instead of 480px; host-bound widths and 280–800px resize bounds are unchanged.
+The exact `both sidebars` browser target failed once before the source change,
+expecting 420px and observing 480px. Focused history tests retain pointer,
+keyboard, reset, metadata, disclosure and exact revision actions. The source
+ledger records the intentional default/reset adaptation; broad tests remain
+review-gated.
+
+Width verification: all three `tests/repository-file-history.pw.ts` cases pass;
+the exact complete Files History interaction/accessibility story passes with
+`pnpm exec vitest run --project storybook packages/repository-ui/src/jj/screens/browser/RepositoryBrowser.stories.ts -t '^History$'`
+(one passed, 14 unrelated variants skipped). Svelte-check, package build/publint,
+23 reviewed source fingerprints/22 source layouts and all 218 destination
+fingerprints pass. The unchanged AUI-GOV-003 governance contract is recorded
+alongside the RUI default change; full suites remain deferred.

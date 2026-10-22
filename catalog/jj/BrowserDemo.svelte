@@ -49,7 +49,7 @@
   let view = $state(demo.controller.state),
     inspection = $state<"history" | undefined>();
   let reference = $state("bookmark:main");
-  let inspectorWidth = $state(480);
+  let inspectorWidth = $state(420);
   let fileTreeOpen = $state(true),
     fileTreeWidth = $state(256);
   const selection = $derived({

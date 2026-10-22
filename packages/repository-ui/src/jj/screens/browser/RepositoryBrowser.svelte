@@ -27,7 +27,7 @@
     copyText,
     fileTreeOpen = $bindable(false),
     fileTreeWidth = $bindable(256),
-    inspectorWidth = $bindable(480),
+    inspectorWidth = $bindable(420),
     onInspectorResize,
     onLayoutChange,
     onOpenRepository,
@@ -217,14 +217,14 @@
           bind:width={inspectorWidth}
           minimum={280}
           maximum={800}
-          defaultWidth={480}
+          defaultWidth={420}
           label="Resize file history sidebar"
           onResize={onInspectorResize}
         /><AppShell.Body.Sidebar
           side="right"
           panelId="repository-file-inspector"
           label="File inspector"
-          style={`--ui-shell-body-sidebar-width:${Math.min(800, Math.max(280, Number.isFinite(inspectorWidth) ? inspectorWidth : 480))}px;background:var(--background)`}
+          style={`--ui-shell-body-sidebar-width:${Math.min(800, Math.max(280, Number.isFinite(inspectorWidth) ? inspectorWidth : 420))}px;background:var(--background)`}
           scrollbarVisibility="hover"
           >{@render inspector(selection)}</AppShell.Body.Sidebar
         >{/if}

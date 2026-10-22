@@ -55,7 +55,7 @@ Change choices MUST reuse a documented shared card with author avatar, message,
 time and exact Git/JJ copy controls that do not activate the surrounding row.
 Complete Files headers MUST use public AppShell header components with matching
 body/sidebar header heights; standalone trees MAY receive a host header snippet.
-Both body sidebars MUST expose independent bounded pointer and keyboard resize controls, bindable widths and host persistence callbacks. The right inspector MUST use the same semantic background as the body.
+Both body sidebars MUST expose independent bounded pointer and keyboard resize controls, bindable widths and host persistence callbacks. The right inspector MUST default/reset to 420px while retaining host-controlled width and 280–800px resize bounds, and use the same semantic background as the body.
 File history MUST use a transparent public AppShell.Toolbar of the same height,
 group recorded revisions by date, retain the shared Git/JJ copy buttons, and
 expose separate host callbacks for viewing file code and browsing the repository

@@ -154,25 +154,26 @@ test("Files: both sidebars resize independently with pointer and keyboard", asyn
     name: "Resize file history sidebar",
     exact: true,
   });
+  await expect(right).toHaveAttribute("data-current-width", "420");
   await left.focus();
   await page.keyboard.press("ArrowRight");
   await expect(left).toHaveAttribute("data-current-width", "272");
   await right.focus();
   await page.keyboard.press("ArrowLeft");
-  await expect(right).toHaveAttribute("data-current-width", "496");
+  await expect(right).toHaveAttribute("data-current-width", "436");
   const rect = await right.boundingBox();
   await page.mouse.move(rect!.x, rect!.y + rect!.height / 2);
   await page.mouse.down();
   await page.mouse.move(rect!.x - 40, rect!.y + rect!.height / 2);
   await page.mouse.up();
-  await expect(right).toHaveAttribute("data-current-width", "536");
+  await expect(right).toHaveAttribute("data-current-width", "476");
   await expect(page.getByTestId("browser-state")).toHaveAttribute(
     "data-actions",
-    /inspector-layout:536/,
+    /inspector-layout:476/,
   );
   await expect(left).toHaveAttribute("data-current-width", "272");
   await right.dblclick();
-  await expect(right).toHaveAttribute("data-current-width", "480");
+  await expect(right).toHaveAttribute("data-current-width", "420");
   await right.focus();
   await page.keyboard.press("Home");
   await expect(right).toHaveAttribute("data-current-width", "280");

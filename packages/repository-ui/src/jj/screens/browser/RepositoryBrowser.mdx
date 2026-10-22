@@ -127,7 +127,7 @@ The host plugs in the existing RepositoryBlamePanel using the same pinned file c
 
 ## Behavior and accessibility
 
-Both sidebars resize independently by dragging their edge, Arrow keys (16px, Shift 32px), Home/End bounds and double-click reset. Bind fileTreeWidth (256px, range 208–420) and inspectorWidth (480px, range 280–800); retain layout in the host using onLayoutChange and onInspectorResize. The right inspector shares the body's semantic background and its transparent history toolbar matches the other header heights.
+Both sidebars resize independently by dragging their edge, Arrow keys (16px, Shift 32px), Home/End bounds and double-click reset. Bind fileTreeWidth (256px, range 208–420) and inspectorWidth (420px, range 280–800); retain layout in the host using onLayoutChange and onInspectorResize. The right inspector shares the body's semantic background and its transparent history toolbar matches the other header heights.
 
 A stable host-owned controller is subscribed for the screen lifetime; the host
 starts and closes reads. Responses are fenced by repository, operation, revision
