@@ -40,7 +40,7 @@
 
 {#snippet choiceLabel(index: number, label: string, description?: string)}
   {#if question.optionLabels !== "none"}<Badge
-      variant="outline"
+      variant="default"
       class="agent-question-option-key"
       aria-hidden="true">{ordinal(index)}</Badge
     >{/if}

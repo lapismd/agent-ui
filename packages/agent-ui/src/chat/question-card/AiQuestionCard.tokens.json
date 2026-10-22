@@ -126,6 +126,20 @@
       "description": "Theme surface for resource rows and unselected answer options; white in light themes",
       "owner": "@lapismd/agent-ui",
       "source": "chat/requests.css"
+    },
+    {
+      "name": "--ui-agent-request-label-background",
+      "default": "var(--muted)",
+      "description": "Solid theme fill for letter and number badges",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/requests.css"
+    },
+    {
+      "name": "--ui-agent-request-label-foreground",
+      "default": "var(--foreground)",
+      "description": "Letter and number badge text color",
+      "owner": "@lapismd/agent-ui",
+      "source": "chat/requests.css"
     }
   ]
 }

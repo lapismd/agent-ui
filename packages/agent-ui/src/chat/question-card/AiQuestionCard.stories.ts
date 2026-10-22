@@ -290,8 +290,12 @@ export const NumberedOptions: Story = {
   }),
   play: async ({ canvasElement }) => {
     const c = within(canvasElement);
-    for (const label of ["1", "2", "3", "4"])
+    for (const label of ["1", "2", "3", "4"]) {
       await expect(c.getByText(label)).toHaveAttribute("aria-hidden", "true");
+      await expect(
+        getComputedStyle(c.getByText(label)).backgroundColor,
+      ).not.toBe("rgba(0, 0, 0, 0)");
+    }
     await userEvent.click(c.getByRole("radio", { name: /^Development/ }));
     await userEvent.keyboard("{ArrowDown}");
     await expect(c.getByRole("radio", { name: /^Staging/ })).toHaveAttribute(

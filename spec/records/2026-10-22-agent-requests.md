@@ -158,3 +158,28 @@ Repository-wide suites, packed-consumer/static matrix, live host integration and
 publication are deliberately deferred under the user's focused-review instruction.
 All changed stories remain visual-pending; no visual baselines were updated.
 Pause for user review before changing Desktop, JJ Store or downstream services.
+
+## Follow-up: solid choice-label backgrounds
+
+The user requested solid letter/number label backgrounds similar to the card.
+The shared question field now composes the filled Badge variant and sets its
+public background/foreground variables from the documented Agent UI label tokens
+(`var(--muted)` and `var(--foreground)`). Answer-row backgrounds are unchanged.
+This applies to single/multiple choices, Other labels and complete chat screens.
+
+The exact regression was `pnpm exec vitest run --project storybook
+packages/agent-ui/src/chat/question-card/AiQuestionCard.stories.ts
+-t '^Numbered Options$'`: one failed before (transparent computed background),
+one passed after. The full question family passed 18 cases in each color mode;
+complete `Requests` and `Requests Classic` passed two in each color mode:
+40 focused interaction/accessibility cases total. Manual Storybook review
+confirmed the filled numeric badges. Type diagnostics remain zero errors and
+warnings; Agent UI build/publint, spec validation, architecture, changed-file
+formatting and the 193-fingerprint source ledger pass. Source adaptations and
+both request-family variable tables are updated. Controller behavior is unchanged;
+unit and broad qualification lanes were not repeated for this paint-only change.
+Downstream adoption and visual baselines remain pending review.
+
+The follow-up spec-first gate initially required the mapped governance chapter
+for its source-ledger change; the public-token paint boundary is now explicit
+there and the final original-base gate passes.

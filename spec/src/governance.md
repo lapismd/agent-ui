@@ -3,6 +3,8 @@
 The request-card slice uses isolated Jujutsu workspaces and focused controller,
 component, type and spec checks before review. Downstream adoption and broad
 qualification remain deferred until that review.
+Request-card paint refinements MUST use public primitive tokens and audited
+Agent UI variables without dependency selector overrides.
 
 Component-family documentation is enforced by the repository-owned
 `agentFoundations` validator plugin, loaded by the published spec-validator.

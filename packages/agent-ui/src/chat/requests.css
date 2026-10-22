@@ -221,6 +221,11 @@
 }
 
 .agent-question-option-key {
+  --ui-badge-background: var(--ui-agent-request-label-background, var(--muted));
+  --ui-badge-foreground: var(
+    --ui-agent-request-label-foreground,
+    var(--foreground)
+  );
   flex: none;
   min-inline-size: 1.5rem;
   justify-content: center;

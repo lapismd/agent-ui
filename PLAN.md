@@ -80,3 +80,5 @@ The request review also includes optional letter/numeric choice labels, explicit
 custom answers for single and multiple choice, theme-surface option/resource rows,
 and collapsed acknowledged permission history that expands to the shared card.
 Focused verification and review precede all downstream adoption.
+
+Question letter/number badges now use a solid muted theme fill; the request review and downstream adoption gate remain in place.
