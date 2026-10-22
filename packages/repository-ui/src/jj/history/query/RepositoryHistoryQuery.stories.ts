@@ -1,6 +1,6 @@
 import { Pending as pendingSource } from "./RepositoryHistoryQuery.example-sources.js";
 import type { Meta, StoryObj } from "@storybook/svelte-vite";
-import { expect, within } from "storybook/test";
+import { expect, userEvent, within } from "storybook/test";
 import Component from "./RepositoryHistoryQuery.svelte";
 import Fixture from "../../../../../../catalog/jj/QueryDemo.svelte";
 import {
@@ -22,6 +22,18 @@ export const Revset: Story = {
     await expect(
       within(canvasElement).findByRole("searchbox", { name: "Revision query" }),
     ).resolves.toBeVisible();
+    await userEvent.click(
+      within(canvasElement).getByRole("button", {
+        name: "Query context and syntax",
+      }),
+    );
+    const help = within(canvasElement).getByRole("region", {
+      name: "Query context and syntax",
+    });
+    await expect(within(help).getAllByRole("status")).toHaveLength(2);
+    await expect(
+      within(help).getByText(/JJ revsets and standard aliases/),
+    ).toBeVisible();
   },
 };
 export const Operations: Story = {
@@ -35,6 +47,18 @@ export const Operations: Story = {
         name: "Operation query",
       }),
     ).resolves.toBeVisible();
+    await userEvent.click(
+      within(canvasElement).getByRole("button", {
+        name: "Query context and syntax",
+      }),
+    );
+    const help = within(canvasElement).getByRole("region", {
+      name: "Query context and syntax",
+    });
+    await expect(within(help).getAllByRole("status")).toHaveLength(2);
+    await expect(
+      within(help).getByText(/Combine fields with spaces or AND/),
+    ).toBeVisible();
   },
 };
 export const Pending: Story = {

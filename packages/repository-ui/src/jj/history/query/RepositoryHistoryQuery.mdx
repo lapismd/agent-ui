@@ -24,11 +24,12 @@ Pass the committed query and apply drafts through the owning controller. Hosts m
 
 ## Anatomy
 
-| Part              | Responsibility                                                         |
-| ----------------- | ---------------------------------------------------------------------- |
-| SearchFilterInput | Shared pill and CodeMirror custom-language editor.                     |
-| Query actions     | Run query and disclose syntax/context.                                 |
-| Completion        | Native vocabulary and snapshot bookmarks without transport or routing. |
+| Part              | Responsibility                                                                    |
+| ----------------- | --------------------------------------------------------------------------------- |
+| SearchFilterInput | Shared pill and CodeMirror custom-language editor.                                |
+| Query actions     | Run query and disclose syntax/context.                                            |
+| Completion        | Native vocabulary and snapshot bookmarks without transport or routing.            |
+| Expanded help     | Source-style informational alerts, centered icons and language-specific guidance. |
 
 ## Variations
 
@@ -52,7 +53,7 @@ Retains the draft while the host runs a query and disables repeat submission.
 
 ## Behavior and accessibility
 
-Ctrl/Cmd+Space opens completion, Tab accepts a suggestion, and Ctrl/Cmd+Enter applies the draft. Enter accepts active completion or applies when no completion is open. Strings suppress inappropriate suggestions. Query controls have accessible names; context disclosure retains focus. Clearing restores all revisions or an unfiltered operation graph. Host validation, pins, errors and feedback remain in the existing controller.
+Ctrl/Cmd+Space opens completion, Tab accepts a suggestion, and Ctrl/Cmd+Enter applies the draft. Enter accepts active completion or applies when no completion is open. Strings suppress inappropriate suggestions. Query controls have accessible names; context disclosure retains focus and opens a labeled region with the same informational Alert composition as JJ Store. Language-specific guidance and host vocabulary share the public Design Core alert typography and semantic surface. Clearing restores all revisions or an unfiltered operation graph. Host validation, pins, errors and feedback remain in the existing controller.
 
 ## Styling variables
 

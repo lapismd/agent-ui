@@ -64,7 +64,10 @@ JJ Log and Op Log MUST share the source-adapted query editor presentation,
 syntax highlighting, explicit completion and host-provided vocabulary while
 retaining their distinct revset and operation query languages. Hosts retain
 validation and query execution. Dense examples MUST exercise several graph
-lanes, merges, continuation and scrolling in both logs. Changed-file rows MUST
+lanes that progressively widen and narrow, merges, continuation and scrolling
+in both logs, making row-specific avatar movement visible. Expanded query help
+MUST use the source informational Alert composition with centered icons,
+language-specific syntax and accurate keyboard guidance. Changed-file rows MUST
 retain known conflicts and supplied counts, with loaded descendant totals.
 
 ### Acceptance details

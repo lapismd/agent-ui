@@ -70,3 +70,7 @@ Threads, Workflows and settings are deferred. Actual downstream adoption and
 publication require separate approval.
 
 Implemented review follow-up aligns JJ/Op Log paging, conflict and chip presentation, loaded file/folder stats, sixteen-lane graph examples and source-adapted query completion. Targeted checks only; repository browsing and downstream adoption remain gated.
+
+The graph review now widens and narrows gradually in both logs so lane-dependent
+avatars can be inspected across successive rows. Expanded search help adopts
+JJ Store's icon-bearing informational alerts in the shared query component.

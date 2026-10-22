@@ -6,6 +6,8 @@
   import SearchIcon from "@lucide/svelte/icons/search";
   import SettingsIcon from "@lucide/svelte/icons/settings-2";
   import * as Collapsible from "@lapismd/design-core/shadcn/collapsible";
+  import * as Alert from "@lapismd/design-core/shadcn/alert";
+  import InfoIcon from "@lucide/svelte/icons/info";
   import {
     historyExtensions,
     type HistoryLanguage,
@@ -91,22 +93,36 @@
   </SearchFilterInput>
   <Collapsible.Root open={contextOpen}
     ><Collapsible.Content {id}>
-      <div class="repository-history-query__context">
-        <p>
-          {operations
-            ? "Filter recorded operation metadata; this is not a revision set."
-            : "Use JJ revision-set syntax, functions, aliases and bookmarks."}
-        </p>
-        <p>
-          Ctrl/Cmd+Space opens completion. Tab accepts a suggestion;
-          Ctrl/Cmd+Enter runs the query.
-        </p>
-        <code
-          >{operations
-            ? info.operation_fields.map((field) => `${field}:`).join(" · ")
-            : info.aliases.join(" · ")}</code
-        >
-      </div>
+      <section
+        class="repository-history-query__context"
+        aria-label="Query context and syntax"
+      >
+        <Alert.Root role="status">
+          <InfoIcon aria-hidden="true" />
+          <Alert.Description>
+            {#if operations}
+              Combine fields with spaces or AND. Text matches descriptions.
+              Available fields: <code>{info.operation_fields.join(", ")}</code>.
+              For example:
+              <code>from:@-- description:"rebase branch" snapshot:false</code>.
+            {:else}
+              JJ revsets and standard aliases. Try <code>mutable()</code>,
+              <code>::@</code> or <code>description("fix")</code>. Available
+              aliases: <code>{info.aliases.join(", ") || "None"}</code>.
+            {/if}
+          </Alert.Description>
+        </Alert.Root>
+        <Alert.Root role="status">
+          <InfoIcon aria-hidden="true" />
+          <Alert.Description>
+            Queries use the displayed operation snapshot. Ctrl/Cmd+Space opens
+            completion. Tab or Enter accepts an active completion. Enter runs
+            the query when completion is closed; Ctrl/Cmd+Enter or Search runs
+            it directly. Escape closes completions. Invalid drafts keep the
+            previous results.
+          </Alert.Description>
+        </Alert.Root>
+      </section>
     </Collapsible.Content></Collapsible.Root
   >
 </div>
@@ -130,10 +146,12 @@
     display: grid;
     gap: 0.75rem;
     margin-block-start: var(--ui-repository-history-query-gap, 0.75rem);
-    font-size: 0.8125rem;
+    font-size: var(--ui-repository-history-query-help-font-size, 0.75rem);
   }
-  p {
-    margin: 0;
+  .repository-history-query__context :global([data-slot="alert"] > svg) {
+    grid-row: 1;
+    align-self: center;
+    translate: none;
   }
   :global(.history-query-string) {
     color: var(--ui-form-code-string, var(--foreground));

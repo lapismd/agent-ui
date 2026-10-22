@@ -33,3 +33,7 @@ Commands, counts and visual limits are recorded in
 excluded. Local downstream icon/dependency refresh is user-authorized in the
 filename icon closeout record. Publication and deployment remain pending.
 User approval of the Agent presentation remains pending.
+
+The progressive history graph and source-style query-help follow-up for
+RUI-HISTORY-001 / AUI-GOV-003 is recorded in
+`spec/records/2026-10-22-history-graph-help.md`; visual review remains pending.

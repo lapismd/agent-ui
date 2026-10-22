@@ -11,6 +11,7 @@ test("cold Storybook prebundles source, catalog, dependency icons and docs runti
   expect(config.optimizeDeps?.include).toEqual(
     expect.arrayContaining([
       "@lucide/svelte/icons/file-question-mark",
+      "@lapismd/design-core/shadcn/alert",
       "react-dom/client",
       "storybook/test",
     ]),

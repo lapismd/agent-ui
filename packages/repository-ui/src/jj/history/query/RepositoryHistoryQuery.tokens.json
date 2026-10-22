@@ -14,6 +14,13 @@
       "description": "Source-faithful separation before the optional query context.",
       "owner": "@lapismd/repository-ui",
       "source": "jj/history/query/RepositoryHistoryQuery.svelte"
+    },
+    {
+      "name": "--ui-repository-history-query-help-font-size",
+      "default": "0.75rem",
+      "description": "Source secondary text size for expanded query context; alert typography inherits Design Core.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/history/query/RepositoryHistoryQuery.svelte"
     }
   ]
 }

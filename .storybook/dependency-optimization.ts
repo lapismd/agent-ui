@@ -38,6 +38,7 @@ export const storybookBrowserDependencies = [
   ]),
   "@lapismd/design-core/shadcn/file-type-icon",
   "@lapismd/design-core/filter",
+  "@lapismd/design-core/shadcn/alert",
   "react",
   "react-dom",
   "react-dom/client",

@@ -62,6 +62,11 @@ test("dense graphs expose sixteen lanes and row-specific content offsets without
     for (const parent of node.parents)
       expect(ids.indexOf(parent)).toBeGreaterThan(i);
   const graph = buildRepositoryLogGraph(operationRows(nodes));
+  const offsets = graph.map(repositoryLogContentLeft);
+  expect(new Set(offsets.slice(0, 12)).size).toBeGreaterThanOrEqual(10);
+  for (let i = 2; i < 16; i++)
+    expect(offsets[i]).toBeGreaterThan(offsets[i - 1]);
+  for (let i = 18; i < 33; i++) expect(offsets[i]).toBeLessThan(offsets[i - 1]);
   expect(repositoryLogSvgWidth(graph)).toBeGreaterThanOrEqual(200);
   expect(new Set(graph.map(repositoryLogContentLeft)).size).toBeGreaterThan(2);
 });
