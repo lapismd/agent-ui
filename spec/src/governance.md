@@ -67,6 +67,9 @@ Column Canvas. Branches acceptance MUST verify bounded fitting, resetting after
 manual resizing, keyboard parity and unchanged captured selection through the
 prepared local review package. Branch row and chip surface changes MUST retain explicit source adaptations and audited token defaults, with focused hover/selection coverage. Stop for review before Workspace.
 
+The Desktop directory-screen ports retain the original markup and native CSS;
+the source ledger records only explicit optional host-state bindings.
+
 ## AUI-GOV-001 — Source ownership
 
 **Requirement.** Production packages MUST consume public Design Core primitives and injected host ports without application-private imports, credentials, native transports or catalog dependencies.

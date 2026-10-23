@@ -5,3 +5,7 @@ export { default as AgentImportsScreen } from "./imports-screen/AgentImportsScre
 export { default as AgentsScreen } from "../directory/screen/AgentsScreen.svelte";
 export { AgentDirectoryController } from "../directory/logic/controller.js";
 export type * from "../directory/logic/types.js";
+
+export type { HistoryState as AgentHistoryPresentation } from "../history/controller.svelte.js";
+export type { CatalogState as AgentCatalogPresentation } from "../catalog/controller.svelte.js";
+export type { ImportState as AgentImportPresentation } from "../imports/controller.svelte.js";

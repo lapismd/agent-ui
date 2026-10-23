@@ -123,4 +123,10 @@ export class CatalogController {
     if (result?.status === "acknowledged") this.openedCatalogPath = path;
   }
 }
-export type CatalogState = CatalogController;
+/** Hosts may retain native registry admission and subscriptions. */
+export type CatalogState = Omit<
+  CatalogController,
+  "owner" | "expanded" | "applyDefaults"
+> & {
+  applyDefaults?(): void;
+};

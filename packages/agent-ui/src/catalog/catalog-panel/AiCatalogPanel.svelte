@@ -11,7 +11,7 @@
   let { catalog }: { catalog: CatalogState } = $props();
   $effect(() => {
     catalog.groups;
-    untrack(() => catalog.applyDefaults());
+    untrack(() => catalog.applyDefaults?.());
   });
 </script>
 
