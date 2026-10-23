@@ -24,13 +24,13 @@ The host owns admission, snapshots, version checks, persistence and exact reques
 
 ## Anatomy
 
-| Part       | Responsibility                                                             |
-| ---------- | -------------------------------------------------------------------------- |
-| Page frame | Topbar breadcrumbs outside the body; responsive tabs and expanding search. |
-| Directory  | Mine/Other groups across homes, list/grid layout, paging and retry.        |
-| Detail     | Task description, comments, subtask links and review lifecycle.            |
-| Rail       | Project/task metadata and code links with separate availability.           |
-| Editor     | Retained home-scoped drafts and explicit save outcomes.                    |
+| Part       | Responsibility                                                                   |
+| ---------- | -------------------------------------------------------------------------------- |
+| Page frame | Topbar breadcrumbs outside the body; responsive tabs and expanding search.       |
+| Directory  | Mine/Other groups across homes, list/grid layout, paging and retry.              |
+| Detail     | Task description/subtasks; review metadata, recorded files/commits and activity. |
+| Rail       | Project/task metadata and code links with separate availability.                 |
+| Editor     | Retained home-scoped drafts and explicit save outcomes.                          |
 
 ## Variations
 
@@ -49,6 +49,37 @@ The host owns admission, snapshots, version checks, persistence and exact reques
 ### Task
 
 <Canvas of={Stories.Task} />
+
+### TaskHover
+
+Visible hover/focus feedback and grouped actions in the shared AppShell body header.
+
+<Canvas of={Stories.TaskHover} />
+
+### ReviewDetail
+
+The source review composition includes recorded anchor identities, snapshot
+copying, Description, Files changed, Commits and Activity, and a fixed composer.
+Task and Review share a body toolbar with Back near the left edge, a wrapping title
+and separate action cells; compact body insets align the detail sections.
+
+<Canvas of={Stories.ReviewDetail} />
+
+### ReviewDetailActions
+
+<Canvas of={Stories.ReviewDetailActions} />
+
+### ReviewDetailUnavailable
+
+<Canvas of={Stories.ReviewDetailUnavailable} />
+
+### ReviewDetailReadOnly
+
+<Canvas of={Stories.ReviewDetailReadOnly} />
+
+### ReviewDetailRecovery
+
+<Canvas of={Stories.ReviewDetailRecovery} />
 
 ### Reviews
 
@@ -147,3 +178,15 @@ editable rows use the body surface while card headers retain their tint.
 The host supplies optional `onCopyLink(route)` for canonical share links, `onOpenActivity(row)` for exact repository/operation/revision navigation and `copyText` for Git/JJ identifiers. `showRail` is bindable and defaults closed. Omitted task state means Active; `all` explicitly includes completed tasks.
 
 Use public ProjectsController and WorkPort with the complete screen. Use header for host breadcrumbs and agents for a complete agent/session screen owned by its package. The packages do not import each other. The host owns repository activation, route ancestry, context chat, operational notification toasts and all credentials. Report unavailable capabilities explicitly. Actions/workflow pages are excluded; normal metadata controls remain functional.
+
+Review pages consume optional `WorkReview.anchor`, `reviewRoot` and `context`.
+The context contains a bounded, host-captured repository/operation comparison,
+renderable file content and exact commit activity. Missing data is explicitly
+unavailable; it never substitutes the active checkout. The files workbench uses
+public Design Core listing and diff components, with filtering, split/unified
+layout and local viewed marks. `onOpenActivity` receives the original commit
+record. `copyText` also owns snapshot copying. Review replies use metadata-home
+identity and the captured review version. Resolving hides an empty composer;
+a retained draft stays visible. Thread connectors, reactions, inline review
+annotations and comment continuation remain part of the pending discussion
+slice, not claimed complete by this presentation pass.

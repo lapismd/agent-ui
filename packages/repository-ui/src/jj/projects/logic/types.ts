@@ -1,3 +1,4 @@
+import type { WorkReviewContext, WorkReviewAnchor } from "./review-context.js";
 /** Public metadata presentation models. Home registration and portable code IDs differ. */
 export type WorkVersion = number | bigint;
 export type WorkTab =
@@ -45,13 +46,21 @@ export interface WorkComment {
 export interface WorkReview {
   actor?: WorkActor;
   anchorLabel?: string;
+  anchor?: WorkReviewAnchor;
+  reviewRoot?: string;
+  context?: WorkReviewContext;
   commentCount?: number;
   id: string;
   title: string;
   body: string;
   status: "open" | "resolved";
   version: string;
-  comments: { id: string; body: string | null; parent: string | null }[];
+  comments: {
+    id: string;
+    body: string | null;
+    parent: string | null;
+    actor?: WorkActor;
+  }[];
   commentsHasMore: boolean;
 }
 /** Recorded commit activity; repository/operation are exact host-issued pins. */

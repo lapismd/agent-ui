@@ -133,39 +133,6 @@
   gap: 0.25rem;
 }
 
-.community-projects__task-detail-header {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: start;
-  gap: 0.5rem;
-  /* Bring the Back control closer while retaining the detail body's inset. */
-  margin-inline-start: -0.35rem;
-}
-
-.community-projects__detail-back[data-ui-component="button"] {
-  border-radius: 999px;
-}
-
-.community-projects__task-detail-header h2 {
-  margin: 0;
-  font-size: var(--community-text-section);
-  font-weight: 600;
-  line-height: 1.45;
-}
-
-.community-projects__task-detail-header h2 span {
-  color: var(--muted-foreground);
-  font-weight: 400;
-}
-
-.community-projects__task-detail-header p {
-  display: flex;
-  gap: 0.3rem;
-  margin: 0.2rem 0 0;
-  color: var(--muted-foreground);
-  font-size: var(--community-text-secondary);
-}
-
 .community-projects__task-meta {
   display: grid;
   gap: 0.65rem;
@@ -234,16 +201,6 @@
   padding: 1rem 0;
   color: var(--muted-foreground);
   font-size: var(--community-text-secondary);
-}
-
-.community-projects__task-detail {
-  width: min(100%, 76rem);
-  box-sizing: border-box;
-  margin: 0 auto;
-  border: 0;
-  border-radius: 0;
-  padding: 1.15rem 1.25rem 2rem;
-  padding-inline-start: 0.85rem;
 }
 
 .community-projects__task-detail .community-projects__task-list {

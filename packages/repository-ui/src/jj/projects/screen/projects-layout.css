@@ -1,7 +1,6 @@
 /* Adapted from JJ Store work layout, Apache-2.0. Tabs use public ResponsiveTabs. */
 .community-projects__directory-header,
-.community-projects__surface-header,
-.community-projects__review-header {
+.community-projects__surface-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -51,8 +50,7 @@
 }
 
 .community-projects__directory-header h1,
-.community-projects__surface-header :is(h1, h2),
-.community-projects__review-header h2 {
+.community-projects__surface-header :is(h1, h2) {
   margin: 0;
   font-size: var(--community-text-dialog);
   line-height: 1.25;
@@ -64,14 +62,8 @@
   font-weight: 550;
 }
 
-.community-projects__review-header h2 {
-  font-size: var(--community-text-section);
-  font-weight: 600;
-}
-
 .community-projects__directory-header p,
 .community-projects__surface-header p,
-.community-projects__review-header p,
 .community-projects__row p {
   margin: 0.3rem 0 0;
   color: var(--muted-foreground);

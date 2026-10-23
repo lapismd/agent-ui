@@ -109,3 +109,11 @@ Do not implement source-missing controls in a replacement consumer screen.
 
 The live comparison and unresolved gaps are recorded in
 `spec/records/2026-10-23-project-composition.md`.
+
+Review details remain owned by ProjectsScreen. Supply optional `WorkReview.context`
+with the recorded comparison's repository, operation, files and commits; set its
+loading/unavailable state explicitly. Supply `anchor` and `reviewRoot` for native
+identity controls. Reuse `onOpenActivity` and `copyText` for navigation and copying.
+Task and Review detail provide their own AppShell body header, fixed composer
+and scrolling content; hosts supply breadcrumb ancestry outside that body.
+Do not add a second detail header or replace the detail page with the active checkout.

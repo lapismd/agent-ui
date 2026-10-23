@@ -41,6 +41,8 @@
         return { tab: "tasks", home: "alpha", project: "project-0" };
       if (variant === "LinkedRepositories")
         return { tab: "repositories", home: "alpha", project: "project-0" };
+      if (variant.startsWith("ReviewDetail"))
+        return { tab: "reviews", home: "alpha", review: "review-1" };
       if (variant === "Reviews") return { tab: "reviews" };
       if (variant === "Activity") return { tab: "activity" };
       if (variant === "Repositories") return { tab: "repositories" };
@@ -87,21 +89,30 @@
               },
             ]
           : []),
+        ...(route.review
+          ? [{ id: "reviews", label: "Reviews", href: "#/projects/reviews" }]
+          : []),
         ...(route.task
           ? [{ id: "tasks", label: "Tasks", href: "#/projects/tasks" }]
           : []),
         {
           id: "current",
-          label: route.task
-            ? "Preserve repository context"
-            : route.tab[0].toUpperCase() + route.tab.slice(1),
+          label: route.review
+            ? "Review repository context"
+            : route.task
+              ? "Preserve repository context"
+              : route.tab[0].toUpperCase() + route.tab.slice(1),
         },
       ]}
       onNavigate={(item) =>
         navigate(
           item.id === "projects"
             ? { tab: "projects" }
-            : { tab: "tasks", home: route.home, project: route.project },
+            : {
+                tab: item.id === "reviews" ? "reviews" : "tasks",
+                home: route.home,
+                project: route.project,
+              },
         )}
     />{/snippet}
 </ProjectsScreen>

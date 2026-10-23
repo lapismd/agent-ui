@@ -9,11 +9,13 @@
     WorkRoute,
     WorkHome,
     WorkContext,
+    WorkActivity,
   } from "../logic/types.js";
   import ProjectCollection from "./ProjectCollection.svelte";
   import ProjectRows from "./ProjectRows.svelte";
   import TaskRows from "./TaskRows.svelte";
   import WorkEmpty from "./WorkEmpty.svelte";
+  import WorkReviewDetail from "./WorkReviewDetail.svelte";
   import WorkDetails from "./WorkDetails.svelte";
   let {
     controller,
@@ -28,6 +30,8 @@
     homes,
     onOpenRepository,
     onChat,
+    onOpenActivity,
+    copyText,
   }: {
     controller: ProjectsController;
     entry: WorkHomeState;
@@ -45,6 +49,8 @@
     homes: WorkHome[];
     onOpenRepository?(home: WorkHome): void;
     onChat?(context: WorkContext): void;
+    onOpenActivity?(row: WorkActivity): void;
+    copyText?(text: string): Promise<void>;
   } = $props();
   const page = $derived(entry.page);
 </script>
@@ -59,7 +65,19 @@
       retry={() => void controller.read(entry.home.id)}
     />{/if}
   {#if page}
-    {#if page.task || page.review}<WorkDetails
+    {#if page.review}{#key `${entry.home.id}:${page.review.id}`}<WorkReviewDetail
+          {controller}
+          {page}
+          home={entry.home}
+          disabled={busy}
+          {navigate}
+          {onError}
+          {onChat}
+          {onOpenActivity}
+          {copyText}
+          {repositoryName}
+        />{/key}
+    {:else if page.task}<WorkDetails
         {controller}
         {page}
         home={entry.home}

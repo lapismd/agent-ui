@@ -14,6 +14,13 @@
       "description": "Metadata, row counts and date typography.",
       "owner": "@lapismd/repository-ui",
       "source": "jj/projects/screen/projects.css"
+    },
+    {
+      "name": "--ui-projects-section-hover-background",
+      "default": "color-mix(in srgb, var(--foreground) 5%, var(--background))",
+      "description": "Opaque task section hover and keyboard-focus surface.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/projects/screen/community-work-disclosures.css"
     }
   ]
 }

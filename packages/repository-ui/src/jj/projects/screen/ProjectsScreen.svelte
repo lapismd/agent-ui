@@ -240,6 +240,8 @@
             homes={view.directory}
             {onOpenRepository}
             {onChat}
+            {onOpenActivity}
+            {copyText}
             {onError}
           />
         {/each}{/if}

@@ -32,7 +32,9 @@
         class="community-projects__activity-item community-projects__activity-item--commit"
         role="listitem"
       >
-        <span class="community-member-hover-card__trigger"
+        <span
+          class="community-projects-git-author-avatar"
+          style="--ui-repository-author-avatar-size: 2rem"
           ><RepositoryAuthorAvatar
             name={revision.author}
             email={revision.authorEmail}

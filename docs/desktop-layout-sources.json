@@ -7330,13 +7330,16 @@
       "source": "web/src/lib/ui/store-work/StoreProjects.svelte",
       "destination": "packages/repository-ui/src/jj/projects/screen/ProjectsScreen.svelte",
       "sourceSha256": "4faff8e52ce45af1dde693d4858a57a67309c4e8f934f31b6805f9e17175df5a",
-      "destinationSha256": "62260c49a1822e1454ef4adf8dbc9a4de87b86666c57d740c9954dc1cf596411",
+      "destinationSha256": "cf44a5785c9dbf9cd5ffc456a3c4d72464823488aaca9c6aee01509fbf9911a2",
       "adaptations": [
         {
           "description": "Compose source directory/detail switching through RepositoryPageFrame, independent metadata-home controller, host route/chat/agent snippets, availability and exact recovery. Workflow pages are excluded. Source composition gate remains open; see project-composition record."
         },
         {
           "description": "Expose the same expanding query control on Reviews as on other Projects directory tabs, including keyboard dismissal and focus restoration."
+        },
+        {
+          "description": "Forward existing host activity and copy callbacks to the owned review detail."
         }
       ]
     },
@@ -7359,10 +7362,13 @@
       "source": "web/src/lib/ui/store-collaboration/StoreRepositoryActivity.svelte",
       "destination": "packages/repository-ui/src/jj/projects/screen/ProjectActivity.svelte",
       "sourceSha256": "335e504e00587d368f50a53ac07113f1290d59d8ad4bf1ede5f998355cb0d3a1",
-      "destinationSha256": "fb76bda574f4a5f2b0e1e8c06e490cf4207194a5d51c905ab1009e71552dcc63",
+      "destinationSha256": "cc1512717c016177449c31789d44ff7d754e62b76dbc68621bc820a6a53e8965",
       "adaptations": [
         {
           "description": "Use public avatar, identifiers and Markdown; bounded loaded rows replace source virtual rows. Host receives exact recorded navigation pin. Move description outside title button for an accurate accessible name and to avoid nested interactive markup. Agent associations await the sessions slice."
+        },
+        {
+          "description": "Restore the source Git-author wrapper and 32px timeline avatar using the existing public avatar-size token; directory avatars remain 24px."
         }
       ]
     },
@@ -7411,10 +7417,13 @@
       "source": "web/src/lib/ui/store-work/StoreProjectsDirectory.svelte",
       "destination": "packages/repository-ui/src/jj/projects/screen/ProjectHomeContent.svelte",
       "sourceSha256": "8173b16edc749aae3db2e65e2b30efb01803348bcf4daf8a6ee02a3be5816a13",
-      "destinationSha256": "3cf6715c7d9502532254b84c8d78acb5bdbb05a2297c2b9b00e7afa346c8bdb0",
+      "destinationSha256": "6afeb35ea40d509db8492c0a237b3e12eaf7aa19e677ae81b85893ca241d8364",
       "adaptations": [
         {
           "description": "Extract per-home detail/review presentation and independent read recovery. Projects/tasks now use the cross-home ownership directory and activity uses the unified timeline."
+        },
+        {
+          "description": "Compose the private review detail for selected reviews with exact host activity/copy callbacks; retain task detail for tasks."
         }
       ]
     },
@@ -7595,10 +7604,16 @@
       "source": "web/src/lib/ui/store-work/StoreWorkTaskDetail.svelte",
       "destination": "packages/repository-ui/src/jj/projects/screen/WorkDetails.svelte",
       "sourceSha256": "b667977b59fd4076725421825acfdaa799f6e8e25901a62f7ae67ab44c64f94e",
-      "destinationSha256": "6ca1d02149890a077653ac4b72fda33725786cfae357f5463e097eebcd1589f2",
+      "destinationSha256": "4653ff016e766a2a2a2ebe1096ec862da36b060e448bb8d5bceeaf0f78e8d57f",
       "adaptations": [
         {
           "description": "Preserve fixed header, independently scrolling metadata/description/subtasks/activity and fixed composer. Host supplies code/chat actions. Review detail currently shares this scaffold and remains unaccepted."
+        },
+        {
+          "description": "Separate reviews into the source review composition. Keep task-only disclosures and group Refresh and Chat in the same header grid cell."
+        },
+        {
+          "description": "Use the common private WorkDetailHeader with public AppShell.Toolbar; place Back, wrapping title and grouped actions in separate cells at the body edge."
         }
       ]
     },
@@ -7608,10 +7623,13 @@
       "source": "web/src/lib/ui/store-work/StoreWorkComments.svelte",
       "destination": "packages/repository-ui/src/jj/projects/screen/WorkDiscussion.svelte",
       "sourceSha256": "fa7635d5c9358c66819f461e19d1037fbb48fffefb79fc85635cce8c4361ef53",
-      "destinationSha256": "003676803d023023714ae3ae3b4341e82d033697618f79020f785e560d47a713",
+      "destinationSha256": "af049802a0b4bc379fa227d2f1d646b217145e8b3c606c55cc8ce768f7e4856b",
       "adaptations": [
         {
           "description": "Adapt source activity/composer snippets through public Message, MessageActions and MarkdownComposer; host persists drafts and exact requests. Thread connectors, reactions and captured edit versions remain tracked gaps, not declared parity."
+        },
+        {
+          "description": "Use review-specific labels, source conversation avatar size and row inset, recorded activity snippet and retained-draft composer visibility. Review comment author metadata is optional and host supplied; thread connectors/reactions/edit revisions remain pending."
         }
       ]
     },
@@ -7769,10 +7787,13 @@
       "source": "web/src/lib/ui/store-work/community-work-disclosures.css",
       "destination": "packages/repository-ui/src/jj/projects/screen/community-work-disclosures.css",
       "sourceSha256": "ae7375a804ae9297324a9d2374cbff12ea26c91da1f9ce1d5d7d4e88772d6aff",
-      "destinationSha256": "ae7375a804ae9297324a9d2374cbff12ea26c91da1f9ce1d5d7d4e88772d6aff",
+      "destinationSha256": "97969397b4ba9829b67339996d8d5cf032f8042ad5d2c10ac5e051b01ff7133d",
       "adaptations": [
         {
           "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
+        },
+        {
+          "description": "Make task heading hover opaque with a 5% foreground mix and add matching keyboard-focus feedback through a documented public token."
         }
       ]
     },
@@ -7827,13 +7848,16 @@
       "source": "web/src/lib/ui/store-work/community-work-tasks.css",
       "destination": "packages/repository-ui/src/jj/projects/screen/community-work-tasks.css",
       "sourceSha256": "21e8c2519151c0493fe2b0d266ee68ffbd25a6ff4296f4d42113925264c2b9f0",
-      "destinationSha256": "e141f60def9641015e8a501865f2bf19ec738bbe093bf2c80b46def70281d58f",
+      "destinationSha256": "f62e288d5987722d8629a388edc1f6f4f8779a3b55cdc92bb9bbcaab2350647d",
       "adaptations": [
         {
           "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
         },
         {
           "description": "Preserve source timestamp placement, secondary typography and nonwrapping dates through the owned community-relative-time wrapper around public RelativeTime. Target the owned class instead of assuming the public control renders a direct time element."
+        },
+        {
+          "description": "Remove obsolete task header and centered detail sizing now owned by the shared body toolbar and task-detail-layout."
         }
       ]
     },
@@ -7862,10 +7886,13 @@
       "source": "web/src/lib/ui/store-work/community-work-layout.css",
       "destination": "packages/repository-ui/src/jj/projects/screen/projects-layout.css",
       "sourceSha256": "d299db289d8bb38823ef0919fd06b815ce0478a0523616a2c78ec6006f7d5dff",
-      "destinationSha256": "81bcf68bede114d0977b05355045b65a35ca50f91675fdc2b247e5979624f693",
+      "destinationSha256": "ff151c0085afa4749c8df6e91bde0b414e7b24074bfc414abf27180d07d715ef",
       "adaptations": [
         {
           "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
+        },
+        {
+          "description": "Remove old generic review-header rules that collided with the source review header and made Back overlap the title."
         }
       ]
     },
@@ -7888,10 +7915,113 @@
       "source": "web/src/lib/ui/store-work/task-detail-layout.css",
       "destination": "packages/repository-ui/src/jj/projects/screen/task-detail-layout.css",
       "sourceSha256": "c8a8446aeeb540c50ad3a5c7625696acf77a332ff3b59a5fb1b43ee1bb04fa85",
-      "destinationSha256": "c8a8446aeeb540c50ad3a5c7625696acf77a332ff3b59a5fb1b43ee1bb04fa85",
+      "destinationSha256": "53b38a7ea2ac843f1227ada445cdf835e83b14f5d1eea8e459a64ea07eed7f2f",
       "adaptations": [
         {
           "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
+        },
+        {
+          "description": "Keep the optional Chat and Refresh controls together in the task header action slot."
+        },
+        {
+          "description": "Use a full-width task root and compact matching body/composer insets; delegate header sizing to public AppShell.Toolbar."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-collaboration/StoreReviewDetail.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/WorkReviewDetail.svelte",
+      "sourceSha256": "a1196e97167f2f654014f578d8a32d0c14abbb1b407bf48a065634652f0452fd",
+      "destinationSha256": "5343f5d699ddcfb25d8cbee74411afb09feb399907f54ca2f82ea432ca4d1801",
+      "adaptations": [
+        {
+          "description": "Preserve header/body/footer, metadata and disclosure order; replace private StoreController with scoped WorkReview data, production ProjectsController and explicit host callbacks. Shared WorkDiscussion owns retained drafts; native associations/reactions and inline annotation remain pending."
+        },
+        {
+          "description": "Use the same body toolbar as tasks, preserving review title, timestamp, Back and exact host actions without absolute positioning."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-collaboration/StoreReviewDetail.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/WorkReviewMeta.svelte",
+      "sourceSha256": "a1196e97167f2f654014f578d8a32d0c14abbb1b407bf48a065634652f0452fd",
+      "destinationSha256": "ef28022d7f170409a9f6a95c5ad2936f7d7ec79c918e1836c26148ae9a1b310c",
+      "adaptations": [
+        {
+          "description": "Extract source metadata rows with shared RepositoryIdentifiers and optional exact host anchor/root data. Status action retains metadata-home and captured review version."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-collaboration/StoreReviewFiles.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/WorkReviewFiles.svelte",
+      "sourceSha256": "ee422dbcd660a756949a31bf37d38b08a0ae0f7913016e7a2b27e4410a8a6c92",
+      "destinationSha256": "b87b2f161cd0eeed6293862443df69566bf92dcfdf0a958d7b76f08305e2c5aa",
+      "adaptations": [
+        {
+          "description": "Preserve listing/diff workbench, filter, layout, viewed marks and toggle using public Design Core components. Host supplies recorded renderable comparison; missing context is handled by parent. Omit native inline conversation annotation until its typed contract is supplied; do not infer absent statistics as totals."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-collaboration/StoreReviewCommits.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/WorkReviewCommits.svelte",
+      "sourceSha256": "b0468e8ebf7e9b8bdd956b072c83893b1eda7ead3c816667d707841f4cd0ce99",
+      "destinationSha256": "e5777ece57efd1c2346f7abd6969b85065a888fd4a88d7bcdcea0d8f281f23d3",
+      "adaptations": [
+        {
+          "description": "Preserve source compact commit rows and geometry; use exact host activity callback rather than private URL encoding, and disable absent capabilities."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-collaboration/community-native-review.css",
+      "destination": "packages/repository-ui/src/jj/projects/screen/community-native-review.css",
+      "sourceSha256": "355d140b0b86f08555876839d84331be0dfdeb4d44060bbcd9daa1f5b5952a63",
+      "destinationSha256": "340ba5ba7cb31e2ca663627e109556a7f12ddee8903f43785db5bdb36133b840",
+      "adaptations": [
+        {
+          "description": "Retain source review geometry. Add owned ScrollArea flex sizing, grouped host header actions, focus outline and source comment insets/avatars through public component props/tokens."
+        },
+        {
+          "description": "Remove obsolete header positioning and centered root sizing. Align metadata, disclosure and composer outer insets while retaining source timeline geometry."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-collaboration/community-native-diff.css",
+      "destination": "packages/repository-ui/src/jj/projects/screen/community-native-diff.css",
+      "sourceSha256": "8cfb8c0675be31b59a9226782bc5842690c83ab79dba7d9caba3885a6d38cb3c",
+      "destinationSha256": "8cfb8c0675be31b59a9226782bc5842690c83ab79dba7d9caba3885a6d38cb3c",
+      "adaptations": [
+        {
+          "description": "Retain source diff toolbar, two-column workbench, sticky header and narrow viewport geometry."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-collaboration/StoreReviewDetail.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/WorkDetailHeader.svelte",
+      "sourceSha256": "a1196e97167f2f654014f578d8a32d0c14abbb1b407bf48a065634652f0452fd",
+      "destinationSha256": "58da28401819bc28d6c90aa7833c3253a0eef33f81cab3d109bdd41f63447fda",
+      "adaptations": [
+        {
+          "description": "Extract source Back/title/timestamp/actions into a private shared Task/Review body header. Use public AppShell.Toolbar and a three-cell grid instead of absolute Back positioning, with 8px edge inset and wrapping titles."
         }
       ]
     }

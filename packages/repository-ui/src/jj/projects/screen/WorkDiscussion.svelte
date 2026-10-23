@@ -30,6 +30,7 @@
     onError,
     principal,
     children,
+    beforeDiscussion,
   }: {
     controller: ProjectsController;
     home: string;
@@ -40,7 +41,8 @@
     disabled?: boolean;
     onError(error: unknown): void;
     principal?: string;
-    children: Snippet<[Snippet, Snippet]>;
+    children: Snippet<[Snippet, Snippet, boolean]>;
+    beforeDiscussion?: Snippet;
   } = $props();
   let body = $state(""),
     reply = $state<string | null>(null),
@@ -51,6 +53,16 @@
     failed = $state(false);
   const id = $props.id(),
     key = $derived(`comment:${task?.id ?? review?.id}`);
+  const label = $derived(review ? "Review" : "Task");
+  const sectionClass = $derived(
+    review
+      ? "community-projects__review-section"
+      : "community-projects__task-activity",
+  );
+  const showComposer = $derived(
+    writable &&
+      (!review || review.status === "open" || !!body || !!reply || !!edit),
+  );
   let persisted = Promise.resolve();
   onMount(() => {
     let active = true;
@@ -125,12 +137,12 @@
 {#snippet replyIcon()}<Reply />{/snippet}
 {#snippet editIcon()}<Pencil />{/snippet}
 {#snippet activity()}
-  <section aria-label="Task activity">
-    <Collapsible.Root
-      bind:open={expanded}
-      class="community-projects__task-activity"
-    >
-      <Collapsible.Trigger class="community-projects__task-section-trigger"
+  <section aria-label={`${label} activity`}>
+    <Collapsible.Root bind:open={expanded} class={sectionClass}>
+      <Collapsible.Trigger
+        class={review
+          ? "community-projects__review-section-trigger"
+          : "community-projects__task-section-trigger"}
         ><span>Activity</span>{#if expanded}<ChevronDown
             class="community-projects__task-section-chevron"
           />{:else}<ChevronRight
@@ -138,14 +150,18 @@
           />{/if}</Collapsible.Trigger
       >
       <Collapsible.Content
-        ><div
-          class="community-projects__task-timeline"
+        >{@render beforeDiscussion?.()}
+        <div
+          class={review
+            ? "work-review-comments"
+            : "community-projects__task-timeline"}
           role="list"
-          aria-label="Task comments"
+          aria-label={`${label} comments`}
         >
           {#each review?.comments ?? comments as comment (comment.id)}
             {@const actor = "actor" in comment ? comment.actor : undefined}
             <div
+              class:work-review-comment={!!review}
               role="listitem"
               aria-label={`Comment ${comment.id.slice(0, 8)}`}
             >
@@ -185,7 +201,7 @@
               >
                 <Message
                   sender="assistant"
-                  density="compact"
+                  density={review ? "balanced" : "compact"}
                   aria-label={`Message from ${actor?.name ?? actor?.created_by ?? "Unknown author"}`}
                 >
                   {#snippet avatar()}<RepositoryAuthorAvatar
@@ -215,7 +231,7 @@
           {#if !(review?.comments ?? comments).length}<p
               class="community-projects__task-empty-activity"
             >
-              No comments yet. Add a comment to this task.
+              No comments yet. Add a comment to this {label.toLowerCase()}.
             </p>{/if}
         </div></Collapsible.Content
       >
@@ -223,7 +239,7 @@
   </section>
 {/snippet}
 {#snippet composer()}
-  {#if writable}<MarkdownComposer
+  {#if showComposer}<MarkdownComposer
       class="community-projects__task-composer"
       value={body}
       onChange={update}
@@ -240,8 +256,10 @@
         ? {
             authorName: edit ? "Editing comment" : "Reply",
             content:
-              (edit ?? comments.find((c) => c.id === reply))?.body ??
-              "Earlier comment",
+              (
+                edit ??
+                (review?.comments ?? comments).find((c) => c.id === reply)
+              )?.body ?? "Earlier comment",
           }
         : undefined}
       onCancelReply={() => {
@@ -257,4 +275,4 @@
       >Retry saving draft</Button
     >{/if}
 {/snippet}
-{@render children(activity, composer)}
+{@render children(activity, composer, showComposer)}

@@ -2,6 +2,14 @@ import type { Meta, StoryObj } from "@storybook/svelte-vite";
 import { expect, userEvent, within, waitFor } from "storybook/test";
 import Component from "./ProjectsScreen.svelte";
 import { exerciseProjectLayouts } from "../../../../../../catalog/jj/support/projects-layout-play.js";
+import {
+  exerciseReviewDetail,
+  exerciseReviewActions,
+  exerciseReviewUnavailable,
+  exerciseReviewReadOnly,
+  exerciseReviewRecovery,
+  exerciseTaskHover,
+} from "../../../../../../catalog/jj/support/projects-detail-play.js";
 import Demo from "../../../../../../catalog/jj/ProjectsDemo.svelte";
 import { Basic as source } from "./ProjectsScreen.example-sources.js";
 export default {
@@ -334,4 +342,40 @@ export const DetailsRail: Story = {
       await canvas.findByRole("heading", { name: "Tasks", level: 1 }),
     ).toBeVisible();
   },
+};
+
+export const ReviewDetail: Story = {
+  render: () => ({ Component: Demo, props: { variant: "ReviewDetail" } }),
+  play: ({ canvasElement }) => exerciseReviewDetail(canvasElement),
+};
+export const TaskHover: Story = {
+  render: () => ({ Component: Demo, props: { variant: "Task" } }),
+  play: ({ canvasElement }) => exerciseTaskHover(canvasElement),
+};
+
+export const ReviewDetailActions: Story = {
+  render: () => ({ Component: Demo, props: { variant: "ReviewDetail" } }),
+  play: ({ canvasElement }) => exerciseReviewActions(canvasElement),
+};
+export const ReviewDetailUnavailable: Story = {
+  render: () => ({
+    Component: Demo,
+    props: { variant: "ReviewDetailUnavailable" },
+  }),
+  play: ({ canvasElement }) => exerciseReviewUnavailable(canvasElement),
+};
+export const ReviewDetailReadOnly: Story = {
+  render: () => ({
+    Component: Demo,
+    props: { variant: "ReviewDetailReadOnly" },
+  }),
+  play: ({ canvasElement }) => exerciseReviewReadOnly(canvasElement),
+};
+
+export const ReviewDetailRecovery: Story = {
+  render: () => ({
+    Component: Demo,
+    props: { variant: "ReviewDetailRecovery" },
+  }),
+  play: ({ canvasElement }) => exerciseReviewRecovery(canvasElement),
 };

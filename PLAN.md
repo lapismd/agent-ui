@@ -312,3 +312,9 @@ and selected-project directories. Populated responsive examples cover wrapping,
 readable project titles and the source 24px avatars in all four directory types;
 contextual tabs match JJ Store's 12px type. See
 `spec/records/2026-10-23-project-layout-toggle.md` for the seven-view regression.
+
+Review detail now adapts JJ Store's metadata/disclosures, recorded code workbench,
+commit navigation and fixed composer. Task disclosure hover/focus surfaces and
+header action grouping are corrected. Both detail pages share a full-width
+AppShell body toolbar with separate Back/title/action cells and compact insets. Evidence and remaining discussion/native
+work are in `spec/records/2026-10-23-review-task-details.md`.

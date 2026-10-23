@@ -1,10 +1,13 @@
+import {
+  reviewFixture,
+  applyReviewCommand,
+} from "./projects-review-fixture.js";
 import type {
   WorkPort,
   WorkPage,
   WorkProject,
   WorkTask,
   WorkComment,
-  WorkReview,
   WorkRequest,
   WorkOutcome,
 } from "../../../packages/repository-ui/src/jj/projects/index.js";
@@ -31,7 +34,7 @@ export function projectsFixture(variant: string) {
     description: `Local checkout ${i + 1}`,
     repository: `portable-${id}`,
     available: variant !== "Disabled",
-    writable: variant !== "Disabled",
+    writable: !["Disabled", "ReviewDetailReadOnly"].includes(variant),
   }));
   const data = new Map(
     homes.map((home) => [
@@ -88,25 +91,7 @@ export function projectsFixture(variant: string) {
             actor,
           },
         ] as WorkComment[],
-        reviews: [
-          {
-            id: "review-1",
-            title: "Review repository context",
-            body: "Check the linked code target before execution.",
-            status: "open",
-            actor,
-            anchorLabel: "src/context.ts a3affd3",
-            version: "1",
-            comments: [
-              {
-                id: "review-comment-1",
-                parent: null,
-                body: "Looks ready for a second pass.",
-              },
-            ],
-            commentsHasMore: false,
-          },
-        ] as WorkReview[],
+        reviews: [reviewFixture(variant, actor)],
       },
     ]),
   );
@@ -254,27 +239,17 @@ export function projectsFixture(variant: string) {
           state.comments.find((r) => r.id === c.id)!,
           { body: c.body, version: Number(c.version) + 1 },
         );
-      if (c.kind === "create-review")
-        state.reviews.push({
-          id: request.id,
-          title: c.body.split("\n")[0],
-          body: c.body,
-          status: "open",
-          version: "1",
-          comments: [],
-          commentsHasMore: false,
-        });
-      if (c.kind === "review-reply")
-        state.reviews
-          .find((r) => r.id === c.review)!
-          .comments.push({ id: request.id, body: c.body, parent: c.parent });
-      if (c.kind === "review-state")
-        state.reviews.find((r) => r.id === c.review)!.status = c.resolved
-          ? "resolved"
-          : "open";
+      const reviewError = applyReviewCommand(
+        state.reviews,
+        c,
+        request.id,
+        actor,
+      );
+      if (reviewError) return { state: "rejected", message: reviewError };
       state.version++;
       receipts.set(key, { state: "committed" });
-      if (variant === "Recovery") return { state: "unknown" };
+      if (["Recovery", "ReviewDetailRecovery"].includes(variant))
+        return { state: "unknown" };
       requests.delete(key);
       return { state: "committed" };
     },

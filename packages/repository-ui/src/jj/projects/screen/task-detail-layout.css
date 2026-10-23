@@ -14,14 +14,13 @@
 .community-projects__task-detail {
   display: grid;
   height: 100%;
+  width: 100%;
+  flex: 1;
+  min-width: 0;
   min-height: 0;
   grid-template-rows: auto minmax(0, 1fr) auto;
   padding: 0;
   overflow: hidden;
-}
-.community-projects__task-detail-header {
-  margin: 1.15rem 1.25rem 0.85rem 0.5rem;
-  background: var(--background);
 }
 .community-projects__task-scroll {
   min-height: 0;
@@ -29,7 +28,7 @@
   height: 100%;
 }
 .community-projects__task-body {
-  padding: 0 1.25rem 1rem 0.85rem;
+  padding: 0.5rem 0.75rem 1rem;
 }
 .community-projects__task-body .community-projects__task-meta {
   margin-top: 0;
@@ -39,7 +38,7 @@
 }
 .community-projects__task-footer {
   min-width: 0;
-  padding: 0.75rem 1.25rem 1rem 0.85rem;
+  padding: 0.75rem;
   background: var(--background);
 }
 .community-projects__task-footer .community-projects__task-composer {
