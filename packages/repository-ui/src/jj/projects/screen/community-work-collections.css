@@ -194,7 +194,7 @@
     flex-direction: column;
     gap: 0.2rem;
   }
-  .community-projects__card-meta > time {
+  .community-projects__card-meta > .community-relative-time {
     display: none;
   }
   .community-projects__repository-row {

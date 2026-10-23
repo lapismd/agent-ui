@@ -291,8 +291,9 @@ pre-existing root architecture findings are in
 
 The user authorized all five slices on 2026-10-23, superseding the historical
 section review stops for this work. Shared navigation and the native registered-directory foundation are committed.
-Projects/Reviews presentation is in progress and MUST remain open until the live
-JJ Store composition gate is satisfied. Agents/Threads, local settings and
+The user accepted the reviewed Projects appearance after live JJ Store comparison
+and requested continued implementation. Remaining Projects/Reviews functional gaps,
+Agents/Threads, local settings and
 application wiring follow. Exact
 acceptance and pending qualification are in
 `spec/records/2026-10-23-project-integration.md`.
@@ -305,3 +306,9 @@ Create Project review: white card bodies, aligned header/row icons, Reviews
 search and Create Task's project row are tracked in
 `spec/records/2026-10-23-project-dialog-styling.md`.
 The broader composition gate remains open.
+
+The shared card/list control now uses one switching icon button across global
+and selected-project directories. Populated responsive examples cover wrapping,
+readable project titles and the source 24px avatars in all four directory types;
+contextual tabs match JJ Store's 12px type. See
+`spec/records/2026-10-23-project-layout-toggle.md` for the seven-view regression.

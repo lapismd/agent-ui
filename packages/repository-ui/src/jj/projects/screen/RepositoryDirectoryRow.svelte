@@ -62,7 +62,7 @@
       {#if actor}<RepositoryAuthorAvatar
           name={actor.name ?? actor.created_by}
           avatarUrl={actor.avatarUrl}
-          size="xs"
+          size="sm"
         />{:else}<span aria-label="Contributor unavailable">—</span>{/if}
       {#if home.summary}<RepositoryActivityBar {...home.summary} />{:else}<span
           class="store-projects__repository-date">Activity unavailable</span

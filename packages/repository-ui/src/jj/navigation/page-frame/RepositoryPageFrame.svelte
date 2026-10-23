@@ -129,6 +129,7 @@
     min-width: 0;
   }
   .repository-page-frame__navigation {
+    --text-sm: var(--ui-repository-page-tab-font-size, 0.75rem);
     width: 100%;
     min-width: 0;
   }

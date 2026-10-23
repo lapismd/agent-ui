@@ -130,6 +130,9 @@ Filename icon qualification MUST include local catalog skills in the complete
 screen, preserving the copied row geometry and explicit host navigation.
 Geometry assertions MUST compare rendered source slots at the current browser
 zoom while retaining the declared icon size preset.
+Directory layout qualification MUST exercise populated card and list collections
+at desktop and narrow widths, including readable titles, source-sized avatars,
+single-line timestamps and keyboard focus on the shared layout control.
 Documentation table probes MUST target their owning section and retain complete
 semantic row and variable checks without traversing nested transcript tables.
 Cold browser startup MUST await a fail-closed client-compiler readiness probe

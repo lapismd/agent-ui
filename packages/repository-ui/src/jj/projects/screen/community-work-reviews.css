@@ -23,7 +23,7 @@
 .store-projects__review-unavailable,
 .community-projects__review-group-list
   .store-projects__native-review-row
-  > time.community-relative-time {
+  > .community-relative-time {
   color: var(--muted-foreground);
   font-size: var(--community-text-secondary);
   text-align: right;
@@ -75,7 +75,7 @@
 }
 .community-projects__review-group-list[data-layout="grid"]
   .store-projects__native-review-row
-  > time {
+  > .community-relative-time {
   grid-column: 3;
   grid-row: 3;
 }
@@ -90,7 +90,7 @@
     .community-member-hover-card__trigger,
   .community-projects__review-group-list:not([data-layout="grid"])
     .store-projects__native-review-row
-    > time,
+    > .community-relative-time,
   .community-projects__review-group-list:not([data-layout="grid"])
     .store-projects__review-unavailable {
     display: none;

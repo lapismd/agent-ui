@@ -1,18 +1,64 @@
 /* CommunityProjects.css (Apache-2.0): card layout and layout controls. */
 
-.community-projects__layout-controls
-  > [data-ui-part="toggle-group-item"][data-state="on"] {
-  background: var(--background);
-  box-shadow: 0 1px 2px color-mix(in srgb, var(--foreground) 10%, transparent);
+/* Project cards reuse the source task/repository card anatomy, without list columns. */
+.community-projects__project-list[data-layout="grid"] {
+  gap: 0.5rem;
 }
-
-.community-projects__layout-controls > [data-ui-part="toggle-group-item"] {
-  width: 1.65rem;
-  min-width: 1.65rem;
-  height: 1.65rem;
-  min-height: 1.65rem;
-  border-radius: 0.4rem;
-  padding: 0;
+.community-projects__project-list[data-layout="grid"]
+  + .community-projects__project-list[data-layout="grid"] {
+  margin-block-start: 0.5rem;
+}
+.community-projects__project-list[data-layout="grid"] > [role="listitem"] {
+  min-width: 0;
+}
+.community-projects__project-list[data-layout="grid"]
+  .community-projects__project-row {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr);
+  align-items: start;
+  align-content: start;
+  min-width: 0;
+  height: 100%;
+  min-height: 7rem;
+  gap: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.7rem;
+  padding: 0.8rem;
+  background: color-mix(in srgb, var(--muted) 12%, transparent);
+}
+.community-projects__project-list[data-layout="grid"]
+  .community-projects__card-copy
+  > span {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.35rem;
+}
+.community-projects__project-list[data-layout="grid"]
+  .community-projects__card-copy
+  :is(strong, span) {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.community-projects__project-list[data-layout="grid"]
+  .community-projects__project-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+.community-projects__project-list[data-layout="grid"]
+  .community-projects__card-meta {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 0;
+  margin-inline-start: 0;
+  gap: 0.75rem;
+  justify-content: space-between;
+}
+.community-projects__project-list[data-layout="grid"]
+  .community-projects__card-meta
+  > .community-relative-time {
+  display: inline-flex;
 }
 
 .community-projects__list[data-layout="grid"]
@@ -118,7 +164,7 @@
 
 .community-projects__task-list[data-layout="grid"]
   .community-projects__task-row
-  > time {
+  > .community-relative-time {
   grid-column: 2 / -1;
   grid-row: 3;
   align-self: end;

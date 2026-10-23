@@ -82,6 +82,14 @@ The host owns admission, snapshots, version checks, persistence and exact reques
 
 <Canvas of={Stories.Directory} />
 
+### LayoutToggle
+
+Populated global and project-scoped directories exercise one layout button,
+keyboard focus, responsive card wrapping, readable project titles and JJ Store's
+24px author avatars. Card columns follow the available body width.
+
+<Canvas of={Stories.LayoutToggle} />
+
 ### CreateProjectDialog
 
 <Canvas of={Stories.CreateProjectDialog} />
@@ -117,6 +125,10 @@ Construction and mounting never issue repository mutations. Hosts open and close
 Directories request at most 25 rows per page and 20 homes per batch with four concurrent reads. Continuations retain snapshot identity and reject duplicates and stale replies. Partial failures preserve other homes and expose Retry. Unknown requests retain their exact payload and permit status inspection; refresh and mount never dispatch them. Native adapters must persist intent before execution.
 
 Project and task rows retain source button hit areas and separate author controls. Forms have labels, retain drafts on cancellation/failure and focus restoration through the public Dialog. The contextual rail appears only for a selected project/task, using AppShell resizing and narrow-window presentation. Chat opens an explicit context through a callback and never sends automatically.
+
+Projects, Tasks, Reviews and Repositories share one card/list button in both
+global and selected-project views. Its icon, accessible name and tooltip show
+the destination view; activating it retains keyboard focus.
 
 ## Styling variables
 

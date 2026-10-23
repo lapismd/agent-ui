@@ -62,7 +62,7 @@
             ><RepositoryAuthorAvatar
               name={project.actor.name ?? project.actor.created_by}
               avatarUrl={project.actor.avatarUrl}
-              size="xs"
+              size="sm"
             /></span
           >
           <WorkTime

@@ -57,7 +57,7 @@
 }
 .store-projects__repository-directory-row
   .store-projects__repository-metadata
-  > time.community-relative-time {
+  > .community-relative-time {
   justify-self: end;
 }
 .community-projects__list[data-layout="grid"]

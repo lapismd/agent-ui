@@ -63,12 +63,12 @@
 
 .community-projects__task-repository,
 .community-projects__task-comments,
-.community-projects__task-row > time {
+.community-projects__task-row > .community-relative-time {
   color: var(--muted-foreground);
   font-size: var(--community-text-secondary);
 }
 
-.community-projects__task-row > time {
+.community-projects__task-row > .community-relative-time {
   text-align: right;
   white-space: nowrap;
 }

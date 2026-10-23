@@ -71,7 +71,7 @@
           ><RepositoryAuthorAvatar
             name={task.actor.name ?? task.actor.created_by}
             avatarUrl={task.actor.avatarUrl}
-            size="xs"
+            size="sm"
           /></span
         >
         <span

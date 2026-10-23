@@ -7314,10 +7314,13 @@
       "source": "web/src/lib/ui/store-application/StoreViewTabs.svelte",
       "destination": "packages/repository-ui/src/jj/navigation/page-frame/RepositoryPageFrame.svelte",
       "sourceSha256": "0681c7869c3821fc0bfa73976e444b8c2b4bb979a45350b2070de5bb673f5c33",
-      "destinationSha256": "fd7d0ba08bd2a47676509cc62121f4a32e320cf5b6a63ffb098f7f520fcf070a",
+      "destinationSha256": "d68bf1cdbf128400dcf1ad4e3bc08fe11cce510d77ac11d077f17308abde4a96",
       "adaptations": [
         {
           "description": "Use public ResponsiveTabs for source contextual navigation and More overflow. Place host breadcrumbs/actions in AppShell.Topbar outside the rounded body, as confirmed against live JJ Store. Add a resizable far-right details rail, hideNavigation for task/review detail and hideTabs for expanding search; retain independent body/canvas scrolling and header slots."
+        },
+        {
+          "description": "Match live JJ Store contextual tabs at 0.75rem through public --text-sm and the documented --ui-repository-page-tab-font-size token, including ResponsiveTabs overflow measurement."
         }
       ]
     },
@@ -7434,10 +7437,13 @@
       "source": "web/src/lib/ui/store-work/StoreWorkProjectRows.svelte",
       "destination": "packages/repository-ui/src/jj/projects/screen/ProjectRows.svelte",
       "sourceSha256": "55026275833b8ac389ecbcd8e836f2fe5ca062ff9d33620db13f67161ee74138",
-      "destinationSha256": "4458a1b2c170236490879582ada759555f991d1c537bd224cf1fb72e0c3f1940",
+      "destinationSha256": "5a7e5192bd70cc64175ba25242c56cdc03cbed6fb25eb9ce19a9b3045e5a539d",
       "adaptations": [
         {
           "description": "Use public author controls/time and typed exact project selections while retaining source list/card markup and counts."
+        },
+        {
+          "description": "Map source CommunityMemberHoverCard xsmall (1.5rem) to the public RepositoryAuthorAvatar sm size, preserving 24px author avatars in both card and list layouts."
         }
       ]
     },
@@ -7460,10 +7466,13 @@
       "source": "web/src/lib/ui/store-work/StoreProjectsActions.svelte",
       "destination": "packages/repository-ui/src/jj/projects/screen/ProjectToolbar.svelte",
       "sourceSha256": "3caf3ce06f72e1b3be420595201abd7f8a04c44e8d594db453a19a194ee30b31",
-      "destinationSha256": "ce7fc54472582432c9951fa1ad69dcbc460b79c703dc2a58bd9a326f6ab3a216",
+      "destinationSha256": "05f1c53718946812a03099216f41e0aede8cdbf55d43845fe3ceae0811e7519a",
       "adaptations": [
         {
           "description": "Preserve source action order and compact surface heading; use typed capabilities and host context callbacks. Selected-project add menu composition remains an explicit comparison gap."
+        },
+        {
+          "description": "Replace the paired card/list controls with one public Button and Tooltip, showing the destination icon and accessible label consistently in every global and project-scoped directory."
         }
       ]
     },
@@ -7499,10 +7508,13 @@
       "source": "web/src/lib/ui/store-work/StoreRepositoryDirectoryRow.svelte",
       "destination": "packages/repository-ui/src/jj/projects/screen/RepositoryDirectoryRow.svelte",
       "sourceSha256": "0579469f8ea2158dbcc5abac8158892730d916eedd843dc83fec554b57fcce90",
-      "destinationSha256": "1fa7575fcf17fb4b31e15a528c5e5cfca7c09cc1e7d1486bdb12c3ddfe665f4e",
+      "destinationSha256": "7f6f8b57b9bb2dc01fa0783c5b3f009742248c6d1cb33f7411d9285268f46cec",
       "adaptations": [
         {
           "description": "Retain directory title/description/access, author, activity-bar, time and contextual actions. Optional host summaries stay unavailable when missing. Accessible button name derives from all visible text."
+        },
+        {
+          "description": "Map source CommunityMemberHoverCard xsmall (1.5rem) to the public RepositoryAuthorAvatar sm size, preserving 24px author avatars in both card and list layouts."
         }
       ]
     },
@@ -7525,10 +7537,13 @@
       "source": "web/src/lib/ui/store-work/StoreWorkReviewRow.svelte",
       "destination": "packages/repository-ui/src/jj/projects/screen/ReviewRow.svelte",
       "sourceSha256": "d460ac0cd342e709ac5aa7257e7c07a75a4077f5c518fae758719ff8a8234d96",
-      "destinationSha256": "dca31a1f5e54a60678fe47b55ca51b1c0248afb35d6934431bf7f6f7ddde935f",
+      "destinationSha256": "e7518798815a7fa0a2848edf14c97abd5696a4d25ff5b7680e370d46da2b8653",
       "adaptations": [
         {
           "description": "Retain source compact status/title/ID/anchor/comment-count/author/time composition through typed models. Accessible title now includes visible title text; missing author/date stay unavailable."
+        },
+        {
+          "description": "Map source CommunityMemberHoverCard xsmall (1.5rem) to the public RepositoryAuthorAvatar sm size, preserving 24px author avatars in both card and list layouts."
         }
       ]
     },
@@ -7538,10 +7553,13 @@
       "source": "web/src/lib/ui/store-work/StoreWorkTaskRows.svelte",
       "destination": "packages/repository-ui/src/jj/projects/screen/TaskRows.svelte",
       "sourceSha256": "d86f5e2a5c60f926fa1672cf75ec4ee22db748ca27367c082da1af4777821164",
-      "destinationSha256": "1ac5648732f744562bc788fead9c654de76e5e9f0903aed642103cd5dc04d819",
+      "destinationSha256": "683ba5d5d83bbf3e0b42f0fee2b4d3a3b9ef07d82f9d56533a204630e919a239",
       "adaptations": [
         {
           "description": "Retain source list/card rows and hierarchy with typed task IDs, public authors/time and exact navigation callbacks."
+        },
+        {
+          "description": "Map source CommunityMemberHoverCard xsmall (1.5rem) to the public RepositoryAuthorAvatar sm size, preserving 24px author avatars in both card and list layouts."
         }
       ]
     },
@@ -7671,10 +7689,13 @@
       "source": "web/src/lib/ui/community-relative-time/CommunityRelativeTime.svelte",
       "destination": "packages/repository-ui/src/jj/projects/screen/WorkTime.svelte",
       "sourceSha256": "73c7abf33929cbc28d73be267de39d1b170113c577f03fea275be0d4611438ee",
-      "destinationSha256": "aa8f806b174fccefe95ce7c7f6bbca932ade7634622a86319f0124648ab6f235",
+      "destinationSha256": "46137f8dd12ed273be04007fe0811a6cb0d334c35c0fe5a3602f6ec34fed7f1e",
       "adaptations": [
         {
           "description": "Use public Design Core RelativeTime instead of the private application wrapper."
+        },
+        {
+          "description": "Preserve source timestamp placement, secondary typography and nonwrapping dates through the owned community-relative-time wrapper around public RelativeTime. Target the owned class instead of assuming the public control renders a direct time element."
         }
       ]
     },
@@ -7697,10 +7718,16 @@
       "source": "web/src/lib/ui/store-work/community-work-cards.css",
       "destination": "packages/repository-ui/src/jj/projects/screen/community-work-cards.css",
       "sourceSha256": "37089eda37165d3b027886c2ecc28867e5f947c68ff55e1930d95eb0ad22e4be",
-      "destinationSha256": "37089eda37165d3b027886c2ecc28867e5f947c68ff55e1930d95eb0ad22e4be",
+      "destinationSha256": "a894d04f91bd496d8c10a3834b488917bb4791e2007b39e996d0ab70831ccddd",
       "adaptations": [
         {
           "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
+        },
+        {
+          "description": "Adapt the source task/repository card anatomy for project cards: stacked readable copy, wrapping metadata and consistent inter-card gaps across home groups. Retain available-width auto-fit grids. Remove unused paired-toggle selectors after switching to one public Button."
+        },
+        {
+          "description": "Preserve source timestamp placement, secondary typography and nonwrapping dates through the owned community-relative-time wrapper around public RelativeTime. Target the owned class instead of assuming the public control renders a direct time element."
         }
       ]
     },
@@ -7710,10 +7737,13 @@
       "source": "web/src/lib/ui/store-work/community-work-collections.css",
       "destination": "packages/repository-ui/src/jj/projects/screen/community-work-collections.css",
       "sourceSha256": "350165c5c9dbe0a1a1201eb92bb9715fc09e0b41b720d3316a1c25cd18cf5eed",
-      "destinationSha256": "350165c5c9dbe0a1a1201eb92bb9715fc09e0b41b720d3316a1c25cd18cf5eed",
+      "destinationSha256": "1851da37353ab61d35e4300c4cafc465b01daa3eca99f834b0d2d2ce79038ac7",
       "adaptations": [
         {
           "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
+        },
+        {
+          "description": "Preserve source timestamp placement, secondary typography and nonwrapping dates through the owned community-relative-time wrapper around public RelativeTime. Target the owned class instead of assuming the public control renders a direct time element."
         }
       ]
     },
@@ -7723,10 +7753,13 @@
       "source": "web/src/lib/ui/store-work/community-work-directory.css",
       "destination": "packages/repository-ui/src/jj/projects/screen/community-work-directory.css",
       "sourceSha256": "417b3922dc32ce462a6f8acaa9d0f237d74c952a11c9d90c6176580a0af4e922",
-      "destinationSha256": "417b3922dc32ce462a6f8acaa9d0f237d74c952a11c9d90c6176580a0af4e922",
+      "destinationSha256": "96d3e62890d225f32a39ed56d04dd5d5152f165a95c7c1e054efb20cf4506b8b",
       "adaptations": [
         {
           "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
+        },
+        {
+          "description": "Preserve source timestamp placement, secondary typography and nonwrapping dates through the owned community-relative-time wrapper around public RelativeTime. Target the owned class instead of assuming the public control renders a direct time element."
         }
       ]
     },
@@ -7762,10 +7795,13 @@
       "source": "web/src/lib/ui/store-work/community-work-reviews.css",
       "destination": "packages/repository-ui/src/jj/projects/screen/community-work-reviews.css",
       "sourceSha256": "140f72c59157b66b8c63941b1793fda28ccdc8078236a6641ecd11eb7f5cf3b7",
-      "destinationSha256": "140f72c59157b66b8c63941b1793fda28ccdc8078236a6641ecd11eb7f5cf3b7",
+      "destinationSha256": "0978a048aba7d6ffd3fe6ce53b0d6ffb22dace3373e39e075258f81bc104fe87",
       "adaptations": [
         {
           "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
+        },
+        {
+          "description": "Preserve source timestamp placement, secondary typography and nonwrapping dates through the owned community-relative-time wrapper around public RelativeTime. Target the owned class instead of assuming the public control renders a direct time element."
         }
       ]
     },
@@ -7775,10 +7811,13 @@
       "source": "web/src/lib/ui/store-work/community-work-rows.css",
       "destination": "packages/repository-ui/src/jj/projects/screen/community-work-rows.css",
       "sourceSha256": "a786d429716e6f20e87e3bf942bf184e2f9e6a10b9c7176696dd7b659d4dd31b",
-      "destinationSha256": "a786d429716e6f20e87e3bf942bf184e2f9e6a10b9c7176696dd7b659d4dd31b",
+      "destinationSha256": "4da0b48d48c7a34d5e1bcda59fc838e098dcc900115bb89e58d7951c55270d99",
       "adaptations": [
         {
           "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
+        },
+        {
+          "description": "Preserve source timestamp placement, secondary typography and nonwrapping dates through the owned community-relative-time wrapper around public RelativeTime. Target the owned class instead of assuming the public control renders a direct time element."
         }
       ]
     },
@@ -7788,10 +7827,13 @@
       "source": "web/src/lib/ui/store-work/community-work-tasks.css",
       "destination": "packages/repository-ui/src/jj/projects/screen/community-work-tasks.css",
       "sourceSha256": "21e8c2519151c0493fe2b0d266ee68ffbd25a6ff4296f4d42113925264c2b9f0",
-      "destinationSha256": "21e8c2519151c0493fe2b0d266ee68ffbd25a6ff4296f4d42113925264c2b9f0",
+      "destinationSha256": "e141f60def9641015e8a501865f2bf19ec738bbe093bf2c80b46def70281d58f",
       "adaptations": [
         {
           "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
+        },
+        {
+          "description": "Preserve source timestamp placement, secondary typography and nonwrapping dates through the owned community-relative-time wrapper around public RelativeTime. Target the owned class instead of assuming the public control renders a direct time element."
         }
       ]
     },

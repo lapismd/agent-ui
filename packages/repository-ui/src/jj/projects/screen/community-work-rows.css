@@ -175,7 +175,9 @@
   justify-self: center;
 }
 
-.community-projects__repository-row .community-projects__row-meta > time {
+.community-projects__repository-row
+  .community-projects__row-meta
+  > .community-relative-time {
   text-align: right;
 }
 
@@ -224,7 +226,9 @@
   grid-column: 3;
   justify-self: center;
 }
-.community-projects__project-row .community-projects__card-meta > time {
+.community-projects__project-row
+  .community-projects__card-meta
+  > .community-relative-time {
   display: inline-flex;
   grid-column: 4;
   justify-self: end;
@@ -239,7 +243,9 @@
   .community-projects__project-row .community-projects__card-meta {
     grid-template-columns: 2rem 8.5rem 1.5rem;
   }
-  .community-projects__project-row .community-projects__card-meta > time {
+  .community-projects__project-row
+    .community-projects__card-meta
+    > .community-relative-time {
     display: none;
   }
 }
@@ -249,8 +255,8 @@
   z-index: 2;
 }
 
-.community-projects__card-meta > time,
-.community-projects__row-meta > time {
+.community-projects__card-meta > .community-relative-time,
+.community-projects__row-meta > .community-relative-time {
   color: var(--muted-foreground);
   font-size: var(--community-text-secondary);
   white-space: nowrap;

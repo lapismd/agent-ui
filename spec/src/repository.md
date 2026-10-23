@@ -285,6 +285,8 @@ Settings card headers MUST own a single compact inset and align section icon cen
 **Requirement.** Shared application navigation MUST compose public AppShell,
 ResponsiveTabs, Breadcrumb and CommandView primitives with host-owned routes.
 
+Contextual tabs MUST retain JJ Store's compact 0.75rem typography through a public styling token, including the overflow measurement.
+
 ### Acceptance details
 
 - Contextual tabs MUST distinguish Projects, a selected project, repository views and Stacks subviews, omit Actions, and retain accessible overflow navigation.
@@ -301,6 +303,8 @@ Projects MUST NOT be marked complete until each new page composition has been co
 Creation cards MUST use the theme body surface (white in the default light theme) for editable rows and retain tinted headers; Reviews MUST expose the shared expanding search with query submission, Escape dismissal and trigger focus restoration.
 
 Global task creation MUST group the task's project selector with its metadata home in the shared card rows before showing the selected project's task fields.
+
+All card/list directories MUST share one toggle button whose icon, accessible name and tooltip identify the destination layout, retaining keyboard focus when toggled. Cards MUST size and wrap to the available width without clipped project titles or horizontal overflow. Project, task, review and repository authors MUST retain the source 1.5rem avatar size in both layouts; dates MUST retain their source placement and fit on one line.
 
 ### Acceptance details
 

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/svelte-vite";
 import { expect, userEvent, within, waitFor } from "storybook/test";
 import Component from "./ProjectsScreen.svelte";
+import { exerciseProjectLayouts } from "../../../../../../catalog/jj/support/projects-layout-play.js";
 import Demo from "../../../../../../catalog/jj/ProjectsDemo.svelte";
 import { Basic as source } from "./ProjectsScreen.example-sources.js";
 export default {
@@ -158,6 +159,10 @@ export const Recovery: Story = {
 };
 export const Directory: Story = {
   render: () => ({ Component: Demo }),
+};
+export const LayoutToggle: Story = {
+  render: () => ({ Component: Demo, props: { variant: "LayoutToggle" } }),
+  play: ({ canvasElement }) => exerciseProjectLayouts(canvasElement),
 };
 export const CreateProjectDialog: Story = {
   render: () => ({ Component: Demo }),

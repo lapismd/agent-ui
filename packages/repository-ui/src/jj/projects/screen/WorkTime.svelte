@@ -3,4 +3,17 @@
   let { timestamp }: { timestamp: number } = $props();
 </script>
 
-<RelativeTime timestamp={timestamp * 1000} />
+<span class="community-relative-time">
+  <RelativeTime timestamp={timestamp * 1000} />
+</span>
+
+<style>
+  .community-relative-time {
+    display: inline-flex;
+    width: fit-content;
+    max-width: 100%;
+    align-items: baseline;
+    justify-self: start;
+    vertical-align: baseline;
+  }
+</style>

@@ -9,6 +9,11 @@ is marked complete. This is an explicit completion gate, separate from ordinary
 visual-pending baselines. Projects and the five-slice integration plan remain
 in progress. No visual baseline, package publication or installed app changed.
 
+2026-10-23 review update: after the dialog, typography, responsive cards and
+avatar follow-ups, the user said "Projects look good, continue with the
+implementation." The reviewed Projects appearance is accepted. Functional gaps
+and consumer qualification below remain open; visual baselines remain unchanged.
+
 JJ Store reference: `42ae3473081a50b5acfbd2a763421af18d4608d0`, live UI at
 `http://127.0.0.1:7460`. Its four pre-existing documentation changes are untouched.
 Shared catalog: `http://localhost:7490`. Comparison uses the live application

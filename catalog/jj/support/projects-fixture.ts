@@ -39,7 +39,16 @@ export function projectsFixture(variant: string) {
       {
         version: 1,
         projects: Array.from(
-          { length: variant === "Paged" ? 30 : variant === "Empty" ? 0 : 1 },
+          {
+            length:
+              variant === "Paged"
+                ? 30
+                : variant === "LayoutToggle"
+                  ? 6
+                  : variant === "Empty"
+                    ? 0
+                    : 1,
+          },
           (_, i): WorkProject => ({
             id: `project-${i}`,
             title: i ? `Project ${i}` : "Repository toolkit",
@@ -101,6 +110,20 @@ export function projectsFixture(variant: string) {
       },
     ]),
   );
+  if (variant === "LayoutToggle") {
+    for (const state of data.values()) {
+      state.tasks = Array.from({ length: 6 }, (_, i) => ({
+        ...state.tasks[0],
+        id: `task-${i + 1}`,
+        title: i ? `Review responsive task ${i}` : state.tasks[0].title,
+      }));
+      state.reviews = Array.from({ length: 6 }, (_, i) => ({
+        ...state.reviews[0],
+        id: `review-${i + 1}`,
+        title: i ? `Review responsive collection ${i}` : state.reviews[0].title,
+      }));
+    }
+  }
   const drafts = new Map<string, Record<string, string>>(),
     requests = new Map<string, WorkRequest>(),
     receipts = new Map<string, WorkOutcome>();

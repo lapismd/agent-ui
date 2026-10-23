@@ -1,7 +1,7 @@
 <!-- Adapted from JJ Store ProjectsActions and surface header, Apache-2.0. -->
 <script lang="ts">
   import { Button } from "@lapismd/design-core/shadcn/button";
-  import * as ToggleGroup from "@lapismd/design-core/shadcn/toggle-group";
+  import * as Tooltip from "@lapismd/design-core/shadcn/tooltip";
   import {
     FolderRoot,
     ListTodo,
@@ -70,6 +70,7 @@
         ? "New task"
         : "New project",
   );
+  const layoutLabel = $derived(layout === "list" ? "Show cards" : "Show list");
 </script>
 
 <header class="community-projects__surface-header">
@@ -85,21 +86,25 @@
         title="New agent session"
         onclick={() => onChat?.(context)}><MessageSquarePlus /></Button
       >{/if}
-    {#if !["activity", "agents"].includes(view.route.tab)}<ToggleGroup.Root
-        type="single"
-        value={layout}
-        onValueChange={(v) => {
-          if (v === "list" || v === "grid") layout = v;
-        }}
-        aria-label="Project layout"
-      >
-        <ToggleGroup.Item value="grid" aria-label="Grid view"
-          ><Grid2x2 /></ToggleGroup.Item
-        >
-        <ToggleGroup.Item value="list" aria-label="List view"
-          ><List /></ToggleGroup.Item
-        >
-      </ToggleGroup.Root>{/if}
+    {#if !["activity", "agents"].includes(view.route.tab)}<Tooltip.Provider>
+        <Tooltip.Root>
+          <Tooltip.Trigger>
+            {#snippet child({ props }: { props: Record<string, unknown> })}
+              <Button
+                {...props}
+                variant="ghost"
+                size="icon-sm"
+                aria-label={layoutLabel}
+                onclick={() => (layout = layout === "list" ? "grid" : "list")}
+                >{#if layout === "list"}<Grid2x2
+                    aria-hidden="true"
+                  />{:else}<List aria-hidden="true" />{/if}</Button
+              >
+            {/snippet}
+          </Tooltip.Trigger>
+          <Tooltip.Content side="bottom">{layoutLabel}</Tooltip.Content>
+        </Tooltip.Root>
+      </Tooltip.Provider>{/if}
     <Button
       variant="ghost"
       size="icon-sm"

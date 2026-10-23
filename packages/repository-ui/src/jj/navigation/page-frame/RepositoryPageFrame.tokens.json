@@ -7,6 +7,13 @@
       "description": "Embedded AppShell page with responsive contextual tabs, header, search and action slots.",
       "owner": "@lapismd/repository-ui",
       "source": "jj/navigation/page-frame/RepositoryPageFrame.svelte"
+    },
+    {
+      "name": "--ui-repository-page-tab-font-size",
+      "default": "0.75rem",
+      "description": "JJ Store contextual tab typography, including overflow measurement, through the public small-text theme token.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/navigation/page-frame/RepositoryPageFrame.svelte"
     }
   ]
 }

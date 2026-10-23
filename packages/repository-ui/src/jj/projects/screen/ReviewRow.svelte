@@ -55,7 +55,7 @@
       ><RepositoryAuthorAvatar
         name={review.actor.name ?? review.actor.created_by}
         avatarUrl={review.actor.avatarUrl}
-        size="xs"
+        size="sm"
       /></span
     ><WorkTime timestamp={review.actor.updated_at_millis / 1000} />
   {:else}<span
