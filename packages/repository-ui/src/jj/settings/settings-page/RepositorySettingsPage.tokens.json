@@ -7,6 +7,13 @@
       "description": "Settings page body surface.",
       "owner": "@lapismd/repository-ui",
       "source": "jj/settings/settings-page/RepositorySettingsPage.svelte"
+    },
+    {
+      "name": "--ui-repository-settings-padding",
+      "default": "1rem",
+      "description": "Inset around settings cards inside the scrolling AppShell body.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/settings/settings-page/RepositorySettingsPage.svelte"
     }
   ]
 }

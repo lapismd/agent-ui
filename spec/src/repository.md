@@ -265,7 +265,7 @@ execution to the host; rendering or dropping MUST NOT execute a command itself.
 ### Acceptance details
 
 - Shared appearance and settings presentation is exported through `/settings` using JJ Store palettes, theme pairing, preview tiles, settings cards and page geometry.
-- Settings pages and their stories use the production AppShell body, standard toolbar header and scrolling body content.
+- Settings pages and their stories use the production AppShell body, standard toolbar header and scrolling body content with a 1rem card inset.
 - Hosts own storage namespaces, native capabilities and repository policy; the portable framework does not enable native glass.
 - Appearance previews do not persist, invalid values fall back safely, and disposal restores the owning root and removes browser listeners.
 

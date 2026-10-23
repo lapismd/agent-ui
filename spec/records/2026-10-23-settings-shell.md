@@ -11,3 +11,10 @@ JJ Desktop receives the same composition through its public package archive.
 - Spec initially caught 5 acceptance bullets (limit 4); combined related host/native capability wording. Validation rerun before commit.
 - Source fingerprints and Repository UI build/publint rerun before packaging.
 - Browser reviewed the standard header and full-height body. Visual baseline remains pending; broad final matrix remains deferred until human review.
+
+Follow-up: restored the missing 1rem body inset through the public
+`--ui-repository-settings-padding` token, keeping the toolbar edge aligned.
+Rechecked all three settings families after the padding change.
+The source page uses a 1rem inset and extra room for its save bar; this portable
+page uses the 1rem inset without a host save bar and removes the first-card
+margin so the top inset is not doubled.

@@ -38,6 +38,12 @@
     height: 100%;
     background: var(--ui-repository-settings-background, var(--background));
   }
+  .store-settings--global {
+    padding: var(--ui-repository-settings-padding, 1rem);
+  }
+  .store-settings--global :global(.store-settings__section:first-child) {
+    margin-block-start: 0;
+  }
   .settings-title {
     display: flex;
     align-items: center;
