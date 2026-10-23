@@ -150,6 +150,13 @@ keyboard focus, responsive card wrapping, readable project titles and JJ Store's
 
 <Canvas of={Stories.DetailsRail} />
 
+### Embedded
+
+Hosts can provide outer ancestry and contextual navigation with `showHeader={false}`
+and `showNavigation={false}` while retaining the complete screen body.
+
+<Canvas of={Stories.Embedded} />
+
 ## Behavior and accessibility
 
 Construction and mounting never issue repository mutations. Hosts open and close the production controller. Home IDs are local admission identities; linked code references use separate portable IDs. Duplicate names never become identities. Global browsing does not select a code checkout. The host explicitly activates code only through onOpenRepository.
@@ -177,6 +184,10 @@ editable rows use the body surface while card headers retain their tint.
 ## Composition
 
 The host supplies optional `onCopyLink(route)` for canonical share links, `onOpenActivity(row)` for exact repository/operation/revision navigation and `copyText` for Git/JJ identifiers. `showRail` is bindable and defaults closed. Omitted task state means Active; `all` explicitly includes completed tasks.
+
+Set `showHeader={false}` when an outer AppShell supplies ancestry/actions.
+Set `showNavigation={false}` when the host supplies repository contextual tabs.
+Both default to `true`. The complete screen retains its body and contextual rail.
 
 Use public ProjectsController and WorkPort with the complete screen. Use header for host breadcrumbs and agents for a complete agent/session screen owned by its package. The packages do not import each other. The host owns repository activation, route ancestry, context chat, operational notification toasts and all credentials. Report unavailable capabilities explicitly. Actions/workflow pages are excluded; normal metadata controls remain functional.
 

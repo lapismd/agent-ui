@@ -27,6 +27,8 @@
   let {
     controller,
     header,
+    showHeader = true,
+    showNavigation = true,
     agents,
     onNavigate,
     onOpenRepository,
@@ -39,6 +41,10 @@
   }: {
     controller: ProjectsController;
     header?: Snippet;
+    /** Hosts with an outer AppShell ancestry header render its actions themselves. */
+    showHeader?: boolean;
+    /** Repository contexts provide their own shared contextual navigation. */
+    showNavigation?: boolean;
     agents?: Snippet<[WorkContext]>;
     onNavigate?(route: WorkRoute): void;
     onOpenRepository?(home: WorkHome): void;
@@ -112,6 +118,14 @@
       {onError}
     />{/if}{/snippet}
 
+{#snippet detailActions()}{#if project || task}<Button
+      variant="ghost"
+      size="icon-sm"
+      aria-label="Toggle details"
+      aria-expanded={showRail}
+      onclick={() => (showRail = !showRail)}><PanelRight /></Button
+    >{/if}{/snippet}
+
 <div class="repository-projects">
   <RepositoryPageFrame
     title="Projects"
@@ -124,21 +138,15 @@
         review: undefined,
         tab: value as WorkTab,
       })}
-    {header}
-    showNavigation={!view.route.task && !view.route.review}
+    header={showHeader ? header : undefined}
+    headerActions={showHeader ? detailActions : undefined}
+    showNavigation={showNavigation && !view.route.task && !view.route.review}
     scrollable={!view.route.task && !view.route.review}
     hideTabs={searchOpen}
     details={showRail && selected?.page && (project || task)
       ? projectDetails
       : undefined}
   >
-    {#snippet headerActions()}{#if project || task}<Button
-          variant="ghost"
-          size="icon-sm"
-          aria-label="Toggle details"
-          aria-expanded={showRail}
-          onclick={() => (showRail = !showRail)}><PanelRight /></Button
-        >{/if}{/snippet}
     {#snippet search()}<ProjectSearch
         label={`Search ${view.route.tab}`}
         scope={`${view.route.home}:${view.route.project}:${view.route.tab}`}

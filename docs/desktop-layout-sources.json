@@ -7330,7 +7330,7 @@
       "source": "web/src/lib/ui/store-work/StoreProjects.svelte",
       "destination": "packages/repository-ui/src/jj/projects/screen/ProjectsScreen.svelte",
       "sourceSha256": "4faff8e52ce45af1dde693d4858a57a67309c4e8f934f31b6805f9e17175df5a",
-      "destinationSha256": "cf44a5785c9dbf9cd5ffc456a3c4d72464823488aaca9c6aee01509fbf9911a2",
+      "destinationSha256": "341c9bdef4d98b024b963206bf2bb545f5bfc2bc698a748aeb42b2aa6444299f",
       "adaptations": [
         {
           "description": "Compose source directory/detail switching through RepositoryPageFrame, independent metadata-home controller, host route/chat/agent snippets, availability and exact recovery. Workflow pages are excluded. Source composition gate remains open; see project-composition record."
@@ -7340,6 +7340,9 @@
         },
         {
           "description": "Forward existing host activity and copy callbacks to the owned review detail."
+        },
+        {
+          "description": "Expose showHeader/showNavigation, default true, so the JJ Desktop host can supply outer ancestry and repository tabs without duplicating complete-screen composition. Keep body and details rail intact."
         }
       ]
     },

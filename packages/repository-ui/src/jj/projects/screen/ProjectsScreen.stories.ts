@@ -379,3 +379,17 @@ export const ReviewDetailRecovery: Story = {
   }),
   play: ({ canvasElement }) => exerciseReviewRecovery(canvasElement),
 };
+
+export const Embedded: Story = {
+  render: () => ({ Component: Demo, props: { variant: "Embedded" } }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(
+      await canvas.findByRole("heading", { name: "Projects", level: 1 }),
+    ).toBeVisible();
+    await expect(
+      canvas.queryByRole("navigation", { name: "breadcrumb" }),
+    ).toBeNull();
+    await expect(canvas.queryByRole("tablist")).toBeNull();
+  },
+};

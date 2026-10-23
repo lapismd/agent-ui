@@ -117,3 +117,7 @@ identity controls. Reuse `onOpenActivity` and `copyText` for navigation and copy
 Task and Review detail provide their own AppShell body header, fixed composer
 and scrolling content; hosts supply breadcrumb ancestry outside that body.
 Do not add a second detail header or replace the detail page with the active checkout.
+
+Hosts providing outer ancestry use ProjectsScreen showHeader=false; repository
+contexts providing tabs also set showNavigation=false. Preserve the shared body
+and bind showRail for the outer details control.

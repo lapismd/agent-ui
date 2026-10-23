@@ -63,7 +63,8 @@ prepared local review package. Branch row and chip surface changes MUST retain e
 Consumer applications MUST mount the completed public screens described in
 `docs/consumer-integration.md`, preserving their layout and interaction flow.
 Hosts MUST supply adapters and controller lifetime instead of recreating those
-views from primitives. Missing native capabilities MUST remain explicit; missing
+views from primitives. Public header/navigation visibility props permit outer
+application composition without duplicate ancestry or contextual tabs. Missing native capabilities MUST remain explicit; missing
 generic extension points belong in the owning library. JJ Desktop is the first
 explicitly authorized consumer, including source-adapted shared appearance and
 settings presentation. Other adoption and publication remain separate decisions.

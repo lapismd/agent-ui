@@ -63,6 +63,8 @@
 
 <ProjectsScreen
   {controller}
+  showHeader={variant !== "Embedded"}
+  showNavigation={variant !== "Embedded"}
   showRail={variant === "DetailsRail"}
   onCopyLink={async (value) => {
     context = `Copied route: ${value.home}:${value.project}:${value.task}`;

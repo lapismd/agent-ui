@@ -321,3 +321,6 @@ work are in `spec/records/2026-10-23-review-task-details.md`.
 
 Task and Review detail body/composer start now aligns with the title text; see
 `spec/records/2026-10-23-detail-body-padding.md`.
+
+ProjectsScreen supports host-owned outer ancestry and repository navigation
+without duplicate headers or tabs; shared detail bodies and rails remain owned.
