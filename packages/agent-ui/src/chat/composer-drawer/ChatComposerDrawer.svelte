@@ -58,7 +58,7 @@
       state={attachmentsState.requestState}
       disabled={attachmentsState.responseDisabled}
       onRespond={(optionId) =>
-        void actions.perform(() =>
+        actions.perform(() =>
           controller.respondToApproval(requestId, optionId, itemId),
         )}
     />
@@ -72,7 +72,7 @@
       state={attachmentsState.requestState}
       disabled={attachmentsState.responseDisabled}
       onRespond={(answers) =>
-        void actions.perform(() =>
+        actions.perform(() =>
           controller.respondToQuestion(requestId, answers, itemId),
         )}
     />

@@ -118,4 +118,7 @@ export class HistoryController {
     await this.owner().action("delete_session", entry.location.conversationId);
   }
 }
-export type HistoryState = HistoryController;
+/** Structural presentation port for hosts retaining App-owned search and scope events. */
+export type HistoryState = Omit<HistoryController, "owner" | "syncScope"> & {
+  syncScope?(): void;
+};

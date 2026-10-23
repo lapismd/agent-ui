@@ -1,5 +1,12 @@
+import { selectAgentSession } from "./session-selection.js";
+import { capturedSendNotice } from "../chat/captured-send-notice.js";
+import type { CapturedSendFailure } from "../chat/captured-send-notice.js";
 import { AgentRequestController } from "../chat/request-controller.svelte.js";
-import { respondApproval, respondQuestion } from "./request-actions.svelte.js";
+import {
+  respondApproval,
+  respondQuestion,
+  checkRequestStatus,
+} from "./request-actions.svelte.js";
 import {
   TranscriptController,
   type TranscriptSubmission,
@@ -22,11 +29,7 @@ export class AgentUiController {
   pending = $state<AgentAction>();
   error = $state("");
   notice = $state("");
-  sendFailure = $state<{
-    session: string;
-    submission: TranscriptSubmission;
-    reason: string;
-  }>();
+  sendFailure = $state<CapturedSendFailure>();
   actionBusy = $state(false);
   query = $state("");
   selectedImport = $state("");
@@ -57,6 +60,7 @@ export class AgentUiController {
     this.sessionId = initial?.sessions[0]?.id ?? "";
     this.selectedAgent = initial?.agents[0]?.id ?? "";
     this.transcript = new TranscriptController(() => ({
+      ...this.options.transcript?.(),
       items: this.items,
       canComment: this.canComment,
       author: { id: "you", name: "You" },
@@ -124,17 +128,12 @@ export class AgentUiController {
     }
   }
   selectSession(id: string) {
-    if (
-      this.#closed ||
-      this.actionBusy ||
-      this.pending ||
-      this.transcript.sending
-    )
-      return;
-    this.drafts[this.sessionId] = this.transcript.message;
-    this.sessionId = id;
-    this.transcript.message = this.drafts[id] ?? "";
-    this.screen = "chat";
+    return selectAgentSession(
+      this,
+      id,
+      () => this.#closed,
+      (cause) => this.fail(cause),
+    );
   }
   async send(submission: TranscriptSubmission) {
     if (!this.can("send"))
@@ -148,7 +147,7 @@ export class AgentUiController {
       recipients =
         this.port.resolveRecipients?.({
           session: this.sessionId,
-          submission: structuredClone(submission),
+          submission: structuredClone($state.snapshot(submission)),
           selected: [...this.recipients],
         }) ?? this.recipients;
     } catch (cause) {
@@ -168,6 +167,7 @@ export class AgentUiController {
       attachments: [...this.attachments],
       recipients: [...new Set(recipients)],
     };
+    const previousItems = new Set(this.items.map((item) => item.id));
     const outcome = await this.execute(request);
     if (outcome?.status === "acknowledged") {
       this.attachments = [];
@@ -178,6 +178,10 @@ export class AgentUiController {
         session: request.session!,
         submission,
         reason: outcome.reason,
+        capturedNoticeId:
+          this.sessionId === request.session
+            ? capturedSendNotice(this.items, previousItems, outcome.reason)
+            : undefined,
       };
     return {
       publication:
@@ -221,7 +225,9 @@ export class AgentUiController {
     this.error = "";
     return (this.#running = (async () => {
       try {
-        const outcome = await this.port.act(structuredClone(request));
+        const outcome = await this.port.act(
+          structuredClone($state.snapshot(request)),
+        );
         if (!this.#closed) this.accept(outcome, request);
         return outcome;
       } catch (cause) {
@@ -263,18 +269,13 @@ export class AgentUiController {
       this.fail(new Error(outcome.reason));
     }
   }
-  async checkStatus() {
-    const request = this.pending;
-    if (!request || this.actionBusy || this.#closed) return;
-    this.actionBusy = true;
-    try {
-      const outcome = await this.port.status(request.id);
-      if (!this.#closed) this.accept(outcome, request);
-    } catch (cause) {
-      if (!this.#closed) this.fail(cause);
-    } finally {
-      if (!this.#closed) this.actionBusy = false;
-    }
+  checkStatus() {
+    return checkRequestStatus(
+      this,
+      () => this.#closed,
+      (outcome, request) => this.accept(outcome, request),
+      (cause) => this.fail(cause),
+    );
   }
   private fail(cause: unknown) {
     const error = cause instanceof Error ? cause : new Error(String(cause));

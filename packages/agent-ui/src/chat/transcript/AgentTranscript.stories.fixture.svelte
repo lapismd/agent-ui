@@ -28,6 +28,11 @@
     part = "body",
     view = "document",
     styled = false,
+    tableComment = false,
+    queueWhileAwaitingApproval = false,
+    hostedFeedback = false,
+    capturedFeedback = false,
+    failHostResponse = false,
     inspectorVariant = "markdown",
   }: {
     scenario?: AgentScenario;
@@ -41,10 +46,71 @@
       | "hint";
     view?: "document" | "classic";
     styled?: boolean;
+    tableComment?: boolean;
+    queueWhileAwaitingApproval?: boolean;
+    hostedFeedback?: boolean;
+    capturedFeedback?: boolean;
+    failHostResponse?: boolean;
     inspectorVariant?: InspectorVariant;
   } = $props();
   const demo = untrack(() => createDemo(scenario));
   const { controller, panel, port } = demo;
+  if (untrack(() => failHostResponse))
+    panel.actions.perform = async () => {
+      throw new Error("Host response failed");
+    };
+  if (untrack(() => capturedFeedback)) {
+    const act = port.act.bind(port);
+    port.act = async (action) => {
+      const outcome = await act(action);
+      if (outcome.status === "refused") {
+        port.snapshot.sessions[0]!.items.push({
+          id: `${action.id}/notice`,
+          kind: "context",
+          notice: "error",
+          label: "Turn interrupted",
+          blocks: [
+            {
+              id: `${action.id}/notice/body`,
+              revision: "1",
+              kind: "markdown",
+              label: "Failure",
+              text: outcome.reason,
+            },
+          ],
+        });
+        await controller.refresh();
+      }
+      return outcome;
+    };
+  }
+  const hostedPanel = {
+    ...panel,
+    composerState: Object.create(panel.composerState, {
+      composerStatus: {
+        get: () =>
+          capturedFeedback && controller.draftSendError
+            ? { type: "error", message: controller.draftSendError }
+            : undefined,
+      },
+    }),
+  };
+  if (untrack(() => tableComment))
+    controller.transcript.threads[0].anchor.tableContext = {
+      markdown:
+        "| Area | Action |\n| --- | --- |\n| Research | Keep captured wording |",
+      from: 0,
+      to: 10,
+    };
+  Object.assign(port, {
+    resolveRecipients: ({ selected }: { selected: readonly string[] }) =>
+      selected,
+  });
+  if (untrack(() => queueWhileAwaitingApproval)) {
+    controller.snapshot!.busy = true;
+    port.snapshot.busy = true;
+    demo.options = { ...demo.options, queueWhileAwaitingApproval: true };
+  }
   controller.view = untrack(() => view);
   let documentActions = $state<Snippet>();
   let tool = $state<TranscriptTool>();
@@ -151,6 +217,7 @@
   >
     {#if part === "screen"}<AgentChatScreen
         {controller}
+        presentation={hostedFeedback ? hostedPanel : undefined}
         transcriptOptions={demo.options}
       />
     {:else if part === "drawer"}

@@ -6,7 +6,11 @@
   import AgentMessageMetadata from "../message-metadata/AgentMessageMetadata.svelte";
   import { historyTranscript } from "../turn-changes/transcript.js";
   import { requestTranscript } from "../request-transcript.js";
-  import { composerFeedback } from "../composer-feedback.js";
+  import {
+    composerFeedback,
+    capturedComposerFeedback,
+    controllerComposerFeedback,
+  } from "../composer-feedback.js";
   import type { Snippet } from "svelte";
   import {
     Transcript,
@@ -65,20 +69,28 @@
       requestResults,
     ),
   );
-  const send = () => void controller.transcript.send();
+  const send = () => {
+    controller.transcript.message = panel.composerState.draft;
+    return controller.transcript.send();
+  };
   const references = $derived(options.composer?.references);
   const markdown = $derived({
     ...options.markdown,
     references: options.markdown?.references ?? references,
   });
   const permission = $derived(
-    panel.attachmentsState.pendingInteraction?.type === "approval",
+    panel.attachmentsState.pendingInteraction?.type === "approval" &&
+      !options.queueWhileAwaitingApproval,
   );
   const feedback = $derived(
-    composerFeedback(
-      panel.composerState.composerStatus,
-      options.composer?.status,
-      options.composerStatus,
+    capturedComposerFeedback(
+      controller,
+      composerFeedback(
+        panel.composerState.composerStatus,
+        options.composer?.status,
+        options.composerStatus,
+        controllerComposerFeedback(controller),
+      ),
     ),
   );
 </script>
@@ -93,10 +105,12 @@
 {#snippet chatComposer(view: "document" | "classic")}
   <ChatMessageComposer
     {...options.composer}
-    bind:value={controller.transcript.message}
+    bind:value={panel.composerState.draft}
     bind:documentActions
     {view}
-    disabled={!!controller.pending}
+    disabled={controller.loading ||
+      !!panel.panelProps.initializing ||
+      !!controller.pending}
     showHint={false}
     onSend={send}
     status={feedback}
@@ -104,7 +118,7 @@
       options.composerStatusPosition ??
       "bottom"}
     framedDrawer={view === "classic" &&
-      (controller.attachments.length > 0 ||
+      (panel.attachmentsState.attachments.length > 0 ||
         !!panel.attachmentsState.pendingInteraction)}
     drawer={attachmentsDrawer}
   >
@@ -175,7 +189,26 @@
   {#snippet queuedMessages()}<MessageQueue
       entries={controller.snapshot?.queued ?? []}
       onCancel={(entry) => void controller.action("cancel_queued", entry.id)}
-    />{/snippet}
+    />
+    {#if controller.snapshot?.queued.length && controller.snapshot.queueState}
+      <div class="request-recovery">
+        <Button
+          variant="ghost"
+          size="xs"
+          disabled={controller.snapshot.queueState.saving ||
+            controller.snapshot.queueState.resuming}
+          onclick={() =>
+            void controller.action(
+              controller.snapshot?.queueState?.paused
+                ? "resume_queue"
+                : "pause_queue",
+            )}
+          >{controller.snapshot.queueState.paused
+            ? "Resume queue"
+            : "Pause queue"}</Button
+        >
+      </div>
+    {/if}{/snippet}
   {#snippet footer()}{#if permission}<div class="permission-dock">
         <ChatComposerDrawer
           controller={panel.controller}

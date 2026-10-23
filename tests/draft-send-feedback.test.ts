@@ -1,8 +1,79 @@
 import { expect, test } from "vitest";
 import { createChatPresentation } from "../packages/agent-ui/src/chat/presentation-adapter.svelte.js";
-import { composerFeedback } from "../packages/agent-ui/src/chat/composer-feedback.js";
+import {
+  composerFeedback,
+  capturedComposerFeedback,
+} from "../packages/agent-ui/src/chat/composer-feedback.js";
 import { AgentUiController } from "../packages/agent-ui/src/core/controller.svelte.js";
 import { MemoryAgentPort } from "../catalog/support/agent-adapter.js";
+
+test.each([false, true])(
+  "captured send notices deduplicate only a new matching outcome (historical: %s)",
+  async (historical) => {
+    const memory = new MemoryAgentPort();
+    const notice = {
+      id: "captured-refusal",
+      kind: "context" as const,
+      notice: "error" as const,
+      label: "Turn interrupted",
+      blocks: [
+        {
+          id: "captured-refusal/body",
+          revision: "1",
+          kind: "markdown" as const,
+          label: "Failure",
+          text: "Your message is retained",
+        },
+      ],
+    };
+    if (historical) memory.snapshot.sessions[0]!.items.push(notice);
+    let publish!: (snapshot: typeof memory.snapshot) => void;
+    const port = {
+      read: memory.read.bind(memory),
+      status: memory.status.bind(memory),
+      subscribe(listener: typeof publish) {
+        publish = listener;
+        return () => {};
+      },
+      async act() {
+        if (!historical) {
+          memory.snapshot.sessions[0]!.items.push(notice);
+          publish(structuredClone(memory.snapshot));
+        }
+        return { status: "refused" as const, reason: notice.blocks[0]!.text };
+      },
+    };
+    const controller = new AgentUiController(port, memory.snapshot);
+    controller.transcript.message = "Retain this exact message";
+    await controller.transcript.send();
+    const panel = createChatPresentation(() => controller);
+    const external = {
+      type: "error" as const,
+      message: notice.blocks[0]!.text,
+    };
+    expect(capturedComposerFeedback(controller, external)).toEqual(
+      historical ? external : undefined,
+    );
+    const warning = { type: "warning" as const, message: external.message };
+    expect(capturedComposerFeedback(controller, warning)).toBe(warning);
+
+    expect(controller.transcript.message).toBe("Retain this exact message");
+    expect(panel.composerState.composerStatus).toEqual(
+      historical
+        ? { type: "error", message: notice.blocks[0]!.text }
+        : undefined,
+    );
+    controller.snapshot = {
+      ...memory.snapshot,
+      sessions: memory.snapshot.sessions.map((session) => ({
+        ...session,
+        items: session.items.filter((item) => item.id !== notice.id),
+      })),
+    };
+    expect(panel.composerState.composerStatus?.type).toBe("error");
+    await controller.close();
+  },
+);
 
 test("refused feedback belongs to the exact retained draft and session", async () => {
   const port = new MemoryAgentPort();

@@ -4,6 +4,11 @@ Settings composition coverage MUST check themed body surfaces, dividers between
 field groups and the public default MarkdownComposer with multiline form semantics.
 Rich read-only Profile values MUST exercise Markdown formatting, links and lists.
 
+Lapis Desktop shared-screen adoption uses isolated Jujutsu workspaces and
+verified public archives. The Desktop plan also authorizes portable chat presentation, session admission
+and exact read-only capture metadata contracts. The portable `/history` entry exposes existing
+controllers without loading presentation components into native host adapters.
+
 Configured-agent consumer contracts MUST document absent source timestamps and
 unproven profile associations explicitly; example data MUST NOT imply that hosts
 may synthesize these facts for recorded sessions.
@@ -30,9 +35,19 @@ props with audited Agent UI variables, without dependency selector overrides.
 Generic input/status frame geometry and custom status content MUST remain owned
 by public Design Core components; Agent UI supplies exact-draft metadata.
 All live chat warnings/errors MUST flow through the owning composer status API;
-fixed action footers and keyboard hints MUST not duplicate status presentation.
+controller feedback remains available with an externally supplied presentation,
+even when the host reports no separate composer status.
+Typed captured results retain their exact source while selecting the shared
+read-only request renderer across host block formats.
+Captured send-feedback deduplication requires a new exact notice from that
+request in the current session; older matching wording cannot hide a refusal.
+Controlled request callbacks MUST preserve their promises through the drawer to
+the card, which owns pending-input retention and response error presentation.
+Fixed action footers and keyboard hints MUST not duplicate status presentation.
 Active permissions forward that status into their owning expandable request
-panel, pinned in the Transcript footer slot while the message input is absent.
+panel, pinned in the Transcript footer slot while the message input is absent
+by default; explicitly queue-capable hosts may retain the composer through the
+public queueWhileAwaitingApproval option.
 Captured permission outcomes use the public TranscriptItem disclosure tone;
 inline comment formatting stays in shared CommentComposer and public Mira actions.
 Request-card red/green feedback remains an explicit audited source adaptation.
@@ -67,6 +82,12 @@ explicitly documented adaptations. Shared commit-detail disclosure MUST be compo
 Column Canvas. Branches acceptance MUST verify bounded fitting, resetting after
 manual resizing, keyboard parity and unchanged captured selection through the
 prepared local review package. Branch row and chip surface changes MUST retain explicit source adaptations and audited token defaults, with focused hover/selection coverage. Stop for review before Workspace.
+
+The Desktop directory-screen ports retain the original markup and native CSS;
+the source ledger records only explicit optional host-state bindings.
+
+The Desktop adoption ledger also records confirmed independent diff recovery;
+its pinned reads and default component layout remain unchanged.
 
 ## AUI-GOV-001 — Source ownership
 

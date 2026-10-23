@@ -9,3 +9,7 @@ export { default as ThreadsScreen } from "../threads/screen/ThreadsScreen.svelte
 export { ThreadsController } from "../threads/logic/controller.js";
 export type * from "../threads/logic/types.js";
 export { threadKey } from "../threads/logic/types.js";
+
+export type { HistoryState as AgentHistoryPresentation } from "../history/controller.svelte.js";
+export type { CatalogState as AgentCatalogPresentation } from "../catalog/controller.svelte.js";
+export type { ImportState as AgentImportPresentation } from "../imports/controller.svelte.js";

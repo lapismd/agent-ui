@@ -1,9 +1,20 @@
 <script lang="ts">
+  import { untrack } from "svelte";
   import AiCatalogPanel from "../../catalog/catalog-panel/AiCatalogPanel.svelte";
-  import { CatalogController } from "../../catalog/controller.svelte.js";
+  import {
+    CatalogController,
+    type CatalogState,
+  } from "../../catalog/controller.svelte.js";
   import type { AgentUiController } from "../../core/controller.svelte.js";
-  let { controller }: { controller: AgentUiController } = $props();
-  const catalog = new CatalogController(() => controller);
+  let {
+    controller,
+    catalog,
+  }: { controller?: AgentUiController; catalog?: CatalogState } = $props();
+  const fallback = untrack(() =>
+    controller ? new CatalogController(() => controller!) : undefined,
+  );
 </script>
 
-<AiCatalogPanel {catalog} />
+{#if catalog ?? fallback}<AiCatalogPanel
+    catalog={(catalog ?? fallback)!}
+  />{/if}

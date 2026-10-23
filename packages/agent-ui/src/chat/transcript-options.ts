@@ -3,6 +3,7 @@ import type { TranscriptProps } from "@lapismd/design-core/chat";
 /** Optional host presentation hooks; the Agent controller retains items, drafts and delivery. */
 export type AgentTranscriptOptions = Pick<
   TranscriptProps,
+  | "resolveFileLink"
   | "history"
   | "onLoadHistory"
   | "customBlock"
@@ -28,6 +29,8 @@ export type AgentTranscriptOptions = Pick<
   | "commentComposer"
 > & {
   composer?: AgentComposerOptions;
+  /** Keep the draft editor beside exact permission controls when the host supports durable follow-up queues. */
+  queueWhileAwaitingApproval?: boolean;
   icons?: Readonly<Record<string, import("svelte").Component>>;
   blocks?: Readonly<Record<string, AgentBlockPresentation>>;
   messages?: Readonly<Record<string, AgentMessagePresentation>>;

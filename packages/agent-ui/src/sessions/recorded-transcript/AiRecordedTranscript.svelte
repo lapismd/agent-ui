@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
+  import type { AgentTranscriptOptions } from "../../chat/transcript-options.js";
   import {
     Transcript,
     TranscriptController,
@@ -22,6 +23,7 @@
     label = "Imported transcript preview",
     composer,
     busy = false,
+    options = {},
   }: {
     entries?: readonly TranscriptItem[];
     projectedItems?: readonly TranscriptItem[];
@@ -34,6 +36,7 @@
     label?: string;
     composer?: Snippet<["document" | "classic"]>;
     busy?: boolean;
+    options?: Omit<AgentTranscriptOptions, "composer" | "changes">;
   } = $props();
   const block = (b: TranscriptBlock): TranscriptBlock => ({
     ...b,
@@ -66,6 +69,7 @@
     selected = { id: tool.id, opener };
   }
   const commentState = new TranscriptController(() => ({
+    ...options,
     items,
     canComment: false,
     onInspectTool: inspectTools ? inspect : undefined,
@@ -90,6 +94,7 @@
       <TranscriptViewToggle bind:view />
     </div>{/if}
   <Transcript
+    {...options}
     {items}
     scrollButton
     {commentState}
@@ -108,7 +113,9 @@
 </section>
 
 {#snippet customBlock(b: TranscriptBlock)}
-  <AiCommandReport text={b.text} />
+  {#if options.customBlock}{@render options.customBlock(
+      b,
+    )}{:else}<AiCommandReport text={b.text} />{/if}
 {/snippet}
 
 {#snippet inspector()}
@@ -120,7 +127,7 @@
       state={commentState}
       opener={selection.opener}
       onClose={() => (selected = undefined)}
-      customBlock={undefined}
+      customBlock={options.customBlock}
     />
   {/if}
 {/snippet}

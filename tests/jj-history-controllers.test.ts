@@ -5,7 +5,7 @@ import {
   FileHistoryController,
   BlameController,
   RestoreController,
-} from "../packages/repository-ui/src/jj/index.js";
+} from "../packages/repository-ui/src/history/index.js";
 import {
   historyFixture,
   operation,
@@ -153,4 +153,34 @@ test("restore failures retain the exact original request for host receipt recove
   expect(state.open).toBe(true);
   expect(persisted).toHaveLength(1);
   c.close();
+});
+test("following the same editor file preserves an explicitly selected operation", async () => {
+  const f = historyFixture(),
+    c = new FileHistoryController(f.reader, feedback());
+  await c.follow("Welcome.md", operation);
+  f.advance();
+  const calls = f.calls.length;
+  await c.follow("Welcome.md");
+  expect(c.state.operation).toBe(operation);
+  expect(f.calls).toHaveLength(calls);
+  await c.close();
+});
+
+test("retrying a failed independent diff read clears host feedback only after its confirmed result", async () => {
+  const f = historyFixture("read-failure"),
+    notices = feedback();
+  const c = new HistoryController(f.reader, notices);
+  try {
+    await c.refresh();
+    await c.selectRevision(c.state.commits[0]);
+    await c.selectPath("Welcome.md");
+    expect(notices.errors).toHaveLength(1);
+    expect(c.state.diffs["Welcome.md"]).toMatchObject({ phase: "failed" });
+    f.recover();
+    await c.loadDiff("Welcome.md");
+    expect(c.state.diffs["Welcome.md"]).toMatchObject({ phase: "ready" });
+    expect(notices.errors).toEqual([]);
+  } finally {
+    await c.close();
+  }
 });

@@ -376,3 +376,13 @@ host port/controller and sidebar identity menu, including public avatar selectio
 draft/unknown/conflict recovery and icon Empty/Skeleton states. Verification is
 in `spec/records/2026-10-23-personal-profile.md`; consumer adoption, Emoji,
 Integrations and the rest of the audited Desktop backlog remain separate gates.
+
+Lapis Desktop shared-screen adoption is integrated into the default workspaces.
+The original source qualification remains recorded in the desktop-history-intake,
+hosted-composer-feedback, native-request-blocks, captured-send-feedback and
+host-response-feedback records dated 2026-10-23. Host feedback source static and
+packed qualification is complete in
+`spec/records/2026-10-23-host-feedback-qualification.md`; the qualified consumer
+archive remains 5a88a348. Integration preserves newer Profile/Threads/content
+states; its merge checks are in `spec/records/2026-10-23-desktop-main-integration.md`.
+Consumer/native follow-up gates stay separate.

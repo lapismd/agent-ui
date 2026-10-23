@@ -156,3 +156,7 @@ path/open/copy composition are covered in `spec/records/2026-10-23-settings-rows
 
 RUI-FOUND-001 native identifier adaptation uses `tests/jj-identifiers.test.ts` and
 first-consumer complete-screen acceptance; see `spec/records/2026-10-23-public-identifiers.md`.
+
+Portable controller intake for Lapis Desktop is recorded in
+`spec/records/2026-10-23-desktop-history-intake.md`; native consumer qualification
+is distinct from source controller and public-package acceptance.

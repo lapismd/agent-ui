@@ -197,4 +197,23 @@ export class ImportController {
     })());
   }
 }
-export type ImportState = ImportController;
+/** Presentation only; source validation and saving remain host responsibilities. */
+export type ImportState = Pick<
+  ImportController,
+  | "browser"
+  | "selectedRow"
+  | "phase"
+  | "entries"
+  | "paused"
+  | "progress"
+  | "busy"
+  | "cachedPreview"
+  | "saved"
+  | "available"
+  | "canOpen"
+  | "select"
+  | "togglePause"
+  | "reload"
+  | "save"
+  | "open"
+> & { readonly plan: unknown };

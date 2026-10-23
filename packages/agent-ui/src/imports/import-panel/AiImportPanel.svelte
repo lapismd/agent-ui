@@ -19,7 +19,11 @@
   import AiImportSources from "../import-sources/AiImportSources.svelte";
   import AiImportFooter from "../import-footer/AiImportFooter.svelte";
   import AiImportProgress from "../import-progress/AiImportProgress.svelte";
-  let { imports }: { imports: ImportState } = $props();
+  import type { AgentTranscriptOptions } from "../../chat/transcript-options.js";
+  let {
+    imports,
+    options,
+  }: { imports: ImportState; options?: AgentTranscriptOptions } = $props();
   let width = $state(0),
     height = $state(0),
     open = $state(true),
@@ -111,6 +115,7 @@
         {#if imports.phase === "reading" && !imports.entries.length}<AiTranscriptLoading
             composer={false}
           />{:else}<AiRecordedTranscript
+            {options}
             entries={imports.entries}
             bind:view
             showViewToolbar={false}

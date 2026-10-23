@@ -86,7 +86,7 @@ export function acknowledgeRequest(
       {
         id: block,
         revision: "captured-response-v1",
-        kind: "custom",
+        kind: "markdown",
         label: pending.title,
         text: "Captured request response",
         surface: "plain",

@@ -185,3 +185,24 @@ Creation, code navigation and attached details remain explicit callbacks/slots.
 Omit unavailable capabilities. Native replies/reactions/settings and distinct
 execution targets require their own host qualification; this inbox export does
 not authorize automatic sending or automatic repository switching.
+
+## Lapis Desktop host presentation
+
+Lapis Desktop can pass `AgentChatScreen.presentation` for native model, runtime,
+attachment and scope controls through the exported `AgentChatPresentation` type,
+and `conversationMenu` for native-only actions. The complete screen still owns
+its layout, transcript, footer and tool overlay. `AgentPort.selectSession` awaits
+host admission before switching; optional snapshot draft data restores retained
+text, attachments and comment threads. `AgentControllerOptions.transcript`
+provides public reader/navigation hooks without replacing submission guards.
+
+Recorded captures supply exact `AgentImport.capture` groups. Missing capture
+metadata is not synthesized from source labels. `AgentRecordedTranscript` and
+`CapturedSessionBrowser.transcriptOptions` preserve host readers and custom result
+views while enforcing read-only interactions. Queue pause/resume is available
+only with host queue state and corresponding capabilities.
+
+History, Catalog and Imports complete screens may receive typed presentation
+ports when the host retains application search, registry and validated capture
+services. Import saving must use the original host capture, never projected UI
+items. These inputs preserve shared layout and host-owned teardown.

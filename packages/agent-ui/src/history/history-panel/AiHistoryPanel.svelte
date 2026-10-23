@@ -15,7 +15,7 @@
   let root = $state<HTMLDivElement>();
   $effect(() => {
     history.scopeDir;
-    untrack(() => history.syncScope());
+    untrack(() => history.syncScope?.());
     history.entries;
     void tick().then(() => {
       if (root?.isConnected)

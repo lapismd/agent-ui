@@ -1,5 +1,16 @@
 # Agent
 
+Recorded screen metadata comes from host-provided capture groups, preserving
+source/profile, timestamps, version identities and incomplete state. Public
+recorded transcript and captured-session surfaces accept host transcript hooks
+while enforcing read-only interaction.
+
+Complete History, Catalog and Imports screens also accept structural presentation
+ports when a host owns App-specific search, registry events or validated import
+plans. The shared screen remains the only layout. These ports cannot import App,
+start native services or bypass host validation. Import transcript options remain
+read-only and never replace the host save plan or captured source payload.
+
 ## AUI-CHAT-001 — Conversation
 
 **Requirement.** Conversation screens MUST compose Design Core Transcript and controlled composer state, retaining drafts, attachments, comments and request identities across presentation changes.
@@ -25,6 +36,14 @@ unknown-submission and comment-send feedback MUST use the same attached composer
 status in both views; fixed footer actions and send hints MUST NOT render another
 banner. Error metadata MUST retain the shared status typography and red tone,
 while unknown outcomes remain warnings and stale draft errors remain suppressed.
+Externally controlled presentations MUST also receive controller-owned feedback
+when their host status is empty; supplying host controls cannot hide a refusal.
+A new exact error notice captured by the same send in the same session MUST
+remain the sole feedback for that outcome. Historical, missing or different
+notices MUST NOT suppress retained-draft feedback or unknown-outcome recovery.
+Host-supplied statuses follow that same exact-capture rule. Controlled permission
+and question callbacks MUST return their response promise so cards retain and
+present host failures without unhandled rejections.
 
 ### Acceptance details
 
@@ -37,17 +56,26 @@ while unknown outcomes remain warnings and stale draft errors remain suppressed.
 
 **Requirement.** Approvals and questions MUST use exact host-provided identities and advertised options. Cancellation and queued follow-ups MUST remain explicit host actions.
 
-Active permission requests MUST replace the message input with an initially open,
+By default, active permission requests MUST replace the message input with an initially open,
 expandable themed panel pinned outside transcript scrolling in both views.
 Streaming and reading earlier messages MUST NOT move the panel out of view.
 Its bounded content MUST retain exact options and attached error/unknown feedback.
 New request identities MUST reopen it; completing the request MUST restore the
 retained message draft without sending it. Answer requests retain their existing
-presentation in this permission-only slice.
+presentation in this permission-only slice. Hosts with durable follow-up queues
+MAY opt into `queueWhileAwaitingApproval`; both views MUST then retain the
+editable draft and the exact permission controls, with one Send/Queue/Stop action.
+Typing or toggling cannot submit a response or send the queued draft.
+The controller MUST snapshot reactive submissions before recipient resolution
+and host dispatch, retaining exact comments and anchors as cloneable data.
 The header MUST expose a far-right Close control that dismisses only the exact
 local request presentation, without granting, denying or replaying a decision.
 Dismissal MUST survive refreshes of the same request, preserve drafts and remain
 session-scoped; unknown submitted operations MUST retain explicit status recovery.
+
+A typed captured request result MUST select its read-only card renderer even
+when the host's original block used Markdown, preserving source text, identity
+and revision.
 
 ### Acceptance details
 

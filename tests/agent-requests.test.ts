@@ -269,6 +269,35 @@ test("captured permissions become collapsed native transcript rows without mutat
   expect(requestTranscript([item])[0]).toBe(item);
 });
 
+test("captured permission results select the card renderer for Markdown host blocks", () => {
+  const block = {
+    id: "response/body",
+    revision: "exact",
+    kind: "markdown" as const,
+    label: "Response",
+    text: "Original captured result",
+  };
+  const [row] = requestTranscript(
+    [
+      {
+        id: "response",
+        kind: "context",
+        label: "Captured permission",
+        blocks: [block],
+      },
+    ],
+    {
+      [block.id]: {
+        kind: "approval",
+        request: permissionRequest(),
+        state: { status: "approved" },
+      },
+    },
+  );
+  expect(row.blocks[0]).toEqual({ ...block, kind: "custom" });
+  expect(block.kind).toBe("markdown");
+});
+
 test("refusal feedback follows the current request while unknown response retains its original capture", async () => {
   const { port, c } = setup();
   port.fault = "failed";
