@@ -111,7 +111,7 @@
                     () => draft.description,
                     (value: string) => controller.edit("description", value)
                   }
-                  presentation="document"
+                  submitOnEnter={false}
                   label="Profile description"
                   inputLabel="Profile description"
                   {disabled}

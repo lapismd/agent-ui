@@ -54,3 +54,33 @@ consumer. Custom Emoji, Integrations, expandable sidebar sections, native Reload
 session parity, contextual chat/rails and remaining workflow adapters remain
 open. Source acceptance does not close those app capabilities or final catalog,
 live composition, provider and release gates. No publication occurred.
+
+## Profile row surface follow-up
+
+User review requires white Profile rows with the existing tinted card heading.
+The exact Basic story reproduced one failure: the card was `rgb(250, 250, 250)`
+instead of the body's `rgb(255, 255, 255)`. Profile now supplies the existing
+settings-card surface token from `--background`, so photo, editable/read-only
+rows and footer match the body in light and dark themes. The heading keeps its
+independent source tint. The same story checks both surfaces. Source provenance
+records this explicit adaptation; visual baselines remain unchanged.
+
+The same review found a missing divider between Email and Use Gravatar. A live
+DOM read confirmed a 0px top border on the second field group. Profile now
+continues its existing 1px row divider across field-group boundaries; Basic
+checks the boundary in both read-only and editing modes.
+
+The description had selected the open Document presentation (confirmed as a
+0px composer-body border). It now uses MarkdownComposer's default framed input
+without any dependency CSS patches. `submitOnEnter=false` retains multiline
+form editing; Basic checks the standard 1px frame, formatting toolbar and that
+Enter edits the draft rather than saving the profile. Row surfaces use the
+theme's `--background` through the existing settings-card token; no literal
+white colour is introduced.
+
+Follow-up checks: exact white-surface Basic regression is 4/4 after the initial
+1 failure. The final Profile family rerun passes all 24 cases: six variations in four
+theme/width settings. Source/layout, type/format, package/publint and final
+specification checks pass. The restarted preview was inspected with the default
+framed input and the new divider visible. The first follow-up spec-first run required the mapped
+AUI-GOV-003 governance chapter; its coverage rule now includes these regressions.

@@ -2,6 +2,7 @@
 .store-directory-settings {
   width: 100%;
   min-width: 0;
+  --ui-repository-settings-card-background: var(--background);
 }
 .store-directory-settings form {
   display: grid;
@@ -12,6 +13,9 @@
   gap: 0;
 }
 .store-directory-settings .store-settings-card__content > dl,
+.store-directory-settings
+  .store-settings-card__content
+  > .store-settings__editable-rows:not(:first-child),
 .store-directory-settings [data-slot="field"] + [data-slot="field"] {
   border-block-start: 1px solid var(--border);
 }

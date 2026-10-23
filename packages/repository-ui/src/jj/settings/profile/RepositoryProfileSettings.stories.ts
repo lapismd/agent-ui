@@ -26,10 +26,40 @@ async function edit(canvasElement: HTMLElement) {
   );
   return canvas;
 }
+async function expectGravatarDivider(canvasElement: HTMLElement) {
+  const group = within(canvasElement)
+    .getByRole("switch", { name: "Use Gravatar" })
+    .closest('[data-slot="field-group"]')!;
+  await expect(getComputedStyle(group).borderTopWidth).toBe("1px");
+}
 export const Basic: Story = {
   render: render("Basic"),
   play: async ({ canvasElement }) => {
+    const card = await within(canvasElement).findByRole("region", {
+      name: "Profile info",
+    });
+    const probe = document.createElement("span");
+    probe.style.backgroundColor = "var(--background)";
+    card.append(probe);
+    const bodySurface = getComputedStyle(probe).backgroundColor;
+    probe.remove();
+    await expect(getComputedStyle(card).backgroundColor).toBe(bodySurface);
+    const heading = card.querySelector(".store-settings-card__header")!;
+    await expect(getComputedStyle(heading).backgroundColor).not.toBe(
+      bodySurface,
+    );
+    await expectGravatarDivider(canvasElement);
     const canvas = await edit(canvasElement);
+    await expectGravatarDivider(canvasElement);
+    const editor = canvas.getByRole("textbox", { name: "Profile description" });
+    const body = editor
+      .closest('[data-ui-component="ai-chat-composer"]')!
+      .querySelector('[data-ui-part="body"]')!;
+    await expect(getComputedStyle(body).borderTopWidth).toBe("1px");
+    await userEvent.click(editor);
+    await userEvent.keyboard("{End}{Enter}A second line");
+    await expect(editor).toBeVisible();
+    await expect(editor).toHaveTextContent("A second line");
     await userEvent.click(canvas.getByRole("button", { name: "Save profile" }));
     await expect(
       await canvas.findByRole("button", { name: "Edit" }),
