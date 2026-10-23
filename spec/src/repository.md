@@ -218,6 +218,9 @@ or execute repository/PR mutations. Missing capabilities stay disabled or absent
 PR examples MUST exercise passed, failed and running checks, including their
 summary and result descriptions in the floating view.
 
+Stacks/Workspace hosts MAY hide the local view tabs through `showViewTabs` when
+the outer frame owns navigation; the workspace picker and action bars remain shared.
+
 ### Acceptance details
 
 - Complete in-memory Stacks and Workspace screens MUST use the same production lanes, source files, graph and diff components, with exact host action contexts.

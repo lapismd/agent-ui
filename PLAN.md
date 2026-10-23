@@ -324,3 +324,6 @@ Task and Review detail body/composer start now aligns with the title text; see
 
 ProjectsScreen supports host-owned outer ancestry and repository navigation
 without duplicate headers or tabs; shared detail bodies and rails remain owned.
+
+Stack screens can hide local view tabs for the shared outer repository frame
+while preserving workspace controls and workflow action bars.

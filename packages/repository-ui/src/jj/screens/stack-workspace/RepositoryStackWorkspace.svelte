@@ -16,10 +16,13 @@
     controller,
     now,
     onSelectView,
+    showViewTabs = true,
     ...host
   }: {
     controller: StackWorkspaceController;
     now?: number;
+    /** Outer repository navigation can own the Stacks/Workspace selection. */
+    showViewTabs?: boolean;
     onSelectView?: (view: "branches" | "workspace") => void;
   } & RepositoryStackHost = $props();
   const snapshot = $derived(controller.snapshot);
@@ -35,7 +38,7 @@
     aria-label="Stack workspace"
     aria-busy={controller.loading}
   >
-    <Toolbar {controller} {host} {onSelectView} />
+    <Toolbar {controller} {host} {onSelectView} {showViewTabs} />
     {#if controller.validation}<Status
         unavailable
         title="Branch unavailable"

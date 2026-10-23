@@ -181,6 +181,7 @@
   class:narrow={variant === "Bounded"}
 >
   {#if kind === "screen"}<RepositoryStackWorkspace
+      showViewTabs={variant !== "Embedded"}
       {controller}
       {...host}
       now={stackNow}

@@ -201,3 +201,16 @@ export const FloatingPullRequest: StoryObj<typeof WorkflowDemo> = {
     ).toBeVisible();
   },
 };
+
+export const Embedded: Story = {
+  render: () => ({ Component: Demo, props: { variant: "Embedded" } }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(
+      await canvas.findByRole("combobox", { name: "Active stack workspace" }),
+    ).toBeVisible();
+    await expect(
+      canvas.queryByRole("tablist", { name: "Stack workspace views" }),
+    ).toBeNull();
+  },
+};

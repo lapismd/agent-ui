@@ -11,9 +11,11 @@
     controller,
     host,
     onSelectView,
+    showViewTabs = true,
   }: {
     controller: StackWorkspaceController;
     host: RepositoryStackHost;
+    showViewTabs?: boolean;
     onSelectView?: (view: "branches" | "workspace") => void;
   } = $props();
   const workspace = $derived(
@@ -28,22 +30,23 @@
   class="workspace-navigation"
   style="border-block-end: 0"
 >
-  <Tabs.Root
-    class="workspace-view-tabs"
-    value={controller.page}
-    onValueChange={(value) => {
-      if (value !== "branches" && value !== "workspace") return;
-      if (onSelectView) onSelectView(value);
-      else controller.page = value;
-    }}
-    ><Tabs.List aria-label="Stack workspace views"
-      ><Tabs.Trigger value="branches" disabled={controller.locked}
-        >Stacks</Tabs.Trigger
-      ><Tabs.Trigger value="workspace" disabled={controller.locked}
-        >Workspace</Tabs.Trigger
-      ></Tabs.List
-    ></Tabs.Root
-  >
+  {#if showViewTabs}<Tabs.Root
+      class="workspace-view-tabs"
+      value={controller.page}
+      onValueChange={(value) => {
+        if (value !== "branches" && value !== "workspace") return;
+        if (onSelectView) onSelectView(value);
+        else controller.page = value;
+      }}
+      ><Tabs.List aria-label="Stack workspace views"
+        ><Tabs.Trigger value="branches" disabled={controller.locked}
+          >Stacks</Tabs.Trigger
+        ><Tabs.Trigger value="workspace" disabled={controller.locked}
+          >Workspace</Tabs.Trigger
+        ></Tabs.List
+      ></Tabs.Root
+    >
+  {/if}
   <div class="workspace-controls">
     {#if controller.snapshot}<WorkspacePicker
         label="Active stack workspace"
