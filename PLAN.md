@@ -353,3 +353,7 @@ and wider migration acceptance remain separate.
 Externally controlled chat retains shared controller refusal feedback; source
 regression and qualification are in
 `spec/records/2026-10-23-hosted-composer-feedback.md`.
+
+Captured native permission results select the read-only card while preserving
+the host's original Markdown block; qualification is recorded in
+`spec/records/2026-10-23-native-request-blocks.md`.

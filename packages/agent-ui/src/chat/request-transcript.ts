@@ -25,6 +25,10 @@ export function requestTranscript(
             : CheckIcon,
       tone: result.state.status === "denied" ? "destructive" : undefined,
       defaultExpanded: false,
+      blocks:
+        item.blocks[0].kind === "custom"
+          ? item.blocks
+          : item.blocks.map((block) => ({ ...block, kind: "custom" as const })),
     };
   });
 }
