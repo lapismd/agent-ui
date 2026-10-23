@@ -121,3 +121,20 @@ Do not add a second detail header or replace the detail page with the active che
 Hosts providing outer ancestry use ProjectsScreen showHeader=false; repository
 contexts providing tabs also set showNavigation=false. Preserve the shared body
 and bind showRail for the outer details control.
+
+## Configured agents and sessions
+
+Mount `AgentsScreen` from `@lapismd/agent-ui/screens` with a host-owned
+`AgentDirectoryController` and `AgentDirectoryPort`. The shared screen owns the
+JJ Store gallery, attached profile, configuration dialog and sessions/captures
+collections. Native executable discovery, installation-owned configuration and
+credentials remain host-owned. Do not recreate the gallery in the consumer.
+
+Keep configured agents, running native sessions and recorded captures distinct.
+Scope session and capture IDs by metadata home. `onSessions` and `onBack` can bind
+host routes; `onChat` requests an explicit conversation without sending. Use
+`sessionContent` for complete capture/chat content through host composition.
+The port persists exact requests before effects; `resolve` only inspects. Retain
+unknown requests, drafts and late-response guards across navigation and Settings.
+Global browsing must not activate a checkout or start an agent. Native adoption
+and the broader Agents/Threads/settings plan remain in progress.

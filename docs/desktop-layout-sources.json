@@ -8042,6 +8042,129 @@
           "description": "Extract source Back/title/timestamp/actions into a private shared Task/Review body header. Use public AppShell.Toolbar and a three-cell grid instead of absolute Back positioning, with 8px edge inset and wrapping titles."
         }
       ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/community-agents/CommunityAgents.svelte",
+      "destination": "packages/agent-ui/src/directory/screen/AgentGallery.svelte",
+      "sourceSha256": "9b664bf4952302f1a03fc96ebc0498bc1ca525636e6a46284e1d76e10ea608a4",
+      "destinationSha256": "267a661204f43409ca179c726ed756ba3e8cd1b8f50d84db98a300680f530850",
+      "adaptations": [
+        {
+          "description": "Preserve gallery header, 13rem grid, 16.25rem cards, View sessions/Add cards and capability-aware menus. Replace private manager with typed host snapshots/callbacks; use public Avatar. Omit daemon Start/Stop for per-chat native ACP clients."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/community-agents/agents.css",
+      "destination": "packages/agent-ui/src/directory/screen/agents.css",
+      "sourceSha256": "8d5e962e135ac27ea05318821d61275b8eb8adcc391b9a9242b80475415a30c8",
+      "destinationSha256": "673174965ec9203d0371637c58e1fb3055d9462a92a49a45772595e21f882d96",
+      "adaptations": [
+        {
+          "description": "Retain source gallery CSS with audited public typography variables. Set public Avatar size to the source 6rem through its public token."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/community-agent-editor/CommunityAgentEditorDialog.svelte",
+      "destination": "packages/agent-ui/src/directory/screen/AgentConfigurationDialog.svelte",
+      "sourceSha256": "409470fbdc3321b8011bfc3e31d6566cbd61a38ac17e89f52b79d8efb8508006",
+      "destinationSha256": "fbaaa98884b171ae57b2551f4794de068d8eccb4429457ade430daedbda196b3",
+      "adaptations": [
+        {
+          "description": "Retain DialogFrame sidebar/body/footer, name/Markdown fields and captured future-session guidance. Use existing shared model picker and native client inventory. Persist host drafts, exact outcomes and installation-owned versions; omit unsupported runtime/credential configuration."
+        },
+        {
+          "description": "Flush retained host drafts before closing and unmount the editor on controlled close, so Cancel reopens correctly. Controller retains an edited draft if host persistence fails; only acknowledged saves clear it."
+        },
+        {
+          "description": "Known version rejection refreshes the saved configuration while retaining the editor draft. Rebase to the latest version requires an explicit Keep draft action and a separate Save; draft writes serialize and drain before controller disposal."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/community-agent-profile/CommunityAgentProfile.svelte",
+      "destination": "packages/agent-ui/src/directory/screen/AgentProfile.svelte",
+      "sourceSha256": "9c48158463ad02861485498abf738e30af98875b2ebaf20b5f07ad069185ddba",
+      "destinationSha256": "6b6dfb598ff18490c889e78008ff5a2c0d86ce9be3aa80e62a017060f4b796ee",
+      "adaptations": [
+        {
+          "description": "Retain avatar/name/actions, Info/Runtime tabs and information list anatomy. Use explicit capabilities and public Avatar with the source 4rem size; omit unsupported daemon controls."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/community-agent-profile/agent-profile.css",
+      "destination": "packages/agent-ui/src/directory/screen/agent-profile.css",
+      "sourceSha256": "ad85e7787fee118996742578f6d79d28c59ecef76c27aacfb60b100944588840",
+      "destinationSha256": "d3a4e455e97ab5b64d23a2a64b962252c27d4d6877f3bfddc9e065019ffceaa8",
+      "adaptations": [
+        {
+          "description": "Retain source profile styles with public typography variables and the public Avatar size token."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-collaboration/StoreAgentSessions.svelte",
+      "destination": "packages/agent-ui/src/directory/screen/AgentSessionDirectory.svelte",
+      "sourceSha256": "38eab8f7adfac6f9b058bdabff31f70f94d5407abda14ba9bb75408189050b3b",
+      "destinationSha256": "fce7bed6e4e76611338bb70c10ebba59aeeb0c731095bdf98eb737f48cdce471",
+      "adaptations": [
+        {
+          "description": "Retain search, independent running/captured collections, empty/loading/partial retry and continuation controls. Replace private controller with typed home-scoped session/capture callbacks and host content snippet."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-collaboration/StoreAgentSessionRow.svelte",
+      "destination": "packages/agent-ui/src/directory/screen/AgentSessionDirectory.svelte",
+      "sourceSha256": "31d5fcf385f838eafe48366ce6f5af4381a55b120bb11f1a7d9cd5508f9f4d77",
+      "destinationSha256": "fce7bed6e4e76611338bb70c10ebba59aeeb0c731095bdf98eb737f48cdce471",
+      "adaptations": [
+        {
+          "description": "Adapt source row selection, avatar/title/meta and capture transcript/tool counts. Keep running sessions and immutable captures separate; remove unavailable associations/copy menu until supplied by host."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-collaboration/store-collaboration.css",
+      "destination": "packages/agent-ui/src/directory/screen/sessions.css",
+      "sourceSha256": "398341d8611643fd614cbb16fdb7260a71db6237c09a8345a86eae5d84e47e19",
+      "destinationSha256": "7b718538000bc3e2e0f4fcea7059b64e00d5f7d86eb227445807d2983b9861aa",
+      "adaptations": [
+        {
+          "description": "Extract source row, metric, collection inset and scoped-session selectors, retaining declarations and replacing private typography with the audited public token."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-agent-execution/StoreAgentDetailsSidebar.svelte",
+      "destination": "packages/agent-ui/src/directory/screen/AgentsScreen.svelte",
+      "sourceSha256": "19b86e50400750497292ea938b157c379912bbeb4c563fbefe1ac5549a211a9a",
+      "destinationSha256": "1b22018d6297a1dfe54d001d18cdba6b59dcde51c5e74210590ec538d6a4f6df",
+      "adaptations": [
+        {
+          "description": "Retain attached AppShell sidebar, constraint priority, close/header/body, mobile replacement and focus restoration. Compose source-derived gallery/profile/editor/session parts through a host-owned controller; no repository-package or native imports."
+        }
+      ]
     }
   ],
   "fingerprintFormat": "Prettier normalized source; Svelte layout excludes script and comments. Explicit host bindings are applied before comparison.",

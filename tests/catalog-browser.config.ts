@@ -19,6 +19,7 @@ export default defineConfig({
     "file-type-icons.pw.ts",
     "repository-browser.pw.ts",
     "projects-detail.pw.ts",
+    "agents-directory.pw.ts",
     "repository-branches.pw.ts",
     "stack-workspace-presentation.pw.ts",
     "stack-workspace-drag.pw.ts",

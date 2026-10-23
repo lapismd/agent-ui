@@ -71,9 +71,15 @@ session-scoped; unknown submitted operations MUST retain explicit status recover
 
 **Requirement.** Shared screens MUST copy Desktop's sessions, history, catalog, imports and recorded preview layouts and styles through capability-aware host interfaces, with pixel-perfect parity at matching viewport, theme, fonts and data.
 
-The Agent section remains awaiting visual approval; the user has separately
-authorized the Desktop JJ review slice. Standalone settings, agent management, clients, models, compute and memory
-pages are excluded. Inline chat controls remain part of the conversation.
+The Agent section remains awaiting visual approval. The approved shared
+Projects/Agents/Threads plan authorizes the JJ Store configured-agent directory,
+configuration, sessions and saved captures. Configured agents, running native
+sessions and repository-owned captures MUST remain distinct identities. Global
+browsing MUST NOT activate an execution checkout or dispatch a message. Hosts
+advertise supported actions, persist drafts and exact requests before side effects,
+and inspect unknown outcomes without replay. Session/capture identities include
+their metadata home; continuation MUST preserve the snapshot and reject stale or
+duplicate pages. Compute and memory management remain excluded.
 Storybook MUST mount each complete source-derived screen with in-memory
 controllers. Do not add invented application navigation or replacement layouts.
 

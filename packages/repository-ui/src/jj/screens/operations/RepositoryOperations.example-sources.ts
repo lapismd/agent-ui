@@ -14,17 +14,10 @@ export const HostActions = `<script lang="ts">
   <Button onclick={() => review(context)}>Review operation</Button>
 {/snippet}
 <RepositoryOperations {controller} {operationActions} searchable copyText={(value) => navigator.clipboard.writeText(value)} />`;
-export const Bounded = HostActions.replace(
-  "maxOperations: 200",
-  "maxOperations: 6",
-);
-export const HostControls = HostActions.replace(
-  "{#snippet operationActions",
-  "{#snippet headerControls(context: OperationState)}<Button onclick={() => review(context)}>Host source controls</Button>{/snippet}\n{#snippet operationActions",
-).replace(
-  "{controller} {operationActions} searchable",
-  "{controller} {operationActions} {headerControls} searchable",
-);
+export const Bounded =
+  '<script lang="ts">\n  import { RepositoryOperations, OperationController, type HistoryReader, type OperationState } from "@lapismd/repository-ui/jj";\n  import { Button } from "@lapismd/design-core/shadcn/button";\n  import { untrack, onDestroy } from "svelte";\n  let { reader, report, review }: { reader: HistoryReader; report(error: unknown): void; review(context: OperationState): void } = $props();\n  const controller = untrack(() => new OperationController(reader, { report, recovered() {} }, undefined, { pageSize: 12, maxOperations: 6 }));\n  onDestroy(() => { void controller.close(); });\n</script>\n{#snippet operationActions(context: OperationState)}\n  <Button onclick={() => review(context)}>Review operation</Button>\n{/snippet}\n<RepositoryOperations {controller} {operationActions} searchable copyText={(value) => navigator.clipboard.writeText(value)} />';
+export const HostControls =
+  '<script lang="ts">\n  import { RepositoryOperations, OperationController, type HistoryReader, type OperationState } from "@lapismd/repository-ui/jj";\n  import { Button } from "@lapismd/design-core/shadcn/button";\n  import { untrack, onDestroy } from "svelte";\n  let { reader, report, review }: { reader: HistoryReader; report(error: unknown): void; review(context: OperationState): void } = $props();\n  const controller = untrack(() => new OperationController(reader, { report, recovered() {} }, undefined, { pageSize: 12, maxOperations: 200 }));\n  onDestroy(() => { void controller.close(); });\n</script>\n{#snippet headerControls(context: OperationState)}<Button onclick={() => review(context)}>Host source controls</Button>{/snippet}\n{#snippet operationActions(context: OperationState)}\n  <Button onclick={() => review(context)}>Review operation</Button>\n{/snippet}\n<RepositoryOperations {controller} {operationActions} {headerControls} searchable copyText={(value) => navigator.clipboard.writeText(value)} />';
 
 export const AllChanges = `<script lang="ts">
   import { RepositoryOperations, type OperationController, type OperationState, type RepositoryDiffComparisonContext, type RepositoryDiffStats } from "@lapismd/repository-ui/jj";

@@ -1,0 +1,104 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./AgentsScreen.stories";
+import { Basic, Styling } from "./AgentsScreen.example-sources";
+import tokens from "./AgentsScreen.tokens.json";
+import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Agents
+
+JJ Store's configured-agent gallery, attached profile, configuration dialog and
+session/capture directory, composed with public Design Core AppShell controls.
+
+## Usage
+
+The host opens and owns `AgentDirectoryController`. Mounting subscribes without
+starting agents. Supply native persistence and exact outcome inspection through
+`AgentDirectoryPort`.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+The gallery starts with View sessions and the capability-controlled Add card.
+Agent cards open a resizable attached profile. The editor retains a host draft;
+sessions and immutable captures occupy separate collections with scoped IDs.
+
+## Variations
+
+### Basic
+
+<Canvas of={Stories.Basic} />
+
+### Layout
+
+<Canvas of={Stories.Layout} />
+
+### Empty
+
+<Canvas of={Stories.Empty} />
+
+### Loading
+
+<Canvas of={Stories.Loading} />
+
+### Unavailable
+
+<Canvas of={Stories.Unavailable} />
+
+### Sessions
+
+<Canvas of={Stories.Sessions} />
+
+### Partial
+
+<Canvas of={Stories.Partial} />
+
+### Configuration
+
+<Canvas of={Stories.Configuration} />
+
+### Recovery
+
+<Canvas of={Stories.Recovery} />
+
+### Configuration conflict
+
+<Canvas of={Stories.ConfigurationConflict} />
+
+## Behavior and accessibility
+
+All actions have keyboard-operable buttons and labels. Menus expose only host
+capabilities. Closing the attached profile restores focus. Narrow windows use the
+AppShell attached-panel replacement. Opening chat requests explicit context and
+never sends. Unknown actions retain their exact request across navigation;
+Check outcome inspects without repeating the action. Failures use host feedback;
+retry and partial-unavailable explanations remain on the relevant surface.
+
+## Styling variables
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+The port supplies bounded, snapshot-bound pages, clients and capabilities. Save,
+delete and Stop have distinct typed commands. Configuration is installation-owned;
+live sessions and saved captures are keyed by home plus entity identity. The host
+persists requests before effects and must retain unknown outcomes without replay.
+
+## Composition
+
+Use `onChat` to select or create an `AgentChatScreen` conversation in the host.
+Use `sessionContent` for a complete saved-capture or conversation view; the Agent
+package never imports repository presentation. Host routing, native admission,
+credentials, executable discovery and execution remain outside this package.

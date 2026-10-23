@@ -20,7 +20,8 @@ export const HostActions = `<script lang="ts">
 {#snippet diffActions(state:{path?:string})}<Button onclick={() => openFile(state.path)}>Open file</Button>{/snippet}
 <RepositoryPanel {controller} searchable {headerActions} {revisionActions} {diffActions}
   copyText={(value) => navigator.clipboard.writeText(value)} />`;
-export const Bounded = HostActions.replace("maxCommits:200", "maxCommits:6");
+export const Bounded =
+  '<script lang="ts">\n  import { onDestroy, untrack } from "svelte";\n  import { RepositoryPanel, HistoryController, type HistoryReader, type HistoryState } from "@lapismd/repository-ui/jj";\n  import { Button } from "@lapismd/design-core/shadcn/button";\n  let { reader, report, openRepository, reviewCommit, openFile }: {\n    reader: HistoryReader; report(error:unknown):void;\n    openRepository(operation?:string):void; reviewCommit(commit:string):void; openFile(path?:string):void;\n  } = $props();\n  const controller = untrack(() => new HistoryController(reader, {report, recovered(){}}, undefined,\n    {userEmail:"dev@lapis.md", pageSize:12, maxCommits:6}));\n  onDestroy(() => { void controller.close(); });\n</script>\n{#snippet headerActions(state:HistoryState)}<Button onclick={() => openRepository(state.operation)}>Repository</Button>{/snippet}\n{#snippet revisionActions(commit:import("@lapismd/jj-history").LocalGraphCommit)}<Button onclick={() => reviewCommit(commit.id)}>Review</Button>{/snippet}\n{#snippet diffActions(state:{path?:string})}<Button onclick={() => openFile(state.path)}>Open file</Button>{/snippet}\n<RepositoryPanel {controller} searchable {headerActions} {revisionActions} {diffActions}\n  copyText={(value) => navigator.clipboard.writeText(value)} />';
 
 export const AllChanges = `<script lang="ts">
   import { RepositoryPanel, type HistoryController, type HistoryState, type RepositoryDiffComparisonContext, type RepositoryDiffStats } from "@lapismd/repository-ui/jj";

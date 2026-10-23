@@ -330,3 +330,11 @@ while preserving workspace controls and workflow action bars.
 
 Consumer acceptance found empty Reviews list semantics invalid; the shared
 screen now keeps its Empty state outside list/listitem structure.
+
+The shared configured-agent slice now provides the source-derived gallery,
+attached profile, retained configuration editor and scoped sessions/captures
+view. Controller and cold browser checks cover stale reads, exact unknown
+outcomes, draft recovery, source dimensions and focus restoration. Native
+configured-agent persistence, bounded session adapters and consumer adoption
+remain next; global Threads, contextual chat and local settings are still open.
+See `spec/records/2026-10-23-configured-agents.md`.

@@ -161,6 +161,17 @@
       "primary": "tools/command-report/AiCommandReport",
       "purpose": "Original captured local command report with safe text-only highlighting.",
       "parts": []
+    },
+    {
+      "primary": "directory/screen/AgentsScreen",
+      "purpose": "JJ Store configured agents, attached profiles, configuration and scoped sessions/captures.",
+      "parts": [
+        "directory/screen/AgentGallery.svelte",
+        "directory/screen/DirectoryEmpty.svelte",
+        "directory/screen/AgentConfigurationDialog.svelte",
+        "directory/screen/AgentProfile.svelte",
+        "directory/screen/AgentSessionDirectory.svelte"
+      ]
     }
   ]
 }

@@ -1,14 +1,14 @@
 export const Basic = `<script lang="ts">
-  import { onMount } from "svelte";
+  import { onMount, untrack } from "svelte";
   import { RepositoryDiffViewer, createRepositoryDiffMenu, type HistoryController } from "@lapismd/repository-ui/jj";
   let { controller, copyText, reveal }: {
     controller: HistoryController;
     copyText(text: string): Promise<void>;
     reveal(path: string): Promise<void>;
   } = $props();
-  let snapshot = $state(controller.state);
+  let snapshot = $state(untrack(() => controller.state));
   onMount(() => controller.subscribe(value => snapshot = value));
-  const items = createRepositoryDiffMenu({ copyText, reveal: context => reveal(context.path) });
+  const items = createRepositoryDiffMenu({ copyText: value => copyText(value), reveal: context => reveal(context.path) });
 </script>
 <RepositoryDiffViewer comparisonKey={[snapshot.operation, snapshot.base, snapshot.revision?.id].join(":")}
   from={snapshot.base ?? ""} to={snapshot.revision?.id ?? ""} operation={snapshot.operation}

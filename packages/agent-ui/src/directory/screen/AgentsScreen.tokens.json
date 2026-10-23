@@ -1,0 +1,47 @@
+{
+  "component": "AgentsScreen",
+  "variables": [
+    {
+      "name": "--ui-agent-directory-font-size",
+      "default": "0.8125rem",
+      "description": "Compact source body text.",
+      "owner": "@lapismd/agent-ui",
+      "source": "directory/screen/AgentsScreen.svelte"
+    },
+    {
+      "name": "--ui-agent-directory-title-size",
+      "default": "1.5rem",
+      "description": "Gallery and profile title.",
+      "owner": "@lapismd/agent-ui",
+      "source": "directory/screen/agents.css"
+    },
+    {
+      "name": "--ui-agent-directory-heading-size",
+      "default": "1rem",
+      "description": "Agent card title.",
+      "owner": "@lapismd/agent-ui",
+      "source": "directory/screen/agents.css"
+    },
+    {
+      "name": "--ui-agent-directory-secondary-size",
+      "default": "0.75rem",
+      "description": "Session metadata.",
+      "owner": "@lapismd/agent-ui",
+      "source": "directory/screen/sessions.css"
+    },
+    {
+      "name": "--ui-agent-directory-avatar-size",
+      "default": "6rem",
+      "description": "JJ Store gallery avatar size.",
+      "owner": "@lapismd/agent-ui",
+      "source": "directory/screen/agents.css"
+    },
+    {
+      "name": "--ui-agent-directory-profile-avatar-size",
+      "default": "4rem",
+      "description": "JJ Store profile avatar size.",
+      "owner": "@lapismd/agent-ui",
+      "source": "directory/screen/agent-profile.css"
+    }
+  ]
+}

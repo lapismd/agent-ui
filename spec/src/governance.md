@@ -132,6 +132,11 @@ Filename icon qualification MUST include local catalog skills in the complete
 screen, preserving the copied row geometry and explicit host navigation.
 Geometry assertions MUST compare rendered source slots at the current browser
 zoom while retaining the declared icon size preset.
+Configured-agent qualification MUST include gallery geometry, attached-profile
+focus restoration, narrow replacement, editor Cancel/reopen draft retention and
+exact unknown-request inspection. Running sessions and captures MUST use separate
+collections and home-scoped identities. Both packages' documented examples MUST
+be complete string literals so clean package acceptance compiles every variant.
 Empty Reviews qualification MUST include the complete screen with no empty-state elements inside a semantic list.
 Task/review detail qualification MUST compare body, metadata and composer start positions with the title at all supported viewport widths, and cover hover/focus feedback, fixed headers and composers, review context disclosures, exact host commit navigation, read-only/unavailable states and resolve/reopen draft retention in both themes and viewport widths.
 Directory layout qualification MUST exercise populated card and list collections
