@@ -97,6 +97,9 @@ live sessions and saved captures are keyed by home plus entity identity. The hos
 persists requests before effects and must retain unknown outcomes without replay.
 `updatedAt` is optional when the source has no recorded time. A configured-agent
 association is also optional; a shared client name does not prove that identity.
+Call `controller.drain()` before native shutdown. It waits for work without
+disposing the editor and rejects while a draft write has failed; let the user
+retry saving before closing. `close()` releases controller subscriptions.
 
 ## Composition
 

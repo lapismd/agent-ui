@@ -101,6 +101,10 @@ chat screen and use the host port for durable sending and exact permissions.
 
 **Requirement.** Hosts MUST retain controller ownership across mounts. Controllers MUST reject late reads after selection changes or disposal and release owned subscriptions without stopping host services implicitly.
 
+Configured-agent controllers MUST expose a non-disposing drain for native close.
+Failed draft writes MUST block that drain until an explicit save succeeds; the
+editable draft remains available and no configuration action is replayed.
+
 ### Acceptance details
 
 - Public types express the boundary.

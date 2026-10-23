@@ -3,6 +3,8 @@
 Native Agents adoption: directory timestamps are optional when absent in the
 source; configured profiles cannot be inferred from a shared client. The desktop
 adapter work remains in progress, with no execution or persistence moved here.
+The configured-agent controller now exposes non-disposing drain so the native
+host can keep a failed draft open and allow an explicit save retry.
 
 | Slice                                       | Status                 | Evidence                                                                                  |
 | ------------------------------------------- | ---------------------- | ----------------------------------------------------------------------------------------- |

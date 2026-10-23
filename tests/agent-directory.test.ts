@@ -33,6 +33,36 @@ function fixture() {
 }
 
 describe("Agent directory host boundary", () => {
+  it("blocks native close after a failed draft until an explicit save succeeds", async () => {
+    const { port, controller } = fixture();
+    const draft = {
+      id: "a",
+      version: "",
+      name: "Retained",
+      client: "codex",
+      model: "",
+      description: "",
+      instructions: "",
+    };
+    port.draft = vi.fn(async () => {
+      throw Error("Disk unavailable");
+    });
+    await expect(controller.draft("new", draft)).rejects.toThrow(
+      "Disk unavailable",
+    );
+    await expect(controller.drain()).rejects.toThrow("Disk unavailable");
+    expect(await controller.draft("new")).toEqual(draft);
+    await expect(controller.draft("missing", null)).rejects.toThrow(
+      "Disk unavailable",
+    );
+    port.draft = vi.fn(async (_key, value) => value ?? null);
+    await controller.draft("missing");
+    await expect(controller.drain()).rejects.toThrow("Disk unavailable");
+    await controller.draft("missing", null);
+    await controller.draft("new", draft);
+    await expect(controller.drain()).resolves.toBeUndefined();
+    await controller.close();
+  });
   it("refreshes a known rejection while retaining the exact unsaved draft", async () => {
     const { port, controller } = fixture();
     await controller.open();

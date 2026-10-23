@@ -11,3 +11,14 @@ governance chapter as well as Agent; both are updated and `pnpm spec:check` pass
 All 40 affected Agents interaction/accessibility story cases pass in both themes
 and viewports. Native adoption and the remaining five-slice plan are not closed
 by this contract clarification. Complete final catalog qualification stays open.
+
+The next native-lifecycle integration requires a non-disposing `drain()`. Its
+regression first fails 1/13 cases because that method is absent, then passes all
+13 after implementation. Failed draft writes block drain until an explicit save
+succeeds. Reads cannot clear a failed write. Controller disposal stays separate.
+
+Drain verification: exact target 13 pass, full unit suite 205 pass, all 40 Agents
+story interaction/axe cases pass, `pnpm check`, build/publint and `pnpm spec:check`
+pass. Clean archive acceptance compiles all 140 public documented examples and
+builds its isolated Vite consumer. Registry manifests and visual baselines remain
+unchanged. Live native/provider qualification belongs to the consuming app.

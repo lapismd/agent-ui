@@ -24,6 +24,7 @@ export class AgentDirectoryController {
   private settled = new Set<string>();
   private drafts = new Map<string, ConfiguredAgent>();
   private draftQueue: Promise<unknown> = Promise.resolve();
+  private draftFailures = new Map<string, unknown>();
   private release?: () => void;
   constructor(
     readonly port: AgentDirectoryPort,
@@ -36,7 +37,14 @@ export class AgentDirectoryController {
     if (value === undefined && this.drafts.has(key))
       return Promise.resolve(structuredClone(this.drafts.get(key)!));
     const task = this.draftQueue.then(async () => {
-      const saved = await this.port.draft(key, frozen);
+      let saved;
+      try {
+        saved = await this.port.draft(key, frozen);
+        if (frozen !== undefined) this.draftFailures.delete(key);
+      } catch (error) {
+        if (frozen !== undefined) this.draftFailures.set(key, error);
+        throw error;
+      }
       if (frozen === null) this.drafts.delete(key);
       else if (frozen === undefined && saved && !this.drafts.has(key))
         this.drafts.set(key, structuredClone(saved));
@@ -175,6 +183,12 @@ export class AgentDirectoryController {
     } finally {
       this.publish({ writing: false });
     }
+  }
+  /** Hosts call this before native close; failed drafts keep the editor available. */
+  async drain() {
+    await this.draftQueue;
+    await Promise.all([...this.operations]);
+    if (this.draftFailures.size) throw this.draftFailures.values().next().value;
   }
   async close() {
     this.closed = true;
