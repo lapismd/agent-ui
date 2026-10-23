@@ -344,3 +344,8 @@ outcomes, draft recovery, source dimensions and focus restoration. Native
 configured-agent persistence, bounded session adapters and consumer adoption
 remain next; global Threads, contextual chat and local settings are still open.
 See `spec/records/2026-10-23-configured-agents.md`.
+
+Lapis Desktop shared-screen adoption is isolated in separate JJ workspaces.
+Portable controller intake is recorded in
+`spec/records/2026-10-23-desktop-history-intake.md`; source application review
+and wider migration acceptance remain separate.

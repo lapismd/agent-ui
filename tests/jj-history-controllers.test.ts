@@ -5,7 +5,7 @@ import {
   FileHistoryController,
   BlameController,
   RestoreController,
-} from "../packages/repository-ui/src/jj/index.js";
+} from "../packages/repository-ui/src/history/index.js";
 import {
   historyFixture,
   operation,

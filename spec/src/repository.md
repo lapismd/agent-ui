@@ -30,7 +30,7 @@ before passing display models to file, branch and stack components.
 
 ## RUI-DESKTOP-001 — Desktop history review
 
-**Requirement.** The Desktop JJ slice MUST preserve the original AppShell/Column Canvas layouts and controller flow for JJ Log, Op Log, file history, blame, conflicts and restore presentation.
+**Requirement.** The Desktop JJ slice MUST preserve the original AppShell/Column Canvas layouts and controller flow for JJ Log, Op Log, file history, blame, conflicts and restore presentation; public `/history` controller exports MUST load without Svelte components.
 
 ### Acceptance details
 
