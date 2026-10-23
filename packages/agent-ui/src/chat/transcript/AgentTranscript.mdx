@@ -33,6 +33,14 @@ Use the same AgentUiController and presentation adapter as AgentChatScreen. Keep
 
 ## Variations
 
+### CapturedRefusalFeedback
+
+A new exact error notice from the current send remains the only feedback for
+that outcome. Historical notices cannot suppress a new refusal; both views keep
+the authored draft without replay.
+
+<Canvas of={Stories.CapturedRefusalFeedback} />
+
 ### HostedRefusalFeedback
 
 Controller refusals remain visible when an external presentation supplies no host feedback. The same exact draft and attached error survive both views.

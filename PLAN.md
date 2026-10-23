@@ -357,3 +357,7 @@ regression and qualification are in
 Captured native permission results select the read-only card while preserving
 the host's original Markdown block; qualification is recorded in
 `spec/records/2026-10-23-native-request-blocks.md`.
+
+Exact newly captured send notices prevent duplicate live composer feedback;
+historical notices cannot hide refusals. Qualification is recorded in
+`spec/records/2026-10-23-captured-send-feedback.md`.

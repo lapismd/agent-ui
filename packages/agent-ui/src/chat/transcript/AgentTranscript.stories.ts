@@ -14,6 +14,41 @@ const meta = {
 } satisfies Meta<typeof Transcript>;
 export default meta;
 type Story = StoryObj<typeof Fixture>;
+export const CapturedRefusalFeedback: Story = {
+  render: () => ({
+    Component: Fixture,
+    props: {
+      scenario: "refused",
+      part: "screen",
+      hostedFeedback: true,
+      capturedFeedback: true,
+    },
+  }),
+  play: async ({ canvasElement }) => {
+    const c = within(canvasElement);
+    await userEvent.click(c.getByRole("button", { name: "Send message" }));
+    for (const next of ["Classic", "Document"]) {
+      await expect(
+        c.getByRole("alert", { name: "Turn interrupted" }),
+      ).toBeVisible();
+      expect(c.getAllByRole("alert")).toHaveLength(1);
+      expect(c.queryByRole("group", { name: "Composer feedback" })).toBeNull();
+      expect(
+        within(c.getByRole("group", { name: "Message composer" })).getByRole(
+          "textbox",
+          { name: "Message" },
+        ),
+      ).toHaveTextContent("Retain my exact authored draft.");
+      await userEvent.click(
+        c.getByRole("button", { name: `Switch to ${next} view` }),
+      );
+    }
+    expect(c.getByTestId("agent-story-state")).toHaveAttribute(
+      "data-calls",
+      "1",
+    );
+  },
+};
 export const HostedRefusalFeedback: Story = {
   render: () => ({
     Component: Fixture,

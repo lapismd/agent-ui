@@ -38,6 +38,9 @@ banner. Error metadata MUST retain the shared status typography and red tone,
 while unknown outcomes remain warnings and stale draft errors remain suppressed.
 Externally controlled presentations MUST also receive controller-owned feedback
 when their host status is empty; supplying host controls cannot hide a refusal.
+A new exact error notice captured by the same send in the same session MUST
+remain the sole feedback for that outcome. Historical, missing or different
+notices MUST NOT suppress retained-draft feedback or unknown-outcome recovery.
 
 ### Acceptance details
 

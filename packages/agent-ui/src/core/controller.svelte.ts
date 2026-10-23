@@ -1,4 +1,6 @@
 import { selectAgentSession } from "./session-selection.js";
+import { capturedSendNotice } from "../chat/captured-send-notice.js";
+import type { CapturedSendFailure } from "../chat/captured-send-notice.js";
 import { AgentRequestController } from "../chat/request-controller.svelte.js";
 import {
   respondApproval,
@@ -27,11 +29,7 @@ export class AgentUiController {
   pending = $state<AgentAction>();
   error = $state("");
   notice = $state("");
-  sendFailure = $state<{
-    session: string;
-    submission: TranscriptSubmission;
-    reason: string;
-  }>();
+  sendFailure = $state<CapturedSendFailure>();
   actionBusy = $state(false);
   query = $state("");
   selectedImport = $state("");
@@ -169,6 +167,7 @@ export class AgentUiController {
       attachments: [...this.attachments],
       recipients: [...new Set(recipients)],
     };
+    const previousItems = new Set(this.items.map((item) => item.id));
     const outcome = await this.execute(request);
     if (outcome?.status === "acknowledged") {
       this.attachments = [];
@@ -179,6 +178,10 @@ export class AgentUiController {
         session: request.session!,
         submission,
         reason: outcome.reason,
+        capturedNoticeId:
+          this.sessionId === request.session
+            ? capturedSendNotice(this.items, previousItems, outcome.reason)
+            : undefined,
       };
     return {
       publication:

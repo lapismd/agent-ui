@@ -31,6 +31,7 @@
     tableComment = false,
     queueWhileAwaitingApproval = false,
     hostedFeedback = false,
+    capturedFeedback = false,
     inspectorVariant = "markdown",
   }: {
     scenario?: AgentScenario;
@@ -47,10 +48,36 @@
     tableComment?: boolean;
     queueWhileAwaitingApproval?: boolean;
     hostedFeedback?: boolean;
+    capturedFeedback?: boolean;
     inspectorVariant?: InspectorVariant;
   } = $props();
   const demo = untrack(() => createDemo(scenario));
   const { controller, panel, port } = demo;
+  if (untrack(() => capturedFeedback)) {
+    const act = port.act.bind(port);
+    port.act = async (action) => {
+      const outcome = await act(action);
+      if (outcome.status === "refused") {
+        port.snapshot.sessions[0]!.items.push({
+          id: `${action.id}/notice`,
+          kind: "context",
+          notice: "error",
+          label: "Turn interrupted",
+          blocks: [
+            {
+              id: `${action.id}/notice/body`,
+              revision: "1",
+              kind: "markdown",
+              label: "Failure",
+              text: outcome.reason,
+            },
+          ],
+        });
+        await controller.refresh();
+      }
+      return outcome;
+    };
+  }
   const hostedPanel = {
     ...panel,
     composerState: Object.create(panel.composerState, {

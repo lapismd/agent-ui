@@ -20,7 +20,16 @@ export function composerFeedback(
 export function controllerComposerFeedback(
   owner: AgentUiController,
 ): ComposerStatus | undefined {
-  if (owner.draftSendError)
+  const failure = owner.sendFailure;
+  const captured =
+    failure?.session === owner.sessionId &&
+    owner.items.some(
+      (item) =>
+        item.id === failure.capturedNoticeId &&
+        item.notice === "error" &&
+        item.blocks.some((block) => block.text === failure.reason),
+    );
+  if (owner.draftSendError && !captured)
     return { type: "error", message: owner.draftSendError };
   if (owner.pending || owner.transcript.retainedSubmission)
     return {
