@@ -44,6 +44,17 @@ Recorded workspace presentation through the production controller and in-memory 
 
 <Canvas of={Stories.Workspace} />
 
+### Drag and drop
+
+Drag files or folders from Unstaged to a stack or mutable commit. Open a file
+to drag one hunk, or drag a commit to another branch header or a row edge to
+reorder it. The example shows a preview and changes its in-memory fixture only
+after Apply; Cancel retains the original data. Immutable targets reject drops.
+Keyboard users can select a file/hunks and choose Stage changes, Assign hunk or
+Move commit and its destination.
+
+<Canvas of={Stories.DragAndDrop} />
+
 ### Dense
 
 Recorded dense presentation through the production controller and in-memory ports.
@@ -156,7 +167,7 @@ Column widths match JJ Store: Branches 320 (260–520), Unstaged 330 (260–520)
 
 Selecting a branch aggregate or a commit reveals its exact files. File selections retain independent originating columns. Target history is read-only and never enters applied membership. Native conflict/binary/unloaded/empty states stay distinct. Supplied counts are preserved; unknown counts remain absent and folder totals describe loaded descendants.
 
-Hosts provide copyText, optional onCommand/onSelectWorkspace and optional headerActions, columnActions, branchActions, commitActions, fileActions, diffActions and composer snippets. Actions receive recorded objects and do not select unrelated rows. Hosts own navigation, settings/persistence, notifications, preview/apply and controller lifetime. Composer slots can bind the existing per-workspace drafts. Transfers, mutation dialogs and forge execution are outside this slice.
+Hosts provide copyText, optional onCommand/onSelectWorkspace and optional headerActions, columnActions, branchActions, commitActions, fileActions, diffActions and composer snippets. Actions receive recorded objects and do not select unrelated rows. Hosts own navigation, settings/persistence, notifications, preview/apply and controller lifetime. Composer slots can bind the existing per-workspace drafts. Full mutation dialogs and forge execution remain host responsibilities.
 
 ## Styling variables
 
@@ -172,7 +183,16 @@ Hosts provide copyText, optional onCommand/onSelectWorkspace and optional header
 
 Git/JJ buttons call the supplied clipboard service. Stage/Start a commit requests call `onCommand` with a create-commit intent; the host must open its composer and handle admission. Native hunk checkboxes retain their exact tokens. Hunk assignment requests call the host only when transfer is admitted.
 
-The current presentation does not yet connect file/folder/hunk/commit drag/drop, built-in commit menus or JJ Store's complete inline commit composer. Existing portable controller helpers are not proof of UI wiring. The optional `composer` and action snippets remain host extension points; presentation never previews or applies a mutation by itself.
+With `onCommand`, file/folder/hunk/commit drag sources and stack, branch, commit,
+Unstaged and new-stack destinations use the existing drag session. Valid and
+invalid guides reflect current capabilities; drop rechecks the live snapshot.
+Preview/unknown-outcome locks block sources and destinations. Drag end or a
+scope change clears feedback. The component emits a typed command with the
+current snapshot; the host chooses preview, confirmation and execution.
+
+The optional `composer` and action snippets remain host extension points.
+Built-in commit menus and JJ Store's complete inline commit composer remain
+separate work; presentation never previews or applies a mutation by itself.
 
 ## Composition
 

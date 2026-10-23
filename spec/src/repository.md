@@ -216,6 +216,21 @@ use compact 13px default prose and a subtle theme-aware near-white surface.
 
 **Requirement.** Workspace file, folder, hunk and commit transfers MUST offer pointer and keyboard paths, validate the current source/target and stage or preview before execution.
 
+Workspace presentation MUST connect native file/folder rows, individual native
+hunks and mutable commit rows to the existing controller drag session. Stack,
+branch-header, commit, Unstaged and new-stack targets MUST show valid/invalid
+feedback and revalidate the current snapshot, capabilities and lock state on
+drop before emitting an exact host command. Commit row edges MUST request
+reordering while their centers retain commit-target behavior. Pending previews,
+immutable or stale sources and unavailable targets MUST reject transfers.
+Drag end and snapshot/workspace changes MUST clear transient feedback.
+
+Keyboard users MUST be able to select files/hunks and request staging, assign a
+hunk or choose a commit move/reorder destination. A complete in-memory example
+MUST demonstrate drop preview, explicit Apply/Cancel and visible fixture changes
+only after Apply. Production components MUST leave preview, admission and
+execution to the host; rendering or dropping MUST NOT execute a command itself.
+
 ### Acceptance details
 
 - Public types express the boundary.

@@ -56,6 +56,11 @@ portable stack controller and share existing graph/diff primitives. Host-owned
 navigation/actions and controller lifetime remain explicit; transfers, mutation
 dialogs and forge transport wait for their separate slices and review.
 
+The drag/drop review follow-up authorizes connecting the existing workspace drag
+session and demonstrating transfers with an isolated in-memory preview/apply
+adapter. Production components emit host commands only. Native execution,
+full mutation dialogs, forge transport and downstream adoption remain deferred.
+
 ### Acceptance details
 
 - Public Design Core exports MUST own shared filename artwork, while Agent/JJ components pass exact file paths and preserve semantic action/status icons.

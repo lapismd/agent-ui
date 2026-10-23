@@ -11,12 +11,14 @@
   import Status from "./RepositoryWorkspaceStatus.svelte";
   import { workspaceListingFiles } from "../stack-lane/presentation.js";
   import type { StackWorkspaceController } from "../../../stacks/index.js";
+  import { workspaceFileDrag } from "../../../stacks/file-drag.js";
   let {
     controller,
     source,
     label = "Changed files",
     title = "Changed files",
     compact = false,
+    draggable = false,
     selectedPath,
     onSelect,
     actions,
@@ -27,6 +29,7 @@
     label?: string;
     title?: string;
     compact?: boolean;
+    draggable?: boolean;
     selectedPath?: string;
     onSelect(path: string): void;
     actions?: Snippet;
@@ -63,6 +66,7 @@
   class:compact
   aria-label={label}
   aria-busy={readState.loading}
+  ondragend={() => controller.drag.clear()}
 >
   {#if showHeader}<header>
       <strong>{title}</strong><span>{files.length}</span
@@ -89,6 +93,7 @@
         hasMore={Boolean(readState.nextCursor)}
         onLoadMore={() => void controller.details.loadFiles(source, true)}
         onSelectPath={onSelect}
+        {...draggable ? workspaceFileDrag(controller, () => source) : {}}
       />{#if readState.nextCursor}<Button
           variant="ghost"
           disabled={readState.loading}

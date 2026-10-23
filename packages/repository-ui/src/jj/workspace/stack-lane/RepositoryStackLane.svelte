@@ -10,6 +10,11 @@
   import RepositorySkeleton from "../../foundations/skeleton/RepositorySkeleton.svelte";
   import Status from "../source-files/RepositoryWorkspaceStatus.svelte";
   import BookmarkCard from "./RepositoryStackCard.svelte";
+  import DropGuide from "./RepositoryWorkspaceDropGuide.svelte";
+  import {
+    workspaceDropHandlers,
+    selectedWorkspaceChanges,
+  } from "./drag-handlers.js";
   import {
     stackGroups,
     isAppliedBranch,
@@ -73,7 +78,22 @@
       /></ColumnCanvas.HeaderActions
     >
   </ColumnCanvas.Header>
-  <ColumnCanvas.Body scrollStrategy="styled" orientation="both">
+  <ColumnCanvas.Body
+    scrollStrategy="styled"
+    orientation="both"
+    class="workspace-drop-target"
+    data-drop-target-state={controller.drag.state({
+      kind: "stack",
+      id: stack.id,
+    })}
+    {...workspaceDropHandlers(controller, host, () => ({
+      kind: "stack",
+      id: stack.id,
+    }))}
+  >
+    <DropGuide
+      feedback={controller.drag.for({ kind: "stack", id: stack.id })}
+    />
     {#if history.error}<Status
         unavailable
         title="Stack history unavailable"
@@ -114,19 +134,33 @@
     {#if controller.page === "workspace"}
       {#if host.composer}{@render host.composer(stack)}{:else}
         <Card.Root class="workspace-stage-card"
-          ><Card.Content class="workspace-stage-content workspace-stage-drop"
-            ><Button
+          ><Card.Content
+            class="workspace-stage-content workspace-stage-drop workspace-drop-target"
+            data-drop-target-state={controller.drag.state({
+              kind: "stage",
+              id: stack.id,
+            })}
+            {...workspaceDropHandlers(controller, host, () => ({
+              kind: "stage",
+              id: stack.id,
+            }))}
+            ><DropGuide
+              feedback={controller.drag.for({ kind: "stage", id: stack.id })}
+            />
+            <Button
               variant="outline"
               class="workspace-drop"
-              disabled={!host.onCommand || !controller.can("create_commit")}
+              disabled={controller.locked ||
+                !host.onCommand ||
+                !controller.can("create_commit")}
               onclick={() =>
                 host.onCommand?.(
                   {
                     kind: "create_commit",
                     stack: stack.id,
                     message: "",
-                    ...(controller.selection
-                      ? { selection: controller.selection }
+                    ...(selectedWorkspaceChanges(controller)
+                      ? { selection: selectedWorkspaceChanges(controller)! }
                       : {}),
                   },
                   controller.snapshot!,
@@ -135,7 +169,9 @@
           ><Card.Footer class="workspace-stage-content workspace-stage-start"
             ><Button
               variant="outline"
-              disabled={!host.onCommand || !controller.can("create_commit")}
+              disabled={controller.locked ||
+                !host.onCommand ||
+                !controller.can("create_commit")}
               onclick={() =>
                 host.onCommand?.(
                   { kind: "create_commit", stack: stack.id, message: "" },

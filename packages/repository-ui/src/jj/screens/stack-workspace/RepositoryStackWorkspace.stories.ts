@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/svelte-vite";
 import { expect, userEvent, waitFor, within } from "storybook/test";
 import Component from "./RepositoryStackWorkspace.svelte";
 import Demo from "../../../../../../catalog/jj/StackWorkspaceDemo.svelte";
+import DragDemo from "../../../../../../catalog/jj/StackWorkspaceDragDemo.svelte";
 import { Basic as source } from "./RepositoryStackWorkspace.example-sources.js";
 export default {
   title: "JJ/Complete screens/Stacks",
@@ -12,6 +13,21 @@ export default {
   },
 } satisfies Meta<typeof Component>;
 type Story = StoryObj<typeof Demo>;
+export const DragAndDrop: StoryObj<typeof DragDemo> = {
+  render: () => ({ Component: DragDemo }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await waitFor(() =>
+      expect(canvas.getByTestId("workspace-drag-state")).toHaveAttribute(
+        "data-loaded",
+        "true",
+      ),
+    );
+    expect(
+      await canvas.findByRole("button", { name: /^src\/settings.ts/ }),
+    ).toHaveAttribute("draggable", "true");
+  },
+};
 const story = (
   variant: string,
   page: "branches" | "workspace" = "workspace",

@@ -15,7 +15,7 @@
 | RUI-BRANCH-001  | Partial     | Two documented Branches families; exact-target controller, focused stories/browser evidence; visual review pending                                                                                                                                                                    |
 | RUI-HISTORY-001 | Partial     | JJ Log and Op Log controller/host parity and shared presentation/query follow-up; exact targeted counts and review limits in `spec/records/2026-10-22-op-log-parity.md`; repository browsing has its own review slice; follow-up in `spec/records/2026-10-22-history-presentation.md` |
 | RUI-STACK-001   | Partial     | Source-adapted Stacks/Workspace presentation; focused evidence in `spec/records/2026-10-23-stack-workspace-presentation.md`; broad checks deferred                                                                                                                                    |
-| RUI-DRAG-001    | In progress | Original drop regressions retained; jj-store workspace slice remains later                                                                                                                                                                                                            |
+| RUI-DRAG-001    | Partial     | Native workspace sources/targets and keyboard alternatives verified through an isolated preview/apply example; native host execution remains separate                                                                                                                                 |
 | RUI-COMMAND-001 | Partial     | Guarded restore, original-request recovery and local conflict staging verified; native host integration deferred                                                                                                                                                                      |
 | RUI-FORGE-001   | In progress | Forge and repository settings remain later sections                                                                                                                                                                                                                                   |
 | RUI-LIFE-001    | Partial     | Copied Desktop pin/late-read/drain regressions verified; downstream host lifetime remains separate                                                                                                                                                                                    |
@@ -107,3 +107,10 @@ and 16px target icon review corrections are recorded in
 Stack description width, compact typography, subtle surface and deferred
 overflow measurement are qualified in
 `spec/records/2026-10-23-stack-description.md` with focused story checks.
+
+The authorized drag/drop follow-up is recorded in
+`spec/records/2026-10-23-workspace-drag.md`. Files/folders, native hunks and
+commit moves/reorders use the existing drag session and exact host requests.
+The complete Drag and drop story demonstrates preview/Apply/Cancel with an
+in-memory adapter; native service execution and broader qualification remain
+outside this review slice.

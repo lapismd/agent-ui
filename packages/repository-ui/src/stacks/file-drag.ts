@@ -17,6 +17,7 @@ export function workspaceFileDrag(
 > {
   const file = (path: string) => {
     if (
+      controller.locked ||
       !(controller.can("create_commit") || controller.can("transfer")) ||
       !controller.snapshot
     )

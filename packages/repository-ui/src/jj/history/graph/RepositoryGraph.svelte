@@ -32,6 +32,9 @@
     showAuthor = true,
     rowActions,
     continuous = false,
+    draggable,
+    rowDropState,
+    rowDropPlacement,
   }: {
     revisions: RepositoryLogRevision[];
     commits?: readonly LocalGraphCommit[];
@@ -48,6 +51,13 @@
     rowActions?: Snippet<[RepositoryLogRevision]>;
     /** Keep selected file cards inset beside the continuous graph, as in Stacks. */
     continuous?: boolean;
+    draggable?(revision: RepositoryLogRevision): boolean;
+    rowDropState?(
+      revision: RepositoryLogRevision,
+    ): "idle" | "valid" | "invalid";
+    rowDropPlacement?(
+      revision: RepositoryLogRevision,
+    ): "above" | "below" | undefined;
   } = $props();
   const id = $props.id();
   const rows = $derived(buildRepositoryLogGraph(revisions));
@@ -105,6 +115,11 @@
       <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
       <div
         class="repository-graph-row"
+        class:workspace-drop-target={Boolean(rowDropState)}
+        data-revision-id={row.revision.eventId}
+        data-drop-target-state={rowDropState?.(row.revision)}
+        data-drop-placement={rowDropPlacement?.(row.revision)}
+        draggable={draggable?.(row.revision)}
         style:padding-left={`${repositoryLogContentLeft(row)}px`}
         use:measure={row.revision.eventId}
         onclick={(event) => selectRow(event, row.revision.eventId)}

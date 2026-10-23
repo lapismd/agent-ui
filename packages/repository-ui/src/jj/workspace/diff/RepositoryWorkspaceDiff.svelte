@@ -157,6 +157,16 @@
               checked={!diff.hunks || diff.hunks.includes(hunk.id)}
               selectable={Boolean(selected)}
               disabled={controller.locked}
+              onDragStart={selected &&
+              host.onCommand &&
+              (controller.can("transfer") || controller.can("create_commit"))
+                ? (event) =>
+                    controller.drag.start(event, {
+                      kind: "selection",
+                      selection: selected,
+                    })
+                : undefined}
+              onDragEnd={() => controller.drag.clear()}
               onChecked={(checked) => choose(hunk.id, checked)}
               onAssign={selected && host.onCommand && controller.can("transfer")
                 ? () =>

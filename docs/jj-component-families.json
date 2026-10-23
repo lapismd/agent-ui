@@ -226,7 +226,10 @@
     {
       "primary": "jj/workspace/stack-lane/RepositoryStackLane",
       "purpose": "Grouped source bookmark cards, recorded graph, supplied metadata, selected source files and host-provided actions in the original stack column.",
-      "parts": ["jj/workspace/stack-lane/RepositoryStackCard.svelte"]
+      "parts": [
+        "jj/workspace/stack-lane/RepositoryStackCard.svelte",
+        "jj/workspace/stack-lane/RepositoryWorkspaceDropGuide.svelte"
+      ]
     },
     {
       "primary": "jj/workspace/source-files/RepositoryWorkspaceFiles",

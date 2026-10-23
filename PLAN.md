@@ -7,6 +7,7 @@
 | Repository file browsing                    | Awaiting visual review | Five documented families, pinned read-only controller and complete in-memory Files screen |
 | Repository Branches                         | Awaiting visual review | Source-adapted reference cards, exact-target controller and shared graph/diff canvas      |
 | Stacks and Workspace presentation           | Awaiting screen review | Source-adapted lanes, unstaged/source files, target history and adjacent diff review      |
+| Workspace drag/drop and keyboard transfers  | Awaiting screen review | Native sources/targets, exact host requests and an interactive preview/Apply/Cancel demo  |
 | Downstream adoption and publication         | Review gate            | No application/service changes, deployment or publication                                 |
 
 The user authorized the Desktop-first JJ slice and requested a pause for review
@@ -220,7 +221,7 @@ Stacks/Workspace review follow-up aligns pill navigation, reuses the Command Vie
 workspace picker and shows three native hunks with retained selection. The action
 audit is in `spec/records/2026-10-23-stack-workspace-review.md`. Git/JJ copy,
 create-commit intents and native hunk assignment intents reach host callbacks.
-File/folder/hunk/commit drag/drop, built-in commit menus and the full inline commit
+Built-in commit menus and the full inline commit
 composer still need their dedicated frontend wiring slice before claiming JJ Store
 action parity. Native execution and preview/apply recovery remain host-owned.
 
@@ -232,3 +233,10 @@ a borderless body toolbar and a correctly sized target icon. See
 Stack description cards now align with inline files and use compact 13px prose
 on a subtle theme surface. Focused evidence is in
 `spec/records/2026-10-23-stack-description.md`; broad checks remain deferred.
+
+Workspace drag/drop now connects files, loaded folders, native hunks and mutable
+commit rows to the existing drag session. Stack, exact branch, commit, Unstaged
+and new-stack destinations emit validated host requests with visible feedback.
+The **Drag and drop** complete story provides isolated preview/Apply/Cancel and
+keyboard staging/move destinations. Evidence and remaining native-host/broad
+qualification gaps are in `spec/records/2026-10-23-workspace-drag.md`.

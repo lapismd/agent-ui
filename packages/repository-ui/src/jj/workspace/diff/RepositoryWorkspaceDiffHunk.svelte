@@ -5,6 +5,7 @@
   import { Button } from "@lapismd/design-core/shadcn/button";
   import { FileDiff } from "@lapismd/design-core/diff";
   import ArrowLeftRight from "@lucide/svelte/icons/arrow-left-right";
+  import GripVertical from "@lucide/svelte/icons/grip-vertical";
   import type { WorkspaceHunk } from "../../../stacks/index.js";
   let {
     hunk,
@@ -18,6 +19,8 @@
     wrap,
     onChecked,
     onAssign,
+    onDragStart,
+    onDragEnd,
   }: {
     hunk: WorkspaceHunk;
     displayPatch?: string;
@@ -30,6 +33,8 @@
     wrap: boolean;
     onChecked(checked: boolean): void;
     onAssign?(): void;
+    onDragStart?(event: DragEvent): void;
+    onDragEnd?(): void;
   } = $props();
   const id = $props.id();
   const header = $derived(
@@ -42,8 +47,12 @@
   class="workspace-hunk-card"
   role="group"
   aria-label={`Hunk ${hunk.label}`}
+  draggable={Boolean(onDragStart) && !disabled}
+  ondragstart={onDragStart}
+  ondragend={onDragEnd}
 >
   <Card.Header class="workspace-hunk-header">
+    {#if onDragStart}<GripVertical size={14} aria-hidden="true" />{/if}
     {#if selectable}<Checkbox
         {id}
         {checked}

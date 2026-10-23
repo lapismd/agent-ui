@@ -328,7 +328,7 @@
       "sourceRevision": "52516ae9",
       "source": "src/components/repository/RepositoryGraph.svelte",
       "destination": "packages/repository-ui/src/jj/history/graph/RepositoryGraph.svelte",
-      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger."
+      "use": "Desktop source-copy with public protocol ports, owned feature paths, source-default styling variables and documented review adaptations; see source ledger. Drag/drop follow-up: Expose optional native row-draggable and drop-state/placement callbacks with recorded revision IDs; ordinary history rows retain their default behavior."
     },
     {
       "sourceRepository": "lapis-desktop",
@@ -1017,7 +1017,7 @@
     {
       "source": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceCanvas.svelte",
       "destination": "packages/repository-ui/src/jj/screens/stack-workspace/RepositoryStackCanvas.svelte",
-      "use": "Retain fixed leading column, scrolling adjacent lanes and per-origin diffs, widths and tail spacer. Extract canvas defaults; replace native branch command with the owned public picker and exact bookmark keys. Transfer/forge panels and drop handlers are deferred.",
+      "use": "Retain fixed leading column, scrolling adjacent lanes and per-origin diffs, widths and tail spacer. Extract canvas defaults; replace native branch command with the owned public picker and exact bookmark keys. Transfer/forge panels and drop handlers are deferred. Drag/drop follow-up: Reconnect source trailing workspace/new-stack drop targets and guides to the portable drag session and exact host commands; clear transient drag feedback on scope changes and native drag end.",
       "sourceRepository": "jj-store",
       "sourceRevision": "87f2f603"
     },
@@ -1038,35 +1038,35 @@
     {
       "source": "web/src/lib/ui/store-stack-workspace/StoreStackLane.svelte",
       "destination": "packages/repository-ui/src/jj/workspace/stack-lane/RepositoryStackLane.svelte",
-      "use": "Retain stack column header, stage/start-commit cards, grouped bookmarks and paging. Use public generic graph and host slots; commands request host handling without execution; transfer and forge controls are deferred.",
+      "use": "Retain stack column header, stage/start-commit cards, grouped bookmarks and paging. Use public generic graph and host slots; commands request host handling without execution; transfer and forge controls are deferred. Drag/drop follow-up: Reconnect source stack-body and staging-area targets with capability/lock-aware guides and host command delegation; resolve current keyboard file/hunk selection for staging.",
       "sourceRepository": "jj-store",
       "sourceRevision": "87f2f603"
     },
     {
       "source": "web/src/lib/ui/store-stack-workspace/StoreStackBookmarkCard.svelte",
       "destination": "packages/repository-ui/src/jj/workspace/stack-lane/RepositoryStackCard.svelte",
-      "use": "Fold source bookmark header into the private card, retain branch selection, shared/alias tags, author/time and grouped graph/files. Replace application-only graph/forge/drag controls with public graph, scoped files and host snippets.",
+      "use": "Fold source bookmark header into the private card, retain branch selection, shared/alias tags, author/time and grouped graph/files. Replace application-only graph/forge/drag controls with public graph, scoped files and host snippets. Drag/drop follow-up: Reconnect exact branch-header and mutable commit drag targets, row-edge sorting and file drag sources; retain source insertion/feedback geometry through the shared graph and expose a host-owned keyboard move request.",
       "sourceRepository": "jj-store",
       "sourceRevision": "87f2f603"
     },
     {
       "source": "web/src/lib/ui/store-stack-workspace/StoreStackSourceFiles.svelte",
       "destination": "packages/repository-ui/src/jj/workspace/source-files/RepositoryWorkspaceFiles.svelte",
-      "use": "Retain source-bound lazy loading, cancellation, selected path and paging. Replace application notices with icon-bearing unavailable/retry states and source file wrapper with public FileListing. Preserve supplied counts instead of synthesizing hunk counts; expose host actions.",
+      "use": "Retain source-bound lazy loading, cancellation, selected path and paging. Replace application notices with icon-bearing unavailable/retry states and source file wrapper with public FileListing. Preserve supplied counts instead of synthesizing hunk counts; expose host actions. Drag/drop follow-up: Bind eligible file/folder native drags through public FileListing callbacks and the existing portable helper; retain exact scoped source/path identities and native drag-end cleanup.",
       "sourceRepository": "jj-store",
       "sourceRevision": "87f2f603"
     },
     {
       "source": "web/src/lib/ui/store-stack-workspace/StoreStackUnstaged.svelte",
       "destination": "packages/repository-ui/src/jj/workspace/source-files/RepositoryUnstagedColumn.svelte",
-      "use": "Retain fixed Unstaged header/body and selected file diff origin; use scoped shared files, generic navigation and host file actions; transfer controls deferred. Distinct column/list landmark names.",
+      "use": "Retain fixed Unstaged header/body and selected file diff origin; use scoped shared files, generic navigation and host file actions; transfer controls deferred. Distinct column/list landmark names. Drag/drop follow-up: Reconnect the source Unstaged drop destination, guide and eligible file rows; delegate validated requests to the injected host.",
       "sourceRepository": "jj-store",
       "sourceRevision": "87f2f603"
     },
     {
       "source": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceDiff.svelte",
       "destination": "packages/repository-ui/src/jj/workspace/diff/RepositoryWorkspaceDiff.svelte",
-      "use": "Retain adjacent per-origin column, path, close, lazy diff reads, hunk cards and context. Replace application diff preferences with shared unified/split/wrap controls, explicit host actions and icon-bearing states; omit transfer buttons.",
+      "use": "Retain adjacent per-origin column, path, close, lazy diff reads, hunk cards and context. Replace application diff preferences with shared unified/split/wrap controls, explicit host actions and icon-bearing states; omit transfer buttons. Drag/drop follow-up: Reconnect each eligible native hunk as an exact-token drag source, preserving read-only target history/immutable boundaries and host-owned assignment.",
       "sourceRepository": "jj-store",
       "sourceRevision": "87f2f603"
     },
@@ -1108,7 +1108,28 @@
       "sourceRevision": "6961bd1c",
       "source": "web/src/lib/ui/store-stack-workspace/StoreStackDiffHunk.svelte",
       "destination": "packages/repository-ui/src/jj/workspace/diff/RepositoryWorkspaceDiffHunk.svelte",
-      "use": "Copy native range header, checkbox, assign action and hunk card composition. Use public FileDiff directly and exact unique accessible labels; omit unconnected drag attributes; hosts receive assignment intents rather than executing a transfer. Hunk CSS is moved from the owning diff part."
+      "use": "Copy native range header, checkbox, assign action and hunk card composition. Use public FileDiff directly and exact unique accessible labels; omit unconnected drag attributes; hosts receive assignment intents rather than executing a transfer. Hunk CSS is moved from the owning diff part. Drag/drop follow-up: Restore source hunk drag affordance and native drag callbacks, disable while locked and clear transient state on drag end; retain existing card and diff representation."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "87f2f603",
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStackDropGuide.svelte",
+      "destination": "packages/repository-ui/src/jj/workspace/stack-lane/RepositoryWorkspaceDropGuide.svelte",
+      "use": "Copy valid/invalid icon and status markup; namespace classes and import the shared owned CSS and portable feedback type. Private compound part of the Stack lane family."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "87f2f603",
+      "source": "web/src/lib/ui/store-stack-workspace/stack-workspace-drag.css",
+      "destination": "packages/repository-ui/src/jj/workspace/stack-lane/workspace-drag.css",
+      "use": "Copy target outlines, dashed guides and sorting-edge geometry; namespace selectors and replace the application secondary-font variable with its 0.75rem interface default."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "87f2f603",
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStackBookmarkCard.svelte",
+      "destination": "packages/repository-ui/src/jj/workspace/stack-lane/drag-handlers.ts",
+      "use": "Extract source native event delegation into a shared host-request helper for this family; use existing commitEventRow/commitRowTarget, revalidate live snapshot/lock/capabilities and retain keyboard selections without previewing or applying effects."
     }
   ]
 }

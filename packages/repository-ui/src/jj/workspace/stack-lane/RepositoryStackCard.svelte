@@ -3,11 +3,18 @@
   import * as Card from "@lapismd/design-core/shadcn/card";
   import { TagList } from "@lapismd/design-core/shadcn/tag-list";
   import GitBranch from "@lucide/svelte/icons/git-branch";
+  import ArrowLeftRight from "@lucide/svelte/icons/arrow-left-right";
+  import { Button } from "@lapismd/design-core/shadcn/button";
   import { RelativeTime } from "@lapismd/design-core/shadcn/relative-time";
   import RepositoryAuthorAvatar from "../../foundations/author-avatar/RepositoryAuthorAvatar.svelte";
   import RepositoryGraph from "../../history/graph/RepositoryGraph.svelte";
   import RepositoryCommitMessage from "../../history/commit-message/RepositoryCommitMessage.svelte";
   import Files from "../source-files/RepositoryWorkspaceFiles.svelte";
+  import DropGuide from "./RepositoryWorkspaceDropGuide.svelte";
+  import {
+    workspaceDropHandlers,
+    workspaceCommitHandlers,
+  } from "./drag-handlers.js";
   import { stackCardSelection } from "../../../stacks/card-selection.js";
   import { toggleStackSource } from "../../../stacks/selection-actions.js";
   import type {
@@ -51,13 +58,21 @@
   );
   const tip = $derived(commits[0]);
   const revisions = $derived(workspaceRevisionRows(stack, commits));
+  const target = $derived({
+    kind: "stack" as const,
+    id: card.owner,
+    branch: card.branch,
+  });
 </script>
 
 <Card.Root class="workspace-bookmark-card" data-loaded-commits={commits.length}>
   <Card.Header
-    class="workspace-bookmark-header"
+    class="workspace-bookmark-header workspace-drop-target"
+    data-drop-target-state={controller.drag.state(target)}
+    {...workspaceDropHandlers(controller, host, () => target)}
     data-selected={card.branchSelected || undefined}
   >
+    <DropGuide feedback={controller.drag.for(target)} />
     <GitBranch aria-hidden="true" />
     <div>
       <Card.Title
@@ -101,6 +116,7 @@
   {#if card.branchSelected}<Card.Content class="workspace-branch-files"
       ><Files
         compact
+        draggable={Boolean(host.onCommand)}
         {controller}
         source={card.branchSource}
         label={`Changed files in ${name}`}
@@ -115,36 +131,77 @@
   {#if host.branchActions}<Card.Content class="workspace-bookmark-actions"
       >{@render host.branchActions(stack, name)}</Card.Content
     >{/if}
-  <RepositoryGraph
-    continuous
-    {revisions}
-    selectedId={card.commit?.id}
-    copyText={host.copyText}
-    label={`Commits in ${name}`}
-    onSelect={(id) => toggleStackSource(controller, card.owner, { commit: id })}
-    rowActions={host.commitActions ? commitActions : undefined}
-  >
-    {#snippet selectedFiles()}{#if card.commit}
-        {#if card.commit.message.includes("\n")}<RepositoryCommitMessage
-            description={card.commit.message}
-          />{/if}
-        <Files
-          compact
-          {controller}
-          source={card.commit.id}
-          label={`Changed files in ${name}`}
-          selectedPath={diff?.source === card.commit.id ? diff.path : undefined}
-          onSelect={(path) =>
-            controller.selectFile(card.commit!.id, path, undefined, card.owner)}
-          actions={host.fileActions ? fileActions : undefined}
-        />
-      {/if}{/snippet}
-  </RepositoryGraph>
+  <!-- svelte-ignore a11y_no_static_element_interactions -->
+  <div {...workspaceCommitHandlers(controller, host, () => commits)}>
+    <RepositoryGraph
+      continuous
+      {revisions}
+      selectedId={card.commit?.id}
+      copyText={host.copyText}
+      label={`Commits in ${name}`}
+      onSelect={(id) =>
+        toggleStackSource(controller, card.owner, { commit: id })}
+      rowActions={commitActions}
+      draggable={(revision) =>
+        Boolean(host.onCommand) &&
+        !controller.locked &&
+        Boolean(
+          commits.find(
+            (commit) => commit.id === revision.eventId && !commit.immutable,
+          ),
+        ) &&
+        (controller.can("move_commit") || controller.can("reorder_commit"))}
+      rowDropState={(revision) =>
+        controller.drag.state({ kind: "commit", id: revision.eventId })}
+      rowDropPlacement={(revision) =>
+        controller.drag.for({ kind: "commit", id: revision.eventId })
+          ?.placement}
+    >
+      {#snippet selectedFiles()}{#if card.commit}
+          {#if card.commit.message.includes("\n")}<RepositoryCommitMessage
+              description={card.commit.message}
+            />{/if}
+          <Files
+            compact
+            draggable={Boolean(host.onCommand)}
+            {controller}
+            source={card.commit.id}
+            label={`Changed files in ${name}`}
+            selectedPath={diff?.source === card.commit.id
+              ? diff.path
+              : undefined}
+            onSelect={(path) =>
+              controller.selectFile(
+                card.commit!.id,
+                path,
+                undefined,
+                card.owner,
+              )}
+            actions={host.fileActions ? fileActions : undefined}
+          />
+        {/if}{/snippet}
+    </RepositoryGraph>
+  </div>
 </Card.Root>
 {#snippet commitActions(
   revision: import("../../logic/graph/model.js").RepositoryLogRevision,
 )}
   {@const commit = commits.find((item) => item.id === revision.eventId)!}
+  <DropGuide
+    feedback={controller.drag.for({ kind: "commit", id: commit.id })}
+  />
+  {#if host.onCommand && controller.can("move_commit")}<Button
+      variant="ghost"
+      size="icon-xs"
+      disabled={controller.locked || commit.immutable}
+      title="Move commit"
+      aria-label={`Move commit ${commit.message.split("\n")[0]}`}
+      onclick={() =>
+        host.onCommand?.(
+          { kind: "move_commit", commit: commit.id, stack: "" },
+          controller.snapshot!,
+        )}><ArrowLeftRight aria-hidden="true" /></Button
+    >{/if}
   {@render host.commitActions?.(commit, stack)}
 {/snippet}
 {#snippet fileActions()}{@render host.fileActions?.(

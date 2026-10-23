@@ -20,6 +20,7 @@ export default defineConfig({
     "repository-browser.pw.ts",
     "repository-branches.pw.ts",
     "stack-workspace-presentation.pw.ts",
+    "stack-workspace-drag.pw.ts",
     "repository-browser-docs.pw.ts",
     "repository-file-history.pw.ts",
     "repository-metadata-details.pw.ts",

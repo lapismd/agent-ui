@@ -11,6 +11,8 @@
   import Lane from "../../workspace/stack-lane/RepositoryStackLane.svelte";
   import Diff from "../../workspace/diff/RepositoryWorkspaceDiff.svelte";
   import Target from "./RepositoryTargetHistory.svelte";
+  import DropGuide from "../../workspace/stack-lane/RepositoryWorkspaceDropGuide.svelte";
+  import { workspaceDropHandlers } from "../../workspace/stack-lane/drag-handlers.js";
   import {
     appliedStacks,
     browsingStack,
@@ -48,6 +50,18 @@
   let registeredStacks = $state<string[]>([]),
     registeredDiffs = $state<string[]>([]);
   const snapshot = $derived(controller.snapshot!);
+  const dragScope = $derived(
+    JSON.stringify([
+      snapshot.repository,
+      snapshot.active,
+      snapshot.revision,
+      snapshot.readKey,
+    ]),
+  );
+  $effect(() => {
+    dragScope;
+    untrack(() => controller.drag.clear());
+  });
   const stacks = $derived(
     controller.page === "workspace"
       ? appliedStacks(snapshot)
@@ -129,6 +143,7 @@
   fillContent
   bind:viewportRef={scrollViewport}
   class="workspace-canvas-scroll"
+  ondragend={() => controller.drag.clear()}
 >
   <ColumnCanvas.Root
     displayMode="fixed"
@@ -137,7 +152,20 @@
     class="workspace-canvas"
     aria-label="Stack workspace columns"
   >
-    {#snippet trailingSpacer()}<div class="workspace-branch-spacer">
+    {#snippet trailingSpacer()}<div
+        class="workspace-branch-spacer workspace-drop-target"
+        data-drop-target-state={controller.page === "workspace"
+          ? controller.drag.state({ kind: "new-stack" })
+          : undefined}
+        {...workspaceDropHandlers(controller, host, () => ({
+          kind: controller.page === "workspace" ? "new-stack" : "workspace",
+        }))}
+      >
+        <DropGuide
+          feedback={controller.drag.for({
+            kind: controller.page === "workspace" ? "new-stack" : "workspace",
+          })}
+        />
         <Empty.Root
           ><Empty.Header
             ><Empty.Media variant="icon"

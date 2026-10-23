@@ -4,6 +4,11 @@
   import { Button } from "@lapismd/design-core/shadcn/button";
   import GitBranchPlus from "@lucide/svelte/icons/git-branch-plus";
   import Files from "./RepositoryWorkspaceFiles.svelte";
+  import DropGuide from "../stack-lane/RepositoryWorkspaceDropGuide.svelte";
+  import {
+    workspaceDropHandlers,
+    selectedWorkspaceChanges,
+  } from "../stack-lane/drag-handlers.js";
   import type { StackWorkspaceController } from "../../../stacks/index.js";
   import type { RepositoryStackHost } from "../stack-lane/types.js";
   let {
@@ -38,8 +43,27 @@
       /></ColumnCanvas.HeaderActions
     ></ColumnCanvas.Header
   >
-  <ColumnCanvas.Body scrollStrategy="styled"
-    ><Files
+  <ColumnCanvas.Body
+    scrollStrategy="styled"
+    class="workspace-drop-target"
+    data-drop-target-state={controller.drag.state({ kind: "working" })}
+    {...workspaceDropHandlers(controller, host, () => ({ kind: "working" }))}
+    ><DropGuide feedback={controller.drag.for({ kind: "working" })} />
+    {#if host.onCommand && selectedWorkspaceChanges(controller)?.source !== "unassigned" && selectedWorkspaceChanges(controller)}<Button
+        variant="ghost"
+        size="sm"
+        onclick={() =>
+          host.onCommand?.(
+            {
+              kind: "transfer",
+              selection: selectedWorkspaceChanges(controller)!,
+              target: "unassigned",
+            },
+            controller.snapshot!,
+          )}>Move selected changes to Unstaged</Button
+      >{/if}
+    <Files
+      draggable={Boolean(host.onCommand)}
       {controller}
       source="unassigned"
       label="Unstaged files"
