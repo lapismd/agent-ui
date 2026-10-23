@@ -138,6 +138,8 @@ Source-package review archives MAY be used through an ignored, documented
 validation overlay; published manifests and lockfiles MUST retain registry ranges.
 An unpublished dependency's missing portable lockfile entries MUST remain an
 explicit release prerequisite rather than a claimed frozen-install pass.
+A passing focused retry MUST retain earlier failed/interrupted aggregate counts
+and MUST NOT qualify cold startup through a warm-server run alone.
 Clean package acceptance MUST compile documented examples for both packages
 and exclude their catalog material; static catalog checks MUST audit both family
 inventories and specification pages.

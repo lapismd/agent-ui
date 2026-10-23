@@ -153,3 +153,32 @@ packages/repository-ui/src/jj/operations/operation-column/RepositoryOperationCol
   all 145 public examples compile with 0 errors/warnings and build from the
   public archives. `pnpm spec:check` passes all three lanes. The complete browser
   sweep and static catalog build are still running at this focused commit.
+
+Final archive and catalog follow-up:
+
+- `pnpm build-storybook` passes both package builds/publint and the static audit:
+  64 documented foundation families, 387 variations and five specification
+  chapters. All review stories remain visual-pending.
+- JJ Desktop adopts archives from `a728319a` through its documented verifier:
+  14 payloads verified, 45 fresh browser/axe checks and 43 units passed, with
+  types, architecture, formatting and renderer build passing. Registry manifests
+  and lockfiles remain unchanged. After free space recovered above the guard,
+  all 27 native tests and cold application acceptance passed. The consumer record
+  retains the initial stale Workspace-label failure, intermediate hidden-header
+  selector failure and final native-header assertion repair. Crash/blank-screen
+  soak qualification remains open.
+- The resumed complete browser attempt was stopped explicitly after 16 passed,
+  3 failed, 1 interrupted and 131 not run. The 320px/420px agent-gallery tests
+  could not find the initial card within their existing deadlines; the Loading
+  audit also reported `jj-browsing-directory--loading`. The Empty audit was
+  interrupted. These are not passing aggregate results. No timeout or assertion
+  was weakened. A separate four-case agent-gallery retry records 3 passed and
+  the same 320px first-render failure; wider catalog qualification remains open.
+- The state inventory now contains 88 variations (30 Loading, 28 Empty and
+  30 Unavailable). The focused audit against the restarted review server passes
+  all three groups: `pnpm exec playwright test --config
+.local/playwright-content-review.config.ts content-states.pw.ts`. This uses the
+  same catalog audit, timeouts and assertions; cold startup is independently
+  covered by the earlier 17-case exact run. The final focused 320px agent-gallery
+  retry also passes (1 test), without code or timeout changes. This does not
+  convert the interrupted complete sweep into a passing aggregate result.
