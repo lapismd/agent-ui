@@ -5,6 +5,8 @@ unproven profile associations explicitly; example data MUST NOT imply that hosts
 may synthesize these facts for recorded sessions.
 Native adoption MUST qualify non-disposing controller drain and failed-draft
 recovery before disposing an editor or closing its native window.
+Consumer guidance MUST distinguish verified adoption slices from open broader
+qualification, capture-format and application-integration gates.
 
 Browser acceptance files (`.pw.ts`) and unit tests (`.test.ts`) share the existing
 500-counted-line test budget; production and script files retain the 300-line

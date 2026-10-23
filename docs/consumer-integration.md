@@ -136,5 +136,13 @@ host routes; `onChat` requests an explicit conversation without sending. Use
 `sessionContent` for complete capture/chat content through host composition.
 The port persists exact requests before effects; `resolve` only inspects. Retain
 unknown requests, drafts and late-response guards across navigation and Settings.
-Global browsing must not activate a checkout or start an agent. Native adoption
-and the broader Agents/Threads/settings plan remain in progress.
+Call `controller.drain()` before native close; failed draft writes keep the editor
+available for an explicit save retry. `close()` disposes subscriptions after the
+host has drained its owned work. Global browsing must not activate a checkout or
+start an agent.
+
+JJ Desktop `23e0116d` adopts these exports with native persistence and registered
+native-capture reads, using public `CapturedSessionBrowser` through the content
+snippet. It leaves unsupported imported formats explicitly unavailable. Its
+browser and cold native acceptance pass; the larger Threads/contextual-chat and
+settings plan and broad source qualification remain open.

@@ -340,7 +340,9 @@ screen now keeps its Empty state outside list/listitem structure.
 The shared configured-agent slice now provides the source-derived gallery,
 attached profile, retained configuration editor and scoped sessions/captures
 view. Controller and cold browser checks cover stale reads, exact unknown
-outcomes, draft recovery, source dimensions and focus restoration. Native
-configured-agent persistence, bounded session adapters and consumer adoption
-remain next; global Threads, contextual chat and local settings are still open.
+outcomes, draft recovery, source dimensions and focus restoration. JJ Desktop
+`23e0116d` now adopts it with native configured-agent persistence and bounded
+registered-home native captures. All 33 consumer browser/axe cases, 35 renderer
+units, 26 native tests and cold native acceptance pass. Global Threads,
+contextual chat, other imported capture formats and local settings remain open.
 See `spec/records/2026-10-23-configured-agents.md`.
