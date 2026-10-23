@@ -139,3 +139,7 @@ the final broad package matrix remain pending.
 RUI-LIFE-001 explicit file-history pins are verified by the supplied-operation
 regression in `tests/jj-history-controllers.test.ts`; first-consumer integration
 must never read latest before opening a historical file.
+
+Settings AppShell composition for RUI-FORGE-001 is covered by the Settings page
+Appearance interaction and all three settings story families across themes and
+viewports. Evidence: `spec/records/2026-10-23-settings-shell.md`.

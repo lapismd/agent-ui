@@ -273,3 +273,7 @@ portable boundary. JJ Desktop adoption and native window acceptance are next.
 First consumer file-history pin: `follow(path, operation)` retains the exact
 operation from the first read. Focused regression and integration acceptance
 track this public optional input.
+
+- Settings alignment: use the production AppShell body, standard toolbar and
+  scrolling content in all settings stories and the first consumer. Focused
+  verification recorded in `spec/records/2026-10-23-settings-shell.md`; visual-pending.

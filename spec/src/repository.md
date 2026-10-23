@@ -263,9 +263,9 @@ execution to the host; rendering or dropping MUST NOT execute a command itself.
 ### Acceptance details
 
 - Shared appearance and settings presentation is exported through `/settings` using JJ Store palettes, theme pairing, preview tiles, settings cards and page geometry.
-- Hosts own storage namespaces, native capabilities and repository policy.
+- Settings pages and their stories use the production AppShell body, standard toolbar header and scrolling body content.
+- Hosts own storage namespaces, native capabilities and repository policy; the portable framework does not enable native glass.
 - Appearance previews do not persist, invalid values fall back safely, and disposal restores the owning root and removes browser listeners.
-- The portable appearance framework does not enable native glass.
 
 ## RUI-LIFE-001 — Repository lifetime
 

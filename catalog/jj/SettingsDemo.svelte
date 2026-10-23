@@ -48,7 +48,7 @@
 
 <style>
   .settings-demo {
-    height: 40rem;
+    height: var(--ui-repository-story-height, 100dvh);
     width: 100%;
     min-width: 0;
   }
