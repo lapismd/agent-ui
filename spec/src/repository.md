@@ -277,3 +277,15 @@ execution to the host; rendering or dropping MUST NOT execute a command itself.
 
 - Public types express the boundary.
 - Focused tests and production-component stories verify the behavior.
+
+## RUI-NAV-001 — Contextual application navigation
+
+**Requirement.** Shared application navigation MUST compose public AppShell,
+ResponsiveTabs, Breadcrumb and CommandView primitives with host-owned routes.
+
+### Acceptance details
+
+- Contextual tabs MUST distinguish Projects, a selected project, repository views and Stacks subviews, omit Actions, and retain accessible overflow navigation.
+- Repository selection MUST use exact supplied identities, searchable command rows, explicit unavailable states and an optional native-open callback.
+- Breadcrumbs MUST support the repository picker as their first item without implying that global pages belong to the active repository.
+- Mounting navigation MUST NOT mutate repositories; selection, continuation, routes and controller lifetime remain host-owned.

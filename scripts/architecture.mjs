@@ -43,7 +43,7 @@ for (const file of [
   const count = text
     .split("\n")
     .filter((line) => line.trim() && !/^\s*(?:\/\/|\*|\/\*)/.test(line)).length;
-  const limit = file.endsWith(".test.ts")
+  const limit = /\.(?:test|pw)\.ts$/.test(file)
     ? 500
     : file.includes(".stories.")
       ? 400

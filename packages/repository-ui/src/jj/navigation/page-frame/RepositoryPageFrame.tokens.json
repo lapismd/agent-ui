@@ -1,0 +1,12 @@
+{
+  "component": "RepositoryPageFrame",
+  "variables": [
+    {
+      "name": "--ui-repository-page-background",
+      "default": "var(--background)",
+      "description": "Embedded AppShell page with responsive contextual tabs, header, search and action slots.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/navigation/page-frame/RepositoryPageFrame.svelte"
+    }
+  ]
+}

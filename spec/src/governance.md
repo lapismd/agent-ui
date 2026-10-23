@@ -1,5 +1,15 @@
 # Governance
 
+Browser acceptance files (`.pw.ts`) and unit tests (`.test.ts`) share the existing
+500-counted-line test budget; production and script files retain the 300-line
+limit. This classification must not depend on the test runner.
+
+The approved Projects, Agents, Threads and JJ Desktop integration plan supersedes
+the historical per-section stop boundaries below. Its five slices are authorized
+for continuous implementation and focused commits, followed by required broader
+qualification. Complete Storybook scenarios remain visual-pending. JJ Desktop
+is the authorized consumer; publication and installed-app replacement are excluded.
+
 The request-card slice uses isolated Jujutsu workspaces and focused controller,
 component, type and spec checks before review. Downstream adoption and broad
 qualification remain deferred until that review.

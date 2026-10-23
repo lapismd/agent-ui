@@ -1,0 +1,79 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  ArgTypes,
+  Markdown,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryPicker.stories";
+import { Basic, Styling } from "./RepositoryPicker.example-sources";
+import tokens from "./RepositoryPicker.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# RepositoryPicker
+
+Searchable repository choices with native-open and continuation callbacks.
+
+## Usage
+
+Use the public component with host-owned values and callbacks. Navigation does not grant repository access.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part           | Responsibility                                                            |
+| -------------- | ------------------------------------------------------------------------- |
+| Surface        | Source-adapted JJ Store geometry and semantic tokens.                     |
+| Controls       | Public Design Core primitives own focus, selection and keyboard behavior. |
+| Host callbacks | Retain repository identities, route ownership and lifecycle.              |
+
+## Variations
+
+### Basic
+
+<Canvas of={Stories.Basic} />
+
+### OpenLocal
+
+<Canvas of={Stories.OpenLocal} />
+
+### Disabled
+
+<Canvas of={Stories.Disabled} />
+
+### UnavailableSelection
+
+<Canvas of={Stories.UnavailableSelection} />
+
+### NoMatches
+
+<Canvas of={Stories.NoMatches} />
+
+## Behavior and accessibility
+
+Repository choices use exact host-issued IDs and never change authority on mount.
+Command View supports search and keyboard selection; Escape restores trigger focus.
+Unavailable choices cannot be selected. Native folder opening is an explicit host callback.
+Breadcrumb parents use real links and retain modified-click behavior. Their final item marks
+current location. Global ancestry omits the repository root to avoid implying scope.
+Page tabs move overflow into More and retain selected state. Stacks replaces the outer
+repository tab set; the host owns Back and preserves the current page when switching roots.
+Complete canvases opt out of body scrolling and own their scroll containers.
+
+## Styling variables
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+Compose these components in the native app shell or shared complete screen. Pass the same
+RepositoryPicker as the first breadcrumb item on repository routes; show it separately
+from global breadcrumbs. Keep host selection, persistence and notifications in adapters.

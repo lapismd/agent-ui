@@ -71,3 +71,17 @@ after durable acceptance. Native targets, context and credentials remain owned
 by the host. `snapshot.chat.controls` can disable attachment, approval-policy and
 runtime controls independently when the host has no adapter for those actions;
 keep the ordinary footer and its typography instead of substituting host markup.
+
+## Contextual navigation
+
+Use `RepositoryPageFrame`, `RepositoryBreadcrumbs`, `RepositoryPicker` and
+`navigationSections` from the public `/jj` entry point. The page frame composes
+AppShell and ResponsiveTabs with typed host selection, header/search/action slots
+and a canvas scrolling opt-out. Contexts distinguish repository, Stacks, Projects
+and a selected project.
+
+Repository routes place the single controlled command picker in the breadcrumb
+root snippet. Global Projects/Agents/Threads keep that picker separate from
+ancestry; changing it does not filter global content. Preserve page/subtab and
+reset repository-specific pins after admitted selection. Native folder opening
+is the picker's explicit `onOpenRepository` callback.

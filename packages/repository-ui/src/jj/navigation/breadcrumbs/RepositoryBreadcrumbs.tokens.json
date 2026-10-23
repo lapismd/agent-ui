@@ -1,0 +1,12 @@
+{
+  "component": "RepositoryBreadcrumbs",
+  "variables": [
+    {
+      "name": "--ui-repository-breadcrumb-font-size",
+      "default": "0.75rem",
+      "description": "Context ancestry with an optional repository picker root and explicit host navigation.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/navigation/breadcrumbs/breadcrumbs.css"
+    }
+  ]
+}

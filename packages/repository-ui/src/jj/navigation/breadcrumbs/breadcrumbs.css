@@ -1,0 +1,71 @@
+/* CommunityApplication.svelte (Apache-2.0): centered breadcrumb. */
+.repository-breadcrumbs {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  align-items: center;
+  overflow: hidden;
+  color: var(--muted-foreground);
+}
+
+:is(.repository-breadcrumbs [data-ui-part="breadcrumb"]),
+:is(.repository-breadcrumbs [data-ui-part="breadcrumb-list"]) {
+  min-width: 0;
+}
+
+:is(.repository-breadcrumbs [data-ui-part="breadcrumb"]) {
+  width: 100%;
+}
+
+:is(.repository-breadcrumbs [data-ui-part="breadcrumb-list"]) {
+  width: 100%;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+:is(.repository-breadcrumbs [data-ui-part="breadcrumb-item"]) {
+  min-width: 0;
+  flex: 0 1 auto;
+}
+
+:is(.repository-breadcrumbs [data-ui-part="breadcrumb-link"]),
+:is(.repository-breadcrumbs [data-ui-part="breadcrumb-page"]) {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.35rem;
+  overflow: hidden;
+  color: var(--muted-foreground);
+  font-size: var(--ui-repository-breadcrumb-font-size, 0.75rem);
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:is(.repository-breadcrumbs [data-ui-part="breadcrumb-link"] > span),
+:is(.repository-breadcrumbs [data-ui-part="breadcrumb-page"] > span) {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:is(.repository-breadcrumbs [data-ui-part="breadcrumb-link"]:hover) {
+  color: var(--foreground);
+}
+
+:is(.repository-breadcrumbs [data-ui-part="breadcrumb-link"] svg),
+:is(.repository-breadcrumbs [data-ui-part="breadcrumb-page"] svg) {
+  width: 0.85rem;
+  height: 0.85rem;
+  flex: none;
+}
+
+:is(.repository-breadcrumbs [data-ui-part="breadcrumb-separator"] svg) {
+  width: 0.7rem;
+  height: 0.7rem;
+}

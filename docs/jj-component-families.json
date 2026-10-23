@@ -288,6 +288,21 @@
       "primary": "jj/settings/settings-page/RepositorySettingsPage",
       "purpose": "Reusable JJ Store settings page presentation with host-owned settings and appearance.",
       "parts": []
+    },
+    {
+      "primary": "jj/navigation/repository-picker/RepositoryPicker",
+      "purpose": "Searchable repository choices with native-open and continuation callbacks.",
+      "parts": []
+    },
+    {
+      "primary": "jj/navigation/breadcrumbs/RepositoryBreadcrumbs",
+      "purpose": "Context ancestry with an optional repository picker root and explicit host navigation.",
+      "parts": []
+    },
+    {
+      "primary": "jj/navigation/page-frame/RepositoryPageFrame",
+      "purpose": "Embedded AppShell page with responsive contextual tabs, header, search and action slots.",
+      "parts": []
     }
   ],
   "deferred": [

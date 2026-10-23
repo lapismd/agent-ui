@@ -6,6 +6,16 @@ implementation. Apply the parent workspace guidance. This repository owns
 
 ## Review boundary
 
+The approved Projects/Agents/Threads and JJ Desktop integration plan now
+authorizes all five implementation slices: shared navigation; registered local
+repository routing; Projects/Tasks/Reviews; Agents/Sessions/Threads; and local
+Profile/Emoji/Integrations. Deliver and commit verified slices continuously,
+with exact stories for review and broad qualification tracked explicitly.
+This supersedes the older per-section stop and downstream-adoption boundaries
+below for JJ Desktop only. Publication and installed-app replacement remain
+excluded. JJ Store remains a source reference; existing native public APIs
+provide host integration.
+
 Deliver one user-authorized section at a time with complete Storybook screens
 using production UI controllers and isolated in-memory adapters. The current
 section is Stacks and Workspace presentation, authorized after Branches. Files

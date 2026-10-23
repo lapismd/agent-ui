@@ -286,3 +286,11 @@ with explicit host restrictions for unavailable native footer controls. The
 All Messages reference retains its default behavior. Evidence and the two
 pre-existing root architecture findings are in
 `spec/records/2026-10-23-agent-host-controls.md`; visual review remains pending.
+
+## Approved Projects and Desktop integration
+
+The user authorized all five slices on 2026-10-23, superseding the historical
+section review stops for this work. Shared navigation is in progress; registered
+local routing, Projects/Reviews, Agents/Threads and local settings follow. Exact
+acceptance and pending qualification are in
+`spec/records/2026-10-23-project-integration.md`.

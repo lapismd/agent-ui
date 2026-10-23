@@ -7238,6 +7238,71 @@
         }
       ],
       "layoutSha256": "06476ffe57179c9e18d7035d69e29ce4af26087c9e6ed01607a741c83b4b5269"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-application/StoreRepositoryPicker.svelte",
+      "destination": "packages/repository-ui/src/jj/navigation/repository-picker/RepositoryPicker.svelte",
+      "sourceSha256": "3eff0d510d588420539718f25080e2f75d74c65d9e8b521dfd6927e4f7e40c57",
+      "destinationSha256": "dded96af5ae2fbe388514bb9ad8c20d4b782e6260eddd84722f4216a63cb2338",
+      "adaptations": [
+        {
+          "description": "Preserve CommandView/Popover rows, selection/search/continuation, and controlled callbacks. Add explicit Open local repository command with an icon, replace the mistaken branches continuation label, and expose popover width token."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-application/repository-picker.css",
+      "destination": "packages/repository-ui/src/jj/navigation/repository-picker/repository-picker.css",
+      "sourceSha256": "4cb6a945b3794e40592ace413d15e43d36c78d097d3c3900b9265ee204577c52",
+      "destinationSha256": "4cb6a945b3794e40592ace413d15e43d36c78d097d3c3900b9265ee204577c52",
+      "adaptations": [
+        {
+          "description": "Unchanged source picker geometry and native semantic tokens."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreProjectsBreadcrumb.svelte",
+      "destination": "packages/repository-ui/src/jj/navigation/breadcrumbs/RepositoryBreadcrumbs.svelte",
+      "sourceSha256": "0a59d03341e17fadd9e339576c2d61d7d865128ad45b9b0a1393aac3b48847f6",
+      "destinationSha256": "9e53d95aea86f251e7317e5f0140993583eb52702ffad670c19bb9eb39ad8033",
+      "adaptations": [
+        {
+          "description": "Replace private project route/controller projection with typed ancestry and native navigation callback. Retain public Breadcrumb structure, final current item and links. A root snippet embeds the sole repository picker; global routes omit it. Preserve modified-click link behavior."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/community-work-breadcrumb.css",
+      "destination": "packages/repository-ui/src/jj/navigation/breadcrumbs/breadcrumbs.css",
+      "sourceSha256": "36f7f1f176303de6979e972eb5757aa1dcec20e84f1c11e2c4feb1ffc88ede90",
+      "destinationSha256": "5ccd84e252cede145981545d713dfb2b173f21ab6653840f8df1039740f3368a",
+      "adaptations": [
+        {
+          "description": "Rename owned class and expose the existing compact text size as an audited token. Retain centered truncation and icon geometry."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-application/StoreViewTabs.svelte",
+      "destination": "packages/repository-ui/src/jj/navigation/page-frame/RepositoryPageFrame.svelte",
+      "sourceSha256": "0681c7869c3821fc0bfa73976e444b8c2b4bb979a45350b2070de5bb673f5c33",
+      "destinationSha256": "fa28551af7194d0549541e2ba2337d34b8e63ec90173417055426d0c8973f617",
+      "adaptations": [
+        {
+          "description": "Use the existing public Design Core ResponsiveTabs implementation instead of recopying overflow measurement. Compose source header/search/actions/back flow inside the existing RepositoryShell and AppShell viewport, with bounded canvas opt-out."
+        }
+      ]
     }
   ],
   "fingerprintFormat": "Prettier normalized source; Svelte layout excludes script and comments. Explicit host bindings are applied before comparison.",

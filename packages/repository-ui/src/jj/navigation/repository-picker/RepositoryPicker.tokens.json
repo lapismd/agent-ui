@@ -1,0 +1,12 @@
+{
+  "component": "RepositoryPicker",
+  "variables": [
+    {
+      "name": "--ui-repository-picker-width",
+      "default": "min(26rem, calc(100vw - 2rem))",
+      "description": "Searchable repository choices with native-open and continuation callbacks.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/navigation/repository-picker/RepositoryPicker.svelte"
+    }
+  ]
+}
