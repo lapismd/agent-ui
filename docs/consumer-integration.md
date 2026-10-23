@@ -1,6 +1,13 @@
 # Integrating complete repository screens
 
 Applications mount the completed production screen and implement its host ports.
+Content reads use public shadcn Skeleton with the JJ Store surface geometry and
+an accessible loading label. Empty, unavailable and failed content reads use
+public shadcn Empty with a relevant icon, explanation and applicable retry.
+Apply these states in the shared screen; host admission placeholders follow the
+same rule. Retain loaded content while refreshing and append skeletons during
+pagination. Busy actions, live streaming and missing scalar values retain their
+own semantics. `RepositoryReadOnlyRow loading` covers pending settings values.
 Complete-screen stories are the reference composition and geometry. They are
 not mockups to reproduce with smaller components. A missing native adapter is
 an integration task, not permission to create a different application screen.

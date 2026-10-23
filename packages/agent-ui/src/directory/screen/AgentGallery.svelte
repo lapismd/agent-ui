@@ -79,10 +79,7 @@
         onclick={onAdd}
         ><Plus aria-hidden="true" /><span>Add agent</span></button
       >{/if}
-    {#if view.loading && !view.page}<div
-        role="status"
-        aria-label="Loading your agents"
-      >
+    {#if view.loading}<div role="status" aria-label="Loading your agents">
         <Skeleton class="agent-gallery-skeleton" />
       </div>{/if}
     {#each view.page?.agents ?? [] as agent (agent.id)}

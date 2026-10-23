@@ -356,3 +356,10 @@ Settings now exports JJ Store's original read-only row, including full path copy
 and independent host open controls. The repository settings story includes the
 actual first-consumer folder and storage rows rather than a reduced placeholder.
 Evidence: `spec/records/2026-10-23-settings-rows.md`; visual review remains pending.
+
+Content reads now follow the shared Skeleton and icon Empty rule in production,
+stories and consumer guidance. The catalog audit, import read recovery and
+pending settings values are covered by the same public components. Stacks also
+exposes its existing controls for an enclosing body header, with icon-only file
+editing and a compact repository picker. Verification and remaining gates are
+recorded in `spec/records/2026-10-23-content-states.md`; visual review remains open.

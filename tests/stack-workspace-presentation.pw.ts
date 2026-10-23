@@ -24,6 +24,30 @@ const view = (page: Page, name: string) =>
 const column = (page: Page, id: string) =>
   page.locator(`[data-column-id="${id}"]`);
 
+test("embedded Stacks places its production controls in the single outer header", async ({
+  page,
+}) => {
+  await open(page, "embedded");
+  const header = page.getByRole("toolbar", {
+    name: "Repository navigation",
+    exact: true,
+  });
+  await expect(header).toBeVisible();
+  await expect(page.locator(".workspace-navigation")).toHaveCount(0);
+  const actions = header.getByRole("button", {
+    name: "Workspace actions",
+    exact: true,
+  });
+  const box = await actions.boundingBox(),
+    frame = await header.boundingBox();
+  expect(box!.x).toBeGreaterThan(frame!.x + frame!.width / 2);
+  await actions.click();
+  await page
+    .getByRole("menuitem", { name: "Refresh workspace", exact: true })
+    .click();
+  await expect(state(page)).toHaveAttribute("data-loaded", "true");
+});
+
 test("Stacks and Workspace retain independent selections and captured read scope", async ({
   page,
 }) => {
@@ -55,7 +79,10 @@ test("Stacks and Workspace retain independent selections and captured read scope
   await expect(column(page, "branches")).toBeVisible();
   await view(page, "Workspace").click();
   await page
-    .getByRole("button", { name: "Refresh workspace", exact: true })
+    .getByRole("button", { name: "Workspace actions", exact: true })
+    .click();
+  await page
+    .getByRole("menuitem", { name: "Refresh workspace", exact: true })
     .click();
   await expect(state(page)).toHaveAttribute("data-selections", selections!);
   await expect(state(page)).toHaveAttribute("data-diffs", diffs!);

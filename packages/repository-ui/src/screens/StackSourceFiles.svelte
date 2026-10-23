@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Status from "../jj/workspace/source-files/RepositoryWorkspaceStatus.svelte";
   import {
     FileListing,
     FileListingViewModeToggle,
@@ -31,5 +32,8 @@
     {...drag}
     onSelectPath={(path) =>
       controller.selectFile(source, path, undefined, stack)}
-  />{#if !files.length}<p class="rui-empty">No changed files</p>{/if}
+  />{#if !files.length}<Status
+      title="No changed files"
+      description="No paths changed in this captured source."
+    />{/if}
 </div>

@@ -1,5 +1,7 @@
 <!-- SPDX-License-Identifier: Apache-2.0; Notes repository Command View pattern. -->
 <script lang="ts">
+  import SearchXIcon from "@lucide/svelte/icons/search-x";
+  import * as Empty from "@lapismd/design-core/shadcn/empty";
   import * as CommandView from "@lapismd/design-core/shadcn/command-view";
   import * as Popover from "@lapismd/design-core/shadcn/popover";
   import { Button } from "@lapismd/design-core/shadcn/button";
@@ -71,7 +73,17 @@
         >
       </div>
       <CommandView.List>
-        <CommandView.Empty>No matching versions</CommandView.Empty>
+        <CommandView.Empty
+          ><Empty.Root
+            ><Empty.Header
+              ><Empty.Media variant="icon"
+                ><SearchXIcon aria-hidden="true" /></Empty.Media
+              ><Empty.Title>No matching versions</Empty.Title><Empty.Description
+                >Try another search or selection.</Empty.Description
+              ></Empty.Header
+            ></Empty.Root
+          ></CommandView.Empty
+        >
         <CommandView.Group>
           {#each visible as version (version.id)}
             <CommandView.Item

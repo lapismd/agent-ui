@@ -33,6 +33,13 @@ function fixture() {
 }
 
 describe("catalog client preparation", () => {
+  it("prepares repository loading stories before accepting cold browser work", async () => {
+    const f = fixture();
+    await f.probe(f.response());
+    expect(f.server.transformRequest).toHaveBeenCalledWith(
+      "/catalog/jj/BrowserDemo.svelte",
+    );
+  });
   it("refuses readiness when the Transcript documentation cannot compile", async () => {
     const f = fixture();
     f.server.transformRequest.mockImplementation(async (entry) =>

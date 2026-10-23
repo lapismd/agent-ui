@@ -50,8 +50,10 @@
       {copyText}
     />{/if}
   {#each view.homes as entry (entry.home.id)}
-    {#if entry.loading && !entry.page}<div class="work-loading" role="status">
-        Loading {entry.home.name} activity<Skeleton class="h-12" />
+    {#if entry.loading}<div class="work-loading" role="status">
+        Loading {entry.home.name} activity<Skeleton
+          style="height:3rem;width:100%"
+        />
       </div>{/if}
     {#if entry.error}<WorkEmpty
         title={`${entry.home.name} activity unavailable`}

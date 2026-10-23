@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/svelte-vite";
 import { assertJjStory } from "../../../../../../catalog/jj/support/assert-story.js";
+import { expect, within } from "storybook/test";
 import Component from "./RepositoryOperationColumn.svelte";
 import Fixture from "../../../../../../catalog/jj/JjDemo.svelte";
 import { Basic as source } from "./RepositoryOperationColumn.example-sources.js";
@@ -28,6 +29,11 @@ export const Loading: Story = {
   }),
   play: async ({ canvasElement }) => {
     await assertJjStory(canvasElement, "RepositoryOperationColumn", "Loading");
+    await expect(
+      await within(canvasElement).findByRole("status", {
+        name: "Loading operation details",
+      }),
+    ).toBeVisible();
   },
 };
 export const Unavailable: Story = {

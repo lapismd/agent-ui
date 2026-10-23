@@ -26,3 +26,12 @@ export const Styling = `<script lang="ts">
     </dl>
   </RepositorySettingsCard>
 </RepositorySettingsPage></div>`;
+export const Loading = `<script lang="ts">
+  import { RepositorySettingsPage, RepositorySettingsCard, RepositoryReadOnlyRow } from "@lapismd/repository-ui/settings";
+  import "@lapismd/repository-ui/settings/styles.css";
+</script>
+<RepositorySettingsPage title="Repository">
+  <RepositorySettingsCard id="folder" title="Selected folder">
+    <dl class="store-settings__rows"><RepositoryReadOnlyRow label="Folder path" loading /></dl>
+  </RepositorySettingsCard>
+</RepositorySettingsPage>`;

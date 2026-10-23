@@ -2,6 +2,9 @@
 <script lang="ts">
   import { untrack } from "svelte";
   import { Button } from "@lapismd/design-core/shadcn/button";
+  import { Skeleton } from "@lapismd/design-core/shadcn/skeleton";
+  import * as Empty from "@lapismd/design-core/shadcn/empty";
+  import FileQuestion from "@lucide/svelte/icons/file-question-mark";
   import { ScrollArea } from "@lapismd/design-core/shadcn/scroll-area";
   import { Toggle } from "@lapismd/design-core/shadcn/toggle";
   import { MarkdownContent } from "@lapismd/design-core/chat";
@@ -88,16 +91,32 @@
   />
   <ScrollArea class="history-file-scroll">
     <div class="file-content">
-      {#if inspection.fileUnavailable}<p>
-          Saved file unavailable. <Button
-            variant="ghost"
-            size="sm"
-            onclick={() =>
-              inspection.path && void inspection.select(inspection.path)}
-            >Retry saved file</Button
-          >
-        </p>
-      {:else if !inspection.diff}<p role="status">Loading saved file…</p>
+      {#if inspection.fileUnavailable}<Empty.Root
+          ><Empty.Header
+            ><Empty.Media variant="icon"
+              ><FileQuestion aria-hidden="true" /></Empty.Media
+            ><Empty.Title>Saved file unavailable</Empty.Title><Empty.Description
+              >Read this file from the captured comparison again.</Empty.Description
+            ></Empty.Header
+          ><Empty.Content
+            ><Button
+              variant="ghost"
+              size="sm"
+              onclick={() =>
+                inspection.path && void inspection.select(inspection.path)}
+              >Retry saved file</Button
+            >
+          </Empty.Content></Empty.Root
+        >
+      {:else if !inspection.diff}<div
+          role="status"
+          aria-label="Loading saved file"
+          aria-busy="true"
+        >
+          {#each [72, 54, 86, 61, 78, 48] as width, row (row)}<Skeleton
+              style={`height:0.875rem;width:${width}%;margin-block:0.75rem`}
+            />{/each}
+        </div>
       {:else if view === "diff"}<RepositoryDiff change={inspection.diff} wrap />
       {:else if text !== undefined}
         {#if /\.(md|mdx|markdown)$/iu.test(inspection.path ?? "")}<MarkdownContent
@@ -110,7 +129,16 @@
             width="100%"
             hasLineNumbers
           />{/if}
-      {:else}<p>Text preview is unavailable for this file.</p>{/if}
+      {:else}<Empty.Root
+          ><Empty.Header
+            ><Empty.Media variant="icon"
+              ><FileQuestion aria-hidden="true" /></Empty.Media
+            ><Empty.Title>Text preview unavailable</Empty.Title
+            ><Empty.Description
+              >Text preview is unavailable for this file.</Empty.Description
+            ></Empty.Header
+          ></Empty.Root
+        >{/if}
     </div>
   </ScrollArea>
 </section>

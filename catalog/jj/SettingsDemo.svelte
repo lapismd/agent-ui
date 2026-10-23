@@ -15,11 +15,13 @@
     folderPath = "/Users/example/code/example-repository",
     openDisabled = false,
     onOpenRepository = () => {},
+    loading = false,
   }: {
     variant?: string;
     folderPath?: string | null;
     openDisabled?: boolean;
     onOpenRepository?: () => void;
+    loading?: boolean;
   } = $props();
   const store = untrack(() =>
     createAppearanceStore(
@@ -47,6 +49,7 @@
           <RepositoryReadOnlyRow
             label="Folder path"
             value={folderPath}
+            {loading}
             Icon={Folder}
             copyable
             onOpen={onOpenRepository}

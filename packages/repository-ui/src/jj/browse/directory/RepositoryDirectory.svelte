@@ -168,6 +168,10 @@
           {rowActions}
         />
       </Table.Root>
+      {#if loading}<RepositorySkeleton
+          kind="files"
+          label="Loading more repository files"
+        />{/if}
     {/if}
     {#if phase === "unavailable"}<RepositoryBrowserEmpty
         folder

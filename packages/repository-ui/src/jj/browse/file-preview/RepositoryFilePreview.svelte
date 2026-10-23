@@ -6,6 +6,7 @@
   import { resolveDiffLanguage } from "@lapismd/design-core/diff";
   import HistoryIcon from "@lucide/svelte/icons/history";
   import CopyIcon from "@lucide/svelte/icons/copy";
+  import PencilIcon from "@lucide/svelte/icons/pencil";
   import RepositorySkeleton from "../../foundations/skeleton/RepositorySkeleton.svelte";
   import RepositoryFileDisplayControls from "./RepositoryFileDisplayControls.svelte";
   import RepositoryFileAction from "./RepositoryFileAction.svelte";
@@ -31,6 +32,8 @@
     onRetry,
     onHistory,
     onBlame,
+    onEditWorkingFile,
+    editWorkingFileDisabled = false,
     blame,
     copyText,
     actions,
@@ -46,6 +49,8 @@
     onRetry(): void;
     onHistory?(selection: RepositoryBrowserSelection): void;
     onBlame?(selection: RepositoryBrowserSelection): void;
+    onEditWorkingFile?(selection: RepositoryBrowserSelection): void;
+    editWorkingFileDisabled?: boolean;
     copyText(value: string): Promise<void>;
     actions?: Snippet<[RepositoryBrowserSelection]>;
     blame?: Snippet<[RepositoryBrowserSelection]>;
@@ -114,6 +119,12 @@
                 ><CopyIcon aria-hidden="true" /></RepositoryFileAction
               >
               {@render actions?.(selection)}
+              {#if file.kind === "text" && onEditWorkingFile}<RepositoryFileAction
+                  label="Edit working file"
+                  disabled={editWorkingFileDisabled}
+                  onclick={() => onEditWorkingFile?.(selection)}
+                  ><PencilIcon aria-hidden="true" /></RepositoryFileAction
+                >{/if}
             </div>
           </header>
           {#if file.kind === "binary"}<div

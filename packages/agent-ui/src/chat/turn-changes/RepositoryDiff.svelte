@@ -1,5 +1,7 @@
 <script lang="ts">
   import { FileDiff, type FileDiffViewMode } from "@lapismd/design-core/diff";
+  import * as Empty from "@lapismd/design-core/shadcn/empty";
+  import FileQuestion from "@lucide/svelte/icons/file-question-mark";
   import type { LocalFileDiffChange } from "./models.js";
   import { diffText } from "./models.js";
   let {
@@ -22,9 +24,15 @@
   data-view-mode={viewMode}
   aria-label={`Changes to ${change.path}`}
 >
-  {#if "unavailable" in content}<p role="status">
-      Preview unavailable: {content.unavailable}.
-    </p>
+  {#if "unavailable" in content}<Empty.Root
+      ><Empty.Header
+        ><Empty.Media variant="icon"
+          ><FileQuestion aria-hidden="true" /></Empty.Media
+        ><Empty.Title>Preview unavailable</Empty.Title><Empty.Description
+          >{content.unavailable}</Empty.Description
+        ></Empty.Header
+      ></Empty.Root
+    >
   {:else}<FileDiff
       path={change.path}
       oldText={content.oldText}
@@ -48,9 +56,5 @@
   }
   .repository-diff[data-compact] {
     min-height: 0;
-  }
-  p {
-    padding: 1rem;
-    color: var(--muted-foreground);
   }
 </style>

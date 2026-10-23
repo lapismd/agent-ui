@@ -1,6 +1,7 @@
 <!-- SPDX-License-Identifier: Apache-2.0; adapted from JJ Store StoreForgeChecks. -->
 <script lang="ts">
   import { Button } from "@lapismd/design-core/shadcn/button";
+  import * as Empty from "@lapismd/design-core/shadcn/empty";
   import CircleCheck from "@lucide/svelte/icons/circle-check";
   import CircleX from "@lucide/svelte/icons/circle-x";
   import CircleHelp from "@lucide/svelte/icons/circle-help";
@@ -58,6 +59,19 @@
     >
   </div>
   {#if expanded}
+    {#if !pr.checks || !pr.checks.items.length}<Empty.Root
+        ><Empty.Header
+          ><Empty.Media variant="icon"
+            ><CircleHelp aria-hidden="true" /></Empty.Media
+          ><Empty.Title
+            >{pr.checks
+              ? "No CI checks reported"
+              : "CI results unavailable"}</Empty.Title
+          ><Empty.Description
+            >Refresh checks for the selected pull request revision.</Empty.Description
+          ></Empty.Header
+        ></Empty.Root
+      >{/if}
     {#if pr.checks}<p class="repository-pr__check-revision">
         {current ? "Revision" : "Observed revision"}
         <code>{pr.checks.sha.slice(0, 8)}</code>{pr.checks.complete

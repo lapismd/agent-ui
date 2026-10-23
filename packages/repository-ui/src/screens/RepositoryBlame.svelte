@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Status from "../jj/workspace/source-files/RepositoryWorkspaceStatus.svelte";
   import { Button } from "@lapismd/design-core/shadcn/button";
   import type { RepositoryController } from "../core/controller.svelte.js";
   let { controller }: { controller: RepositoryController } = $props();
@@ -23,9 +24,14 @@
     >
   </header>
   <div class="rui-scroll">
-    {#if file?.unavailable}<p role="status">
-        {file.unavailable}
-      </p>{:else}{#each (file?.text ?? "").split("\n") as line, index}{@const blame =
+    {#if file?.unavailable}<Status
+        unavailable
+        title="File blame unavailable"
+        description={file.unavailable}
+      />{:else if !file}<Status
+        title="Select a file"
+        description="Choose a file to inspect its captured attribution."
+      />{:else}{#each (file?.text ?? "").split("\n") as line, index}{@const blame =
           controller.snapshot?.blame.find(
             (b) => index + 1 >= b.from && index + 1 <= b.to,
           )}

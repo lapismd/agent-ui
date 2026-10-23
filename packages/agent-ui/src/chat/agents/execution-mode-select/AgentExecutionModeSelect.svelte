@@ -2,6 +2,7 @@
 <script lang="ts">
   import * as Field from "@lapismd/design-core/shadcn/field";
   import * as Select from "@lapismd/design-core/shadcn/select";
+  import { Skeleton } from "@lapismd/design-core/shadcn/skeleton";
   import type { ExecutionMode } from "../../../profiles/agent-profile.js";
   let {
     id,
@@ -21,32 +22,38 @@
 
 <Field.Field>
   <Field.Label for={id}>Mode</Field.Label>
-  <Select.Root
-    type="single"
-    bind:value
-    disabled={disabled || loading || !options.length}
-  >
-    <Select.Trigger {id}
-      >{selected?.name ??
-        (value
-          ? `${value} (saved preference)`
-          : "Use the reviewed client default")}</Select.Trigger
+  {#if loading}<div
+      role="status"
+      aria-label="Loading supported modes"
+      aria-busy="true"
     >
-    <Select.Content
-      ><Select.Group>
-        <Select.Item value="" label="Use the reviewed client default"
-          >Use the reviewed client default</Select.Item
-        >
-        {#each options as option (option.id)}<Select.Item
-            value={option.id}
-            label={option.name}>{option.name}</Select.Item
-          >{/each}
-        {#if value && !selected}<Select.Item {value} disabled
-            >{value} (unavailable)</Select.Item
-          >{/if}
-      </Select.Group></Select.Content
+      <Skeleton style="height:2.25rem;width:100%" />
+    </div>{:else}<Select.Root
+      type="single"
+      bind:value
+      disabled={disabled || loading || !options.length}
     >
-  </Select.Root>
+      <Select.Trigger {id}
+        >{selected?.name ??
+          (value
+            ? `${value} (saved preference)`
+            : "Use the reviewed client default")}</Select.Trigger
+      >
+      <Select.Content
+        ><Select.Group>
+          <Select.Item value="" label="Use the reviewed client default"
+            >Use the reviewed client default</Select.Item
+          >
+          {#each options as option (option.id)}<Select.Item
+              value={option.id}
+              label={option.name}>{option.name}</Select.Item
+            >{/each}
+          {#if value && !selected}<Select.Item {value} disabled
+              >{value} (unavailable)</Select.Item
+            >{/if}
+        </Select.Group></Select.Content
+      >
+    </Select.Root>{/if}
   <Field.Description
     >{loading
       ? "Loading supported modes…"

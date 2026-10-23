@@ -1,5 +1,7 @@
 <!-- SPDX-License-Identifier: Apache-2.0; adapted from JJ Store repository command picker. -->
 <script lang="ts">
+  import { Skeleton } from "@lapismd/design-core/shadcn/skeleton";
+  import RepositoryBrowserEmpty from "../../browse/file-preview/RepositoryBrowserEmpty.svelte";
   import "./repository-picker.css";
   // CommunityProjectFilesRepositoryCommand: native repository identities.
   import { Button } from "@lapismd/design-core/shadcn/button";
@@ -25,6 +27,7 @@
     allowEmpty = false,
     disabled = false,
     variant = "outline",
+    size = "default",
     iconOnly = false,
     triggerIcon,
     itemIcon,
@@ -65,6 +68,7 @@
     allowEmpty?: boolean;
     disabled?: boolean;
     variant?: "outline" | "ghost";
+    size?: "default" | "sm";
     iconOnly?: boolean;
     triggerIcon?: Snippet;
     itemIcon?: Snippet<[string]>;
@@ -149,8 +153,19 @@
     {#if notice}<p role="status">{notice}</p>{/if}
     {#if noticeAction}{@render noticeAction()}{/if}
     <CommandView.List {scrollStrategy}>
-      {#if !visible.length && !(allowEmpty && !query)}<CommandView.Empty
-          >{emptyResult}</CommandView.Empty
+      {#if loading}<div
+          role="status"
+          aria-label={`Loading ${moreLabel}`}
+          aria-busy="true"
+        >
+          <Skeleton style="height:2rem;width:100%;margin-block:0.375rem" />
+        </div>{/if}
+      {#if !loading && !visible.length && !(allowEmpty && !query)}<CommandView.Empty
+          ><RepositoryBrowserEmpty
+            folder
+            title={emptyResult}
+            description="Try another search or selection."
+          /></CommandView.Empty
         >{/if}
       <CommandView.Group heading={groupLabel}>
         {#if allowEmpty && !query}<CommandView.Item
@@ -243,7 +258,7 @@
           {id}
           type="button"
           {variant}
-          size={iconOnly ? "icon-sm" : "default"}
+          size={iconOnly ? "icon-sm" : size}
           role="combobox"
           class={[
             "store-repository-picker__trigger",

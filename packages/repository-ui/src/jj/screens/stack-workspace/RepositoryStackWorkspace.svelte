@@ -1,5 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0; copied/adapted from JJ Store StoreStackWorkspace. -->
 <script lang="ts">
+  import type { Snippet } from "svelte";
   import RepositoryShell from "../../foundations/shell/RepositoryShell.svelte";
   import RepositorySkeleton from "../../foundations/skeleton/RepositorySkeleton.svelte";
   import Status from "../../workspace/source-files/RepositoryWorkspaceStatus.svelte";
@@ -17,12 +18,17 @@
     now,
     onSelectView,
     showViewTabs = true,
+    showToolbar = true,
+    toolbarControls = $bindable<Snippet | undefined>(undefined),
     ...host
   }: {
     controller: StackWorkspaceController;
     now?: number;
     /** Outer repository navigation can own the Stacks/Workspace selection. */
     showViewTabs?: boolean;
+    /** Bind shared controls into an owning RepositoryPageFrame.actions slot. */
+    toolbarControls?: Snippet;
+    showToolbar?: boolean;
     onSelectView?: (view: "branches" | "workspace") => void;
   } & RepositoryStackHost = $props();
   const snapshot = $derived(controller.snapshot);
@@ -38,7 +44,14 @@
     aria-label="Stack workspace"
     aria-busy={controller.loading}
   >
-    <Toolbar {controller} {host} {onSelectView} {showViewTabs} />
+    <Toolbar
+      {controller}
+      {host}
+      {onSelectView}
+      {showViewTabs}
+      {showToolbar}
+      bind:controls={toolbarControls}
+    />
     {#if controller.validation}<Status
         unavailable
         title="Branch unavailable"

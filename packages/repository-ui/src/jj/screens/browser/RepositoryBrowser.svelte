@@ -34,6 +34,8 @@
     onSelectCommit,
     onHistory,
     onBlame,
+    onEditWorkingFile,
+    editWorkingFileDisabled = false,
     blame,
     headerActions,
     directoryControls,
@@ -55,6 +57,8 @@
     onSelectCommit?(commit: RepositoryBrowserCommit): void;
     onHistory?(selection: RepositoryBrowserSelection): void;
     onBlame?(selection: RepositoryBrowserSelection): void;
+    onEditWorkingFile?(selection: RepositoryBrowserSelection): void;
+    editWorkingFileDisabled?: boolean;
     headerActions?: Snippet<[RepositoryBrowserSelection]>;
     directoryControls?: Snippet;
     directoryActions?: Snippet;
@@ -187,6 +191,8 @@
               {blame}
               {copyText}
               actions={fileActions}
+              {onEditWorkingFile}
+              {editWorkingFileDisabled}
             />
           {:else}<RepositoryDirectory
               bind:fileTreeOpen

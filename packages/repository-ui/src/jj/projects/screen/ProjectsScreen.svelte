@@ -192,7 +192,9 @@
           >
         </section>{/each}
       {#if view.loading}<div class="work-loading" role="status">
-          <span>Loading projects</span><Skeleton class="h-12" />
+          <span>Loading projects</span><Skeleton
+            style="height:3rem;width:100%"
+          />
         </div>
       {:else if view.error}<WorkEmpty
           title="Projects unavailable"

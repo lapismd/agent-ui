@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Status from "../jj/workspace/source-files/RepositoryWorkspaceStatus.svelte";
+  import RepositorySkeleton from "../jj/foundations/skeleton/RepositorySkeleton.svelte";
   import { onDestroy, untrack } from "svelte";
   import * as ColumnCanvas from "@lapismd/design-core/shadcn/column-canvas";
   import { Button } from "@lapismd/design-core/shadcn/button";
@@ -130,11 +132,17 @@
       onclick={() => void controller.refresh()}>Refresh workspace</Button
     >
   </header>
-  {#if !snapshot}<div class="rui-empty" role="status">
-      {controller.loading ? "Loading workspace…" : "No workspace available"}
-    </div>{:else if snapshot.availability !== "ready"}<div class="rui-empty">
-      Workspace unavailable. Connect an admitted local repository.
-    </div>{:else}
+  {#if controller.loading && !snapshot}<RepositorySkeleton
+      kind="files"
+      label="Loading workspace"
+    />{:else if !snapshot}<Status
+      title="No workspace available"
+      description="Select an admitted repository to browse its workspace."
+    />{:else if snapshot.availability !== "ready"}<Status
+      unavailable
+      title="Workspace unavailable"
+      description="Connect an admitted local repository."
+    />{:else}
     <ColumnCanvas.Root controller={canvas}
       ><ColumnCanvas.Column id="unassigned" columnTitle="Unstaged"
         ><ColumnCanvas.Header
@@ -156,9 +164,10 @@
             target={{ kind: "new-stack" }}
             label="Create a branch from changes"
             onCommand={command}
-            ><div class="rui-empty">
-              Drop files or hunks to create a branch
-            </div></StackDropZone
+            ><Status
+              title="Create a branch"
+              description="Drop files or hunks to create a branch."
+            /></StackDropZone
           >
           <div class="rui-toolbar">
             <Button

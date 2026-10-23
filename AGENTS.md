@@ -113,6 +113,13 @@ Catalog adapters simulate effects only and never enter production exports.
 - Empty and unavailable states use public shadcn Empty with a relevant icon,
   distinct title/description and applicable retry action. Apply it in production
   building blocks so complete screens share the same presentation.
+- Loading content MUST use public shadcn Skeleton with the JJ Store geometry
+  for that surface and an accessible loading label. This includes initial reads,
+  pagination and attached panels; text or a spinner alone is insufficient. Keep
+  retained content during refresh and append skeleton rows when more is loading.
+  Action submission/streaming feedback and missing scalar field values retain
+  their own semantics. Cover these states in production-component stories and
+  the catalog-wide content-state browser audit, including narrow layouts.
 - Show small standalone controls on padded, bounded preview surfaces; use the
   real shell/column context only where it is part of the component contract.
 - Keep independent brand and light/dark controls and semantic GFM tables. Bound

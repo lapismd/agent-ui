@@ -80,6 +80,19 @@ export const Disabled: Story = {
 export const Unavailable: Story = {
   render: () => ({ Component: Fixture, props: { variant: "unavailable" } }),
   play: async ({ canvasElement }) => {
+    await expect(
+      await within(canvasElement).findByRole("button", {
+        name: "Retry Agent UI",
+      }),
+    ).toBeVisible();
+    await expect(
+      canvasElement.querySelector('[data-ui-part="empty-media"] svg'),
+    ).toBeVisible();
+  },
+};
+export const Recovery: Story = {
+  render: () => ({ Component: Fixture, props: { variant: "unavailable" } }),
+  play: async ({ canvasElement }) => {
     const c = within(canvasElement);
     await userEvent.click(
       await c.findByRole("button", { name: "Retry Agent UI" }),

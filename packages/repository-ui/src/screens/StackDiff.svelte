@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Status from "../jj/workspace/source-files/RepositoryWorkspaceStatus.svelte";
+  import RepositorySkeleton from "../jj/foundations/skeleton/RepositorySkeleton.svelte";
   import { FileDiff } from "@lapismd/design-core/diff";
   import { Button } from "@lapismd/design-core/shadcn/button";
   import type { StackWorkspaceController } from "../stacks/controller.svelte.js";
@@ -57,10 +59,14 @@
     >
   </header>
   <div class="rui-scroll">
-    {#if file?.content?.status === "unavailable"}<p role="status">
-        Preview unavailable: {file.content.reason}
-      </p>{:else if !file}<p role="status">File not loaded</p>{:else}<label
-        class="rui-field"
+    {#if file?.content?.status === "unavailable"}<Status
+        unavailable
+        title="Preview unavailable"
+        description={file.content.reason}
+      />{:else if !file}<RepositorySkeleton
+        kind="diff"
+        label="Loading selected file"
+      />{:else}<label class="rui-field"
         >Assign selected changes to<select bind:value={destination}
           ><option value="unassigned">Unstaged</option
           >{#each controller.snapshot?.stacks ?? [] as stack}{#each stack.commits.filter((c) => !c.immutable && c.id !== diff.source) as commit}<option
@@ -96,8 +102,9 @@
             viewMode={view}
             {wrap}
           />
-        </article>{/each}{#if !file.hunks.length}<p class="rui-empty">
-          No text hunks available
-        </p>{/if}{/if}
+        </article>{/each}{#if !file.hunks.length}<Status
+          title="No text hunks available"
+          description="The selected file has no text changes to show."
+        />{/if}{/if}
   </div>
 </section>

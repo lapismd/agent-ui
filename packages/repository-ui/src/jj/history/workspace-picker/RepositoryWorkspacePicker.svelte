@@ -1,5 +1,7 @@
 <!-- SPDX-License-Identifier: Apache-2.0; copied from Lapis Desktop with explicit host boundaries. -->
 <script lang="ts">
+  import SearchXIcon from "@lucide/svelte/icons/search-x";
+  import * as Empty from "@lapismd/design-core/shadcn/empty";
   import "../../styles/repository-picker-options.css";
   import "../../styles/repository-review-identifiers.css";
   import { Button } from "@lapismd/design-core/shadcn/button";
@@ -136,7 +138,16 @@
       />
       <CommandView.List aria-label="Repository workspaces">
         {#if !visible.length}<CommandView.Empty
-            >No matching workspaces.</CommandView.Empty
+            ><Empty.Root
+              ><Empty.Header
+                ><Empty.Media variant="icon"
+                  ><SearchXIcon aria-hidden="true" /></Empty.Media
+                ><Empty.Title>No matching workspaces.</Empty.Title
+                ><Empty.Description
+                  >Try another search or selection.</Empty.Description
+                ></Empty.Header
+              ></Empty.Root
+            ></CommandView.Empty
           >
         {:else}<CommandView.Group>
             {#each visible as option (option.value)}

@@ -9,6 +9,7 @@
   import type { HistoryState } from "../../logic/history-state.js";
   import { listingFiles } from "../../logic/history-files.js";
   import RepositoryChangedFiles from "../changed-files/RepositoryChangedFiles.svelte";
+  import Status from "../../workspace/source-files/RepositoryWorkspaceStatus.svelte";
   let {
     state,
     controller,
@@ -67,7 +68,7 @@
       {/snippet}
     </RepositoryCommitPicker>
     {#if state.base}
-      {#if state.pathsReady || state.busy}<RepositoryChangedFiles
+      {#if state.busy || state.paths.length}<RepositoryChangedFiles
           actions={actions ? headerActions : undefined}
           {files}
           selectedPath={state.path}
@@ -80,15 +81,16 @@
           }}
           onMore={() => void controller.morePaths()}
         />{/if}
-      {#if !state.pathsReady && !state.busy}<p role="status">
-          File changes are unavailable.
-        </p>
-        <Button size="sm" onclick={() => controller.selectBase(state.base!)}
-          >Retry comparison</Button
-        >
-      {:else if state.pathsReady && !state.paths.length && !state.busy}<p>
-          No changed files in this comparison.
-        </p>{/if}
+      {#if !state.pathsReady && !state.busy}<Status
+          unavailable
+          title="File changes unavailable"
+          description="File changes are unavailable for this comparison."
+          onRetry={() => void controller.selectBase(state.base!)}
+        />
+      {:else if state.pathsReady && !state.paths.length && !state.busy}<Status
+          title="No changed files"
+          description="No changed files in this comparison."
+        />{/if}
       {#if state.paths.length === 500}<p>
           Showing the first 500 changed files.
         </p>{/if}

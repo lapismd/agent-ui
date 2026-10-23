@@ -104,3 +104,38 @@ test("late start responses cannot replace a newer preview and are released on cl
     "old",
   ]);
 });
+
+test("failed import reads retain content and expose unavailable state until an explicit successful retry", async () => {
+  const { controller, sources, report } = await fixture();
+  const folders = sources.folders,
+    sessions = sources.sessions;
+  const retained = controller.browser.rows;
+  sources.folders = async () => {
+    throw Error("Folder index unavailable");
+  };
+  await controller.browser.loadHarness("codex", true);
+  expect(controller.browser.indexes.codex).toMatchObject({
+    unavailable: true,
+    loading: false,
+  });
+  expect(controller.browser.rows).toEqual(retained);
+  sources.folders = folders;
+  await controller.browser.loadHarness("codex", true);
+  expect(controller.browser.indexes.codex).toMatchObject({
+    unavailable: false,
+  });
+  sources.sessions = async () => {
+    throw Error("Session folder unavailable");
+  };
+  await controller.browser.openFolder("folder", "codex", true);
+  expect(controller.browser).toMatchObject({
+    folderUnavailable: true,
+    loadingFolder: false,
+  });
+  expect(controller.browser.rows).toEqual(retained);
+  sources.sessions = sessions;
+  await controller.browser.openFolder("folder", "codex", true);
+  expect(controller.browser).toMatchObject({ folderUnavailable: false });
+  expect(report).toHaveBeenCalledTimes(2);
+  await controller.close();
+});

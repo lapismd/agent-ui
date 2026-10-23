@@ -3,6 +3,8 @@
   import { Button } from "@lapismd/design-core/shadcn/button";
   import { Input } from "@lapismd/design-core/shadcn/input";
   import * as Field from "@lapismd/design-core/shadcn/field";
+  import * as Empty from "@lapismd/design-core/shadcn/empty";
+  import FileText from "@lucide/svelte/icons/file-text";
   import { MarkdownContent, MarkdownComposer } from "@lapismd/design-core/chat";
   import Checks from "./RepositoryPullRequestChecks.svelte";
   import Actions from "./RepositoryPullRequestActions.svelte";
@@ -66,7 +68,15 @@
         fullWidth
         style="--mira-preview-background: transparent"
       />
-    {:else}<p>No description yet.</p>{/if}
+    {:else}<Empty.Root
+        ><Empty.Header
+          ><Empty.Media variant="icon"
+            ><FileText aria-hidden="true" /></Empty.Media
+          ><Empty.Title>No description yet</Empty.Title><Empty.Description
+            >Add context for the people reviewing this pull request.</Empty.Description
+          ></Empty.Header
+        ></Empty.Root
+      >{/if}
     {#if pr.details?.length}<dl class="repository-pr__metadata">
         {#each pr.details as detail}<div>
             <dt>{detail.label}</dt>

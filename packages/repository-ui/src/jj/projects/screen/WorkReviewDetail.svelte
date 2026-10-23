@@ -78,7 +78,7 @@
       role="status"
       class="community-projects__review-section-content"
     >
-      Loading review context<Skeleton class="h-12" />
+      Loading review context<Skeleton style="height:3rem;width:100%" />
     </div>
   {:else}<WorkEmpty
       title="Review context unavailable"

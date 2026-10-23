@@ -1,4 +1,6 @@
 <script lang="ts">
+  import SearchXIcon from "@lucide/svelte/icons/search-x";
+  import * as Empty from "@lapismd/design-core/shadcn/empty";
   import ChatConversationMenu from "../conversation-menu/ChatConversationMenu.svelte";
   import ChatApprovalPolicy from "../approval-policy/ChatApprovalPolicy.svelte";
   import type { ComposerState } from "../presentation.js";
@@ -62,7 +64,17 @@
       <CommandView.Root>
         <CommandView.Input placeholder="Search vault files" />
         <CommandView.List aria-label="Vault files">
-          <CommandView.Empty>No vault files</CommandView.Empty>
+          <CommandView.Empty
+            ><Empty.Root
+              ><Empty.Header
+                ><Empty.Media variant="icon"
+                  ><SearchXIcon aria-hidden="true" /></Empty.Media
+                ><Empty.Title>No vault files</Empty.Title><Empty.Description
+                  >Try another search or selection.</Empty.Description
+                ></Empty.Header
+              ></Empty.Root
+            ></CommandView.Empty
+          >
           {#each attachmentsState.attachItems as item (item.id)}
             <Tooltip.Provider
               ><Tooltip.Root>

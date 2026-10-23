@@ -1,5 +1,7 @@
 <!-- SPDX-License-Identifier: Apache-2.0; copied/adapted from jj-store StoreAgentModelSelect. -->
 <script lang="ts">
+  import SearchXIcon from "@lucide/svelte/icons/search-x";
+  import * as Empty from "@lapismd/design-core/shadcn/empty";
   import { tick } from "svelte";
   import * as Popover from "@lapismd/design-core/shadcn/popover";
   import * as CommandView from "@lapismd/design-core/shadcn/command-view";
@@ -71,7 +73,17 @@
         placeholder="Search models…"
       />
       <CommandView.List>
-        <CommandView.Empty>No matching models.</CommandView.Empty>
+        <CommandView.Empty
+          ><Empty.Root
+            ><Empty.Header
+              ><Empty.Media variant="icon"
+                ><SearchXIcon aria-hidden="true" /></Empty.Media
+              ><Empty.Title>No matching models.</Empty.Title><Empty.Description
+                >Try another search or selection.</Empty.Description
+              ></Empty.Header
+            ></Empty.Root
+          ></CommandView.Empty
+        >
         <CommandView.Group heading="Models">
           {#if allowDefault}<CommandView.Item
               value={defaultLabel}

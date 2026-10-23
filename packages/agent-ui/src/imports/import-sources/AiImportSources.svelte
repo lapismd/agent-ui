@@ -1,7 +1,9 @@
 <script lang="ts">
   import { Button } from "@lapismd/design-core/shadcn/button";
   import { ScrollArea } from "@lapismd/design-core/shadcn/scroll-area";
-  import { Spinner } from "@lapismd/design-core/shadcn/spinner";
+  import { Skeleton } from "@lapismd/design-core/shadcn/skeleton";
+  import * as Empty from "@lapismd/design-core/shadcn/empty";
+  import FolderOpen from "@lucide/svelte/icons/folder-open";
   import * as Tooltip from "@lapismd/design-core/shadcn/tooltip";
   import RightIcon from "@lucide/svelte/icons/chevron-right";
   import RefreshIcon from "@lucide/svelte/icons/refresh-cw";
@@ -54,6 +56,28 @@
     </div>
   </header>
   <ScrollArea class="source-scroll">
+    {#if browser.folderUnavailable}<Empty.Root
+        ><Empty.Header
+          ><Empty.Media variant="icon"
+            ><FolderOpen aria-hidden="true" /></Empty.Media
+          ><Empty.Title>Folder sessions unavailable</Empty.Title
+          ><Empty.Description
+            >Read the selected folder again. Retained sessions remain available.</Empty.Description
+          ></Empty.Header
+        ><Empty.Content
+          ><Button
+            variant="outline"
+            size="sm"
+            onclick={() =>
+              browser.folder &&
+              void browser.openFolder(
+                browser.folder.selector,
+                browser.kind,
+                true,
+              )}>Retry folder sessions</Button
+          ></Empty.Content
+        ></Empty.Root
+      >{/if}
     {#each importHarnesses as harness}<AiImportHarness
         {browser}
         {harness}
@@ -61,6 +85,26 @@
         {onSelect}
         {available}
       />{/each}
+    {#if browser.loadingFolder}<div
+        role="status"
+        aria-label="Loading folder sessions"
+        aria-busy="true"
+        style="padding:0.5rem 1.375rem"
+      >
+        {#each [0, 1, 2] as row (row)}<Skeleton
+            style="height:2.5rem;margin-block:0.375rem"
+          />{/each}
+      </div>{/if}
+    {#if browser.folder && !browser.loadingFolder && browser.cache[browser.folder.selector]?.rows.length === 0}<Empty.Root
+        ><Empty.Header
+          ><Empty.Media variant="icon"
+            ><FolderOpen aria-hidden="true" /></Empty.Media
+          ><Empty.Title>No sessions in this folder</Empty.Title
+          ><Empty.Description
+            >Select another project folder to find local sessions.</Empty.Description
+          ></Empty.Header
+        ></Empty.Root
+      >{/if}
   </ScrollArea>
   {#if browser.folder && browser.cache[browser.folder.selector]?.next}<Button
       variant="ghost"
@@ -69,7 +113,7 @@
       onclick={() => browser.more()}>Load more sessions</Button
     >{/if}
   <footer aria-live="polite">
-    {#if browser.loadingFolder}<Spinner /><span
+    {#if browser.loadingFolder}<span
         >{browser.folder && browser.cache[browser.folder.selector]
           ? "Checking cached sessions…"
           : "Loading folder sessions…"}</span
@@ -79,11 +123,6 @@
       >
     {:else}<span>Choose a project folder</span>{/if}
   </footer>
-  {#if browser.folder && !browser.loadingFolder && browser.cache[browser.folder.selector]?.rows.length === 0}<p
-      class="empty-folder"
-    >
-      No sessions in this folder.
-    </p>{/if}
 </section>
 
 <style>
@@ -123,11 +162,6 @@
     padding: 0 0.75rem;
     border-top: 1px solid var(--border);
     font-size: 0.6875rem;
-    color: var(--muted-foreground);
-  }
-  .empty-folder {
-    margin: 0.5rem 1.375rem;
-    font-size: 0.75rem;
     color: var(--muted-foreground);
   }
 </style>

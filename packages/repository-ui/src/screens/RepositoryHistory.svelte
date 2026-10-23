@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Status from "../jj/workspace/source-files/RepositoryWorkspaceStatus.svelte";
   import { onDestroy } from "svelte";
   import * as ColumnCanvas from "@lapismd/design-core/shadcn/column-canvas";
   import { FileListing, FileDiff } from "@lapismd/design-core/diff";
@@ -111,9 +112,10 @@
                   }))}
                 />{/if}
             </div>
-          </div>{/each}{#if !rows.length}<div class="rui-empty">
-            No recorded history
-          </div>{/if}{#if controller.snapshot?.nextCursor}<Button
+          </div>{/each}{#if !rows.length}<Status
+            title="No recorded history"
+            description="This captured repository has no history to display."
+          />{/if}{#if controller.snapshot?.nextCursor}<Button
             onclick={() =>
               void controller.refresh({
                 cursor: controller.snapshot?.nextCursor,
@@ -153,9 +155,10 @@
                 controller.selectedPath = path;
                 canvas.open("diff");
               }}
-            />{:else}<p class="rui-empty">
-              Choose an explicit parent comparison.
-            </p>{/if}</ColumnCanvas.Body
+            />{:else}<Status
+              title="Select a comparison"
+              description="Choose an explicit parent comparison."
+            />{/if}</ColumnCanvas.Body
         ></ColumnCanvas.Column
       >{/if}
     {#if controller.file}<ColumnCanvas.Column
@@ -183,9 +186,11 @@
             ></ColumnCanvas.HeaderActions
           ></ColumnCanvas.Header
         ><ColumnCanvas.Body
-          >{#if controller.file.unavailable}<p role="status">
-              {controller.file.unavailable}
-            </p>{:else}<FileDiff
+          >{#if controller.file.unavailable}<Status
+              unavailable
+              title="File unavailable"
+              description={controller.file.unavailable}
+            />{:else}<FileDiff
               path={controller.file.path}
               oldText={controller.file.previous ?? ""}
               newText={controller.file.text ?? ""}

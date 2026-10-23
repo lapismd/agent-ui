@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount, onDestroy, untrack } from "svelte";
+  import { onMount, onDestroy, untrack, type Snippet } from "svelte";
   import { Button } from "@lapismd/design-core/shadcn/button";
   import * as ColumnCanvas from "@lapismd/design-core/shadcn/column-canvas";
   import * as Card from "@lapismd/design-core/shadcn/card";
@@ -7,6 +7,7 @@
   import ExternalLink from "@lucide/svelte/icons/external-link";
   import {
     RepositoryStackWorkspace,
+    RepositoryPageFrame,
     RepositoryStackLane,
     RepositoryWorkspaceFiles,
     RepositoryWorkspaceDiff,
@@ -57,6 +58,7 @@
   );
   const controller = demo.controller;
   let events = $state<string[]>([]);
+  let toolbarControls = $state<Snippet>();
   const commandLog = $derived.by(() => {
     events.length;
     return JSON.stringify(demo.commands);
@@ -180,12 +182,21 @@
   class:bounded={kind !== "screen"}
   class:narrow={variant === "Bounded"}
 >
-  {#if kind === "screen"}<RepositoryStackWorkspace
-      showViewTabs={variant !== "Embedded"}
-      {controller}
-      {...host}
-      now={stackNow}
-    />
+  {#if kind === "screen"}
+    {#if variant === "Embedded"}<RepositoryPageFrame
+        title="Repository"
+        context="stacks"
+        value={controller.page}
+        onSelect={(value) => {
+          if (value === "branches" || value === "workspace")
+            controller.page = value;
+        }}
+        actions={toolbarControls}
+        scrollable={false}
+      >
+        {@render completeScreen()}
+      </RepositoryPageFrame>
+    {:else}{@render completeScreen()}{/if}
   {:else if kind === "files"}<RepositoryWorkspaceFiles
       {controller}
       source="unassigned"
@@ -223,6 +234,14 @@
     data-commands={JSON.parse(commandLog).length}
   ></output>
 </div>
+{#snippet completeScreen()}<RepositoryStackWorkspace
+    showViewTabs={variant !== "Embedded"}
+    showToolbar={variant !== "Embedded"}
+    bind:toolbarControls
+    {controller}
+    {...host}
+    now={stackNow}
+  />{/snippet}
 
 <style>
   .complete {

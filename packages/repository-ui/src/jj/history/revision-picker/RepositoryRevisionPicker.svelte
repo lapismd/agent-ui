@@ -5,6 +5,8 @@
     LocalOperationChangesGroup,
   } from "@lapismd/jj-history";
   import * as CommandView from "@lapismd/design-core/shadcn/command-view";
+  import * as Empty from "@lapismd/design-core/shadcn/empty";
+  import SearchXIcon from "@lucide/svelte/icons/search-x";
   import * as Popover from "@lapismd/design-core/shadcn/popover";
   import { Button } from "@lapismd/design-core/shadcn/button";
   import { TagList } from "@lapismd/design-core/shadcn/tag-list";
@@ -119,7 +121,16 @@
         aria-label="Revisions in selected operation"
       >
         {#if !visible.length}<CommandView.Empty role="row"
-            ><span role="gridcell">No matching revisions</span
+            ><span role="gridcell"
+              ><Empty.Root
+                ><Empty.Header
+                  ><Empty.Media variant="icon"
+                    ><SearchXIcon aria-hidden="true" /></Empty.Media
+                  ><Empty.Title>No matching revisions</Empty.Title
+                  ><Empty.Description>Try another search.</Empty.Description
+                  ></Empty.Header
+                ></Empty.Root
+              ></span
             ></CommandView.Empty
           >
         {:else}<CommandView.Group role="rowgroup">

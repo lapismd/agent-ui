@@ -7,6 +7,9 @@
   import * as CommandView from "@lapismd/design-core/shadcn/command-view";
   import * as Popover from "@lapismd/design-core/shadcn/popover";
   import { Button } from "@lapismd/design-core/shadcn/button";
+  import { Skeleton } from "@lapismd/design-core/shadcn/skeleton";
+  import * as Empty from "@lapismd/design-core/shadcn/empty";
+  import SearchXIcon from "@lucide/svelte/icons/search-x";
   import { TagList } from "@lapismd/design-core/shadcn/tag-list";
   import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
   import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
@@ -155,7 +158,17 @@
       />
       <CommandView.List role="grid">
         {#if !visible.length}<CommandView.Empty role="row"
-            ><span role="gridcell">No matching commits</span></CommandView.Empty
+            ><span role="gridcell"
+              ><Empty.Root
+                ><Empty.Header
+                  ><Empty.Media variant="icon"
+                    ><SearchXIcon aria-hidden="true" /></Empty.Media
+                  ><Empty.Title>No matching commits</Empty.Title
+                  ><Empty.Description>Try another search.</Empty.Description
+                  ></Empty.Header
+                ></Empty.Root
+              ></span
+            ></CommandView.Empty
           >
         {:else}<CommandView.Group role="rowgroup">
             {#each visible as option (option.id)}
@@ -186,6 +199,13 @@
           </CommandView.Group>{/if}
       </CommandView.List>
       <CommandView.Footer>
+        {#if loading}<div
+            role="status"
+            aria-label="Loading parent details"
+            aria-busy="true"
+          >
+            <Skeleton style="height:2rem;width:14rem;max-width:100%" />
+          </div>{/if}
         <section aria-label="Commit tag preview" data-commit={preview?.id}>
           <TagList
             tags={repositoryCommitTags(preview?.commit)}

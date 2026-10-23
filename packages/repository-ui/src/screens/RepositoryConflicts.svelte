@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Status from "../jj/workspace/source-files/RepositoryWorkspaceStatus.svelte";
   import { FileListing, MergeEditor } from "@lapismd/design-core/diff";
   import { Button } from "@lapismd/design-core/shadcn/button";
   import type { RepositoryController } from "../core/controller.svelte.js";
@@ -30,9 +31,11 @@
         />
       </aside>
       <div class="rui-screen">
-        {#if active.unavailable}<p class="rui-empty" role="status">
-            {active.unavailable}
-          </p>{:else}<MergeEditor
+        {#if active.unavailable}<Status
+            unavailable
+            title="Conflict unavailable"
+            description={active.unavailable}
+          />{:else}<MergeEditor
             left={active.left}
             base={active.base}
             right={active.right}
@@ -43,5 +46,8 @@
             }}
           />{/if}
       </div>
-    </div>{:else}<div class="rui-empty">No conflicts to resolve</div>{/if}
+    </div>{:else}<Status
+      title="No conflicts to resolve"
+      description="No conflicted paths were reported in this snapshot."
+    />{/if}
 </section>

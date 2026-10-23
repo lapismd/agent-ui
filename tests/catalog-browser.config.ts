@@ -3,6 +3,7 @@ import { defineConfig } from "@playwright/test";
 export default defineConfig({
   testDir: ".",
   testMatch: [
+    "content-states.pw.ts",
     "catalog-browser.pw.ts",
     "transcript-review.pw.ts",
     "permission-dock.pw.ts",

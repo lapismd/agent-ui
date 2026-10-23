@@ -41,8 +41,6 @@ async function check(canvasElement: HTMLElement, variant: string) {
         body.getByText("Snapshots unavailable", { exact: true }),
       ).toBeVisible(),
     );
-    await userEvent.click(body.getByRole("button", { name: "Retry preview" }));
-    await expect(await body.findByRole("row", { name: "main" })).toBeVisible();
   } else {
     const input = body.getByRole("combobox", { name: "Switch snapshot" });
     await userEvent.type(input, variant === "Changes" ? "22222222" : "main");
@@ -80,6 +78,21 @@ export const Loading: Story = {
 export const Unavailable: Story = {
   render: () => ({ Component: Demo, props: { variant: "Unavailable" } }),
   play: async ({ canvasElement }) => check(canvasElement, "Unavailable"),
+};
+export const Recovery: Story = {
+  render: () => ({ Component: Demo, props: { variant: "Unavailable" } }),
+  play: async ({ canvasElement }) => {
+    const body = within(canvasElement.ownerDocument.body);
+    await userEvent.click(
+      within(canvasElement).getByRole("combobox", {
+        name: "Repository bookmark or change",
+      }),
+    );
+    await userEvent.click(
+      await body.findByRole("button", { name: "Retry preview" }),
+    );
+    await expect(await body.findByRole("row", { name: "main" })).toBeVisible();
+  },
 };
 export const Disabled: Story = {
   render: () => ({ Component: Demo, props: { variant: "Disabled" } }),

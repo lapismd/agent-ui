@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Status from "../jj/workspace/source-files/RepositoryWorkspaceStatus.svelte";
+  import RepositorySkeleton from "../jj/foundations/skeleton/RepositorySkeleton.svelte";
   import { onDestroy, type Snippet } from "svelte";
   import { AppShell, AppShellController } from "@lapismd/design-core/shell";
   import { Button } from "@lapismd/design-core/shadcn/button";
@@ -71,21 +73,19 @@
           onclick={() => void controller.refresh()}>Refresh</Button
         >{@render extraActions?.()}</AppShell.Toolbar
       ><AppShell.Body>
-        {#if controller.loading && !controller.snapshot}<div
-            class="rui-empty"
-            role="status"
-          >
-            Loading repository…
-          </div>
-        {:else if controller.snapshot?.unavailable}<div
-            class="rui-empty"
-            role="status"
-          >
-            {controller.snapshot.unavailable}
-          </div>
-        {:else if !controller.snapshot}<div class="rui-empty">
-            No repository selected
-          </div>
+        {#if controller.loading && !controller.snapshot}<RepositorySkeleton
+            label="Loading repository"
+          />
+        {:else if controller.snapshot?.unavailable}<Status
+            unavailable
+            title="Repository unavailable"
+            description={controller.snapshot.unavailable}
+            onRetry={() => void controller.refresh()}
+          />
+        {:else if !controller.snapshot}<Status
+            title="No repository selected"
+            description="Select an admitted repository to browse its captured contents."
+          />
         {:else if (controller.view === "workspace" || controller.view === "branches") && workspace}<StackWorkspaceScreen
             controller={workspace}
             page={controller.view}

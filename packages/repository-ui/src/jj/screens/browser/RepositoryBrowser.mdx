@@ -100,6 +100,7 @@ Pending reads use the same production tree/directory loading boundaries.
 A failed directory read can recover without switching the pin.
 
 <Canvas of={Stories.Unavailable} />
+<Canvas of={Stories.DirectoryRecovery} />
 
 ### Retry
 
@@ -147,6 +148,14 @@ reader and editor retain stock content styling. AppShell geometry is bounded to
 <Source code={Styling} language="tsx" />
 
 ## API
+
+`onEditWorkingFile(selection)` enables the source-ported Pencil icon in the file
+header; `editWorkingFileDisabled` gates it during host work. The shared screen
+owns its icon-only button, hover and shadcn tooltip. Hosts own the physical-file
+editor and must revalidate the current checkout independently of the recorded
+preview. Use this callback instead of a text button in `fileActions`.
+
+<Canvas of={Stories.WorkingFile} />
 
 <ArgTypes of={Stories} />
 

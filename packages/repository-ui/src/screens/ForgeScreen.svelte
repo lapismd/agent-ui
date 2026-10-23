@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Status from "../jj/workspace/source-files/RepositoryWorkspaceStatus.svelte";
   import { Button } from "@lapismd/design-core/shadcn/button";
   import { Input } from "@lapismd/design-core/shadcn/input";
   import { MarkdownContent } from "@lapismd/design-core/chat";
@@ -135,9 +136,10 @@
                   >{item.name} · {item.state}</Button
                 >{/each}{#if check}<h3>{check.name}</h3>
                 <pre class="rui-mono">{check.log}</pre>{/if}{/if}
-          </section>{:else}<div class="rui-empty">
-            Select a pull request to inspect its description and checks.
-          </div>{/if}
+          </section>{:else}<Status
+            title="Select a pull request"
+            description="Select a pull request to inspect its description and checks."
+          />{/if}
       </div>
     </div>
   </div>

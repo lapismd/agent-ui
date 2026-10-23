@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Status from "../jj/workspace/source-files/RepositoryWorkspaceStatus.svelte";
   import {
     FileListing,
     FileListingViewModeToggle,
@@ -35,7 +36,10 @@
         mode={controller.mode}
         selectedPath={controller.selectedPath}
         onSelectPath={(path) => (controller.selectedPath = path)}
-      />{#if !files.length}<p class="rui-empty">No matching files</p>{/if}
+      />{#if !files.length}<Status
+          title="No matching files"
+          description="Try another search or choose another directory."
+        />{/if}
     </aside>
     <div class="rui-screen">
       <header class="rui-toolbar">
@@ -56,9 +60,11 @@
           >{/if}
       </header>
       <div class="rui-scroll">
-        {#if controller.file?.unavailable}<p role="status">
-            {controller.file.unavailable}
-          </p>{:else if controller.file}{#if display === "diff"}<FileDiff
+        {#if controller.file?.unavailable}<Status
+            unavailable
+            title="File unavailable"
+            description={controller.file.unavailable}
+          />{:else if controller.file}{#if display === "diff"}<FileDiff
               path={controller.file.path}
               oldText={controller.file.previous ?? ""}
               newText={controller.file.text ?? ""}
@@ -71,9 +77,10 @@
               language={controller.file.language ?? "plaintext"}
               hasLineNumbers
               isWrapped={controller.wrap}
-            />{/if}{:else}<div class="rui-empty">
-            Choose a file to inspect its exact captured contents.
-          </div>{/if}
+            />{/if}{:else}<Status
+            title="Select a file"
+            description="Choose a file to inspect its exact captured contents."
+          />{/if}
       </div>
     </div>
   </div>

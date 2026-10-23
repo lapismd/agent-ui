@@ -226,6 +226,9 @@ summary and result descriptions in the floating view.
 
 Stacks/Workspace hosts MAY hide the local view tabs through `showViewTabs` when
 the outer frame owns navigation; the workspace picker and action bars remain shared.
+When the outer frame owns the body header, hosts MUST set `showToolbar={false}`
+and bind the shared `toolbarControls` into its right-hand actions slot; there
+MUST be one body navigation header, with secondary controls in its kebab menu.
 
 ### Acceptance details
 

@@ -110,18 +110,33 @@
               active={!!selected && threadKey(item) === threadKey(selected)}
               onSelect={() => onSelect({ home: item.home, id: item.id })}
             />{/each}
-          {#if home.loading}<p role="status">Loading threads…</p>{/if}
-          {#if home.error}<div
+          {#if home.loading}<div
+              role="status"
+              aria-label={`Loading ${home.name} threads`}
+              aria-busy="true"
+            >
+              {#each [0, 1, 2] as row (row)}<Skeleton
+                  style="height:3.25rem;margin-block:0.25rem"
+                />{/each}
+            </div>{/if}
+          {#if home.error}<Empty.Root
               role="group"
               aria-label={`${home.name} unavailable`}
+              ><Empty.Header
+                ><Empty.Media variant="icon"
+                  ><MessagesSquare aria-hidden="true" /></Empty.Media
+                ><Empty.Title>Threads unavailable for {home.name}</Empty.Title
+                ><Empty.Description
+                  >Read this registered repository again.</Empty.Description
+                ></Empty.Header
+              ><Empty.Content
+                ><Button
+                  variant="outline"
+                  size="sm"
+                  onclick={() => onRetry(home.id)}>Retry {home.name}</Button
+                >
+              </Empty.Content></Empty.Root
             >
-              <p>Threads unavailable for {home.name}.</p>
-              <Button
-                variant="outline"
-                size="sm"
-                onclick={() => onRetry(home.id)}>Retry {home.name}</Button
-              >
-            </div>
           {:else if home.page?.next}<Button
               variant="ghost"
               disabled={home.loading}
@@ -134,7 +149,7 @@
   {#if view.remaining}<Button variant="ghost" onclick={() => onMore()}
       >Load more repositories ({view.remaining})</Button
     >{/if}
-  {#if !view.loading && !view.error && !count}<Empty.Root
+  {#if !view.loading && !view.error && !view.homes.some((h) => h.loading || h.error) && !count}<Empty.Root
       ><Empty.Header
         ><Empty.Media variant="icon"><MessagesSquare /></Empty.Media
         ><Empty.Title>No threads yet</Empty.Title><Empty.Description
@@ -142,9 +157,13 @@
         ></Empty.Header
       ></Empty.Root
     >
-  {:else if count && !view.homes.some((h) => h.page?.rows.some(visible))}<p
-      role="status"
-    >
-      No loaded threads match this view.
-    </p>{/if}
+  {:else if count && !view.homes.some((h) => h.loading || h.page?.rows.some(visible))}<Empty.Root
+      ><Empty.Header
+        ><Empty.Media variant="icon"
+          ><MessagesSquare aria-hidden="true" /></Empty.Media
+        ><Empty.Title>No matching threads</Empty.Title><Empty.Description
+          >No loaded threads match this view. Try another search or filter.</Empty.Description
+        ></Empty.Header
+      ></Empty.Root
+    >{/if}
 </nav>

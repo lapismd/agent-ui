@@ -1,5 +1,7 @@
 <!-- SPDX-License-Identifier: Apache-2.0; copied from Lapis Desktop with explicit host boundaries. -->
 <script lang="ts">
+  import * as Empty from "@lapismd/design-core/shadcn/empty";
+  import SearchXIcon from "@lucide/svelte/icons/search-x";
   import "../../styles/repository-picker-options.css";
   import "../../styles/repository-review-identifiers.css";
   import type { LocalGraphOperationNode } from "@lapismd/jj-history";
@@ -145,7 +147,16 @@
       />
       <CommandView.List role="grid" aria-label="Recorded operation parents">
         {#if !visible.length}<CommandView.Empty role="row"
-            ><span role="gridcell">No matching operations</span
+            ><span role="gridcell"
+              ><Empty.Root
+                ><Empty.Header
+                  ><Empty.Media variant="icon"
+                    ><SearchXIcon aria-hidden="true" /></Empty.Media
+                  ><Empty.Title>No matching operations</Empty.Title
+                  ><Empty.Description>Try another search.</Empty.Description
+                  ></Empty.Header
+                ></Empty.Root
+              ></span
             ></CommandView.Empty
           >
         {:else}<CommandView.Group role="rowgroup">

@@ -2,7 +2,8 @@
   import { FileListing } from "@lapismd/design-core/diff";
   import { Button } from "@lapismd/design-core/shadcn/button";
   import { Skeleton } from "@lapismd/design-core/shadcn/skeleton";
-  import { Spinner } from "@lapismd/design-core/shadcn/spinner";
+  import * as Empty from "@lapismd/design-core/shadcn/empty";
+  import FolderOpen from "@lucide/svelte/icons/folder-open";
   import { formatRelativeTime } from "@lapismd/design-core/shadcn/relative-time";
   import DownIcon from "@lucide/svelte/icons/chevron-down";
   import RightIcon from "@lucide/svelte/icons/chevron-right";
@@ -95,18 +96,42 @@
   </Button>
 </div>
 {#if browser.expanded.has(harness.id)}
+  {#if index.unavailable}<Empty.Root
+      ><Empty.Header
+        ><Empty.Media variant="icon"
+          ><FolderOpen aria-hidden="true" /></Empty.Media
+        ><Empty.Title>{harness.name} folders unavailable</Empty.Title
+        ><Empty.Description
+          >Read the local session index again. Retained sessions remain
+          available.</Empty.Description
+        ></Empty.Header
+      ><Empty.Content
+        ><Button
+          variant="outline"
+          size="sm"
+          onclick={() => void browser.loadHarness(harness.id, true)}
+          >Retry folders</Button
+        ></Empty.Content
+      ></Empty.Root
+    >{/if}
   {#if !index.loaded && index.loading}<div
       class="index-loading"
       role="status"
       aria-label={`Finding ${harness.name} folders`}
     >
-      <Spinner /><span>Finding project folders…</span><Skeleton
-        style="height:1.5rem;width:100%"
-      /><Skeleton style="height:1.5rem;width:75%" />
+      <Skeleton style="height:1.5rem;width:100%" /><Skeleton
+        style="height:1.5rem;width:75%"
+      />
     </div>
-  {:else if index.loaded && !index.folders.length}<p class="empty-folder">
-      No local sessions found.
-    </p>
+  {:else if !index.unavailable && index.loaded && !index.folders.length}<Empty.Root
+      ><Empty.Header
+        ><Empty.Media variant="icon"
+          ><FolderOpen aria-hidden="true" /></Empty.Media
+        ><Empty.Title>No local sessions found</Empty.Title><Empty.Description
+          >Local {harness.name} sessions will appear here when available.</Empty.Description
+        ></Empty.Header
+      ></Empty.Root
+    >
   {:else if index.folders.length}
     <nav class="folder-tree" aria-label={`${harness.name} project folders`}>
       <FileListing
@@ -141,6 +166,12 @@
       </FileListing>
     </nav>
   {/if}
+  {#if index.loading && index.loaded}<div
+      role="status"
+      aria-label={`Loading more ${harness.name} folders`}
+    >
+      <Skeleton style="height:2rem;width:90%;margin:0.75rem" />
+    </div>{/if}
   {#if index.limited}<p class="empty-folder">
       Showing the most recent indexed sessions. Refresh to check again.
     </p>{/if}

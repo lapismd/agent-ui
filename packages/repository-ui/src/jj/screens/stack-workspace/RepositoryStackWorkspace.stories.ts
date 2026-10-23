@@ -212,5 +212,24 @@ export const Embedded: Story = {
     await expect(
       canvas.queryByRole("tablist", { name: "Stack workspace views" }),
     ).toBeNull();
+    expect(
+      canvasElement.querySelector('[aria-label="Stack workspace navigation"]'),
+    ).toBeNull();
+    const header = canvasElement.querySelector<HTMLElement>(
+      '[aria-label="Repository navigation"]',
+    )!;
+    expect(
+      within(header).getByRole("combobox", { name: "Active stack workspace" }),
+    ).toBeVisible();
+    await userEvent.click(
+      within(header).getByRole("button", { name: "Workspace actions" }),
+    );
+    const overlay = within(canvasElement.ownerDocument.body);
+    await waitFor(() =>
+      expect(
+        overlay.getByRole("menuitem", { name: "Refresh workspace" }),
+      ).toBeVisible(),
+    );
+    await userEvent.keyboard("{Escape}");
   },
 };

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import SearchXIcon from "@lucide/svelte/icons/search-x";
+  import * as Empty from "@lapismd/design-core/shadcn/empty";
   import type { ChatPanelActions } from "../presentation.js";
   // SPDX-License-Identifier: Apache-2.0
   // Retained Lapis chat presentation; see src/lib/ai/NOTICE.md.
@@ -58,7 +60,17 @@
       <CommandView.Root>
         <CommandView.Input placeholder="Search chat folders" />
         <CommandView.List aria-label="Chat folders">
-          <CommandView.Empty>No folders</CommandView.Empty>
+          <CommandView.Empty
+            ><Empty.Root
+              ><Empty.Header
+                ><Empty.Media variant="icon"
+                  ><SearchXIcon aria-hidden="true" /></Empty.Media
+                ><Empty.Title>No folders</Empty.Title><Empty.Description
+                  >Try another search or selection.</Empty.Description
+                ></Empty.Header
+              ></Empty.Root
+            ></CommandView.Empty
+          >
           <CommandView.Group>
             {#each conversationsState.scopeFolders as folder (folder || "vault-root")}
               <CommandView.Item

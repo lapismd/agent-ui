@@ -7,6 +7,8 @@ const CLIENT_ENTRIES = [
   "/packages/agent-ui/src/chat/transcript/AgentTranscript.mdx",
   "/catalog/AgentScreens.stories.ts",
   "/catalog/agents/references/ReferenceDemo.svelte",
+  "/catalog/jj/BrowserDemo.svelte",
+  "/catalog/AgentStates.stories.ts",
 ];
 
 /** Probe the client compiler, not just the already-generated story index. */

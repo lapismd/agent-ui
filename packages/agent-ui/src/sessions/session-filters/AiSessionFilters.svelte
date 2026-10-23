@@ -1,5 +1,7 @@
 <!-- SPDX-License-Identifier: Apache-2.0; adapted from jj-store CommunityInboxFilters, 08b58c7e. -->
 <script lang="ts">
+  import SearchXIcon from "@lucide/svelte/icons/search-x";
+  import * as Empty from "@lapismd/design-core/shadcn/empty";
   import { Button } from "@lapismd/design-core/shadcn/button";
   import * as Popover from "@lapismd/design-core/shadcn/popover";
   import * as CommandView from "@lapismd/design-core/shadcn/command-view";
@@ -73,7 +75,17 @@
         </Popover.Close>
       </div>
       <CommandView.List>
-        <CommandView.Empty>No matching filters</CommandView.Empty>
+        <CommandView.Empty
+          ><Empty.Root
+            ><Empty.Header
+              ><Empty.Media variant="icon"
+                ><SearchXIcon aria-hidden="true" /></Empty.Media
+              ><Empty.Title>No matching filters</Empty.Title><Empty.Description
+                >Try another search or selection.</Empty.Description
+              ></Empty.Header
+            ></Empty.Root
+          ></CommandView.Empty
+        >
         <CommandView.Group heading="Source">
           {#each options as option (option)}
             <CommandView.Item

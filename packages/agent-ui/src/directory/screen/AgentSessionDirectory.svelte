@@ -64,11 +64,8 @@
         placeholder="Search captured conversations"
         bind:value={query}
       />
-      {#if view.loading && !view.page}<div
-          role="status"
-          aria-label="Loading agent sessions"
-        >
-          <Skeleton class="h-16" />
+      {#if view.loading}<div role="status" aria-label="Loading agent sessions">
+          <Skeleton style="height:4rem;width:100%" />
         </div>{/if}
       {#each view.page?.unavailable ?? [] as home (home.home)}<DirectoryEmpty
           title={`${home.name} unavailable`}

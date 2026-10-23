@@ -1,7 +1,11 @@
 import { ImportController } from "../../packages/agent-ui/src/imports/controller.svelte.js";
 import type { AgentUiController } from "../../packages/agent-ui/src/core/controller.svelte.js";
 import type { ImportHarness } from "../../packages/agent-ui/src/imports/source-port.js";
-export function memoryAgentImports(owner: AgentUiController) {
+export function memoryAgentImports(
+  owner: AgentUiController,
+  state?: "loading" | "empty" | "unavailable",
+) {
+  let failed = state === "unavailable";
   const kind = (id: string): ImportHarness =>
     id === "import-other" ? "opencode" : "codex";
   const rows = () => owner.snapshot?.imports ?? [];
@@ -12,6 +16,15 @@ export function memoryAgentImports(owner: AgentUiController) {
       signal: AbortSignal,
     ) {
       signal.throwIfAborted();
+      if (state === "loading")
+        await new Promise<void>((resolve) =>
+          signal.addEventListener("abort", () => resolve(), { once: true }),
+        );
+      signal.throwIfAborted();
+      if (failed) {
+        failed = false;
+        throw Error("The local folder index could not be read.");
+      }
       const count = rows().filter((row) => kind(row.id) === harness).length;
       return {
         folders: count

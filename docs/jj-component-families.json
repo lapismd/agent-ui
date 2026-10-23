@@ -350,7 +350,7 @@
   "deferred": [
     {
       "path": "screens/ForgeScreen.svelte",
-      "sha256": "97c9651cd071577957a8ad489abf0971d23d3dea4293a28e3fb3f9ab461e1c30"
+      "sha256": "62b27820621d10d5f43696b5bb9f2fbc70ce3fa31d0f598e8f19827fa85ef355"
     },
     {
       "path": "screens/StackDropZone.svelte",
@@ -362,11 +362,11 @@
     },
     {
       "path": "screens/RepositoryConflicts.svelte",
-      "sha256": "0f42b99eb0e442b7e1841b00bcbc4673d3cddcf142b8293d69a27c4b39b5f474"
+      "sha256": "eb54d5f3932958a5b649ffaabd826b64e9adf7f6f498e8eacff3a39624f9a67a"
     },
     {
       "path": "screens/RepositoryHistory.svelte",
-      "sha256": "aea6ae492db54300276583c664b2c25c7df85d2c1d9b795449fa2eddcdae0b80"
+      "sha256": "01f93d7d00ff76fed6b8b497dd8d42150d0b1cd77cb33ae783c3f2f94b09d0c8"
     },
     {
       "path": "screens/RepositorySettings.svelte",
@@ -382,19 +382,19 @@
     },
     {
       "path": "screens/RepositoryWorkbench.svelte",
-      "sha256": "a63735ce826ca461566a8d73a2e9ed505037f352a4b1fd8e52c99c2fd5a35f7f"
+      "sha256": "08fc38af2f8404a66ed138e7060e0e162caa76dfbb16f818bdcfc70ba1753236"
     },
     {
       "path": "screens/StackSourceFiles.svelte",
-      "sha256": "f43b07a27b8c47828fc84bae77536ef22a020c905fcc3ed3af3157a70df449a4"
+      "sha256": "324edbd3ae76905280d2ce0767241fc38bb23566e23815bcd359fcdd3a87018a"
     },
     {
       "path": "screens/StackDiff.svelte",
-      "sha256": "160be4d708e57f820af5eea657e36296fb5439eba6a9e5469eae51ad52317168"
+      "sha256": "9e29a4116a3ef48dd2d517d9f31fcbd0c854c2e77077ef071f39829f3711def8"
     },
     {
       "path": "screens/RepositoryFiles.svelte",
-      "sha256": "e620055bb1b32d0c4ca991cdd94a853562b042177f20078aa3d313789a3d883c"
+      "sha256": "2c9766501c6c55217bea6d4bb94740082679bd36fbe013734155c79e876901ce"
     },
     {
       "path": "screens/RepositoryGraphSvg.svelte",
@@ -402,11 +402,11 @@
     },
     {
       "path": "screens/RepositoryBlame.svelte",
-      "sha256": "51108cf8d504707c8befcda0e740d234ce84b2a987a5366e46328ff106932c46"
+      "sha256": "c084088d68177a68a1bf12023c5defa97ad106b9d6ea8f7e9910d15db3de4b78"
     },
     {
       "path": "screens/StackWorkspaceScreen.svelte",
-      "sha256": "81f46635cf8823405339aea0055428a8b70a567427a26aeb03610687f69eb8d3"
+      "sha256": "bfb8bad8509c424ee90c573bfdde525b6002334ccc9d00a327b1917f5eead2e2"
     }
   ]
 }

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/svelte-vite";
+import { expect, userEvent, within } from "storybook/test";
 import Component from "./RepositoryBrowser.svelte";
 import Demo from "../../../../../../catalog/jj/BrowserDemo.svelte";
 import { assertBrowser } from "../../../../../../catalog/jj/support/assert-browser.js";
@@ -12,6 +13,23 @@ export default {
   },
 } satisfies Meta<typeof Component>;
 type Story = StoryObj<typeof Demo>;
+export const WorkingFile: Story = {
+  render: () => ({
+    Component: Demo,
+    props: { part: "RepositoryBrowser", variant: "WorkingFile" },
+  }),
+  play: async ({ canvasElement }) => {
+    const c = within(canvasElement);
+    const edit = await c.findByRole("button", { name: "Edit working file" });
+    expect(edit.textContent?.trim()).toBe("");
+    expect(edit.querySelector("svg")).not.toBeNull();
+    await userEvent.click(edit);
+    await expect(c.getByTestId("browser-state")).toHaveAttribute(
+      "data-actions",
+      expect.stringContaining("edit:README.md:"),
+    );
+  },
+};
 export const Basic: Story = {
   render: () => ({
     Component: Demo,
@@ -99,6 +117,21 @@ export const Unavailable: Story = {
   }),
   play: async ({ canvasElement }) =>
     assertBrowser(canvasElement, "RepositoryBrowser", "Unavailable"),
+};
+export const DirectoryRecovery: Story = {
+  render: () => ({
+    Component: Demo,
+    props: { part: "RepositoryBrowser", variant: "Unavailable" },
+  }),
+  play: async ({ canvasElement }) => {
+    await assertBrowser(canvasElement, "RepositoryBrowser", "Unavailable");
+    const { within, userEvent, expect } = await import("storybook/test");
+    const c = within(canvasElement);
+    await userEvent.click(c.getByRole("button", { name: "Retry preview" }));
+    await expect(
+      await c.findByRole("table", { name: "Repository files" }),
+    ).toBeVisible();
+  },
 };
 export const Retry: Story = {
   render: () => ({

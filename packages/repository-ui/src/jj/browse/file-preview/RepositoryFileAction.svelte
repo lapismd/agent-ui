@@ -7,6 +7,7 @@
     label,
     text,
     selected,
+    disabled = false,
     panelExpanded,
     class: className,
     onclick,
@@ -15,6 +16,7 @@
     label: string;
     text?: string;
     selected?: boolean;
+    disabled?: boolean;
     panelExpanded?: boolean;
     class?: string;
     onclick(): void;
@@ -43,6 +45,7 @@
         {:else}
           <Button
             {...props}
+            {disabled}
             variant={text ? "outline" : "ghost"}
             size={text ? "sm" : "icon-sm"}
             class={className}

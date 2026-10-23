@@ -41,7 +41,9 @@
               Loading: "FileLoading",
             } as Record<string, string>
           )[variant] ?? variant)
-        : variant,
+        : variant === "WorkingFile"
+          ? "Markdown"
+          : variant,
     ),
   );
   const history = untrack(() => createJjDemo("RepositoryFileHistory"));
@@ -201,6 +203,12 @@
         demo.events.actions.push(`commit:${commit.eventId}`)}
       onHistory={showHistory}
       onBlame={showBlame}
+      onEditWorkingFile={variant === "WorkingFile"
+        ? (target) =>
+            demo.events.actions.push(
+              `edit:${target.path}:${target.pin.revision}`,
+            )
+        : undefined}
       blame={inlineBlame}
       directoryControls={controls}
       directoryActions={variant === "HostActions"

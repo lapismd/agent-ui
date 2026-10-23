@@ -56,11 +56,15 @@
   };
   $effect(() => {
     const selected = operations.selected?.id;
+    const loadingOperation = operations.operation;
     if (part !== "RepositoryOperationColumn") return;
     untrack(() => {
       canvas.clear();
       if (selected) {
         canvas.select(0, selected);
+        canvas.open("diff");
+      } else if (variant === "Loading" && loadingOperation) {
+        canvas.select(0, loadingOperation);
         canvas.open("diff");
       }
     });

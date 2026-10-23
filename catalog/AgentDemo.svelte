@@ -24,6 +24,7 @@
     streaming = false,
     draft,
     restrictedControls = false,
+    contentState,
   }: {
     screen?: AgentScreen;
     scenario?: AgentScenario;
@@ -37,6 +38,7 @@
     streaming?: boolean;
     draft?: string;
     restrictedControls?: boolean;
+    contentState?: "loading" | "empty" | "unavailable";
   } = $props();
   const demo = untrack(() => createDemo(scenario));
   const { port, controller } = demo;
@@ -79,6 +81,12 @@
     };
   controller.view = untrack(() => view);
   controller.snapshot = structuredClone(port.snapshot);
+  if (untrack(() => contentState)) {
+    controller.snapshot = undefined;
+    controller.loading = untrack(() => contentState === "loading");
+    if (untrack(() => contentState === "unavailable"))
+      controller.error = "The configured catalog source could not be read.";
+  }
   if (untrack(() => draft !== undefined))
     controller.transcript.message = untrack(() => draft!);
   let streamTicks = $state(0);
@@ -129,7 +137,10 @@
     return () => clearInterval(timer);
   });
   controller.screen = untrack(() => screen);
-  const imports = memoryAgentImports(controller);
+  const imports = memoryAgentImports(
+    controller,
+    untrack(() => contentState),
+  );
   void imports.load();
   onDestroy(() => {
     void demo.close();

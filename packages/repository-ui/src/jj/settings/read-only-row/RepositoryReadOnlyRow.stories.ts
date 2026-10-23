@@ -35,6 +35,22 @@ export const Basic: Story = {
     ).toBeVisible();
   },
 };
+export const Loading: Story = {
+  render,
+  args: { loading: true },
+  play: async ({ canvasElement }) => {
+    const c = within(canvasElement);
+    await expect(
+      c.getByRole("status", { name: "Loading Folder path" }),
+    ).toBeVisible();
+    await expect(
+      canvasElement.querySelector('[data-slot="skeleton"]'),
+    ).toBeVisible();
+    await expect(
+      c.queryByRole("button", { name: "Open repository folder" }),
+    ).toBeNull();
+  },
+};
 export const CopyValue: Story = {
   render,
   play: async ({ canvasElement }) => {
@@ -89,7 +105,8 @@ export const CopyFailure: Story = {
     }
   },
 };
-export const Unavailable: Story = {
+// A missing scalar is a field value, rather than a whole-content unavailable state.
+export const MissingValue: Story = {
   render,
   args: { folderPath: null },
   play: async ({ canvasElement }) => {

@@ -1,5 +1,9 @@
 # Verification
 
+The content-state audit and shared header follow-up are recorded in
+`spec/records/2026-10-23-content-states.md`. Loading and icon Empty checks cover
+standalone and completed screens; consumer admission states remain host-owned.
+
 | ID              | Status      | Evidence                                                                                                                                                                                                                                                                              |
 | --------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | AUI-THREAD-001  | In progress | Registered Threads directory and source inbox; `spec/records/2026-10-23-threads-inbox.md`. Native conversation and full reply/reaction/settings qualification remain open.                                                                                                            |

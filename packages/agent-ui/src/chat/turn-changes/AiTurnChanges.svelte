@@ -9,7 +9,7 @@
     FileListingViewModeToggle,
     type FileListingViewMode,
   } from "@lapismd/design-core/diff";
-  import { Spinner } from "@lapismd/design-core/shadcn/spinner";
+  import { Skeleton } from "@lapismd/design-core/shadcn/skeleton";
   import FileDiffIcon from "@lucide/svelte/icons/file-diff";
   import RepositoryIdentifiers from "./RepositoryIdentifiers.svelte";
   import UndoIcon from "@lucide/svelte/icons/undo-2";
@@ -128,7 +128,16 @@
   {#if record.phase !== "complete"}<p>
       The ending boundary is incomplete. Automatic undo is unavailable.
     </p>
-  {:else if loading}<p role="status"><Spinner />Loading saved changes…</p>
+  {:else if loading}<div
+      class="listing"
+      role="status"
+      aria-label="Loading saved changes"
+      aria-busy="true"
+    >
+      {#each [0, 1, 2] as row (row)}<Skeleton
+          style="height:1.75rem;margin-block:0.375rem"
+        />{/each}
+    </div>
   {:else if unavailable}<Empty.Root role="status"
       ><Empty.Header
         ><Empty.Media variant="icon"

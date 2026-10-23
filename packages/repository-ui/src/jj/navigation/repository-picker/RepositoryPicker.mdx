@@ -51,6 +51,7 @@ Use the public component with host-owned values and callbacks. Navigation does n
 ### NoMatches
 
 <Canvas of={Stories.NoMatches} />
+<Canvas of={Stories.Compact} />
 
 ## Behavior and accessibility
 
@@ -71,6 +72,9 @@ Complete canvases opt out of body scrolling and own their scroll containers.
 ## API
 
 <ArgTypes of={Stories} />
+
+Use `size="sm"` for the top application rail; this delegates compact geometry
+to the public Button primitive while retaining command search and keyboard focus.
 
 ## Composition
 

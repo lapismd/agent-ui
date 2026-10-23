@@ -71,6 +71,15 @@ session-scoped; unknown submitted operations MUST retain explicit status recover
 
 **Requirement.** Shared screens MUST copy Desktop's sessions, history, catalog, imports and recorded preview layouts and styles through capability-aware host interfaces, with pixel-perfect parity at matching viewport, theme, fonts and data.
 
+Initial and paged content reads MUST use public shadcn Skeleton with accessible
+loading labels, including catalog, import folders, saved comparisons/files and
+per-repository Threads reads. Empty, unavailable and failed content reads MUST
+use public shadcn Empty with a relevant icon and applicable retry. Import read
+failure state MUST retain earlier content, reject stale/cancelled completions
+and clear only after a successful explicit read. Busy actions, streaming and
+missing scalar values retain their own feedback. The catalog-wide browser audit
+and complete production-screen stories MUST exercise these shared states.
+
 The Agent section remains awaiting visual approval. The approved shared
 Projects/Agents/Threads plan authorizes the JJ Store configured-agent directory,
 configuration, sessions and saved captures. Configured agents, running native

@@ -13,7 +13,11 @@ export const importHarnesses = [
   { id: "cursor", name: "Cursor" },
   { id: "opencode", name: "OpenCode" },
 ] as const;
-type IndexState = FolderPage & { loading: boolean; loaded: boolean };
+type IndexState = FolderPage & {
+  loading: boolean;
+  loaded: boolean;
+  unavailable: boolean;
+};
 const empty = (): IndexState => ({
   folders: [],
   indexed: 0,
@@ -21,6 +25,7 @@ const empty = (): IndexState => ({
   limited: false,
   loading: false,
   loaded: false,
+  unavailable: false,
 });
 export function createImportBrowser(
   sources: AiImportSources | undefined,
@@ -37,6 +42,7 @@ export function createImportBrowser(
     kind = $state<ImportHarness>("codex");
   let cache = $state.raw<Record<string, SessionPage>>({}),
     loadingFolder = $state(false),
+    folderUnavailable = $state(false),
     active = true;
   const scans = new Map<ImportHarness, AbortController>();
   let folderAbort: AbortController | undefined;
@@ -49,8 +55,11 @@ export function createImportBrowser(
     }
     const abort = new AbortController();
     scans.set(harness, abort);
-    indexes = { ...indexes, [harness]: { ...indexes[harness], loading: true } };
-    await tasks.run(
+    indexes = {
+      ...indexes,
+      [harness]: { ...indexes[harness], loading: true, unavailable: false },
+    };
+    const result = await tasks.run(
       `Indexing ${importHarnesses.find((h) => h.id === harness)!.name} sessions`,
       `ai-import-index-${harness}`,
       abort.signal,
@@ -70,7 +79,12 @@ export function createImportBrowser(
           collapsed = next;
           indexes = {
             ...indexes,
-            [harness]: { ...page, loading: !page.complete, loaded: true },
+            [harness]: {
+              ...page,
+              loading: !page.complete,
+              loaded: true,
+              unavailable: false,
+            },
           };
           first = false;
           if (page.complete) break;
@@ -83,6 +97,7 @@ export function createImportBrowser(
           indexes[harness].folders.some((f) => f.selector === folder!.selector)
         )
           await openFolder(folder.selector, harness, true);
+        return true;
       },
     );
     if (scans.get(harness) === abort) {
@@ -90,7 +105,11 @@ export function createImportBrowser(
       if (active)
         indexes = {
           ...indexes,
-          [harness]: { ...indexes[harness], loading: false },
+          [harness]: {
+            ...indexes[harness],
+            loading: false,
+            unavailable: !abort.signal.aborted && result !== true,
+          },
         };
     }
   }
@@ -107,12 +126,13 @@ export function createImportBrowser(
     folderAbort = abort;
     folder = next;
     kind = harness;
+    folderUnavailable = false;
     if (cache[id] && !refresh && !more) {
       loadingFolder = false;
       return;
     }
     loadingFolder = true;
-    await tasks.run(
+    const result = await tasks.run(
       "Loading folder sessions",
       "ai-import-folder-failure",
       abort.signal,
@@ -131,9 +151,13 @@ export function createImportBrowser(
           [...previous, ...page.rows].map((row) => [row.selector, row]),
         );
         cache = { ...cache, [id]: { ...page, rows: [...combined.values()] } };
+        return true;
       },
     );
-    if (active && folderAbort === abort) loadingFolder = false;
+    if (active && folderAbort === abort) {
+      loadingFolder = false;
+      folderUnavailable = !abort.signal.aborted && result !== true;
+    }
   }
   return {
     get indexes() {
@@ -156,6 +180,9 @@ export function createImportBrowser(
     },
     get loadingFolder() {
       return loadingFolder;
+    },
+    get folderUnavailable() {
+      return folderUnavailable;
     },
     get rows() {
       return rows();

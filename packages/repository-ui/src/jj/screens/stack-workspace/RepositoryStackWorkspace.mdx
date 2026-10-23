@@ -211,6 +211,13 @@ Workspace selection and action bars remain in the complete screen.
 
 ## API
 
+For an enclosing `RepositoryPageFrame`, bind `toolbarControls` into its `actions`
+slot and set `showToolbar={false}`. This moves the same production workspace
+picker and action components into the outer body header without duplicating it.
+`showViewTabs` independently controls the standalone Stacks/Workspace tabs.
+Workspace settings, Undo/Redo and Refresh live in the kebab menu; `menuItems`
+allows host-owned secondary commands while primary Create stack stays visible.
+
 <ArgTypes of={Stories} />
 
 ## Action wiring status

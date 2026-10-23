@@ -6,7 +6,11 @@ import {
   ArgTypes,
 } from "@storybook/addon-docs/blocks";
 import * as Stories from "./RepositoryReadOnlyRow.stories";
-import { Basic, Styling } from "./RepositoryReadOnlyRow.example-sources";
+import {
+  Basic,
+  Styling,
+  Loading,
+} from "./RepositoryReadOnlyRow.example-sources";
 import tokens from "./RepositoryReadOnlyRow.tokens.json";
 import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
 
@@ -30,9 +34,11 @@ retaining the complete title, accessible action label and clipboard text.
 ## Variations
 
 <Canvas of={Stories.Basic} />
+<Canvas of={Stories.Loading} />
+<Source code={Loading} language="tsx" />
 <Canvas of={Stories.CopyValue} />
 <Canvas of={Stories.CopyFailure} />
-<Canvas of={Stories.Unavailable} />
+<Canvas of={Stories.MissingValue} />
 <Canvas of={Stories.DisabledOpen} />
 <Canvas of={Stories.LongPath} />
 
@@ -44,6 +50,8 @@ control remains independent. A status region announces success or failure.
 Changing the value or disposing the row invalidates late copy feedback. Missing
 values use `emptyLabel` and omit open/copy controls. `openDisabled` gates only
 the host action; available text remains copyable. Mounting never calls the host.
+`loading` renders the shared Skeleton in the retained label/value row, announces
+its loading label, and omits open/copy controls until the value is ready.
 
 ## Styling variables
 

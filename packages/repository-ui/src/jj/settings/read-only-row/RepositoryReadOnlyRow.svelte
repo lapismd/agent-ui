@@ -7,6 +7,7 @@
     type SettingsPresentation,
   } from "../settings-card/settings-presentation.js";
   import { Button } from "@lapismd/design-core/shadcn/button";
+  import { Skeleton } from "@lapismd/design-core/shadcn/skeleton";
   import Copy from "@lucide/svelte/icons/copy";
   import Check from "@lucide/svelte/icons/circle-check";
   import AlertCircle from "@lucide/svelte/icons/circle-alert";
@@ -19,6 +20,7 @@
     children,
     display,
     emptyLabel = "Unavailable",
+    loading = false,
     description,
     stacked = false,
     standalone = false,
@@ -37,6 +39,7 @@
     children?: Snippet;
     display?: string;
     emptyLabel?: string;
+    loading?: boolean;
     description?: string;
     stacked?: boolean;
     standalone?: boolean;
@@ -54,7 +57,7 @@
   );
   const RowIcon = $derived(Icon ?? settingsRowIcons[label]);
   const text = $derived(value == null ? "" : String(value));
-  const canCopy = $derived(copyable || !!onOpen);
+  const canCopy = $derived(!loading && (copyable || !!onOpen));
   let feedback = $state<"" | "copied" | "failed">("");
   let feedbackVersion = $state(0);
   let timer: ReturnType<typeof setTimeout> | undefined;
@@ -105,14 +108,19 @@
     >
   </dt>
   <dd>
-    <span
+    <svelte:element
+      this={loading ? "div" : "span"}
       class="store-readonly-row__value"
       data-tone={tone}
-      role={live}
+      role={loading ? "status" : live}
+      aria-label={loading ? `Loading ${label}` : undefined}
+      aria-busy={loading || undefined}
       title={canCopy && text ? text : undefined}
-      >{#if children}{@render children()}{:else}{text
+      >{#if loading}<Skeleton
+          style="height:1rem;width:70%;min-width:4rem"
+        />{:else if children}{@render children()}{:else}{text
           ? (display ?? text)
-          : emptyLabel}{/if}</span
+          : emptyLabel}{/if}</svelte:element
     >
     {#if text && canCopy}
       <span class="store-readonly-row__actions">

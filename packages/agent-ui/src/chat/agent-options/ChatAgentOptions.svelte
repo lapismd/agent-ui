@@ -1,5 +1,8 @@
 <!-- SPDX-License-Identifier: Apache-2.0; shared production agent/model controls. -->
 <script lang="ts">
+  import { Skeleton } from "@lapismd/design-core/shadcn/skeleton";
+  import * as Empty from "@lapismd/design-core/shadcn/empty";
+  import BotIcon from "@lucide/svelte/icons/bot";
   import { Button } from "@lapismd/design-core/shadcn/button";
   import * as DropdownMenu from "@lapismd/design-core/shadcn/dropdown-menu";
   import BrainIcon from "@lucide/svelte/icons/brain";
@@ -82,7 +85,10 @@
       <DropdownMenu.SubContent>
         {#if composerState.catalogState?.loading}
           <DropdownMenu.Group
-            ><DropdownMenu.Item disabled>Loading models…</DropdownMenu.Item
+            ><DropdownMenu.Item disabled aria-label="Loading models"
+              ><Skeleton
+                style="height:1.25rem;width:10rem"
+              /></DropdownMenu.Item
             ></DropdownMenu.Group
           >
         {:else if composerState.modelOptions.length > 0}
@@ -102,7 +108,18 @@
             {/each}
           </DropdownMenu.RadioGroup>
         {:else}
-          <DropdownMenu.Item disabled>No models available</DropdownMenu.Item>
+          <DropdownMenu.Item disabled
+            ><Empty.Root
+              ><Empty.Header
+                ><Empty.Media variant="icon"
+                  ><BotIcon aria-hidden="true" /></Empty.Media
+                ><Empty.Title>No models available</Empty.Title
+                ><Empty.Description
+                  >Discover models for the selected agent.</Empty.Description
+                ></Empty.Header
+              ></Empty.Root
+            ></DropdownMenu.Item
+          >
         {/if}
       </DropdownMenu.SubContent>
     </DropdownMenu.Sub>

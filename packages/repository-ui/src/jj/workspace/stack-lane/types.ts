@@ -14,6 +14,7 @@ import type { PullRequestRequest } from "../../forge/pull-request/types.js";
 /** Rendering extensions receive recorded identities; hosts own effects and routing. */
 export type RepositoryStackSlots = {
   headerActions?: Snippet<[StackWorkspaceController]>;
+  menuItems?: Snippet<[StackWorkspaceController]>;
   columnActions?: Snippet<[WorkspaceStack]>;
   branchActions?: Snippet<[WorkspaceStack, string]>;
   commitActions?: Snippet<[StackCommit, WorkspaceStack]>;

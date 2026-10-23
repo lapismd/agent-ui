@@ -45,6 +45,17 @@ export const Loading: Story = {
 export const Unavailable: Story = {
   render: () => ({ Component: Fixture, props: { variant: "unavailable" } }),
   play: async ({ canvasElement }) => {
+    await expect(
+      await within(canvasElement).findByText("Agents unavailable"),
+    ).toBeVisible();
+    await expect(
+      canvasElement.querySelector('[data-ui-part="empty-media"] svg'),
+    ).toBeVisible();
+  },
+};
+export const DirectoryRecovery: Story = {
+  render: () => ({ Component: Fixture, props: { variant: "unavailable" } }),
+  play: async ({ canvasElement }) => {
     const c = within(canvasElement);
     await userEvent.click(await c.findByRole("button", { name: "Retry" }));
     await expect(

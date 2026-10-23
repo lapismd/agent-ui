@@ -110,6 +110,17 @@ portable stack controller and share existing graph/diff primitives. Host-owned
 navigation/actions and controller lifetime remain explicit; transfers, mutation
 dialogs and forge transport wait for their separate slices and review.
 
+Content reads MUST render public shadcn Skeleton matching JJ Store geometry,
+with an accessible loading label, for initial reads, pagination and attached
+panels. Text or spinner-only content placeholders are forbidden. Retained content
+MUST remain visible during refresh; pending continuations append skeleton rows.
+Empty/unavailable content and failed reads MUST render public shadcn Empty with
+a relevant icon, title, description and applicable retry action in production.
+Standalone and completed-screen stories MUST exercise these same implementations.
+The catalog-wide browser audit MUST verify Loading, Empty and Unavailable states.
+Scalar missing values, in-progress actions and live streaming retain their own
+semantics.
+
 ### Acceptance details
 
 - Public types express the boundary.

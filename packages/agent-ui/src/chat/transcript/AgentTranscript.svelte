@@ -19,6 +19,7 @@
   import type { TranscriptPanelProps } from "../presentation.js";
   import type { AgentTranscriptOptions } from "../transcript-options.js";
   import AiTranscriptEmpty from "../transcript-empty/AiTranscriptEmpty.svelte";
+  import AiTranscriptLoading from "../transcript-loading/AiTranscriptLoading.svelte";
   import AiTranscriptSendHint from "../transcript-send-hint/AiTranscriptSendHint.svelte";
   import ChatMessageComposer from "../message-composer/ChatMessageComposer.svelte";
   import ChatComposerDrawer from "../composer-drawer/ChatComposerDrawer.svelte";
@@ -150,6 +151,9 @@
   authorPopover={options.authorPopover ?? { interaction: "hover" }}
   {onInspectTool}
 >
+  {#snippet beforeItems()}{#if controller.loading}<AiTranscriptLoading
+        composer={false}
+      />{/if}{/snippet}
   {#snippet customBlock(block)}<AgentTranscriptBlock
       {block}
       {options}

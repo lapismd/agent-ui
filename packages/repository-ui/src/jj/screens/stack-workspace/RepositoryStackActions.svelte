@@ -77,6 +77,7 @@
           >{/snippet}</Menu.Trigger
       ><Menu.Content align="end" style="min-width:14rem;white-space:nowrap"
         ><Menu.Group>
+          {@render host.menuItems?.(controller)}
           <Menu.Item
             disabled={!host.onWorkspaceSettings || !snapshot.active}
             onSelect={() => host.onWorkspaceSettings?.(snapshot)}
@@ -99,11 +100,18 @@
                 command({ kind: "delete_workspace", workspace: item.id })}
               ><Trash aria-hidden="true" />Delete {item.name}</Menu.Item
             >{/each}
+        </Menu.Group><Menu.Group>
+          {#each controls.slice(1) as control (control.label)}<Menu.Item
+              disabled={control.disabled}
+              onSelect={control.run}
+            >
+              <control.icon aria-hidden="true" />{control.label}
+            </Menu.Item>{/each}
         </Menu.Group></Menu.Content
       ></Menu.Root
     >{/if}
   <Tooltip.Provider
-    >{#each controls as control (control.label)}<Tooltip.Root
+    >{#each controls.slice(0, 1) as control (control.label)}<Tooltip.Root
         ><Tooltip.Trigger
           >{#snippet child({ props })}<Button
               {...props}

@@ -3,6 +3,7 @@
   import { untrack } from "svelte";
   import type { LocalConflictDescriptor } from "@lapismd/jj-history";
   import RepositoryConflictText from "../conflict-text/RepositoryConflictText.svelte";
+  import Status from "../../workspace/source-files/RepositoryWorkspaceStatus.svelte";
   let {
     conflict,
     draft,
@@ -32,5 +33,9 @@
         onResolvedChange={({ content }) => onChange(content)}
       />
     </div>
-  {:else}<p>Merge editor unavailable for this native conflict shape.</p>{/if}
+  {:else}<Status
+      unavailable
+      title="Merge editor unavailable"
+      description="Merge editor unavailable for this native conflict shape."
+    />{/if}
 </section>

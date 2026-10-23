@@ -1,5 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0; adapted from JJ Store StoreStacksNavigation and picker. -->
 <script lang="ts">
+  import { onMount, type Snippet } from "svelte";
   import { AppShell } from "@lapismd/design-core/shell";
   import * as Tabs from "@lapismd/design-core/shadcn/tabs";
   import WorkspacePicker from "../../history/workspace-picker/RepositoryWorkspacePicker.svelte";
@@ -12,10 +13,14 @@
     host,
     onSelectView,
     showViewTabs = true,
+    showToolbar = true,
+    controls = $bindable<Snippet | undefined>(undefined),
   }: {
     controller: StackWorkspaceController;
     host: RepositoryStackHost;
     showViewTabs?: boolean;
+    showToolbar?: boolean;
+    controls?: Snippet;
     onSelectView?: (view: "branches" | "workspace") => void;
   } = $props();
   const workspace = $derived(
@@ -23,30 +28,41 @@
       (item) => item.id === controller.snapshot?.active,
     ),
   );
+  onMount(() => {
+    controls = workspaceControls;
+    return () => {
+      if (controls === workspaceControls) controls = undefined;
+    };
+  });
 </script>
 
-<AppShell.Toolbar
-  label="Stack workspace navigation"
-  class="workspace-navigation"
-  style="border-block-end: 0"
->
-  {#if showViewTabs}<Tabs.Root
-      class="workspace-view-tabs"
-      value={controller.page}
-      onValueChange={(value) => {
-        if (value !== "branches" && value !== "workspace") return;
-        if (onSelectView) onSelectView(value);
-        else controller.page = value;
-      }}
-      ><Tabs.List aria-label="Stack workspace views"
-        ><Tabs.Trigger value="branches" disabled={controller.locked}
-          >Stacks</Tabs.Trigger
-        ><Tabs.Trigger value="workspace" disabled={controller.locked}
-          >Workspace</Tabs.Trigger
-        ></Tabs.List
-      ></Tabs.Root
-    >
-  {/if}
+{#if showToolbar}
+  <AppShell.Toolbar
+    label="Stack workspace navigation"
+    class="workspace-navigation"
+    style="border-block-end: 0"
+  >
+    {#if showViewTabs}<Tabs.Root
+        class="workspace-view-tabs"
+        value={controller.page}
+        onValueChange={(value) => {
+          if (value !== "branches" && value !== "workspace") return;
+          if (onSelectView) onSelectView(value);
+          else controller.page = value;
+        }}
+        ><Tabs.List aria-label="Stack workspace views"
+          ><Tabs.Trigger value="branches" disabled={controller.locked}
+            >Stacks</Tabs.Trigger
+          ><Tabs.Trigger value="workspace" disabled={controller.locked}
+            >Workspace</Tabs.Trigger
+          ></Tabs.List
+        ></Tabs.Root
+      >
+    {/if}
+    {@render workspaceControls()}
+  </AppShell.Toolbar>
+{/if}
+{#snippet workspaceControls()}
   <div class="workspace-controls">
     {#if controller.snapshot}<WorkspacePicker
         label="Active stack workspace"
@@ -72,4 +88,4 @@
     {@render host.headerActions?.(controller)}
     <Actions {controller} {host} />
   </div>
-</AppShell.Toolbar>
+{/snippet}

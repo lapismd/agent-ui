@@ -3,6 +3,9 @@
   import { AppShell } from "@lapismd/design-core/shell";
   import { ScrollArea } from "@lapismd/design-core/shadcn/scroll-area";
   import { Button } from "@lapismd/design-core/shadcn/button";
+  import { Skeleton } from "@lapismd/design-core/shadcn/skeleton";
+  import * as Empty from "@lapismd/design-core/shadcn/empty";
+  import FileDiffIcon from "@lucide/svelte/icons/file-diff";
   import {
     FileListing,
     FileListingViewModeToggle,
@@ -81,16 +84,34 @@
           </p>
         </nav>
       {/if}
-      {#if inspection.loading}<p role="status">Loading saved comparison…</p>
-      {:else if inspection.unavailable}<p>
-          Saved comparison unavailable. <Button
-            variant="ghost"
-            size="sm"
-            onclick={() =>
-              inspection.record && void inspection.show(inspection.record)}
-            >Retry comparison</Button
-          >
-        </p>
+      {#if inspection.loading}<div
+          class="file-list"
+          role="status"
+          aria-label="Loading saved comparison"
+          aria-busy="true"
+        >
+          {#each [0, 1, 2, 3] as row (row)}<Skeleton
+              style="height:2rem;margin-block:0.375rem"
+            />{/each}
+        </div>
+      {:else if inspection.unavailable}<Empty.Root
+          ><Empty.Header
+            ><Empty.Media variant="icon"
+              ><FileDiffIcon aria-hidden="true" /></Empty.Media
+            ><Empty.Title>Saved comparison unavailable</Empty.Title
+            ><Empty.Description
+              >Read the captured turn boundaries again.</Empty.Description
+            ></Empty.Header
+          ><Empty.Content
+            ><Button
+              variant="ghost"
+              size="sm"
+              onclick={() =>
+                inspection.record && void inspection.show(inspection.record)}
+              >Retry comparison</Button
+            >
+          </Empty.Content></Empty.Root
+        >
       {:else if inspection.comparison}
         <div class="file-heading">
           <strong
@@ -100,18 +121,35 @@
               : "+"})</strong
           ><FileListingViewModeToggle bind:mode />
         </div>
-        <div class="file-list">
-          <FileListing
-            files={inspection.comparison.files}
-            {mode}
-            selectedPath={inspection.path}
-            onSelectPath={(path) => void inspection.select(path)}
-          />
-        </div>
+        {#if !inspection.comparison.files.length}<Empty.Root
+            ><Empty.Header
+              ><Empty.Media variant="icon"
+                ><FileDiffIcon aria-hidden="true" /></Empty.Media
+              ><Empty.Title>No saved file changes</Empty.Title
+              ><Empty.Description
+                >No files changed between these captured boundaries.</Empty.Description
+              ></Empty.Header
+            ></Empty.Root
+          >{:else}<div class="file-list">
+            <FileListing
+              files={inspection.comparison.files}
+              {mode}
+              selectedPath={inspection.path}
+              onSelectPath={(path) => void inspection.select(path)}
+            />
+          </div>{/if}
         {#if !inspection.comparison.complete}<p>
             Showing a bounded preview. Whole-turn undo is unavailable.
           </p>{/if}
-      {:else}<p>Choose a saved turn to explore its changed files.</p>{/if}
+      {:else}<Empty.Root
+          ><Empty.Header
+            ><Empty.Media variant="icon"
+              ><FileDiffIcon aria-hidden="true" /></Empty.Media
+            ><Empty.Title>Select a saved turn</Empty.Title><Empty.Description
+              >Choose a saved turn to explore its changed files.</Empty.Description
+            ></Empty.Header
+          ></Empty.Root
+        >{/if}
     </ScrollArea>
     <footer>
       <Button

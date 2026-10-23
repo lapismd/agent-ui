@@ -1,5 +1,7 @@
 <!-- Buzz EditAgentProviderModelFields presentation, adapted to public Design Core. -->
 <script lang="ts">
+  import * as Empty from "@lapismd/design-core/shadcn/empty";
+  import BotIcon from "@lucide/svelte/icons/bot";
   import * as Field from "@lapismd/design-core/shadcn/field";
   import * as Select from "@lapismd/design-core/shadcn/select";
   import { Input } from "@lapismd/design-core/shadcn/input";
@@ -176,14 +178,21 @@
       >{/if}
   {/if}
 {:else if management.failed}
-  <Field.Description
-    >Provider settings unavailable. Your agent draft is retained.</Field.Description
-  >
-  <Button
-    type="button"
-    variant="outline"
-    disabled={management.busy}
-    onclick={() => void management.refresh()}>Retry provider settings</Button
+  <Empty.Root
+    ><Empty.Header
+      ><Empty.Media variant="icon"><BotIcon aria-hidden="true" /></Empty.Media
+      ><Empty.Title>Provider settings unavailable</Empty.Title
+      ><Empty.Description>Your agent draft is retained.</Empty.Description
+      ></Empty.Header
+    ><Empty.Content>
+      <Button
+        type="button"
+        variant="outline"
+        disabled={management.busy}
+        onclick={() => void management.refresh()}
+        >Retry provider settings</Button
+      ></Empty.Content
+    ></Empty.Root
   >
 {:else}<div role="status" aria-label="Loading agent provider">
     <Skeleton style="height:8rem;width:100%" />

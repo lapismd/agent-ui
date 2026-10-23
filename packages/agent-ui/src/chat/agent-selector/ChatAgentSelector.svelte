@@ -1,4 +1,6 @@
 <script lang="ts">
+  import SearchXIcon from "@lucide/svelte/icons/search-x";
+  import * as Empty from "@lapismd/design-core/shadcn/empty";
   // Copied/adapted from jj-store StoreAgentPicker and StoreRepositoryPicker.
   import { Avatar } from "@lapismd/design-core/shadcn/avatar";
   import { Button } from "@lapismd/design-core/shadcn/button";
@@ -110,7 +112,16 @@
       </div>
       <CommandView.List>
         {#if !visible.length && !people.length}<CommandView.Empty
-            >No matching people or agents.</CommandView.Empty
+            ><Empty.Root
+              ><Empty.Header
+                ><Empty.Media variant="icon"
+                  ><SearchXIcon aria-hidden="true" /></Empty.Media
+                ><Empty.Title>No matching people or agents.</Empty.Title
+                ><Empty.Description
+                  >Try another search or selection.</Empty.Description
+                ></Empty.Header
+              ></Empty.Root
+            ></CommandView.Empty
           >{/if}
         <ChatPeopleOptions
           {people}

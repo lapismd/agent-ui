@@ -54,9 +54,10 @@ export async function assertBrowser(
     await expect(
       await canvas.findByText("Directory unavailable", { exact: true }),
     ).toBeVisible();
-    await userEvent.click(
-      canvas.getByRole("button", { name: "Retry preview" }),
-    );
+    await expect(
+      canvasElement.querySelector('[data-ui-part="empty-media"] svg'),
+    ).toBeVisible();
+    return;
   }
   if (variant === "Retry") {
     await expect(

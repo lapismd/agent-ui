@@ -2,6 +2,7 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
   import RepositoryFileTitle from "../../history/file-title/RepositoryFileTitle.svelte";
+  import RepositorySkeleton from "../../foundations/skeleton/RepositorySkeleton.svelte";
   import * as ColumnCanvas from "@lapismd/design-core/shadcn/column-canvas";
   import {
     FileChangeStats,
@@ -96,114 +97,119 @@
       data-view-mode={viewMode}
       data-file-mode={diffFileMode}
     >
-      {#if snapshot.selected}
-        <section class="operation-card" aria-label="Selected operation">
+      {#if snapshot.busy && !snapshot.detail}<RepositorySkeleton
+          kind="operation"
+          label="Loading operation details"
+        />{:else}
+        {#if snapshot.selected}
+          <section class="operation-card" aria-label="Selected operation">
+            <header class="operation-card-header">
+              <button
+                class="operation-toggle"
+                type="button"
+                aria-expanded={expanded}
+                aria-controls={panelId}
+                aria-label={expanded
+                  ? "Collapse operation details"
+                  : "Expand operation details"}
+                style="flex:none;padding:0.25rem"
+                onclick={() => (expanded = !expanded)}
+              >
+                <ChevronDownIcon aria-hidden="true" />
+              </button>
+              <RepositoryOperationMessage
+                textHover={false}
+                message={snapshot.selected.description || "No description"}
+                {copyText}
+                onSelect={() => (expanded = !expanded)}
+              />
+              <div class="operation-card-actions">
+                {@render metadataActions?.(snapshot)}
+              </div>
+            </header>
+            {#if expanded}
+              <div id={panelId}>
+                <RepositoryOperationRail
+                  operation={snapshot.selected}
+                  onSelect={(id) => void controller.selectId(id)}
+                  {copyText}
+                />
+                {#if snapshot.selected.parents.length > 0}
+                  <RepositoryOperationParentPicker
+                    {copyText}
+                    parents={snapshot.selected.parents}
+                    nodes={[...snapshot.nodes, ...snapshot.parentNodes]}
+                    target={snapshot.parent}
+                    loading={snapshot.busy}
+                    onOpen={() => void controller.loadParents()}
+                    onSelect={(id) => void controller.selectParent(id)}
+                  />
+                  {#if !snapshot.parent}<p class="operation-parent-hint">
+                      Choose a parent to compare this operation.
+                    </p>{/if}
+                {/if}
+                <RepositoryOperationArguments
+                  attributes={snapshot.selected.attributes}
+                />
+              </div>
+            {/if}
+          </section>
+        {/if}
+        <section
+          class="operation-file-card"
+          aria-label={diffFileMode === "all"
+            ? "All changes diff"
+            : "Selected file diff"}
+        >
           <header class="operation-card-header">
-            <button
-              class="operation-toggle"
-              type="button"
-              aria-expanded={expanded}
-              aria-controls={panelId}
-              aria-label={expanded
-                ? "Collapse operation details"
-                : "Expand operation details"}
-              style="flex:none;padding:0.25rem"
-              onclick={() => (expanded = !expanded)}
+            <span class="operation-file-path"
+              >{#if diffFileMode === "all"}All changes{:else}<RepositoryFileTitle
+                  path={snapshot.files.path}
+                />{/if}</span
             >
-              <ChevronDownIcon aria-hidden="true" />
-            </button>
-            <RepositoryOperationMessage
-              textHover={false}
-              message={snapshot.selected.description || "No description"}
-              {copyText}
-              onSelect={() => (expanded = !expanded)}
-            />
             <div class="operation-card-actions">
-              {@render metadataActions?.(snapshot)}
+              {#if diffFileMode === "all"}{@render allChangesActions?.(
+                  snapshot,
+                )}{:else}{@render diffActions?.(snapshot)}{/if}
+              {#if stats}<FileChangeStats {...stats} showZero />{/if}
+              <RepositoryDiffControls
+                bind:viewMode
+                bind:wrap
+                fileMode={diffFileMode}
+                onFileModeChange={onDiffFileModeChange}
+              />
+              {#if diffFileMode === "single"}<RepositoryDiffMenu
+                  context={menuContext}
+                  getItems={getDiffMenuItems}
+                />{/if}
+              <ColumnCanvas.Close
+                aria-label="Close Diff column"
+                title="Close Diff"
+              />
             </div>
           </header>
-          {#if expanded}
-            <div id={panelId}>
-              <RepositoryOperationRail
-                operation={snapshot.selected}
-                onSelect={(id) => void controller.selectId(id)}
-                {copyText}
-              />
-              {#if snapshot.selected.parents.length > 0}
-                <RepositoryOperationParentPicker
-                  {copyText}
-                  parents={snapshot.selected.parents}
-                  nodes={[...snapshot.nodes, ...snapshot.parentNodes]}
-                  target={snapshot.parent}
-                  loading={snapshot.busy}
-                  onOpen={() => void controller.loadParents()}
-                  onSelect={(id) => void controller.selectParent(id)}
-                />
-                {#if !snapshot.parent}<p class="operation-parent-hint">
-                    Choose a parent to compare this operation.
-                  </p>{/if}
-              {/if}
-              <RepositoryOperationArguments
-                attributes={snapshot.selected.attributes}
-              />
-            </div>
-          {/if}
+          <RepositoryDiffViewer
+            {comparisonKey}
+            from={snapshot.files.from ?? ""}
+            to={snapshot.files.to ?? ""}
+            operation={snapshot.operation}
+            files={snapshot.files.paths}
+            entries={snapshot.files.diffs}
+            selectedPath={snapshot.files.path}
+            selectionRequest={snapshot.files.pathRequest}
+            fileMode={diffFileMode}
+            pageSize={diffPageSize}
+            {viewMode}
+            {wrap}
+            hasMore={!!snapshot.files.nextPath}
+            loadingPaths={snapshot.busy}
+            limitReached={snapshot.files.pathsLimitReached}
+            onLoad={(path) => controller.files.loadDiff(path)}
+            onMore={() => controller.files.morePaths()}
+            {getDiffMenuItems}
+          />
         </section>
       {/if}
-      <section
-        class="operation-file-card"
-        aria-label={diffFileMode === "all"
-          ? "All changes diff"
-          : "Selected file diff"}
-      >
-        <header class="operation-card-header">
-          <span class="operation-file-path"
-            >{#if diffFileMode === "all"}All changes{:else}<RepositoryFileTitle
-                path={snapshot.files.path}
-              />{/if}</span
-          >
-          <div class="operation-card-actions">
-            {#if diffFileMode === "all"}{@render allChangesActions?.(
-                snapshot,
-              )}{:else}{@render diffActions?.(snapshot)}{/if}
-            {#if stats}<FileChangeStats {...stats} showZero />{/if}
-            <RepositoryDiffControls
-              bind:viewMode
-              bind:wrap
-              fileMode={diffFileMode}
-              onFileModeChange={onDiffFileModeChange}
-            />
-            {#if diffFileMode === "single"}<RepositoryDiffMenu
-                context={menuContext}
-                getItems={getDiffMenuItems}
-              />{/if}
-            <ColumnCanvas.Close
-              aria-label="Close Diff column"
-              title="Close Diff"
-            />
-          </div>
-        </header>
-        <RepositoryDiffViewer
-          {comparisonKey}
-          from={snapshot.files.from ?? ""}
-          to={snapshot.files.to ?? ""}
-          operation={snapshot.operation}
-          files={snapshot.files.paths}
-          entries={snapshot.files.diffs}
-          selectedPath={snapshot.files.path}
-          selectionRequest={snapshot.files.pathRequest}
-          fileMode={diffFileMode}
-          pageSize={diffPageSize}
-          {viewMode}
-          {wrap}
-          hasMore={!!snapshot.files.nextPath}
-          loadingPaths={snapshot.busy}
-          limitReached={snapshot.files.pathsLimitReached}
-          onLoad={(path) => controller.files.loadDiff(path)}
-          onMore={() => controller.files.morePaths()}
-          {getDiffMenuItems}
-        />
-      </section>
     </div>
   </ColumnCanvas.Body>
 </ColumnCanvas.Column>

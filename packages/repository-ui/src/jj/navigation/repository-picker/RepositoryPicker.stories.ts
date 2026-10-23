@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/svelte-vite";
-import { expect, fn, userEvent, within } from "storybook/test";
+import { expect, fn, userEvent, waitFor, within } from "storybook/test";
 import Component from "./RepositoryPicker.svelte";
 import { Basic as source } from "./RepositoryPicker.example-sources.js";
 const repositories = [
@@ -56,3 +56,23 @@ export const OpenLocal: Story = {
 export const Disabled: Story = { args: { disabled: true } };
 export const UnavailableSelection: Story = { args: { value: "missing" } };
 export const NoMatches: Story = { args: { inline: true, repositories: [] } };
+export const Compact: Story = {
+  args: { size: "sm", variant: "ghost" },
+  play: async ({ canvasElement }) => {
+    const trigger = within(canvasElement).getByRole("combobox", {
+      name: "Repository",
+    });
+    expect(trigger).toHaveAttribute("data-size", "sm");
+    expect(trigger.getBoundingClientRect().height).toBeLessThanOrEqual(32);
+    await userEvent.click(trigger);
+    await waitFor(() =>
+      expect(
+        within(canvasElement.ownerDocument.body).getByPlaceholderText(
+          "Search repositories",
+        ),
+      ).toBeVisible(),
+    );
+    await userEvent.keyboard("{Escape}");
+    await expect(trigger).toHaveFocus();
+  },
+};
