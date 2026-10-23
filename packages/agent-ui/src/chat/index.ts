@@ -43,3 +43,5 @@ export type { AgentToolResultData } from "./transcript-options.js";
 export { AgentRequestController } from "./request-controller.svelte.js";
 export type { AgentRequestDraft } from "./request-controller.svelte.js";
 export type * from "./request-state.js";
+
+export type { TranscriptPanelProps as AgentChatPresentation } from "./presentation-models.js";

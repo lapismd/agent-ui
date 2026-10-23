@@ -1,5 +1,10 @@
 # Agent
 
+Recorded screen metadata comes from host-provided capture groups, preserving
+source/profile, timestamps, version identities and incomplete state. Public
+recorded transcript and captured-session surfaces accept host transcript hooks
+while enforcing read-only interaction.
+
 ## AUI-CHAT-001 — Conversation
 
 **Requirement.** Conversation screens MUST compose Design Core Transcript and controlled composer state, retaining drafts, attachments, comments and request identities across presentation changes.

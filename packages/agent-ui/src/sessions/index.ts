@@ -12,3 +12,5 @@ export { default as AgentSessionTabs } from "./session-tabs/AiSessionTabs.svelte
 export { default as CapturedSessionBrowser } from "./captured-session-browser/CapturedSessionBrowser.svelte";
 export { default as CaptureVersionPicker } from "./capture-version-picker/CaptureVersionPicker.svelte";
 export type { SavedSessionGroup, SavedSessionVersion } from "./model.js";
+
+export { default as AgentRecordedTranscript } from "./recorded-transcript/AiRecordedTranscript.svelte";

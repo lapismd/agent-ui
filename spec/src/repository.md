@@ -6,6 +6,9 @@ controller lifetimes MUST capture their initial constructor inputs explicitly;
 reactive callback props MUST remain invoked through closures. Documentation
 example repairs do not change the completed history/browser screen contracts.
 
+Following the same active editor file MUST retain its explicitly selected
+operation; only an explicit new operation or changed file scope replaces it.
+
 The current review slice copies Desktop JJ history components and controllers
 through public, operation-pinned HistoryReader ports, with complete in-memory
 examples under JJ. Native admission, repository access, notification policy,

@@ -128,3 +128,25 @@ async function respond(
   }
   return outcome;
 }
+
+export async function checkRequestStatus(
+  owner: AgentUiController,
+  closed: () => boolean,
+  accept: (
+    outcome: import("./models.js").AgentOutcome,
+    request: import("./models.js").AgentAction,
+  ) => void,
+  fail: (cause: unknown) => void,
+) {
+  const request = owner.pending;
+  if (!request || owner.actionBusy || closed()) return;
+  owner.actionBusy = true;
+  try {
+    const outcome = await owner.port.status(request.id);
+    if (!closed()) accept(outcome, request);
+  } catch (cause) {
+    if (!closed()) fail(cause);
+  } finally {
+    if (!closed()) owner.actionBusy = false;
+  }
+}

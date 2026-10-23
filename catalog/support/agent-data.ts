@@ -156,6 +156,20 @@ export function agentFixture(): AgentSnapshot {
         id: "capture",
         title: "Recorded workspace review",
         source: "Codex local capture",
+        capture: {
+          id: "capture",
+          title: "Recorded workspace review",
+          profile: "codex-cli-v1",
+          group: "Review workspace",
+          versions: [
+            {
+              id: "capture/version-1",
+              sequence: 1,
+              updatedAt: "2026-10-21T12:00:00Z",
+              entries: items,
+            },
+          ],
+        },
         items,
         progress: 100,
         status: "ready",
@@ -164,6 +178,25 @@ export function agentFixture(): AgentSnapshot {
         id: "import-other",
         title: "Architecture discussion",
         source: "OpenCode capture",
+        capture: {
+          id: "import-other",
+          title: "Architecture discussion",
+          profile: "opencode-sqlite-v1",
+          group: "Review workspace",
+          versions: [
+            {
+              id: "import-other/version-1",
+              sequence: 1,
+              updatedAt: "2026-10-21T11:00:00Z",
+              entries: [
+                message(
+                  "architecture",
+                  "Keep execution and credentials in host adapters.",
+                ),
+              ],
+            },
+          ],
+        },
         items: [
           message(
             "architecture",

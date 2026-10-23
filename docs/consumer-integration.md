@@ -138,3 +138,19 @@ The port persists exact requests before effects; `resolve` only inspects. Retain
 unknown requests, drafts and late-response guards across navigation and Settings.
 Global browsing must not activate a checkout or start an agent. Native adoption
 and the broader Agents/Threads/settings plan remain in progress.
+
+## Lapis Desktop host presentation
+
+Lapis Desktop can pass `AgentChatScreen.presentation` for native model, runtime,
+attachment and scope controls through the exported `AgentChatPresentation` type,
+and `conversationMenu` for native-only actions. The complete screen still owns
+its layout, transcript, footer and tool overlay. `AgentPort.selectSession` awaits
+host admission before switching; optional snapshot draft data restores retained
+text, attachments and comment threads. `AgentControllerOptions.transcript`
+provides public reader/navigation hooks without replacing submission guards.
+
+Recorded captures supply exact `AgentImport.capture` groups. Missing capture
+metadata is not synthesized from source labels. `AgentRecordedTranscript` and
+`CapturedSessionBrowser.transcriptOptions` preserve host readers and custom result
+views while enforcing read-only interactions. Queue pause/resume is available
+only with host queue state and corresponding capabilities.

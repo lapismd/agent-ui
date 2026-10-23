@@ -23,6 +23,8 @@ export type AgentSession = {
   items: TranscriptItem[];
   scope?: string;
   preview?: string;
+  path?: string;
+  profile?: string;
 };
 export type AgentRequest = {
   id: string;
@@ -46,6 +48,7 @@ export type AgentCatalogEntry = {
   enabled: boolean;
 };
 export type AgentImport = {
+  capture?: import("../sessions/model.js").SavedSessionGroup;
   id: string;
   title: string;
   source: string;
@@ -66,6 +69,12 @@ export type AgentSnapshot = {
     import("../chat/request-state.js").AgentRequestResult
   >;
   queued: TranscriptQueuedMessage[];
+  queueState?: {
+    paused: boolean;
+    saving: boolean;
+    running: boolean;
+    resuming: boolean;
+  };
   busy: boolean;
   capabilities: string[];
   chat?: {
@@ -74,6 +83,11 @@ export type AgentSnapshot = {
       attachments?: boolean;
       approvalPolicy?: boolean;
       runtime?: boolean;
+    };
+    draft?: {
+      text: string;
+      attachments?: string[];
+      threads?: import("@lapismd/design-core/chat").TranscriptCommentThread[];
     };
     scope: string;
     scopes: string[];
@@ -101,6 +115,8 @@ export type AgentOutcome =
 export interface AgentControllerOptions {
   /** Host admission for inline comments; evaluated without changing retained drafts. */
   canComment?(): boolean;
+  /** Host reader/navigation hooks; submission and permission checks stay controller-owned. */
+  transcript?(): Partial<import("@lapismd/design-core/chat").TranscriptProps>;
 }
 export interface AgentPort {
   /** Explicit host opt-in: derive recipients from the exact authored snapshot. */
@@ -109,6 +125,8 @@ export interface AgentPort {
     submission: TranscriptSubmission;
     selected: readonly string[];
   }): readonly string[];
+  /** Optional native session admission; selection waits for the host and never implies a send. */
+  selectSession?(id: string): Promise<AgentSnapshot>;
   read(signal: AbortSignal): Promise<AgentSnapshot>;
   act(action: AgentAction): Promise<AgentOutcome>;
   status(id: string): Promise<AgentOutcome>;

@@ -3,6 +3,7 @@ import type { TranscriptProps } from "@lapismd/design-core/chat";
 /** Optional host presentation hooks; the Agent controller retains items, drafts and delivery. */
 export type AgentTranscriptOptions = Pick<
   TranscriptProps,
+  | "resolveFileLink"
   | "history"
   | "onLoadHistory"
   | "customBlock"

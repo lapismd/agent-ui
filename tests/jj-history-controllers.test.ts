@@ -154,3 +154,14 @@ test("restore failures retain the exact original request for host receipt recove
   expect(persisted).toHaveLength(1);
   c.close();
 });
+test("following the same editor file preserves an explicitly selected operation", async () => {
+  const f = historyFixture(),
+    c = new FileHistoryController(f.reader, feedback());
+  await c.follow("Welcome.md", operation);
+  f.advance();
+  const calls = f.calls.length;
+  await c.follow("Welcome.md");
+  expect(c.state.operation).toBe(operation);
+  expect(f.calls).toHaveLength(calls);
+  await c.close();
+});

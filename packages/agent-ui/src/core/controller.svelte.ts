@@ -1,5 +1,10 @@
+import { selectAgentSession } from "./session-selection.js";
 import { AgentRequestController } from "../chat/request-controller.svelte.js";
-import { respondApproval, respondQuestion } from "./request-actions.svelte.js";
+import {
+  respondApproval,
+  respondQuestion,
+  checkRequestStatus,
+} from "./request-actions.svelte.js";
 import {
   TranscriptController,
   type TranscriptSubmission,
@@ -57,6 +62,7 @@ export class AgentUiController {
     this.sessionId = initial?.sessions[0]?.id ?? "";
     this.selectedAgent = initial?.agents[0]?.id ?? "";
     this.transcript = new TranscriptController(() => ({
+      ...this.options.transcript?.(),
       items: this.items,
       canComment: this.canComment,
       author: { id: "you", name: "You" },
@@ -124,17 +130,12 @@ export class AgentUiController {
     }
   }
   selectSession(id: string) {
-    if (
-      this.#closed ||
-      this.actionBusy ||
-      this.pending ||
-      this.transcript.sending
-    )
-      return;
-    this.drafts[this.sessionId] = this.transcript.message;
-    this.sessionId = id;
-    this.transcript.message = this.drafts[id] ?? "";
-    this.screen = "chat";
+    return selectAgentSession(
+      this,
+      id,
+      () => this.#closed,
+      (cause) => this.fail(cause),
+    );
   }
   async send(submission: TranscriptSubmission) {
     if (!this.can("send"))
@@ -263,18 +264,13 @@ export class AgentUiController {
       this.fail(new Error(outcome.reason));
     }
   }
-  async checkStatus() {
-    const request = this.pending;
-    if (!request || this.actionBusy || this.#closed) return;
-    this.actionBusy = true;
-    try {
-      const outcome = await this.port.status(request.id);
-      if (!this.#closed) this.accept(outcome, request);
-    } catch (cause) {
-      if (!this.#closed) this.fail(cause);
-    } finally {
-      if (!this.#closed) this.actionBusy = false;
-    }
+  checkStatus() {
+    return checkRequestStatus(
+      this,
+      () => this.#closed,
+      (outcome, request) => this.accept(outcome, request),
+      (cause) => this.fail(cause),
+    );
   }
   private fail(cause: unknown) {
     const error = cause instanceof Error ? cause : new Error(String(cause));

@@ -1,7 +1,8 @@
 # Governance
 
 Lapis Desktop shared-screen adoption uses isolated Jujutsu workspaces and
-verified public archives. The portable `/history` entry exposes existing
+verified public archives. The Desktop plan also authorizes portable chat presentation, session admission
+and exact read-only capture metadata contracts. The portable `/history` entry exposes existing
 controllers without loading presentation components into native host adapters.
 
 Configured-agent consumer contracts MUST document absent source timestamps and

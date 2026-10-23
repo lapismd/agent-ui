@@ -1,5 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0; read-only local snapshot presentation. -->
 <script lang="ts">
+  import type { AgentTranscriptOptions } from "../../chat/transcript-options.js";
   import DriveIcon from "@lucide/svelte/icons/hard-drive";
   import LockIcon from "@lucide/svelte/icons/lock-keyhole";
   import PauseIcon from "@lucide/svelte/icons/pause";
@@ -28,6 +29,7 @@
     onSelectVersion,
     onRefresh,
     previewLoading = false,
+    transcriptOptions,
   }: {
     sessions: SavedSessionGroup[];
     loading?: boolean;
@@ -38,6 +40,7 @@
     onSelectVersion?: (id: string) => void;
     onRefresh?: () => void;
     previewLoading?: boolean;
+    transcriptOptions?: Omit<AgentTranscriptOptions, "composer" | "changes">;
   } = $props();
   let view = $state<"document" | "classic">("document");
   const session = $derived(sessions.find((s) => s.id === selected));
@@ -132,6 +135,7 @@
   {#if loading || previewLoading}<AiTranscriptLoading composer={false} />
   {:else if version?.entries && !version.incomplete}{#key version.id}<AiRecordedTranscript
         entries={version.entries}
+        options={transcriptOptions}
         bind:view
         showViewToolbar={false}
         assistant={{
