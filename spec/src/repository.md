@@ -118,6 +118,9 @@ workspace identity and conflicted/deleted status remain available.
 
 **Requirement.** Commit, operation, evolution, file history and blame screens MUST preserve explicit pins, parent comparisons and bounded paging. Missing content MUST remain distinct from empty content.
 
+File history with no recorded head or concurrent unselected heads MUST use icon
+Empty states; the latter retains the explicit operation picker.
+
 Bounded history notices MUST remain outside the scrolling column body at its
 bottom edge, and long recorded command arguments MUST offer keyboard-accessible
 View more/View less without altering captured text.

@@ -28,10 +28,10 @@ test("embedded Stacks places its production controls in the single outer header"
   page,
 }) => {
   await open(page, "embedded");
-  const header = page.getByRole("toolbar", {
-    name: "Repository navigation",
-    exact: true,
-  });
+  const header = page.locator(
+    '[data-ui-part="toolbar"][aria-label="Repository navigation"]',
+  );
+  await expect(header).toHaveCount(1);
   await expect(header).toBeVisible();
   await expect(page.locator(".workspace-navigation")).toHaveCount(0);
   const actions = header.getByRole("button", {

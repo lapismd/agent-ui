@@ -363,3 +363,6 @@ pending settings values are covered by the same public components. Stacks also
 exposes its existing controls for an enclosing body header, with icon-only file
 editing and a compact repository picker. Verification and remaining gates are
 recorded in `spec/records/2026-10-23-content-states.md`; visual review remains open.
+The audit also covers file history without a recorded head or selected concurrent
+operation. Cold catalog preparation compiles independent entries together while
+retaining every import check and the original readiness deadline.

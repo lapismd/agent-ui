@@ -23,14 +23,22 @@ export function catalogReadinessPlugin(): Plugin {
         async (_request, response) => {
           try {
             preparation ??= (async () => {
-              for (const entry of CLIENT_ENTRIES) {
-                server.config.logger.info(`[catalog-ready] compiling ${entry}`);
-                if (!(await server.transformRequest(entry))) {
-                  throw new Error(
-                    `Catalog client entry could not be compiled: ${entry}`,
+              const results = await Promise.allSettled(
+                CLIENT_ENTRIES.map(async (entry) => {
+                  server.config.logger.info(
+                    `[catalog-ready] compiling ${entry}`,
                   );
-                }
-              }
+                  if (!(await server.transformRequest(entry))) {
+                    throw new Error(
+                      `Catalog client entry could not be compiled: ${entry}`,
+                    );
+                  }
+                }),
+              );
+              const failure = results.find(
+                (result) => result.status === "rejected",
+              );
+              if (failure?.status === "rejected") throw failure.reason;
               server.config.logger.info(
                 "[catalog-ready] settling static imports",
               );

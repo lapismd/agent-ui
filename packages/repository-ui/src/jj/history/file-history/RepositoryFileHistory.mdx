@@ -65,6 +65,19 @@ The description button reveals recorded Markdown with the shared bounded preview
 
 <Canvas of={Stories.LongDescription} />
 
+### NoRepositoryHistory
+
+A selected file with no recorded repository head renders an icon Empty state.
+
+<Canvas of={Stories.NoRepositoryHistory} />
+
+### OperationSelection
+
+Concurrent operation heads retain the explicit pin picker and an icon Empty
+state until the host's reader has a selected operation.
+
+<Canvas of={Stories.OperationSelection} />
+
 ## Behavior and accessibility
 
 onOpen delegates the exact recorded revision for file code; onBrowse delegates that revision for repository navigation. It is absent when unsupported. onBlame requests host navigation. Wide cards separate metadata and actions with space-between; when actions wrap, they begin at the left edge of the next row. Description disclosure has an accessible name, expanded state and associated panel; clipboard and navigation controls are independent. Date groups use the recorded committer timestamp in UTC, while author metadata remains recorded author data. A missing active file, successful empty history and failed history have separate Empty states. The host closes the controller after unmounting all readers. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.

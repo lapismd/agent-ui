@@ -33,6 +33,30 @@ function fixture() {
 }
 
 describe("catalog client preparation", () => {
+  it("starts independent client preparation without waiting for the first entry", async () => {
+    const f = fixture();
+    let finish!: () => void;
+    f.server.transformRequest.mockImplementationOnce(
+      () =>
+        new Promise((resolve) => {
+          finish = () => resolve({ code: "export {};" });
+        }),
+    );
+    const response = f.response();
+    const preparation = f.probe(response);
+    try {
+      await vi.waitFor(() =>
+        expect(f.server.transformRequest).toHaveBeenCalledWith(
+          "/catalog/AgentStates.stories.ts",
+        ),
+      );
+      expect(response.end).not.toHaveBeenCalled();
+    } finally {
+      finish();
+      await preparation;
+    }
+    expect(response.statusCode).toBe(200);
+  });
   it("prepares repository loading stories before accepting cold browser work", async () => {
     const f = fixture();
     await f.probe(f.response());

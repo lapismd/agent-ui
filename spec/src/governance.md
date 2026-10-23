@@ -175,6 +175,8 @@ semantic row and variable checks without traversing nested transcript tables.
 Cold browser startup MUST await a fail-closed client-compiler readiness probe
 covering Transcript documentation, complete Agent screens and reference fixtures;
 missing or failed imports MUST prevent readiness, and repair MUST permit retry.
+Independent readiness entries MUST begin compilation together while every result
+and discovered static import remains required before accepting browser work.
 Large shared-package chunks MUST pass the supported Vite asset-URL scanner;
 catalog configuration MUST NOT disable its transforms or suppress import errors.
 History diff qualification MUST exercise context reveal and hide in both

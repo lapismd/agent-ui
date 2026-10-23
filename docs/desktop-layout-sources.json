@@ -2958,10 +2958,11 @@
       "source": "src/components/repository/RepositoryFileHistory.svelte",
       "destination": "packages/repository-ui/src/jj/history/file-history/RepositoryFileHistory.svelte",
       "sourceSha256": "df78d0f1768d69ca3d3c98e146d2049866fbf9477c3cbaab05e88b031da02d5c",
-      "destinationSha256": "0711d630d87f124bfe8435e85726075e3ab0b8757d240d3d49b743e1cac65ef8",
+      "destinationSha256": "8a4a7b00c456fbf3f36d9c79c777119e1b62c846494576cbe8d2591326b5b48f",
       "reviewNotes": [
         "User-supplied file-history reference replaces graph rows with date-grouped cards, author metadata, exact Git/JJ controls, independent recorded code/repository callbacks and shared expandable Markdown. Public transparent AppShell.Toolbar replaces private header geometry; optional host close actions avoid duplicate headers. Source controller pins, lifetime, bounded paging and distinct read states remain unchanged.",
-        "Apache-2.0; explicit user review adaptations. No source application changes."
+        "Apache-2.0; explicit user review adaptations. No source application changes.",
+        "2026-10-23 content-state follow-up: no-history and unselected operation states use icon Empty; controller authority and source provenance are unchanged."
       ],
       "layoutAdaptations": [
         {
@@ -2983,6 +2984,11 @@
           "before": "    min-height: 0;\n    min-width: 0;\n    color: var(--foreground);\n    background: var(--background);\n    font-size: 0.8125rem;\n  }\n  header {\n    display: flex;\n    align-items: center;\n    gap: 0.5rem;\n    box-sizing: border-box;\n    height: var(--ui-workspace-tab-height, 40px);\n    min-height: var(--ui-workspace-tab-height, 40px);\n    flex: 0 0 var(--ui-workspace-tab-height, 40px);\n    padding: 0 0.75rem;\n    border-bottom: 1px solid var(--border);\n  }\n  .file-title {\n    flex: 1;\n",
           "after": "    min-height: 0;\n    min-width: 0;\n    color: var(--foreground);\n    background: transparent;\n    font-size: var(--ui-repository-file-history-font-size, 0.8125rem);\n  }\n  .file-title {\n    flex: 1;\n",
           "description": "User-supplied file-history reference replaces graph rows with date-grouped cards, author metadata, exact Git/JJ controls, independent recorded code/repository callbacks and shared expandable Markdown. Public transparent AppShell.Toolbar replaces private header geometry; optional host close actions avoid duplicate headers. Source controller pins, lifetime, bounded paging and distinct read states remain unchanged."
+        },
+        {
+          "before": "      {:else if !state.operation}<p role=\"status\">\n          {state.heads.length > 1\n            ? \"Choose an operation to inspect this file.\"\n            : \"No repository history available.\"}\n        </p>\n",
+          "after": "      {:else if !state.operation}<Empty.Root role=\"status\">\n          <Empty.Header>\n            <Empty.Media variant=\"icon\"><FileClockIcon /></Empty.Media>\n            <Empty.Title\n              >{state.heads.length > 1\n                ? \"Choose an operation\"\n                : \"No repository history\"}</Empty.Title\n            >\n            <Empty.Description\n              >{state.heads.length > 1\n                ? \"Choose an operation above to inspect this file.\"\n                : \"This repository has no recorded operation to inspect.\"}</Empty.Description\n            >\n          </Empty.Header>\n        </Empty.Root>\n",
+          "description": "User-requested content-state rule: absent repository history and concurrent unselected operation heads render public icon Empty states while retaining explicit pin selection."
         }
       ],
       "adaptations": [
@@ -2990,7 +2996,7 @@
           "description": "User-supplied file-history reference replaces graph rows with date-grouped cards, author metadata, exact Git/JJ controls, independent recorded code/repository callbacks and shared expandable Markdown. Public transparent AppShell.Toolbar replaces private header geometry; optional host close actions avoid duplicate headers. Source controller pins, lifetime, bounded paging and distinct read states remain unchanged."
         }
       ],
-      "layoutSha256": "066148825cdc3e214c3d6b983e502cbe2866cc3f2c9ee94906cf4b294292a83d"
+      "layoutSha256": "5a67617eb1d08e38670493c0b36b09d90c3012b86bed6252f0c48acc7a3950fc"
     },
     {
       "sourceRepository": "lapis-desktop",

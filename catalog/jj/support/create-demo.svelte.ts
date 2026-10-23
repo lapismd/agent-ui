@@ -56,11 +56,15 @@ export function createJjDemo(part: string, variant = "Basic") {
                 ? "operation-rich"
                 : "ready";
   const scenarioForPart =
-    part === "RepositoryOperationColumn" && variant === "Loading"
-      ? "operation-details-preparing"
-      : part === "RepositoryOperationColumn" && variant === "Unavailable"
-        ? "operation-detail-failure"
-        : scenario;
+    part === "RepositoryFileHistory" && variant === "NoRepositoryHistory"
+      ? "empty"
+      : part === "RepositoryFileHistory" && variant === "OperationSelection"
+        ? "multiple"
+        : part === "RepositoryOperationColumn" && variant === "Loading"
+          ? "operation-details-preparing"
+          : part === "RepositoryOperationColumn" && variant === "Unavailable"
+            ? "operation-detail-failure"
+            : scenario;
   const fixture = operationFixture(scenarioForPart);
   if (part === "RepositoryFileHistory" && variant === "LongDescription")
     fixture.latest.description = richCommitMessage;

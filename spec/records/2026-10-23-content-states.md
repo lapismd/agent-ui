@@ -78,3 +78,35 @@ Completed focused qualification:
 - The unmodified parent ledger reproduces the same ChatComposerDrawer original
   layout mismatch. Changed source layouts pass their focused comparison; the
   unrelated whole-ledger lane remains open and no source assertion was relaxed.
+
+Follow-up qualification:
+
+- Splitting the unchanged filtered Storybook matrix into three sequential shards
+  completes all four theme/viewport combinations: 428 passed, 0 failed. The CLI
+  browser-port override did not take effect in the earlier isolation attempt;
+  it is not counted as an isolation pass.
+- File history's no-head and concurrent-unselected-head branches still used plain
+  status text. Two additional production stories fail before and pass after the
+  icon Empty substitution. They retain the explicit pin picker and controller.
+  The added source adaptation matches the original layout; all 412 fingerprints
+  remain required.
+- Cold header acceptance initially times out before executing tests. A traced
+  retry reproduces serial client-entry compilation consuming the unchanged
+  60-second readiness budget. Start independent transforms together, await every
+  result and static imports, and retain failure/retry semantics. The exact unit
+  regression changes from 1 failed / 6 passed to 7 passed; the fresh browser
+  process reaches readiness within the original limit. Final browser counts are
+  recorded after completion below.
+- Full units now pass 214 tests; types have 0 errors/warnings, architecture,
+  formatting and source fingerprints pass. Updated builds, complete browser
+  coverage, package acceptance and consumer archive intake continue separately.
+
+- Exact cold stack-navigation retry: 1 passed. Fresh full header family:
+  12 passed. An intermediate run had 11 passed and 1 page navigation aborted
+  during concurrent source/docs work; final runs freeze those inputs and retain
+  the original readiness/navigation timeouts and all assertions.
+- The complete file-history family passes all 28 interaction/axe combinations
+  (7 stories across four theme/viewport settings), including both added states.
+- Updated builds/publint, three specification lanes and clean packed consumption
+  pass; all 145 public examples compile. The complete 151-test browser suite is
+  running separately, including the cold 87-variation content audit.

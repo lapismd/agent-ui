@@ -116,11 +116,21 @@
             ></Empty.Header
           ></Empty.Root
         >
-      {:else if !state.operation}<p role="status">
-          {state.heads.length > 1
-            ? "Choose an operation to inspect this file."
-            : "No repository history available."}
-        </p>
+      {:else if !state.operation}<Empty.Root role="status">
+          <Empty.Header>
+            <Empty.Media variant="icon"><FileClockIcon /></Empty.Media>
+            <Empty.Title
+              >{state.heads.length > 1
+                ? "Choose an operation"
+                : "No repository history"}</Empty.Title
+            >
+            <Empty.Description
+              >{state.heads.length > 1
+                ? "Choose an operation above to inspect this file."
+                : "This repository has no recorded operation to inspect."}</Empty.Description
+            >
+          </Empty.Header>
+        </Empty.Root>
       {:else if !state.commits.length}<Empty.Root role="status">
           <Empty.Header>
             <Empty.Media variant="icon"><FileClockIcon /></Empty.Media>

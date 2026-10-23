@@ -95,3 +95,35 @@ export const LongDescription: Story = {
     );
   },
 };
+
+export const NoRepositoryHistory: Story = {
+  render: () => ({
+    Component: Fixture,
+    props: { part: "RepositoryFileHistory", variant: "NoRepositoryHistory" },
+  }),
+  play: async ({ canvasElement }) => {
+    const title = await within(canvasElement).findByText(
+      "No repository history",
+    );
+    await expect(
+      title
+        .closest('[data-slot="empty"]')
+        ?.querySelector('[data-ui-part="empty-media"] svg'),
+    ).toBeVisible();
+  },
+};
+
+export const OperationSelection: Story = {
+  render: () => ({
+    Component: Fixture,
+    props: { part: "RepositoryFileHistory", variant: "OperationSelection" },
+  }),
+  play: async ({ canvasElement }) => {
+    const title = await within(canvasElement).findByText("Choose an operation");
+    await expect(
+      title
+        .closest('[data-slot="empty"]')
+        ?.querySelector('[data-ui-part="empty-media"] svg'),
+    ).toBeVisible();
+  },
+};
