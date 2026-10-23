@@ -126,6 +126,9 @@ contributors, settings and execution remain explicit host actions. An omitted
 capability MUST NOT imply that the host supports it. Mounting MUST NOT mutate.
 Narrow windows MUST retain access to the list and selected conversation, with
 keyboard resizing, labelled controls and focus restoration on panel close.
+Nested inboxes MUST choose their mobile stage from their available body width;
+an explicit host selection or creation MUST reveal its conversation, including
+when it bypasses the list's own selection callback.
 Full reply/reaction/settings and native execution qualification remain separate
 from the read-only directory acceptance.
 

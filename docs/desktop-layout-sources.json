@@ -8172,7 +8172,7 @@
       "source": "web/src/lib/ui/community-inbox/CommunityInbox.svelte",
       "destination": "packages/agent-ui/src/threads/screen/ThreadInbox.svelte",
       "sourceSha256": "01446766d62d652c0b54fe489b7819a960c0b40c46be954baad1c238aa737567",
-      "destinationSha256": "400bf49c91114a5914bd9ce4f726d2b0fa0009c888cd3cdd87ee15047213dc69",
+      "destinationSha256": "e7ec624753506fd5a9054ac66aa2d1dcff0ddacb4fb3017bf601a3eec242a5fa",
       "adaptations": [
         {
           "description": "Retain AppShell Body regions, labelled list/content, responsive mobile selection and bounded pointer/keyboard resize; replace private controller and view tabs with typed read-only directory and public ResponsiveTabs. Host mounts complete AgentChatScreen with its navigation slot instead of duplicating headers."

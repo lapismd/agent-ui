@@ -60,3 +60,16 @@ conversation settings and cross-home execution remain unfinished. The fixture's
 contributors exercise the host slot rather than claim a complete native panel.
 The existing nine wider Design Core pointer failures remain separately open;
 this slice does not waive them or declare the larger integration plan complete.
+
+Native adoption exposed a further nested-width handoff: the inherited 1024px
+breakpoint treated the application's available body as a small screen, and host
+creation bypassed the row callback that reveals the conversation. The inbox now
+uses its source list/conversation geometry's 704px boundary and reacts to an
+explicit host selection without tracking its own stage changes. The Create Thread
+story exercises that path in both modes and widths. Browser assertions additionally
+wait for the exact home's selection marker, including in the inactive mobile
+panel, so review screenshots cannot capture a previous selection's paint.
+Follow-up `pnpm check` and `pnpm spec:check` pass. The exact story target passes
+48 interaction/accessibility cases; all three cold browser cases pass with the
+new selection assertions. The owning public package build/publint passes.
+Native first-consumer acceptance and broader final qualification remain open.

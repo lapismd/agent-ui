@@ -58,6 +58,16 @@ for (const width of [420, 1280])
       .getByRole("button", { name: /Open Thread Review shared screens/ })
       .click();
     await expect(editor).toHaveText("Retain this Agent UI draft");
+    await expect(
+      page
+        .locator('[data-repository-id="a"] [data-ui-part="inbox-conversation"]')
+        .first(),
+    ).toHaveAttribute("aria-pressed", "true");
+    await expect(
+      page
+        .locator('[data-repository-id="b"] [data-ui-part="inbox-conversation"]')
+        .first(),
+    ).toHaveAttribute("aria-pressed", "false");
     await page.screenshot({ path: `.local/threads-review-${width}.png` });
     expect(errors).toEqual([]);
   });

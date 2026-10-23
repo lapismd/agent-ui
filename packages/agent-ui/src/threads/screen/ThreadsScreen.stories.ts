@@ -35,6 +35,16 @@ export const Layout: Story = { render: () => ({ Component: Fixture }) };
 export const Conversation: Story = {
   render: () => ({ Component: Fixture, props: { variant: "conversation" } }),
 };
+export const CreateThread: Story = {
+  render: () => ({ Component: Fixture }),
+  play: async ({ canvasElement }) => {
+    const c = within(canvasElement);
+    await userEvent.click(await c.findByRole("button", { name: "New Thread" }));
+    await expect(
+      await c.findByRole("heading", { name: "New Thread" }),
+    ).toBeVisible();
+  },
+};
 export const Search: Story = {
   render: () => ({ Component: Fixture }),
   play: async ({ canvasElement }) => {

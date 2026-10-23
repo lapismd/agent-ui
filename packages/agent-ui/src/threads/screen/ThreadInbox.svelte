@@ -1,6 +1,6 @@
 <!-- JJ Store CommunityInbox regions, with host-owned conversation and repository callbacks. -->
 <script lang="ts">
-  import { tick, type Snippet } from "svelte";
+  import { tick, untrack, type Snippet } from "svelte";
   import {
     AppShell,
     type AppShellController,
@@ -55,7 +55,12 @@
     if (search) void tick().then(() => searchInput?.focus());
   });
   $effect(() => {
-    if (mobile && !selected) shell.mobile.show("left", "thread-conversations");
+    const chosen = selected?.id;
+    if (mobile)
+      untrack(() => {
+        if (chosen) shell.mobile.showMain(false);
+        else shell.mobile.show("left", "thread-conversations");
+      });
   });
   function select(value: ThreadIdentity) {
     onSelect(value);

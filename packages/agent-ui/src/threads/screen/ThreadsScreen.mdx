@@ -43,6 +43,10 @@ header, close, resize and compact replacement behavior.
 <Canvas of={Stories.Layout} />
 ### Conversation
 <Canvas of={Stories.Conversation} />
+
+### Create thread
+
+<Canvas of={Stories.CreateThread} />
 ### Search
 <Canvas of={Stories.Search} />
 ### Empty
@@ -71,8 +75,9 @@ and tombstoned records; Archived reflects the host's recorded status.
 
 The list supports pointer dragging, arrow-key resizing, Home/End and double-click
 reset, with widths between 224px and a viewport-dependent maximum of 480px.
-Narrow windows use AppShell's mobile list and conversation stages. Closing the
-attached panel restores focus. The supplied conversation retains the existing
+The nested inbox switches to AppShell's mobile stages below 704px of available
+body width. Host selections reveal the conversation without a second click in
+the list. Closing the attached panel restores focus. The supplied conversation retains the existing
 view switch, composer footer and Send semantics.
 
 ## Styling variables

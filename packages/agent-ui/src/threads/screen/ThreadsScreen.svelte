@@ -55,7 +55,12 @@
 </script>
 
 <div class="threads-screen">
-  <AppShell.Root controller={shell} displayMode="auto" desktopMinMainWidth={0}>
+  <AppShell.Root
+    controller={shell}
+    displayMode="auto"
+    mobileBreakpoint={704}
+    desktopMinMainWidth={0}
+  >
     <AppShell.Main
       ><ThreadInbox
         {controller}
