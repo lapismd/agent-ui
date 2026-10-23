@@ -393,3 +393,14 @@ export const Embedded: Story = {
     await expect(canvas.queryByRole("tablist")).toBeNull();
   },
 };
+
+export const ReviewsEmpty: Story = {
+  render: () => ({ Component: Demo, props: { variant: "ReviewsEmpty" } }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await canvas.findAllByText("No reviews");
+    await expect(
+      canvas.queryAllByRole("list", { name: "Reviews" }),
+    ).toHaveLength(0);
+  },
+};

@@ -91,7 +91,8 @@ export function projectsFixture(variant: string) {
             actor,
           },
         ] as WorkComment[],
-        reviews: [reviewFixture(variant, actor)],
+        reviews:
+          variant === "ReviewsEmpty" ? [] : [reviewFixture(variant, actor)],
       },
     ]),
   );

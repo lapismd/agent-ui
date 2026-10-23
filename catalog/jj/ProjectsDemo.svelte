@@ -43,7 +43,8 @@
         return { tab: "repositories", home: "alpha", project: "project-0" };
       if (variant.startsWith("ReviewDetail"))
         return { tab: "reviews", home: "alpha", review: "review-1" };
-      if (variant === "Reviews") return { tab: "reviews" };
+      if (["Reviews", "ReviewsEmpty"].includes(variant))
+        return { tab: "reviews" };
       if (variant === "Activity") return { tab: "activity" };
       if (variant === "Repositories") return { tab: "repositories" };
       return { tab: "projects" };

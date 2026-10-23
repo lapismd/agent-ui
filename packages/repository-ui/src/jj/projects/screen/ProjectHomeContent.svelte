@@ -119,23 +119,23 @@
           title="No matching tasks"
           description="Select a project and create a task, or change the filters."
         />{/if}
-    {:else if route.tab === "reviews"}<div
-        class="community-projects__review-group-list community-projects__list"
-        role="list"
-        aria-label="Reviews"
-        data-layout={layout}
-      >
-        {#each page.reviews as review (review.id)}<div role="listitem">
-            <ReviewRow
-              {review}
-              onOpen={(review) =>
-                navigate({ ...route, home: entry.home.id, review })}
-            />
-          </div>{/each}{#if !page.reviews.length}<WorkEmpty
-            title="No reviews"
-            description="Create a review for this repository."
-          />{/if}
-      </div>
+    {:else if route.tab === "reviews"}{#if page.reviews.length}<div
+          class="community-projects__review-group-list community-projects__list"
+          role="list"
+          aria-label="Reviews"
+          data-layout={layout}
+        >
+          {#each page.reviews as review (review.id)}<div role="listitem">
+              <ReviewRow
+                {review}
+                onOpen={(review) =>
+                  navigate({ ...route, home: entry.home.id, review })}
+              />
+            </div>{/each}
+        </div>{:else}<WorkEmpty
+          title="No reviews"
+          description="Create a review for this repository."
+        />{/if}
     {/if}
     {#if page.next}<Button
         variant="outline"

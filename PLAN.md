@@ -327,3 +327,6 @@ without duplicate headers or tabs; shared detail bodies and rails remain owned.
 
 Stack screens can hide local view tabs for the shared outer repository frame
 while preserving workspace controls and workflow action bars.
+
+Consumer acceptance found empty Reviews list semantics invalid; the shared
+screen now keeps its Empty state outside list/listitem structure.

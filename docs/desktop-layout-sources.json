@@ -7426,13 +7426,16 @@
       "source": "web/src/lib/ui/store-work/StoreProjectsDirectory.svelte",
       "destination": "packages/repository-ui/src/jj/projects/screen/ProjectHomeContent.svelte",
       "sourceSha256": "8173b16edc749aae3db2e65e2b30efb01803348bcf4daf8a6ee02a3be5816a13",
-      "destinationSha256": "6afeb35ea40d509db8492c0a237b3e12eaf7aa19e677ae81b85893ca241d8364",
+      "destinationSha256": "ed0bf2c06bf7b4a792c1439b0cdf285d0150c132a61d5038de93b6dffb86c557",
       "adaptations": [
         {
           "description": "Extract per-home detail/review presentation and independent read recovery. Projects/tasks now use the cross-home ownership directory and activity uses the unified timeline."
         },
         {
           "description": "Compose the private review detail for selected reviews with exact host activity/copy callbacks; retain task detail for tasks."
+        },
+        {
+          "description": "Keep empty Reviews outside semantic list structure; render list/listitem only for populated collections, repairing the desktop consumer accessibility regression upstream."
         }
       ]
     },
