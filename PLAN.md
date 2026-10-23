@@ -228,3 +228,7 @@ Stacks review now includes three recorded bookmark segments per selected branch,
 a Stacked Branches example with a text diff, source-matched inline file spacing,
 a borderless body toolbar and a correctly sized target icon. See
 `spec/records/2026-10-23-stack-branch-spacing.md`; human review remains pending.
+
+Stack description cards now align with inline files and use compact 13px prose
+on a subtle theme surface. Focused evidence is in
+`spec/records/2026-10-23-stack-description.md`; broad checks remain deferred.

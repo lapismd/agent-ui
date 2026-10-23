@@ -202,6 +202,8 @@ The Stacks/Workspace body toolbar MUST omit its lower divider; target-history
 column icons MUST match the other 16px column header icons.
 Continuous graph connectors MUST remain visible beside expanded commit files
 in both Stacks and Workspace, spanning the complete selected row height.
+Expanded stack commit descriptions MUST align with the inline file-card width,
+use compact 13px default prose and a subtle theme-aware near-white surface.
 
 ### Acceptance details
 

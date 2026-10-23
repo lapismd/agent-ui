@@ -50,6 +50,22 @@ export const StackedBranches: Story = {
     await canvas.findByRole("button", {
       name: /^Close diff from stack-lane-1$/,
     });
+    await userEvent.click(
+      canvasElement.querySelectorAll<HTMLButtonElement>(
+        ".workspace-stack-lane .repository-graph-select",
+      )[1]!,
+    );
+    const message = await canvas.findByRole("region", {
+      name: "Commit message body",
+    });
+    const files = message.parentElement!.querySelector(".workspace-files")!;
+    expect(
+      Math.abs(
+        message.getBoundingClientRect().width -
+          files.getBoundingClientRect().width,
+      ),
+    ).toBeLessThan(1);
+    expect(getComputedStyle(message.querySelector("p")!).fontSize).toBe("13px");
   },
 };
 export const Binary: Story = story("Binary");

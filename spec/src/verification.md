@@ -103,3 +103,7 @@ intent acceptance and explicit remaining drag/drop/commit UI gaps.
 The stacked-branch fixture, compact inline file spacing, borderless screen toolbar
 and 16px target icon review corrections are recorded in
 `spec/records/2026-10-23-stack-branch-spacing.md`. Screen review remains pending.
+
+Stack description width, compact typography, subtle surface and deferred
+overflow measurement are qualified in
+`spec/records/2026-10-23-stack-description.md` with focused story checks.

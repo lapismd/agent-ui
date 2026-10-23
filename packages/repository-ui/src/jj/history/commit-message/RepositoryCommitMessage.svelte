@@ -14,15 +14,24 @@
     expanded = false;
   });
   function measure(node: HTMLDivElement) {
+    let frame: number | null = null;
     const update = () => {
+      frame = null;
       const rem = parseFloat(
         getComputedStyle(node.ownerDocument.documentElement).fontSize,
       );
       overflowing = node.getBoundingClientRect().height > 9 * rem + 1;
     };
-    const observer = new ResizeObserver(update);
+    const observer = new ResizeObserver(() => {
+      if (frame === null) frame = requestAnimationFrame(update);
+    });
     observer.observe(node);
-    return { destroy: () => observer.disconnect() };
+    return {
+      destroy: () => {
+        observer.disconnect();
+        if (frame !== null) cancelAnimationFrame(frame);
+      },
+    };
   }
 </script>
 

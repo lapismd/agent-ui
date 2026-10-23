@@ -2,6 +2,27 @@
   "component": "RepositoryStackLane",
   "variables": [
     {
+      "name": "--ui-repository-stack-message-margin",
+      "default": "0 0 0.5rem",
+      "description": "Full-width commit description aligned with its inline file card.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/workspace/stack-lane/stack-lane.css"
+    },
+    {
+      "name": "--ui-repository-stack-message-font-size",
+      "default": "0.8125rem",
+      "description": "Compact commit Markdown text through Mira's public typography token.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/workspace/stack-lane/stack-lane.css"
+    },
+    {
+      "name": "--ui-repository-stack-message-surface",
+      "default": "color-mix(in srgb, var(--foreground) 2%, var(--background))",
+      "description": "Subtle theme-aware near-white description surface in light mode.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/workspace/stack-lane/stack-lane.css"
+    },
+    {
       "name": "--ui-repository-stack-branch-gap",
       "default": "0.75rem",
       "description": "Vertical connection between grouped bookmark cards.",

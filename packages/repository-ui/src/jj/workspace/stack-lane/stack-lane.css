@@ -2,6 +2,20 @@
 .workspace-stack-lane {
   --workspace-branch-gap: var(--ui-repository-stack-branch-gap, 0.75rem);
 }
+.workspace-bookmark-card {
+  --ui-repository-revisions-message-margin: var(
+    --ui-repository-stack-message-margin,
+    0 0 0.5rem
+  );
+  --mira-markdown-font-size: var(
+    --ui-repository-stack-message-font-size,
+    0.8125rem
+  );
+  --ui-repository-revisions-message-surface: var(
+    --ui-repository-stack-message-surface,
+    color-mix(in srgb, var(--foreground) 2%, var(--background))
+  );
+}
 .workspace-stage-card,
 .workspace-bookmark-card {
   margin: 0.5rem;
