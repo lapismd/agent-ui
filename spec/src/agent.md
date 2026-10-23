@@ -77,6 +77,12 @@ pages are excluded. Inline chat controls remain part of the conversation.
 Storybook MUST mount each complete source-derived screen with in-memory
 controllers. Do not add invented application navigation or replacement layouts.
 
+Completed chats MUST allow host snapshots to disable unavailable attachment,
+approval-policy and runtime footer controls independently, without replacing
+screen geometry or implying that native actions are supported. Omitted restrictions
+preserve the All Messages defaults. Consumers MUST mount the public complete
+chat screen and use the host port for durable sending and exact permissions.
+
 ### Acceptance details
 
 - Public types express the boundary.

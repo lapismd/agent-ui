@@ -69,6 +69,12 @@ export type AgentSnapshot = {
   busy: boolean;
   capabilities: string[];
   chat?: {
+    /** Optional host restrictions; omitted controls preserve the complete-screen defaults. */
+    controls?: {
+      attachments?: boolean;
+      approvalPolicy?: boolean;
+      runtime?: boolean;
+    };
     scope: string;
     scopes: string[];
     files: { id: string; label: string }[];

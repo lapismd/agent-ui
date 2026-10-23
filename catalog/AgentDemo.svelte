@@ -23,6 +23,7 @@
     empty = false,
     streaming = false,
     draft,
+    restrictedControls = false,
   }: {
     screen?: AgentScreen;
     scenario?: AgentScenario;
@@ -35,6 +36,7 @@
     empty?: boolean;
     streaming?: boolean;
     draft?: string;
+    restrictedControls?: boolean;
   } = $props();
   const demo = untrack(() => createDemo(scenario));
   const { port, controller } = demo;
@@ -67,6 +69,14 @@
       },
     ];
   }
+  if (untrack(() => restrictedControls))
+    port.snapshot.chat = {
+      ...port.snapshot.chat,
+      scope: "Repository",
+      scopes: ["Repository"],
+      files: [],
+      controls: { attachments: false, approvalPolicy: false, runtime: false },
+    };
   controller.view = untrack(() => view);
   controller.snapshot = structuredClone(port.snapshot);
   if (untrack(() => draft !== undefined))

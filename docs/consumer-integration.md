@@ -53,3 +53,21 @@ successful compilation alone do not establish integration completeness.
 Native host adapters can import `encodeJjChangeId` from
 `@lapismd/repository-ui/history` without loading Svelte components. Pass native
 hex IDs to this formatter before constructing display-only change models.
+
+## Agent conversations
+
+Mount `AgentChatScreen` from `@lapismd/agent-ui/chat` (or `AgentWorkbench`
+from `/screens`) with a host-owned `AgentUiController` and `AgentPort` from
+`/core`. The All Messages complete-screen example is the reference for the
+transcript font, Document/Classic toggle, fixed composer footer and one Send
+flow. Do not reconstruct it from Transcript, ChatMessageComposer or session
+primitives. Import `@lapismd/agent-ui/styles.css`.
+
+The host persists intent before dispatch, preserves exact unknown outcomes,
+projects captured responses and permission identities, and resolves explicitly
+selected recipients. No recipients can mean a saved human message when the host
+supports it. Mention text alone must not grant execution. Only acknowledge sends
+after durable acceptance. Native targets, context and credentials remain owned
+by the host. `snapshot.chat.controls` can disable attachment, approval-policy and
+runtime controls independently when the host has no adapter for those actions;
+keep the ordinary footer and its typography instead of substituting host markup.

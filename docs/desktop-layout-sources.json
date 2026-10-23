@@ -458,11 +458,19 @@
         {
           "before": "../../../lib/ai/chat/panel/props.ts",
           "after": "./presentation.js"
+        },
+        {
+          "description": "2026-10-23: preserve footer geometry while honoring optional host capability restrictions for unsupported native controls."
         }
       ],
-      "destinationSha256": "7de6a690493cb7ac9b98a3afdb754524baf776c0bd9e4fc59568988fe0dd5582",
-      "layoutAdaptations": [],
-      "layoutSha256": "88b712f411724de9378b6466d4a5092b3791c4841905c60afc38f61c82b6274c"
+      "destinationSha256": "195b0b72ce1a71d130a34e9704c4b392ca754d4858cfe8ef010e32595753a627",
+      "layoutAdaptations": [
+        {
+          "before": "  {initializing}",
+          "after": "  initializing={initializing || panelProps.controls?.runtime === false}"
+        }
+      ],
+      "layoutSha256": "6eb0c3fbd34e7bc67083e81e80c1d2ce5edfa78409494731aad8f0ee3316c4db"
     },
     {
       "sourceRepository": "lapis-desktop",
@@ -538,16 +546,23 @@
         },
         {
           "description": "User-authorized 2026-10-22: replace the generic filename glyph with public Design Core FileTypeIcon, using the exact host path and original icon size. Geometry and actions are retained; artwork is an intentional visual change pending review."
+        },
+        {
+          "description": "2026-10-23: preserve footer geometry while honoring optional host capability restrictions for unsupported native controls."
         }
       ],
-      "destinationSha256": "24ff287515c182ba94fa501d216648c156d223c452a5088deda980622c1d67a3",
+      "destinationSha256": "cfb750409c6be46031cced7a30669d2f9719cfe0d08ff890cb8c0692ac02c352",
       "layoutAdaptations": [
         {
           "before": "<FileIcon aria-hidden=\"true\" />",
           "after": "<FileTypeIcon path={item.id} size=\"md\" />"
+        },
+        {
+          "before": "disabled={initializing}",
+          "after": "disabled={initializing || panelProps.controls?.attachments === false}"
         }
       ],
-      "layoutSha256": "f179dc26b7c26f6585cdb64e1ed1d1efa20d394a14652879033b9fab637f5a53"
+      "layoutSha256": "5324ab249402081b3409ba6084cc5385b5be4692ddab616e29611a324b2219c4"
     },
     {
       "sourceRepository": "lapis-desktop",
@@ -574,11 +589,19 @@
         {
           "before": "panelProps.app?.notifications.notify({\n        id: \"ai-approval-policy-save\",\n        source: \"ai\",\n        title: \"Action approvals\",\n        severity: \"error\",\n        message: error instanceof Error ? error.message : String(error),\n      });",
           "after": "panelProps.onError?.(error instanceof Error ? error : new Error(String(error)));"
+        },
+        {
+          "description": "2026-10-23: preserve footer geometry while honoring optional host capability restrictions for unsupported native controls."
         }
       ],
-      "destinationSha256": "919f0a3bee5ceb4ce076a32ef0cc3f201b1950feb5ecfec8acdb4e50404915be",
-      "layoutAdaptations": [],
-      "layoutSha256": "5cb73ad59a6d9729bff8bae23faf1a5d29dac2e2f67f4cbba5dc3a3d7e955c6f"
+      "destinationSha256": "fc724b58b3ccdd8f9ee59e07f263fd84da2eab129b443ce914b4c5a88fc0098d",
+      "layoutAdaptations": [
+        {
+          "before": "                  panelProps.initializing ||",
+          "after": "                  panelProps.initializing ||\n                  panelProps.controls?.approvalPolicy === false ||"
+        }
+      ],
+      "layoutSha256": "13fd0a62528625d38e0f27cbb912073b64e08edc0bf0cd6324e63f65045c90cd"
     },
     {
       "sourceRepository": "lapis-desktop",

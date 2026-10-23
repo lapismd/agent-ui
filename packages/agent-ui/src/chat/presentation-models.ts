@@ -17,6 +17,9 @@ export type SettingsPatch = Partial<
   import("../profiles/preferences.js").ChatProfilePreferences
 >;
 export type AiChatPanelProps = AgentProfileEditorContext & {
+  controls?: NonNullable<
+    import("../core/models.js").AgentSnapshot["chat"]
+  >["controls"];
   transcriptFrame?: boolean;
   repository?: boolean;
   fileSearch?: boolean;

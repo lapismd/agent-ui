@@ -280,3 +280,9 @@ track this public optional input.
 
 - Export the existing JJ change-ID display encoder for first-consumer adapters;
   recorded under `spec/records/2026-10-23-public-identifiers.md`.
+
+The first JJ Desktop consumer now mounts the complete Agent chat composition,
+with explicit host restrictions for unavailable native footer controls. The
+All Messages reference retains its default behavior. Evidence and the two
+pre-existing root architecture findings are in
+`spec/records/2026-10-23-agent-host-controls.md`; visual review remains pending.

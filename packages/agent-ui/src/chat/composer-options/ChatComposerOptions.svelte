@@ -18,6 +18,6 @@
 
 <ChatAgentOptions
   {composerState}
-  {initializing}
+  initializing={initializing || panelProps.controls?.runtime === false}
   selectRuntime={!!selectRuntime}
 />

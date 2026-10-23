@@ -5,8 +5,7 @@ import {
 import { controllerComposerFeedback } from "./composer-feedback.js";
 import type { AgentUiController } from "../core/controller.svelte.js";
 import type { SettingsPatch, TranscriptPanelProps } from "./presentation.js";
-import { normalizeAcpAgent } from "../profiles/acp-agents.js";
-import { agentAvatar } from "../identity/agent-avatar.js";
+import { recipientOptions } from "../profiles/recipient-options.js";
 /** Controller projection only: the extracted UI never reads an App or native service. */
 export function createChatPresentation(
   owner: () => AgentUiController,
@@ -17,24 +16,17 @@ export function createChatPresentation(
     drawerCollapsed = $state(false);
   let model = $state(""),
     thinking = $state("default");
-  const recipientOptions = () =>
-    (owner().snapshot?.agents ?? []).map((agent) => ({
-      id: agent.id,
-      label: agent.name,
-      agent: normalizeAcpAgent(agent.provider.toLowerCase()),
-      model: agent.model,
-      description: agent.description,
-      avatar: agentAvatar(agent.provider),
-      ...agent.profile,
-    }));
   const settings = () => ({
     approvalPolicy: owner().snapshot?.chat?.approvalPolicy ?? ("ask" as const),
     automaticallyMentionAgents:
       owner().snapshot?.chat?.automaticallyMentionAgents ?? false,
-    agentParticipants: recipientOptions(),
+    agentParticipants: recipientOptions(owner().snapshot?.agents ?? []),
   });
   return {
     panelProps: {
+      get controls() {
+        return owner().snapshot?.chat?.controls;
+      },
       get initializing() {
         return owner().loading;
       },
@@ -128,7 +120,7 @@ export function createChatPresentation(
         return controllerComposerFeedback(owner());
       },
       get recipientOptions() {
-        return recipientOptions();
+        return recipientOptions(owner().snapshot?.agents ?? []);
       },
       recipients: {
         get selectedIds() {
@@ -136,9 +128,10 @@ export function createChatPresentation(
         },
       },
       get modelOptions() {
-        return [
-          ...new Set(owner().snapshot?.agents.map((a) => a.model) ?? []),
-        ].map((model) => ({ model }));
+        return Array.from(
+          new Set(owner().snapshot?.agents.map((a) => a.model)),
+          (model) => ({ model }),
+        );
       },
       changeAgent(agent) {
         owner().selectedAgent = agent;

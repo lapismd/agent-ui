@@ -43,6 +43,11 @@ JJ Desktop is the explicitly authorized first consumer. Its current integration
 includes complete repository screens and shared JJ Store appearance/settings
 presentation. This authorization does not publish packages or change JJ Store.
 
+Agent conversations use public `AgentChatScreen`/`AgentWorkbench` with a
+host-owned `AgentUiController` and `AgentPort`. The All Messages example owns
+transcript typography, view toggles, composer footer and send interaction.
+Do not reconstruct that screen from transcript/composer/session primitives.
+
 ## Package architecture
 
 Reuse public Design Core AppShell, Column Canvas, chat, forms and diff primitives.

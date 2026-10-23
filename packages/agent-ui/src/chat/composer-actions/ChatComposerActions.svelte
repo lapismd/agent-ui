@@ -46,7 +46,7 @@
           variant="ghost"
           aria-label="Attach file"
           data-testid="ai-chat-attach"
-          disabled={initializing}
+          disabled={initializing || panelProps.controls?.attachments === false}
         >
           <PaperclipIcon aria-hidden="true" />
         </Button>

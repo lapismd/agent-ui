@@ -66,6 +66,7 @@
                 data-auto-approve={policy === "allow-all"}
                 disabled={saving ||
                   panelProps.initializing ||
+                  panelProps.controls?.approvalPolicy === false ||
                   !panelProps.onSettingsChange}
               >
                 {#if policy === "allow-all"}<ShieldCheckIcon

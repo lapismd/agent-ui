@@ -104,3 +104,28 @@ export const InlineAgentEditor: Story = {
     await userEvent.keyboard("{Escape}");
   },
 };
+
+export const HostCapabilities: Story = {
+  render: () => ({ Component: AgentDemo, props: { restrictedControls: true } }),
+  play: async ({ canvasElement }) => {
+    const c = within(canvasElement);
+    await expect(c.getByRole("button", { name: "Attach file" })).toBeDisabled();
+    await expect(
+      c.getByRole("button", { name: "Effort and model" }),
+    ).toBeDisabled();
+    await expect(
+      c.getByRole("button", {
+        name: "Action approvals: Ask for approval",
+      }),
+    ).toBeDisabled();
+    await expect(
+      c.getByRole("button", { name: "Switch to Classic view" }),
+    ).toBeEnabled();
+    await userEvent.click(
+      c.getByRole("button", { name: "Switch to Classic view" }),
+    );
+    await expect(
+      c.getByRole("button", { name: "Effort and model" }),
+    ).toBeDisabled();
+  },
+};
