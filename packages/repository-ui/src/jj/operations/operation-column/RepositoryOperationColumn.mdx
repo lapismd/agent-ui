@@ -44,6 +44,13 @@ A pending in-memory read holds the original loading geometry without contacting 
 
 <Canvas of={Stories.Loading} />
 
+### ParentLoading
+
+Pending parent metadata keeps the selected operation and open command picker
+mounted. Recorded choices remain visible beside a labelled Skeleton.
+
+<Canvas of={Stories.ParentLoading} />
+
 ### Unavailable
 
 A refused or failed read, distinct from a successful empty result. The production Empty state names the failure and leaves explicit recovery reachable.

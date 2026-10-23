@@ -366,3 +366,7 @@ recorded in `spec/records/2026-10-23-content-states.md`; visual review remains o
 The audit also covers file history without a recorded head or selected concurrent
 operation. Cold catalog preparation compiles independent entries together while
 retaining every import check and the original readiness deadline.
+The Op Log parent-picker follow-up retains selected metadata during pending
+reads and shows a labelled Skeleton beside recorded parent choices. The wider
+browser attempt and remaining qualification gaps are recorded in the same
+evidence file; no aggregate completion is implied.

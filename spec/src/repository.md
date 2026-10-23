@@ -120,6 +120,9 @@ workspace identity and conflicted/deleted status remain available.
 
 File history with no recorded head or concurrent unselected heads MUST use icon
 Empty states; the latter retains the explicit operation picker.
+Operation metadata and its open parent picker MUST remain mounted during parent
+reads. Pending parent content uses a labelled Skeleton while recorded choices
+and focus remain available; loading MUST NOT dismiss the picker.
 
 Bounded history notices MUST remain outside the scrolling column body at its
 bottom edge, and long recorded command arguments MUST offer keyboard-accessible

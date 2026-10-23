@@ -149,6 +149,10 @@ in a cold process. Browser documentation checks MUST bring lazy Canvas previews
 into view before verifying their production component bounds.
 Filename icon qualification MUST include local catalog skills in the complete
 screen, preserving the copied row geometry and explicit host navigation.
+Filename assertions MUST retain exact path identity when row labels include
+statistics; attachment actions target their option role rather than duplicated
+filename text. Pending operation-parent stories MUST retain the selected card,
+open picker, recorded choices and a visible labelled Skeleton.
 Geometry assertions MUST compare rendered source slots at the current browser
 zoom while retaining the declared icon size preset.
 Configured-agent qualification MUST include gallery geometry, attached-profile

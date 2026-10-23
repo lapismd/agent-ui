@@ -124,7 +124,7 @@
     </span>
   </div>
   {#if snapshot.busy && !snapshot.detail}
-    <RepositorySkeleton kind="operation" label="Loading operation details…" />
+    <RepositorySkeleton kind="operation" label="Loading operation details" />
   {:else if snapshot.detail?.status === "difference"}
     {#if !files.ready}
       {#if snapshot.busy}<RepositorySkeleton

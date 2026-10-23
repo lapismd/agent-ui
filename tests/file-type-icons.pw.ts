@@ -25,7 +25,9 @@ test("changed-file rows and selected diff titles share Design Core file type ico
     ["docs/history/query-guide.md", "markdown"],
     ["assets/repository-graph.png", "image"],
   ]) {
-    const row = files.getByRole("button", { name: path, exact: true });
+    const row = files.locator(`[data-file-path=${JSON.stringify(path)}]`);
+    await expect(row).toHaveCount(1);
+    await expect(row).toHaveRole("button");
     await expect(
       row.locator("[data-ui-component='file-type-icon']"),
     ).toHaveAttribute("data-file-type-icon", icon);
@@ -52,7 +54,9 @@ test("attachment search and chips use filename icons without changing removal", 
   await expect(
     results.locator("[data-file-type-icon='typescript']"),
   ).toBeVisible();
-  await results.getByText("settings.ts", { exact: true }).click();
+  await results
+    .getByRole("option", { name: "settings.ts src/ settings.ts", exact: true })
+    .click();
   const attachment = page.getByRole("button", {
     name: "settings.ts",
     exact: true,

@@ -8,6 +8,7 @@
   import * as CommandView from "@lapismd/design-core/shadcn/command-view";
   import * as Popover from "@lapismd/design-core/shadcn/popover";
   import { Button } from "@lapismd/design-core/shadcn/button";
+  import { Skeleton } from "@lapismd/design-core/shadcn/skeleton";
   import CircleCheckIcon from "@lucide/svelte/icons/circle-check";
   import ChevronDownIcon from "@lucide/svelte/icons/chevron-down";
   import RepositoryPickerSearch from "../../history/picker-search/RepositoryPickerSearch.svelte";
@@ -190,12 +191,24 @@
             {/each}
           </CommandView.Group>{/if}
       </CommandView.List>
-      {#if missing}<CommandView.Footer>
-          <Button variant="ghost" size="sm" disabled={loading} onclick={onOpen}
-            >{loading
-              ? "Loading parent details…"
-              : "Retry parent details"}</Button
-          >
+      {#if missing || loading}<CommandView.Footer>
+          {#if loading}<div
+              role="status"
+              aria-label="Loading parent details"
+              aria-busy="true"
+              style="flex:1;min-width:0"
+            >
+              <Skeleton style="height:2rem;width:14rem;max-width:100%" />
+            </div>{/if}
+          {#if missing}<Button
+              variant="ghost"
+              size="sm"
+              disabled={loading}
+              onclick={onOpen}
+              >{loading
+                ? "Loading parent details…"
+                : "Retry parent details"}</Button
+            >{/if}
         </CommandView.Footer>{/if}
     </CommandView.Root>
   </Popover.Content>

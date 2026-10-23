@@ -86,7 +86,13 @@ export function operationFixture(scenario = "operation-ready") {
     scenario === "operation-empty"
       ? []
       : [operationNode(), operationNode(otherOperation, [])];
-  if (["operation-merge", "operation-picker-failure"].includes(scenario))
+  if (
+    [
+      "operation-merge",
+      "operation-picker-failure",
+      "operation-parents-preparing",
+    ].includes(scenario)
+  )
     nodes[0].parents.push("ad".repeat(64));
   if (scenario === "operation-snapshot") nodes[0].is_snapshot = true;
   if (["operation-parent-failure", "operation-parent-bound"].includes(scenario))

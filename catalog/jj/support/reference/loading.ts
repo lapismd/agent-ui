@@ -6,6 +6,7 @@ export function attachLoadingFixture(reader: HistoryReader, scenario: string) {
     "files-preparing": "diff_paths",
     "diff-preparing": "diff",
     "operation-details-preparing": "operation_diff",
+    "operation-parents-preparing": "graph",
     "conflicts-preparing": "conflicts",
   }[scenario];
   if (!kind) return;
@@ -13,7 +14,11 @@ export function attachLoadingFixture(reader: HistoryReader, scenario: string) {
   const read = reader.read,
     close = reader.close;
   reader.read = async (handle, query) => {
-    if (query.kind === kind)
+    if (
+      query.kind === kind &&
+      (scenario !== "operation-parents-preparing" ||
+        (query.kind === "graph" && query.query[1].after))
+    )
       await new Promise<void>((resolve) => releases.set(handle, resolve));
     return read(handle, query);
   };

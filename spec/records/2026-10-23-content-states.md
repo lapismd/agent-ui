@@ -108,5 +108,48 @@ Follow-up qualification:
 - The complete file-history family passes all 28 interaction/axe combinations
   (7 stories across four theme/viewport settings), including both added states.
 - Updated builds/publint, three specification lanes and clean packed consumption
-  pass; all 145 public examples compile. The complete 151-test browser suite is
-  running separately, including the cold 87-variation content audit.
+  pass; all 145 public examples compile.
+
+Operation-parent follow-up:
+
+- The wider 151-test browser attempt was interrupted with 52 passed, 5 failed
+  and 94 not run. Two filename assertions used outdated accessible labels;
+  they now retain exact path identity and select the attachment option by role.
+  Two diff-collection failures need a fresh exact rerun. The remaining failure
+  exposed a production regression: a pending parent read replaced the selected
+  operation card, unmounting its open picker.
+- Keep selected operation metadata mounted during parent reads. The picker
+  retains recorded choices and adds a labelled public Skeleton to its footer.
+  ParentLoading holds the production continuation read until disposal. Its
+  five-story light/desktop family passes; an intermediate immediate visibility
+  assertion failed before the footer received bounded flex geometry and the
+  assertion waited for normal popover positioning. The original new-story
+  pre-fix probe was cancelled, not a recorded assertion failure.
+- Earlier final unit and warm-browser reruns stalled without reporting test
+  outcomes and were cancelled. Cold retries timed out at the unchanged 60-second
+  server-readiness boundary before executing tests. They are not passing runs.
+  A fresh resumed full unit run passes all 214 tests in 35 files.
+- Both packages build/publint; all 412 fingerprints, the three changed original
+  layouts and three specification lanes pass for the parent-picker changes.
+  Final exact browser, four-setting operation family, updated content-state
+  audit and fresh archive consumption are recorded below after completion.
+
+Resumed verification:
+
+- `pnpm test:browser file-type-icons.pw.ts jj-diff-collection.pw.ts
+jj-operation-parity.pw.ts`: 17 passed in a fresh server/browser run. This closes
+  all five failures from the interrupted broader attempt without changing
+  readiness, navigation or assertion thresholds.
+- `pnpm test:storybook --config .local/vitest-content-states.config.ts
+packages/repository-ui/src/jj/operations/operation-column/RepositoryOperationColumn.stories.ts`:
+  20 passed across light/dark and desktop/narrow. The isolated configuration only
+  binds the browser API to an explicit loopback port; production stories,
+  assertions and accessibility checks are unchanged.
+- `pnpm test --maxWorkers=2`: 214 passed. `pnpm check`: specification validation,
+  architecture, 412 source fingerprints, types (0 errors/warnings) and formatting
+  pass. The earlier 428-state matrix and 28 file-history checks remain recorded
+  above; the parent-picker addition is covered by the fresh 20-case family.
+- Fresh clean package acceptance passes with the documented review overlay:
+  all 145 public examples compile with 0 errors/warnings and build from the
+  public archives. `pnpm spec:check` passes all three lanes. The complete browser
+  sweep and static catalog build are still running at this focused commit.

@@ -60,11 +60,13 @@ export function createJjDemo(part: string, variant = "Basic") {
       ? "empty"
       : part === "RepositoryFileHistory" && variant === "OperationSelection"
         ? "multiple"
-        : part === "RepositoryOperationColumn" && variant === "Loading"
-          ? "operation-details-preparing"
-          : part === "RepositoryOperationColumn" && variant === "Unavailable"
-            ? "operation-detail-failure"
-            : scenario;
+        : part === "RepositoryOperationColumn" && variant === "ParentLoading"
+          ? "operation-parents-preparing"
+          : part === "RepositoryOperationColumn" && variant === "Loading"
+            ? "operation-details-preparing"
+            : part === "RepositoryOperationColumn" && variant === "Unavailable"
+              ? "operation-detail-failure"
+              : scenario;
   const fixture = operationFixture(scenarioForPart);
   if (part === "RepositoryFileHistory" && variant === "LongDescription")
     fixture.latest.description = richCommitMessage;

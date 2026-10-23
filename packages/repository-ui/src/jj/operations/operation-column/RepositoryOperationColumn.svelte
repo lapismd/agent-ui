@@ -97,7 +97,7 @@
       data-view-mode={viewMode}
       data-file-mode={diffFileMode}
     >
-      {#if snapshot.busy && !snapshot.detail}<RepositorySkeleton
+      {#if snapshot.busy && !snapshot.detail && !snapshot.selected}<RepositorySkeleton
           kind="operation"
           label="Loading operation details"
         />{:else}
