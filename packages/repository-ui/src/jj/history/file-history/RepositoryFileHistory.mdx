@@ -87,3 +87,7 @@ Filename artwork comes from the public Design Core `FileTypeIcon`, resolved from
 ## Composition
 
 Complete screens compose this same implementation. The private commit disclosure is also composed by Directory summaries and File Preview metadata, so fixes reach all three locations. Small controls use a padded, bounded standalone preview; shell and column families retain their required production context. Docs shell previews are bounded to 40rem and flush; Canvas screens fill their parent. Host services and downstream integration remain behind the review gate.
+
+`controller.follow(path, operation)` opens file history at an explicit operation
+without first following the newest head. Omit the second argument to follow the
+current heads. The host retains and disposes the controller.

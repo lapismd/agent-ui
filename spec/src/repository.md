@@ -269,7 +269,7 @@ execution to the host; rendering or dropping MUST NOT execute a command itself.
 
 ## RUI-LIFE-001 — Repository lifetime
 
-**Requirement.** Repository controllers MUST discard late scoped responses and release owned resources on close without changing host admission or durable repository state.
+**Requirement.** Explicit file-history navigation MUST accept the selected operation before its first read. Repository controllers MUST discard late scoped responses and release owned resources on close without changing host admission or durable repository state.
 
 ### Acceptance details
 

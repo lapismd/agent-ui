@@ -3639,9 +3639,12 @@
         },
         {
           "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
+        },
+        {
+          "description": "Accept an optional operation on follow so first-consumer historical file navigation never reads current heads first."
         }
       ],
-      "destinationSha256": "a28aaad7013f856c37c54508ee205cc427c54d1490da88fd014c56784fe1b5b8"
+      "destinationSha256": "e6a2ad20a43f8c31c281c1686352a5e2444c3e85aa0afe9afabbe1cee6da0f54"
     },
     {
       "sourceRepository": "lapis-desktop",

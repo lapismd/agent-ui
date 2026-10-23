@@ -92,6 +92,17 @@ test("closing a loading controller releases and drains its in-memory read withou
   expect(errors.errors).toEqual([]);
   expect(f.closed).toHaveLength(1);
 });
+test("file history starts at the supplied operation even after native heads advance", async () => {
+  const f = historyFixture(),
+    errors = feedback();
+  f.advance();
+  const c = new FileHistoryController(f.reader, errors);
+  await c.follow("Welcome.md", operation);
+  expect(c.state.operation).toBe(operation);
+  expect(c.state.heads).not.toContain(operation);
+  expect(errors.errors).toEqual([]);
+  await c.close();
+});
 test("blame refuses mismatched operation proofs instead of rendering empty content", async () => {
   const f = historyFixture(),
     errors = feedback();

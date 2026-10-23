@@ -63,10 +63,11 @@ export class FileHistoryController {
     this.#state = { ...this.#state, ...patch };
     for (const listener of this.#listeners) listener(this.#state);
   }
-  follow(path?: string): Promise<void> {
-    if (path === this.#state.path) return Promise.resolve();
-    this.#pin = undefined;
-    return this.#load(path);
+  follow(path?: string, operation?: string): Promise<void> {
+    if (path === this.#state.path && operation === this.#pin)
+      return Promise.resolve();
+    this.#pin = operation;
+    return this.#load(path, operation);
   }
   refresh(operation?: string): Promise<void> {
     if (operation) this.#pin = operation;

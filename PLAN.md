@@ -269,3 +269,7 @@ boundary explicit; guidance evidence is recorded in
 Extracted JJ Store theme palettes and settings presentation into Repository UI.
 Focused unit/type and light/dark desktop/narrow Storybook checks validate the
 portable boundary. JJ Desktop adoption and native window acceptance are next.
+
+First consumer file-history pin: `follow(path, operation)` retains the exact
+operation from the first read. Focused regression and integration acceptance
+track this public optional input.

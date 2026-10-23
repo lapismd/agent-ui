@@ -135,3 +135,7 @@ The first consumer settings framework for RUI-FORGE-001 is recorded in
 `spec/records/2026-10-23-shared-settings.md`. Appearance, settings cards and page
 presentation are reusable; native policy remains in the host. Visual review and
 the final broad package matrix remain pending.
+
+RUI-LIFE-001 explicit file-history pins are verified by the supplied-operation
+regression in `tests/jj-history-controllers.test.ts`; first-consumer integration
+must never read latest before opening a historical file.
