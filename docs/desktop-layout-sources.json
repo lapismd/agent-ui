@@ -7915,7 +7915,7 @@
       "source": "web/src/lib/ui/store-work/task-detail-layout.css",
       "destination": "packages/repository-ui/src/jj/projects/screen/task-detail-layout.css",
       "sourceSha256": "c8a8446aeeb540c50ad3a5c7625696acf77a332ff3b59a5fb1b43ee1bb04fa85",
-      "destinationSha256": "53b38a7ea2ac843f1227ada445cdf835e83b14f5d1eea8e459a64ea07eed7f2f",
+      "destinationSha256": "7ef7319e414cb1f5d38248713030780114e4e1f651cd6c49fee6b55f396e2971",
       "adaptations": [
         {
           "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
@@ -7925,6 +7925,9 @@
         },
         {
           "description": "Use a full-width task root and compact matching body/composer insets; delegate header sizing to public AppShell.Toolbar."
+        },
+        {
+          "description": "Align body content and fixed composer with the title start using a 3rem logical start inset (header padding + Back button + gap); preserve right/top/bottom spacing and independent scrolling."
         }
       ]
     },
@@ -7989,13 +7992,16 @@
       "source": "web/src/lib/ui/store-collaboration/community-native-review.css",
       "destination": "packages/repository-ui/src/jj/projects/screen/community-native-review.css",
       "sourceSha256": "355d140b0b86f08555876839d84331be0dfdeb4d44060bbcd9daa1f5b5952a63",
-      "destinationSha256": "340ba5ba7cb31e2ca663627e109556a7f12ddee8903f43785db5bdb36133b840",
+      "destinationSha256": "663a0e28a0add8c0383588f4b3f4a1be5ba3b60f3f8879f9188a149a9db77e95",
       "adaptations": [
         {
           "description": "Retain source review geometry. Add owned ScrollArea flex sizing, grouped host header actions, focus outline and source comment insets/avatars through public component props/tokens."
         },
         {
           "description": "Remove obsolete header positioning and centered root sizing. Align metadata, disclosure and composer outer insets while retaining source timeline geometry."
+        },
+        {
+          "description": "Align body content and fixed composer with the title start using a 3rem logical start inset (header padding + Back button + gap); preserve right/top/bottom spacing and independent scrolling."
         }
       ]
     },

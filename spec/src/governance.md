@@ -130,7 +130,7 @@ Filename icon qualification MUST include local catalog skills in the complete
 screen, preserving the copied row geometry and explicit host navigation.
 Geometry assertions MUST compare rendered source slots at the current browser
 zoom while retaining the declared icon size preset.
-Task/review detail qualification MUST cover hover/focus feedback, fixed headers and composers, review context disclosures, exact host commit navigation, read-only/unavailable states and resolve/reopen draft retention in both themes and viewport widths.
+Task/review detail qualification MUST compare body, metadata and composer start positions with the title at all supported viewport widths, and cover hover/focus feedback, fixed headers and composers, review context disclosures, exact host commit navigation, read-only/unavailable states and resolve/reopen draft retention in both themes and viewport widths.
 Directory layout qualification MUST exercise populated card and list collections
 at desktop and narrow widths, including readable titles, source-sized avatars,
 single-line timestamps and keyboard focus on the shared layout control.

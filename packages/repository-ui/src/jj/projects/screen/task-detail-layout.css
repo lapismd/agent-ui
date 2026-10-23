@@ -29,6 +29,8 @@
 }
 .community-projects__task-body {
   padding: 0.5rem 0.75rem 1rem;
+  /* Match title start: 8px header inset + 32px Back + 8px gap. */
+  padding-inline-start: 3rem;
 }
 .community-projects__task-body .community-projects__task-meta {
   margin-top: 0;
@@ -39,6 +41,7 @@
 .community-projects__task-footer {
   min-width: 0;
   padding: 0.75rem;
+  padding-inline-start: 3rem;
   background: var(--background);
 }
 .community-projects__task-footer .community-projects__task-composer {

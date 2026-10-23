@@ -176,11 +176,14 @@
 .community-projects__review-body {
   padding-block-end: 1rem;
   padding-inline: 0.75rem;
+  /* Match title start: 8px header inset + 32px Back + 8px gap. */
+  padding-inline-start: 3rem;
 }
 .community-projects__review-footer {
   flex: none;
   min-width: 0;
   padding: 0.75rem;
+  padding-inline-start: 3rem;
   background: var(--background);
   --community-chat-composer-editor-max-height-override: 7rem;
 }

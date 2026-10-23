@@ -17,6 +17,22 @@ async function expectDetailAlignment(page: Page, kind: "Task" | "Review") {
   expect(h.y - frame.y).toBeLessThanOrEqual(1);
   expect(t.y - h.y).toBeLessThanOrEqual(10);
   await expect(header).toHaveAttribute("data-ui-part", "toolbar");
+  const content = article.locator(
+    `.community-projects__${kind.toLowerCase()}-body`,
+  );
+  const description = content.getByRole("button", {
+    name: "Description",
+    exact: true,
+  });
+  expect((await description.boundingBox())!.x).toBeCloseTo(t.x, 0);
+  expect((await content.locator("dl").first().boundingBox())!.x).toBeCloseTo(
+    t.x,
+    0,
+  );
+  const composer = article.locator("footer .community-projects__task-composer");
+  if (await composer.count())
+    expect((await composer.boundingBox())!.x).toBeCloseTo(t.x, 0);
+
   const refresh = (await header
     .getByRole("button", { name: /^Refresh/ })
     .boundingBox())!;

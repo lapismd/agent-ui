@@ -318,3 +318,6 @@ commit navigation and fixed composer. Task disclosure hover/focus surfaces and
 header action grouping are corrected. Both detail pages share a full-width
 AppShell body toolbar with separate Back/title/action cells and compact insets. Evidence and remaining discussion/native
 work are in `spec/records/2026-10-23-review-task-details.md`.
+
+Task and Review detail body/composer start now aligns with the title text; see
+`spec/records/2026-10-23-detail-body-padding.md`.
