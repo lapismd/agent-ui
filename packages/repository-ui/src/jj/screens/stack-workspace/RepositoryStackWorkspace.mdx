@@ -158,6 +158,24 @@ Three recorded native hunks expose independent selection and an explicit host as
 
 <Canvas of={Stories.HunkActions} />
 
+### Pull requests
+
+PR description, additional details and checks above the adjacent file diff.
+
+<Canvas of={Stories.PullRequests} />
+
+### Branch pull requests
+
+The same details and actions in the Stacks/Branches view.
+
+<Canvas of={Stories.BranchPullRequests} />
+
+### Floating pull request
+
+The same retained PR content in a draggable, resizable floating window.
+
+<Canvas of={Stories.FloatingPullRequest} />
+
 ## Behavior and accessibility
 
 The screen toolbar has no lower border. Target history uses the same 16px
@@ -168,6 +186,15 @@ Column widths match JJ Store: Branches 320 (260–520), Unstaged 330 (260–520)
 Selecting a branch aggregate or a commit reveals its exact files. File selections retain independent originating columns. Target history is read-only and never enters applied membership. Native conflict/binary/unloaded/empty states stay distinct. Supplied counts are preserved; unknown counts remain absent and folder totals describe loaded descendants.
 
 Hosts provide copyText, optional onCommand/onSelectWorkspace and optional headerActions, columnActions, branchActions, commitActions, fileActions, diffActions and composer snippets. Actions receive recorded objects and do not select unrelated rows. Hosts own navigation, settings/persistence, notifications, preview/apply and controller lifetime. Composer slots can bind the existing per-workspace drafts. Full mutation dialogs and forge execution remain host responsibilities.
+
+PR integration is optional. Hosts supply `pullRequests` (a retained
+RepositoryPullRequestReview), `onPullRequestAction`, optional `onPushBranch`,
+`onCreatePullRequest`, `onSubmitStack`, `onWorkspaceSettings` and `onCopyError`. Only matching
+repository/revision/readKey/workspace records appear. PR-only selection opens
+the same per-origin column as a later file selection; its PR card remains above
+the embedded diff. Float/Dock retains the same content instance and drafts.
+Workspace controls expose settings, create workspace/stack, Undo/Redo and
+refresh; branch and commit bars use capability-aware typed host requests.
 
 ## Styling variables
 
@@ -191,8 +218,9 @@ scope change clears feedback. The component emits a typed command with the
 current snapshot; the host chooses preview, confirmation and execution.
 
 The optional `composer` and action snippets remain host extension points.
-Built-in commit menus and JJ Store's complete inline commit composer remain
-separate work; presentation never previews or applies a mutation by itself.
+Source-adapted branch/commit menus and a retained inline commit composer now
+provide the ordinary workflow. Their callbacks request exact host commands;
+presentation never previews or applies a mutation by itself.
 
 ## Composition
 

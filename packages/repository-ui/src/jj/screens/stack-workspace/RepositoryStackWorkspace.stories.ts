@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/svelte-vite";
 import { expect, userEvent, waitFor, within } from "storybook/test";
 import Component from "./RepositoryStackWorkspace.svelte";
 import Demo from "../../../../../../catalog/jj/StackWorkspaceDemo.svelte";
+import WorkflowDemo from "../../../../../../catalog/jj/StackWorkspaceWorkflowDemo.svelte";
 import DragDemo from "../../../../../../catalog/jj/StackWorkspaceDragDemo.svelte";
 import { Basic as source } from "./RepositoryStackWorkspace.example-sources.js";
 export default {
@@ -71,17 +72,10 @@ export const StackedBranches: Story = {
         ".workspace-stack-lane .repository-graph-select",
       )[1]!,
     );
-    const message = await canvas.findByRole("region", {
-      name: "Commit message body",
-    });
-    const files = message.parentElement!.querySelector(".workspace-files")!;
+    await canvas.findByRole("region", { name: /Changed files in/ });
     expect(
-      Math.abs(
-        message.getBoundingClientRect().width -
-          files.getBoundingClientRect().width,
-      ),
-    ).toBeLessThan(1);
-    expect(getComputedStyle(message.querySelector("p")!).fontSize).toBe("13px");
+      canvas.queryByRole("region", { name: "Commit message body" }),
+    ).toBeNull();
   },
 };
 export const Binary: Story = story("Binary");
@@ -165,5 +159,32 @@ export const HunkActions: Story = {
         "transfer",
       ),
     );
+  },
+};
+
+export const PullRequests: StoryObj<typeof WorkflowDemo> = {
+  render: () => ({ Component: WorkflowDemo }),
+  play: async ({ canvasElement }) => {
+    await within(canvasElement).findByRole("region", {
+      name: "Pull request for feature/api",
+    });
+  },
+};
+export const BranchPullRequests: StoryObj<typeof WorkflowDemo> = {
+  ...PullRequests,
+  render: () => ({ Component: WorkflowDemo, props: { page: "branches" } }),
+};
+export const FloatingPullRequest: StoryObj<typeof WorkflowDemo> = {
+  ...PullRequests,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(
+      await canvas.findByRole("button", {
+        name: "Float PR details",
+      }),
+    );
+    await within(canvasElement.ownerDocument.body).findByRole("dialog", {
+      name: /PR #42/,
+    });
   },
 };

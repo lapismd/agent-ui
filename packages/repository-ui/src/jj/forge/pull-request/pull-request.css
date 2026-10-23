@@ -1,0 +1,190 @@
+/* SPDX-License-Identifier: Apache-2.0; adapted from JJ Store forge-inline.css, store-forge.css and forge-merge.css. */
+.repository-pr {
+  margin-block-end: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--ui-column-canvas-radius, var(--radius));
+  background: var(--ui-repository-pull-request-background, var(--background));
+  overflow: hidden;
+  font-size: var(--ui-repository-pull-request-font-size, 0.8125rem);
+}
+.repository-pr--floating {
+  margin-block-end: 0;
+  border: 0;
+  border-radius: 0;
+}
+.repository-pr__summary {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-height: var(--ui-column-canvas-header-height, 2.5rem);
+  padding: 0 0.5rem;
+  background: var(--background);
+}
+.repository-pr--floating .repository-pr__summary {
+  border-block-end: 1px solid var(--border);
+}
+.repository-pr__title {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-size: 0.875rem;
+}
+.repository-pr__title button {
+  width: 100%;
+  min-width: 0;
+  justify-content: flex-start;
+  padding-inline: 0.25rem;
+}
+.repository-pr__title button span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.repository-pr__number {
+  flex-shrink: 0;
+  color: var(--muted-foreground);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.repository-pr__actions {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.125rem;
+}
+.repository-pr__actions
+  button:not(:disabled):is(:hover, :focus-visible, [data-state="open"]) {
+  background: color-mix(in srgb, var(--foreground) 18%, var(--background));
+}
+.repository-pr__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: var(--ui-repository-pull-request-padding, 0.75rem);
+  min-width: 0;
+}
+.repository-pr__branches {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted-foreground);
+  margin: 0;
+}
+.repository-pr__metadata {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+}
+.repository-pr__metadata > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.repository-pr__metadata dt {
+  color: var(--muted-foreground);
+}
+.repository-pr__metadata dd {
+  margin: 0;
+}
+.repository-pr__edit-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.repository-pr__checks {
+  border-top: 1px solid var(--border);
+}
+.repository-pr__check-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.35rem 0.5rem;
+}
+.repository-pr__check-revision {
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+.repository-pr__check-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.repository-pr__check-list li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.65rem 0.75rem;
+  border-top: 1px solid var(--border);
+}
+.repository-pr__check-list svg {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+}
+.repository-pr__check-list small {
+  display: block;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+}
+.repository-pr__check-list [data-state="passed"] > svg {
+  color: var(--success, var(--foreground));
+}
+.repository-pr__check-list [data-state="failed"] > svg {
+  color: var(--destructive);
+}
+.repository-pr__merge {
+  border-top: 1px solid var(--border);
+}
+.repository-pr__merge-status {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+}
+.repository-pr__merge-status > svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: none;
+  color: var(--muted-foreground);
+}
+.repository-pr__merge-status > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+.repository-pr__merge-status strong {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.repository-pr__merge-status span {
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+}
+.repository-pr__merge-bar {
+  display: flex;
+  align-items: stretch;
+  padding: 0.75rem;
+  background: var(--muted);
+  border-top: 1px solid var(--border);
+}
+.repository-pr__merge-bar > button:first-child {
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+.repository-pr__merge-bar > button:last-child {
+  border-inline-start: 0;
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+}
+
+.repository-pr--floating .repository-pr__title button {
+  pointer-events: none;
+  opacity: 1;
+}
+.repository-pr--floating .repository-pr__title button svg {
+  display: none;
+}

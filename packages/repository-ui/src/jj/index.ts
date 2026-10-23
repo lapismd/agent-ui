@@ -75,3 +75,8 @@ export type {
   RepositoryStackSlots,
 } from "./workspace/stack-lane/types.js";
 export { createStackWorkspaceCanvas } from "./screens/stack-workspace/canvas.js";
+
+export { default as RepositoryPullRequest } from "./forge/pull-request/RepositoryPullRequest.svelte";
+export { RepositoryPullRequestReview } from "./forge/pull-request/review.svelte.js";
+export { pullRequestScope } from "./forge/pull-request/scope.js";
+export type * from "./forge/pull-request/types.js";

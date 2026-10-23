@@ -4,8 +4,7 @@
   import * as Tabs from "@lapismd/design-core/shadcn/tabs";
   import WorkspacePicker from "../../history/workspace-picker/RepositoryWorkspacePicker.svelte";
   import "./stack-navigation.css";
-  import { Button } from "@lapismd/design-core/shadcn/button";
-  import Refresh from "@lucide/svelte/icons/refresh-cw";
+  import Actions from "./RepositoryStackActions.svelte";
   import type { StackWorkspaceController } from "../../../stacks/index.js";
   import type { RepositoryStackHost } from "../../workspace/stack-lane/types.js";
   let {
@@ -68,14 +67,6 @@
         }}
       />{/if}
     {@render host.headerActions?.(controller)}
-    <Button
-      variant="ghost"
-      size="icon-sm"
-      aria-label="Refresh workspace"
-      title="Refresh workspace"
-      disabled={controller.locked}
-      onclick={() => void controller.refresh()}
-      ><Refresh aria-hidden="true" /></Button
-    >
+    <Actions {controller} {host} />
   </div>
 </AppShell.Toolbar>

@@ -8,7 +8,14 @@
   import { RelativeTime } from "@lapismd/design-core/shadcn/relative-time";
   import RepositoryAuthorAvatar from "../../foundations/author-avatar/RepositoryAuthorAvatar.svelte";
   import RepositoryGraph from "../../history/graph/RepositoryGraph.svelte";
-  import RepositoryCommitMessage from "../../history/commit-message/RepositoryCommitMessage.svelte";
+  import BranchActions from "./RepositoryStackBranchActions.svelte";
+  import CommitActions from "./RepositoryStackCommitActions.svelte";
+  import {
+    isWorkspaceBranch,
+    isAppliedBranch,
+  } from "../../../stacks/presentation.js";
+  import { selectedWorkspaceChanges } from "./drag-handlers.js";
+  import { pullRequestScope } from "../../forge/pull-request/scope.js";
   import Files from "../source-files/RepositoryWorkspaceFiles.svelte";
   import DropGuide from "./RepositoryWorkspaceDropGuide.svelte";
   import {
@@ -58,6 +65,13 @@
   );
   const tip = $derived(commits[0]);
   const revisions = $derived(workspaceRevisionRows(stack, commits));
+  const pr = $derived(
+    host.pullRequests?.matches(pullRequestScope(controller.snapshot!))
+      ? host.pullRequests.pr(name)
+      : undefined,
+  );
+  const head = $derived(stack.heads.find((head) => head.name === name));
+  const canRewrite = $derived(!commits.some((commit) => commit.immutable));
   const target = $derived({
     kind: "stack" as const,
     id: card.owner,
@@ -128,9 +142,46 @@
         actions={host.fileActions ? fileActions : undefined}
       /></Card.Content
     >{/if}
-  {#if host.branchActions}<Card.Content class="workspace-bookmark-actions"
-      >{@render host.branchActions(stack, name)}</Card.Content
-    >{/if}
+  <BranchActions
+    stack={card.owner}
+    commitStack={card.owner}
+    {name}
+    applied={isAppliedBranch(controller.snapshot!, name)}
+    canAddCommit={isWorkspaceBranch(controller.snapshot!, name) &&
+      head?.baseCommit !== null}
+    commit={head?.commit ?? stack.base}
+    empty={!commits.length}
+    below={head?.baseCommit ?? stack.base}
+    {canRewrite}
+    canSquash={commits.length > 1 && canRewrite}
+    disabled={controller.locked || !host.onCommand}
+    enabled={(kind) => Boolean(host.onCommand) && controller.can(kind)}
+    reason={(kind) => controller.eligibility(kind).reason}
+    onCommand={(command) => host.onCommand?.(command, controller.snapshot!)}
+    copyText={host.copyText}
+    onCopyError={host.onCopyError}
+    onPush={host.onPushBranch
+      ? () => host.onPushBranch?.(name, controller.snapshot!)
+      : undefined}
+  >
+    {#snippet afterPush()}
+      {#if pr}<Button
+          variant="outline"
+          size="xs"
+          aria-label={`PR #${pr.number} · Pull request for ${name}`}
+          onclick={() => host.pullRequests?.select(name)}
+          >PR #{pr.number}</Button
+        >
+      {:else if host.onCreatePullRequest}<Button
+          variant="outline"
+          size="xs"
+          disabled={controller.locked || stack.conflicts}
+          onclick={() => host.onCreatePullRequest?.(name, controller.snapshot!)}
+          >Create PR</Button
+        >{/if}
+      {@render host.branchActions?.(stack, name)}
+    {/snippet}
+  </BranchActions>
   <!-- svelte-ignore a11y_no_static_element_interactions -->
   <div {...workspaceCommitHandlers(controller, host, () => commits)}>
     <RepositoryGraph
@@ -158,9 +209,6 @@
           ?.placement}
     >
       {#snippet selectedFiles()}{#if card.commit}
-          {#if card.commit.message.includes("\n")}<RepositoryCommitMessage
-              description={card.commit.message}
-            />{/if}
           <Files
             compact
             draggable={Boolean(host.onCommand)}
@@ -202,6 +250,17 @@
           controller.snapshot!,
         )}><ArrowLeftRight aria-hidden="true" /></Button
     >{/if}
+  <CommitActions
+    {commit}
+    {stack}
+    disabled={controller.locked || !host.onCommand}
+    selection={selectedWorkspaceChanges(controller)}
+    enabled={(kind) => Boolean(host.onCommand) && controller.can(kind)}
+    reason={(kind) => controller.eligibility(kind).reason}
+    onCommand={(command) => host.onCommand?.(command, controller.snapshot!)}
+    copyText={host.copyText}
+    onCopyError={host.onCopyError}
+  />
   {@render host.commitActions?.(commit, stack)}
 {/snippet}
 {#snippet fileActions()}{@render host.fileActions?.(

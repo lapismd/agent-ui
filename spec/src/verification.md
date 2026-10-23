@@ -114,3 +114,10 @@ commit moves/reorders use the existing drag session and exact host requests.
 The complete Drag and drop story demonstrates preview/Apply/Cancel with an
 in-memory adapter; native service execution and broader qualification remain
 outside this review slice.
+
+The source-adapted PR/details, floating window, workspace/branch/commit actions
+and inline commit composer follow-up is recorded in
+`spec/records/2026-10-23-stack-workflow.md` under RUI-STACK-001,
+RUI-FORGE-001 and RUI-COMMAND-001. It supersedes the earlier lane-body display:
+commit bodies no longer expand in lanes. PR data/actions remain host-supplied;
+live forge and downstream acceptance remain separate from catalog evidence.

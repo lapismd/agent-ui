@@ -2,20 +2,6 @@
 .workspace-stack-lane {
   --workspace-branch-gap: var(--ui-repository-stack-branch-gap, 0.75rem);
 }
-.workspace-bookmark-card {
-  --ui-repository-revisions-message-margin: var(
-    --ui-repository-stack-message-margin,
-    0 0 0.5rem
-  );
-  --mira-markdown-font-size: var(
-    --ui-repository-stack-message-font-size,
-    0.8125rem
-  );
-  --ui-repository-revisions-message-surface: var(
-    --ui-repository-stack-message-surface,
-    color-mix(in srgb, var(--foreground) 2%, var(--background))
-  );
-}
 .workspace-stage-card,
 .workspace-bookmark-card {
   margin: 0.5rem;
@@ -146,4 +132,58 @@
 .workspace-branch-files {
   padding: 0.5rem;
   padding-inline-start: 2rem;
+}
+
+.workspace-action-menu {
+  min-width: 15rem;
+  white-space: nowrap;
+}
+.workspace-menu-trigger:not(:disabled):is(
+    :hover,
+    :focus-visible,
+    [data-state="open"]
+  ) {
+  background: color-mix(in srgb, var(--foreground) 18%, var(--background));
+}
+
+.workspace-stage-form {
+  border-top: 1px solid var(--border);
+  padding: 0;
+  gap: 0;
+}
+.workspace-staged-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--muted);
+}
+.workspace-staged-header > svg {
+  width: 1rem;
+  height: 1rem;
+}
+.workspace-staged-actions {
+  margin-inline-start: auto;
+}
+.workspace-staged-list {
+  padding: 0.25rem 0.5rem;
+}
+.workspace-commit-fields {
+  gap: 0;
+}
+.workspace-commit-description-row {
+  padding: 0.75rem;
+}
+.workspace-commit-title-row {
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem;
+}
+.workspace-commit-actions {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem;
+}
+.workspace-commit-actions > button {
+  flex: 1;
 }

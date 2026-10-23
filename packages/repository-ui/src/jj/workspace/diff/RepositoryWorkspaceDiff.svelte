@@ -2,6 +2,7 @@
 <script lang="ts">
   import { untrack } from "svelte";
   import * as ColumnCanvas from "@lapismd/design-core/shadcn/column-canvas";
+  import Actions from "./RepositoryWorkspaceDiffActions.svelte";
   import Hunk from "./RepositoryWorkspaceDiffHunk.svelte";
   import {
     workspaceHunkSelection,
@@ -23,10 +24,12 @@
     controller,
     diff,
     host,
+    embedded = false,
   }: {
     controller: StackWorkspaceController;
     diff: WorkspaceOpenDiff;
     host: RepositoryStackHost;
+    embedded?: boolean;
   } = $props();
   let viewMode = $state<"unified" | "split">("unified"),
     wrap = $state(false);
@@ -101,94 +104,116 @@
   }
 </script>
 
-<ColumnCanvas.Column
-  id={`diff-${diff.origin}`}
-  columnTitle="Diff"
-  resizable
-  aria-label={`Selected changes from ${diff.origin}`}
->
+{#snippet header()}
   <ColumnCanvas.Header
     ><ColumnCanvas.Title
       ><RepositoryFileTitle path={diff.path} /></ColumnCanvas.Title
     ><ColumnCanvas.HeaderActions
-      ><Controls bind:viewMode bind:wrap />{@render host.diffActions?.(
-        diff,
-      )}<ColumnCanvas.Close
+      ><Controls bind:viewMode bind:wrap /><Actions
+        {controller}
+        {diff}
+        {host}
+      />{@render host.diffActions?.(diff)}<ColumnCanvas.Close
         aria-label={`Close diff from ${diff.origin}`}
         onclick={() => controller.closeDiff(diff.origin)}
       /></ColumnCanvas.HeaderActions
     ></ColumnCanvas.Header
   >
-  <ColumnCanvas.Body scrollStrategy="styled" orientation="both">
-    {#if read.error}<Status
-        unavailable
-        title="Diff unavailable"
-        description={read.error}
-        onRetry={() => void controller.details.loadDiff(diff.source, diff.path)}
-      />
-    {:else if !file || file.content?.status === "unloaded"}<RepositorySkeleton
-        kind="files"
-        label={`Loading diff for ${diff.path}`}
-      />
-    {:else if file.content?.status === "unavailable"}<Status
-        unavailable
-        title={file.content.reason === "binary"
-          ? "Binary file"
-          : "Preview unavailable"}
-        description={`This file cannot be displayed as a text diff (${file.content.reason}).`}
-      />
-    {:else if !file.hunks.length && !file.patch}<Status
-        title="No text changes"
-        description="There are no changed text hunks for this file."
-      />
-    {:else}<section
-        class="workspace-hunks"
-        aria-label={`Diff hunks from ${diff.origin} · ${file.path}`}
-      >
-        {#if file.hunks.length}{#each file.hunks as hunk (hunk.id)}
-            {@const selected = selection(hunk.id)}
-            <Hunk
-              {hunk}
-              displayPatch={context.get(hunk.id)}
-              path={file.path}
-              origin={diff.origin}
-              {viewMode}
-              {wrap}
-              checked={!diff.hunks || diff.hunks.includes(hunk.id)}
-              selectable={Boolean(selected)}
-              disabled={controller.locked}
-              onDragStart={selected &&
-              host.onCommand &&
-              (controller.can("transfer") || controller.can("create_commit"))
-                ? (event) =>
-                    controller.drag.start(event, {
-                      kind: "selection",
-                      selection: selected,
-                    })
-                : undefined}
-              onDragEnd={() => controller.drag.clear()}
-              onChecked={(checked) => choose(hunk.id, checked)}
-              onAssign={selected && host.onCommand && controller.can("transfer")
-                ? () =>
-                    host.onCommand?.(
-                      { kind: "transfer", selection: selected, target: "" },
-                      controller.snapshot!,
-                    )
-                : undefined}
-            />
-          {/each}
-        {:else}<FileDiff
+{/snippet}
+{#snippet content()}
+  {#if read.error}<Status
+      unavailable
+      title="Diff unavailable"
+      description={read.error}
+      onRetry={() => void controller.details.loadDiff(diff.source, diff.path)}
+    />
+  {:else if !file || file.content?.status === "unloaded"}<RepositorySkeleton
+      kind="files"
+      label={`Loading diff for ${diff.path}`}
+    />
+  {:else if file.content?.status === "unavailable"}<Status
+      unavailable
+      title={file.content.reason === "binary"
+        ? "Binary file"
+        : "Preview unavailable"}
+      description={`This file cannot be displayed as a text diff (${file.content.reason}).`}
+    />
+  {:else if !file.hunks.length && !file.patch}<Status
+      title="No text changes"
+      description="There are no changed text hunks for this file."
+    />
+  {:else}<section
+      class="workspace-hunks"
+      aria-label={`Diff hunks from ${diff.origin} · ${file.path}`}
+    >
+      {#if file.hunks.length}{#each file.hunks as hunk (hunk.id)}
+          {@const selected = selection(hunk.id)}
+          <Hunk
+            {hunk}
+            displayPatch={context.get(hunk.id)}
             path={file.path}
-            patch={file.patch}
+            origin={diff.origin}
             {viewMode}
             {wrap}
-            sizing="content"
-          />{/if}
-      </section>{/if}
-  </ColumnCanvas.Body>
-</ColumnCanvas.Column>
+            checked={!diff.hunks || diff.hunks.includes(hunk.id)}
+            selectable={Boolean(selected)}
+            disabled={controller.locked}
+            onDragStart={selected &&
+            host.onCommand &&
+            (controller.can("transfer") || controller.can("create_commit"))
+              ? (event) =>
+                  controller.drag.start(event, {
+                    kind: "selection",
+                    selection: selected,
+                  })
+              : undefined}
+            onDragEnd={() => controller.drag.clear()}
+            onChecked={(checked) => choose(hunk.id, checked)}
+            onAssign={selected && host.onCommand && controller.can("transfer")
+              ? () =>
+                  host.onCommand?.(
+                    { kind: "transfer", selection: selected, target: "" },
+                    controller.snapshot!,
+                  )
+              : undefined}
+          />
+        {/each}
+      {:else}<FileDiff
+          path={file.path}
+          patch={file.patch}
+          {viewMode}
+          {wrap}
+          sizing="content"
+        />{/if}
+    </section>{/if}
+{/snippet}
+{#if embedded}
+  <section class="workspace-embedded-diff" aria-label="Selected file diff">
+    {@render header()}
+    <div>{@render content()}</div>
+  </section>
+{:else}
+  <ColumnCanvas.Column
+    id={`diff-${diff.origin}`}
+    columnTitle="Diff"
+    resizable
+    aria-label={`Selected changes from ${diff.origin}`}
+  >
+    {@render header()}<ColumnCanvas.Body
+      scrollStrategy="styled"
+      orientation="both">{@render content()}</ColumnCanvas.Body
+    >
+  </ColumnCanvas.Column>
+{/if}
 
 <style>
+  .workspace-embedded-diff {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--ui-column-canvas-radius, var(--radius));
+    background: var(--background);
+  }
   .workspace-hunks {
     display: grid;
     gap: var(--ui-repository-workspace-diff-gap, 0.5rem);

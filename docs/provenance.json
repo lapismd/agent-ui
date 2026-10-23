@@ -1017,14 +1017,14 @@
     {
       "source": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceCanvas.svelte",
       "destination": "packages/repository-ui/src/jj/screens/stack-workspace/RepositoryStackCanvas.svelte",
-      "use": "Retain fixed leading column, scrolling adjacent lanes and per-origin diffs, widths and tail spacer. Extract canvas defaults; replace native branch command with the owned public picker and exact bookmark keys. Transfer/forge panels and drop handlers are deferred. Drag/drop follow-up: Reconnect source trailing workspace/new-stack drop targets and guides to the portable drag session and exact host commands; clear transient drag feedback on scope changes and native drag end.",
+      "use": "Retain fixed leading column, scrolling adjacent lanes and per-origin diffs, widths and tail spacer. Extract canvas defaults; replace native branch command with the owned public picker and exact bookmark keys. Transfer/forge panels and drop handlers are deferred. Drag/drop follow-up: Reconnect source trailing workspace/new-stack drop targets and guides to the portable drag session and exact host commands; clear transient drag feedback on scope changes and native drag end. PR/action alignment: Restore source PR-only and combined PR/diff detail columns using the existing per-origin resolver and matching host-supplied PR scope.",
       "sourceRepository": "jj-store",
       "sourceRevision": "87f2f603"
     },
     {
       "source": "web/src/lib/ui/store-stack-workspace/StoreStacksNavigation.svelte",
       "destination": "packages/repository-ui/src/jj/screens/stack-workspace/RepositoryStackToolbar.svelte",
-      "use": "Retain tab navigation and right workspace controls through public Toolbar/Tabs/Select. Limit navigation to this presentation slice and delegate named workspace selection and custom actions to hosts.",
+      "use": "Retain tab navigation and right workspace controls through public Toolbar/Tabs/Select. Limit navigation to this presentation slice and delegate named workspace selection and custom actions to hosts. PR/action alignment: Restore source workspace controls, capability-aware typed requests and public tooltip/menu composition beside the existing picker.",
       "sourceRepository": "jj-store",
       "sourceRevision": "87f2f603"
     },
@@ -1038,14 +1038,14 @@
     {
       "source": "web/src/lib/ui/store-stack-workspace/StoreStackLane.svelte",
       "destination": "packages/repository-ui/src/jj/workspace/stack-lane/RepositoryStackLane.svelte",
-      "use": "Retain stack column header, stage/start-commit cards, grouped bookmarks and paging. Use public generic graph and host slots; commands request host handling without execution; transfer and forge controls are deferred. Drag/drop follow-up: Reconnect source stack-body and staging-area targets with capability/lock-aware guides and host command delegation; resolve current keyboard file/hunk selection for staging.",
+      "use": "Retain stack column header, stage/start-commit cards, grouped bookmarks and paging. Use public generic graph and host slots; commands request host handling without execution; transfer and forge controls are deferred. Drag/drop follow-up: Reconnect source stack-body and staging-area targets with capability/lock-aware guides and host command delegation; resolve current keyboard file/hunk selection for staging. PR/action alignment: Restore source stack action menu, optional Submit stack host request and retained inline commit composer; preserve native drop flow and action/clipboard host boundaries.",
       "sourceRepository": "jj-store",
       "sourceRevision": "87f2f603"
     },
     {
       "source": "web/src/lib/ui/store-stack-workspace/StoreStackBookmarkCard.svelte",
       "destination": "packages/repository-ui/src/jj/workspace/stack-lane/RepositoryStackCard.svelte",
-      "use": "Fold source bookmark header into the private card, retain branch selection, shared/alias tags, author/time and grouped graph/files. Replace application-only graph/forge/drag controls with public graph, scoped files and host snippets. Drag/drop follow-up: Reconnect exact branch-header and mutable commit drag targets, row-edge sorting and file drag sources; retain source insertion/feedback geometry through the shared graph and expose a host-owned keyboard move request.",
+      "use": "Fold source bookmark header into the private card, retain branch selection, shared/alias tags, author/time and grouped graph/files. Replace application-only graph/forge/drag controls with public graph, scoped files and host snippets. Drag/drop follow-up: Reconnect exact branch-header and mutable commit drag targets, row-edge sorting and file drag sources; retain source insertion/feedback geometry through the shared graph and expose a host-owned keyboard move request. PR/action alignment: Remove expanded commit body per review; copy source branch/commit action compositions, clipboard ports and PR selection with exact local source identities.",
       "sourceRepository": "jj-store",
       "sourceRevision": "87f2f603"
     },
@@ -1066,14 +1066,14 @@
     {
       "source": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceDiff.svelte",
       "destination": "packages/repository-ui/src/jj/workspace/diff/RepositoryWorkspaceDiff.svelte",
-      "use": "Retain adjacent per-origin column, path, close, lazy diff reads, hunk cards and context. Replace application diff preferences with shared unified/split/wrap controls, explicit host actions and icon-bearing states; omit transfer buttons. Drag/drop follow-up: Reconnect each eligible native hunk as an exact-token drag source, preserving read-only target history/immutable boundaries and host-owned assignment.",
+      "use": "Retain adjacent per-origin column, path, close, lazy diff reads, hunk cards and context. Replace application diff preferences with shared unified/split/wrap controls, explicit host actions and icon-bearing states; omit transfer buttons. Drag/drop follow-up: Reconnect each eligible native hunk as an exact-token drag source, preserving read-only target history/immutable boundaries and host-owned assignment. PR/action alignment: Restore source embedded file-diff mode for the two-card PR/diff column; share unchanged content/headers and add exact discard/split host requests.",
       "sourceRepository": "jj-store",
       "sourceRevision": "87f2f603"
     },
     {
       "source": "web/src/lib/ui/store-stack-workspace/stack-workspace.css",
       "destination": "packages/repository-ui/src/jj/workspace/stack-lane/stack-lane.css",
-      "use": "Retain bookmark/card/title/stage spacing and semantic hover/selection; namespace workspace classes, split lane-only display rules, expose native variables. Omit transfer and forge styles.",
+      "use": "Retain bookmark/card/title/stage spacing and semantic hover/selection; namespace workspace classes, split lane-only display rules, expose native variables. Omit transfer and forge styles. PR/action alignment: Remove superseded lane commit-body typography tokens, copy source commit/staged-file geometry and source action-menu hover treatment.",
       "sourceRepository": "jj-store",
       "sourceRevision": "87f2f603"
     },
@@ -1130,6 +1130,132 @@
       "source": "web/src/lib/ui/store-stack-workspace/StoreStackBookmarkCard.svelte",
       "destination": "packages/repository-ui/src/jj/workspace/stack-lane/drag-handlers.ts",
       "use": "Extract source native event delegation into a shared host-request helper for this family; use existing commitEventRow/commitRowTarget, revalidate live snapshot/lock/capabilities and retain keyboard selections without previewing or applying effects."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "6961bd1c",
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceDetailsColumn.svelte",
+      "destination": "packages/repository-ui/src/jj/screens/stack-workspace/RepositoryStackDetailsColumn.svelte",
+      "use": "Retain source PR card above embedded diff, PR-only empty state and shared per-origin close. Replace ForgeController with exact host review records and callback."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "6961bd1c",
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceActions.svelte",
+      "destination": "packages/repository-ui/src/jj/screens/stack-workspace/RepositoryStackActions.svelte",
+      "use": "Copy workspace action menu and tooltip icon controls; use capability-aware typed host callbacks, optional settings port and existing picker. Application history routes remain host-owned."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "6961bd1c",
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStackBookmarkActions.svelte",
+      "destination": "packages/repository-ui/src/jj/workspace/stack-lane/RepositoryStackBranchActions.svelte",
+      "use": "Copy add-commit/Push/PR/menu bar and branch command identities. Replace disabled source Push with optional host capability; retain branch-relative menus and host clipboard."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "6961bd1c",
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStackCommitActions.svelte",
+      "destination": "packages/repository-ui/src/jj/workspace/stack-lane/RepositoryStackCommitActions.svelte",
+      "use": "Copy commit menu, exact selection/source IDs and immutable/capability guards. Typed host callbacks request effects; clipboard is injected."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "6961bd1c",
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStackRelativeActions.svelte",
+      "destination": "packages/repository-ui/src/jj/workspace/stack-lane/RepositoryStackRelativeActions.svelte",
+      "use": "Copy relative empty-commit and branch placement submenus without native transport or execution."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "6961bd1c",
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStackCopyMenu.svelte",
+      "destination": "packages/repository-ui/src/jj/workspace/stack-lane/RepositoryStackCopyMenu.svelte",
+      "use": "Copy menu grouping/icons; replace native clipboard and notification services with explicit copyText/onCopyError ports."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "6961bd1c",
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStackLaneMenu.svelte",
+      "destination": "packages/repository-ui/src/jj/workspace/stack-lane/RepositoryStackLaneMenu.svelte",
+      "use": "Copy stack action menu with typed host requests; expose optional forge action snippet and disable without command handling."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "6961bd1c",
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStackCommitComposer.svelte",
+      "destination": "packages/repository-ui/src/jj/workspace/stack-lane/RepositoryStackCommitComposer.svelte",
+      "use": "Retain staged-file/title/Markdown/footer composition and host-owned drafts. Replace application composer with public document MarkdownComposer. Stage/start and submission emit explicit requests instead of preparing a mutation; retain the previously reviewed drop callback."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "6961bd1c",
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStackStagedFiles.svelte",
+      "destination": "packages/repository-ui/src/jj/workspace/stack-lane/RepositoryStackStagedFiles.svelte",
+      "use": "Copy staged source-file list/header and public FileListing view modes, keeping exact selected source/path/hunks."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "6961bd1c",
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStackWorkspaceDiff.svelte",
+      "destination": "packages/repository-ui/src/jj/workspace/diff/RepositoryWorkspaceDiffActions.svelte",
+      "use": "Extract source discard/split header controls; use existing exact whole-file/native-hunk selectors, read-only target boundary and typed host callbacks."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "6961bd1c",
+      "source": "web/src/lib/ui/store-forge/StoreForgeDetails.svelte",
+      "destination": "packages/repository-ui/src/jj/forge/pull-request/RepositoryPullRequest.svelte",
+      "use": "Copy expandable provider/title/status/action summary and detachable composition. Use portable host-issued review state, public Badge/icons and action callbacks. Include visible title in accessible disclosure name."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "6961bd1c",
+      "source": "web/src/lib/ui/store-forge/StoreForgePullRequest.svelte",
+      "destination": "packages/repository-ui/src/jj/forge/pull-request/RepositoryPullRequestBody.svelte",
+      "use": "Copy branch context, retained description/edit state, checks and merge footer. Replace application Markdown with stock public MarkdownContent/MarkdownComposer and host-issued additional metadata."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "6961bd1c",
+      "source": "web/src/lib/ui/store-forge/StoreForgeChecks.svelte",
+      "destination": "packages/repository-ui/src/jj/forge/pull-request/RepositoryPullRequestChecks.svelte",
+      "use": "Adapt source revision-aware check summary/list and refresh request to supplied bounded records. Native jobs/log fetching and display-preference services remain host-owned."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "6961bd1c",
+      "source": "web/src/lib/ui/store-forge/StoreForgePullRequestActions.svelte",
+      "destination": "packages/repository-ui/src/jj/forge/pull-request/RepositoryPullRequestActions.svelte",
+      "use": "Retain source merge-status/footer, method menu and PR action menu. Replace direct remote calls and local confirmation dialog with exact host review requests; busy/pending, capabilities, SHA, draft/state/mergeability and method guards remain explicit."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "6961bd1c",
+      "source": "web/src/lib/ui/store-panels/StoreDetachablePanel.svelte",
+      "destination": "packages/repository-ui/src/jj/forge/pull-request/RepositoryDetachablePanel.svelte",
+      "use": "Copy same-node relocation, focus/scroll retention, window bounds, Escape, resize and teardown through public WorkspaceFloatingLayer/Core and Dialog.Portal. Namespace only CSS classes."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "6961bd1c",
+      "source": "web/src/lib/ui/store-panels/detachable-panel.css",
+      "destination": "packages/repository-ui/src/jj/forge/pull-request/detachable-panel.css",
+      "use": "Copy detachable host/content scroll geometry and hidden-anchor state with owned class names."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "6961bd1c",
+      "source": "web/src/lib/ui/store-forge/forge-inline.css",
+      "destination": "packages/repository-ui/src/jj/forge/pull-request/pull-request.css",
+      "use": "Adapt source inline summary/card geometry, owned check/merge body styles from store-forge.css and forge-merge.css and public semantic defaults. Replace application typography/surface variables with documented native tokens."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "6961bd1c",
+      "source": "web/src/lib/controller/forge/controller.svelte.ts",
+      "destination": "packages/repository-ui/src/jj/forge/pull-request/review.svelte.ts",
+      "use": "Adapt only retained selected PR, draft and request presentation state into a host-owned review model. Remove all service, credential, polling and execution dependencies; exact supplied scope/SHA/capabilities fence emitted requests."
     }
   ]
 }

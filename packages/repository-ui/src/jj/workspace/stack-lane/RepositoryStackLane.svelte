@@ -6,15 +6,16 @@
   import * as Card from "@lapismd/design-core/shadcn/card";
   import { Button } from "@lapismd/design-core/shadcn/button";
   import { Badge } from "@lapismd/design-core/shadcn/badge";
+  import * as Menu from "@lapismd/design-core/shadcn/dropdown-menu";
+  import GitPullRequest from "@lucide/svelte/icons/git-pull-request";
   import GitBranch from "@lucide/svelte/icons/git-branch";
   import RepositorySkeleton from "../../foundations/skeleton/RepositorySkeleton.svelte";
   import Status from "../source-files/RepositoryWorkspaceStatus.svelte";
   import BookmarkCard from "./RepositoryStackCard.svelte";
+  import Composer from "./RepositoryStackCommitComposer.svelte";
+  import LaneMenu from "./RepositoryStackLaneMenu.svelte";
   import DropGuide from "./RepositoryWorkspaceDropGuide.svelte";
-  import {
-    workspaceDropHandlers,
-    selectedWorkspaceChanges,
-  } from "./drag-handlers.js";
+  import { workspaceDropHandlers } from "./drag-handlers.js";
   import {
     stackGroups,
     isAppliedBranch,
@@ -73,7 +74,19 @@
     ><ColumnCanvas.Count>{stack.commits.length}</ColumnCanvas.Count>
     {#if stack.conflicts}<Badge variant="outline">Conflicts</Badge>{/if}
     <ColumnCanvas.HeaderActions
-      >{@render host.columnActions?.(stack)}<ColumnCanvas.Toggle
+      ><LaneMenu
+        {controller}
+        {stack}
+        {applied}
+        disabled={!host.onCommand}
+        onCommand={(command) => host.onCommand?.(command, controller.snapshot!)}
+      >
+        {#snippet forgeAction()}{#if host.onSubmitStack}<Menu.Item
+              disabled={controller.locked || stack.conflicts}
+              onSelect={() => host.onSubmitStack?.(stack, controller.snapshot!)}
+              ><GitPullRequest aria-hidden="true" />Submit stack</Menu.Item
+            >{/if}{/snippet}
+      </LaneMenu>{@render host.columnActions?.(stack)}<ColumnCanvas.Toggle
         aria-label={`Collapse ${stack.name}`}
       /></ColumnCanvas.HeaderActions
     >
@@ -133,53 +146,17 @@
       >{/if}
     {#if controller.page === "workspace"}
       {#if host.composer}{@render host.composer(stack)}{:else}
-        <Card.Root class="workspace-stage-card"
-          ><Card.Content
-            class="workspace-stage-content workspace-stage-drop workspace-drop-target"
-            data-drop-target-state={controller.drag.state({
-              kind: "stage",
-              id: stack.id,
-            })}
-            {...workspaceDropHandlers(controller, host, () => ({
-              kind: "stage",
-              id: stack.id,
-            }))}
-            ><DropGuide
-              feedback={controller.drag.for({ kind: "stage", id: stack.id })}
-            />
-            <Button
-              variant="outline"
-              class="workspace-drop"
-              disabled={controller.locked ||
-                !host.onCommand ||
-                !controller.can("create_commit")}
-              onclick={() =>
-                host.onCommand?.(
-                  {
-                    kind: "create_commit",
-                    stack: stack.id,
-                    message: "",
-                    ...(selectedWorkspaceChanges(controller)
-                      ? { selection: selectedWorkspaceChanges(controller)! }
-                      : {}),
-                  },
-                  controller.snapshot!,
-                )}>Stage changes in this stack</Button
-            ></Card.Content
-          ><Card.Footer class="workspace-stage-content workspace-stage-start"
-            ><Button
-              variant="outline"
-              disabled={controller.locked ||
-                !host.onCommand ||
-                !controller.can("create_commit")}
-              onclick={() =>
-                host.onCommand?.(
-                  { kind: "create_commit", stack: stack.id, message: "" },
-                  controller.snapshot!,
-                )}>Start a commit…</Button
-            ></Card.Footer
-          ></Card.Root
-        >
+        <Composer
+          {controller}
+          {stack}
+          disabled={!host.onCommand}
+          onCommand={(command) =>
+            host.onCommand?.(command, controller.snapshot!)}
+          onOtherDrop={workspaceDropHandlers(controller, host, () => ({
+            kind: "stage",
+            id: stack.id,
+          })).ondrop}
+        />
       {/if}
     {/if}
     {#if preparing}<RepositorySkeleton

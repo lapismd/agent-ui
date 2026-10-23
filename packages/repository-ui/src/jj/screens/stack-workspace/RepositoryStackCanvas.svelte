@@ -10,6 +10,8 @@
   import Unstaged from "../../workspace/source-files/RepositoryUnstagedColumn.svelte";
   import Lane from "../../workspace/stack-lane/RepositoryStackLane.svelte";
   import Diff from "../../workspace/diff/RepositoryWorkspaceDiff.svelte";
+  import DetailsColumn from "./RepositoryStackDetailsColumn.svelte";
+  import { pullRequestScope } from "../../forge/pull-request/scope.js";
   import Target from "./RepositoryTargetHistory.svelte";
   import DropGuide from "../../workspace/stack-lane/RepositoryWorkspaceDropGuide.svelte";
   import { workspaceDropHandlers } from "../../workspace/stack-lane/drag-handlers.js";
@@ -71,7 +73,18 @@
   );
   const details = $derived(
     stacks.flatMap((stack) =>
-      stackDetailsColumns(controller, stack).map((detail) => ({
+      stackDetailsColumns(
+        controller,
+        stack,
+        host.pullRequests?.matches(pullRequestScope(snapshot))
+          ? {
+              surface: "inline",
+              selected: host.pullRequests.selectedBranch
+                ? { head: host.pullRequests.selectedBranch }
+                : undefined,
+            }
+          : undefined,
+      ).map((detail) => ({
         ...detail,
         stack: stack.id,
       })),
@@ -92,6 +105,7 @@
   $effect.pre(() => {
     const origins = [
       ...controller.diffs.map((diff) => diff.origin),
+      ...details.map((detail) => detail.origin),
       ...(controller.targetHistory.diff ? [TARGET_HISTORY_ORIGIN] : []),
     ];
     untrack(() => {
@@ -250,10 +264,12 @@
         {stack}
         {host}
         {now}
-      />{#each details.filter((detail) => detail.stack === stack.id && detail.diff && registeredDiffs.includes(detail.origin)) as detail (detail.origin)}<Diff
+      />{#each details.filter((detail) => detail.stack === stack.id && registeredDiffs.includes(detail.origin)) as detail (detail.origin)}<DetailsColumn
           {controller}
-          diff={detail.diff!}
           {host}
+          origin={detail.origin}
+          branch={detail.branch}
+          diff={detail.diff}
         />{/each}{/each}
   </ColumnCanvas.Root>
 </ScrollArea>

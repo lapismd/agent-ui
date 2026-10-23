@@ -1,0 +1,98 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryPullRequest.stories";
+import { Basic, Styling } from "./RepositoryPullRequest.example-sources";
+import tokens from "./RepositoryPullRequest.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Pull request
+
+JJ Store's expandable PR summary, Markdown description, additional details,
+checks and merge bar, with a detachable Design Core floating window.
+
+## Usage
+
+The host retains `RepositoryPullRequestReview`, supplies recorded data with
+`sync(pullRequestScope(snapshot), records)` and handles explicit action requests.
+Construction, syncing and rendering never read a service or execute a mutation.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part             | Responsibility                                                                                     |
+| ---------------- | -------------------------------------------------------------------------------------------------- |
+| Summary          | Recorded provider, title, number, status, edit, float, menu and close controls.                    |
+| Body             | Retained title/description draft, supplied metadata and stock Mira content.                        |
+| Checks           | Supplied revision and results; stale/incomplete results remain explicit.                           |
+| Actions          | Capability-aware refresh, draft, restack and merge requests.                                       |
+| Detachable panel | Moves the same content instance through public WorkspaceFloatingLayer; preserves scroll and focus. |
+
+## Variations
+
+### Basic
+
+<Canvas of={Stories.Basic} />
+
+### Draft
+
+<Canvas of={Stories.Draft} />
+
+### Checks unavailable
+
+<Canvas of={Stories.ChecksUnavailable} />
+
+### No description
+
+<Canvas of={Stories.NoDescription} />
+
+### Disabled
+
+<Canvas of={Stories.Disabled} />
+
+### Floating
+
+<Canvas of={Stories.Floating} />
+
+## Behavior and accessibility
+
+The summary disclosure expands the details. Edit exposes the title and public
+MarkdownComposer. Float uses a draggable, resizable public Design Core window;
+Dock, window close and Escape return the same editor node to its column. The
+host-owned review retains drafts across navigation, and keys them by repository,
+operation/read scope, workspace, PR identity and head SHA.
+
+Actions emit an exact `PullRequestRequest`, including the expected SHA and host
+scope. The host owns preview, confirmation, admission, receipts and execution.
+Pending/busy state blocks requests. Missing capabilities stay disabled. Draft,
+closed, unknown-mergeability and unsupported-method PRs cannot request merge.
+Neither remote credentials nor transport belong in this presentation family.
+
+## Styling variables
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+The public entry point also exports the review state, `pullRequestScope` and
+`RepositoryPullRequestRecord` and action/request types. Hosts synchronize data explicitly; optional
+metadata and checks remain absent or unavailable when not supplied.
+
+## Composition
+
+Both complete Stacks and Workspace screens use this component above their
+per-origin embedded file diff. Choosing a PR before a file retains a No file
+selected state. The host passes `pullRequests` and `onPullRequestAction` to the
+screen. Source applications, live forge transport and downstream adoption remain
+separate from the isolated catalog examples. Stories remain visual-pending.

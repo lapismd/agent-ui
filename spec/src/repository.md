@@ -202,8 +202,17 @@ The Stacks/Workspace body toolbar MUST omit its lower divider; target-history
 column icons MUST match the other 16px column header icons.
 Continuous graph connectors MUST remain visible beside expanded commit files
 in both Stacks and Workspace, spanning the complete selected row height.
-Expanded stack commit descriptions MUST align with the inline file-card width,
-use compact 13px default prose and a subtle theme-aware near-white surface.
+Stack and Workspace lanes MUST show commit summaries and inline changed files
+without expanded commit-description bodies. PR descriptions and additional
+host-supplied details MUST appear above the selected file diff in the adjacent
+per-origin column, including PR-only selection before a file is chosen.
+Both views MUST retain JJ Store's workspace controls, branch action bars,
+stack/commit menus and capability/immutable-aware requests. PR details MUST
+expand, edit and detach into the public Design Core floating window, retaining
+the same content instance, draft, scroll and focus when docking or closing it.
+PR checks and merge/draft/refresh actions MUST use exact host-supplied records
+and explicit callbacks; presentation MUST NOT load credentials, contact a forge
+or execute repository/PR mutations. Missing capabilities stay disabled or absent.
 
 ### Acceptance details
 

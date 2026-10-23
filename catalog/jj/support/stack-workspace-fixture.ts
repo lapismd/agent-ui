@@ -190,6 +190,11 @@ export function createStackReview(
       commands.push({ copy: value });
     },
     requestCommand: (command: unknown, snapshot: WorkspaceSnapshot) => {
+      const intent =
+        command as import("../../../packages/repository-ui/src/stacks/index.js").WorkspaceCommand;
+      if (intent.kind === "create_commit" && !intent.message)
+        for (const selection of intent.selections ?? [intent.selection])
+          controller.commitDrafts.open(snapshot, intent.stack, selection);
       commands.push({
         command,
         readKey: snapshot.readKey,

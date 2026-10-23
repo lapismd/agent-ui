@@ -220,7 +220,9 @@
       "parts": [
         "jj/screens/stack-workspace/RepositoryStackCanvas.svelte",
         "jj/screens/stack-workspace/RepositoryStackToolbar.svelte",
-        "jj/screens/stack-workspace/RepositoryTargetHistory.svelte"
+        "jj/screens/stack-workspace/RepositoryTargetHistory.svelte",
+        "jj/screens/stack-workspace/RepositoryStackActions.svelte",
+        "jj/screens/stack-workspace/RepositoryStackDetailsColumn.svelte"
       ]
     },
     {
@@ -228,7 +230,14 @@
       "purpose": "Grouped source bookmark cards, recorded graph, supplied metadata, selected source files and host-provided actions in the original stack column.",
       "parts": [
         "jj/workspace/stack-lane/RepositoryStackCard.svelte",
-        "jj/workspace/stack-lane/RepositoryWorkspaceDropGuide.svelte"
+        "jj/workspace/stack-lane/RepositoryWorkspaceDropGuide.svelte",
+        "jj/workspace/stack-lane/RepositoryStackBranchActions.svelte",
+        "jj/workspace/stack-lane/RepositoryStackCommitActions.svelte",
+        "jj/workspace/stack-lane/RepositoryStackRelativeActions.svelte",
+        "jj/workspace/stack-lane/RepositoryStackCopyMenu.svelte",
+        "jj/workspace/stack-lane/RepositoryStackLaneMenu.svelte",
+        "jj/workspace/stack-lane/RepositoryStackCommitComposer.svelte",
+        "jj/workspace/stack-lane/RepositoryStackStagedFiles.svelte"
       ]
     },
     {
@@ -242,7 +251,20 @@
     {
       "primary": "jj/workspace/diff/RepositoryWorkspaceDiff",
       "purpose": "Independent per-origin recorded diff with native hunk context, unified/split controls, wrapping, lazy reads and explicit unavailable/binary states.",
-      "parts": ["jj/workspace/diff/RepositoryWorkspaceDiffHunk.svelte"]
+      "parts": [
+        "jj/workspace/diff/RepositoryWorkspaceDiffHunk.svelte",
+        "jj/workspace/diff/RepositoryWorkspaceDiffActions.svelte"
+      ]
+    },
+    {
+      "primary": "jj/forge/pull-request/RepositoryPullRequest",
+      "purpose": "Recorded PR details, checks, host action requests and state-preserving detachable window.",
+      "parts": [
+        "jj/forge/pull-request/RepositoryDetachablePanel.svelte",
+        "jj/forge/pull-request/RepositoryPullRequestBody.svelte",
+        "jj/forge/pull-request/RepositoryPullRequestChecks.svelte",
+        "jj/forge/pull-request/RepositoryPullRequestActions.svelte"
+      ]
     }
   ],
   "deferred": [

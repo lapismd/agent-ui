@@ -9,6 +9,8 @@ import type {
   WorkspaceOpenDiff,
   NamedWorkspace,
 } from "../../../stacks/index.js";
+import type { RepositoryPullRequestReview } from "../../forge/pull-request/review.svelte.js";
+import type { PullRequestRequest } from "../../forge/pull-request/types.js";
 /** Rendering extensions receive recorded identities; hosts own effects and routing. */
 export type RepositoryStackSlots = {
   headerActions?: Snippet<[StackWorkspaceController]>;
@@ -21,6 +23,13 @@ export type RepositoryStackSlots = {
 };
 export type RepositoryStackHost = RepositoryStackSlots & {
   copyText(value: string): Promise<void>;
+  onCopyError?(cause: unknown): void;
+  pullRequests?: RepositoryPullRequestReview;
+  onPullRequestAction?(request: PullRequestRequest): void;
+  onCreatePullRequest?(branch: string, snapshot: WorkspaceSnapshot): void;
+  onSubmitStack?(stack: WorkspaceStack, snapshot: WorkspaceSnapshot): void;
+  onPushBranch?(branch: string, snapshot: WorkspaceSnapshot): void;
+  onWorkspaceSettings?(snapshot: WorkspaceSnapshot): void;
   onCommand?(command: WorkspaceCommand, snapshot: WorkspaceSnapshot): void;
   onSelectWorkspace?(workspace: NamedWorkspace): void;
   layoutPersistence?: ColumnCanvasLayoutPersistence;

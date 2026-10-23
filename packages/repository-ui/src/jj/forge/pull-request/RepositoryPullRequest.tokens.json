@@ -1,0 +1,26 @@
+{
+  "component": "RepositoryPullRequest",
+  "variables": [
+    {
+      "name": "--ui-repository-pull-request-background",
+      "default": "var(--background)",
+      "description": "Opaque theme surface of inline and detached PR content.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/forge/pull-request/pull-request.css"
+    },
+    {
+      "name": "--ui-repository-pull-request-font-size",
+      "default": "0.8125rem",
+      "description": "Default PR interface typography.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/forge/pull-request/pull-request.css"
+    },
+    {
+      "name": "--ui-repository-pull-request-padding",
+      "default": "0.75rem",
+      "description": "Description and additional-details inset.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/forge/pull-request/pull-request.css"
+    }
+  ]
+}

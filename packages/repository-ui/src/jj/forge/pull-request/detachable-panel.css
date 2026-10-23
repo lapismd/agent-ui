@@ -1,0 +1,18 @@
+/* SPDX-License-Identifier: Apache-2.0; adapted from JJ Store detachable-panel.css. */
+.repository-detachable-panel,
+.repository-detachable-panel__content {
+  min-width: 0;
+}
+.repository-detachable-panel__content {
+  max-height: 100%;
+  overflow: auto;
+}
+.repository-detachable-panel[data-detached] {
+  min-height: 0;
+}
+
+.repository-detachable-panel[data-detached]
+  > .repository-detachable-panel__content {
+  /* Keep scroll offsets while the same node moves between its two hosts. */
+  visibility: hidden;
+}

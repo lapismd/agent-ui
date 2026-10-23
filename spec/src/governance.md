@@ -61,6 +61,12 @@ session and demonstrating transfers with an isolated in-memory preview/apply
 adapter. Production components emit host commands only. Native execution,
 full mutation dialogs, forge transport and downstream adoption remain deferred.
 
+The next Stacks/Workspace alignment follow-up authorizes source-adapted PR
+details, action bars, commit drafts and the detachable floating panel in this
+repository. Host-owned exact data and action ports replace native forge and
+notification services. Live forge transport and downstream adoption remain
+separate review gates.
+
 ### Acceptance details
 
 - Public Design Core exports MUST own shared filename artwork, while Agent/JJ components pass exact file paths and preserve semantic action/status icons.
