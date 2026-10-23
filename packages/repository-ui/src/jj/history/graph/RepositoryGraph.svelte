@@ -31,6 +31,7 @@
     onCopyError,
     showAuthor = true,
     rowActions,
+    continuous = false,
   }: {
     revisions: RepositoryLogRevision[];
     commits?: readonly LocalGraphCommit[];
@@ -45,6 +46,8 @@
     showAuthor?: boolean;
     /** Host actions receive the recorded row and remain independent of selection. */
     rowActions?: Snippet<[RepositoryLogRevision]>;
+    /** Keep selected file cards inset beside the continuous graph, as in Stacks. */
+    continuous?: boolean;
   } = $props();
   const id = $props.id();
   const rows = $derived(buildRepositoryLogGraph(revisions));
@@ -96,6 +99,7 @@
     <li
       class:selected={selectedId === row.revision.eventId}
       class:conflicted={commit?.conflicted || row.revision.conflicted}
+      class:continuous
     >
       <!-- Existing selection button owns keyboard input; extend only its pointer hit area. -->
       <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
@@ -110,6 +114,7 @@
           {width}
           rowHeight={heights[`row:${row.revision.eventId}`] ?? 76}
           graphHeight={heights[`graph:${row.revision.eventId}`] ?? 76}
+          {continuous}
         />
         {#if showAuthor}<RepositoryAuthorAvatar
             name={row.revision.author}
@@ -259,5 +264,9 @@
   }
   .repository-inline-files {
     padding-top: 0.5rem;
+  }
+  .continuous > .repository-inline-files {
+    padding: 0 0.5rem 0.5rem;
+    padding-inline-start: var(--graph-lane-width);
   }
 </style>

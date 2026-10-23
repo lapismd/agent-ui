@@ -60,6 +60,11 @@ Hosts can inject per-revision actions without changing selection.
 
 The optional `rowActions` snippet receives the recorded revision, including `authorEmail` when supplied. This supports stack rows without fabricating transport commit objects.
 
+Stacks use `continuous` to inset selected-file content beside the graph lanes,
+with zero top and half-rem right/bottom padding, matching JJ Store's stacked cards.
+Its SVG connectors span the full expanded item height beside the file card in
+both Stacks and Workspace.
+
 Selection delegates the full event ID. Author/profile and copy actions remain independent of row selection. An empty graph renders Empty with an icon and does not fabricate a revision. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.
 
 Known conflicts display a Conflicted badge and a subtle destructive theme tint,

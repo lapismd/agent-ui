@@ -10,6 +10,42 @@ import {
   fileSet,
 } from "../catalog/jj/support/stack-workspace-data.js";
 import { createStackReview } from "../catalog/jj/support/stack-workspace-fixture.js";
+import { stackGroups } from "../packages/repository-ui/src/stacks/presentation.js";
+
+test("recorded branch boundaries survive lazy history reads without duplicated commits", async () => {
+  const demo = createStackReview("Basic", "branches");
+  try {
+    await demo.start();
+    await demo.controller.histories.load("lane-1");
+    const groups = stackGroups(demo.controller.snapshot!.stacks[0]!);
+    expect(groups.map((group) => group.head.name)).toEqual([
+      "feature/portable-api",
+      "review/1",
+      "base/1",
+    ]);
+    const ids = groups.flatMap((group) =>
+      group.commits.map((commit) => commit.id),
+    );
+    expect(ids).toHaveLength(8);
+    expect(new Set(ids).size).toBe(8);
+    expect(demo.commands).toEqual([]);
+  } finally {
+    demo.close();
+  }
+});
+
+test("stacked branch example opens its recorded text diff after source files load", async () => {
+  const demo = createStackReview("SelectedFiles", "branches");
+  try {
+    await demo.start();
+    expect(demo.controller.diffs).toMatchObject([
+      { origin: "stack-lane-1", path: "src/stack-8/controller.ts" },
+    ]);
+    expect(demo.commands).toEqual([]);
+  } finally {
+    demo.close();
+  }
+});
 
 test("workspace graph rows preserve recorded parent, author, conflict and alias facts", () => {
   const stack = stackReviewSnapshot("Conflicts").stacks[0]!;

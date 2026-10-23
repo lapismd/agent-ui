@@ -62,6 +62,13 @@ Recorded selected files presentation through the production controller and in-me
 
 <Canvas of={Stories.SelectedFiles} />
 
+### Stacked branches
+
+Three recorded bookmark segments in a selected branch, with commit files open
+inside the graph and an independent adjacent diff.
+
+<Canvas of={Stories.StackedBranches} />
+
 ### Binary
 
 Recorded binary presentation through the production controller and in-memory ports.
@@ -141,6 +148,9 @@ Three recorded native hunks expose independent selection and an explicit host as
 <Canvas of={Stories.HunkActions} />
 
 ## Behavior and accessibility
+
+The screen toolbar has no lower border. Target history uses the same 16px
+branch icon size as the other column headers.
 
 Column widths match JJ Store: Branches 320 (260–520), Unstaged 330 (260–520), stack/target lanes 390 (310–640) and diff 580 (360–980) pixels. Fixed leading columns, independent bodies, original graph rows, collapse and keyboard/pointer resizing remain shared primitives. Workspace uses applied topology, while Stacks shows the selected captured branch.
 

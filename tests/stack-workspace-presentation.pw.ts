@@ -112,6 +112,9 @@ test("target history is read-only and selection uses captured bookmark keys", as
   await page.getByRole("row", { name: /main/ }).click();
   const target = column(page, "target-history");
   await expect(target).toBeVisible();
+  await expect(
+    target.locator('[data-ui-part="column-header"] > svg'),
+  ).toHaveCSS("width", "16px");
   await expect(target).toContainText("Immutable");
   await target.locator(".repository-graph-select").first().click();
   await target
@@ -120,6 +123,54 @@ test("target history is read-only and selection uses captured bookmark keys", as
     .click();
   await expect(column(page, "diff-target-history")).toBeAttached();
   await expect(state(page)).toHaveAttribute("data-commands", "0");
+});
+
+test("selected branch showcases stacked bookmarks and source-spaced commit files", async ({
+  page,
+}) => {
+  await open(page, "basic");
+  const lane = column(page, "stack-lane-1");
+  await expect(lane.locator(".workspace-bookmark-card")).toHaveCount(3);
+  await expect(lane.locator(".workspace-bookmark-link")).toHaveCount(2);
+  await lane.locator(".repository-graph-select").first().click();
+  const files = lane.locator(".repository-inline-files .workspace-files");
+  await expect(files).toHaveCSS("border-radius", "8px");
+  await expect(files.locator("header strong")).toHaveText("Changed files");
+  await expect(files.locator(".workspace-files__body")).toHaveCSS(
+    "padding",
+    "4px 5.6px 5.6px",
+  );
+  await expect(lane.locator(".repository-inline-files")).toHaveCSS(
+    "padding-top",
+    "0px",
+  );
+  for (const name of ["Workspace", "Stacks"]) {
+    await view(page, name).click();
+    await expect
+      .poll(() =>
+        lane
+          .locator("li.selected .repository-revision-graph__svg")
+          .evaluate((svg) =>
+            [...svg.querySelectorAll("line")].some(
+              (line) => line.getAttribute("y2") === svg.getAttribute("height"),
+            ),
+          ),
+      )
+      .toBe(true);
+  }
+  await files
+    .getByRole("button", { name: /controller.ts/ })
+    .first()
+    .click();
+  await expect(column(page, "diff-stack-lane-1")).toBeAttached();
+  await expect(state(page)).toHaveAttribute("data-commands", "0");
+  await open(page, "stacked-branches");
+  await expect(column(page, "diff-stack-lane-1")).toContainText(
+    "controller.ts",
+  );
+  await expect(
+    column(page, "diff-stack-lane-1").locator(".workspace-hunk-card"),
+  ).toHaveCount(3);
 });
 
 test("host row actions stay separate from selection; resizing keeps source selection", async ({
@@ -172,6 +223,10 @@ test("stack navigation uses source pill styling in both views", async ({
 }) => {
   await open(page);
   const tabs = page.getByRole("tablist", { name: "Stack workspace views" });
+  await expect(page.locator(".workspace-navigation")).toHaveCSS(
+    "border-bottom-width",
+    "0px",
+  );
   await expect(tabs).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
   for (const name of ["Stacks", "Workspace"]) {
     const tab = view(page, name);

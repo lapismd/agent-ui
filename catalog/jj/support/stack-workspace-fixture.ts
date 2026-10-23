@@ -207,8 +207,10 @@ export function createStackReview(
     async start() {
       await controller.refresh();
       if (!controller.snapshot || controller.error || closed) return;
-      if (page === "branches" && data.stacks.length)
+      if (page === "branches" && data.stacks.length) {
+        await controller.histories.load(data.stacks[0]!.id);
         controller.selectStack(data.stacks[0]!.id, data.stacks[0]!.name);
+      }
       if (variant === "TargetHistory") await controller.selectTargetBranch();
       if (
         [
@@ -225,9 +227,9 @@ export function createStackReview(
           page === "workspace"
             ? "unassigned"
             : data.stacks[0]!.commits.at(-1)!.id;
+        await controller.details.loadFiles(source);
         if (page === "branches")
           controller.selectCommit(source, data.stacks[0]!.id);
-        await controller.details.loadFiles(source);
         const path =
           variant === "NoText"
             ? files(source)[4]!.path
@@ -235,7 +237,9 @@ export function createStackReview(
               ? files(source)[3]!.path
               : variant === "Conflicts" && page === "workspace"
                 ? "src/shared/conflict.ts"
-                : files(source)[0]!.path;
+                : files(source).find((file) =>
+                    file.path.endsWith("/controller.ts"),
+                  )!.path;
         controller.selectFile(source, path);
       }
     },

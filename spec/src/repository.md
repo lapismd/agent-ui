@@ -194,6 +194,14 @@ still present in the same scope. Controller disposal belongs to the host.
 
 Stacks/Workspace navigation MUST share the source pill states; named workspace selection MUST reuse the searchable Command View picker and emit exact recorded IDs without fabricated commits.
 Recorded native hunks MUST render separate range headers and independent selection controls, preserving native tokens, complete file statistics and read-only target/immutable boundaries. Assignment and commit controls MUST distinguish host requests from execution.
+Selected branch examples MUST preserve recorded stacked bookmark boundaries
+through lazy history reads. Inline commit files MUST retain JJ Store's compact
+frame, graph-lane inset and thin inner spacing, with independent contextual
+labels and a short Changed files heading.
+The Stacks/Workspace body toolbar MUST omit its lower divider; target-history
+column icons MUST match the other 16px column header icons.
+Continuous graph connectors MUST remain visible beside expanded commit files
+in both Stacks and Workspace, spanning the complete selected row height.
 
 ### Acceptance details
 

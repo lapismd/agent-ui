@@ -100,6 +100,7 @@
   </Card.Header>
   {#if card.branchSelected}<Card.Content class="workspace-branch-files"
       ><Files
+        compact
         {controller}
         source={card.branchSource}
         label={`Changed files in ${name}`}
@@ -115,6 +116,7 @@
       >{@render host.branchActions(stack, name)}</Card.Content
     >{/if}
   <RepositoryGraph
+    continuous
     {revisions}
     selectedId={card.commit?.id}
     copyText={host.copyText}
@@ -127,6 +129,7 @@
             description={card.commit.message}
           />{/if}
         <Files
+          compact
           {controller}
           source={card.commit.id}
           label={`Changed files in ${name}`}

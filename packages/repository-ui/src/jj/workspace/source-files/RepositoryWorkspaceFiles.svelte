@@ -15,6 +15,8 @@
     controller,
     source,
     label = "Changed files",
+    title = "Changed files",
+    compact = false,
     selectedPath,
     onSelect,
     actions,
@@ -23,6 +25,8 @@
     controller: StackWorkspaceController;
     source: string;
     label?: string;
+    title?: string;
+    compact?: boolean;
     selectedPath?: string;
     onSelect(path: string): void;
     actions?: Snippet;
@@ -56,48 +60,64 @@
 
 <section
   class="workspace-files"
+  class:compact
   aria-label={label}
   aria-busy={readState.loading}
 >
   {#if showHeader}<header>
-      <strong>{label}</strong><span>{files.length}</span
+      <strong>{title}</strong><span>{files.length}</span
       ><FileListingViewModeToggle bind:mode />{@render actions?.()}
     </header>{/if}
-  {#if readState.error}<Status
-      unavailable
-      title="Changed files unavailable"
-      description={readState.error}
-      onRetry={() => void controller.details.loadFiles(source)}
-    />
-  {:else if controller.details.lazy && !readState.loaded}<RepositorySkeleton
-      kind="files"
-      label={`Loading ${label}`}
-    />
-  {:else if !files.length}<Status />
-  {:else}<FileListing
-      {files}
-      {mode}
-      {selectedPath}
-      virtualize={false}
-      loading={readState.loading}
-      hasMore={Boolean(readState.nextCursor)}
-      onLoadMore={() => void controller.details.loadFiles(source, true)}
-      onSelectPath={onSelect}
-    />{#if readState.nextCursor}<Button
-        variant="ghost"
-        disabled={readState.loading}
-        onclick={() => void controller.details.loadFiles(source, true)}
-        >More changed files</Button
-      >{/if}{/if}
+  <div class="workspace-files__body">
+    {#if readState.error}<Status
+        unavailable
+        title="Changed files unavailable"
+        description={readState.error}
+        onRetry={() => void controller.details.loadFiles(source)}
+      />
+    {:else if controller.details.lazy && !readState.loaded}<RepositorySkeleton
+        kind="files"
+        label={`Loading ${label}`}
+      />
+    {:else if !files.length}<Status />
+    {:else}<FileListing
+        {files}
+        {mode}
+        {selectedPath}
+        virtualize={false}
+        loading={readState.loading}
+        hasMore={Boolean(readState.nextCursor)}
+        onLoadMore={() => void controller.details.loadFiles(source, true)}
+        onSelectPath={onSelect}
+      />{#if readState.nextCursor}<Button
+          variant="ghost"
+          disabled={readState.loading}
+          onclick={() => void controller.details.loadFiles(source, true)}
+          >More changed files</Button
+        >{/if}{/if}
+  </div>
 </section>
 
 <style>
   .workspace-files {
+    display: flex;
+    flex-direction: column;
     min-width: 0;
     background: var(
       --ui-repository-workspace-files-background,
       var(--background)
     );
+  }
+  .workspace-files.compact {
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+  }
+  .compact .workspace-files__body {
+    padding: 0.25rem 0.35rem 0.35rem;
+  }
+  .workspace-files__body {
+    min-width: 0;
+    min-height: 0;
   }
   header {
     display: flex;
@@ -110,8 +130,15 @@
   strong {
     flex: 1;
     min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   header > span {
-    color: var(--muted-foreground);
+    flex: none;
+    padding: 0.05rem 0.4rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--foreground) 7%, var(--background));
+    font-size: 0.75rem;
   }
 </style>

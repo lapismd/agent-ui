@@ -99,3 +99,7 @@ The Stacks/Workspace visual and action audit follow-up is in
 `spec/records/2026-10-23-stack-workspace-review.md`: pill tab parity, the shared
 Command View workspace selector, separate native hunk selection, copy/commit
 intent acceptance and explicit remaining drag/drop/commit UI gaps.
+
+The stacked-branch fixture, compact inline file spacing, borderless screen toolbar
+and 16px target icon review corrections are recorded in
+`spec/records/2026-10-23-stack-branch-spacing.md`. Screen review remains pending.

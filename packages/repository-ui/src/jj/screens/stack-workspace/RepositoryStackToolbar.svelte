@@ -27,6 +27,7 @@
 <AppShell.Toolbar
   label="Stack workspace navigation"
   class="workspace-navigation"
+  style="border-block-end: 0"
 >
   <Tabs.Root
     class="workspace-view-tabs"

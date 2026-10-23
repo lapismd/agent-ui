@@ -129,32 +129,38 @@ export function stackReviewSnapshot(variant = "Basic"): WorkspaceSnapshot {
       },
     );
     const name = `feature/${["portable-api", "workspace-ui", "search-index", "agent-reviews", "long-stack-name-with-multiple-bookmark-aliases", "native-history"][lane]}`;
+    const heads = [
+      {
+        name,
+        commit: commits.at(-1)!.id,
+        aliases:
+          lane === 0
+            ? [
+                "feature/controller-api",
+                "review/portable",
+                "release/ui",
+                "desktop",
+                "web",
+              ]
+            : [],
+        shared: lane === 0,
+      },
+      {
+        name: `review/${lane + 1}`,
+        commit: commits.at(-4)!.id,
+      },
+      {
+        name: `base/${lane + 1}`,
+        commit: commits.at(-6)!.id,
+        shared: lane === 0,
+      },
+    ];
     return {
       id: `lane-${lane + 1}`,
       name,
       base: hex(1),
-      heads: [
-        {
-          name,
-          commit: commits.at(-1)!.id,
-          aliases:
-            lane === 0
-              ? [
-                  "feature/controller-api",
-                  "review/portable",
-                  "release/ui",
-                  "desktop",
-                  "web",
-                ]
-              : [],
-          shared: lane === 0,
-        },
-        {
-          name: `base/${lane + 1}`,
-          commit: commits[2]!.id,
-          shared: lane === 0,
-        },
-      ],
+      heads,
+      topologyHeads: heads,
       commits,
       conflicts: variant === "Conflicts" && lane === 0,
     };

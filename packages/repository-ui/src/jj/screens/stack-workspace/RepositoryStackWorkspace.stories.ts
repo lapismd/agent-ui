@@ -34,6 +34,24 @@ export const Workspace: Story = story("Basic");
 export const Dense: Story = story("Dense");
 export const Paged: Story = story("Paged");
 export const SelectedFiles: Story = story("SelectedFiles");
+export const StackedBranches: Story = {
+  ...story("SelectedFiles", "branches"),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await canvas.findByRole("region", {
+      name: "Changed files in feature/portable-api",
+    });
+    expect(
+      canvasElement.querySelectorAll(".workspace-bookmark-card"),
+    ).toHaveLength(3);
+    expect(
+      canvasElement.querySelector(".workspace-files.compact"),
+    ).not.toBeNull();
+    await canvas.findByRole("button", {
+      name: /^Close diff from stack-lane-1$/,
+    });
+  },
+};
 export const Binary: Story = story("Binary");
 export const Conflicts: Story = story("Conflicts");
 export const TargetHistory: Story = story("TargetHistory", "branches");

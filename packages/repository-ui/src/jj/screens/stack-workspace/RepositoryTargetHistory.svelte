@@ -48,7 +48,7 @@
     aria-label={`Target history ${branch.name}`}
   >
     <ColumnCanvas.Header
-      ><GitBranch aria-hidden="true" /><ColumnCanvas.Title
+      ><GitBranch size={16} aria-hidden="true" /><ColumnCanvas.Title
         >{branch.name}</ColumnCanvas.Title
       ><ColumnCanvas.Count
         >{history.total ?? history.commits.length}</ColumnCanvas.Count
@@ -107,6 +107,7 @@
             {#snippet selectedFiles()}{#if history.selectedId}<Files
                   {controller}
                   source={history.selectedId}
+                  compact
                   selectedPath={history.diff?.path}
                   onSelect={(path) =>
                     history.selectFile(history.selectedId!, path)}

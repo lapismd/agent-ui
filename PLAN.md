@@ -223,3 +223,8 @@ create-commit intents and native hunk assignment intents reach host callbacks.
 File/folder/hunk/commit drag/drop, built-in commit menus and the full inline commit
 composer still need their dedicated frontend wiring slice before claiming JJ Store
 action parity. Native execution and preview/apply recovery remain host-owned.
+
+Stacks review now includes three recorded bookmark segments per selected branch,
+a Stacked Branches example with a text diff, source-matched inline file spacing,
+a borderless body toolbar and a correctly sized target icon. See
+`spec/records/2026-10-23-stack-branch-spacing.md`; human review remains pending.
