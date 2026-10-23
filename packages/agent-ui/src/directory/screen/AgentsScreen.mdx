@@ -95,6 +95,8 @@ The port supplies bounded, snapshot-bound pages, clients and capabilities. Save,
 delete and Stop have distinct typed commands. Configuration is installation-owned;
 live sessions and saved captures are keyed by home plus entity identity. The host
 persists requests before effects and must retain unknown outcomes without replay.
+`updatedAt` is optional when the source has no recorded time. A configured-agent
+association is also optional; a shared client name does not prove that identity.
 
 ## Composition
 

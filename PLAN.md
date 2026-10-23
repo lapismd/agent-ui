@@ -1,5 +1,9 @@
 # Delivery and review
 
+Native Agents adoption: directory timestamps are optional when absent in the
+source; configured profiles cannot be inferred from a shared client. The desktop
+adapter work remains in progress, with no execution or persistence moved here.
+
 | Slice                                       | Status                 | Evidence                                                                                  |
 | ------------------------------------------- | ---------------------- | ----------------------------------------------------------------------------------------- |
 | Agent foundations and five complete screens | Awaiting visual review | 18 documented families, full transcript, turn changes and tool renderers                  |

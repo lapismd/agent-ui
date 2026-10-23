@@ -79,7 +79,9 @@ browsing MUST NOT activate an execution checkout or dispatch a message. Hosts
 advertise supported actions, persist drafts and exact requests before side effects,
 and inspect unknown outcomes without replay. Session/capture identities include
 their metadata home; continuation MUST preserve the snapshot and reject stale or
-duplicate pages. Compute and memory management remain excluded.
+duplicate pages. Hosts MUST omit unavailable session timestamps and configured
+agent associations rather than infer them from the client or current time.
+Compute and memory management remain excluded.
 Storybook MUST mount each complete source-derived screen with in-memory
 controllers. Do not add invented application navigation or replacement layouts.
 

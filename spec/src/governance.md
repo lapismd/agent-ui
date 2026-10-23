@@ -1,5 +1,9 @@
 # Governance
 
+Configured-agent consumer contracts MUST document absent source timestamps and
+unproven profile associations explicitly; example data MUST NOT imply that hosts
+may synthesize these facts for recorded sessions.
+
 Browser acceptance files (`.pw.ts`) and unit tests (`.test.ts`) share the existing
 500-counted-line test budget; production and script files retain the 300-line
 limit. This classification must not depend on the test runner.

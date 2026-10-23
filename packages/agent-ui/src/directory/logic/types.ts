@@ -20,7 +20,8 @@ export type DirectorySession = AgentSessionIdentity & {
   agentName: string;
   agent?: string;
   state: string;
-  updatedAt: number;
+  /** Absent when the host has no recorded timestamp; never synthesize one. */
+  updatedAt?: number;
 };
 export type DirectoryCapture = Omit<DirectorySession, "state"> & {
   snapshot: string;
