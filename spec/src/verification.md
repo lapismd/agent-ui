@@ -143,3 +143,6 @@ must never read latest before opening a historical file.
 Settings AppShell composition for RUI-FORGE-001 is covered by the Settings page
 Appearance interaction and all three settings story families across themes and
 viewports. Evidence: `spec/records/2026-10-23-settings-shell.md`.
+
+RUI-FOUND-001 native identifier adaptation uses `tests/jj-identifiers.test.ts` and
+first-consumer complete-screen acceptance; see `spec/records/2026-10-23-public-identifiers.md`.

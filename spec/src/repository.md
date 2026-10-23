@@ -12,6 +12,8 @@ avatar resolution and preference persistence stay host-owned.
 Filename titles and shared file listings MUST use the public Design Core
 FileTypeIcon from the host-issued path while retaining original geometry,
 truncation, folder affordances and explicit navigation identities.
+Hosts can use the public `encodeJjChangeId` helper for native hex change IDs
+before passing display models to file, branch and stack components.
 
 ### Acceptance details
 

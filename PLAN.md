@@ -277,3 +277,6 @@ track this public optional input.
 - Settings alignment: use the production AppShell body, standard toolbar and
   scrolling content in all settings stories and the first consumer. Focused
   verification recorded in `spec/records/2026-10-23-settings-shell.md`; visual-pending.
+
+- Export the existing JJ change-ID display encoder for first-consumer adapters;
+  recorded under `spec/records/2026-10-23-public-identifiers.md`.

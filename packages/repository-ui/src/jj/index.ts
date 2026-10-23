@@ -1,3 +1,4 @@
+export { encodeJjChangeId } from "../history/repository-log-graph.js";
 export { default as RepositoryShell } from "./foundations/shell/RepositoryShell.svelte";
 export { default as RepositoryAuthorAvatar } from "./foundations/author-avatar/RepositoryAuthorAvatar.svelte";
 export { default as RepositoryIdentifiers } from "./foundations/identifiers/RepositoryIdentifiers.svelte";
