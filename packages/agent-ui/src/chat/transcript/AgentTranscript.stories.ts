@@ -76,3 +76,64 @@ export const ClassicError: Story = {
 export const Typography: Story = {
   render: () => ({ Component: Fixture, props: { scenario: "typography" } }),
 };
+
+async function reviewQueuedPermission(canvasElement: HTMLElement) {
+  const c = within(canvasElement);
+  const editor = within(
+    await c.findByRole("group", { name: "Message composer" }),
+  ).getByRole("textbox", { name: "Message" });
+  await expect(c.getByRole("button", { name: "Allow once" })).toBeVisible();
+  await userEvent.type(editor, "Retain this queued follow-up");
+  await expect(c.getByRole("button", { name: "Queue message" })).toBeEnabled();
+  await expect(c.getByTestId("agent-story-state")).toHaveAttribute(
+    "data-calls",
+    "0",
+  );
+  await expect(c.queryByRole("button", { name: "Stop agent" })).toBeNull();
+  await userEvent.click(c.getByRole("button", { name: "Queue message" }));
+  await expect(
+    c.findByRole("region", { name: "Queued messages" }),
+  ).resolves.toHaveTextContent("Retain this queued follow-up");
+  await expect(c.getByRole("button", { name: "Allow once" })).toBeVisible();
+  await expect(c.getByTestId("agent-story-state")).toHaveAttribute(
+    "data-calls",
+    "1",
+  );
+}
+export const QueuedPermission: Story = {
+  render: () => ({
+    Component: Fixture,
+    props: { scenario: "approval", queueWhileAwaitingApproval: true },
+  }),
+  play: ({ canvasElement }) => reviewQueuedPermission(canvasElement),
+};
+export const ClassicQueuedPermission: Story = {
+  render: () => ({
+    Component: Fixture,
+    props: {
+      scenario: "approval",
+      view: "classic",
+      queueWhileAwaitingApproval: true,
+    },
+  }),
+  play: ({ canvasElement }) => reviewQueuedPermission(canvasElement),
+};
+
+export const SendAnchoredComment: Story = {
+  render: () => ({
+    Component: Fixture,
+    props: { scenario: "comments", tableComment: true },
+  }),
+  play: async ({ canvasElement }) => {
+    const c = within(canvasElement);
+    await userEvent.click(c.getByRole("button", { name: "Send message" }));
+    await expect(c.getByTestId("agent-story-state")).toHaveAttribute(
+      "data-calls",
+      "1",
+    );
+    await expect(c.getByTestId("agent-story-state")).toHaveAttribute(
+      "data-submission",
+      expect.stringContaining("Keep this captured wording."),
+    );
+  },
+};

@@ -423,7 +423,7 @@
           "description": "User-authorized hidden-editor permission flow: prevent sending the retained draft while a visible permission is pending; Stop remains available during active work."
         }
       ],
-      "destinationSha256": "661aef3247e80a6e692578bd8968fe8c7706de3b9914f5a21b3c2a8c7ad821c1",
+      "destinationSha256": "49d5c1f8fd8f55e35955603c1b1bf807bd4e5f77ae7074776f526c6af51a71e5",
       "layoutAdaptations": [
         {
           "before": "gap: 0.25rem;",
@@ -443,7 +443,8 @@
           "description": "User-authorized hidden-editor permission flow: prevent sending the retained draft while a visible permission is pending; Stop remains available during active work."
         }
       ],
-      "layoutSha256": "05bb167d61e3696d8e24c4d8910e8858f2dbbd2366a2d255924f3b768fab3eb4"
+      "layoutSha256": "05bb167d61e3696d8e24c4d8910e8858f2dbbd2366a2d255924f3b768fab3eb4",
+      "notes": " Desktop adoption: optional host transcript metadata and hooks, or same-file pin retention; default presentation unchanged."
     },
     {
       "sourceRepository": "lapis-desktop",

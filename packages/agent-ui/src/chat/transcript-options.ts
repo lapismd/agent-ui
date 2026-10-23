@@ -29,6 +29,8 @@ export type AgentTranscriptOptions = Pick<
   | "commentComposer"
 > & {
   composer?: AgentComposerOptions;
+  /** Keep the draft editor beside exact permission controls when the host supports durable follow-up queues. */
+  queueWhileAwaitingApproval?: boolean;
   icons?: Readonly<Record<string, import("svelte").Component>>;
   blocks?: Readonly<Record<string, AgentBlockPresentation>>;
   messages?: Readonly<Record<string, AgentMessagePresentation>>;

@@ -89,3 +89,9 @@ Errors and warnings belong to `ChatMessageComposer.status`, also available as
 `options.composer.status` on AgentTranscript. The fixed footer owns actions only
 and never renders a duplicate banner. Pair standalone footer stories with the
 shared composer to review feedback in both presentations.
+
+Hosts with durable follow-up queues can set `transcriptOptions.queueWhileAwaitingApproval`
+on AgentChatScreen. This retains the editor and exact permission controls in both
+views, with a single Queue/Stop action. Typing never sends or approves implicitly.
+Standalone footers receive the same boolean prop. The default permission-only
+panel remains unchanged.

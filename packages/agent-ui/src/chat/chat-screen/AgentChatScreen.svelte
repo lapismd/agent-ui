@@ -87,8 +87,11 @@
   <AiTranscriptFooter
     {panel}
     state={controller.transcript}
-    blocked={controller.loading || !!controller.pending}
+    blocked={controller.loading ||
+      !!panel.panelProps.initializing ||
+      !!controller.pending}
     {documentActions}
+    queueWhileAwaitingApproval={transcriptOptions?.queueWhileAwaitingApproval}
     onSend={send}
   />
 {/snippet}

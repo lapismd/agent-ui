@@ -149,7 +149,7 @@ export class AgentUiController {
       recipients =
         this.port.resolveRecipients?.({
           session: this.sessionId,
-          submission: structuredClone(submission),
+          submission: structuredClone($state.snapshot(submission)),
           selected: [...this.recipients],
         }) ?? this.recipients;
     } catch (cause) {
@@ -222,7 +222,9 @@ export class AgentUiController {
     this.error = "";
     return (this.#running = (async () => {
       try {
-        const outcome = await this.port.act(structuredClone(request));
+        const outcome = await this.port.act(
+          structuredClone($state.snapshot(request)),
+        );
         if (!this.#closed) this.accept(outcome, request);
         return outcome;
       } catch (cause) {

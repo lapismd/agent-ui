@@ -117,6 +117,24 @@ comment admission without clearing retained drafts or changing reader controls.
 
 <Source code={References} language="tsx" />
 
+### QueuedPermission
+
+A queue-capable host retains the editor and exact approval controls.
+
+<Canvas of={Stories.QueuedPermission} />
+
+### ClassicQueuedPermission
+
+The same queue flow in Classic presentation.
+
+<Canvas of={Stories.ClassicQueuedPermission} />
+
+### SendAnchoredComment
+
+Captured table context crosses the host recipient and dispatch boundary as plain data.
+
+<Canvas of={Stories.SendAnchoredComment} />
+
 ## Behavior and accessibility
 
 Document and Classic retain the same controller, source revisions and comment anchors. Tool inspectors share the exact readers. Unknown outcomes retain the pending request and do not replay it. The public options forward history, Markdown hooks, custom blocks, supplements, thread navigation, message actions and reactions; host authority remains explicit. Sent-comment editing is not enabled by this Agent adapter.
@@ -200,3 +218,9 @@ on ChatMessageComposer; complete transcripts forward the same API through
 remain warnings, and status rendering never retries or clears a draft. Fixed
 action footers and keyboard hints do not render a second banner. The older
 `sendError` and top-level `composerStatus` props are compatibility aliases.
+
+Hosts with durable follow-up queues can set `transcriptOptions.queueWhileAwaitingApproval`
+on AgentChatScreen. This retains the editor and exact permission controls in both
+views, with a single Queue/Stop action. Typing never sends or approves implicitly.
+Standalone footers receive the same boolean prop. The default permission-only
+panel remains unchanged.

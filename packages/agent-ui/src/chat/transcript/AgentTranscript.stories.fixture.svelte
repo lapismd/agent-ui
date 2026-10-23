@@ -28,6 +28,8 @@
     part = "body",
     view = "document",
     styled = false,
+    tableComment = false,
+    queueWhileAwaitingApproval = false,
     inspectorVariant = "markdown",
   }: {
     scenario?: AgentScenario;
@@ -41,10 +43,28 @@
       | "hint";
     view?: "document" | "classic";
     styled?: boolean;
+    tableComment?: boolean;
+    queueWhileAwaitingApproval?: boolean;
     inspectorVariant?: InspectorVariant;
   } = $props();
   const demo = untrack(() => createDemo(scenario));
   const { controller, panel, port } = demo;
+  if (untrack(() => tableComment))
+    controller.transcript.threads[0].anchor.tableContext = {
+      markdown:
+        "| Area | Action |\n| --- | --- |\n| Research | Keep captured wording |",
+      from: 0,
+      to: 10,
+    };
+  Object.assign(port, {
+    resolveRecipients: ({ selected }: { selected: readonly string[] }) =>
+      selected,
+  });
+  if (untrack(() => queueWhileAwaitingApproval)) {
+    controller.snapshot!.busy = true;
+    port.snapshot.busy = true;
+    demo.options = { ...demo.options, queueWhileAwaitingApproval: true };
+  }
   controller.view = untrack(() => view);
   let documentActions = $state<Snippet>();
   let tool = $state<TranscriptTool>();

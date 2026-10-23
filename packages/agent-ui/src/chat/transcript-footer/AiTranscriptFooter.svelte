@@ -14,12 +14,14 @@
     panel,
     state,
     blocked,
+    queueWhileAwaitingApproval = false,
     documentActions,
     onSend,
   }: {
     panel: TranscriptPanelProps;
     state: TranscriptController;
     blocked: boolean;
+    queueWhileAwaitingApproval?: boolean;
     documentActions?: Snippet;
     onSend: () => void;
   } = $props();
@@ -31,7 +33,8 @@
     conversationsState,
   } = $derived(panel);
   const permissionRequested = $derived(
-    attachmentsState.pendingInteraction?.type === "approval",
+    attachmentsState.pendingInteraction?.type === "approval" &&
+      !queueWhileAwaitingApproval,
   );
 </script>
 

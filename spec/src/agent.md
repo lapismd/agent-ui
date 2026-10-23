@@ -48,13 +48,18 @@ while unknown outcomes remain warnings and stale draft errors remain suppressed.
 
 **Requirement.** Approvals and questions MUST use exact host-provided identities and advertised options. Cancellation and queued follow-ups MUST remain explicit host actions.
 
-Active permission requests MUST replace the message input with an initially open,
+By default, active permission requests MUST replace the message input with an initially open,
 expandable themed panel pinned outside transcript scrolling in both views.
 Streaming and reading earlier messages MUST NOT move the panel out of view.
 Its bounded content MUST retain exact options and attached error/unknown feedback.
 New request identities MUST reopen it; completing the request MUST restore the
 retained message draft without sending it. Answer requests retain their existing
-presentation in this permission-only slice.
+presentation in this permission-only slice. Hosts with durable follow-up queues
+MAY opt into `queueWhileAwaitingApproval`; both views MUST then retain the
+editable draft and the exact permission controls, with one Send/Queue/Stop action.
+Typing or toggling cannot submit a response or send the queued draft.
+The controller MUST snapshot reactive submissions before recipient resolution
+and host dispatch, retaining exact comments and anchors as cloneable data.
 The header MUST expose a far-right Close control that dismisses only the exact
 local request presentation, without granting, denying or replaying a decision.
 Dismissal MUST survive refreshes of the same request, preserve drafts and remain

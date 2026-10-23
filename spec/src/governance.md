@@ -31,7 +31,9 @@ by public Design Core components; Agent UI supplies exact-draft metadata.
 All live chat warnings/errors MUST flow through the owning composer status API;
 fixed action footers and keyboard hints MUST not duplicate status presentation.
 Active permissions forward that status into their owning expandable request
-panel, pinned in the Transcript footer slot while the message input is absent.
+panel, pinned in the Transcript footer slot while the message input is absent
+by default; explicitly queue-capable hosts may retain the composer through the
+public queueWhileAwaitingApproval option.
 Captured permission outcomes use the public TranscriptItem disclosure tone;
 inline comment formatting stays in shared CommentComposer and public Mira actions.
 Request-card red/green feedback remains an explicit audited source adaptation.

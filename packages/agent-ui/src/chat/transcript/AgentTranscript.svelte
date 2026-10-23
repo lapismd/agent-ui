@@ -74,7 +74,8 @@
     references: options.markdown?.references ?? references,
   });
   const permission = $derived(
-    panel.attachmentsState.pendingInteraction?.type === "approval",
+    panel.attachmentsState.pendingInteraction?.type === "approval" &&
+      !options.queueWhileAwaitingApproval,
   );
   const feedback = $derived(
     composerFeedback(
@@ -98,7 +99,9 @@
     bind:value={panel.composerState.draft}
     bind:documentActions
     {view}
-    disabled={!!controller.pending}
+    disabled={controller.loading ||
+      !!panel.panelProps.initializing ||
+      !!controller.pending}
     showHint={false}
     onSend={send}
     status={feedback}
