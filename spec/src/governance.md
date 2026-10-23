@@ -35,7 +35,9 @@ Typed captured results retain their exact source while selecting the shared
 read-only request renderer across host block formats.
 Captured send-feedback deduplication requires a new exact notice from that
 request in the current session; older matching wording cannot hide a refusal.
-fixed action footers and keyboard hints MUST not duplicate status presentation.
+Controlled request callbacks MUST preserve their promises through the drawer to
+the card, which owns pending-input retention and response error presentation.
+Fixed action footers and keyboard hints MUST not duplicate status presentation.
 Active permissions forward that status into their owning expandable request
 panel, pinned in the Transcript footer slot while the message input is absent
 by default; explicitly queue-capable hosts may retain the composer through the

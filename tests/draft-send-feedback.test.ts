@@ -1,6 +1,9 @@
 import { expect, test } from "vitest";
 import { createChatPresentation } from "../packages/agent-ui/src/chat/presentation-adapter.svelte.js";
-import { composerFeedback } from "../packages/agent-ui/src/chat/composer-feedback.js";
+import {
+  composerFeedback,
+  capturedComposerFeedback,
+} from "../packages/agent-ui/src/chat/composer-feedback.js";
 import { AgentUiController } from "../packages/agent-ui/src/core/controller.svelte.js";
 import { MemoryAgentPort } from "../catalog/support/agent-adapter.js";
 
@@ -44,6 +47,16 @@ test.each([false, true])(
     controller.transcript.message = "Retain this exact message";
     await controller.transcript.send();
     const panel = createChatPresentation(() => controller);
+    const external = {
+      type: "error" as const,
+      message: notice.blocks[0]!.text,
+    };
+    expect(capturedComposerFeedback(controller, external)).toEqual(
+      historical ? external : undefined,
+    );
+    const warning = { type: "warning" as const, message: external.message };
+    expect(capturedComposerFeedback(controller, warning)).toBe(warning);
+
     expect(controller.transcript.message).toBe("Retain this exact message");
     expect(panel.composerState.composerStatus).toEqual(
       historical

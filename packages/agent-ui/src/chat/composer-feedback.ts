@@ -2,6 +2,27 @@ import type { ComposerStatus } from "@lapismd/design-core/chat";
 import { currentAgentRequest } from "../core/request-actions.svelte.js";
 import type { AgentUiController } from "../core/controller.svelte.js";
 
+/** Host statuses follow the same exact-capture deduplication as controller errors. */
+export function capturedComposerFeedback(
+  owner: AgentUiController,
+  status: ComposerStatus | undefined,
+): ComposerStatus | undefined {
+  const failure = owner.sendFailure;
+  const retained = owner.draftSendError;
+  return retained &&
+    status?.type === "error" &&
+    status.message === retained &&
+    failure?.session === owner.sessionId &&
+    owner.items.some(
+      (item) =>
+        item.id === failure.capturedNoticeId &&
+        item.notice === "error" &&
+        item.blocks.some((block) => block.text === failure.reason),
+    )
+    ? undefined
+    : status;
+}
+
 /** Explicit errors take precedence over advisory status, without losing host wording. */
 export function composerFeedback(
   ...statuses: readonly (ComposerStatus | undefined)[]

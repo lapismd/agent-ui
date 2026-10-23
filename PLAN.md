@@ -361,3 +361,7 @@ the host's original Markdown block; qualification is recorded in
 Exact newly captured send notices prevent duplicate live composer feedback;
 historical notices cannot hide refusals. Qualification is recorded in
 `spec/records/2026-10-23-captured-send-feedback.md`.
+
+Controlled request cards retain host response failures and host composer status
+follows exact captured-notice deduplication. Qualification is recorded in
+`spec/records/2026-10-23-host-response-feedback.md`.

@@ -32,6 +32,7 @@
     queueWhileAwaitingApproval = false,
     hostedFeedback = false,
     capturedFeedback = false,
+    failHostResponse = false,
     inspectorVariant = "markdown",
   }: {
     scenario?: AgentScenario;
@@ -49,10 +50,15 @@
     queueWhileAwaitingApproval?: boolean;
     hostedFeedback?: boolean;
     capturedFeedback?: boolean;
+    failHostResponse?: boolean;
     inspectorVariant?: InspectorVariant;
   } = $props();
   const demo = untrack(() => createDemo(scenario));
   const { controller, panel, port } = demo;
+  if (untrack(() => failHostResponse))
+    panel.actions.perform = async () => {
+      throw new Error("Host response failed");
+    };
   if (untrack(() => capturedFeedback)) {
     const act = port.act.bind(port);
     port.act = async (action) => {
@@ -81,7 +87,12 @@
   const hostedPanel = {
     ...panel,
     composerState: Object.create(panel.composerState, {
-      composerStatus: { get: () => undefined },
+      composerStatus: {
+        get: () =>
+          capturedFeedback && controller.draftSendError
+            ? { type: "error", message: controller.draftSendError }
+            : undefined,
+      },
     }),
   };
   if (untrack(() => tableComment))

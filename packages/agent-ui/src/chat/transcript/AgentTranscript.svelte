@@ -8,6 +8,7 @@
   import { requestTranscript } from "../request-transcript.js";
   import {
     composerFeedback,
+    capturedComposerFeedback,
     controllerComposerFeedback,
   } from "../composer-feedback.js";
   import type { Snippet } from "svelte";
@@ -81,11 +82,14 @@
       !options.queueWhileAwaitingApproval,
   );
   const feedback = $derived(
-    composerFeedback(
-      panel.composerState.composerStatus,
-      options.composer?.status,
-      options.composerStatus,
-      controllerComposerFeedback(controller),
+    capturedComposerFeedback(
+      controller,
+      composerFeedback(
+        panel.composerState.composerStatus,
+        options.composer?.status,
+        options.composerStatus,
+        controllerComposerFeedback(controller),
+      ),
     ),
   );
 </script>

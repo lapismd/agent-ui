@@ -41,6 +41,9 @@ when their host status is empty; supplying host controls cannot hide a refusal.
 A new exact error notice captured by the same send in the same session MUST
 remain the sole feedback for that outcome. Historical, missing or different
 notices MUST NOT suppress retained-draft feedback or unknown-outcome recovery.
+Host-supplied statuses follow that same exact-capture rule. Controlled permission
+and question callbacks MUST return their response promise so cards retain and
+present host failures without unhandled rejections.
 
 ### Acceptance details
 

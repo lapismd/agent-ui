@@ -14,6 +14,47 @@ const meta = {
 } satisfies Meta<typeof Transcript>;
 export default meta;
 type Story = StoryObj<typeof Fixture>;
+export const RejectedHostPermission: Story = {
+  render: () => ({
+    Component: Fixture,
+    props: {
+      scenario: "approval",
+      part: "screen",
+      failHostResponse: true,
+      hostedFeedback: true,
+    },
+  }),
+  play: async ({ canvasElement }) => {
+    const c = within(canvasElement);
+    await userEvent.click(c.getByRole("button", { name: "Allow once" }));
+    await expect(c.findByText("Host response failed")).resolves.toBeVisible();
+    expect(c.getByTestId("ai-approval-card")).toHaveAttribute(
+      "data-state",
+      "refused",
+    );
+  },
+};
+export const RejectedHostQuestion: Story = {
+  render: () => ({
+    Component: Fixture,
+    props: {
+      scenario: "question",
+      part: "screen",
+      failHostResponse: true,
+      hostedFeedback: true,
+    },
+  }),
+  play: async ({ canvasElement }) => {
+    const c = within(canvasElement);
+    await userEvent.click(c.getByRole("radio", { name: "Allow once" }));
+    await userEvent.click(c.getByRole("button", { name: "Submit answer" }));
+    await expect(c.findByText("Host response failed")).resolves.toBeVisible();
+    expect(c.getByTestId("ai-question-card")).toHaveAttribute(
+      "data-state",
+      "refused",
+    );
+  },
+};
 export const CapturedRefusalFeedback: Story = {
   render: () => ({
     Component: Fixture,

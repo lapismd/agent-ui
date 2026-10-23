@@ -33,6 +33,19 @@ Use the same AgentUiController and presentation adapter as AgentChatScreen. Keep
 
 ## Variations
 
+### RejectedHostPermission
+
+Asynchronous host refusals return to the request card, retaining the pending
+permission and authored input without an unhandled rejection.
+
+<Canvas of={Stories.RejectedHostPermission} />
+
+### RejectedHostQuestion
+
+Rejected question responses keep their choices available for explicit retry.
+
+<Canvas of={Stories.RejectedHostQuestion} />
+
 ### CapturedRefusalFeedback
 
 A new exact error notice from the current send remains the only feedback for
