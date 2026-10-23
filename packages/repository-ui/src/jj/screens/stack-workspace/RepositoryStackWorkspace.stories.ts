@@ -183,8 +183,21 @@ export const FloatingPullRequest: StoryObj<typeof WorkflowDemo> = {
         name: "Float PR details",
       }),
     );
-    await within(canvasElement.ownerDocument.body).findByRole("dialog", {
-      name: /PR #42/,
-    });
+    const dialog = await within(canvasElement.ownerDocument.body).findByRole(
+      "dialog",
+      {
+        name: /PR #42/,
+      },
+    );
+    const checks = within(dialog).getByRole("region", { name: "CI checks" });
+    expect(within(checks).getByText("Type check")).toBeVisible();
+    expect(within(checks).getAllByText("passed")).toHaveLength(2);
+    expect(within(checks).getByText("Formatting")).toBeVisible();
+    expect(within(checks).getByText(/^failed ·/)).toBeVisible();
+    expect(
+      within(checks).getByRole("button", {
+        name: "Some checks were not successful",
+      }),
+    ).toBeVisible();
   },
 };

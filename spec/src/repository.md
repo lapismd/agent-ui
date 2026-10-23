@@ -213,6 +213,8 @@ the same content instance, draft, scroll and focus when docking or closing it.
 PR checks and merge/draft/refresh actions MUST use exact host-supplied records
 and explicit callbacks; presentation MUST NOT load credentials, contact a forge
 or execute repository/PR mutations. Missing capabilities stay disabled or absent.
+PR examples MUST exercise passed, failed and running checks, including their
+summary and result descriptions in the floating view.
 
 ### Acceptance details
 

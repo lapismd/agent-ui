@@ -121,3 +121,8 @@ and inline commit composer follow-up is recorded in
 RUI-FORGE-001 and RUI-COMMAND-001. It supersedes the earlier lane-body display:
 commit bodies no longer expand in lanes. PR data/actions remain host-supplied;
 live forge and downstream acceptance remain separate from catalog evidence.
+
+The RUI-STACK-001 / RUI-FORGE-001 mixed check-result example is recorded in
+`spec/records/2026-10-23-pr-check-examples.md`, covering passed, failed and running
+results in the shared fixture and the floating view. Visual review remains
+pending; no production check logic changed.

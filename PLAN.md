@@ -251,3 +251,9 @@ focus retained. Exact scope/SHA/capabilities remain in host requests; no live
 forge transport or source-application changes were introduced. See
 `spec/records/2026-10-23-stack-workflow.md` and review **Pull Requests**, **Branch
 Pull Requests**, **Floating Pull Request** plus **JJ/Forge/Pull request**.
+
+PR review examples now include passed, failed and running checks, with a failed
+formatting description and the mixed-result summary in the floating view. The
+shared fixture also updates both docked complete screens and the standalone
+family. See `spec/records/2026-10-23-pr-check-examples.md`; visual review remains
+pending.

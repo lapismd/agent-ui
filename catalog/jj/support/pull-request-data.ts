@@ -29,6 +29,12 @@ export const recordedPullRequest = (
       { id: "types", name: "Type check", state: "passed" },
       { id: "tests", name: "Workspace interactions", state: "passed" },
       {
+        id: "format",
+        name: "Formatting",
+        state: "failed",
+        description: "Two files need formatting",
+      },
+      {
         id: "visual",
         name: "Visual review",
         state: "running",
