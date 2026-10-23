@@ -145,6 +145,12 @@ focus restoration, narrow replacement, editor Cancel/reopen draft retention and
 exact unknown-request inspection. Running sessions and captures MUST use separate
 collections and home-scoped identities. Both packages' documented examples MUST
 be complete string literals so clean package acceptance compiles every variant.
+Registered Threads qualification MUST retain home-scoped identity across duplicate
+names, independent unavailable and continuation states, and conversation drafts
+through selection changes. Cold browser coverage MUST verify narrow and desktop
+navigation plus keyboard resize. Composed inbox controls MUST bind their owning
+shell explicitly when rendered inside a nested complete chat, and attached-panel
+closure MUST restore its opener without tracking its own shell state.
 Empty Reviews qualification MUST include the complete screen with no empty-state elements inside a semantic list.
 Task/review detail qualification MUST compare body, metadata and composer start positions with the title at all supported viewport widths, and cover hover/focus feedback, fixed headers and composers, review context disclosures, exact host commit navigation, read-only/unavailable states and resolve/reopen draft retention in both themes and viewport widths.
 Directory layout qualification MUST exercise populated card and list collections

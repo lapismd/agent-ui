@@ -146,3 +146,19 @@ native-capture reads, using public `CapturedSessionBrowser` through the content
 snippet. It leaves unsupported imported formats explicitly unavailable. Its
 browser and cold native acceptance pass; the larger Threads/contextual-chat and
 settings plan and broad source qualification remain open.
+
+## Global Threads inbox
+
+Mount `ThreadsScreen` with a host-owned `ThreadsController` and read-only
+`ThreadsPort` from `@lapismd/agent-ui/screens`. Supply registered-home pages;
+never turn a row's home ID or a repository link into native admission. Selection
+and conversation controllers use `threadKey({home,id})`, preserving drafts even
+when repositories have identical names and local entity IDs.
+
+Render the existing public `AgentChatScreen` through `conversation`, including
+its provided navigation snippet in `headerActions`. Retain those chat controllers
+across navigation and Settings. Do not rebuild the inbox or composer in the host.
+Creation, code navigation and attached details remain explicit callbacks/slots.
+Omit unavailable capabilities. Native replies/reactions/settings and distinct
+execution targets require their own host qualification; this inbox export does
+not authorize automatic sending or automatic repository switching.

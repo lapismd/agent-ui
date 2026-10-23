@@ -1256,6 +1256,48 @@
       "source": "web/src/lib/controller/forge/controller.svelte.ts",
       "destination": "packages/repository-ui/src/jj/forge/pull-request/review.svelte.ts",
       "use": "Adapt only retained selected PR, draft and request presentation state into a host-owned review model. Remove all service, credential, polling and execution dependencies; exact supplied scope/SHA/capabilities fence emitted requests."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/community-inbox/CommunityInbox.svelte",
+      "destination": "packages/agent-ui/src/threads/screen/ThreadInbox.svelte",
+      "use": "Retain AppShell Body regions, labelled list/content, responsive mobile selection and bounded pointer/keyboard resize; replace private controller and view tabs with typed read-only directory and public ResponsiveTabs. Host mounts complete AgentChatScreen with its navigation slot instead of duplicating headers."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/community-inbox/CommunityInboxSessions.svelte",
+      "destination": "packages/agent-ui/src/threads/screen/ThreadList.svelte",
+      "use": "Retain collapsible repository headers, indented children, selection and bounded continuation/retry. Use explicit home identities and host code callback; device pin/archive persistence and extended facets remain deferred."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/community-inbox/CommunityInboxItem.svelte",
+      "destination": "packages/agent-ui/src/threads/screen/ThreadRow.svelte",
+      "use": "Retain compact 24px avatar/title/author/activity row and selection styling. Use public Avatar and relative-time formatter; omit mutation controls until host capabilities are ported."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/community-inbox/inbox-resize.svelte.ts",
+      "destination": "packages/agent-ui/src/threads/screen/resize.svelte.ts",
+      "use": "Retain source pointer capture, keyboard bounds, viewport observation and reset; omit application-private localStorage persistence."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/community-inbox/inbox.css",
+      "destination": "packages/agent-ui/src/threads/screen/threads.css",
+      "use": "Copy/adapt source inbox regions, resize rail and row selectors with public semantic and audited typography variables."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/community-inbox/inbox-thread.css",
+      "destination": "packages/agent-ui/src/threads/screen/threads.css",
+      "use": "Retain selected conversation fill, scrolling boundary, row metadata and empty surface; complete chat owns the sole transcript/composer header."
     }
   ]
 }

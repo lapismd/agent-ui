@@ -1,0 +1,19 @@
+{
+  "component": "ThreadsScreen",
+  "variables": [
+    {
+      "name": "--ui-agent-threads-font-size",
+      "default": "0.8125rem",
+      "description": "JJ Store compact inbox text.",
+      "owner": "@lapismd/agent-ui",
+      "source": "threads/screen/threads.css"
+    },
+    {
+      "name": "--ui-agent-threads-secondary-size",
+      "default": "0.75rem",
+      "description": "Author and recorded activity text.",
+      "owner": "@lapismd/agent-ui",
+      "source": "threads/screen/threads.css"
+    }
+  ]
+}

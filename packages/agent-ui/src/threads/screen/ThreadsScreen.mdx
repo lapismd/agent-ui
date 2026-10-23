@@ -1,0 +1,102 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./ThreadsScreen.stories";
+import { Basic, Styling } from "./ThreadsScreen.example-sources";
+import tokens from "./ThreadsScreen.tokens.json";
+import { tokenMarkdown } from "../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Threads
+
+JJ Store's grouped repository inbox, with a selected complete AgentChatScreen
+and an optional resizable attached panel. The host owns all native authority.
+
+## Usage
+
+Open and retain `ThreadsController` in the host. Its read-only `ThreadsPort`
+enumerates registered homes and snapshot-bound pages; it cannot activate code.
+Retain conversation controllers by `threadKey({home,id})`, including drafts and
+exact unknown requests. The snippet receives navigation to compose in the
+existing chat header, avoiding a second toolbar.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+The left region has search, All/Active/Archived views, grouped repository rows,
+independent retry and bounded continuation. The centre receives the existing
+complete conversation. The optional attached right panel retains the AppShell
+header, close, resize and compact replacement behavior.
+
+## Variations
+
+### Basic
+
+<Canvas of={Stories.Basic} />
+### Layout
+<Canvas of={Stories.Layout} />
+### Conversation
+<Canvas of={Stories.Conversation} />
+### Search
+<Canvas of={Stories.Search} />
+### Empty
+<Canvas of={Stories.Empty} />
+### Loading
+<Canvas of={Stories.Loading} />
+### Disabled
+<Canvas of={Stories.Disabled} />
+### Unavailable
+<Canvas of={Stories.Unavailable} />
+### Partial
+<Canvas of={Stories.Partial} />
+### Pagination
+<Canvas of={Stories.Pagination} />
+### Details
+<Canvas of={Stories.Details} />
+
+## Behavior and accessibility
+
+Selections carry both home and thread identity. Search applies to loaded rows;
+More Threads and Load more repositories explicitly continue bounded reads.
+Failures remain independent per home and report through the host callback.
+Opening a conversation never sends. Create and code navigation are explicit
+callbacks; missing capabilities disable their controls. Active excludes archived
+and tombstoned records; Archived reflects the host's recorded status.
+
+The list supports pointer dragging, arrow-key resizing, Home/End and double-click
+reset, with widths between 224px and a viewport-dependent maximum of 480px.
+Narrow windows use AppShell's mobile list and conversation stages. Closing the
+attached panel restores focus. The supplied conversation retains the existing
+view switch, composer footer and Send semantics.
+
+## Styling variables
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+`ThreadsPort.homes` returns registered identities, never raw paths. `read`
+receives home, opaque cursor, limit and abort signal. A page must match its home
+and snapshot; duplicate row IDs, repeated cursors and more than 1000 loaded rows
+per home are rejected. Four concurrent reads and batches of twenty homes bound
+directory fanout. Optional subscriptions request refresh without mutating.
+`drain()` waits for owned reads and `close()` aborts and releases subscriptions.
+
+## Composition
+
+Use `conversation(identity,navigation)` to mount the public `AgentChatScreen`
+with a retained controller and the navigation snippet in its header actions.
+Use `details` for host-provided contributors, settings or reply context; control
+it through `detailsOpen`. These slots do not grant metadata or execution access.
+The package never imports Repository UI or native transports. This inbox slice
+does not yet qualify native reply/reaction/settings flows or execution in a
+different repository from the conversation's metadata home.

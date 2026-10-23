@@ -5,3 +5,7 @@ export { default as AgentImportsScreen } from "./imports-screen/AgentImportsScre
 export { default as AgentsScreen } from "../directory/screen/AgentsScreen.svelte";
 export { AgentDirectoryController } from "../directory/logic/controller.js";
 export type * from "../directory/logic/types.js";
+export { default as ThreadsScreen } from "../threads/screen/ThreadsScreen.svelte";
+export { ThreadsController } from "../threads/logic/controller.js";
+export type * from "../threads/logic/types.js";
+export { threadKey } from "../threads/logic/types.js";

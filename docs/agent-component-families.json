@@ -172,6 +172,15 @@
         "directory/screen/AgentProfile.svelte",
         "directory/screen/AgentSessionDirectory.svelte"
       ]
+    },
+    {
+      "primary": "threads/screen/ThreadsScreen",
+      "purpose": "JJ Store grouped global Threads inbox with retained complete chat and attached context slots.",
+      "parts": [
+        "threads/screen/ThreadInbox.svelte",
+        "threads/screen/ThreadList.svelte",
+        "threads/screen/ThreadRow.svelte"
+      ]
     }
   ]
 }

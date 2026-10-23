@@ -8165,6 +8165,84 @@
           "description": "Retain attached AppShell sidebar, constraint priority, close/header/body, mobile replacement and focus restoration. Compose source-derived gallery/profile/editor/session parts through a host-owned controller; no repository-package or native imports."
         }
       ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/community-inbox/CommunityInbox.svelte",
+      "destination": "packages/agent-ui/src/threads/screen/ThreadInbox.svelte",
+      "sourceSha256": "01446766d62d652c0b54fe489b7819a960c0b40c46be954baad1c238aa737567",
+      "destinationSha256": "400bf49c91114a5914bd9ce4f726d2b0fa0009c888cd3cdd87ee15047213dc69",
+      "adaptations": [
+        {
+          "description": "Retain AppShell Body regions, labelled list/content, responsive mobile selection and bounded pointer/keyboard resize; replace private controller and view tabs with typed read-only directory and public ResponsiveTabs. Host mounts complete AgentChatScreen with its navigation slot instead of duplicating headers."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/community-inbox/CommunityInboxSessions.svelte",
+      "destination": "packages/agent-ui/src/threads/screen/ThreadList.svelte",
+      "sourceSha256": "6fb5a9dc53d81be90e180e7fdcca5f03170ecd83c9df50a74bdc401c8c73fab3",
+      "destinationSha256": "5d8f61d27d355bc95fb9b87331566b6802db8debdc550bd9a1366abc305191e9",
+      "adaptations": [
+        {
+          "description": "Retain collapsible repository headers, indented children, selection and bounded continuation/retry. Use explicit home identities and host code callback; device pin/archive persistence and extended facets remain deferred."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/community-inbox/CommunityInboxItem.svelte",
+      "destination": "packages/agent-ui/src/threads/screen/ThreadRow.svelte",
+      "sourceSha256": "5809c5311eea9a0260e2c36006c8aab66523a29aca77b9985c7f6f2e27a9f478",
+      "destinationSha256": "4699c6305bc068ab2e1d50f87734c8fc2e42ac02a8f97f549ff696e2b949c9e2",
+      "adaptations": [
+        {
+          "description": "Retain compact 24px avatar/title/author/activity row and selection styling. Use public Avatar and relative-time formatter; omit mutation controls until host capabilities are ported."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/community-inbox/inbox-resize.svelte.ts",
+      "destination": "packages/agent-ui/src/threads/screen/resize.svelte.ts",
+      "sourceSha256": "82c7e108e5107659d0bf48cbe64dad50d6245720f9f6d3c17d46605168f05c10",
+      "destinationSha256": "858047b18e2daa5164774bfd68db51d72e6e93ba784ce3ab4b65ed1c2b10635d",
+      "adaptations": [
+        {
+          "description": "Retain source pointer capture, keyboard bounds, viewport observation and reset; omit application-private localStorage persistence."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/community-inbox/inbox.css",
+      "destination": "packages/agent-ui/src/threads/screen/threads.css",
+      "sourceSha256": "2c821f2d4c2346ed1301701ec29d3960eb6fdf6d7ea107f96e6a7f986f27a369",
+      "destinationSha256": "306eb09419a2440ca5daedbc8cb0527538e8fd112924447c04fb2f42b68aaa0a",
+      "adaptations": [
+        {
+          "description": "Copy/adapt source inbox regions, resize rail and row selectors with public semantic and audited typography variables."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/community-inbox/inbox-thread.css",
+      "destination": "packages/agent-ui/src/threads/screen/threads.css",
+      "sourceSha256": "72be2d606282a6e178f70fc13c1731e4ae4b7c7a04ad0fb132edfdc97f71c3b2",
+      "destinationSha256": "306eb09419a2440ca5daedbc8cb0527538e8fd112924447c04fb2f42b68aaa0a",
+      "adaptations": [
+        {
+          "description": "Retain selected conversation fill, scrolling boundary, row metadata and empty surface; complete chat owns the sole transcript/composer header."
+        }
+      ]
     }
   ],
   "fingerprintFormat": "Prettier normalized source; Svelte layout excludes script and comments. Explicit host bindings are applied before comparison.",

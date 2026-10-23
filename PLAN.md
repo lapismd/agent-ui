@@ -1,5 +1,10 @@
 # Delivery and review
 
+The global Threads inbox now has a read-only registered-home controller,
+source-adapted grouped rows and complete chat/attached-panel composition slots.
+Evidence: `spec/records/2026-10-23-threads-inbox.md`. Native adoption and complete
+reply/reaction/settings and contextual execution remain open.
+
 Native Agents adoption: directory timestamps are optional when absent in the
 source; configured profiles cannot be inferred from a shared client. The desktop
 adapter work remains in progress, with no execution or persistence moved here.

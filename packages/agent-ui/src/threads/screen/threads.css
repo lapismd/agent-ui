@@ -1,0 +1,212 @@
+/* JJ Store inbox.css and inbox-thread.css, adapted to public theme tokens. */
+.threads-screen {
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  --ui-shell-height: 100%;
+  font-size: var(--ui-agent-threads-font-size, 0.8125rem);
+}
+.threads-inbox {
+  --ui-shell-body-sidebar-width: min(23rem, 38%);
+}
+.threads-inbox__list-region {
+  background: var(--background);
+}
+.threads-inbox__list,
+.threads-inbox__thread {
+  display: flex;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  flex-direction: column;
+}
+.threads-inbox__items {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
+  padding-block: 0.5rem;
+}
+.threads-inbox__list [data-ui-part="toolbar"] {
+  padding: 0 0.5rem;
+}
+.threads-inbox__thread {
+  flex: 1;
+  width: 100%;
+}
+.threads-inbox__thread > [data-ui-component="ai-chat-panel"] {
+  flex: 1;
+  min-height: 0;
+}
+.threads-inbox__selection-empty {
+  flex: 1;
+  min-height: 20rem;
+  background: var(--background);
+}
+.threads-inbox__resize-handle {
+  position: relative;
+  z-index: 3;
+  order: 0;
+  width: 1px;
+  flex: none;
+  margin-inline-start: -1px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: col-resize;
+  touch-action: none;
+}
+.threads-inbox__resize-handle > span {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: -0.25rem;
+  width: 0.5rem;
+}
+.threads-inbox__resize-handle > span::after {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: calc(50% - 0.5px);
+  width: 1px;
+  background: transparent;
+  content: "";
+  transition: background-color 120ms ease;
+}
+.threads-inbox__resize-handle:hover > span::after,
+.threads-inbox__resize-handle:focus-visible > span::after,
+.threads-inbox__resize-handle[data-resizing] > span::after {
+  background: var(--ring);
+}
+.threads-inbox__resize-handle:focus-visible {
+  outline: none;
+}
+.threads-inbox__item[data-ui-component="button"] {
+  display: grid;
+  width: 100%;
+  height: auto;
+  min-height: 3.25rem;
+  grid-template-columns: 1.5rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.625rem;
+  text-align: start;
+  white-space: normal;
+}
+.threads-inbox__item[data-ui-component="button"][data-active] {
+  background: color-mix(in srgb, var(--accent) 72%, transparent);
+}
+.threads-inbox__item-body {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.125rem;
+}
+.threads-inbox__item-heading {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.threads-inbox__item-heading strong {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.threads-inbox__item-detail {
+  display: flex;
+  min-width: 0;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+.threads-inbox__context {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.threads-inbox__context,
+.threads-inbox__time {
+  color: var(--muted-foreground);
+  font-size: var(--ui-agent-threads-secondary-size, 0.75rem);
+}
+.threads-inbox__time {
+  flex: none;
+}
+.threads-inbox__excerpt {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--foreground);
+  line-height: 1.4;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+.threads-tree {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.25rem;
+  padding-inline: 0.5rem;
+}
+.threads-tree__header {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.125rem;
+  padding-inline-end: 0.25rem;
+  border-radius: var(--radius);
+  background: var(--muted);
+}
+.threads-tree__header:hover,
+.threads-tree__header:focus-within {
+  background: color-mix(in srgb, var(--foreground) 4%, var(--muted));
+}
+.threads-tree__header [data-ui-component="button"] {
+  background: transparent;
+}
+.threads-tree__header [data-ui-component="button"]:hover {
+  background: color-mix(in srgb, var(--foreground) 12%, var(--muted));
+}
+.threads-tree__repository[data-ui-component="button"] {
+  --ui-button-height: 2.25rem;
+  --ui-button-gap: 0.65rem;
+  --ui-button-padding-inline: 0.625rem;
+  width: 100%;
+  min-width: 0;
+  flex: 1;
+  justify-content: flex-start;
+  text-align: start;
+}
+.threads-tree__repository > span {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.threads-tree__toggle[aria-expanded="true"] > svg {
+  rotate: 90deg;
+}
+.threads-tree__children {
+  display: grid;
+  gap: 0.125rem;
+  padding: 0.125rem 0 0.25rem 1rem;
+}
+/* The complete chat owns the scrollport, as in the source inbox. */
+.threads-inbox__thread-region
+  > [data-ui-part="scroll-area"]
+  > [data-ui-part="scroll-area-viewport"] {
+  overflow: hidden !important;
+}
+.threads-inbox__thread-region
+  > [data-ui-part="scroll-area"]
+  > [data-ui-part="scroll-area-viewport"]
+  > div {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}

@@ -110,6 +110,30 @@ editable draft remains available and no configuration action is replayed.
 - Public types express the boundary.
 - Focused tests and production-component stories verify the behavior.
 
+## AUI-THREAD-001 — Registered Threads inbox
+
+**Requirement.** The complete Threads screen MUST adapt JJ Store's grouped
+repository inbox, compact rows, search, contextual views and resizable list.
+Rows and selections MUST use metadata-home plus thread identity, including when
+names or entity IDs coincide. Global reads MUST NOT change the active checkout.
+Hosts supply bounded, snapshot-bound pages and independent unavailable/retry
+states. Late reads, repeated cursors and duplicate rows MUST be rejected without
+discarding other homes. Repository fanout and loaded rows MUST be bounded.
+
+The host supplies the complete AgentChatScreen conversation through a snippet;
+the inbox MUST NOT reconstruct the transcript or composer. Create, reply,
+contributors, settings and execution remain explicit host actions. An omitted
+capability MUST NOT imply that the host supports it. Mounting MUST NOT mutate.
+Narrow windows MUST retain access to the list and selected conversation, with
+keyboard resizing, labelled controls and focus restoration on panel close.
+Full reply/reaction/settings and native execution qualification remain separate
+from the read-only directory acceptance.
+
+### Acceptance details
+
+- Production-controller tests MUST cover duplicate homes/threads, bounded pagination, partial failures, stale replies and retained snapshots after invalid pages.
+- Complete-screen stories and cold browser checks MUST exercise grouped selection, retained conversation drafts, keyboard resizing, narrow navigation and focus.
+
 ## AUI-FOUND-001 — Component foundations
 
 **Requirement.** Agent foundations MUST have their own logical component folders with colocated stories, documentation and consumer-ready examples, and complete screens MUST compose those same production components.

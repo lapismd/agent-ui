@@ -20,6 +20,7 @@ export default defineConfig({
     "repository-browser.pw.ts",
     "projects-detail.pw.ts",
     "agents-directory.pw.ts",
+    "threads-inbox.pw.ts",
     "repository-branches.pw.ts",
     "stack-workspace-presentation.pw.ts",
     "stack-workspace-drag.pw.ts",
