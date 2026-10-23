@@ -12,3 +12,6 @@ empty result. Corrected the test to that contract. Svelte check: 0 errors and
 build/publint passed before archive intake.
 This changes no renderer layout; the complete-screen consumer checks cover the
 integrated models. Visual review and final broad matrix remain pending.
+
+The pure `/history` entry point exposes the same formatter for native adapter
+unit tests and non-Svelte hosts; it does not load the component entry point.

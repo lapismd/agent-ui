@@ -60,7 +60,11 @@
       "svelte": "./dist/jj/settings/index.js",
       "import": "./dist/jj/settings/index.js"
     },
-    "./settings/styles.css": "./dist/jj/settings/styles.css"
+    "./settings/styles.css": "./dist/jj/settings/styles.css",
+    "./history": {
+      "types": "./dist/history/index.d.ts",
+      "import": "./dist/history/index.js"
+    }
   },
   "scripts": {
     "build": "node ../../scripts/build-agent-package.mjs repository-ui"

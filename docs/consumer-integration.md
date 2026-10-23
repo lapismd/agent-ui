@@ -49,3 +49,7 @@ route, with real admitted adapters in native acceptance and isolated adapters in
 browser tests. Verify navigation/settings retention, stale-response isolation,
 native startup and teardown, and the source-faithful layout. Screenshots and
 successful compilation alone do not establish integration completeness.
+
+Native host adapters can import `encodeJjChangeId` from
+`@lapismd/repository-ui/history` without loading Svelte components. Pass native
+hex IDs to this formatter before constructing display-only change models.
