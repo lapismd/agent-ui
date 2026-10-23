@@ -36,6 +36,8 @@ unknown-submission and comment-send feedback MUST use the same attached composer
 status in both views; fixed footer actions and send hints MUST NOT render another
 banner. Error metadata MUST retain the shared status typography and red tone,
 while unknown outcomes remain warnings and stale draft errors remain suppressed.
+Externally controlled presentations MUST also receive controller-owned feedback
+when their host status is empty; supplying host controls cannot hide a refusal.
 
 ### Acceptance details
 

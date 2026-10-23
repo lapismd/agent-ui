@@ -3,6 +3,7 @@ import { expect, within, userEvent } from "storybook/test";
 import Transcript from "./AgentTranscript.svelte";
 import Fixture from "./AgentTranscript.stories.fixture.svelte";
 import { Basic as source } from "./AgentTranscript.example-sources.js";
+import { verifyChatError } from "../../../../../catalog/agents/support/composer-feedback.js";
 const meta = {
   title: "Agents/Chat/Transcript",
   component: Transcript,
@@ -13,6 +14,21 @@ const meta = {
 } satisfies Meta<typeof Transcript>;
 export default meta;
 type Story = StoryObj<typeof Fixture>;
+export const HostedRefusalFeedback: Story = {
+  render: () => ({
+    Component: Fixture,
+    props: { scenario: "refused", part: "screen", hostedFeedback: true },
+  }),
+  play: async ({ canvasElement }) => {
+    const c = within(canvasElement);
+    await userEvent.click(c.getByRole("button", { name: "Send message" }));
+    await verifyChatError({ canvasElement });
+    await userEvent.click(
+      c.getByRole("button", { name: "Switch to Classic view" }),
+    );
+    await verifyChatError({ canvasElement });
+  },
+};
 export const Basic: Story = {
   name: "All supported messages",
   render: () => ({ Component: Fixture, props: { scenario: "all" } }),

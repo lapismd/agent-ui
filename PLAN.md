@@ -349,3 +349,7 @@ Lapis Desktop shared-screen adoption is isolated in separate JJ workspaces.
 Portable controller intake is recorded in
 `spec/records/2026-10-23-desktop-history-intake.md`; source application review
 and wider migration acceptance remain separate.
+
+Externally controlled chat retains shared controller refusal feedback; source
+regression and qualification are in
+`spec/records/2026-10-23-hosted-composer-feedback.md`.

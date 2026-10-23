@@ -30,6 +30,7 @@
     styled = false,
     tableComment = false,
     queueWhileAwaitingApproval = false,
+    hostedFeedback = false,
     inspectorVariant = "markdown",
   }: {
     scenario?: AgentScenario;
@@ -45,10 +46,17 @@
     styled?: boolean;
     tableComment?: boolean;
     queueWhileAwaitingApproval?: boolean;
+    hostedFeedback?: boolean;
     inspectorVariant?: InspectorVariant;
   } = $props();
   const demo = untrack(() => createDemo(scenario));
   const { controller, panel, port } = demo;
+  const hostedPanel = {
+    ...panel,
+    composerState: Object.create(panel.composerState, {
+      composerStatus: { get: () => undefined },
+    }),
+  };
   if (untrack(() => tableComment))
     controller.transcript.threads[0].anchor.tableContext = {
       markdown:
@@ -171,6 +179,7 @@
   >
     {#if part === "screen"}<AgentChatScreen
         {controller}
+        presentation={hostedFeedback ? hostedPanel : undefined}
         transcriptOptions={demo.options}
       />
     {:else if part === "drawer"}

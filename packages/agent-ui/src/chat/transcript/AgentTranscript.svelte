@@ -6,7 +6,10 @@
   import AgentMessageMetadata from "../message-metadata/AgentMessageMetadata.svelte";
   import { historyTranscript } from "../turn-changes/transcript.js";
   import { requestTranscript } from "../request-transcript.js";
-  import { composerFeedback } from "../composer-feedback.js";
+  import {
+    composerFeedback,
+    controllerComposerFeedback,
+  } from "../composer-feedback.js";
   import type { Snippet } from "svelte";
   import {
     Transcript,
@@ -82,6 +85,7 @@
       panel.composerState.composerStatus,
       options.composer?.status,
       options.composerStatus,
+      controllerComposerFeedback(controller),
     ),
   );
 </script>

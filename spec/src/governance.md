@@ -29,6 +29,8 @@ props with audited Agent UI variables, without dependency selector overrides.
 Generic input/status frame geometry and custom status content MUST remain owned
 by public Design Core components; Agent UI supplies exact-draft metadata.
 All live chat warnings/errors MUST flow through the owning composer status API;
+controller feedback remains available with an externally supplied presentation,
+even when the host reports no separate composer status.
 fixed action footers and keyboard hints MUST not duplicate status presentation.
 Active permissions forward that status into their owning expandable request
 panel, pinned in the Transcript footer slot while the message input is absent
