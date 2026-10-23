@@ -16,7 +16,8 @@
     revision: 1,
     details: {
       display_name: "Alex Morgan",
-      description: "Building with JJ.",
+      description:
+        "Building with **JJ**.\n\n[Profile guide](https://example.test/profile)\n\n- Local projects\n- Markdown notes",
       avatar: null as string | null,
       email: null as string | null,
       gravatar: false,

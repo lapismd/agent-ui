@@ -1,6 +1,6 @@
 # Personal Profile and sidebar identity menu
 
-RUI-FORGE-001, RUI-GOV-001; enclosing Jujutsu change `rplmuksn`.
+RUI-FORGE-001, AUI-GOV-003; enclosing Jujutsu change `rplmuksn`.
 
 ## Source and scope
 
@@ -84,3 +84,19 @@ theme/width settings. Source/layout, type/format, package/publint and final
 specification checks pass. The restarted preview was inspected with the default
 framed input and the new divider visible. The first follow-up spec-first run required the mapped
 AUI-GOV-003 governance chapter; its coverage rule now includes these regressions.
+
+## Read-only Markdown follow-up
+
+The saved description previously rendered its source text (for example
+`Building with **JJ**.`). It now composes public MarkdownContent inside the
+existing read-only settings row. It retains safe HTML handling, formatting,
+links and lists, and the row's themed background/aligned inset. The row's
+existing custom-value snippet uses a div instead of an inline span, preserving
+valid nesting for block Markdown; scalar rows retain their original span.
+Basic verifies strong text, link destination and list semantics before editing
+and after saving. The shared read-only row and menu families are included in
+the affected four-setting matrix because they share the profile fixture/row.
+
+Final Markdown matrix: 72 passes (18 Profile, row and menu stories across light/dark and desktop/narrow), 0 failures. Packed Repository UI and publint pass; the original-layout comparison matches both changed component layouts. Spec validation and spec-first pass. The live read-only preview was inspected with strong text, a working link destination and a two-item list.
+
+The final clean packed-package lane passes strict types and Vite compilation for all 149 documented examples. Root check passes with 0 errors/warnings; no baselines changed.

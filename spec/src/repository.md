@@ -289,6 +289,9 @@ Dividers continue between field groups, including Email and Use Gravatar in
 both read-only and editing modes.
 The Profile description uses the public framed MarkdownComposer, including its
 standard themed border and toolbar; Enter inserts a newline without saving.
+Read-only descriptions render through public MarkdownContent, preserving safe
+formatting, links and lists in the settings row. Custom row content uses a
+block value container so Markdown retains valid element nesting.
 The completed form uses the public Design Core avatar picker and shared
 settings rows. Typed host ports own installation identity, durable drafts,
 revision-conditional saves, exact request inspection and normalized image upload.

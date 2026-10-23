@@ -6,7 +6,7 @@
   import * as Empty from "@lapismd/design-core/shadcn/empty";
   import { Input } from "@lapismd/design-core/shadcn/input";
   import { Switch } from "@lapismd/design-core/shadcn/switch";
-  import { MarkdownComposer } from "@lapismd/design-core/chat";
+  import { MarkdownComposer, MarkdownContent } from "@lapismd/design-core/chat";
   import UserIcon from "@lucide/svelte/icons/user";
   import FileTextIcon from "@lucide/svelte/icons/file-text";
   import MailIcon from "@lucide/svelte/icons/mail";
@@ -153,7 +153,16 @@
                 Icon={FileTextIcon}
                 value={draft.description}
                 emptyLabel="Not set"
-              />
+              >
+                {#if draft.description}<MarkdownContent
+                    content={draft.description}
+                    compact
+                    fullWidth
+                    role="region"
+                    aria-label="Profile description preview"
+                    style="--ui-chat-markdown-padding:0;--mira-preview-background:transparent"
+                  />{:else}Not set{/if}
+              </StoreReadOnlyRow>
               <StoreReadOnlyRow
                 label="Email"
                 Icon={MailIcon}

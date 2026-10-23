@@ -109,7 +109,7 @@
   </dt>
   <dd>
     <svelte:element
-      this={loading ? "div" : "span"}
+      this={loading || children ? "div" : "span"}
       class="store-readonly-row__value"
       data-tone={tone}
       role={loading ? "status" : live}

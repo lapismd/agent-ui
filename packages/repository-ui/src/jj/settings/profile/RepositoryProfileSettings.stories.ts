@@ -49,6 +49,15 @@ export const Basic: Story = {
       bodySurface,
     );
     await expectGravatarDivider(canvasElement);
+    const preview = within(canvasElement).getByRole("region", {
+      name: "Profile description preview",
+    });
+    await expect(preview.querySelector("strong")).toHaveTextContent("JJ");
+    await expect(
+      within(preview).getByRole("link", { name: "Profile guide" }),
+    ).toHaveAttribute("href", "https://example.test/profile");
+    await expect(within(preview).getAllByRole("listitem")).toHaveLength(2);
+    await expect(preview.parentElement?.tagName).toBe("DIV");
     const canvas = await edit(canvasElement);
     await expectGravatarDivider(canvasElement);
     const editor = canvas.getByRole("textbox", { name: "Profile description" });
@@ -67,6 +76,11 @@ export const Basic: Story = {
     await expect(
       canvas.getByText("Retained Alex", { exact: true }),
     ).toBeVisible();
+    await expect(
+      canvas
+        .getByRole("region", { name: "Profile description preview" })
+        .querySelector("strong"),
+    ).toHaveTextContent("JJ");
   },
 };
 export const Loading: Story = { render: render("Loading") };

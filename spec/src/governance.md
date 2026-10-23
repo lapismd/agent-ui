@@ -2,6 +2,7 @@
 
 Settings composition coverage MUST check themed body surfaces, dividers between
 field groups and the public default MarkdownComposer with multiline form semantics.
+Rich read-only Profile values MUST exercise Markdown formatting, links and lists.
 
 Configured-agent consumer contracts MUST document absent source timestamps and
 unproven profile associations explicitly; example data MUST NOT imply that hosts
