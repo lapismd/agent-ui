@@ -62,6 +62,12 @@ Recorded unavailable presentation through the production controller and in-memor
 
 <Canvas of={Stories.Unavailable} />
 
+### Hunk actions
+
+Three recorded native hunks expose independent selection and an explicit host assignment request.
+
+<Canvas of={Stories.HunkActions} />
+
 ## Behavior and accessibility
 
 Column widths match JJ Store: Branches 320 (260–520), Unstaged 330 (260–520), stack/target lanes 390 (310–640) and diff 580 (360–980) pixels. Fixed leading columns, independent bodies, original graph rows, collapse and keyboard/pointer resizing remain shared primitives. Workspace uses applied topology, while Stacks shows the selected captured branch.
@@ -79,6 +85,8 @@ Hosts provide copyText, optional onCommand/onSelectWorkspace and optional header
 ## API
 
 <ArgTypes of={Stories} />
+
+Separate native hunks display the recorded `@@` range header, unique accessible labels and independently retained checkbox state. A hunk may request host assignment when a valid native source and transfer capability are present. Target history and immutable/ambiguous sources remain read-only. Drag/drop and destination/execution dialogs remain outside this presentation.
 
 ## Composition
 

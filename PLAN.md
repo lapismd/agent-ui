@@ -215,3 +215,11 @@ complete screens, scoped paging and independent adjacent diffs. Hosts retain
 commands, routing, controller lifetime, layout persistence and optional action/
 composer snippets. See `spec/records/2026-10-23-stack-workspace-presentation.md`.
 Pause for review before transfers, mutation dialogs and forge execution.
+
+Stacks/Workspace review follow-up aligns pill navigation, reuses the Command View
+workspace picker and shows three native hunks with retained selection. The action
+audit is in `spec/records/2026-10-23-stack-workspace-review.md`. Git/JJ copy,
+create-commit intents and native hunk assignment intents reach host callbacks.
+File/folder/hunk/commit drag/drop, built-in commit menus and the full inline commit
+composer still need their dedicated frontend wiring slice before claiming JJ Store
+action parity. Native execution and preview/apply recovery remain host-owned.

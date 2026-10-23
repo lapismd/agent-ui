@@ -57,6 +57,10 @@
   );
   const controller = demo.controller;
   let events = $state<string[]>([]);
+  const commandLog = $derived.by(() => {
+    events.length;
+    return JSON.stringify(demo.commands);
+  });
   const canvas = untrack(() => createStackWorkspaceCanvas());
   canvas.ensureColumn("stack-lane-1", {
     defaultWidth: 390,
@@ -77,7 +81,10 @@
     return JSON.stringify(demo.requests);
   });
   const host = $derived({
-    copyText: demo.copyText,
+    copyText: async (value: string) => {
+      await demo.copyText(value);
+      events.push("copy");
+    },
     onCommand: (
       command: import("../../packages/repository-ui/src/stacks/index.js").WorkspaceCommand,
       snapshot: import("../../packages/repository-ui/src/stacks/index.js").WorkspaceSnapshot,
@@ -211,7 +218,8 @@
     data-requests={demo.requests.length}
     data-reads={readLog}
     data-events={events.join("|")}
-    data-commands={demo.commands.length}
+    data-command-log={commandLog}
+    data-commands={JSON.parse(commandLog).length}
   ></output>
 </div>
 

@@ -2,7 +2,8 @@
 <script lang="ts">
   import { AppShell } from "@lapismd/design-core/shell";
   import * as Tabs from "@lapismd/design-core/shadcn/tabs";
-  import * as Select from "@lapismd/design-core/shadcn/select";
+  import WorkspacePicker from "../../history/workspace-picker/RepositoryWorkspacePicker.svelte";
+  import "./stack-navigation.css";
   import { Button } from "@lapismd/design-core/shadcn/button";
   import Refresh from "@lucide/svelte/icons/refresh-cw";
   import type { StackWorkspaceController } from "../../../stacks/index.js";
@@ -23,8 +24,12 @@
   );
 </script>
 
-<AppShell.Toolbar aria-label="Stack workspace navigation">
+<AppShell.Toolbar
+  label="Stack workspace navigation"
+  class="workspace-navigation"
+>
   <Tabs.Root
+    class="workspace-view-tabs"
     value={controller.page}
     onValueChange={(value) => {
       if (value !== "branches" && value !== "workspace") return;
@@ -40,29 +45,27 @@
     ></Tabs.Root
   >
   <div class="workspace-controls">
-    {#if controller.snapshot}<Select.Root
-        type="single"
-        value={workspace?.id ?? ""}
+    {#if controller.snapshot}<WorkspacePicker
+        label="Active stack workspace"
+        variant="ghost"
+        includeOverview={false}
+        selected={workspace?.id ?? null}
+        entries={controller.snapshot.workspaces.map((item) => ({
+          id: item.id,
+          name: item.name,
+          description:
+            item.unavailableReason ?? `${item.applied.length} applied stacks`,
+          disabled: Boolean(item.unavailableReason),
+        }))}
         disabled={controller.locked || !host.onSelectWorkspace}
-        onValueChange={(id) => {
+        onSelect={(id) => {
           const choice = controller.snapshot?.workspaces.find(
             (item) => item.id === id,
           );
-          if (choice) host.onSelectWorkspace?.(choice);
+          if (choice && !choice.unavailableReason)
+            host.onSelectWorkspace?.(choice);
         }}
-        ><Select.Trigger aria-label="Active stack workspace"
-          >{workspace?.name ?? "No workspace"}</Select.Trigger
-        ><Select.Content
-          ><Select.Group
-            >{#each controller.snapshot.workspaces as item (item.id)}<Select.Item
-                value={item.id}
-                label={item.name}
-                disabled={Boolean(item.unavailableReason)}
-                >{item.name}</Select.Item
-              >{/each}</Select.Group
-          ></Select.Content
-        ></Select.Root
-      >{/if}
+      />{/if}
     {@render host.headerActions?.(controller)}
     <Button
       variant="ghost"

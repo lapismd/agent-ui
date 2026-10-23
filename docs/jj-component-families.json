@@ -239,7 +239,7 @@
     {
       "primary": "jj/workspace/diff/RepositoryWorkspaceDiff",
       "purpose": "Independent per-origin recorded diff with native hunk context, unified/split controls, wrapping, lazy reads and explicit unavailable/binary states.",
-      "parts": []
+      "parts": ["jj/workspace/diff/RepositoryWorkspaceDiffHunk.svelte"]
     }
   ],
   "deferred": [

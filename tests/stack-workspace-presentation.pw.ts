@@ -102,7 +102,7 @@ test("binary, conflict and long text diffs retain distinct states and shared con
   const diff = column(page, "diff-working");
   await expect(diff.getByText(/unchanged context line/).first()).toBeAttached();
   await diff.getByRole("radio", { name: "Split", exact: true }).click();
-  await expect(diff.locator(".ui-diff-file-diff__split")).toBeAttached();
+  await expect(diff.locator(".ui-diff-file-diff__split")).toHaveCount(3);
 });
 
 test("target history is read-only and selection uses captured bookmark keys", async ({
@@ -165,4 +165,107 @@ test("workspace host switching refreshes the named read scope", async ({
     "operation:recorded-7:workspace:review",
   );
   await expect(page.locator(".workspace-stack-lane")).toHaveCount(1);
+});
+
+test("stack navigation uses source pill styling in both views", async ({
+  page,
+}) => {
+  await open(page);
+  const tabs = page.getByRole("tablist", { name: "Stack workspace views" });
+  await expect(tabs).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
+  for (const name of ["Stacks", "Workspace"]) {
+    const tab = view(page, name);
+    await tab.click();
+    await expect(tab).toHaveAttribute("data-state", "active");
+    await expect(tab).toHaveCSS("border-radius", "999px");
+  }
+});
+
+test("workspace picker reuses the searchable command view and preserves host identity", async ({
+  page,
+}) => {
+  await open(page);
+  await page.getByRole("combobox", { name: "Active stack workspace" }).click();
+  const search = page.getByPlaceholder("Search loaded workspaces", {
+    exact: true,
+  });
+  await expect(search).toBeFocused();
+  await search.fill("not-a-workspace");
+  await expect(
+    page.getByText("No matching workspaces.", { exact: true }),
+  ).toBeVisible();
+  await search.fill("Review");
+  await page
+    .getByRole("option", { name: "Review workspace", exact: true })
+    .click();
+  await expect(state(page)).toHaveAttribute("data-workspace", "review");
+  await expect(state(page)).toHaveAttribute(
+    "data-pin",
+    "operation:recorded-7:workspace:review",
+  );
+});
+
+test("native hunks render separate range headers and retain partial selection", async ({
+  page,
+}) => {
+  await open(page, "selected-files");
+  const diff = column(page, "diff-working");
+  const cards = diff.locator(".workspace-hunk-card");
+  await expect(cards).toHaveCount(3);
+  await expect(cards.first().locator(".workspace-hunk-header code")).toHaveText(
+    "@@ -1,4 +1,3 @@",
+  );
+  const toggles = diff.getByRole("checkbox");
+  await expect(toggles).toHaveCount(3);
+  await toggles.first().uncheck();
+  await expect
+    .poll(
+      async () =>
+        JSON.parse((await state(page).getAttribute("data-diffs"))!)[0].hunks
+          .length,
+    )
+    .toBe(2);
+  await toggles.first().check();
+  await expect
+    .poll(
+      async () =>
+        JSON.parse((await state(page).getAttribute("data-diffs"))!)[0].hunks
+          .length,
+    )
+    .toBe(3);
+  await expect(state(page)).toHaveAttribute("data-commands", "0");
+});
+
+test("Git/JJ copy and commit intent reach host callbacks without changing selection", async ({
+  page,
+}) => {
+  await open(page);
+  const lane = column(page, "stack-lane-1");
+  const selected = await state(page).getAttribute("data-selections");
+  for (const [index, chip] of ["GIT", "JJ"].entries()) {
+    const button = lane
+      .getByRole("button", { name: new RegExp(`^${chip} .*Copy`) })
+      .first();
+    const value = (await button.getAttribute("aria-label"))!.split(" ").at(-1);
+    await button.click();
+    await expect
+      .poll(
+        async () =>
+          JSON.parse((await state(page).getAttribute("data-command-log"))!)[
+            index
+          ]?.copy,
+      )
+      .toBe(value);
+  }
+  await lane
+    .getByRole("button", { name: "Start a commit…", exact: true })
+    .click();
+  await expect
+    .poll(
+      async () =>
+        JSON.parse((await state(page).getAttribute("data-command-log"))!)[2]
+          ?.command,
+    )
+    .toEqual({ kind: "create_commit", stack: "lane-1", message: "" });
+  await expect(state(page)).toHaveAttribute("data-selections", selected!);
 });

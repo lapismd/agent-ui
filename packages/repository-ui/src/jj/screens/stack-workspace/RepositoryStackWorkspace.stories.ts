@@ -101,3 +101,19 @@ export const Retry: Story = {
     );
   },
 };
+
+export const HunkActions: Story = {
+  ...story("HunkActions"),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(
+      (await canvas.findAllByRole("button", { name: /^Assign hunk/ }))[0]!,
+    );
+    await waitFor(() =>
+      expect(canvas.getByTestId("stack-workspace-state")).toHaveAttribute(
+        "data-events",
+        "transfer",
+      ),
+    );
+  },
+};

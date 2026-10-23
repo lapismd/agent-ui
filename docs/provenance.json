@@ -1095,6 +1095,20 @@
       "source": "web/src/lib/controller/stack-workspace/card-selection.ts",
       "destination": "packages/repository-ui/src/stacks/card-selection.ts",
       "use": "Exact retained card selection mapping with SPDX notice."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "6961bd1c",
+      "source": "web/src/lib/ui/store-application/view-tabs.css",
+      "destination": "packages/repository-ui/src/jj/screens/stack-workspace/stack-navigation.css",
+      "use": "Copy pill tab gaps, radius, active/hover fills and toolbar geometry; keep the two-view toolbar in AppShell and expose secondary typography. Application overflow/other view routes are outside this two-tab part."
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "6961bd1c",
+      "source": "web/src/lib/ui/store-stack-workspace/StoreStackDiffHunk.svelte",
+      "destination": "packages/repository-ui/src/jj/workspace/diff/RepositoryWorkspaceDiffHunk.svelte",
+      "use": "Copy native range header, checkbox, assign action and hunk card composition. Use public FileDiff directly and exact unique accessible labels; omit unconnected drag attributes; hosts receive assignment intents rather than executing a transfer. Hunk CSS is moved from the owning diff part."
     }
   ]
 }

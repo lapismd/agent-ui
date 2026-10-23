@@ -3,7 +3,12 @@ import {
   workspaceListingFiles,
   workspaceRevisionRows,
 } from "../packages/repository-ui/src/jj/workspace/stack-lane/presentation.js";
-import { stackReviewSnapshot } from "../catalog/jj/support/stack-workspace-data.js";
+import { parsePatchToRows } from "@lapismd/design-core/diff";
+import { workspaceHunkContext } from "../packages/repository-ui/src/stacks/hunk-context.js";
+import {
+  stackReviewSnapshot,
+  fileSet,
+} from "../catalog/jj/support/stack-workspace-data.js";
 import { createStackReview } from "../catalog/jj/support/stack-workspace-fixture.js";
 
 test("workspace graph rows preserve recorded parent, author, conflict and alias facts", () => {
@@ -121,4 +126,29 @@ test("target history stays immutable and workspace changes replace the read scop
   } finally {
     demo.close();
   }
+});
+
+test("native hunk contexts retain three independent tokens and complete file statistics", () => {
+  const file = fileSet(80)[0]!;
+  const context = workspaceHunkContext(file);
+  expect(file.hunks).toHaveLength(3);
+  expect(context.size).toBe(3);
+  expect(new Set(file.hunks.map((h) => h.id)).size).toBe(3);
+  expect(file.hunks.every((h) => /^native:[0-9a-f]{64}$/.test(h.id))).toBe(
+    true,
+  );
+  const changes = [...context.values()]
+    .flatMap((patch) => parsePatchToRows(patch))
+    .filter((row) => row.variant !== "context");
+  expect(changes.filter((row) => row.variant === "added")).toHaveLength(
+    file.additions!,
+  );
+  expect(changes.filter((row) => row.variant === "removed")).toHaveLength(
+    file.deletions!,
+  );
+  expect(changes.map((row) => row.text)).toEqual([
+    "old 80",
+    "new 80",
+    "retain exact operation",
+  ]);
 });

@@ -30,3 +30,5 @@ export const Binary: Story = story("Binary");
 export const Empty: Story = story("Empty");
 export const Loading: Story = story("Loading");
 export const Unavailable: Story = story("Unavailable");
+
+export const HunkActions: Story = story("HunkActions");

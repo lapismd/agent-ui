@@ -12,13 +12,26 @@
   import { encodeJjChangeId } from "../../../history/repository-log-graph.js";
   import type { RepositoryWorkspace } from "../../logic/workspaces.js";
   let {
-    workspaces,
+    workspaces = [],
+    entries,
+    includeOverview = true,
+    label = "Repository workspace",
+    variant = "outline",
     selected,
     disabled = false,
     onOpen,
     onSelect,
   }: {
-    workspaces: readonly RepositoryWorkspace[];
+    workspaces?: readonly RepositoryWorkspace[];
+    entries?: readonly {
+      id: string;
+      name: string;
+      description: string;
+      disabled?: boolean;
+    }[];
+    includeOverview?: boolean;
+    label?: string;
+    variant?: "outline" | "ghost";
     selected: string | null;
     disabled?: boolean;
     onOpen?(): void;
@@ -29,18 +42,32 @@
     highlighted = $state("");
   let input = $state<HTMLInputElement | null>(null);
   const options = $derived([
-    {
-      value: "overview",
-      name: "Repository overview",
-      description: "Browse without workspace context",
-      workspace: null,
-    },
-    ...workspaces.map(({ name, commit }) => ({
-      value: `workspace:${name}`,
-      name,
-      description: `${encodeJjChangeId(commit.change_id).slice(0, 12)} · ${commit.description.split("\n")[0] || "No description"}`,
-      workspace: name,
-    })),
+    ...(includeOverview
+      ? [
+          {
+            disabled: false,
+            value: "overview",
+            name: "Repository overview",
+            description: "Browse without workspace context",
+            workspace: null,
+          },
+        ]
+      : []),
+    ...(entries
+      ? entries.map((entry) => ({
+          value: `workspace:${entry.id}`,
+          name: entry.name,
+          description: entry.description,
+          workspace: entry.id,
+          disabled: Boolean(entry.disabled),
+        }))
+      : workspaces.map(({ name, commit }) => ({
+          disabled: false,
+          value: `workspace:${name}`,
+          name,
+          description: `${encodeJjChangeId(commit.change_id).slice(0, 12)} · ${commit.description.split("\n")[0] || "No description"}`,
+          workspace: name,
+        }))),
   ]);
   const visible = $derived(
     options.filter((option) =>
@@ -66,16 +93,18 @@
     >{#snippet child({ props })}
       <Button
         {...props}
-        variant="outline"
+        {variant}
         size="sm"
         class="repository-review-workspace-trigger"
         role="combobox"
-        aria-label="Repository workspace"
+        aria-label={label}
         title="Select workspace"
         {disabled}
       >
         <FolderGit2Icon aria-hidden="true" /><span
-          >{selected ?? "Repository overview"}</span
+          >{options.find((option) => option.workspace === selected)?.name ??
+            selected ??
+            "Choose workspace"}</span
         >
         <ChevronDownIcon aria-hidden="true" />
       </Button>
@@ -113,6 +142,7 @@
             {#each visible as option (option.value)}
               <CommandView.Item
                 value={option.value}
+                disabled={option.disabled}
                 aria-label={option.name}
                 data-current={option.workspace === selected || undefined}
                 onSelect={() => {

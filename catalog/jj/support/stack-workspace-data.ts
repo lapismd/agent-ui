@@ -11,13 +11,45 @@ function textFile(path: string, seed: number): WorkspaceFile {
     { length: 72 },
     (_, i) => ` unchanged context line ${i + 1}`,
   );
-  const patch = `diff --git a/${path} b/${path}\n--- a/${path}\n+++ b/${path}\n@@ -1,74 +1,75 @@\n-old ${seed}\n+new ${seed}\n+retain exact operation\n${middle.join("\n")}\n final context\n`;
+  const prefix = `diff --git a/${path} b/${path}\n--- a/${path}\n+++ b/${path}\n`;
+  const pieces = [
+    ["@@ -1,4 +1,3 @@", `-old ${seed}`, ...middle.slice(0, 3)],
+    [
+      "@@ -30,5 +29,6 @@",
+      ...middle.slice(28, 30),
+      `+new ${seed}`,
+      ...middle.slice(30, 33),
+    ],
+    [
+      "@@ -65,5 +65,6 @@",
+      ...middle.slice(63, 65),
+      "+retain exact operation",
+      ...middle.slice(65, 68),
+    ],
+  ];
+  const patch =
+    prefix +
+    [
+      "@@ -1,74 +1,75 @@",
+      `-old ${seed}`,
+      ...middle.slice(0, 30),
+      `+new ${seed}`,
+      ...middle.slice(30, 65),
+      "+retain exact operation",
+      ...middle.slice(65),
+      " final context",
+    ].join("\n") +
+    "\n";
   return {
     path,
     patch,
     additions: 2,
     deletions: 1,
-    hunks: [{ id: `native:${hex(seed, 64)}`, label: `Update ${path}`, patch }],
+    hunks: pieces.map((lines, index) => ({
+      id: `native:${hex(seed * 10 + index, 64)}`,
+      label: `Change ${index + 1} in ${path}`,
+      patch: prefix + lines.join("\n") + "\n",
+    })),
     content: { status: "ready" },
   };
 }
@@ -187,6 +219,7 @@ export function stackReviewSnapshot(variant = "Basic"): WorkspaceSnapshot {
       "apply_stack",
       "unapply_stack",
       "delete_stack",
+      ...(variant === "HunkActions" ? ["transfer" as const] : []),
     ],
     canUndo: false,
     topology:

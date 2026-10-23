@@ -213,6 +213,7 @@ export function createStackReview(
       if (
         [
           "SelectedFiles",
+          "HunkActions",
           "Binary",
           "Conflicts",
           "DiffUnavailable",

@@ -134,6 +134,12 @@ Recorded retry presentation through the production controller and in-memory port
 
 <Canvas of={Stories.Retry} />
 
+### Hunk actions
+
+Three recorded native hunks expose independent selection and an explicit host assignment request.
+
+<Canvas of={Stories.HunkActions} />
+
 ## Behavior and accessibility
 
 Column widths match JJ Store: Branches 320 (260–520), Unstaged 330 (260–520), stack/target lanes 390 (310–640) and diff 580 (360–980) pixels. Fixed leading columns, independent bodies, original graph rows, collapse and keyboard/pointer resizing remain shared primitives. Workspace uses applied topology, while Stacks shows the selected captured branch.
@@ -151,6 +157,12 @@ Hosts provide copyText, optional onCommand/onSelectWorkspace and optional header
 ## API
 
 <ArgTypes of={Stories} />
+
+## Action wiring status
+
+Git/JJ buttons call the supplied clipboard service. Stage/Start a commit requests call `onCommand` with a create-commit intent; the host must open its composer and handle admission. Native hunk checkboxes retain their exact tokens. Hunk assignment requests call the host only when transfer is admitted.
+
+The current presentation does not yet connect file/folder/hunk/commit drag/drop, built-in commit menus or JJ Store's complete inline commit composer. Existing portable controller helpers are not proof of UI wiring. The optional `composer` and action snippets remain host extension points; presentation never previews or applies a mutation by itself.
 
 ## Composition
 

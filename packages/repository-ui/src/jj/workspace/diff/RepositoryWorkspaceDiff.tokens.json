@@ -13,7 +13,7 @@
       "default": "0.6875rem",
       "description": "Recorded hunk heading typography.",
       "owner": "@lapismd/repository-ui",
-      "source": "jj/workspace/diff/RepositoryWorkspaceDiff.svelte"
+      "source": "jj/workspace/diff/RepositoryWorkspaceDiffHunk.svelte"
     }
   ]
 }

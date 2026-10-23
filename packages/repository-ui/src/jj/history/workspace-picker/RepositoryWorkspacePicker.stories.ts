@@ -1,3 +1,4 @@
+import { expect, fn, userEvent, within } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/svelte-vite";
 import { assertJjStory } from "../../../../../../catalog/jj/support/assert-story.js";
 import Component from "./RepositoryWorkspacePicker.svelte";
@@ -28,5 +29,40 @@ export const Disabled: Story = {
   }),
   play: async ({ canvasElement }) => {
     await assertJjStory(canvasElement, "RepositoryWorkspacePicker", "Disabled");
+  },
+};
+
+export const NamedWorkspaces: StoryObj<typeof Component> = {
+  args: {
+    entries: [
+      { id: "daily", name: "Daily work", description: "3 applied stacks" },
+      {
+        id: "review",
+        name: "Review workspace",
+        description: "1 applied stack",
+      },
+      {
+        id: "offline",
+        name: "Offline workspace",
+        description: "Workspace unavailable",
+        disabled: true,
+      },
+    ],
+    selected: "daily",
+    includeOverview: false,
+    onSelect: fn(),
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(
+      canvas.getByRole("combobox", { name: "Repository workspace" }),
+    );
+    const overlay = within(canvasElement.ownerDocument.body);
+    const search = overlay.getByPlaceholderText("Search loaded workspaces");
+    await userEvent.type(search, "Review");
+    await userEvent.click(
+      overlay.getByRole("option", { name: /^Review workspace$/ }),
+    );
+    await expect(args.onSelect).toHaveBeenCalledWith("review");
   },
 };

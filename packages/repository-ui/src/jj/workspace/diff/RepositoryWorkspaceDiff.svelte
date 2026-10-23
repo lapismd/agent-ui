@@ -2,7 +2,12 @@
 <script lang="ts">
   import { untrack } from "svelte";
   import * as ColumnCanvas from "@lapismd/design-core/shadcn/column-canvas";
-  import * as Card from "@lapismd/design-core/shadcn/card";
+  import Hunk from "./RepositoryWorkspaceDiffHunk.svelte";
+  import {
+    workspaceHunkSelection,
+    workspaceAggregateSource,
+  } from "../../../stacks/files.js";
+  import { TARGET_HISTORY_ORIGIN } from "../../../stacks/target-history.svelte.js";
   import { FileDiff } from "@lapismd/design-core/diff";
   import RepositoryFileTitle from "../../history/file-title/RepositoryFileTitle.svelte";
   import RepositorySkeleton from "../../foundations/skeleton/RepositorySkeleton.svelte";
@@ -58,6 +63,42 @@
       });
     }
   });
+  const selectionSource = $derived(file?.selectionSource ?? diff.source);
+  const selectable = $derived(
+    diff.origin !== TARGET_HISTORY_ORIGIN &&
+      !workspaceAggregateSource(selectionSource) &&
+      (controller.can("create_commit") ||
+        controller.can("transfer") ||
+        controller.can("split")),
+  );
+  function selection(hunk: string) {
+    if (
+      !file ||
+      !controller.snapshot ||
+      !selectable ||
+      (controller.details.lazy && !/^native:[0-9a-f]{64}$/u.test(hunk))
+    )
+      return null;
+    return workspaceHunkSelection(
+      controller.snapshot,
+      selectionSource,
+      file.path,
+      hunk,
+    );
+  }
+  function choose(hunk: string, checked: boolean) {
+    if (!file || controller.locked) return;
+    const current = diff.hunks ?? file.hunks.map((item) => item.id);
+    const hunks = checked
+      ? [...new Set([...current, hunk])]
+      : current.filter((value) => value !== hunk);
+    controller.selectFile(
+      diff.source,
+      file.path,
+      hunks,
+      diff.origin.startsWith("stack-") ? diff.origin.slice(6) : undefined,
+    );
+  }
 </script>
 
 <ColumnCanvas.Column
@@ -104,20 +145,28 @@
         class="workspace-hunks"
         aria-label={`Diff hunks from ${diff.origin} · ${file.path}`}
       >
-        {#if file.hunks.length}{#each file.hunks as hunk (hunk.id)}<Card.Root
-              class="workspace-hunk-card"
-              ><Card.Header class="workspace-hunk-header"
-                ><Card.Title><code>{hunk.label}</code></Card.Title></Card.Header
-              ><Card.Content class="workspace-hunk-content"
-                ><FileDiff
-                  path={file.path}
-                  patch={context.get(hunk.id) ?? hunk.patch}
-                  {viewMode}
-                  {wrap}
-                  sizing="content"
-                /></Card.Content
-              ></Card.Root
-            >{/each}
+        {#if file.hunks.length}{#each file.hunks as hunk (hunk.id)}
+            {@const selected = selection(hunk.id)}
+            <Hunk
+              {hunk}
+              displayPatch={context.get(hunk.id)}
+              path={file.path}
+              origin={diff.origin}
+              {viewMode}
+              {wrap}
+              checked={!diff.hunks || diff.hunks.includes(hunk.id)}
+              selectable={Boolean(selected)}
+              disabled={controller.locked}
+              onChecked={(checked) => choose(hunk.id, checked)}
+              onAssign={selected && host.onCommand && controller.can("transfer")
+                ? () =>
+                    host.onCommand?.(
+                      { kind: "transfer", selection: selected, target: "" },
+                      controller.snapshot!,
+                    )
+                : undefined}
+            />
+          {/each}
         {:else}<FileDiff
             path={file.path}
             patch={file.patch}
@@ -135,28 +184,5 @@
     gap: var(--ui-repository-workspace-diff-gap, 0.5rem);
     margin: 0;
     padding: 0.5rem;
-  }
-  :global(.workspace-hunk-card) {
-    padding: 0;
-    gap: 0;
-    overflow: hidden;
-  }
-  :global(.workspace-hunk-header) {
-    display: flex;
-    align-items: center;
-    padding: 0.25rem 0.5rem;
-    background: var(--muted);
-    border-bottom: 1px solid var(--border);
-  }
-  code {
-    font-family: var(--font-mono);
-    font-size: var(--ui-repository-workspace-hunk-font-size, 0.6875rem);
-    font-weight: 400;
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
-  }
-  :global(.workspace-hunk-content) {
-    padding: 0;
-    min-width: 0;
   }
 </style>

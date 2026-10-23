@@ -192,6 +192,9 @@ folder totals MUST remain accurate. Refresh, view changes and independent
 column resizing MUST preserve retained source/file selections and drafts when
 still present in the same scope. Controller disposal belongs to the host.
 
+Stacks/Workspace navigation MUST share the source pill states; named workspace selection MUST reuse the searchable Command View picker and emit exact recorded IDs without fabricated commits.
+Recorded native hunks MUST render separate range headers and independent selection controls, preserving native tokens, complete file statistics and read-only target/immutable boundaries. Assignment and commit controls MUST distinguish host requests from execution.
+
 ### Acceptance details
 
 - Complete in-memory Stacks and Workspace screens MUST use the same production lanes, source files, graph and diff components, with exact host action contexts.

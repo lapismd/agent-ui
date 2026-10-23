@@ -94,3 +94,8 @@ RUI-STACK-001 presentation evidence and before/after counts are in
 complete screens reuse the portable controller and shared graph/files/diff.
 Review pauses before transfers, mutation dialogs, forge execution and downstream
 adoption; broad qualification waits until final human screen review.
+
+The Stacks/Workspace visual and action audit follow-up is in
+`spec/records/2026-10-23-stack-workspace-review.md`: pill tab parity, the shared
+Command View workspace selector, separate native hunk selection, copy/commit
+intent acceptance and explicit remaining drag/drop/commit UI gaps.

@@ -18,6 +18,8 @@ Recorded workspace and repository overview selection without inferring native au
 
 ## Usage
 
+Pass optional `entries` with exact `id`, display `name`, `description` and `disabled` metadata to reuse this Command View selector for named workspaces. Set `includeOverview={false}` for a required workspace and configure its trigger `label` and `variant`. No synthetic commit is needed.
+
 Supply workspace names recorded at the current operation. Null selects the repository overview; a string selects that exact recorded workspace.
 
 <Source code={Basic} language="tsx" />
@@ -42,6 +44,12 @@ The ordinary populated presentation with recorded identities and explicit callba
 The workspace trigger remains visible but cannot change selection.
 
 <Canvas of={Stories.Disabled} />
+
+### Named workspaces
+
+The same selector accepts host-provided IDs, names and descriptions without native commit objects.
+
+<Canvas of={Stories.NamedWorkspaces} />
 
 ## Behavior and accessibility
 
