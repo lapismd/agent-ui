@@ -365,3 +365,7 @@ historical notices cannot hide refusals. Qualification is recorded in
 Controlled request cards retain host response failures and host composer status
 follows exact captured-notice deduplication. Qualification is recorded in
 `spec/records/2026-10-23-host-response-feedback.md`.
+
+Host feedback source static and packed qualification is complete in
+`spec/records/2026-10-23-host-feedback-qualification.md`; the public source
+implementation remains 5a88a348 and consumer/native gates stay separate.
