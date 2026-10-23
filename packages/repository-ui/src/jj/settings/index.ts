@@ -2,6 +2,12 @@ export { default as RepositoryAppearance } from "./appearance/RepositoryAppearan
 export { default as RepositorySettingsCard } from "./settings-card/RepositorySettingsCard.svelte";
 export { default as RepositorySettingsPage } from "./settings-page/RepositorySettingsPage.svelte";
 export { default as RepositoryReadOnlyRow } from "./read-only-row/RepositoryReadOnlyRow.svelte";
+export { default as RepositorySettingsField } from "./settings-card/RepositorySettingsField.svelte";
+export { default as RepositorySettingsFooter } from "./settings-card/RepositorySettingsFooter.svelte";
+export { default as RepositoryProfileSettings } from "./profile/RepositoryProfileSettings.svelte";
+export { default as RepositoryProfileMenu } from "./profile-menu/RepositoryProfileMenu.svelte";
+export { RepositoryProfileController } from "./profile/controller.js";
+export type * from "./profile/model.js";
 export * from "./appearance/state/preferences.js";
 export * from "./appearance/state/theme-catalog.js";
 export * from "./appearance/state/store.svelte.js";

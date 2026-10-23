@@ -1,0 +1,12 @@
+{
+  "component": "RepositoryProfileSettings",
+  "variables": [
+    {
+      "name": "--ui-repository-profile-avatar-size",
+      "default": "6rem",
+      "description": "Profile photo picker dimension.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/settings/profile/profile-settings.css"
+    }
+  ]
+}

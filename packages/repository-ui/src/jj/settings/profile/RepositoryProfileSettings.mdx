@@ -1,0 +1,71 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryProfileSettings.stories";
+import { Basic, Styling } from "./RepositoryProfileSettings.example-sources";
+import tokens from "./RepositoryProfileSettings.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Profile
+
+Copied and adapted from JJ Store. Installation identity, data and image preparation remain host-owned.
+
+## Usage
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+The complete page owns the AppShell body header, divided Settings rows, public avatar picker and fixed-form save/recovery controls.
+
+## Variations
+
+### Basic
+
+<Canvas of={Stories.Basic} />
+
+### Loading
+
+<Canvas of={Stories.Loading} />
+
+### Unavailable
+
+<Canvas of={Stories.Unavailable} />
+
+### Unknown
+
+<Canvas of={Stories.Unknown} />
+
+### Conflict
+
+<Canvas of={Stories.Conflict} />
+
+### Avatar
+
+<Canvas of={Stories.Avatar} />
+
+## Behavior and accessibility
+
+All controls retain accessible labels and keyboard focus. Pending reads use public Skeleton and unavailable reads use icon Empty. Profile drafts and exact unknown requests survive navigation; only explicit Save, status inspection and proven-not-received retry invoke host ports. Conflict reconciliation retains the authored draft. Uploaded media resolves through host-owned immutable references.
+
+## Styling variables
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes />
+
+`RepositoryProfileController` receives `ProfilePort`: read, draft, save, inspect and normalized upload. The host owns its lifetime and error notifications. `PersonalProfile` preserves principal identity separately from editable details. `RepositorySettingsField` and `RepositorySettingsFooter` are the original JJ Store settings row/footer primitives, also available from `/settings`.
+
+## Composition
+
+Mount this completed screen in the application body and retain its controller when opening other settings or repositories. Compose the profile menu in the left AppShell sidebar footer.

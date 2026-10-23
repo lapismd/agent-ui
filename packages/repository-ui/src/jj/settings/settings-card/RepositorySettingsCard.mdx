@@ -56,6 +56,12 @@ public foundation token bindings. It must be loaded once by the application.
 `ownAppearance(store, storage, { storageKey, root })` scopes the Svelte lifetime.
 The host owns the storage namespace, setting persistence and native services.
 
+`RepositorySettingsField` exposes JJ Store's divided field row with `label`,
+`id`, `description`, `Icon`, and a `children` control snippet. Use it for editable
+settings without recreating card markup. `RepositorySettingsFooter` supplies
+the original action footer through its children snippet. Read-only paths use
+`RepositoryReadOnlyRow`, including its copy and host open callbacks.
+
 ## Composition
 
 Mount completed repository screens in the application's ordinary AppShell and

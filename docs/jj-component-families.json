@@ -281,7 +281,9 @@
       "purpose": "Reusable JJ Store settings card presentation with host-owned settings and appearance.",
       "parts": [
         "jj/settings/settings-card/StoreSettingsHeading.svelte",
-        "jj/settings/settings-card/StoreSettingsIcon.svelte"
+        "jj/settings/settings-card/StoreSettingsIcon.svelte",
+        "jj/settings/settings-card/RepositorySettingsField.svelte",
+        "jj/settings/settings-card/RepositorySettingsFooter.svelte"
       ]
     },
     {
@@ -344,6 +346,19 @@
     {
       "primary": "jj/settings/read-only-row/RepositoryReadOnlyRow",
       "purpose": "JJ Store read-only settings primitive with exact path copy, host open controls and responsive definition rows.",
+      "parts": []
+    },
+    {
+      "primary": "jj/settings/profile/RepositoryProfileSettings",
+      "purpose": "Completed JJ Store personal Profile page with typed installation host ports and retained drafts/unknown saves.",
+      "parts": [
+        "jj/settings/profile/RepositoryProfileAvatar.svelte",
+        "jj/settings/profile/profile-settings.css"
+      ]
+    },
+    {
+      "primary": "jj/settings/profile-menu/RepositoryProfileMenu",
+      "purpose": "JJ Store sidebar profile avatar, identity, compact tooltip and local settings menu.",
       "parts": []
     }
   ],

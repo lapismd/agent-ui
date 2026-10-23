@@ -282,6 +282,15 @@ execution to the host; rendering or dropping MUST NOT execute a command itself.
 
 Settings card headers MUST own a single compact inset and align section icon centres with row icon centres. Read-only settings use the source-ported JJ Store row with exact value copy and independent host open controls; consumers MUST NOT recreate path/action rows.
 
+Personal Profile settings and the sidebar profile menu MUST adapt JJ Store's
+completed form/menu, using the public Design Core avatar picker and shared
+settings rows. Typed host ports own installation identity, durable drafts,
+revision-conditional saves, exact request inspection and normalized image upload.
+Unknown saves retain their original request without automatic replay; conflicts
+retain the authored draft for explicit reconciliation. Profile edits MUST NOT
+replace actor identity or depend on the active repository. Sign-in/out controls
+are absent in the local application composition.
+
 ### Acceptance details
 
 - Shared appearance and settings presentation is exported through `/settings` using JJ Store palettes, theme pairing, preview tiles, settings cards and page geometry.

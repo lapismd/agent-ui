@@ -1,5 +1,15 @@
 # Integrating complete repository screens
 
+Personal settings mount `RepositoryProfileSettings` with a host-owned
+`RepositoryProfileController` and typed `ProfilePort` from
+`@lapismd/repository-ui/settings`. Place `RepositoryProfileMenu` in the
+AppShell sidebar footer; its callbacks open Profile or Settings. Keep one
+controller across repository switches, since profile identity, draft, uploads
+and receipts belong to the installation. Drain it before close. The host
+normalizes raster uploads natively and retains stable asset references; the
+browser receives display URLs only. Unknown saves require inspection and an
+explicit retry of the original request. No sign-in/out controls are included.
+
 Applications mount the completed production screen and implement its host ports.
 Content reads use public shadcn Skeleton with the JJ Store surface geometry and
 an accessible loading label. Empty, unavailable and failed content reads use

@@ -370,3 +370,9 @@ The Op Log parent-picker follow-up retains selected metadata during pending
 reads and shows a labelled Skeleton beside recorded parent choices. The wider
 browser attempt and remaining qualification gaps are recorded in the same
 evidence file; no aggregate completion is implied.
+
+Personal Profile now exports the source-adapted complete settings page, native
+host port/controller and sidebar identity menu, including public avatar selection,
+draft/unknown/conflict recovery and icon Empty/Skeleton states. Verification is
+in `spec/records/2026-10-23-personal-profile.md`; consumer adoption, Emoji,
+Integrations and the rest of the audited Desktop backlog remain separate gates.

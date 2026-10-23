@@ -1,0 +1,49 @@
+/* Adapted from JJ Store profile-settings.css; avatar uses the public picker. */
+.store-directory-settings {
+  width: 100%;
+  min-width: 0;
+}
+.store-directory-settings form {
+  display: grid;
+  min-width: 0;
+  gap: 0;
+}
+.store-directory-settings .store-settings__editable-rows {
+  gap: 0;
+}
+.store-directory-settings .store-settings-card__content > dl,
+.store-directory-settings [data-slot="field"] + [data-slot="field"] {
+  border-block-start: 1px solid var(--border);
+}
+.store-directory-field__label {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 0.6rem;
+}
+.store-directory-field__control {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+.store-directory-field__control
+  > :is(input, [data-ui-part="chat-composer"], [data-slot="input-group"]) {
+  width: 100%;
+  min-width: 0;
+}
+.store-directory-settings__avatar {
+  position: relative;
+  flex: none;
+  --ui-avatar-picker-size: var(--ui-repository-profile-avatar-size, 6rem);
+}
+.store-directory-settings__avatar > [data-slot="button"] {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-end: 0;
+}
+@media (max-width: 40rem) {
+  .store-directory-field__control {
+    justify-content: flex-start;
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "component": "RepositoryProfileMenu",
+  "variables": [
+    {
+      "name": "--ui-repository-profile-menu-width",
+      "default": "100%",
+      "description": "Available footer identity width.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/settings/profile-menu/RepositoryProfileMenu.svelte"
+    }
+  ]
+}

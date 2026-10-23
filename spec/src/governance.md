@@ -140,6 +140,9 @@ An unpublished dependency's missing portable lockfile entries MUST remain an
 explicit release prerequisite rather than a claimed frozen-install pass.
 A passing focused retry MUST retain earlier failed/interrupted aggregate counts
 and MUST NOT qualify cold startup through a warm-server run alone.
+Personal settings stories MUST use the completed settings page and public host
+controller, exercising retained edits, unknown outcomes, conflict reconciliation,
+avatar selection, compact footer menus and icon Empty/Skeleton states.
 Clean package acceptance MUST compile documented examples for both packages
 and exclude their catalog material; static catalog checks MUST audit both family
 inventories and specification pages.

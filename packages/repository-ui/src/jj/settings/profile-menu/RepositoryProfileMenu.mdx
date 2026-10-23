@@ -1,0 +1,67 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryProfileMenu.stories";
+import { Basic, Styling } from "./RepositoryProfileMenu.example-sources";
+import tokens from "./RepositoryProfileMenu.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Profile menu
+
+Copied and adapted from JJ Store. Installation identity, data and image preparation remain host-owned.
+
+## Usage
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+The footer trigger owns the avatar, truncated identity, compact tooltip and deferred Settings/Profile menu selection. No server sign-in or sign-out controls are shown.
+
+## Variations
+
+### Basic
+
+<Canvas of={Stories.Basic} />
+
+### Compact
+
+<Canvas of={Stories.Compact} />
+
+### Loading
+
+<Canvas of={Stories.Loading} />
+
+### Unavailable
+
+<Canvas of={Stories.Unavailable} />
+
+### Recovery
+
+<Canvas of={Stories.Recovery} />
+
+## Behavior and accessibility
+
+All controls retain accessible labels and keyboard focus. Pending reads use public Skeleton and unavailable reads use icon Empty. Profile drafts and exact unknown requests survive navigation; only explicit Save, status inspection and proven-not-received retry invoke host ports. Conflict reconciliation retains the authored draft. Uploaded media resolves through host-owned immutable references.
+
+## Styling variables
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes />
+
+`profile` and `avatarUrl` are host-supplied presentation. `onProfile` and `onSettings` run after menu dismissal. `compact`, `loading` and `onRetry` preserve collapsed-sidebar, initial-read and recovery states.
+
+## Composition
+
+Mount inside AppShell.Sidebar.Footer and keep the app version below it. The host opens the shared Profile settings page and retains installation-scoped state across repository changes.
