@@ -1,0 +1,69 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryReadOnlyRow.stories";
+import { Basic, Styling } from "./RepositoryReadOnlyRow.example-sources";
+import tokens from "./RepositoryReadOnlyRow.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Read only row
+
+JJ Store's `StoreReadOnlyRow`, ported with its markup, styles, open control and
+copy feedback. Native folder selection and navigation remain host callbacks.
+
+## Usage
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+A definition row contains an optional icon, label and description, followed by
+the value and open/copy controls. Long copyable values truncate visually while
+retaining the complete title, accessible action label and clipboard text.
+
+## Variations
+
+<Canvas of={Stories.Basic} />
+<Canvas of={Stories.CopyValue} />
+<Canvas of={Stories.CopyFailure} />
+<Canvas of={Stories.Unavailable} />
+<Canvas of={Stories.DisabledOpen} />
+<Canvas of={Stories.LongPath} />
+
+## Behavior and accessibility
+
+Use inside `dl.store-settings__rows`, or set `standalone` to render its own `dl`.
+Buttons support keyboard operation. Copy owns the full-row hit target; the open
+control remains independent. A status region announces success or failure.
+Changing the value or disposing the row invalidates late copy feedback. Missing
+values use `emptyLabel` and omit open/copy controls. `openDisabled` gates only
+the host action; available text remains copyable. Mounting never calls the host.
+
+## Styling variables
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+The source primitive inherits semantic foreground, muted, ring and typography
+tokens. The owning settings page selects compact presentation and responsive
+label/value columns; optional inset tokens retain JJ Store's exact defaults.
+
+## API
+
+<ArgTypes of={Stories} />
+
+`value` is the exact copy source; `display` changes only its visual formatting.
+`children` supplies custom value content. `onOpen`, `openLabel`, `openDisabled`
+bind host navigation. `copyable` enables copying without an open action.
+
+## Composition
+
+The Settings page Basic story and JJ Desktop Repository settings use this same
+row for repository identity, folder path and storage information. Settings
+controllers, admission and native dialogs remain application-owned.

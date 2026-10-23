@@ -42,6 +42,12 @@ different surface for which no completed screen exists.
 
 Use the shared JJ Store appearance/settings presentation with public Design Core
 tokens. Host-owned theme preferences and storage keys remain device-local.
+Read-only values use `RepositoryReadOnlyRow` from `/settings`, ported from
+JJ Store's `StoreReadOnlyRow`. Supply exact `value`, optional `onOpen` and
+`openDisabled`; the row owns icon, padding, truncation, full-value copy and
+feedback. Use it inside `dl.store-settings__rows` rather than adding raw
+definition rows or standalone path action buttons. The Settings page Basic
+story includes the folder/open/copy and collaboration-storage composition.
 Preserve source typography, opaque surfaces, spacing, selected/hover states and
 native chrome geometry. Avoid a second host reset that restyles shared buttons,
 Markdown, headings, cards or lists.

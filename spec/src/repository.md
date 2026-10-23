@@ -271,12 +271,12 @@ execution to the host; rendering or dropping MUST NOT execute a command itself.
 
 **Requirement.** Forge, checks and repository settings screens MUST preserve drafts, capability gates and pending effects through navigation and floating. Credentials and execution MUST remain host-owned.
 
-Settings card headers MUST own a single compact inset and align section icon centres with row icon centres.
+Settings card headers MUST own a single compact inset and align section icon centres with row icon centres. Read-only settings use the source-ported JJ Store row with exact value copy and independent host open controls; consumers MUST NOT recreate path/action rows.
 
 ### Acceptance details
 
 - Shared appearance and settings presentation is exported through `/settings` using JJ Store palettes, theme pairing, preview tiles, settings cards and page geometry.
-- Settings pages and their stories use the production AppShell body, standard toolbar header and scrolling body content with a 1rem card inset.
+- Settings pages and their stories use the production AppShell body, standard toolbar header and scrolling body content with a 1rem card inset, including the actual folder path/open/copy row and storage rows used by the first consumer.
 - Hosts own storage namespaces, native capabilities and repository policy; the portable framework does not enable native glass.
 - Appearance previews do not persist, invalid values fall back safely, and disposal restores the owning root and removes browser listeners.
 

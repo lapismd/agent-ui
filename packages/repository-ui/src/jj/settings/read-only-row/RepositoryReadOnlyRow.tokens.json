@@ -1,0 +1,19 @@
+{
+  "component": "RepositoryReadOnlyRow",
+  "variables": [
+    {
+      "name": "--ui-repository-settings-row-padding",
+      "default": "0.85rem 1rem",
+      "description": "Inset of a default read-only settings row.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/settings/read-only-row/RepositoryReadOnlyRow.svelte"
+    },
+    {
+      "name": "--ui-repository-settings-row-compact-padding",
+      "default": "0.65rem 1rem",
+      "description": "Inset of a compact row inside shared settings pages.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/settings/read-only-row/RepositoryReadOnlyRow.svelte"
+    }
+  ]
+}

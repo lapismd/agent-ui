@@ -89,3 +89,61 @@ test("Theme dropdown and mode toggle preserve authored draft and exact comments"
   await expect(editor).toHaveText("Preserve this authored draft across themes");
   await expect(state).toHaveAttribute("data-anchors", anchors!);
 });
+
+test("Settings page includes JJ Store path controls without an extra action row", async ({
+  page,
+}) => {
+  for (const width of [1280, 420]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto(
+      "/iframe.html?id=jj-settings-settings-page--basic&viewMode=story",
+    );
+    const card = page.getByRole("region", {
+      name: "Selected folder",
+      exact: true,
+    });
+    const open = card.getByRole("button", {
+      name: "Open repository folder",
+      exact: true,
+    });
+    const copy = card.getByRole("button", {
+      name: "Copy full Folder path: /Users/example/code/example-repository",
+      exact: true,
+    });
+    await expect(open).toBeVisible();
+    await expect(copy).toBeVisible();
+    await page.evaluate(() =>
+      Object.defineProperty(navigator, "clipboard", {
+        configurable: true,
+        value: {
+          writeText: async (value: string) => {
+            (window as unknown as { copied: string }).copied = value;
+          },
+        },
+      }),
+    );
+    await copy.focus();
+    await page.keyboard.press("Enter");
+    await expect(
+      card.getByText("Folder path copied", { exact: true }),
+    ).toBeVisible();
+    await expect
+      .poll(() =>
+        page.evaluate(() => (window as unknown as { copied: string }).copied),
+      )
+      .toBe("/Users/example/code/example-repository");
+    await open.focus();
+    await expect(open).toBeFocused();
+    const bounds = await card.boundingBox(),
+      action = await open.boundingBox();
+    expect(action!.height).toBe(24);
+    expect(action!.x).toBeGreaterThan(bounds!.x + 16);
+    expect(
+      bounds!.x + bounds!.width - action!.x - action!.width,
+    ).toBeGreaterThan(16);
+    await expect(card).toHaveJSProperty(
+      "scrollWidth",
+      await card.evaluate((node) => node.clientWidth),
+    );
+  }
+});

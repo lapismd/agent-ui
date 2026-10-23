@@ -8243,6 +8243,36 @@
           "description": "Retain selected conversation fill, scrolling boundary, row metadata and empty surface; complete chat owns the sole transcript/composer header."
         }
       ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/ui/store-settings/StoreReadOnlyRow.svelte",
+      "destination": "packages/repository-ui/src/jj/settings/read-only-row/RepositoryReadOnlyRow.svelte",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "license": "Apache-2.0",
+      "sourceSha256": "a384cfebe707ad6cf56c9648f9d6c05702f0677c195a5ff99ebc40fd854a9efb",
+      "destinationSha256": "bf693ff9eeed3cf043ad10811aba8a9859b7268221b9ada5725d603c1afedfea",
+      "adaptations": [
+        {
+          "description": "Port StoreReadOnlyRow unchanged except relocating imports to the existing shared settings icon, presentation context and icon lookup. Preserve native path open callback, full-value copy, stale feedback invalidation and original compact/stacked CSS."
+        },
+        {
+          "description": "Expose optional inset tokens while retaining both JJ Store defaults; no presentation recreation."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "description": "Expose source-faithful default and compact row insets as audited native CSS variables.",
+          "before": "padding: 0.85rem 1rem;",
+          "after": "padding: var(--ui-repository-settings-row-padding, 0.85rem 1rem);"
+        },
+        {
+          "description": "Preserve source compact inset by default.",
+          "before": "padding: 0.65rem 1rem;",
+          "after": "padding: var(--ui-repository-settings-row-compact-padding, 0.65rem 1rem);"
+        }
+      ],
+      "layoutSha256": "8b2f689eff23c1ef5bdcc9aea6853a57d3c07dd83802a4ad8e3e3d07eba34258"
     }
   ],
   "fingerprintFormat": "Prettier normalized source; Svelte layout excludes script and comments. Explicit host bindings are applied before comparison.",

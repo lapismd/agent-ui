@@ -340,6 +340,11 @@
         "jj/projects/screen/WorkTime.svelte",
         "jj/projects/screen/WorkDetailHeader.svelte"
       ]
+    },
+    {
+      "primary": "jj/settings/read-only-row/RepositoryReadOnlyRow",
+      "purpose": "JJ Store read-only settings primitive with exact path copy, host open controls and responsive definition rows.",
+      "parts": []
     }
   ],
   "deferred": [

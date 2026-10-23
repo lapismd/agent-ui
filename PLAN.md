@@ -351,3 +351,8 @@ registered-home native captures. All 33 consumer browser/axe cases, 35 renderer
 units, 26 native tests and cold native acceptance pass. Global Threads,
 contextual chat, other imported capture formats and local settings remain open.
 See `spec/records/2026-10-23-configured-agents.md`.
+
+Settings now exports JJ Store's original read-only row, including full path copy
+and independent host open controls. The repository settings story includes the
+actual first-consumer folder and storage rows rather than a reduced placeholder.
+Evidence: `spec/records/2026-10-23-settings-rows.md`; visual review remains pending.
