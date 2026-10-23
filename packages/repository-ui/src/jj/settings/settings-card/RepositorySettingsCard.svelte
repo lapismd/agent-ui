@@ -47,7 +47,7 @@
     aria-labelledby={label ? undefined : id}
   >
     <div class="store-settings-card__header">
-      <Card.Header>
+      <Card.Header style="padding: 0">
         <Card.Title
           ><StoreSettingsHeading
             {id}

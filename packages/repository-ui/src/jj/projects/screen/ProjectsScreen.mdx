@@ -86,6 +86,10 @@ The host owns admission, snapshots, version checks, persistence and exact reques
 
 <Canvas of={Stories.CreateProjectDialog} />
 
+### CreateTaskDialog
+
+<Canvas of={Stories.CreateTaskDialog} />
+
 ### Activity
 
 <Canvas of={Stories.Activity} />
@@ -115,6 +119,9 @@ Directories request at most 25 rows per page and 20 homes per batch with four co
 Project and task rows retain source button hit areas and separate author controls. Forms have labels, retain drafts on cancellation/failure and focus restoration through the public Dialog. The contextual rail appears only for a selected project/task, using AppShell resizing and narrow-window presentation. Chat opens an explicit context through a callback and never sends automatically.
 
 ## Styling variables
+
+Creation forms set the public settings-card background token to `var(--background)`:
+editable rows use the body surface while card headers retain their tint.
 
 <Markdown>{tokenMarkdown(tokens)}</Markdown>
 <Source code={Styling} language="tsx" />

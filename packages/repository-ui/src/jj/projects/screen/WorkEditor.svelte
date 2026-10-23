@@ -5,7 +5,7 @@
   import { DialogFrame } from "@lapismd/design-core/forms/dialog";
   import * as Field from "@lapismd/design-core/shadcn/field";
   import { Button } from "@lapismd/design-core/shadcn/button";
-  import { Database } from "@lucide/svelte";
+  import { Database, FolderKanban } from "@lucide/svelte";
   import RepositorySettingsCard from "../../settings/settings-card/RepositorySettingsCard.svelte";
   import { provideSettingsPresentation } from "../../settings/settings-card/settings-presentation.js";
   import RepositoryPicker from "../../navigation/repository-picker/RepositoryPicker.svelte";
@@ -125,49 +125,56 @@
         >{editing ? `Save ${mode}` : title}</Button
       >{/snippet}
     <div class="store-creation-form store-settings--global">
-      {#if allowHomeChange}<RepositorySettingsCard
+      {#if allowHomeChange || (mode === "task" && !project)}<RepositorySettingsCard
           id={`${formId}-metadata`}
           title="Metadata home"
           Icon={Database}
         >
-          <Field.Group class="store-settings__editable-rows"
-            ><WorkField
-              label="Home repository"
-              description="This repository owns the project metadata and discussion."
-              class="store-settings__option-row"
-              Icon={Database}
-            >
-              <RepositoryPicker
+          <Field.Group class="store-settings__editable-rows">
+            {#if allowHomeChange}<WorkField
                 label="Home repository"
-                repositories={homes
-                  .filter((h) => h.writable)
-                  .map((h) => ({ ...h, disabled: !h.available }))}
-                value={home}
-                controlled
-                onChange={(home) => onHomeChange?.(home)}
-                {disabled}
-              />
-            </WorkField></Field.Group
-          >
+                description="This repository owns the project metadata and discussion."
+                class="store-settings__option-row"
+                Icon={Database}
+              >
+                <RepositoryPicker
+                  label="Home repository"
+                  repositories={homes
+                    .filter((h) => h.writable)
+                    .map((h) => ({ ...h, disabled: !h.available }))}
+                  value={home}
+                  controlled
+                  onChange={(home) => onHomeChange?.(home)}
+                  {disabled}
+                />
+              </WorkField>{/if}
+            {#if mode === "task" && !project}<WorkField
+                label="Task project"
+                description="This project owns the task and its discussion."
+                class="store-settings__option-row store-creation-form__project-picker"
+                Icon={FolderKanban}
+                disabled={loading || disabled}
+                ><RepositoryPicker
+                  label="Task project"
+                  repositories={choices.map((p) => ({
+                    id: p.id,
+                    name: p.title,
+                    description: p.body,
+                  }))}
+                  value={selectedId}
+                  controlled
+                  onChange={(value) => (selectedId = value)}
+                  disabled={loading || disabled}
+                  allowEmpty
+                  emptyLabel="Choose a project"
+                />{#if cursor}<Button
+                    variant="outline"
+                    disabled={loading}
+                    onclick={more}>More projects</Button
+                  >{/if}</WorkField
+              >{/if}
+          </Field.Group>
         </RepositorySettingsCard>{/if}
-      {#if mode === "task" && !project}<WorkField label="Task project"
-          ><RepositoryPicker
-            label="Task project"
-            repositories={choices.map((p) => ({
-              id: p.id,
-              name: p.title,
-              description: p.body,
-            }))}
-            value={selectedId}
-            controlled
-            onChange={(value) => (selectedId = value)}
-            disabled={loading || disabled}
-            allowEmpty
-            emptyLabel="Choose a project"
-          /></WorkField
-        >{#if cursor}<Button variant="outline" disabled={loading} onclick={more}
-            >More projects</Button
-          >{/if}{/if}
       {#if mode !== "task" || selectedProject}{#key `${home}:${selectedProject?.id}`}<WorkEditorForm
             {controller}
             {home}

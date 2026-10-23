@@ -139,13 +139,13 @@
           aria-expanded={showRail}
           onclick={() => (showRail = !showRail)}><PanelRight /></Button
         >{/if}{/snippet}
-    {#snippet search()}{#if view.route.tab !== "reviews"}<ProjectSearch
-          label={`Search ${view.route.tab}`}
-          scope={`${view.route.home}:${view.route.project}:${view.route.tab}`}
-          query={view.route.query ?? ""}
-          bind:open={searchOpen}
-          onQuery={(query) => navigate({ ...view.route, query })}
-        />{/if}{/snippet}
+    {#snippet search()}<ProjectSearch
+        label={`Search ${view.route.tab}`}
+        scope={`${view.route.home}:${view.route.project}:${view.route.tab}`}
+        query={view.route.query ?? ""}
+        bind:open={searchOpen}
+        onQuery={(query) => navigate({ ...view.route, query })}
+      />{/snippet}
     {#snippet actions()}<ProjectFilters {view} {project} {navigate} />{/snippet}
     <section
       class="community-projects"

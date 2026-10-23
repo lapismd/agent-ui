@@ -89,6 +89,31 @@ export const Task: Story = {
 };
 export const Reviews: Story = {
   render: () => ({ Component: Demo, props: { variant: "Reviews" } }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const review = { name: /^Open Review repository context,/ };
+    await canvas.findAllByRole("button", review);
+    await userEvent.click(
+      canvas.getByRole("button", { name: "Search reviews" }),
+    );
+    const search = canvas.getByRole("textbox", { name: "Search reviews" });
+    await expect(search).toHaveFocus();
+    await expect(canvas.queryByRole("tab", { name: "Reviews" })).toBeNull();
+    await userEvent.type(search, "no matching review{enter}");
+    await waitFor(() =>
+      expect(canvas.queryAllByRole("button", review)).toHaveLength(0),
+    );
+    await userEvent.clear(search);
+    await userEvent.type(search, "linked code{enter}");
+    await waitFor(() =>
+      expect(canvas.getAllByRole("button", review)).toHaveLength(2),
+    );
+    await userEvent.keyboard("{Escape}");
+    await expect(canvas.getByRole("tab", { name: "Reviews" })).toBeVisible();
+    await expect(
+      canvas.getByRole("button", { name: "Search reviews" }),
+    ).toHaveFocus();
+  },
 };
 export const Paged: Story = {
   render: () => ({ Component: Demo, props: { variant: "Paged" } }),
@@ -153,6 +178,36 @@ export const CreateProjectDialog: Story = {
     ).toBeVisible();
     await expect(
       dialog.getByRole("textbox", { name: "Project title" }),
+    ).toBeVisible();
+  },
+};
+export const CreateTaskDialog: Story = {
+  render: () => ({ Component: Demo }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement),
+      body = within(canvasElement.ownerDocument.body);
+    await userEvent.click(await canvas.findByRole("tab", { name: "Tasks" }));
+    await userEvent.click(
+      await canvas.findByRole("button", { name: "New task" }),
+    );
+    const dialog = within(await body.findByRole("dialog"));
+    const metadata = within(
+      dialog.getByRole("region", { name: "Metadata home" }),
+    );
+    const project = metadata.getByRole("combobox", { name: "Task project" });
+    await waitFor(() => expect(project).toBeEnabled());
+    await userEvent.click(project);
+    await userEvent.click(
+      await body.findByRole("option", { name: /^Repository toolkit/ }),
+    );
+    await waitFor(() =>
+      expect(
+        dialog.getByRole("region", { name: "Task details" }),
+      ).toBeVisible(),
+    );
+    await expect(project).toHaveTextContent("Repository toolkit");
+    await expect(
+      dialog.getByRole("textbox", { name: "Task title" }),
     ).toBeVisible();
   },
 };

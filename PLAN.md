@@ -300,3 +300,8 @@ acceptance and pending qualification are in
 Projects live comparison: `spec/records/2026-10-23-project-composition.md` records
 source observations, corrected composition, exact failures and outstanding gaps.
 Interaction passes do not close this explicit user-required composition gate.
+
+Create Project review: white card bodies, aligned header/row icons, Reviews
+search and Create Task's project row are tracked in
+`spec/records/2026-10-23-project-dialog-styling.md`.
+The broader composition gate remains open.

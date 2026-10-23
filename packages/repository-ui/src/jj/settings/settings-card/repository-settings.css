@@ -184,7 +184,8 @@
 }
 
 .store-settings-card__header {
-  padding: 0.85rem 1rem;
+  /* Centre the 2.25rem section icon above the 1.8rem row icons. */
+  padding: 0.75rem calc(1rem - (2.25rem - 1.8rem) / 2);
   background: color-mix(in srgb, var(--muted) 35%, var(--card));
   border-block-end: 1px solid var(--border);
 }

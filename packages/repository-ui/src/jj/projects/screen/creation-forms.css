@@ -1,5 +1,6 @@
 /* Creation forms opt into the documented Settings presentation. */
 .store-creation-form {
+  --ui-repository-settings-card-background: var(--background);
   --community-text-body: 0.8125rem;
   --community-text-secondary: 0.75rem;
   --mira-font-size: var(--community-text-body);
@@ -27,4 +28,14 @@
 }
 .store-creation-form__description [data-ui-part="chat-composer"] {
   width: 100%;
+}
+.store-creation-form__project-picker > .store-work__control {
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+@media (max-width: 40rem) {
+  .store-creation-form__project-picker > .store-work__control {
+    align-items: flex-start;
+  }
 }

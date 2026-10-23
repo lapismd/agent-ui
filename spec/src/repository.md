@@ -262,6 +262,8 @@ execution to the host; rendering or dropping MUST NOT execute a command itself.
 
 **Requirement.** Forge, checks and repository settings screens MUST preserve drafts, capability gates and pending effects through navigation and floating. Credentials and execution MUST remain host-owned.
 
+Settings card headers MUST own a single compact inset and align section icon centres with row icon centres.
+
 ### Acceptance details
 
 - Shared appearance and settings presentation is exported through `/settings` using JJ Store palettes, theme pairing, preview tiles, settings cards and page geometry.
@@ -295,6 +297,10 @@ ResponsiveTabs, Breadcrumb and CommandView primitives with host-owned routes.
 **Requirement.** Complete Projects screens MUST adapt JJ Store's directory, task, review, activity and linked-repository flows through scoped host ports, preserving metadata homes separately from linked code targets.
 
 Projects MUST NOT be marked complete until each new page composition has been compared with the running JJ Store: Topbar ancestry outside the body, contextual navigation, search/filter/action toolbar, Mine/Other groups, creation dialogs, fixed task header/composer, discussion, activity timeline and contextual rail. Interaction passes alone do not satisfy this user-required composition gate; remaining differences MUST be recorded explicitly.
+
+Creation cards MUST use the theme body surface (white in the default light theme) for editable rows and retain tinted headers; Reviews MUST expose the shared expanding search with query submission, Escape dismissal and trigger focus restoration.
+
+Global task creation MUST group the task's project selector with its metadata home in the shared card rows before showing the selected project's task fields.
 
 ### Acceptance details
 

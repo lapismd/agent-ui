@@ -7106,10 +7106,13 @@
       "sourceRevision": "6961bd1c",
       "license": "Apache-2.0",
       "sourceSha256": "e718b8331b245c8d2c0efc9b42b2bda0e66c8c563088bf7e0db0c01bcf43aa6c",
-      "destinationSha256": "af5f62d888e9674cda63a0b3c34afd155f0ec49bc176004d543ce738a5d3159d",
+      "destinationSha256": "bb09a6ce492f571a05f928de114664fc571bc05e3b8c781d6cc9184a6de9689b",
       "adaptations": [
         {
           "description": "Relocate imports to public package ownership; preserve source layout and add documented component tokens. Appearance cards omit native glass controls."
+        },
+        {
+          "description": "Let the owning settings header provide its inset once via the public Card.Header style prop; avoid compounded primitive padding."
         }
       ],
       "layoutAdaptations": [
@@ -7117,9 +7120,14 @@
           "before": "{#if presentation.value !== \"default\" && layout === \"page\"}\n  <div class=\"store-settings__content-heading\">\n    <h1 {id}>{title}</h1>\n    {#if description}<p>{description}</p>{/if}\n  </div>\n  {@render children()}\n{:else if presentation.value !== \"default\"}\n  <Card.Root\n    size=\"sm\"\n    style=\"--card-spacing: 0\"\n    class=\"store-settings__section store-settings-card\"\n    role=\"region\"\n    aria-label={label}\n    aria-labelledby={label ? undefined : id}\n  >\n    <div class=\"store-settings-card__header\">\n      <Card.Header>\n        <Card.Title\n          ><StoreSettingsHeading\n            {id}\n            {title}\n            {description}\n            {Icon}\n            {badge}\n          /></Card.Title\n        >\n      </Card.Header>\n    </div>\n    <Card.Content class=\"store-settings-card__content\"\n      >{@render children()}</Card.Content\n    >\n  </Card.Root>\n{:else if repositoryOnly}\n  {@render children()}\n{:else}\n  <section\n    class=\"store-settings__section\"\n    aria-label={label}\n    aria-labelledby={label ? undefined : id}\n  >\n    <header class=\"store-settings__section-heading\">\n      <div>\n        <h2 {id}>{title}</h2>\n        {#if description}<p>{description}</p>{/if}\n      </div>\n      {@render badge?.()}\n    </header>\n    {@render children()}\n  </section>\n{/if}",
           "after": "{#if presentation.value !== \"default\" && layout === \"page\"}\n  <div class=\"store-settings__content-heading\">\n    <h1 {id}>{title}</h1>\n    {#if description}<p>{description}</p>{/if}\n  </div>\n  {@render children()}\n{:else if presentation.value !== \"default\"}\n  <Card.Root\n    size=\"sm\"\n    style=\"--card-spacing: 0; background: var(--ui-repository-settings-card-background, var(--card))\"\n    class=\"store-settings__section store-settings-card\"\n    role=\"region\"\n    aria-label={label}\n    aria-labelledby={label ? undefined : id}\n  >\n    <div class=\"store-settings-card__header\">\n      <Card.Header>\n        <Card.Title\n          ><StoreSettingsHeading\n            {id}\n            {title}\n            {description}\n            {Icon}\n            {badge}\n          /></Card.Title\n        >\n      </Card.Header>\n    </div>\n    <Card.Content class=\"store-settings-card__content\"\n      >{@render children()}</Card.Content\n    >\n  </Card.Root>\n{:else if repositoryOnly}\n  {@render children()}\n{:else}\n  <section\n    class=\"store-settings__section\"\n    aria-label={label}\n    aria-labelledby={label ? undefined : id}\n  >\n    <header class=\"store-settings__section-heading\">\n      <div>\n        <h2 {id}>{title}</h2>\n        {#if description}<p>{description}</p>{/if}\n      </div>\n      {@render badge?.()}\n    </header>\n    {@render children()}\n  </section>\n{/if}",
           "description": "Relocate imports to public package ownership; preserve source layout and add documented component tokens. Appearance cards omit native glass controls."
+        },
+        {
+          "description": "Let the owning settings header provide its inset once via the public Card.Header style prop; avoid compounded primitive padding.",
+          "before": "<Card.Header>",
+          "after": "<Card.Header style=\"padding: 0\">"
         }
       ],
-      "layoutSha256": "817615dd01f915cb8bbd4026415d15cd56918477d7c9a3131eba04b6f4ef1524"
+      "layoutSha256": "95a418045bd5b2acffc50a6428a48dd2b02cb99e858f65e2bd5f5571a9c94d0b"
     },
     {
       "sourceRepository": "jj-store",
@@ -7176,14 +7184,23 @@
       "sourceRevision": "6961bd1c",
       "license": "Apache-2.0",
       "sourceSha256": "ca291fbd3e639d8e07b5aa1bcb81217eafaefa36b49a63d2ea8de85c36903709",
-      "destinationSha256": "ca291fbd3e639d8e07b5aa1bcb81217eafaefa36b49a63d2ea8de85c36903709",
+      "destinationSha256": "481864fec26dcca711ada9ed15dfe723eca8cb48bc31706c91dc7f2d00483687",
       "adaptations": [
         {
           "description": "Relocate imports to public package ownership; preserve source layout and add documented component tokens. Appearance cards omit native glass controls."
+        },
+        {
+          "description": "Reduce header padding and centre the larger section icons above the row icons, per Create Project review."
         }
       ],
-      "layoutAdaptations": [],
-      "layoutSha256": "8ec49f821525c851243a04850dcc1ceb6f8825f551547f3584f382c3fd59d3cc"
+      "layoutAdaptations": [
+        {
+          "description": "Reduce header padding and centre the larger section icons above the row icons, per Create Project review.",
+          "before": ".store-settings-card__header {\n  padding: 0.85rem 1rem;",
+          "after": ".store-settings-card__header {\n  /* Centre the 2.25rem section icon above the 1.8rem row icons. */\n  padding: 0.75rem calc(1rem - (2.25rem - 1.8rem) / 2);"
+        }
+      ],
+      "layoutSha256": "d425c8dc934150229891e13860a7102273d528d4d994b20d770a8d3be76598c4"
     },
     {
       "sourceRepository": "jj-store",
@@ -7310,10 +7327,13 @@
       "source": "web/src/lib/ui/store-work/StoreProjects.svelte",
       "destination": "packages/repository-ui/src/jj/projects/screen/ProjectsScreen.svelte",
       "sourceSha256": "4faff8e52ce45af1dde693d4858a57a67309c4e8f934f31b6805f9e17175df5a",
-      "destinationSha256": "e4fa241287007a188cc0e840242dba2c0daf68079172c2ab160944d8a8d275f1",
+      "destinationSha256": "62260c49a1822e1454ef4adf8dbc9a4de87b86666c57d740c9954dc1cf596411",
       "adaptations": [
         {
           "description": "Compose source directory/detail switching through RepositoryPageFrame, independent metadata-home controller, host route/chat/agent snippets, availability and exact recovery. Workflow pages are excluded. Source composition gate remains open; see project-composition record."
+        },
+        {
+          "description": "Expose the same expanding query control on Reviews as on other Projects directory tabs, including keyboard dismissal and focus restoration."
         }
       ]
     },
@@ -7583,10 +7603,13 @@
       "source": "web/src/lib/ui/store-work/StoreWorkDialog.svelte",
       "destination": "packages/repository-ui/src/jj/projects/screen/WorkEditor.svelte",
       "sourceSha256": "85f95b51f8edb4964cfc808fd4b66737dbc5f5eca52eb7f3049947d6e0a6ee11",
-      "destinationSha256": "d440d9b780e4220d881a987ba9110ed64b1faab4623f66508b037acd4ca70881",
+      "destinationSha256": "dc3db9abc603a13f1c478295821c501a1c9637278374fdc12f21774a13d8ce0f",
       "adaptations": [
         {
           "description": "Use public wide DialogFrame, metadata-home settings card, scoped project picker and footer controls; host owns access and draft storage."
+        },
+        {
+          "description": "Place the global Task project selector in the Metadata home card as an icon-labelled settings row, retaining selection, loading and continuation controls."
         }
       ]
     },
@@ -7778,10 +7801,16 @@
       "source": "web/src/lib/ui/store-settings/creation-forms.css",
       "destination": "packages/repository-ui/src/jj/projects/screen/creation-forms.css",
       "sourceSha256": "dbc930e884599022cb123e11acc5c06079b7faaf9050e9f24df8d0ef207c564b",
-      "destinationSha256": "25e7f7372c00f33869281f19a7250495a804a135886b821403e967db194966e9",
+      "destinationSha256": "920aac918991dfee672c549a6efa12d486c173856d3ccf8d9e01514e194948eb",
       "adaptations": [
         {
           "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
+        },
+        {
+          "description": "Creation cards use the public settings-card surface token with the body background; editable rows are white in the default light theme while headers retain their tint."
+        },
+        {
+          "description": "Place the global Task project selector in the Metadata home card as an icon-labelled settings row, retaining selection, loading and continuation controls."
         }
       ]
     },
