@@ -20,7 +20,30 @@ Lapis Desktop, jj-store, downstream services, publishing or deploying anything.
 The approved plan authorizes generic fixes in Design Core; source applications
 remain read-only references during this phase.
 
-## Architecture
+## Consumer integration
+
+Applications MUST mount the completed production screens from the public package.
+The complete-screen stories demonstrate the intended application views, not
+layouts for a host to recreate from graph, file-list or diff primitives. Use
+`RepositoryPanel` for JJ Log, `RepositoryOperations` for Op Log,
+`RepositoryBranches` for Branches, `RepositoryBrowser` for Overview and Files,
+and `RepositoryStackWorkspace` for Stacks and Workspace. See
+`docs/consumer-integration.md` for the export/controller map and host boundary.
+
+Hosts own native window chrome, navigation, repository admission, adapters,
+credentials, execution, persistence and controller lifetime. The shared screen
+owns its layout and interaction flow. Preserve its AppShell/Column Canvas,
+headers, columns, selections, paging, actions and responsive behavior. Extend
+public props/snippets; add missing generic extension points in this repository.
+Do not substitute a custom screen because an adapter capability is missing.
+Expose that capability gap explicitly and implement the owning host adapter.
+Use primitives directly only for a distinct surface with no completed screen.
+
+JJ Desktop is the explicitly authorized first consumer. Its current integration
+includes complete repository screens and shared JJ Store appearance/settings
+presentation. This authorization does not publish packages or change JJ Store.
+
+## Package architecture
 
 Reuse public Design Core AppShell, Column Canvas, chat, forms and diff primitives.
 Packages cannot import each other, application-private types, native transports,

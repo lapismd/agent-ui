@@ -50,6 +50,14 @@ prepared local review package. Branch row and chip surface changes MUST retain e
 
 **Requirement.** Production packages MUST consume public Design Core primitives and injected host ports without application-private imports, credentials, native transports or catalog dependencies.
 
+Consumer applications MUST mount the completed public screens described in
+`docs/consumer-integration.md`, preserving their layout and interaction flow.
+Hosts MUST supply adapters and controller lifetime instead of recreating those
+views from primitives. Missing native capabilities MUST remain explicit; missing
+generic extension points belong in the owning library. JJ Desktop is the first
+explicitly authorized consumer, including source-adapted shared appearance and
+settings presentation. Other adoption and publication remain separate decisions.
+
 The user authorized Stacks and Workspace presentation after Branches. The new
 families MUST copy the source canvas/lane/card/files/history geometry, reuse the
 portable stack controller and share existing graph/diff primitives. Host-owned

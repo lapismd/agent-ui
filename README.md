@@ -3,13 +3,26 @@
 Two Svelte 5 libraries compose public Design Core primitives into complete
 controller-driven screens. Hosts supply execution and persistence through ports.
 
+## Applications consume complete screens
+
+Mount the public complete screen for each application view. Hosts provide native
+adapters, navigation, persistence and controller lifetime; they must not rebuild
+the screen layout from graph, file-list and diff primitives. The complete-screen
+Storybook families demonstrate the production components to use.
+
+See [Consumer integration](docs/consumer-integration.md) for the screen/export
+map, native host responsibilities and styling contract.
+
 ## Review delivery
 
 Run `pnpm install`, `pnpm build`, then `pnpm storybook` (port 7490).
-The current review slice contains Chat, History, Catalog, Imports and Recorded.
-Standalone settings screens are excluded; Repository/Combined remain deferred.
+Complete Agent screens include Chat, History, Catalog, Imports and Recorded.
+Complete repository screens under `/jj` include JJ Log, Op Log, Overview/Files,
+Branches and Stacks/Workspace. Older scaffold exports under `/screens` are not
+the implementation path for these views. JJ Desktop is the first authorized
+consumer; other downstream adoption remains subject to review.
 Storybook uses in-memory adapters; simulated actions do not touch repositories,
-accounts or services. Stop for explicit review before downstream adoption.
+accounts or services. Visual review remains separate from functional acceptance.
 
 ## Validation
 

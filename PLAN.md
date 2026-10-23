@@ -257,3 +257,9 @@ formatting description and the mixed-result summary in the floating view. The
 shared fixture also updates both docked complete screens and the standalone
 family. See `spec/records/2026-10-23-pr-check-examples.md`; visual review remains
 pending.
+
+The first authorized JJ Desktop integration must mount the completed repository
+screens, reuse the JJ Store appearance/settings framework, and adapt native
+window chrome and host ports. `docs/consumer-integration.md` makes the screen
+boundary explicit; guidance evidence is recorded in
+`spec/records/2026-10-23-consumer-screen-guidance.md`.
