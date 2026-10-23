@@ -15,6 +15,8 @@ an integration task, not permission to create a different application screen.
 | Stacks           | `RepositoryStackWorkspace`                        | `StackWorkspaceController` and `StackWorkspaceAdapter` from `/stacks`, branches page    |
 | Workspace        | `RepositoryStackWorkspace`                        | Same controller/adapter, workspace page                                                 |
 
+| Projects, Tasks, Reviews | `ProjectsScreen` | `ProjectsController`, `WorkPort`; source-composition acceptance remains open |
+
 ## Host boundary
 
 The host owns the outer window and navigation, admitted repository selection,
@@ -85,3 +87,25 @@ root snippet. Global Projects/Agents/Threads keep that picker separate from
 ancestry; changing it does not filter global content. Preserve page/subtab and
 reset repository-specific pins after admitted selection. Native folder opening
 is the picker's explicit `onOpenRepository` callback.
+
+## Projects composition gate
+
+Before declaring the Projects family or its consumer routes complete, compare
+each new composition against the running JJ Store. The user explicitly made
+source composition a completion gate. Preserve the Topbar breadcrumb outside
+the rounded body, contextual tabs/search/filter row, compact surface actions,
+Mine/Other directories, settings-card creation dialogs, fixed task header and
+composer, threaded discussion, chronological activity and contextual rail.
+Passing interaction tests or refreshing source fingerprints does not close
+that gate. Record remaining differences; keep visual baselines unchanged.
+
+Use ProjectsScreen with a host-owned ProjectsController/WorkPort. Local home
+IDs, portable linked repositories and execution targets remain distinct. Hosts
+provide bounded snapshots, persisted drafts, exact action outcomes and retained
+unknown requests. Chat and agent surfaces compose through callbacks/snippets.
+Use onOpenActivity for exact recorded repository/operation/revision navigation,
+onCopyLink for canonical route links and copyText for identifier copying.
+Do not implement source-missing controls in a replacement consumer screen.
+
+The live comparison and unresolved gaps are recorded in
+`spec/records/2026-10-23-project-composition.md`.

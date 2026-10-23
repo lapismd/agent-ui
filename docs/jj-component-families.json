@@ -303,6 +303,38 @@
       "primary": "jj/navigation/page-frame/RepositoryPageFrame",
       "purpose": "Embedded AppShell page with responsive contextual tabs, header, search and action slots.",
       "parts": []
+    },
+    {
+      "primary": "jj/projects/screen/ProjectsScreen",
+      "purpose": "Complete JJ Store project/task/review directory with bounded scoped host ports, retained drafts and contextual rails.",
+      "parts": [
+        "jj/projects/screen/ActivityDirectory.svelte",
+        "jj/projects/screen/LinkRepositoryDialog.svelte",
+        "jj/projects/screen/LinkedRepositories.svelte",
+        "jj/projects/screen/ProjectActivity.svelte",
+        "jj/projects/screen/ProjectCollection.svelte",
+        "jj/projects/screen/ProjectDirectory.svelte",
+        "jj/projects/screen/ProjectFilters.svelte",
+        "jj/projects/screen/ProjectHomeContent.svelte",
+        "jj/projects/screen/ProjectRail.svelte",
+        "jj/projects/screen/ProjectRows.svelte",
+        "jj/projects/screen/ProjectSearch.svelte",
+        "jj/projects/screen/ProjectToolbar.svelte",
+        "jj/projects/screen/RepositoryActivityBar.svelte",
+        "jj/projects/screen/RepositoryDirectoryRow.svelte",
+        "jj/projects/screen/ReviewRow.svelte",
+        "jj/projects/screen/TaskRows.svelte",
+        "jj/projects/screen/TaskStateFilter.svelte",
+        "jj/projects/screen/TaskStateIcon.svelte",
+        "jj/projects/screen/WorkDetails.svelte",
+        "jj/projects/screen/WorkDiscussion.svelte",
+        "jj/projects/screen/WorkEditor.svelte",
+        "jj/projects/screen/WorkEditorForm.svelte",
+        "jj/projects/screen/WorkEmpty.svelte",
+        "jj/projects/screen/WorkField.svelte",
+        "jj/projects/screen/WorkTaskMeta.svelte",
+        "jj/projects/screen/WorkTime.svelte"
+      ]
     }
   ],
   "deferred": [

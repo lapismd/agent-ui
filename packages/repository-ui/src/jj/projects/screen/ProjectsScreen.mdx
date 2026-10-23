@@ -1,0 +1,130 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  ArgTypes,
+  Markdown,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./ProjectsScreen.stories";
+import { Basic, Styling } from "./ProjectsScreen.example-sources";
+import tokens from "./ProjectsScreen.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# ProjectsScreen
+
+JJ Store's project and task directory, review discussion and linked repositories with independent metadata homes. The live source-composition gate remains open; this family is not yet accepted as complete.
+
+## Usage
+
+The host owns admission, snapshots, version checks, persistence and exact request receipts. Mount this complete screen inside the application Main. This minimal public example is deliberately read only; production hosts provide all supported actions through WorkPort.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part       | Responsibility                                                             |
+| ---------- | -------------------------------------------------------------------------- |
+| Page frame | Topbar breadcrumbs outside the body; responsive tabs and expanding search. |
+| Directory  | Mine/Other groups across homes, list/grid layout, paging and retry.        |
+| Detail     | Task description, comments, subtask links and review lifecycle.            |
+| Rail       | Project/task metadata and code links with separate availability.           |
+| Editor     | Retained home-scoped drafts and explicit save outcomes.                    |
+
+## Variations
+
+### Basic
+
+<Canvas of={Stories.Basic} />
+
+### CreateProject
+
+<Canvas of={Stories.CreateProject} />
+
+### Project
+
+<Canvas of={Stories.Project} />
+
+### Task
+
+<Canvas of={Stories.Task} />
+
+### Reviews
+
+<Canvas of={Stories.Reviews} />
+
+### Paged
+
+<Canvas of={Stories.Paged} />
+
+### PartialFailure
+
+<Canvas of={Stories.PartialFailure} />
+
+### Empty
+
+<Canvas of={Stories.Empty} />
+
+### Loading
+
+<Canvas of={Stories.Loading} />
+
+### Disabled
+
+<Canvas of={Stories.Disabled} />
+
+### Recovery
+
+<Canvas of={Stories.Recovery} />
+
+### Directory
+
+<Canvas of={Stories.Directory} />
+
+### CreateProjectDialog
+
+<Canvas of={Stories.CreateProjectDialog} />
+
+### Activity
+
+<Canvas of={Stories.Activity} />
+
+### Repositories
+
+<Canvas of={Stories.Repositories} />
+
+### LinkedRepositories
+
+<Canvas of={Stories.LinkedRepositories} />
+
+### Filters
+
+<Canvas of={Stories.Filters} />
+
+### DetailsRail
+
+<Canvas of={Stories.DetailsRail} />
+
+## Behavior and accessibility
+
+Construction and mounting never issue repository mutations. Hosts open and close the production controller. Home IDs are local admission identities; linked code references use separate portable IDs. Duplicate names never become identities. Global browsing does not select a code checkout. The host explicitly activates code only through onOpenRepository.
+
+Directories request at most 25 rows per page and 20 homes per batch with four concurrent reads. Continuations retain snapshot identity and reject duplicates and stale replies. Partial failures preserve other homes and expose Retry. Unknown requests retain their exact payload and permit status inspection; refresh and mount never dispatch them. Native adapters must persist intent before execution.
+
+Project and task rows retain source button hit areas and separate author controls. Forms have labels, retain drafts on cancellation/failure and focus restoration through the public Dialog. The contextual rail appears only for a selected project/task, using AppShell resizing and narrow-window presentation. Chat opens an explicit context through a callback and never sends automatically.
+
+## Styling variables
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+## Composition
+
+The host supplies optional `onCopyLink(route)` for canonical share links, `onOpenActivity(row)` for exact repository/operation/revision navigation and `copyText` for Git/JJ identifiers. `showRail` is bindable and defaults closed. Omitted task state means Active; `all` explicitly includes completed tasks.
+
+Use public ProjectsController and WorkPort with the complete screen. Use header for host breadcrumbs and agents for a complete agent/session screen owned by its package. The packages do not import each other. The host owns repository activation, route ancestry, context chat, operational notification toasts and all credentials. Report unavailable capabilities explicitly. Actions/workflow pages are excluded; normal metadata controls remain functional.

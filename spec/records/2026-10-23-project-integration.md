@@ -5,8 +5,8 @@ User-approved implementation plan; enclosing Jujutsu changes provide revisions.
 ## Sequence
 
 1. Shared navigation, command repository picker and breadcrumbs — implemented; visual review pending.
-2. Registered local directory and scoped routing — pending.
-3. Projects, Tasks, Reviews and contextual rails — pending.
+2. Registered local directory and scoped routing — native foundation committed in JJ Desktop (`f9bdd400`); application wiring and wider acceptance pending.
+3. Projects, Tasks, Reviews and contextual rails — shared controller and initial source-adapted presentation in progress; live composition gate open. See `2026-10-23-project-composition.md`.
 4. Agents, sessions, Threads and contextual chat — pending.
 5. Profile, emoji, Integrations and final desktop wiring — pending.
 

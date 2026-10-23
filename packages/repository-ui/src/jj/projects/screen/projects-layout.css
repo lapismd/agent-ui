@@ -1,0 +1,118 @@
+/* Adapted from JJ Store work layout, Apache-2.0. Tabs use public ResponsiveTabs. */
+.community-projects__directory-header,
+.community-projects__surface-header,
+.community-projects__review-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.community-projects__directory-header,
+.community-projects__surface-header {
+  min-height: 3rem;
+  align-items: center;
+  margin: 0.75rem 1rem 0;
+  margin-inline-start: 0.5rem;
+  border: 0;
+  border-radius: 0.65rem;
+  padding: 0.45rem 0.65rem;
+  padding-inline-start: 0.5rem;
+  background: color-mix(in srgb, var(--muted) 30%, transparent);
+}
+
+.community-projects__directory-header > div:first-child,
+.community-projects__surface-header > div:first-child {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.community-projects__directory-header > div:first-child > svg,
+.community-projects__surface-header > div:first-child > svg {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+}
+
+.community-projects__directory-header h1,
+.community-projects__surface-header :is(h1, h2) {
+  font-size: var(--community-text-body);
+}
+
+.community-projects__directory-header .community-projects__eyebrow,
+.community-projects__surface-header .community-projects__eyebrow,
+.community-projects__directory-header > div > p:last-child,
+.community-projects__surface-header > div > p:last-child {
+  display: none;
+}
+
+.community-projects__directory-header h1,
+.community-projects__surface-header :is(h1, h2),
+.community-projects__review-header h2 {
+  margin: 0;
+  font-size: var(--community-text-dialog);
+  line-height: 1.25;
+}
+
+.community-projects__directory-header h1,
+.community-projects__surface-header :is(h1, h2) {
+  font-size: var(--community-text-body);
+  font-weight: 550;
+}
+
+.community-projects__review-header h2 {
+  font-size: var(--community-text-section);
+  font-weight: 600;
+}
+
+.community-projects__directory-header p,
+.community-projects__surface-header p,
+.community-projects__review-header p,
+.community-projects__row p {
+  margin: 0.3rem 0 0;
+  color: var(--muted-foreground);
+  font-size: var(--community-text-body);
+}
+
+.community-projects__eyebrow {
+  margin: 0 0 0.35rem !important;
+  color: var(--muted-foreground);
+  font-size: var(--community-text-secondary);
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.community-projects__surface-actions,
+.community-projects__review-actions,
+.community-projects__review-title,
+.community-projects__review-refs,
+.community-projects__diff-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.community-projects__layout-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  border-radius: 0.5rem;
+  padding: 0.1rem;
+  background: color-mix(in srgb, var(--muted) 28%, transparent);
+}
+
+.community-projects__directory-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.community-projects__surface-actions {
+  flex-wrap: nowrap;
+}

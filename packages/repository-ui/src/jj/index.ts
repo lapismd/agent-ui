@@ -83,3 +83,5 @@ export { pullRequestScope } from "./forge/pull-request/scope.js";
 export type * from "./forge/pull-request/types.js";
 
 export * from "./navigation/index.js";
+
+export * from "./projects/index.js";

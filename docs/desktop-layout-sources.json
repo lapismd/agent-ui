@@ -7297,10 +7297,530 @@
       "source": "web/src/lib/ui/store-application/StoreViewTabs.svelte",
       "destination": "packages/repository-ui/src/jj/navigation/page-frame/RepositoryPageFrame.svelte",
       "sourceSha256": "0681c7869c3821fc0bfa73976e444b8c2b4bb979a45350b2070de5bb673f5c33",
-      "destinationSha256": "fa28551af7194d0549541e2ba2337d34b8e63ec90173417055426d0c8973f617",
+      "destinationSha256": "fd7d0ba08bd2a47676509cc62121f4a32e320cf5b6a63ffb098f7f520fcf070a",
       "adaptations": [
         {
-          "description": "Use the existing public Design Core ResponsiveTabs implementation instead of recopying overflow measurement. Compose source header/search/actions/back flow inside the existing RepositoryShell and AppShell viewport, with bounded canvas opt-out."
+          "description": "Use public ResponsiveTabs for source contextual navigation and More overflow. Place host breadcrumbs/actions in AppShell.Topbar outside the rounded body, as confirmed against live JJ Store. Add a resizable far-right details rail, hideNavigation for task/review detail and hideTabs for expanding search; retain independent body/canvas scrolling and header slots."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreProjects.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/ProjectsScreen.svelte",
+      "sourceSha256": "4faff8e52ce45af1dde693d4858a57a67309c4e8f934f31b6805f9e17175df5a",
+      "destinationSha256": "e4fa241287007a188cc0e840242dba2c0daf68079172c2ab160944d8a8d275f1",
+      "adaptations": [
+        {
+          "description": "Compose source directory/detail switching through RepositoryPageFrame, independent metadata-home controller, host route/chat/agent snippets, availability and exact recovery. Workflow pages are excluded. Source composition gate remains open; see project-composition record."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreProjectsActivity.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/ActivityDirectory.svelte",
+      "sourceSha256": "757051eb9dfea0db574ea0a9a490c5c814e74dd739facfa009d2bcae24cd4781",
+      "destinationSha256": "2d3c2812db85f5817864ca35c6627052495a26f119d10ad930ef841bec567890",
+      "adaptations": [
+        {
+          "description": "Retain one descending commit timeline with independent per-home loading, failure and continuation. Deduplicate exact repository/operation/revision keys; source private controller is replaced by ProjectsController."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-collaboration/StoreRepositoryActivity.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/ProjectActivity.svelte",
+      "sourceSha256": "335e504e00587d368f50a53ac07113f1290d59d8ad4bf1ede5f998355cb0d3a1",
+      "destinationSha256": "fb76bda574f4a5f2b0e1e8c06e490cf4207194a5d51c905ab1009e71552dcc63",
+      "adaptations": [
+        {
+          "description": "Use public avatar, identifiers and Markdown; bounded loaded rows replace source virtual rows. Host receives exact recorded navigation pin. Move description outside title button for an accurate accessible name and to avoid nested interactive markup. Agent associations await the sessions slice."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreWorkCollection.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/ProjectCollection.svelte",
+      "sourceSha256": "ece9acb0b63cec04a7ae271ff381e0d067424a6f2fd720353ff15920a18b9d56",
+      "destinationSha256": "ef73c19bb365e3408de8ad9ff5c0d5d1c2df74dce7a5c5f820c29180398255e5",
+      "adaptations": [
+        {
+          "description": "Preserve disclosure heading and source geometry with a typed optional icon and children snippet."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreProjectsDirectory.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/ProjectDirectory.svelte",
+      "sourceSha256": "8173b16edc749aae3db2e65e2b30efb01803348bcf4daf8a6ee02a3be5816a13",
+      "destinationSha256": "4a141c3471acebbf944408c022443b4da654ad68a03dfc3e4a2b753ded5d5218",
+      "adaptations": [
+        {
+          "description": "Retain Mine/Other grouping across metadata homes with explicit independent loading, failures and paging. Host principal determines ownership."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreProjectsFilterControls.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/ProjectFilters.svelte",
+      "sourceSha256": "2c8b6800c121003c80bbcffa93265601037fc0a129f93d0c83f33b6a461f5b4f",
+      "destinationSha256": "064300894b01d7156bce369d720e27e97e116fbefa1664396b69cfa7de0ade8a",
+      "adaptations": [
+        {
+          "description": "Preserve source filter popover with header and close. Compose copied fields/state filter and public repository command picker; host-owned home and code-repository filters stay distinct."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreProjectsDirectory.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/ProjectHomeContent.svelte",
+      "sourceSha256": "8173b16edc749aae3db2e65e2b30efb01803348bcf4daf8a6ee02a3be5816a13",
+      "destinationSha256": "3cf6715c7d9502532254b84c8d78acb5bdbb05a2297c2b9b00e7afa346c8bdb0",
+      "adaptations": [
+        {
+          "description": "Extract per-home detail/review presentation and independent read recovery. Projects/tasks now use the cross-home ownership directory and activity uses the unified timeline."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreProjectsRail.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/ProjectRail.svelte",
+      "sourceSha256": "7ed44be97091b0738cfbe1f5e783896ceee30fe4d678ffd4ef06e6ed0ef431bb",
+      "destinationSha256": "7880b9d283ffb3e5cce1fffa5a22751f053605ac8921ae1c58c7f59fa9c4eab9",
+      "adaptations": [
+        {
+          "description": "Preserve source overview row geometry, status/count, copy link and repository rows including retired links. Add explicit metadata-home label. Copy/navigation are host callbacks, and unavailable references cannot activate a checkout."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreWorkProjectRows.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/ProjectRows.svelte",
+      "sourceSha256": "55026275833b8ac389ecbcd8e836f2fe5ca062ff9d33620db13f67161ee74138",
+      "destinationSha256": "4458a1b2c170236490879582ada759555f991d1c537bd224cf1fb72e0c3f1940",
+      "adaptations": [
+        {
+          "description": "Use public author controls/time and typed exact project selections while retaining source list/card markup and counts."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/StoreToolbarSearch.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/ProjectSearch.svelte",
+      "sourceSha256": "7f0cef06f831deaf4dd009986c09e3d95a3a40eddbab0e90d7fdaa5c3638dfaa",
+      "destinationSha256": "7f0cef06f831deaf4dd009986c09e3d95a3a40eddbab0e90d7fdaa5c3638dfaa",
+      "adaptations": [
+        {
+          "description": "Preserve expanding circular search, Clear/Escape/focus behavior. Replace application route binding with scoped query callbacks."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreProjectsActions.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/ProjectToolbar.svelte",
+      "sourceSha256": "3caf3ce06f72e1b3be420595201abd7f8a04c44e8d594db453a19a194ee30b31",
+      "destinationSha256": "ce7fc54472582432c9951fa1ad69dcbc460b79c703dc2a58bd9a326f6ab3a216",
+      "adaptations": [
+        {
+          "description": "Preserve source action order and compact surface heading; use typed capabilities and host context callbacks. Selected-project add menu composition remains an explicit comparison gap."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreWorkRepositories.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/LinkedRepositories.svelte",
+      "sourceSha256": "682e664cdd383599b775c8d5746384601e2e64373967a3280d80cc11f9efd1b5",
+      "destinationSha256": "6344b4e2fb74007b0839762394357e1e0bba5fd3c3bef4103c1a8a42ac9b48b3",
+      "adaptations": [
+        {
+          "description": "Compose source repository directory rows, link dialog and retire/restore actions through exact versioned host commands. Keep unavailable and retired portable IDs visible; global directory retains Mine/Other grouping."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreWorkRepositories.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/LinkRepositoryDialog.svelte",
+      "sourceSha256": "682e664cdd383599b775c8d5746384601e2e64373967a3280d80cc11f9efd1b5",
+      "destinationSha256": "9145e2fde1d6b3b64cdf43a1c1303292759454fc7cd2bd2db803574599e4c5b1",
+      "adaptations": [
+        {
+          "description": "Extract source linking dialog using public DialogFrame and command picker. Host validates portable identity and access; manual unregistered linking remains a tracked gap."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreRepositoryDirectoryRow.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/RepositoryDirectoryRow.svelte",
+      "sourceSha256": "0579469f8ea2158dbcc5abac8158892730d916eedd843dc83fec554b57fcce90",
+      "destinationSha256": "1fa7575fcf17fb4b31e15a528c5e5cfca7c09cc1e7d1486bdb12c3ddfe665f4e",
+      "adaptations": [
+        {
+          "description": "Retain directory title/description/access, author, activity-bar, time and contextual actions. Optional host summaries stay unavailable when missing. Accessible button name derives from all visible text."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreRepositoryActivity.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/RepositoryActivityBar.svelte",
+      "sourceSha256": "b05e7ee6887ee4d17dabdf14fb4690de0565771f61302830db545ef251458d84",
+      "destinationSha256": "b05e7ee6887ee4d17dabdf14fb4690de0565771f61302830db545ef251458d84",
+      "adaptations": [
+        {
+          "description": "Preserve source activity segments/tooltips with typed optional host totals."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreWorkReviewRow.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/ReviewRow.svelte",
+      "sourceSha256": "d460ac0cd342e709ac5aa7257e7c07a75a4077f5c518fae758719ff8a8234d96",
+      "destinationSha256": "dca31a1f5e54a60678fe47b55ca51b1c0248afb35d6934431bf7f6f7ddde935f",
+      "adaptations": [
+        {
+          "description": "Retain source compact status/title/ID/anchor/comment-count/author/time composition through typed models. Accessible title now includes visible title text; missing author/date stay unavailable."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreWorkTaskRows.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/TaskRows.svelte",
+      "sourceSha256": "d86f5e2a5c60f926fa1672cf75ec4ee22db748ca27367c082da1af4777821164",
+      "destinationSha256": "1ac5648732f744562bc788fead9c654de76e5e9f0903aed642103cd5dc04d819",
+      "adaptations": [
+        {
+          "description": "Retain source list/card rows and hierarchy with typed task IDs, public authors/time and exact navigation callbacks."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreWorkTaskStateIcon.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/TaskStateIcon.svelte",
+      "sourceSha256": "2b7820cc61bd2500f6e25eb4ab44bf4200f6da645e20b19c164d004b937f45c2",
+      "destinationSha256": "146b5f1d5be302650104900974a2d52f7412c092acbd79c468dfea86c0835290",
+      "adaptations": [
+        {
+          "description": "Preserve task-state icon mapping with the shared WorkTaskState type."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreWorkStateFilter.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/TaskStateFilter.svelte",
+      "sourceSha256": "c1e41218d0b75c52df0f5d670494e007d8055331642b47e63d7c6776065c57b2",
+      "destinationSha256": "08c78d9768f47ffa313e06047a4e8eb965c222b9f8906bd940d166033d6c6452",
+      "adaptations": [
+        {
+          "description": "Preserve source radio-menu choices, Active default and icon geometry; use WorkRoute state and host callback."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreWorkTaskDetail.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/WorkDetails.svelte",
+      "sourceSha256": "b667977b59fd4076725421825acfdaa799f6e8e25901a62f7ae67ab44c64f94e",
+      "destinationSha256": "6ca1d02149890a077653ac4b72fda33725786cfae357f5463e097eebcd1589f2",
+      "adaptations": [
+        {
+          "description": "Preserve fixed header, independently scrolling metadata/description/subtasks/activity and fixed composer. Host supplies code/chat actions. Review detail currently shares this scaffold and remains unaccepted."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreWorkComments.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/WorkDiscussion.svelte",
+      "sourceSha256": "fa7635d5c9358c66819f461e19d1037fbb48fffefb79fc85635cce8c4361ef53",
+      "destinationSha256": "003676803d023023714ae3ae3b4341e82d033697618f79020f785e560d47a713",
+      "adaptations": [
+        {
+          "description": "Adapt source activity/composer snippets through public Message, MessageActions and MarkdownComposer; host persists drafts and exact requests. Thread connectors, reactions and captured edit versions remain tracked gaps, not declared parity."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreWorkDialog.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/WorkEditor.svelte",
+      "sourceSha256": "85f95b51f8edb4964cfc808fd4b66737dbc5f5eca52eb7f3049947d6e0a6ee11",
+      "destinationSha256": "d440d9b780e4220d881a987ba9110ed64b1faab4623f66508b037acd4ca70881",
+      "adaptations": [
+        {
+          "description": "Use public wide DialogFrame, metadata-home settings card, scoped project picker and footer controls; host owns access and draft storage."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreWorkProjectForm.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/WorkEditorForm.svelte",
+      "sourceSha256": "1ab1f522b09532b5ad4fd82c6bf9a203604a536c28db3381ba9d8d5b670495c3",
+      "destinationSha256": "7dadef646799e475c4db4d0142d797c4a31acc5ff3061e927e2b64c9fc06f7b4",
+      "adaptations": [
+        {
+          "description": "Adapt source settings field/card and rich description composition for project/task/review forms. Exact commands use host outcomes and home-scoped drafts."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreWorkEmpty.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/WorkEmpty.svelte",
+      "sourceSha256": "c8e65a510b27dffaadeaccd24d34c01f86c0f1b16bf312f64f84cd3dbc57fcc6",
+      "destinationSha256": "c5dfeef3475e0424a20af1715c47bff635a850c7f061515f84f814f4233f7956",
+      "adaptations": [
+        {
+          "description": "Use public icon-bearing shadcn Empty with explicit host retry and distinct messages."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreWorkField.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/WorkField.svelte",
+      "sourceSha256": "e2e84295d28afaa8d0df9727706b26d3e48cdde2224ecdb9524f4744e1e224e6",
+      "destinationSha256": "7f01925fba6fec33e4f362150c45d2b882fd334a01f0666bebb9341b35811f96",
+      "adaptations": [
+        {
+          "description": "Retain source Field label/description/control composition using public settings icon and snippets."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/StoreWorkTaskDetail.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/WorkTaskMeta.svelte",
+      "sourceSha256": "b667977b59fd4076725421825acfdaa799f6e8e25901a62f7ae67ab44c64f94e",
+      "destinationSha256": "4941e27a189db4c6050b53651d80f5c11f0b80b60b8b0649666cdaa763d25fde",
+      "adaptations": [
+        {
+          "description": "Extract source task metadata block, code-target action, parent and edit/subtask controls without application-private imports."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/community-relative-time/CommunityRelativeTime.svelte",
+      "destination": "packages/repository-ui/src/jj/projects/screen/WorkTime.svelte",
+      "sourceSha256": "73c7abf33929cbc28d73be267de39d1b170113c577f03fea275be0d4611438ee",
+      "destinationSha256": "aa8f806b174fccefe95ce7c7f6bbca932ade7634622a86319f0124648ab6f235",
+      "adaptations": [
+        {
+          "description": "Use public Design Core RelativeTime instead of the private application wrapper."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-collaboration/community-native-activity.css",
+      "destination": "packages/repository-ui/src/jj/projects/screen/community-native-activity.css",
+      "sourceSha256": "f0eb4adb8695a37efa2caf6c8880e02b298a1aa8c4f5e8049c7d46321a010e69",
+      "destinationSha256": "f0eb4adb8695a37efa2caf6c8880e02b298a1aa8c4f5e8049c7d46321a010e69",
+      "adaptations": [
+        {
+          "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/community-work-cards.css",
+      "destination": "packages/repository-ui/src/jj/projects/screen/community-work-cards.css",
+      "sourceSha256": "37089eda37165d3b027886c2ecc28867e5f947c68ff55e1930d95eb0ad22e4be",
+      "destinationSha256": "37089eda37165d3b027886c2ecc28867e5f947c68ff55e1930d95eb0ad22e4be",
+      "adaptations": [
+        {
+          "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/community-work-collections.css",
+      "destination": "packages/repository-ui/src/jj/projects/screen/community-work-collections.css",
+      "sourceSha256": "350165c5c9dbe0a1a1201eb92bb9715fc09e0b41b720d3316a1c25cd18cf5eed",
+      "destinationSha256": "350165c5c9dbe0a1a1201eb92bb9715fc09e0b41b720d3316a1c25cd18cf5eed",
+      "adaptations": [
+        {
+          "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/community-work-directory.css",
+      "destination": "packages/repository-ui/src/jj/projects/screen/community-work-directory.css",
+      "sourceSha256": "417b3922dc32ce462a6f8acaa9d0f237d74c952a11c9d90c6176580a0af4e922",
+      "destinationSha256": "417b3922dc32ce462a6f8acaa9d0f237d74c952a11c9d90c6176580a0af4e922",
+      "adaptations": [
+        {
+          "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/community-work-disclosures.css",
+      "destination": "packages/repository-ui/src/jj/projects/screen/community-work-disclosures.css",
+      "sourceSha256": "ae7375a804ae9297324a9d2374cbff12ea26c91da1f9ce1d5d7d4e88772d6aff",
+      "destinationSha256": "ae7375a804ae9297324a9d2374cbff12ea26c91da1f9ce1d5d7d4e88772d6aff",
+      "adaptations": [
+        {
+          "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/community-work-forms.css",
+      "destination": "packages/repository-ui/src/jj/projects/screen/community-work-forms.css",
+      "sourceSha256": "70f11fee66ff425402204d1489cd267cbd58ab57b67f3449392ffa8945ac9883",
+      "destinationSha256": "70f11fee66ff425402204d1489cd267cbd58ab57b67f3449392ffa8945ac9883",
+      "adaptations": [
+        {
+          "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/community-work-reviews.css",
+      "destination": "packages/repository-ui/src/jj/projects/screen/community-work-reviews.css",
+      "sourceSha256": "140f72c59157b66b8c63941b1793fda28ccdc8078236a6641ecd11eb7f5cf3b7",
+      "destinationSha256": "140f72c59157b66b8c63941b1793fda28ccdc8078236a6641ecd11eb7f5cf3b7",
+      "adaptations": [
+        {
+          "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/community-work-rows.css",
+      "destination": "packages/repository-ui/src/jj/projects/screen/community-work-rows.css",
+      "sourceSha256": "a786d429716e6f20e87e3bf942bf184e2f9e6a10b9c7176696dd7b659d4dd31b",
+      "destinationSha256": "a786d429716e6f20e87e3bf942bf184e2f9e6a10b9c7176696dd7b659d4dd31b",
+      "adaptations": [
+        {
+          "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/community-work-tasks.css",
+      "destination": "packages/repository-ui/src/jj/projects/screen/community-work-tasks.css",
+      "sourceSha256": "21e8c2519151c0493fe2b0d266ee68ffbd25a6ff4296f4d42113925264c2b9f0",
+      "destinationSha256": "21e8c2519151c0493fe2b0d266ee68ffbd25a6ff4296f4d42113925264c2b9f0",
+      "adaptations": [
+        {
+          "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-settings/creation-forms.css",
+      "destination": "packages/repository-ui/src/jj/projects/screen/creation-forms.css",
+      "sourceSha256": "dbc930e884599022cb123e11acc5c06079b7faaf9050e9f24df8d0ef207c564b",
+      "destinationSha256": "25e7f7372c00f33869281f19a7250495a804a135886b821403e967db194966e9",
+      "adaptations": [
+        {
+          "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/community-work-layout.css",
+      "destination": "packages/repository-ui/src/jj/projects/screen/projects-layout.css",
+      "sourceSha256": "d299db289d8bb38823ef0919fd06b815ce0478a0523616a2c78ec6006f7d5dff",
+      "destinationSha256": "81bcf68bede114d0977b05355045b65a35ca50f91675fdc2b247e5979624f693",
+      "adaptations": [
+        {
+          "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/store-projects.css",
+      "destination": "packages/repository-ui/src/jj/projects/screen/projects.css",
+      "sourceSha256": "ea80ead906cff0bc11aba6961d3c357b0bad9ea8b3876d851ed9781dac13d2e2",
+      "destinationSha256": "bb1231dba358c393bccb35ff3748d21124560ee5ef294773931b9565ff290038",
+      "adaptations": [
+        {
+          "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
+        }
+      ]
+    },
+    {
+      "sourceRepository": "jj-store",
+      "sourceRevision": "42ae3473081a50b5acfbd2a763421af18d4608d0",
+      "source": "web/src/lib/ui/store-work/task-detail-layout.css",
+      "destination": "packages/repository-ui/src/jj/projects/screen/task-detail-layout.css",
+      "sourceSha256": "c8a8446aeeb540c50ad3a5c7625696acf77a332ff3b59a5fb1b43ee1bb04fa85",
+      "destinationSha256": "c8a8446aeeb540c50ad3a5c7625696acf77a332ff3b59a5fb1b43ee1bb04fa85",
+      "adaptations": [
+        {
+          "description": "Preserve source-owned presentation rules with shared package CSS imports and public typography/settings tokens. Remove app-controller selectors where not applicable; outstanding composition differences are recorded in the comparison gate."
         }
       ]
     }

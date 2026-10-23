@@ -62,6 +62,11 @@ current location. Global ancestry omits the repository root to avoid implying sc
 Page tabs move overflow into More and retain selected state. Stacks replaces the outer
 repository tab set; the host owns Back and preserves the current page when switching roots.
 Complete canvases opt out of body scrolling and own their scroll containers.
+The header snippet renders in AppShell.Topbar outside the rounded body;
+headerActions supplies its trailing controls. Set showNavigation to false for
+a detail page with its own fixed header. hideTabs preserves the search instance
+while expanding its input across the navigation row. The optional details snippet
+uses a resizable far-right AppShell rail; attached panels remain separate.
 
 ## Styling variables
 

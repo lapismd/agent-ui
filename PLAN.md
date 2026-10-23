@@ -290,7 +290,13 @@ pre-existing root architecture findings are in
 ## Approved Projects and Desktop integration
 
 The user authorized all five slices on 2026-10-23, superseding the historical
-section review stops for this work. Shared navigation is in progress; registered
-local routing, Projects/Reviews, Agents/Threads and local settings follow. Exact
+section review stops for this work. Shared navigation and the native registered-directory foundation are committed.
+Projects/Reviews presentation is in progress and MUST remain open until the live
+JJ Store composition gate is satisfied. Agents/Threads, local settings and
+application wiring follow. Exact
 acceptance and pending qualification are in
 `spec/records/2026-10-23-project-integration.md`.
+
+Projects live comparison: `spec/records/2026-10-23-project-composition.md` records
+source observations, corrected composition, exact failures and outstanding gaps.
+Interaction passes do not close this explicit user-required composition gate.

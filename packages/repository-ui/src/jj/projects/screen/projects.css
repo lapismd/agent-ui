@@ -1,0 +1,48 @@
+@import "./community-work-rows.css";
+@import "./community-work-tasks.css";
+@import "./community-work-cards.css";
+@import "./community-work-reviews.css";
+@import "./projects-layout.css";
+.repository-projects {
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  --community-text-body: var(--ui-projects-font-size, 0.8125rem);
+  --community-text-secondary: var(--ui-projects-secondary-font-size, 0.75rem);
+  --community-text-dialog: 1rem;
+  --mira-font-size: var(--community-text-body);
+  --ui-chat-markdown-padding: 0;
+  --ui-ai-chat-composer-radius: 1rem;
+  --ui-ai-chat-composer-padding: 0.75rem;
+  --ui-markdown-composer-min-height: 3.25rem;
+  --ui-markdown-composer-max-height: 7rem;
+  --community-text-section: 0.875rem;
+  font-size: var(--ui-projects-font-size, 0.8125rem);
+  color: var(--foreground);
+}
+.work-loading,
+.work-filter,
+.work-recovery {
+  padding: 0.75rem 1rem;
+}
+.work-recovery {
+  border: 1px solid var(--border);
+  margin: 0.75rem 1rem;
+  border-radius: 0.5rem;
+}
+@media (max-width: 720px) {
+  .community-projects__surface-header {
+    flex-wrap: wrap;
+  }
+  .community-projects__surface-actions {
+    flex-wrap: wrap;
+  }
+}
+
+.work-detail-page {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}

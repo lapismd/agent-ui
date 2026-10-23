@@ -1,0 +1,30 @@
+/* Creation forms opt into the documented Settings presentation. */
+.store-creation-form {
+  --community-text-body: 0.8125rem;
+  --community-text-secondary: 0.75rem;
+  --mira-font-size: var(--community-text-body);
+  --ui-ai-chat-composer-radius: 1rem;
+  --ui-ai-chat-composer-padding: 0.75rem;
+  --ui-markdown-composer-min-height: 3.25rem;
+  display: grid;
+  min-width: 0;
+  gap: 1rem;
+}
+.store-creation-form.store-work__form {
+  margin-block: 0;
+}
+.store-creation-form .store-settings__section {
+  margin-block-start: 0;
+}
+.store-creation-form .store-work__control > input {
+  width: min(26rem, 100%);
+}
+.store-creation-form .store-work__field.store-creation-form__description {
+  grid-template-columns: minmax(0, 1fr);
+}
+.store-creation-form__description .store-work__control {
+  justify-self: stretch;
+}
+.store-creation-form__description [data-ui-part="chat-composer"] {
+  width: 100%;
+}

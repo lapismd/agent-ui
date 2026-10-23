@@ -1,0 +1,19 @@
+{
+  "component": "ProjectsScreen",
+  "variables": [
+    {
+      "name": "--ui-projects-font-size",
+      "default": "0.8125rem",
+      "description": "Compact source body text, including the contextual rail.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/projects/screen/projects.css"
+    },
+    {
+      "name": "--ui-projects-secondary-font-size",
+      "default": "0.75rem",
+      "description": "Metadata, row counts and date typography.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/projects/screen/projects.css"
+    }
+  ]
+}

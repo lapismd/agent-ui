@@ -289,3 +289,16 @@ ResponsiveTabs, Breadcrumb and CommandView primitives with host-owned routes.
 - Repository selection MUST use exact supplied identities, searchable command rows, explicit unavailable states and an optional native-open callback.
 - Breadcrumbs MUST support the repository picker as their first item without implying that global pages belong to the active repository.
 - Mounting navigation MUST NOT mutate repositories; selection, continuation, routes and controller lifetime remain host-owned.
+
+## RUI-WORK-001 — Projects and reviews
+
+**Requirement.** Complete Projects screens MUST adapt JJ Store's directory, task, review, activity and linked-repository flows through scoped host ports, preserving metadata homes separately from linked code targets.
+
+Projects MUST NOT be marked complete until each new page composition has been compared with the running JJ Store: Topbar ancestry outside the body, contextual navigation, search/filter/action toolbar, Mine/Other groups, creation dialogs, fixed task header/composer, discussion, activity timeline and contextual rail. Interaction passes alone do not satisfy this user-required composition gate; remaining differences MUST be recorded explicitly.
+
+### Acceptance details
+
+- Native identities, exact versions, bounded per-home continuation, independent loading/retry, duplicate names and stale-response rejection MUST remain explicit in the production controller and stories.
+- Create, edit, link, comments and review controls MUST retain host-owned drafts and exact outcomes; mounting or refreshing MUST NOT replay a mutation, and unknown requests MUST require explicit status inspection.
+- The shared frame MUST own responsive contextual tabs without duplicate navigation, while host callbacks provide ancestry, chat context and code activation; agent content MUST compose through snippets without importing the agent package.
+- Complete stories MUST exercise populated, empty, unavailable, partial, paged and recovery states, source provenance and source-faithful list/grid/detail layouts; visual baselines MUST remain unchanged.
