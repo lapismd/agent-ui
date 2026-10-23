@@ -14,6 +14,9 @@ through public, operation-pinned HistoryReader ports, with complete in-memory
 examples under JJ. Native admission, repository access, notification policy,
 avatar resolution and preference persistence stay host-owned.
 
+An explicit successful independent diff retry MUST clear its host feedback.
+Stale, closed or unconfirmed reads cannot acknowledge recovery.
+
 ## RUI-FOUND-001 — Component foundations
 
 **Requirement.** JJ foundations MUST follow the same per-folder documentation, styling contracts and fail-closed specification enforcement as Agent foundations.

@@ -3546,12 +3546,13 @@
           "description": "Reviewed 2026-10-22: documented native CSS variable defaults; Empty/icon states follow explicit user review guidance; shell and populated geometry retained."
         }
       ],
-      "destinationSha256": "f393b9fe1a891ea53e5c193ad90fbcf152c8cce9ad4f8b2373962e68066ff80e",
+      "destinationSha256": "93765aad7bad38695b48b87bc656063b24c51e82a5d0d1991fad6b6b6d9ff83d",
       "reviewNotes": [
         "JJ Log parity slice: reviewed native query context, bounded paging, host action/controls snippets, explicit file paging and recorded rename/binary presentation; default shell structure retained. See spec/records/2026-10-22-jj-log-parity.md.",
         "Reviewed all-in-one diff slice: retain original column topology and metadata; reuse shared diff bodies, host-controlled file mode, lazy comparison-scoped reads, bounded paging and vertical per-file menus. The main file menu precedes Close. See spec/records/2026-10-22-diff-collection.md.",
         "Branches: selectOperation accepts an optional exact revset atomically before opening the new operation; omitted queries retain the existing revset. Existing history/query regressions remain required."
-      ]
+      ],
+      "notes": " Desktop adoption: optional host transcript metadata and hooks, or same-file pin retention; default presentation unchanged."
     },
     {
       "sourceRepository": "lapis-desktop",

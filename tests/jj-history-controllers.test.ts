@@ -165,3 +165,22 @@ test("following the same editor file preserves an explicitly selected operation"
   expect(f.calls).toHaveLength(calls);
   await c.close();
 });
+
+test("retrying a failed independent diff read clears host feedback only after its confirmed result", async () => {
+  const f = historyFixture("read-failure"),
+    notices = feedback();
+  const c = new HistoryController(f.reader, notices);
+  try {
+    await c.refresh();
+    await c.selectRevision(c.state.commits[0]);
+    await c.selectPath("Welcome.md");
+    expect(notices.errors).toHaveLength(1);
+    expect(c.state.diffs["Welcome.md"]).toMatchObject({ phase: "failed" });
+    f.recover();
+    await c.loadDiff("Welcome.md");
+    expect(c.state.diffs["Welcome.md"]).toMatchObject({ phase: "ready" });
+    expect(notices.errors).toEqual([]);
+  } finally {
+    await c.close();
+  }
+});

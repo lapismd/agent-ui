@@ -270,7 +270,8 @@ export class HistoryController {
   loadDiff(path: string): Promise<void> {
     return this.#run(async () => {
       try {
-        await this.#files.loadDiff(path);
+        const change = await this.#files.loadDiff(path);
+        if (change && !this.#closed) this.feedback.recovered();
       } catch (error) {
         if (!this.#closed) this.feedback.report(error);
       }

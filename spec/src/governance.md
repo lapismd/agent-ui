@@ -70,6 +70,9 @@ prepared local review package. Branch row and chip surface changes MUST retain e
 The Desktop directory-screen ports retain the original markup and native CSS;
 the source ledger records only explicit optional host-state bindings.
 
+The Desktop adoption ledger also records confirmed independent diff recovery;
+its pinned reads and default component layout remain unchanged.
+
 ## AUI-GOV-001 — Source ownership
 
 **Requirement.** Production packages MUST consume public Design Core primitives and injected host ports without application-private imports, credentials, native transports or catalog dependencies.
