@@ -1,0 +1,12 @@
+{
+  "component": "RepositorySettingsCard",
+  "variables": [
+    {
+      "name": "--ui-repository-settings-card-background",
+      "default": "var(--card)",
+      "description": "Opaque settings card surface.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/settings/settings-card/RepositorySettingsCard.svelte"
+    }
+  ]
+}

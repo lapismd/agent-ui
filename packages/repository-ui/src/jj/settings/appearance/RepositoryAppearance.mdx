@@ -1,0 +1,62 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryAppearance.stories";
+import { Basic, Styling } from "./RepositoryAppearance.example-sources";
+import tokens from "./RepositoryAppearance.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Appearance
+
+Source-adapted JJ Store settings presentation for native and browser hosts.
+
+## Usage
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+The settings page owns the header and scroller. Cards own the tinted heading,
+rows and dividers. Appearance owns theme choices and preference controls.
+
+## Variations
+
+<Canvas of={Stories.Basic} />
+<Canvas of={Stories.Preferences} />
+
+## Behavior and accessibility
+
+Controls use public Design Core buttons, radio groups and switches. The host
+provides one appearance store per application with its own storage key. In-memory
+stores support isolated previews. System mode resolves paired palettes; changes
+are immediate, previews do not persist, and disposal restores root attributes
+and removes browser listeners. Native glass and native window behavior remain
+host capabilities. No repository or forge service is contacted by this family.
+
+## Styling variables
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+<Source code={Styling} language="tsx" />
+
+The optional settings stylesheet bundles JJ Store's local palette assets and
+public foundation token bindings. It must be loaded once by the application.
+
+## API
+
+<ArgTypes of={Stories} />
+
+`createAppearanceStore(storage, systemDark, storageKey)` creates retained state.
+`ownAppearance(store, storage, { storageKey, root })` scopes the Svelte lifetime.
+The host owns the storage namespace, setting persistence and native services.
+
+## Composition
+
+Mount completed repository screens in the application's ordinary AppShell and
+render settings alongside the retained view. The same appearance tokens apply
+to screen content and portalled controls. Stories remain visual-pending.

@@ -1,0 +1,4 @@
+export const Basic =
+  '<script lang="ts">\n import { RepositoryAppearance, RepositorySettingsPage, RepositorySettingsCard, ownAppearance } from "@lapismd/repository-ui/settings";\n import "@lapismd/repository-ui/settings/styles.css";\n ownAppearance(undefined, undefined, { storageKey: "my-app.appearance.v1" });\n</script>\n<RepositorySettingsPage title="Appearance"><RepositoryAppearance /></RepositorySettingsPage>';
+export const Styling =
+  '<script lang="ts">\n import { RepositoryAppearance, RepositorySettingsPage, RepositorySettingsCard, ownAppearance } from "@lapismd/repository-ui/settings";\n import "@lapismd/repository-ui/settings/styles.css";\n ownAppearance(undefined, undefined, { storageKey: "my-app.appearance.v1" });\n</script>\n<div style="--ui-repository-appearance-gap:1rem">\n<RepositorySettingsPage title="Appearance"><RepositoryAppearance /></RepositorySettingsPage>\n</div>';

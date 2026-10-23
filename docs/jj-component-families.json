@@ -265,6 +265,29 @@
         "jj/forge/pull-request/RepositoryPullRequestChecks.svelte",
         "jj/forge/pull-request/RepositoryPullRequestActions.svelte"
       ]
+    },
+    {
+      "primary": "jj/settings/appearance/RepositoryAppearance",
+      "purpose": "Reusable JJ Store appearance presentation with host-owned settings and appearance.",
+      "parts": [
+        "jj/settings/appearance/AppearanceThemes.svelte",
+        "jj/settings/appearance/AppearanceRow.svelte",
+        "jj/settings/appearance/AppearanceChoice.svelte",
+        "jj/settings/appearance/ThemePreview.svelte"
+      ]
+    },
+    {
+      "primary": "jj/settings/settings-card/RepositorySettingsCard",
+      "purpose": "Reusable JJ Store settings card presentation with host-owned settings and appearance.",
+      "parts": [
+        "jj/settings/settings-card/StoreSettingsHeading.svelte",
+        "jj/settings/settings-card/StoreSettingsIcon.svelte"
+      ]
+    },
+    {
+      "primary": "jj/settings/settings-page/RepositorySettingsPage",
+      "purpose": "Reusable JJ Store settings page presentation with host-owned settings and appearance.",
+      "parts": []
     }
   ],
   "deferred": [

@@ -1,0 +1,12 @@
+{
+  "component": "RepositorySettingsPage",
+  "variables": [
+    {
+      "name": "--ui-repository-settings-background",
+      "default": "var(--background)",
+      "description": "Settings page body surface.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/settings/settings-page/RepositorySettingsPage.svelte"
+    }
+  ]
+}

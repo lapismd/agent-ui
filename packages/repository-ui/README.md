@@ -23,3 +23,13 @@ extension points belong in this package; native transport belongs in the host.
 The older `/screens` scaffolding is not a replacement for the completed `/jj`
 views. Overview uses the directory/landing-document presentation of
 `RepositoryBrowser`; Files uses the same screen with its file tree and selection.
+
+## Shared settings and appearance
+
+Import `RepositoryAppearance`, `RepositorySettingsPage`,
+`RepositorySettingsCard` and `ownAppearance` from
+`@lapismd/repository-ui/settings`, plus
+`@lapismd/repository-ui/settings/styles.css`. Call `ownAppearance` once in the
+host shell with the host storage key. The public framework supplies JJ Store's
+palettes, theme/mode selection, density and typography; hosts supply persistence,
+settings navigation and repository-specific content. Native glass is disabled.

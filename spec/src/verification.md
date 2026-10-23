@@ -130,3 +130,8 @@ pending; no production check logic changed.
 Complete-screen consumer guidance under AUI-GOV-001 is recorded in
 `spec/records/2026-10-23-consumer-screen-guidance.md`. JJ Desktop is the first
 authorized consumer; package and native integration evidence remain separate.
+
+The first consumer settings framework for RUI-FORGE-001 is recorded in
+`spec/records/2026-10-23-shared-settings.md`. Appearance, settings cards and page
+presentation are reusable; native policy remains in the host. Visual review and
+the final broad package matrix remain pending.

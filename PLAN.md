@@ -263,3 +263,9 @@ screens, reuse the JJ Store appearance/settings framework, and adapt native
 window chrome and host ports. `docs/consumer-integration.md` makes the screen
 boundary explicit; guidance evidence is recorded in
 `spec/records/2026-10-23-consumer-screen-guidance.md`.
+
+### First consumer: shared settings
+
+Extracted JJ Store theme palettes and settings presentation into Repository UI.
+Focused unit/type and light/dark desktop/narrow Storybook checks validate the
+portable boundary. JJ Desktop adoption and native window acceptance are next.

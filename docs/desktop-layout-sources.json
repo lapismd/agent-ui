@@ -5848,6 +5848,1370 @@
         }
       ],
       "layoutSha256": "7be5fc1ff60930ab5118c82fed45e669d1738541681ed6831ae49d96c779eac4"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/gruvbox-light-soft.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/gruvbox-light-soft.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "d9e44c7a8b71653fb88d178faa14a42db7edd24201b0f3ebf9947782391e860c",
+      "destinationSha256": "d9e44c7a8b71653fb88d178faa14a42db7edd24201b0f3ebf9947782391e860c",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "e1c43f9110597bcb92d6352a2947341bb9a430b6a023db12104648b12dcc610c"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/min-dark.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/min-dark.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "dbc9fe68b38173fb51611408e4e056dd7a749d55dc903210baa18842f809aec7",
+      "destinationSha256": "dbc9fe68b38173fb51611408e4e056dd7a749d55dc903210baa18842f809aec7",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "675023fe8cad61c27be340ad6ce1a509c4e8233805723706bcf682c2546e419e"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/vesper.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/vesper.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "9e919ffbf6aa2e65e7f3355e2a26edb12b97d1b7a926f0927f316609b751e317",
+      "destinationSha256": "9e919ffbf6aa2e65e7f3355e2a26edb12b97d1b7a926f0927f316609b751e317",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "78707cc58bb0efcbf4632b8dd666aaaaedcc087ac4af9c7b5158448a4f9bdc10"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/github-dark.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/github-dark.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "32fd6f4d32f96de41914852e0bf3608c370d9333749488a13ba930a48e73ba28",
+      "destinationSha256": "32fd6f4d32f96de41914852e0bf3608c370d9333749488a13ba930a48e73ba28",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "355d83c6d82589b0129c0c929ab2fd8378d287047c084130eea0103a77881d75"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/github-light-high-contrast.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/github-light-high-contrast.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "4d2a52aad879cb83a15c3681f99de87c091693561cb95feb148176b2d6a38960",
+      "destinationSha256": "4d2a52aad879cb83a15c3681f99de87c091693561cb95feb148176b2d6a38960",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "7b980072c627a9cd4a3d1c63e0b2d9757e9a35273cec6c047fa770c33ea31bc3"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/original.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/original.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "2143ff385b187916ba8e51059b527e2a48ae60affab55d963706bdcfc5a60284",
+      "destinationSha256": "2143ff385b187916ba8e51059b527e2a48ae60affab55d963706bdcfc5a60284",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "f6d3b881f783b5534e8a61306bc1402ced1f51aaf25abfea2e66360d667bb68c"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/gruvbox-dark-soft.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/gruvbox-dark-soft.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "f12f16966d28b1270276c75c0689c47fb06f38e0b640824c1168876c43b6deb3",
+      "destinationSha256": "f12f16966d28b1270276c75c0689c47fb06f38e0b640824c1168876c43b6deb3",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "dcd1199a4dd8cb6dd9a963a7b4393ad21b52e53a7fc1ec37a7e8036ead484217"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/buzz.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/buzz.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "a17231e9f869d4a6ccac6b2efe735e5fd498ac4b1e3830e8fc7665190dd0cff2",
+      "destinationSha256": "a17231e9f869d4a6ccac6b2efe735e5fd498ac4b1e3830e8fc7665190dd0cff2",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "9b5848e8ba24f282b7466cca6cbbf517c270ff85da023388b09aa62f78391cba"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/github-dark-default.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/github-dark-default.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "3fe239da065a2711321863223c9650fc7fd5d00909499c0903482ded9065a8c6",
+      "destinationSha256": "3fe239da065a2711321863223c9650fc7fd5d00909499c0903482ded9065a8c6",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "1a6e25e599d60ac421811b8a93fea99bd11838ca8718d425d3526ca5f7d93681"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/github-dark-dimmed.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/github-dark-dimmed.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "8c17a1f0a7ee1e9ce471575a1377a8adb74daec3f714545707b7bb61f88b4dba",
+      "destinationSha256": "8c17a1f0a7ee1e9ce471575a1377a8adb74daec3f714545707b7bb61f88b4dba",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "c9ac324028e96c0d7df2cfc6a05eb0207b2d7df9d3d985b29712bf2112976b2c"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/github-dark-high-contrast.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/github-dark-high-contrast.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "a91efd4c76e4921705d464db999a87a1fe28da986b3347bd0dc073a36214e252",
+      "destinationSha256": "a91efd4c76e4921705d464db999a87a1fe28da986b3347bd0dc073a36214e252",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "80266ee0173bf8f67c90822544e1514a576cf36ecf0569326e6b34edb072e815"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/rose-pine.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/rose-pine.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "f16a14781ad38d0f5adbe5c78aa24de0984acc7aa4fa7da3f452109be1e7e8b2",
+      "destinationSha256": "f16a14781ad38d0f5adbe5c78aa24de0984acc7aa4fa7da3f452109be1e7e8b2",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "e94e7063e296c57c4ab19265f90e3e1abecdf35a04d6494843876d81c9aaaadd"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/everforest-light.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/everforest-light.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "d0fdc0431f5c01eb22c79177bfaa5b6f00fb6ee5befaf13ebbce5a5d0389b498",
+      "destinationSha256": "d0fdc0431f5c01eb22c79177bfaa5b6f00fb6ee5befaf13ebbce5a5d0389b498",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "1b637fb30af79b215533f5216a31337f683d1790f33d7914cd7234ba252755d9"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/nord.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/nord.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "c23c0feb2fb6586fe174dd07ba20c916e47150e334f2a282b04b181441b1a1e8",
+      "destinationSha256": "c23c0feb2fb6586fe174dd07ba20c916e47150e334f2a282b04b181441b1a1e8",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "84137a6d510c1284461a6191440415f06348e0609a3fa08d4981d80259172357"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/gruvbox-dark-medium.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/gruvbox-dark-medium.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "f21843f0ddd24973428e899ca392931340a835792d28b115da5fe3db506fe5e2",
+      "destinationSha256": "f21843f0ddd24973428e899ca392931340a835792d28b115da5fe3db506fe5e2",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "ca4b6015461085d945db74887cf9ae3f521d4854ba2c3c4df6330b77808ba198"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/gruvbox-dark-hard.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/gruvbox-dark-hard.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "4990b2e77984a51758832cb4a777f2f7c215b6d2644e139c931315fb8bb1ef90",
+      "destinationSha256": "4990b2e77984a51758832cb4a777f2f7c215b6d2644e139c931315fb8bb1ef90",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "936368db9caa49288fda2afe97cac28a271793fd85f923faeecb2844548d2cad"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/houston.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/houston.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "859acbdad3cf0c6599f9ab48e47993fa013334a8bf8c74c0fb65b1f10d792122",
+      "destinationSha256": "859acbdad3cf0c6599f9ab48e47993fa013334a8bf8c74c0fb65b1f10d792122",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "754550082dd1eed4509243e6401e737855ea37e1d011283c80b22d07f031f5bf"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/slack-ochin.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/slack-ochin.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "eb1f65327c654757684dc9c4d6aeec9e410fdf45282f10394093672a67bdffaf",
+      "destinationSha256": "eb1f65327c654757684dc9c4d6aeec9e410fdf45282f10394093672a67bdffaf",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "535d0f7bb6c5173d8afda0048b4bcc24c29a53159733af5aa5fa0043a67327f8"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/vitesse-black.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/vitesse-black.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "6a1eb645bb502db8dddf4eb1d1167aae693aabe6c39ccae2b5249e08253f4ef9",
+      "destinationSha256": "6a1eb645bb502db8dddf4eb1d1167aae693aabe6c39ccae2b5249e08253f4ef9",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "ebb265cbd86e765dd6d63dd3e1f0d9b064e4bef590ee014f9bd26dedfdc40ff2"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/poimandres.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/poimandres.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "95b8fc925c304f7e3602e1302183755e33d011e89676c1134e87426ae800e963",
+      "destinationSha256": "95b8fc925c304f7e3602e1302183755e33d011e89676c1134e87426ae800e963",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "b22bdb5cf78c561ed94676ff464c5702ca839c64b0498b877ee33092a05e0e29"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/min-light.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/min-light.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "bf5da3217a3e9bb1a23f1c642f34971493bcfff007ba765d6392df552ada1d7a",
+      "destinationSha256": "bf5da3217a3e9bb1a23f1c642f34971493bcfff007ba765d6392df552ada1d7a",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "1490a1003814a25eec0f9dd31303406deff5f1067bf8c81663bcecb4d3409cde"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/material-theme-ocean.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/material-theme-ocean.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "2d9c4ca299b59f6d527ca25a9220da7daae208c4b37c91888c302ee686882741",
+      "destinationSha256": "2d9c4ca299b59f6d527ca25a9220da7daae208c4b37c91888c302ee686882741",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "7d3e2e3e22b0fe3b478e057af4d62290fc570e31b76ca2fc69e82796a8549abb"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/slack-dark.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/slack-dark.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "cafaa6f33453bfa8aa95afcd5916dc4dcf5fa47732c652281c54a2800160bf79",
+      "destinationSha256": "cafaa6f33453bfa8aa95afcd5916dc4dcf5fa47732c652281c54a2800160bf79",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "4171dcde3582124d1ed31b975679a1cbbff68bf74c216b9e5266e2ff1dca57a9"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/rose-pine-moon.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/rose-pine-moon.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "ac856855afde38250e5d014069b380feb66a918b1a694c208170eb2749a036ea",
+      "destinationSha256": "ac856855afde38250e5d014069b380feb66a918b1a694c208170eb2749a036ea",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "0a43f2c990f1652e81fb0d509ec9dc84ec3cf4f8837398abdec08172c9d6a5fa"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/gruvbox-light-hard.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/gruvbox-light-hard.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "630c537774bb15c7c7272324bf7f8c3e251e7409b513aa37b2ae5831bc8ab2c2",
+      "destinationSha256": "630c537774bb15c7c7272324bf7f8c3e251e7409b513aa37b2ae5831bc8ab2c2",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "fce491c25bc7bd4b13db93d759b9f8d3e10056890addeea8393f38affef314d7"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/rose-pine-dawn.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/rose-pine-dawn.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "7c86250b9874f2e138f655c5945125642c5ab2cee8a48dfe07904e60529ededf",
+      "destinationSha256": "7c86250b9874f2e138f655c5945125642c5ab2cee8a48dfe07904e60529ededf",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "f394140c0e294e7ac2405de7a00f83fdef42cbedfaf556a42e21b59813fd486b"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/material-theme-lighter.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/material-theme-lighter.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "ab1352605585c6bdf339e28cedd67994458d686d9381974cae33f96043d00da7",
+      "destinationSha256": "ab1352605585c6bdf339e28cedd67994458d686d9381974cae33f96043d00da7",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "61e6508a1056e56421591d4f2deef4c5eca2c9c25429c5fcde938bf118271fbc"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/github-light.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/github-light.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "e66ad3bc4f3da1cd8fa4e5ad697af52c0e4c7098786c00b18be5af2e57dc535f",
+      "destinationSha256": "e66ad3bc4f3da1cd8fa4e5ad697af52c0e4c7098786c00b18be5af2e57dc535f",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "2a808f3d3b8ee9772215abf50c40bd04effbcf4997a59607f3d645b38d2e282d"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/plastic.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/plastic.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "06062c2ce7bf92a87ace9da50458aae6e28aa919808286c79b64a13a84fa6c99",
+      "destinationSha256": "06062c2ce7bf92a87ace9da50458aae6e28aa919808286c79b64a13a84fa6c99",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "2c3c21e1fe7c41cc2283d0630cf735ea249e1b6bd25951fd745292b5e5611463"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/synthwave-84.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/synthwave-84.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "92de81fa3497102e4177992df150f98e103c4b5a58482b8b7a36526e89e867c0",
+      "destinationSha256": "92de81fa3497102e4177992df150f98e103c4b5a58482b8b7a36526e89e867c0",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "a9de5e4bdcba3fecd5a5a4b0759ae5b03fcbf57ffe5f63cee5cbdd1fcf04cc80"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/kanagawa-wave.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/kanagawa-wave.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "4ba027841dfbc99595bc1002f35eb31acaf60721a3ee0ee2aa35feb3f5829d46",
+      "destinationSha256": "4ba027841dfbc99595bc1002f35eb31acaf60721a3ee0ee2aa35feb3f5829d46",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "85e9721720e9934a672f05534ff4687e8a87147ed02f723555cebf67d684ac45"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/monokai.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/monokai.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "b41da3eace08619ccd4c5efe9b9d81fd3daf0ded7180737ad7fffcddddfdcbfd",
+      "destinationSha256": "b41da3eace08619ccd4c5efe9b9d81fd3daf0ded7180737ad7fffcddddfdcbfd",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "5402e4184a2a2f689fdfeeb2cdf3f3546a05eb5dd78f7b2d13778d0a7636222c"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/solarized-light.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/solarized-light.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "eb81a9a14d764006e84d4b3d7528ede5904d44515c5925491287a27e284c005c",
+      "destinationSha256": "eb81a9a14d764006e84d4b3d7528ede5904d44515c5925491287a27e284c005c",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "111723c9de11b854ad676dca16eec5b56bd734d7b2a701128bece055d961f045"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/light-plus.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/light-plus.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "0c3b59f75c4bef889fb1b0dbeb83be1b5b260d6a2cd582906667e4587e00a3df",
+      "destinationSha256": "0c3b59f75c4bef889fb1b0dbeb83be1b5b260d6a2cd582906667e4587e00a3df",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "5c29479c119e3a20d88b305956010fef52c65bed11a7427818f30cd9d92805e9"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/dracula.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/dracula.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "46c0d6c6f5685c4edcc9f24bf1ef500d2b09427eaeb318c33219820ea7a04c40",
+      "destinationSha256": "46c0d6c6f5685c4edcc9f24bf1ef500d2b09427eaeb318c33219820ea7a04c40",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "ce1bd8ee3ae1e03bd5e4aa127b69ef29befd6d186d9bde6d6c9a857ec1cd5db0"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/solarized-dark.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/solarized-dark.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "d4ca6ca5122057eba6ca0b26aca7fe617981a878ad8b077dae649452a3657105",
+      "destinationSha256": "d4ca6ca5122057eba6ca0b26aca7fe617981a878ad8b077dae649452a3657105",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "ee2eb16bbcf1056d6d2070dc53e313a64d2ea7c05c87dedd3e2a1249a5181d16"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/aurora-x.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/aurora-x.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "29d7e539cc5d3666a1e36680aea74d09439e52bea17268f2b5661e9c253c46d4",
+      "destinationSha256": "29d7e539cc5d3666a1e36680aea74d09439e52bea17268f2b5661e9c253c46d4",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "77add96817b94d341fe255958a109aab837a7d2a7930b724bb94052975b449d6"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/material-theme.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/material-theme.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "08a34ce4bb73d7604b20db56a18e9099057f517eb026b0e3dd515b7d1efe7e76",
+      "destinationSha256": "08a34ce4bb73d7604b20db56a18e9099057f517eb026b0e3dd515b7d1efe7e76",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "29ffde639bffde0adcb4113c39f18378610375fd25e9d4f9287a24cf66a67f10"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/everforest-dark.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/everforest-dark.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "2ce68d8c097a94017119b1972bbcb2b6d18df3931ba09adacb4e6b34e74ac3e2",
+      "destinationSha256": "2ce68d8c097a94017119b1972bbcb2b6d18df3931ba09adacb4e6b34e74ac3e2",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "ce7fc4d893917dae60fd17a9423965921b9ae4873bb465190b3ad34526a3088f"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/dracula-soft.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/dracula-soft.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "07a29e290439706558e54c73d51a41563f945eb3bc07b74ebe9e80645cb3766e",
+      "destinationSha256": "07a29e290439706558e54c73d51a41563f945eb3bc07b74ebe9e80645cb3766e",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "9cb815f06bdaab8acf29b67a493e0b6f3d13626a34216af5d0fc98afdf888cf6"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/material-theme-darker.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/material-theme-darker.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "b0251cce3d61354038380a2f631d11446672e0c5f2bced4c8425694f7fb3a574",
+      "destinationSha256": "b0251cce3d61354038380a2f631d11446672e0c5f2bced4c8425694f7fb3a574",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "68082638f01bb31ab873ba9f7190e4cc0569de3a18671b98ab7be06a2541db5f"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/vitesse-light.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/vitesse-light.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "51f843d1d39d98379ab8fd5ed98391635b78b8bbbb1b3fab3adce61859dc2ade",
+      "destinationSha256": "51f843d1d39d98379ab8fd5ed98391635b78b8bbbb1b3fab3adce61859dc2ade",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "36a6ba6e1851baa9ee319a29f1de5fb482d13c3b32b8ecc0b8f0b6b6cb9f6a9e"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/catppuccin-macchiato.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/catppuccin-macchiato.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "ef4f1c18ed6d600311d2169c79f2dc75579cffdcae1ef9796a3dd9318465ab3b",
+      "destinationSha256": "ef4f1c18ed6d600311d2169c79f2dc75579cffdcae1ef9796a3dd9318465ab3b",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "6e6f20e61b42ec5b3d29c2343d52eeefd6b74cbb793ba27d8ef3d402b7b14fda"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/catppuccin-mocha.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/catppuccin-mocha.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "3b096ae2615127f06e77c4a5bff7761fb41443f17b159a2b7141c893ae287581",
+      "destinationSha256": "3b096ae2615127f06e77c4a5bff7761fb41443f17b159a2b7141c893ae287581",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "7f47edb5b7fb6ad856c8111aa2686030fbc11323d80bad51e849caf8618dd345"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/catppuccin-frappe.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/catppuccin-frappe.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "63ef639b439a3d7300758ed6cf3b3b74a21103f5d2e4d454fd139b32ccd2e2bf",
+      "destinationSha256": "63ef639b439a3d7300758ed6cf3b3b74a21103f5d2e4d454fd139b32ccd2e2bf",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "ff67e796f996769bf3dd030a30ff496f4d4dbd01a71df08083e0ce341c6c8ba9"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/material-theme-palenight.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/material-theme-palenight.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "922e117701a7b1175b7ac3d844e0f4a722cb48b46c8c600f1a0cb3adbb62fc78",
+      "destinationSha256": "922e117701a7b1175b7ac3d844e0f4a722cb48b46c8c600f1a0cb3adbb62fc78",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "fc3efd4569938d19b140348147f4a3bc6b14bcc90be8f664a7034edc08b48cf8"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/ayu-dark.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/ayu-dark.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "ab75b5c8c33f1ed8d2c3df8534ab3905b4bc3e10f8e4c8167d3561acbb58ec97",
+      "destinationSha256": "ab75b5c8c33f1ed8d2c3df8534ab3905b4bc3e10f8e4c8167d3561acbb58ec97",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "f1cccea33a8d2889608969f27d1e604b0e4614995da30f21c1e5bec3e007a841"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/github-light-default.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/github-light-default.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "887773fcf1e6c6ac7f55951355a944669b2a576f08e7e1bec9aa293ad7a0c9f6",
+      "destinationSha256": "887773fcf1e6c6ac7f55951355a944669b2a576f08e7e1bec9aa293ad7a0c9f6",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "9b015418f06c9acef5f232c8339bb02ec22e2924855ae4ba247dcd3a8250f46a"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/red.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/red.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "33f62663ae51c12556f6ace1450cd579e1913a69a8d41c738c9031f68723a013",
+      "destinationSha256": "33f62663ae51c12556f6ace1450cd579e1913a69a8d41c738c9031f68723a013",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "1cfd335b1aaa76c5a39558e64981d60017f0e318ce337d0d0b7c5a47ac3f6828"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/andromeeda.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/andromeeda.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "e36ae6034e002509d3d31fdcb929af77d6643fbad48c9ab140c1b1e579901f40",
+      "destinationSha256": "e36ae6034e002509d3d31fdcb929af77d6643fbad48c9ab140c1b1e579901f40",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "1f27e4449b7d8a1beb5504724f9097793d820a3c4fb6e20accfcda777a7b3198"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/vitesse-dark.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/vitesse-dark.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "5db5fad30bddd090df3cc600fbd210e0fee83e4ca90dcd6bde33ec1456af84f4",
+      "destinationSha256": "5db5fad30bddd090df3cc600fbd210e0fee83e4ca90dcd6bde33ec1456af84f4",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "9b529d35b58f85b6b657324057fa4b6da8df40f7bbb74343b21e403d4ed134a3"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/one-light.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/one-light.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "8db531670df487577379638d63ed89aa7abf1724271dd84e5dabbaad140e740f",
+      "destinationSha256": "8db531670df487577379638d63ed89aa7abf1724271dd84e5dabbaad140e740f",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "5597235f7f062d14f770d98b3ce73f0712863012b4eb87f058b9c9adfcc64edd"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/kanagawa-dragon.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/kanagawa-dragon.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "3c097e5fba9ed480fc1837db7047176c4547666f8c0b0aef3ceac611f6a9bd18",
+      "destinationSha256": "3c097e5fba9ed480fc1837db7047176c4547666f8c0b0aef3ceac611f6a9bd18",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "c533cb58517b36644ed0e59967ffafc5a47bee038a8318ea0ad10d9de40cb26d"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/snazzy-light.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/snazzy-light.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "e3cc0b49d5935844ed9ef0e08c0d302239af9a0f2e29f8dcc7a7643c5ce2cabf",
+      "destinationSha256": "e3cc0b49d5935844ed9ef0e08c0d302239af9a0f2e29f8dcc7a7643c5ce2cabf",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "5097e92fcb3cde253eabd4d5aac71c3685f4e6a2f225f1a3beed281f37effeec"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/catppuccin-latte.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/catppuccin-latte.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "5d33d51aea153a650534c5dd7e795e8a3ab6d6bf2f0d7f12d0eaf677635c61c3",
+      "destinationSha256": "5d33d51aea153a650534c5dd7e795e8a3ab6d6bf2f0d7f12d0eaf677635c61c3",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "9d4c1a43379c94f766cf1200218c3e5c127b60ffd99ecf440d770ae723890f52"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/kanagawa-lotus.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/kanagawa-lotus.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "22f803fb0612fac86fd00734ef50574953d6df2c8ee920931f582e99543bd4ce",
+      "destinationSha256": "22f803fb0612fac86fd00734ef50574953d6df2c8ee920931f582e99543bd4ce",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "fbf627d0ea189e9d325580a154ee61c62b7b54244e89984790b667697c0b85e8"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/buzz-dark.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/buzz-dark.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "ddb51283e92d93cc4a548cb01627b42a74d94d61272930fadd74d9aacb606d82",
+      "destinationSha256": "ddb51283e92d93cc4a548cb01627b42a74d94d61272930fadd74d9aacb606d82",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "09a881f508c71b0237c3e33173eac20a3eb761ff8e0cfa431a311a396ad12963"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/laserwave.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/laserwave.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "9380995c5293fdf34f8c2958f86dec1aaa3f7723428441c9b08c0fc3333daa18",
+      "destinationSha256": "9380995c5293fdf34f8c2958f86dec1aaa3f7723428441c9b08c0fc3333daa18",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "459d7ceab5016931bd989aabff73022c614d376ec495aa5860cc14877c51be8d"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/one-dark-pro.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/one-dark-pro.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "0a2b644209574fb26f48dcea0416ac970e40e1a11865581b6abbaaeaa2b91d13",
+      "destinationSha256": "0a2b644209574fb26f48dcea0416ac970e40e1a11865581b6abbaaeaa2b91d13",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "e4278bf1ef2d6523cfe86e85d846e483a2860e742ce2085c4803f5bc6f50be68"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/dark-plus.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/dark-plus.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "8f06f182ab7bf92d4b4a1c749e658b13372eb5aa76b834d32becbe5ae41da229",
+      "destinationSha256": "8f06f182ab7bf92d4b4a1c749e658b13372eb5aa76b834d32becbe5ae41da229",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "1ed337e48456999addaf30c7d0f39a3bc5bcb99006a05602d4a77f1a425e1f54"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/gruvbox-light-medium.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/gruvbox-light-medium.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "b61ba47bddcb7cccbf1689e41af3b1e0aca0cb387d944b054c457824ffdbf3a7",
+      "destinationSha256": "b61ba47bddcb7cccbf1689e41af3b1e0aca0cb387d944b054c457824ffdbf3a7",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "f0f487f5e45950c334cda9f8ddbf40977edcd1ca136fa0f9eb1f01f21465945e"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/tokyo-night.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/tokyo-night.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "e9d68f44bca96f1db62ebac7934ff226189f7fb1cf563005bb1ecba27a6cf756",
+      "destinationSha256": "e9d68f44bca96f1db62ebac7934ff226189f7fb1cf563005bb1ecba27a6cf756",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "3eac1d39b3c332a49acd789b4029ffd6f6bf690ab55aaf7f2ae3106e4937c9dc"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/palettes/night-owl.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/palettes/night-owl.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "d3e65921b2ea6fc057d3943f8e90882f87d97ac5bda1c116734319241e4a5772",
+      "destinationSha256": "d3e65921b2ea6fc057d3943f8e90882f87d97ac5bda1c116734319241e4a5772",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "9036a9f965f590bcd148a81e29f57a207e23b2a110cfa578f22b2c600f9f0f1d"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/theme-palettes.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/theme-palettes.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "1e75589b49cf0952be6f3bc3dbf8e33aaf054c4da2d6b652037dbea48ad83edb",
+      "destinationSha256": "1e75589b49cf0952be6f3bc3dbf8e33aaf054c4da2d6b652037dbea48ad83edb",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "69bf8cfc2e3d6737cc5deaa5f82ed23a855850e85eec0c836d871719539aabeb"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/appearance.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/appearance.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "3b5a78cd0448eb8ad08a22043d6aa47249c65110598f96dab5d872e5c68064b4",
+      "destinationSha256": "3b5a78cd0448eb8ad08a22043d6aa47249c65110598f96dab5d872e5c68064b4",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "968eda52076ef6bb85d7f60f25738bea50e645572aa9139885de640d48550b3c"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/preferences.ts",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/preferences.ts",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "ddb0a17598345381b9c37ad10147e5ab78d6878ab1a907233c9a6b22c2c1a865",
+      "destinationSha256": "bb7fe1e902f41e2db5bd0e865781a1ba0577210056470d779ea4f4fa91de19a1",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "import {\n  accents,\n  lightThemes,\n  themeNames,\n  themePairs,\n  type ThemeName,\n} from \"./theme-catalog.js\";\nexport type ColorMode = \"system\" | \"light\" | \"dark\";\nexport type FontSize = \"smaller\" | \"default\" | \"larger\";\nexport type ConversationDensity = \"compact\" | \"comfortable\" | \"spacious\";\nexport type LinkStyle = \"inline\" | \"compact\" | \"rich\";\nexport type ConversationView = \"document\" | \"classic\";\nexport type ThreadLayout = \"focus\" | \"split\";\nexport interface AppearancePreferences {\n  version: 1;\n  theme: ThemeName;\n  mode: ColorMode;\n  accent: string;\n  glass: boolean;\n  opacity: number;\n  prominent: boolean;\n  fontSize: FontSize;\n  density: ConversationDensity;\n  links: LinkStyle;\n  threads: ThreadLayout;\n  conversationView: ConversationView;\n}\nexport const appearanceStorageKey = \"jj-store.appearance.v1\";\nexport const defaultAppearance: AppearancePreferences = {\n  version: 1,\n  theme: \"buzz\",\n  mode: \"system\",\n  accent: \"#3b82f6\",\n  glass: false,\n  opacity: 65,\n  prominent: false,\n  fontSize: \"default\",\n  density: \"comfortable\",\n  links: \"inline\",\n  threads: \"split\",\n  conversationView: \"document\",\n};\nexport function parseAppearance(raw: string | null): AppearancePreferences {\n  try {\n    const value = JSON.parse(raw ?? \"null\");\n    if (!value || value.version !== 1) return { ...defaultAppearance };\n    const pick = <T extends string>(\n      v: unknown,\n      values: readonly T[],\n      fallback: T,\n    ): T => (values.includes(v as T) ? (v as T) : fallback);\n    const mode = pick(value.mode, [\"system\", \"light\", \"dark\"], \"system\");\n    const storedTheme = pick(value.theme, themeNames, \"buzz\");\n    return {\n      version: 1,\n      theme:\n        mode === \"system\" && !themePairs.has(storedTheme)\n          ? \"buzz\"\n          : storedTheme,\n      mode,\n      accent: pick(\n        value.accent,\n        accents.map((c) => c.value),\n        \"#3b82f6\",\n      ),\n      glass: value.glass === true,\n      prominent: value.prominent === true,\n      opacity:\n        typeof value.opacity === \"number\" && Number.isFinite(value.opacity)\n          ? Math.round(Math.max(30, Math.min(90, value.opacity)))\n          : 65,\n      fontSize: pick(\n        value.fontSize,\n        [\"smaller\", \"default\", \"larger\"],\n        \"default\",\n      ),\n      density: pick(\n        value.density,\n        [\"compact\", \"comfortable\", \"spacious\"],\n        \"comfortable\",\n      ),\n      links: pick(value.links, [\"inline\", \"compact\", \"rich\"], \"inline\"),\n      threads: pick(value.threads, [\"focus\", \"split\"], \"split\"),\n      conversationView: pick(\n        value.conversationView,\n        [\"document\", \"classic\"],\n        \"document\",\n      ),\n    };\n  } catch {\n    return { ...defaultAppearance };\n  }\n}\nexport function resolveTheme(\n  prefs: AppearancePreferences,\n  systemDark: boolean,\n): ThemeName {\n  const dark = prefs.mode === \"dark\" || (prefs.mode === \"system\" && systemDark);\n  return lightThemes.has(prefs.theme) !== !dark\n    ? (themePairs.get(prefs.theme) ?? prefs.theme)\n    : prefs.theme;\n}\nexport function switchMode(\n  prefs: AppearancePreferences,\n  mode: ColorMode,\n): Partial<AppearancePreferences> {\n  if (mode === \"system\")\n    return { mode, theme: themePairs.has(prefs.theme) ? prefs.theme : \"buzz\" };\n  const needsLight = mode === \"light\";\n  return {\n    mode,\n    theme:\n      lightThemes.has(prefs.theme) === needsLight\n        ? prefs.theme\n        : (themePairs.get(prefs.theme) ?? (needsLight ? \"buzz\" : \"buzz-dark\")),\n  };\n}",
+          "after": "import {\n  accents,\n  lightThemes,\n  themeNames,\n  themePairs,\n  type ThemeName,\n} from \"./theme-catalog.js\";\nexport type ColorMode = \"system\" | \"light\" | \"dark\";\nexport type FontSize = \"smaller\" | \"default\" | \"larger\";\nexport type ConversationDensity = \"compact\" | \"comfortable\" | \"spacious\";\nexport type LinkStyle = \"inline\" | \"compact\" | \"rich\";\nexport type ConversationView = \"document\" | \"classic\";\nexport type ThreadLayout = \"focus\" | \"split\";\nexport interface AppearancePreferences {\n  version: 1;\n  theme: ThemeName;\n  mode: ColorMode;\n  accent: string;\n  glass: boolean;\n  opacity: number;\n  prominent: boolean;\n  fontSize: FontSize;\n  density: ConversationDensity;\n  links: LinkStyle;\n  threads: ThreadLayout;\n  conversationView: ConversationView;\n}\nexport const appearanceStorageKey = \"repository-ui.appearance.v1\";\nexport const defaultAppearance: AppearancePreferences = {\n  version: 1,\n  theme: \"buzz\",\n  mode: \"system\",\n  accent: \"#3b82f6\",\n  glass: false,\n  opacity: 65,\n  prominent: false,\n  fontSize: \"default\",\n  density: \"comfortable\",\n  links: \"inline\",\n  threads: \"split\",\n  conversationView: \"document\",\n};\nexport function parseAppearance(raw: string | null): AppearancePreferences {\n  try {\n    const value = JSON.parse(raw ?? \"null\");\n    if (!value || value.version !== 1) return { ...defaultAppearance };\n    const pick = <T extends string>(\n      v: unknown,\n      values: readonly T[],\n      fallback: T,\n    ): T => (values.includes(v as T) ? (v as T) : fallback);\n    const mode = pick(value.mode, [\"system\", \"light\", \"dark\"], \"system\");\n    const storedTheme = pick(value.theme, themeNames, \"buzz\");\n    return {\n      version: 1,\n      theme:\n        mode === \"system\" && !themePairs.has(storedTheme)\n          ? \"buzz\"\n          : storedTheme,\n      mode,\n      accent: pick(\n        value.accent,\n        accents.map((c) => c.value),\n        \"#3b82f6\",\n      ),\n      glass: value.glass === true,\n      prominent: value.prominent === true,\n      opacity:\n        typeof value.opacity === \"number\" && Number.isFinite(value.opacity)\n          ? Math.round(Math.max(30, Math.min(90, value.opacity)))\n          : 65,\n      fontSize: pick(\n        value.fontSize,\n        [\"smaller\", \"default\", \"larger\"],\n        \"default\",\n      ),\n      density: pick(\n        value.density,\n        [\"compact\", \"comfortable\", \"spacious\"],\n        \"comfortable\",\n      ),\n      links: pick(value.links, [\"inline\", \"compact\", \"rich\"], \"inline\"),\n      threads: pick(value.threads, [\"focus\", \"split\"], \"split\"),\n      conversationView: pick(\n        value.conversationView,\n        [\"document\", \"classic\"],\n        \"document\",\n      ),\n    };\n  } catch {\n    return { ...defaultAppearance };\n  }\n}\nexport function resolveTheme(\n  prefs: AppearancePreferences,\n  systemDark: boolean,\n): ThemeName {\n  const dark = prefs.mode === \"dark\" || (prefs.mode === \"system\" && systemDark);\n  return lightThemes.has(prefs.theme) !== !dark\n    ? (themePairs.get(prefs.theme) ?? prefs.theme)\n    : prefs.theme;\n}\nexport function switchMode(\n  prefs: AppearancePreferences,\n  mode: ColorMode,\n): Partial<AppearancePreferences> {\n  if (mode === \"system\")\n    return { mode, theme: themePairs.has(prefs.theme) ? prefs.theme : \"buzz\" };\n  const needsLight = mode === \"light\";\n  return {\n    mode,\n    theme:\n      lightThemes.has(prefs.theme) === needsLight\n        ? prefs.theme\n        : (themePairs.get(prefs.theme) ?? (needsLight ? \"buzz\" : \"buzz-dark\")),\n  };\n}",
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutSha256": "d105ec8059826cd2acccbca7d887ce3f6839391eff8af53e6e993b50c7fff6d3"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/appearance/theme-catalog.ts",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/theme-catalog.ts",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "25d186f5ee6d9f2e74b92266408b2579202745c7f52985178bf5e7e15ca1fd88",
+      "destinationSha256": "25d186f5ee6d9f2e74b92266408b2579202745c7f52985178bf5e7e15ca1fd88",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "83fc4ae0c88bab3ed33f59ed9b4ecbca5480647a8c7b309e9fb3abc58bc00ee4"
+    },
+    {
+      "sourceRepository": "jj-desktop",
+      "source": "src/lib/appearance/store.svelte.ts",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/store.svelte.ts",
+      "sourceRevision": "6138bd56",
+      "license": "Apache-2.0",
+      "sourceSha256": "c4342460abb688e6f36ea41a593ad9a6cd60f8154583c57c5543aade34c97e85",
+      "destinationSha256": "d2f9fd5a7eaa292dd247c4f6f0ce9d2ff7402d8c58d58242d8020a34014b8031",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "import { getContext, setContext } from \"svelte\";\nimport {\n  appearanceStorageKey,\n  defaultAppearance,\n  parseAppearance,\n  resolveTheme,\n  switchMode,\n  type AppearancePreferences,\n  type ColorMode,\n} from \"./preferences.js\";\nexport function createAppearanceStore(storage?: Storage, systemDark = false) {\n  let saved = $state<AppearancePreferences>({ ...defaultAppearance });\n  try {\n    saved = parseAppearance(storage?.getItem(appearanceStorageKey) ?? null);\n  } catch {\n    /* Memory-only mode. */\n  }\n  let preview = $state<Partial<AppearancePreferences>>({});\n  let dark = $state(systemDark);\n  const live = $derived({ ...saved, ...preview });\n  const theme = $derived(resolveTheme(live, dark));\n  return {\n    get saved() {\n      return saved;\n    },\n    get live() {\n      return live;\n    },\n    get theme() {\n      return theme;\n    },\n    get density() {\n      return live.density === \"comfortable\"\n        ? (\"balanced\" as const)\n        : live.density;\n    },\n    update(patch: Partial<AppearancePreferences>) {\n      saved = parseAppearance(JSON.stringify({ ...saved, ...patch }));\n      preview = {};\n      try {\n        storage?.setItem(appearanceStorageKey, JSON.stringify(saved));\n      } catch {\n        /* Live state remains usable. */\n      }\n    },\n    mode(mode: ColorMode) {\n      this.update(switchMode(saved, mode));\n    },\n    preview(patch: Partial<AppearancePreferences>) {\n      preview = patch;\n    },\n    resetPreview() {\n      preview = {};\n    },\n    system(value: boolean) {\n      dark = value;\n    },\n    restore(raw: string | null) {\n      saved = parseAppearance(raw);\n      preview = {};\n    },\n  };\n}\nexport type AppearanceStore = ReturnType<typeof createAppearanceStore>;\nconst appearanceContext = Symbol(\"store-appearance\");\nexport function provideAppearance(store: AppearanceStore) {\n  setContext(appearanceContext, store);\n}\nexport function useAppearance(): AppearanceStore | undefined {\n  return getContext(appearanceContext);\n}\nexport function applyAppearance(root: HTMLElement, store: AppearanceStore) {\n  const live = store.live;\n  root.dataset.storeTheme = store.theme;\n  root.classList.toggle(\"dark\", getIsDark(store.theme));\n  root.dataset.storeAccent = live.accent;\n  root.dataset.storeFont = live.fontSize;\n  root.dataset.storeDensity = live.density;\n  root.dataset.storeGlass = \"false\";\n  root.dataset.storeProminent = String(live.prominent);\n  root.style.setProperty(\"--store-glass-opacity\", String(live.opacity / 100));\n  root.style.colorScheme = getIsDark(store.theme) ? \"dark\" : \"light\";\n}\nimport { lightThemes } from \"./themes.js\";\nfunction getIsDark(theme: import(\"./themes.js\").ThemeName) {\n  return !lightThemes.has(theme);\n}\nexport function attachAppearance(\n  store: AppearanceStore,\n  target: Window,\n  root: HTMLElement,\n) {\n  const query = target.matchMedia(\"(prefers-color-scheme: dark)\");\n  store.system(query.matches);\n  const system = () => store.system(query.matches);\n  const storage = (event: StorageEvent) => {\n    if (event.key === appearanceStorageKey || event.key === null)\n      store.restore(event.newValue);\n  };\n  query.addEventListener(\"change\", system);\n  target.addEventListener(\"storage\", storage);\n  applyAppearance(root, store);\n  return () => {\n    query.removeEventListener(\"change\", system);\n    target.removeEventListener(\"storage\", storage);\n  };\n}",
+          "after": "import { getContext, setContext } from \"svelte\";\nimport {\n  appearanceStorageKey,\n  defaultAppearance,\n  parseAppearance,\n  resolveTheme,\n  switchMode,\n  type AppearancePreferences,\n  type ColorMode,\n} from \"./preferences.js\";\nexport function createAppearanceStore(\n  storage?: Storage,\n  systemDark = false,\n  storageKey = appearanceStorageKey,\n) {\n  let saved = $state<AppearancePreferences>({ ...defaultAppearance });\n  try {\n    saved = parseAppearance(storage?.getItem(storageKey) ?? null);\n  } catch {\n    /* Memory-only mode. */\n  }\n  let preview = $state<Partial<AppearancePreferences>>({});\n  let dark = $state(systemDark);\n  const live = $derived({ ...saved, ...preview });\n  const theme = $derived(resolveTheme(live, dark));\n  return {\n    storageKey,\n    get saved() {\n      return saved;\n    },\n    get live() {\n      return live;\n    },\n    get theme() {\n      return theme;\n    },\n    get density() {\n      return live.density === \"comfortable\"\n        ? (\"balanced\" as const)\n        : live.density;\n    },\n    update(patch: Partial<AppearancePreferences>) {\n      saved = parseAppearance(JSON.stringify({ ...saved, ...patch }));\n      preview = {};\n      try {\n        storage?.setItem(storageKey, JSON.stringify(saved));\n      } catch {\n        /* Live state remains usable. */\n      }\n    },\n    mode(mode: ColorMode) {\n      this.update(switchMode(saved, mode));\n    },\n    preview(patch: Partial<AppearancePreferences>) {\n      preview = patch;\n    },\n    resetPreview() {\n      preview = {};\n    },\n    system(value: boolean) {\n      dark = value;\n    },\n    restore(raw: string | null) {\n      saved = parseAppearance(raw);\n      preview = {};\n    },\n  };\n}\nexport type AppearanceStore = ReturnType<typeof createAppearanceStore>;\nconst appearanceContext = Symbol(\"store-appearance\");\nexport function provideAppearance(store: AppearanceStore) {\n  setContext(appearanceContext, store);\n}\nexport function useAppearance(): AppearanceStore | undefined {\n  return getContext(appearanceContext);\n}\nexport function applyAppearance(root: HTMLElement, store: AppearanceStore) {\n  const live = store.live;\n  root.dataset.storeTheme = store.theme;\n  root.classList.toggle(\"dark\", getIsDark(store.theme));\n  root.dataset.storeAccent = live.accent;\n  root.dataset.storeFont = live.fontSize;\n  root.dataset.storeDensity = live.density;\n  root.dataset.storeGlass = \"false\";\n  root.dataset.storeProminent = String(live.prominent);\n  root.style.setProperty(\"--store-glass-opacity\", String(live.opacity / 100));\n  root.style.colorScheme = getIsDark(store.theme) ? \"dark\" : \"light\";\n}\nimport { lightThemes } from \"./theme-catalog.js\";\nfunction getIsDark(theme: import(\"./theme-catalog.js\").ThemeName) {\n  return !lightThemes.has(theme);\n}\nexport function attachAppearance(\n  store: AppearanceStore,\n  target: Window,\n  root: HTMLElement,\n) {\n  const query = target.matchMedia(\"(prefers-color-scheme: dark)\");\n  store.system(query.matches);\n  const system = () => store.system(query.matches);\n  const storage = (event: StorageEvent) => {\n    if (event.key === store.storageKey || event.key === null)\n      store.restore(event.newValue);\n  };\n  query.addEventListener(\"change\", system);\n  target.addEventListener(\"storage\", storage);\n  applyAppearance(root, store);\n  return () => {\n    query.removeEventListener(\"change\", system);\n    target.removeEventListener(\"storage\", storage);\n  };\n}",
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutSha256": "4721c7f3c7128a73d57912f1000ac7019dda16000df8571545cf7bf62733310c"
+    },
+    {
+      "sourceRepository": "jj-desktop",
+      "source": "src/lib/appearance/runtime.svelte.ts",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/state/runtime.svelte.ts",
+      "sourceRevision": "6138bd56",
+      "license": "Apache-2.0",
+      "sourceSha256": "4ff0b89f4ce06ccec3c437ee290fe31fc243033b426f1e08ba791b2fd3ca57e8",
+      "destinationSha256": "2428e07c4586571d8b8137e2d764398f39cb3890f57c9c3db61e58757f4064da",
+      "adaptations": [
+        {
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "import { onDestroy, untrack } from \"svelte\";\nimport {\n  applyAppearance,\n  attachAppearance,\n  createAppearanceStore,\n  provideAppearance,\n  useAppearance,\n  type AppearanceStore,\n} from \"./store.svelte.js\";\n/** One device store per app or isolated story, with disposable browser listeners. */\nexport function ownAppearance(provided?: AppearanceStore, storage?: Storage) {\n  const inherited = useAppearance();\n  if (inherited && !provided) return inherited;\n  const store =\n    provided ??\n    untrack(() => {\n      let local = storage;\n      try {\n        local ??= globalThis.localStorage;\n      } catch {\n        /* Storage may be unavailable. */\n      }\n      return createAppearanceStore(\n        local,\n        globalThis.matchMedia?.(\"(prefers-color-scheme: dark)\").matches,\n      );\n    });\n  provideAppearance(store);\n  if (typeof document !== \"undefined\") {\n    const root = document.documentElement;\n    const attributes = [\n      \"data-ui-scroll-strategy\",\n      \"data-store-theme\",\n      \"data-store-accent\",\n      \"data-store-font\",\n      \"data-store-density\",\n      \"data-store-glass\",\n      \"data-store-native-glass\",\n      \"data-store-prominent\",\n    ];\n    const before = attributes.map(\n      (name) => [name, root.getAttribute(name)] as const,\n    );\n    const wasDark = root.classList.contains(\"dark\");\n    const scheme = root.style.colorScheme;\n    const opacity = root.style.getPropertyValue(\"--store-glass-opacity\");\n    root.dataset.uiScrollStrategy = \"native\";\n    const dispose = attachAppearance(store, window, root);\n    $effect(() => {\n      applyAppearance(root, store);\n    });\n    onDestroy(() => {\n      dispose();\n      for (const [name, value] of before)\n        value === null\n          ? root.removeAttribute(name)\n          : root.setAttribute(name, value);\n      root.classList.toggle(\"dark\", wasDark);\n      root.style.colorScheme = scheme;\n      root.style.setProperty(\"--store-glass-opacity\", opacity);\n    });\n  }\n  return store;\n}",
+          "after": "import { onDestroy, untrack } from \"svelte\";\nimport {\n  applyAppearance,\n  attachAppearance,\n  createAppearanceStore,\n  provideAppearance,\n  useAppearance,\n  type AppearanceStore,\n} from \"./store.svelte.js\";\n/** One device store per app or isolated story, with disposable browser listeners. */\nexport function ownAppearance(\n  provided?: AppearanceStore,\n  storage?: Storage,\n  options: { storageKey?: string; root?: HTMLElement } = {},\n) {\n  const inherited = useAppearance();\n  if (inherited && !provided) return inherited;\n  const store =\n    provided ??\n    untrack(() => {\n      let local = storage;\n      try {\n        local ??= globalThis.localStorage;\n      } catch {\n        /* Storage may be unavailable. */\n      }\n      return createAppearanceStore(\n        local,\n        globalThis.matchMedia?.(\"(prefers-color-scheme: dark)\").matches,\n        options.storageKey,\n      );\n    });\n  provideAppearance(store);\n  if (typeof document !== \"undefined\") {\n    const root = options.root ?? document.documentElement;\n    const attributes = [\n      \"data-ui-scroll-strategy\",\n      \"data-store-theme\",\n      \"data-store-accent\",\n      \"data-store-font\",\n      \"data-store-density\",\n      \"data-store-glass\",\n      \"data-store-native-glass\",\n      \"data-store-prominent\",\n    ];\n    const before = attributes.map(\n      (name) => [name, root.getAttribute(name)] as const,\n    );\n    const wasDark = root.classList.contains(\"dark\");\n    const scheme = root.style.colorScheme;\n    const opacity = root.style.getPropertyValue(\"--store-glass-opacity\");\n    root.dataset.uiScrollStrategy = \"native\";\n    const dispose = attachAppearance(store, window, root);\n    $effect(() => {\n      applyAppearance(root, store);\n    });\n    onDestroy(() => {\n      dispose();\n      for (const [name, value] of before)\n        value === null\n          ? root.removeAttribute(name)\n          : root.setAttribute(name, value);\n      root.classList.toggle(\"dark\", wasDark);\n      root.style.colorScheme = scheme;\n      root.style.setProperty(\"--store-glass-opacity\", opacity);\n    });\n  }\n  return store;\n}",
+          "description": "Relocate public imports; replace app storage key with host-selected namespace; preserve preferences, pairings and palette tokens. Runtime is web-only with disposable ownership; native glass remains disabled."
+        }
+      ],
+      "layoutSha256": "4c195ec56aab71a458ee89d02604f464efa18a6217c73ba6023a0a1d6d14c0e2"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/ui/store-appearance/AppearanceChoice.svelte",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/AppearanceChoice.svelte",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "f3b62a140d67e57f38f3674e18a4e25754f9d1b86397d6cc6328b35887cb0f58",
+      "destinationSha256": "f3b62a140d67e57f38f3674e18a4e25754f9d1b86397d6cc6328b35887cb0f58",
+      "adaptations": [
+        {
+          "description": "Relocate imports to public package ownership; preserve source layout and add documented component tokens. Appearance cards omit native glass controls."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "05c82e742fba72ecfbf1872c23f2397d26c563e4398813d837b327db99c5dba8"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/ui/store-appearance/AppearanceRow.svelte",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/AppearanceRow.svelte",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "9375cd641f8f9240183e7c986b9ed8cc75420d1547d559287b7f24fa11efd495",
+      "destinationSha256": "843c67902a330c5ee1a55afa30e0b7391deb52d6f0c1d6bdb5cbe6da23df892c",
+      "adaptations": [
+        {
+          "description": "Relocate imports to public package ownership; preserve source layout and add documented component tokens. Appearance cards omit native glass controls."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "e4f95404650a27d404258bb7788fe91d3798b30338abf7ac97c3908686ceacff"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/ui/store-appearance/ThemePreview.svelte",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/ThemePreview.svelte",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "c6c5c96e2346eda080d6d56086824ba43fb3a87b1747d519674989de4aa4522b",
+      "destinationSha256": "3bf9440bf4463af22eff0cbfd84e3478cf3d416aea2af776dc88749644b10609",
+      "adaptations": [
+        {
+          "description": "Relocate imports to public package ownership; preserve source layout and add documented component tokens. Appearance cards omit native glass controls."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "03b1a2c82835748ea0f4f16a79a814c37392d11280a9325493c40c6c11b61f68"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/ui/store-appearance/appearance.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/appearance.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "b0eef35e74de446f95489c9f34f09ea4d166692556099364708ff1d4951c4358",
+      "destinationSha256": "b0eef35e74de446f95489c9f34f09ea4d166692556099364708ff1d4951c4358",
+      "adaptations": [
+        {
+          "description": "Relocate imports to public package ownership; preserve source layout and add documented component tokens. Appearance cards omit native glass controls."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "0c8a5854f6daf7c8e7e1ae0bcbca5ac59948924e5a230366fe2f118ac1261916"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/ui/store-appearance/theme-preview.css",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/theme-preview.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "b59a36182fd65c35284fec4b1ce56aa30b9577249bed11cbd3ff6315344f6ce1",
+      "destinationSha256": "b59a36182fd65c35284fec4b1ce56aa30b9577249bed11cbd3ff6315344f6ce1",
+      "adaptations": [
+        {
+          "description": "Relocate imports to public package ownership; preserve source layout and add documented component tokens. Appearance cards omit native glass controls."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "283ca60419d0110202da8edefe264e26761ec3c200d579d1d2bf5d9c574964ad"
+    },
+    {
+      "sourceRepository": "jj-desktop",
+      "source": "src/components/store-appearance/AppearanceThemes.svelte",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/AppearanceThemes.svelte",
+      "sourceRevision": "6138bd56",
+      "license": "Apache-2.0",
+      "sourceSha256": "5c77f05dcde59a330aeff718e29065020d678d40c9e3681e22d9cefd0042f7fe",
+      "destinationSha256": "ef9e8805f53a1720b580779596238b544a7e23c1f5df60eef283980f164d228f",
+      "adaptations": [
+        {
+          "description": "Relocate imports to public package ownership; preserve source layout and add documented component tokens. Appearance cards omit native glass controls."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "<StoreSettingsCard id=\"appearance-theme\" title=\"Theme\" Icon={SectionIcon}>\n  <div class=\"appearance-card appearance-card--settings\">\n    <AppearanceRow\n      title=\"Color mode\"\n      description=\"Follow your system or choose a light or dark appearance.\"\n    >\n      <AppearanceChoice\n        label=\"Color mode\"\n        value={store.saved.mode}\n        options={[\n          { value: \"system\", label: \"System\", icon: SunMoon },\n          { value: \"light\", label: \"Light\", icon: Sun },\n          { value: \"dark\", label: \"Dark\", icon: Moon },\n        ]}\n        onChange={(v) => store.mode(v as ColorMode)}\n      />\n    </AppearanceRow>\n    <AppearanceRow\n      title=\"Theme style\"\n      description=\"Choose the colors used throughout JJ Desktop.\"\n    >\n      <button\n        class=\"appearance-theme-trigger\"\n        type=\"button\"\n        aria-label={`Theme style, ${themeLabel(selected)}`}\n        aria-expanded={expanded}\n        aria-controls=\"appearance-theme-options\"\n        onclick={() => (expanded = !expanded)}\n        ><ThemePreview theme={selected} {paired} /><ChevronDown\n          aria-hidden=\"true\"\n        /></button\n      >\n    </AppearanceRow>\n    {#if expanded}<div\n        id=\"appearance-theme-options\"\n        class=\"appearance-theme-gallery\"\n        aria-label=\"Theme styles\"\n      >\n        {#each themes as theme (theme)}<button\n            type=\"button\"\n            class=\"appearance-theme-tile\"\n            aria-label={`Use ${themeLabel(theme)} theme`}\n            aria-pressed={selected === theme}\n            onclick={() => store.update({ theme })}\n            ><ThemePreview {theme} {paired} /><span>{themeLabel(theme)}</span\n            ></button\n          >{/each}\n      </div>{/if}\n    {#if !buzz && !original}<AppearanceRow\n        title=\"Accent color\"\n        description=\"Choose the highlight color used throughout JJ Desktop.\"\n      >\n        <div class=\"appearance-accents\" aria-label=\"Accent colors\">\n          {#each accents as color}<button\n              type=\"button\"\n              data-accent={color.name.toLowerCase()}\n              aria-label={`Use ${color.name} accent`}\n              title={color.name}\n              aria-pressed={store.saved.accent === color.value}\n              onclick={() => store.update({ accent: color.value })}\n              ><span></span></button\n            >{/each}\n        </div>\n      </AppearanceRow>{/if}\n    {#if buzz}<AppearanceRow\n        title=\"Prominent active tab\"\n        description=\"Give the selected navigation item a higher-contrast background.\"\n        ><Switch\n          aria-label=\"Prominent active tab\"\n          checked={store.saved.prominent}\n          onCheckedChange={(prominent) => store.update({ prominent })}\n        /></AppearanceRow\n      >{/if}\n  </div>\n</StoreSettingsCard>",
+          "after": "<StoreSettingsCard id=\"appearance-theme\" title=\"Theme\" Icon={SectionIcon}>\n  <div class=\"appearance-card appearance-card--settings\">\n    <AppearanceRow\n      title=\"Color mode\"\n      description=\"Follow your system or choose a light or dark appearance.\"\n    >\n      <AppearanceChoice\n        label=\"Color mode\"\n        value={store.saved.mode}\n        options={[\n          { value: \"system\", label: \"System\", icon: SunMoon },\n          { value: \"light\", label: \"Light\", icon: Sun },\n          { value: \"dark\", label: \"Dark\", icon: Moon },\n        ]}\n        onChange={(v) => store.mode(v as ColorMode)}\n      />\n    </AppearanceRow>\n    <AppearanceRow\n      title=\"Theme style\"\n      description=\"Choose the colors used throughout the application.\"\n    >\n      <button\n        class=\"appearance-theme-trigger\"\n        type=\"button\"\n        aria-label={`Theme style, ${themeLabel(selected)}`}\n        aria-expanded={expanded}\n        aria-controls=\"appearance-theme-options\"\n        onclick={() => (expanded = !expanded)}\n        ><ThemePreview theme={selected} {paired} /><ChevronDown\n          aria-hidden=\"true\"\n        /></button\n      >\n    </AppearanceRow>\n    {#if expanded}<div\n        id=\"appearance-theme-options\"\n        class=\"appearance-theme-gallery\"\n        aria-label=\"Theme styles\"\n      >\n        {#each themes as theme (theme)}<button\n            type=\"button\"\n            class=\"appearance-theme-tile\"\n            aria-label={`Use ${themeLabel(theme)} theme`}\n            aria-pressed={selected === theme}\n            onclick={() => store.update({ theme })}\n            ><ThemePreview {theme} {paired} /><span>{themeLabel(theme)}</span\n            ></button\n          >{/each}\n      </div>{/if}\n    {#if !buzz && !original}<AppearanceRow\n        title=\"Accent color\"\n        description=\"Choose the highlight color used throughout the application.\"\n      >\n        <div class=\"appearance-accents\" aria-label=\"Accent colors\">\n          {#each accents as color}<button\n              type=\"button\"\n              data-accent={color.name.toLowerCase()}\n              aria-label={`Use ${color.name} accent`}\n              title={color.name}\n              aria-pressed={store.saved.accent === color.value}\n              onclick={() => store.update({ accent: color.value })}\n              ><span></span></button\n            >{/each}\n        </div>\n      </AppearanceRow>{/if}\n    {#if buzz}<AppearanceRow\n        title=\"Prominent active tab\"\n        description=\"Give the selected navigation item a higher-contrast background.\"\n        ><Switch\n          aria-label=\"Prominent active tab\"\n          checked={store.saved.prominent}\n          onCheckedChange={(prominent) => store.update({ prominent })}\n        /></AppearanceRow\n      >{/if}\n  </div>\n</StoreSettingsCard>",
+          "description": "Relocate imports to public package ownership; preserve source layout and add documented component tokens. Appearance cards omit native glass controls."
+        }
+      ],
+      "layoutSha256": "d6bf7c3fe2412b9b91bd74be35daf8b6c34f277239a63fc2e036b6b818ced18f"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/ui/store-settings/StoreSettingsCard.svelte",
+      "destination": "packages/repository-ui/src/jj/settings/settings-card/RepositorySettingsCard.svelte",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "e718b8331b245c8d2c0efc9b42b2bda0e66c8c563088bf7e0db0c01bcf43aa6c",
+      "destinationSha256": "af5f62d888e9674cda63a0b3c34afd155f0ec49bc176004d543ce738a5d3159d",
+      "adaptations": [
+        {
+          "description": "Relocate imports to public package ownership; preserve source layout and add documented component tokens. Appearance cards omit native glass controls."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "{#if presentation.value !== \"default\" && layout === \"page\"}\n  <div class=\"store-settings__content-heading\">\n    <h1 {id}>{title}</h1>\n    {#if description}<p>{description}</p>{/if}\n  </div>\n  {@render children()}\n{:else if presentation.value !== \"default\"}\n  <Card.Root\n    size=\"sm\"\n    style=\"--card-spacing: 0\"\n    class=\"store-settings__section store-settings-card\"\n    role=\"region\"\n    aria-label={label}\n    aria-labelledby={label ? undefined : id}\n  >\n    <div class=\"store-settings-card__header\">\n      <Card.Header>\n        <Card.Title\n          ><StoreSettingsHeading\n            {id}\n            {title}\n            {description}\n            {Icon}\n            {badge}\n          /></Card.Title\n        >\n      </Card.Header>\n    </div>\n    <Card.Content class=\"store-settings-card__content\"\n      >{@render children()}</Card.Content\n    >\n  </Card.Root>\n{:else if repositoryOnly}\n  {@render children()}\n{:else}\n  <section\n    class=\"store-settings__section\"\n    aria-label={label}\n    aria-labelledby={label ? undefined : id}\n  >\n    <header class=\"store-settings__section-heading\">\n      <div>\n        <h2 {id}>{title}</h2>\n        {#if description}<p>{description}</p>{/if}\n      </div>\n      {@render badge?.()}\n    </header>\n    {@render children()}\n  </section>\n{/if}",
+          "after": "{#if presentation.value !== \"default\" && layout === \"page\"}\n  <div class=\"store-settings__content-heading\">\n    <h1 {id}>{title}</h1>\n    {#if description}<p>{description}</p>{/if}\n  </div>\n  {@render children()}\n{:else if presentation.value !== \"default\"}\n  <Card.Root\n    size=\"sm\"\n    style=\"--card-spacing: 0; background: var(--ui-repository-settings-card-background, var(--card))\"\n    class=\"store-settings__section store-settings-card\"\n    role=\"region\"\n    aria-label={label}\n    aria-labelledby={label ? undefined : id}\n  >\n    <div class=\"store-settings-card__header\">\n      <Card.Header>\n        <Card.Title\n          ><StoreSettingsHeading\n            {id}\n            {title}\n            {description}\n            {Icon}\n            {badge}\n          /></Card.Title\n        >\n      </Card.Header>\n    </div>\n    <Card.Content class=\"store-settings-card__content\"\n      >{@render children()}</Card.Content\n    >\n  </Card.Root>\n{:else if repositoryOnly}\n  {@render children()}\n{:else}\n  <section\n    class=\"store-settings__section\"\n    aria-label={label}\n    aria-labelledby={label ? undefined : id}\n  >\n    <header class=\"store-settings__section-heading\">\n      <div>\n        <h2 {id}>{title}</h2>\n        {#if description}<p>{description}</p>{/if}\n      </div>\n      {@render badge?.()}\n    </header>\n    {@render children()}\n  </section>\n{/if}",
+          "description": "Relocate imports to public package ownership; preserve source layout and add documented component tokens. Appearance cards omit native glass controls."
+        }
+      ],
+      "layoutSha256": "817615dd01f915cb8bbd4026415d15cd56918477d7c9a3131eba04b6f4ef1524"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/ui/store-settings/StoreSettingsHeading.svelte",
+      "destination": "packages/repository-ui/src/jj/settings/settings-card/StoreSettingsHeading.svelte",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "794c8d17083607c1fa0996a5d00fa1aa81015ea7afa5c009c9718e04efb5a36f",
+      "destinationSha256": "794c8d17083607c1fa0996a5d00fa1aa81015ea7afa5c009c9718e04efb5a36f",
+      "adaptations": [
+        {
+          "description": "Relocate imports to public package ownership; preserve source layout and add documented component tokens. Appearance cards omit native glass controls."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "7a1780a1b1805102dd2150f948864c178ca82b57db1bb0939a57e5b4bc393402"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/ui/store-settings/StoreSettingsIcon.svelte",
+      "destination": "packages/repository-ui/src/jj/settings/settings-card/StoreSettingsIcon.svelte",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "f083ab826c028d9ab007458ff0ac3b59721ff2f53cf94fcf1b4412db22aa11d1",
+      "destinationSha256": "f083ab826c028d9ab007458ff0ac3b59721ff2f53cf94fcf1b4412db22aa11d1",
+      "adaptations": [
+        {
+          "description": "Relocate imports to public package ownership; preserve source layout and add documented component tokens. Appearance cards omit native glass controls."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "25184fcf83cd7bc076f2e77efbae9d0857d19b796cf62c91b2bf34bc4a8f09a7"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/ui/store-settings/settings-presentation.ts",
+      "destination": "packages/repository-ui/src/jj/settings/settings-card/settings-presentation.ts",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "ddecd41a808f862f9e8e47b4ef6d9605e36e0b04be00c46ba45eeda0a9a60a12",
+      "destinationSha256": "ddecd41a808f862f9e8e47b4ef6d9605e36e0b04be00c46ba45eeda0a9a60a12",
+      "adaptations": [
+        {
+          "description": "Relocate imports to public package ownership; preserve source layout and add documented component tokens. Appearance cards omit native glass controls."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "8b19206ffd644ada537f06e935fd1d84db6745da437de2a1335f42fb27a7a4c7"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/ui/store-settings/repository-settings.css",
+      "destination": "packages/repository-ui/src/jj/settings/settings-card/repository-settings.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "ca291fbd3e639d8e07b5aa1bcb81217eafaefa36b49a63d2ea8de85c36903709",
+      "destinationSha256": "ca291fbd3e639d8e07b5aa1bcb81217eafaefa36b49a63d2ea8de85c36903709",
+      "adaptations": [
+        {
+          "description": "Relocate imports to public package ownership; preserve source layout and add documented component tokens. Appearance cards omit native glass controls."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "8ec49f821525c851243a04850dcc1ceb6f8825f551547f3584f382c3fd59d3cc"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/ui/store-settings/settings-controls.css",
+      "destination": "packages/repository-ui/src/jj/settings/settings-card/settings-controls.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "63cfb2ae4de05c2370f1b83c8491a7e8fdd87249e18ef58cc658fc0fd6e7422c",
+      "destinationSha256": "63cfb2ae4de05c2370f1b83c8491a7e8fdd87249e18ef58cc658fc0fd6e7422c",
+      "adaptations": [
+        {
+          "description": "Relocate imports to public package ownership; preserve source layout and add documented component tokens. Appearance cards omit native glass controls."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "d4a9dce151f521112f6f3fdb5724d26de8183da6e9ee230c64bb617f737abb32"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/ui/store-settings/StoreSettings.css",
+      "destination": "packages/repository-ui/src/jj/settings/settings-page/settings.css",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "4fb87d7521c638eef3f0c1d01d7146b3f4d9f98094b07e50ddce249f7f663ed3",
+      "destinationSha256": "4fb87d7521c638eef3f0c1d01d7146b3f4d9f98094b07e50ddce249f7f663ed3",
+      "adaptations": [
+        {
+          "description": "Relocate imports to public package ownership; preserve source layout and add documented component tokens. Appearance cards omit native glass controls."
+        }
+      ],
+      "layoutAdaptations": [],
+      "layoutSha256": "27136c7bf394717b1fcd39c4701a994711a14771828e824de84d6c9d013f59cc"
+    },
+    {
+      "sourceRepository": "jj-store",
+      "source": "web/src/lib/ui/store-settings/settings-row-icons.ts",
+      "destination": "packages/repository-ui/src/jj/settings/appearance/settings-row-icons.ts",
+      "sourceRevision": "6961bd1c",
+      "license": "Apache-2.0",
+      "sourceSha256": "f8e1f56e4e79d386f11991e5f0c94384977a45c03a3459aeb9feefb059816179",
+      "destinationSha256": "abd57aeecc70eb48abcb0abdd7d6f293b99cbc47c54d557c63cd6f799284bf32",
+      "adaptations": [
+        {
+          "description": "Keep appearance labels only; remove application policy rows."
+        }
+      ],
+      "layoutAdaptations": [
+        {
+          "before": "import Cpu from \"@lucide/svelte/icons/server\";\nimport Palette from \"@lucide/svelte/icons/palette\";\nimport SunMoon from \"@lucide/svelte/icons/sun-moon\";\nimport Type from \"@lucide/svelte/icons/file-text\";\nimport Layout from \"@lucide/svelte/icons/columns-2\";\nimport Link from \"@lucide/svelte/icons/link\";\nimport Folder from \"@lucide/svelte/icons/folder\";\nimport FileText from \"@lucide/svelte/icons/file-text\";\nimport Shield from \"@lucide/svelte/icons/shield\";\nimport Box from \"@lucide/svelte/icons/box\";\nimport Sliders from \"@lucide/svelte/icons/sliders-horizontal\";\nimport Users from \"@lucide/svelte/icons/users\";\nimport Upload from \"@lucide/svelte/icons/cloud-upload\";\nimport Network from \"@lucide/svelte/icons/network\";\nimport Clock from \"@lucide/svelte/icons/clock\";\nimport Database from \"@lucide/svelte/icons/database\";\nimport Radio from \"@lucide/svelte/icons/radio\";\nimport Activity from \"@lucide/svelte/icons/activity\";\nimport GitCommit from \"@lucide/svelte/icons/git-commit-horizontal\";\nimport Gauge from \"@lucide/svelte/icons/gauge\";\nimport Hash from \"@lucide/svelte/icons/hash\";\nimport type { Component } from \"svelte\";\n\nexport const settingsRowIcons: Readonly<Record<string, Component>> = {\n  \"Access mode\": Shield,\n  \"Authoritative storage\": Database,\n  \"HTTP connection\": Network,\n  \"Live events\": Radio,\n  \"Live updates\": Activity,\n  \"Saved and running\": Activity,\n  \"Saved capture\": Database,\n  \"Currently configured\": Activity,\n  Status: Activity,\n  \"Native runtime\": Box,\n  Progress: Activity,\n  System: Box,\n  CPU: Cpu,\n  Memory: Database,\n  \"Machine identity\": Hash,\n  \"Device policy\": Shield,\n  \"Worker phase\": Activity,\n  Discovery: Activity,\n  Roots: Folder,\n  Sources: FileText,\n  \"Source health\": Activity,\n  \"Publication backlog\": Database,\n  \"Required ingress capacity\": Gauge,\n  \"Required publication capacity\": Gauge,\n  \"Configured roots\": Folder,\n  \"Tracked sources\": FileText,\n  \"History acceptance\": Shield,\n  \"History publication\": Database,\n  \"Accepted boundary\": Gauge,\n  \"History captured / published\": Database,\n  \"Live tail coverage\": Activity,\n  \"Tail captured / published\": Database,\n  \"Tail evidence\": FileText,\n  \"Color mode\": SunMoon,\n  \"Theme style\": Palette,\n  \"Accent color\": Palette,\n  \"Glass background\": Layout,\n  \"Glass opacity\": Layout,\n  \"Prominent active tab\": Layout,\n  \"Conversation view\": Layout,\n  \"Font size\": Type,\n  \"Conversation density\": Layout,\n  \"Link previews\": Link,\n  \"Thread layout\": Layout,\n  Name: Box,\n  Saved: Database,\n  \"Currently active\": Activity,\n  Operation: Activity,\n  \"Repository ID\": Box,\n  Permission: Shield,\n  \"Selected operation\": GitCommit,\n  Epoch: Clock,\n  \"Published position\": Database,\n  \"Manifest revision\": Hash,\n  Conflicts: Users,\n  Profile: FileText,\n  \"Native profile\": FileText,\n  Authentication: Shield,\n  \"Supported APIs\": Box,\n  \"Typed mutations\": Sliders,\n  \"Conflict actions\": Users,\n  \"Mutation request limit\": FileText,\n  \"Conflict upload limit\": Upload,\n  \"Requests / workers\": Network,\n  Deadline: Clock,\n  \"Page / index commits\": Database,\n  \"JSON / file limits\": FileText,\n  \"Event streams / replay\": Radio,\n  \"Event page / polling\": Clock,\n  \"Code state version\": Hash,\n  \"Companion metadata\": FileText,\n  \"Folder generation\": Hash,\n  Worker: Activity,\n  \"Local repository\": Database,\n  Upstream: Network,\n  \"Offline access\": Shield,\n  \"Operation heads\": GitCommit,\n  \"Local pending positions\": Gauge,\n  \"Peer pending positions\": Gauge,\n  \"Checkpoint revision\": Hash,\n  \"Search repository / indexed position\": Database,\n  Replica: Network,\n  \"Log epoch\": Clock,\n  \"Through / observed upper bound\": Gauge,\n  Configured: Sliders,\n  Health: Activity,\n  \"Repository position\": Database,\n  \"Durable position\": Database,\n  \"Indexed position\": Database,\n  \"Index generation\": Hash,\n  Request: FileText,\n  \"Integrity check\": Shield,\n  Checkpoint: Database,\n  \"Push target epoch\": Clock,\n  \"Pull target epoch\": Clock,\n  \"Push target replica\": Network,\n  \"Pull target replica\": Network,\n  \"Push target through\": Gauge,\n  \"Pull target through\": Gauge,\n};",
+          "after": "import { Palette, SunMoon, Type, Columns2 } from \"@lucide/svelte\";\nimport type { Component } from \"svelte\";\nexport const settingsRowIcons: Readonly<Record<string, Component>> = {\n  \"Color mode\": SunMoon,\n  \"Theme style\": Palette,\n  \"Accent color\": Palette,\n  \"Prominent active tab\": Columns2,\n  \"Text size\": Type,\n  \"Conversation style\": Columns2,\n  \"Message spacing\": Columns2,\n};",
+          "description": "Keep appearance labels only; remove application policy rows."
+        }
+      ],
+      "layoutSha256": "06476ffe57179c9e18d7035d69e29ce4af26087c9e6ed01607a741c83b4b5269"
     }
   ],
   "fingerprintFormat": "Prettier normalized source; Svelte layout excludes script and comments. Explicit host bindings are applied before comparison.",

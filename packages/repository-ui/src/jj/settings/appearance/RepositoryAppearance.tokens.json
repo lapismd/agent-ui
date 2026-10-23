@@ -1,0 +1,12 @@
+{
+  "component": "RepositoryAppearance",
+  "variables": [
+    {
+      "name": "--ui-repository-appearance-gap",
+      "default": "1rem",
+      "description": "Vertical space between settings cards.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/settings/appearance/RepositoryAppearance.svelte"
+    }
+  ]
+}
