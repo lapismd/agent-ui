@@ -1,5 +1,9 @@
 # Governance
 
+Lapis Desktop shared-screen adoption uses isolated Jujutsu workspaces and
+verified public archives. The portable `/history` entry exposes existing
+controllers without loading presentation components into native host adapters.
+
 Configured-agent consumer contracts MUST document absent source timestamps and
 unproven profile associations explicitly; example data MUST NOT imply that hosts
 may synthesize these facts for recorded sessions.
