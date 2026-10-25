@@ -142,3 +142,14 @@ Use native CSS and public tokens. Files have one feature responsibility; new
 production/scripts stay within 300 counted lines, stories 400, tests 500.
 Canonical Markdown stays within 400 lines and 32768 bytes.
 Use Jujutsu and commit every verified slice. Preserve unrelated changes.
+
+## Portable validation runtime
+
+Portable validation defaults to Docker; read `docs/local-validation.md` before
+changing lanes or runner behavior. Preserve exact source/ancestry, distinct
+frozen-registry/archive qualification, bounded resources, init/capability and
+actual permission checks, retained reports, and terminal-only owned cleanup.
+Use explicit `AGENT_UI_VALIDATION_RUNTIME=native` for host authoring/debugging and
+CI that already owns its isolation. Keep source-reference parity/native/visual
+and release gates separate. Never suppress fatal Storybook diagnostics or let
+an unused import satisfy a production composition contract.

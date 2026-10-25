@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/svelte-vite";
 import { expect, userEvent, within, waitFor } from "storybook/test";
 import Component from "./ProjectsScreen.svelte";
 import { exerciseProjectLayouts } from "../../../../../../catalog/jj/support/projects-layout-play.js";
+import { exerciseProjectReviews } from "../../../../../../catalog/jj/support/projects-reviews-play.js";
 import {
   exerciseReviewDetail,
   exerciseReviewActions,
@@ -80,7 +81,9 @@ export const Project: Story = {
     await expect(
       canvas.getByRole("button", { name: "Search tasks" }),
     ).toBeVisible();
-    await expect(canvas.getByRole("tab", { name: "Tasks" })).toBeVisible();
+    await waitFor(() =>
+      expect(canvas.getByRole("tab", { name: "Tasks" })).toBeVisible(),
+    );
   },
 };
 export const Task: Story = {
@@ -98,31 +101,7 @@ export const Task: Story = {
 };
 export const Reviews: Story = {
   render: () => ({ Component: Demo, props: { variant: "Reviews" } }),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const review = { name: /^Open Review repository context,/ };
-    await canvas.findAllByRole("button", review);
-    await userEvent.click(
-      canvas.getByRole("button", { name: "Search reviews" }),
-    );
-    const search = canvas.getByRole("textbox", { name: "Search reviews" });
-    await expect(search).toHaveFocus();
-    await expect(canvas.queryByRole("tab", { name: "Reviews" })).toBeNull();
-    await userEvent.type(search, "no matching review{enter}");
-    await waitFor(() =>
-      expect(canvas.queryAllByRole("button", review)).toHaveLength(0),
-    );
-    await userEvent.clear(search);
-    await userEvent.type(search, "linked code{enter}");
-    await waitFor(() =>
-      expect(canvas.getAllByRole("button", review)).toHaveLength(2),
-    );
-    await userEvent.keyboard("{Escape}");
-    await expect(canvas.getByRole("tab", { name: "Reviews" })).toBeVisible();
-    await expect(
-      canvas.getByRole("button", { name: "Search reviews" }),
-    ).toHaveFocus();
-  },
+  play: ({ canvasElement }) => exerciseProjectReviews(canvasElement),
 };
 export const Paged: Story = {
   render: () => ({ Component: Demo, props: { variant: "Paged" } }),
@@ -320,7 +299,9 @@ export const Filters: Story = {
       }),
     ).toBeVisible();
     await userEvent.keyboard("{Escape}");
-    await expect(canvas.getByRole("tab", { name: "Tasks" })).toBeVisible();
+    await waitFor(() =>
+      expect(canvas.getByRole("tab", { name: "Tasks" })).toBeVisible(),
+    );
   },
 };
 export const DetailsRail: Story = {

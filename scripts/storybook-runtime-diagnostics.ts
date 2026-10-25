@@ -31,13 +31,16 @@ export function installSvelteRuntimeDiagnosticGuard(
         .join(" ")
         .replaceAll("%c", "")
         .trim();
-      onDiagnostic?.(message);
-      throw new Error(`Svelte runtime diagnostic: ${message}`);
+      const error = new Error(`Svelte runtime diagnostic: ${message}`);
+      if (onDiagnostic) onDiagnostic(error.stack ?? error.message);
+      else throw error;
     };
-  console.warn = guard(originalWarn);
-  console.error = guard(originalError);
+  const warn = guard(originalWarn),
+    error = guard(originalError);
+  console.warn = warn;
+  console.error = error;
   return () => {
-    console.warn = originalWarn;
-    console.error = originalError;
+    if (console.warn === warn) console.warn = originalWarn;
+    if (console.error === error) console.error = originalError;
   };
 }

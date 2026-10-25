@@ -160,3 +160,21 @@ first-consumer complete-screen acceptance; see `spec/records/2026-10-23-public-i
 Portable controller intake for Lapis Desktop is recorded in
 `spec/records/2026-10-23-desktop-history-intake.md`; native consumer qualification
 is distinct from source controller and public-package acceptance.
+
+Portable Docker tooling qualifies against its explicit source archive cohort:
+1,944 Storybook/axe cases, 234 units, 144 unchanged browser cases and all seven
+final-source reference cases, plus static, public package and canonical
+checks. The composite preserves the original failed aggregate and proves input
+equality; see `spec/records/2026-10-25-docker-validation.md`. Frozen-registry,
+native/source parity and visual/publication gates remain separate.
+
+The current browser readiness and overflowing operation paging follow-up is
+tracked in `spec/records/2026-10-25-browser-readiness.md`; exact repairs and
+portable composite source qualification pass. Native/visual gates remain open.
+
+AUI-SCREEN-001 Catalog initial and retained errors expose the shared Empty
+surface as an alert. Exact source checks improve from three passes/two failures
+to 20 passes across four modes; all 56 affected-family cases pass. Evidence:
+`spec/records/2026-10-25-catalog-error-alerts.md`. The complete 1,944-case
+Storybook matrix also passes; final portable composite qualification remains
+distinct from native host behavior and visual review.

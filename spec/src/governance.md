@@ -20,6 +20,9 @@ qualification, capture-format and application-integration gates.
 Browser acceptance files (`.pw.ts`) and unit tests (`.test.ts`) share the existing
 500-counted-line test budget; production and script files retain the 300-line
 limit. This classification must not depend on the test runner.
+Browser acceptance MUST reveal virtualized editor widgets through real keyboard
+or scroll navigation before invoking their actions, preserving exact source and
+undo assertions.
 
 The approved Projects, Agents, Threads and JJ Desktop integration plan supersedes
 the historical per-section stop boundaries below. Its five slices are authorized
@@ -151,6 +154,29 @@ semantics.
 - Public types express the boundary.
 - Building blocks and complete Agent/JJ screens MUST compose the same production implementations and host-owned controllers.
 - Every named Empty or Unavailable story MUST expose visible public shadcn Empty content with an icon through the catalog-wide browser check.
+
+## Portable local validation
+
+Portable root scripts MUST default to bounded Docker execution with explicit
+native selection and no automatic host fallback. Exact source and ancestry,
+registry-frozen installation and explicit checksum-qualified archive projection
+MUST remain distinguishable. Source/history guards reject private/model/cache
+payloads, while the tracked public port example retains a verified schema.
+Tool image and JavaScript dependency caches MUST have separate identities.
+Workers MUST use an init reaper, drop capabilities, prove actual permission
+denial and collect failure evidence before owned terminal-only cleanup.
+Story composition MUST resolve actual rendered production components; unused
+imports cannot satisfy ownership. Complete catalog families MUST register their
+complete production screen roots; an arbitrary control is insufficient. Recovered
+virtual reference rows MUST be visibly painted before recovery is accepted, and
+the picker MUST dismiss through its normal keyboard interaction. Fatal Svelte diagnostics MUST retain their
+origin and survive teardown without preventing cleanup. Both themes and
+viewport modes stay mandatory; focused zero-case runs MUST fail. Native source
+comparison, host integration, visual approval and publication remain separate.
+Complete catalogs MUST bound browser lifetime with sequential native shards,
+retain every case in all four modes, and reject duplicate, missing or inconsistent
+case identities. Focused selectors MUST remain literal and failures MUST NOT retry.
+See [local validation](../../docs/local-validation.md) for commands and scope.
 
 ## AUI-GOV-003 — Evidence
 

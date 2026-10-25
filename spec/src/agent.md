@@ -132,6 +132,7 @@ chat screen and use the host port for durable sending and exact permissions.
 
 - Public types express the boundary.
 - History MUST reveal the host’s current scope ancestry and retain it as the initial new-chat scope.
+- Catalog read failures MUST announce the exact host error through an alert while retaining earlier rows during refresh, with ordinary empty and loading states remaining non-alert.
 - Focused tests and production-component stories verify the behavior.
 
 ## AUI-LIFE-001 — Lifetime

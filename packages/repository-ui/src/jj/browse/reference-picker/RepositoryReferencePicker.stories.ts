@@ -49,11 +49,16 @@ async function check(canvasElement: HTMLElement, variant: string) {
         name: variant === "Changes" ? /bbbb/ : "main",
       }),
     );
-    await expect(canvas.getByTestId("reference-value")).toHaveTextContent(
-      variant === "Changes" ? "change:bbbb" : "bookmark:main",
+    await waitFor(() =>
+      expect(canvas.getByTestId("reference-value")).toHaveTextContent(
+        variant === "Changes" ? "change:bbbb" : "bookmark:main",
+      ),
     );
   }
   await userEvent.keyboard("{Escape}");
+  await waitFor(() =>
+    expect(trigger).toHaveAttribute("aria-expanded", "false"),
+  );
 }
 export const Basic: Story = {
   render: () => ({ Component: Demo, props: { variant: "Basic" } }),
@@ -91,7 +96,15 @@ export const Recovery: Story = {
     await userEvent.click(
       await body.findByRole("button", { name: "Retry preview" }),
     );
-    await expect(await body.findByRole("row", { name: "main" })).toBeVisible();
+    await waitFor(() =>
+      expect(body.getByRole("row", { name: "main" })).toBeVisible(),
+    );
+    await userEvent.keyboard("{Escape}");
+    await expect(
+      within(canvasElement).getByRole("combobox", {
+        name: "Repository bookmark or change",
+      }),
+    ).toHaveAttribute("aria-expanded", "false");
   },
 };
 export const Disabled: Story = {

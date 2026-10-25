@@ -5,8 +5,11 @@ for (const mode of ["light", "dark"]) {
     page,
   }) => {
     await page.goto(
-      `/iframe.html?id=jj-complete-screens-op-log--conflicts&viewMode=story&globals=colorMode:${mode}`,
+      `/iframe.html?id=jj-complete-screens-op-log--conflicts&viewMode=story&globals=theme:lapis;colorMode:${mode}`,
     );
+    await expect(
+      page.locator('[data-ui-theme="lapis"]').first(),
+    ).toBeAttached();
     await page
       .getByRole("button", { name: "Inspect conflicts", exact: true })
       .waitFor();
@@ -65,12 +68,26 @@ for (const mode of ["light", "dark"]) {
       const canvas = document.createElement("canvas");
       canvas.width = canvas.height = 1;
       const ctx = canvas.getContext("2d")!;
-      ctx.fillStyle = getComputedStyle(el).backgroundColor;
+      const style = getComputedStyle(el);
+      ctx.fillStyle = style.backgroundColor;
       ctx.fillRect(0, 0, 1, 1);
-      return [...ctx.getImageData(0, 0, 1, 1).data];
+      return {
+        pixels: [...ctx.getImageData(0, 0, 1, 1).data],
+        background: style.backgroundColor,
+        base: style.getPropertyValue("--background"),
+        destructive: style.getPropertyValue("--destructive"),
+        theme: document
+          .querySelector("[data-ui-theme]")
+          ?.getAttribute("data-ui-theme"),
+        dark: document.documentElement.classList.contains("dark"),
+      };
     });
-    expect(tint[0]).toBeGreaterThan(tint[1]);
-    expect(tint[0]).toBeGreaterThan(tint[2]);
+    expect(tint.pixels[0], JSON.stringify(tint)).toBeGreaterThan(
+      tint.pixels[1],
+    );
+    expect(tint.pixels[0], JSON.stringify(tint)).toBeGreaterThan(
+      tint.pixels[2],
+    );
   });
 }
 

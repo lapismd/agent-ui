@@ -84,6 +84,8 @@ for (const story of [
         ? "jj-store-member:"
         : "[Alex Morgan](/people/alex)",
     );
+    // End-of-document input can release the first paragraph's virtualized widgets.
+    await editor.press("ControlOrMeta+Home");
     await page
       .getByRole("region", { name: "Reference composer" })
       .getByRole("button", { name: "Remove Lapis Desktop", exact: true })

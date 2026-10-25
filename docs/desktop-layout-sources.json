@@ -212,10 +212,7 @@
       "destination": "packages/agent-ui/src/identity/agent-avatar.ts",
       "sourceSha256": "1943e25b2522771430ad929bccd168b9c3de5f84a63980e9b3fa1879829a3e30",
       "adaptations": [
-        {
-          "before": "local: \"/lapis-logo.svg\"",
-          "after": "local: lapisIcon"
-        },
+        { "before": "local: \"/lapis-logo.svg\"", "after": "local: lapisIcon" },
         {
           "before": "import cursorIcon",
           "after": "import lapisIcon from \"./assets/lapis.svg\";\nimport cursorIcon"
@@ -654,10 +651,7 @@
           "before": "  import { composerReferences } from \"./composer-references.ts\";\n",
           "after": ""
         },
-        {
-          "before": "    app,",
-          "after": "    extensions = [],"
-        },
+        { "before": "    app,", "after": "    extensions = []," },
         {
           "before": "    app?: App;",
           "after": "    extensions?: ComponentProps<typeof MarkdownComposer>[\"extensions\"];"
@@ -685,10 +679,7 @@
       ],
       "destinationSha256": "0ca19c006779a8ca19b4ce68a6084bd5d8e5a740868725c7e07221f4383c6975",
       "layoutAdaptations": [
-        {
-          "before": "extensions={[references]}",
-          "after": "{extensions}"
-        },
+        { "before": "extensions={[references]}", "after": "{extensions}" },
         {
           "before": "--ui-markdown-composer-min-height: calc(2 * 1.4rem + 1rem);",
           "after": "--ui-markdown-composer-min-height: var(--ui-agent-composer-min-height, calc(2 * 1.4rem + 1rem));"
@@ -713,10 +704,7 @@
           "before": "placeholder=\"Ask about your notes…\"",
           "after": "{placeholder}"
         },
-        {
-          "before": "{triggers}",
-          "after": "triggers={suggestions}"
-        },
+        { "before": "{triggers}", "after": "triggers={suggestions}" },
         {
           "before": "{extensions}",
           "after": "extensions={[...(referenceExtension ? [referenceExtension] : []), ...extensions]}\n    {customEmojis}\n    {emojis}\n    {emojiText}\n    {additionalActions}"
@@ -789,18 +777,12 @@
           "before": "status={`${agent} · ${composerState.selectedModel || \"Automatic model\"} · ${panel.conversationsState.scopePathLabel}`}",
           "after": "{status}"
         },
-        {
-          "before": "busy={controller.busy}",
-          "after": "{busy}"
-        },
+        { "before": "busy={controller.busy}", "after": "{busy}" },
         {
           "before": "loading={!loaded || !!panelProps.initializing}",
           "after": "{loading}"
         },
-        {
-          "before": "onSelect={select}",
-          "after": "{onSelect}"
-        },
+        { "before": "onSelect={select}", "after": "{onSelect}" },
         {
           "before": "harness={composerState.selectedAgent}",
           "after": "{harness}"
@@ -809,10 +791,7 @@
           "before": "disabled={!!panelProps.initializing || controller.busy}",
           "after": "disabled={loading || busy}"
         },
-        {
-          "before": "onclick={create}",
-          "after": "onclick={onCreate}"
-        },
+        { "before": "onclick={create}", "after": "onclick={onCreate}" },
         {
           "before": "{view}\n      onChange={onViewChange}",
           "after": "bind:view\n      onChange={onViewChange}"
@@ -821,10 +800,7 @@
           "before": "<ChatConversationMenu\n      {panelProps}\n      {controller}\n      actions={panel.actions}\n      {composerState}\n    />",
           "after": "{@render menu?.()}"
         },
-        {
-          "before": "{rows.length}",
-          "after": "{items.length}"
-        }
+        { "before": "{rows.length}", "after": "{items.length}" }
       ],
       "destinationSha256": "9597708a4f5480d6ce131f70d911fae6695f8b4024e09defd3ca5aba5d58a929",
       "layoutAdaptations": [
@@ -836,18 +812,12 @@
           "before": "status={`${agent} · ${composerState.selectedModel || \"Automatic model\"} · ${panel.conversationsState.scopePathLabel}`}",
           "after": "{status}"
         },
-        {
-          "before": "busy={controller.busy}",
-          "after": "{busy}"
-        },
+        { "before": "busy={controller.busy}", "after": "{busy}" },
         {
           "before": "loading={!loaded || !!panelProps.initializing}",
           "after": "{loading}"
         },
-        {
-          "before": "onSelect={select}",
-          "after": "{onSelect}"
-        },
+        { "before": "onSelect={select}", "after": "{onSelect}" },
         {
           "before": "harness={composerState.selectedAgent}",
           "after": "{harness}"
@@ -856,22 +826,13 @@
           "before": "disabled={!!panelProps.initializing || controller.busy}",
           "after": "disabled={loading || busy}"
         },
-        {
-          "before": "onclick={create}",
-          "after": "onclick={onCreate}"
-        },
-        {
-          "before": "      {view}",
-          "after": "      bind:view"
-        },
+        { "before": "onclick={create}", "after": "onclick={onCreate}" },
+        { "before": "      {view}", "after": "      bind:view" },
         {
           "before": "<ChatConversationMenu\n      {panelProps}\n      {controller}\n      actions={panel.actions}\n      {composerState}\n    />",
           "after": "{@render menu?.()}"
         },
-        {
-          "before": "{rows.length}",
-          "after": "{items.length}"
-        }
+        { "before": "{rows.length}", "after": "{items.length}" }
       ],
       "layoutSha256": "09d77f95c54f8e2168203fbe348c8ec6940c06ddaed0c4434f748afd3402ecb1"
     },
@@ -1262,10 +1223,7 @@
           "before": "../conversations/transcript-store.ts",
           "after": "./models.js"
         },
-        {
-          "before": "../conversations/types.ts",
-          "after": "./models.js"
-        }
+        { "before": "../conversations/types.ts", "after": "./models.js" }
       ],
       "destinationSha256": "ffd9643bff626dd12a41a6016fbb2b4dc678a996f0d99db82cb59f412ff4e1a4"
     },
@@ -1294,16 +1252,21 @@
       "destination": "packages/agent-ui/src/catalog/catalog-panel/AiCatalogPanel.svelte",
       "sourceSha256": "84bd6df360283635cbfc2fe1f81f6b2eb6cb93966c157d14a878a47e550804cd",
       "adaptations": [],
-      "destinationSha256": "722d358fd39c58c75cd803c416a7e86e2ae68a5d5bcc5f38593951a494d75d43",
+      "destinationSha256": "49b915f336bd6d9b4496ece24a3d8441495e0e03e83c382a5234ebb538547418",
       "layoutAdaptations": [
         {
           "description": "Use shared Skeleton or icon Empty for content states; preserve retained data and host-owned retry.",
           "before": "    <ScrollArea class=\"ai-catalog__scroll\">\n      <div class=\"ai-catalog__body\">\n        {#if catalog.error}<p class=\"ai-catalog__state\" role=\"alert\">\n            {catalog.error}\n          </p>{/if}\n        {#if catalog.visibleGroups.length === 0 && catalog.loading}<p\n            class=\"ai-catalog__state\"\n          >\n            Loading catalog…\n          </p>\n        {:else if catalog.visibleGroups.length === 0 && !catalog.error}\n          <p class=\"ai-catalog__state\">\n            {catalog.filtering\n              ? \"No catalog items match your filter.\"\n              : \"No catalog items yet.\"}\n          </p>\n        {:else if catalog.visibleGroups.length > 0}\n          <Sidebar.Menu\n            class=\"ai-catalog__tree\"\n",
           "after": "    <ScrollArea class=\"ai-catalog__scroll\">\n      <div class=\"ai-catalog__body\">\n        {#if catalog.loading}<div\n            role=\"status\"\n            aria-label=\"Loading catalog\"\n            aria-busy=\"true\"\n          >\n            {#each [0, 1, 2, 3] as row (row)}<Skeleton\n                style=\"height:2.5rem;margin-block:0.375rem\"\n              />{/each}\n          </div>\n        {:else if !catalog.visibleGroups.length || catalog.error}\n          <Empty.Root\n            ><Empty.Header\n              ><Empty.Media variant=\"icon\"\n                ><PackageSearch aria-hidden=\"true\" /></Empty.Media\n              ><Empty.Title\n                >{catalog.error\n                  ? \"Catalog unavailable\"\n                  : catalog.filtering\n                    ? \"No matching catalog items\"\n                    : \"No catalog items yet\"}</Empty.Title\n              ><Empty.Description\n                >{catalog.error ||\n                  \"Try another search or enable catalog sources in the host.\"}</Empty.Description\n              ></Empty.Header\n            ></Empty.Root\n          >\n        {/if}\n        {#if catalog.visibleGroups.length > 0}\n          <Sidebar.Menu\n            class=\"ai-catalog__tree\"\n"
+        },
+        {
+          "description": "Restore the exact host read-error alert through the public Empty role prop; retained tree and empty/loading semantics remain unchanged.",
+          "before": "<Empty.Root",
+          "after": "<Empty.Root role={catalog.error ? \"alert\" : undefined}"
         }
       ],
-      "layoutSha256": "429e130e5968f584aa8ca51d8d6bc7ec0eb194b2880a452c267f368438dab43d",
-      "notes": " Desktop adoption retains optional host applyDefaults alongside current Skeleton and Empty states; only script bindings combine. Integration combines qualified host contracts with current content-state presentation; existing documented layout adaptations are retained."
+      "layoutSha256": "dd46c529c9b1c3c5b7ca342cfc248e007ade3d3c98d70dfe0790692f3bc2b213",
+      "notes": " Desktop adoption retains optional host applyDefaults alongside current Skeleton and Empty states; only script bindings combine. Integration combines qualified host contracts with current content-state presentation; existing documented layout adaptations are retained. Catalog errors preserve the original alert announcement through public Empty.Root; ordinary empty states remain non-alert."
     },
     {
       "sourceRepository": "lapis-desktop",
@@ -1529,22 +1492,10 @@
       "adaptations": [],
       "destinationSha256": "8afb9ff5f866b2fd2a89d2c7540ccb3ed9aaa1349c74d9e656c855d5555bb78d",
       "layoutAdaptations": [
-        {
-          "before": "!!props.sources",
-          "after": "!!imports.available"
-        },
-        {
-          "before": "!!props.onOpen",
-          "after": "!!imports.canOpen"
-        },
-        {
-          "before": "            app={props.app}\n",
-          "after": ""
-        },
-        {
-          "before": "{props.sources",
-          "after": "{imports.available"
-        },
+        { "before": "!!props.sources", "after": "!!imports.available" },
+        { "before": "!!props.onOpen", "after": "!!imports.canOpen" },
+        { "before": "            app={props.app}\n", "after": "" },
+        { "before": "{props.sources", "after": "{imports.available" },
         {
           "before": "<div class=\"import-panel\" data-testid=\"ai-import-panel\">\n  <AiSessionFrame\n    label=\"Importable AI sessions\"\n    bind:width\n    bind:height\n    contentHidden={compact && open}\n  >\n    {#snippet navigation()}<AppShell.Body.Sidebar\n        side=\"left\"\n        panelId=\"ai-import-sources\"\n        label=\"Import sources\"\n        bind:open\n        class=\"ai-session-list-region\"\n        style={`--ui-shell-body-sidebar-width:${compact ? \"100%\" : \"min(23rem, 38%)\"}`}\n      >\n        <AiImportSources\n          browser={imports.browser}\n          {selected}\n          available={!!imports.available}\n          onSelect={select}\n          onClose={compact ? () => (open = false) : undefined}\n        />\n      </AppShell.Body.Sidebar>{/snippet}\n    <AiSessionThread\n      {height}\n      title={selected?.title ?? \"Import AI sessions\"}\n      status={selected\n        ? `${profileLabel(selected.profile)} · ${folder?.location ?? \"Local history\"} · Read-only preview`\n        : \"Browse local history by harness and project\"}\n      harness={selected?.kind}\n      selected={!!selected}\n      listLabel=\"Import sources\"\n      expanded={open}\n      onToggle={() => (open = !open)}\n    >\n      {#snippet actions()}\n        {#if imports.phase === \"reading\"}<Button\n            variant=\"ghost\"\n            size=\"icon-sm\"\n            aria-label={imports.paused\n              ? \"Resume transcript loading\"\n              : \"Pause transcript loading\"}\n            title={imports.paused\n              ? \"Resume transcript loading\"\n              : \"Pause transcript loading\"}\n            onclick={() => imports.togglePause()}\n            >{#if imports.paused}<PlayIcon\n                aria-hidden=\"true\"\n              />{:else}<PauseIcon aria-hidden=\"true\" />{/if}</Button\n          >{/if}\n        {#if imports.phase === \"ready\"}<Button\n            variant=\"ghost\"\n            size=\"icon-sm\"\n            aria-label=\"Reload preview\"\n            title=\"Reload preview\"\n            onclick={() => void imports.reload()}\n            ><RefreshIcon aria-hidden=\"true\" /></Button\n          >{/if}\n        {#if selected}<TranscriptViewToggle bind:view />{/if}\n      {/snippet}\n      {#snippet footer()}<AiImportFooter\n          {imports}\n          canOpen={!!imports.canOpen}\n        />{/snippet}\n      {#if selected}\n        <AiImportProgress {imports} {selected} />\n        {#if imports.phase === \"reading\" && !imports.entries.length}<AiTranscriptLoading\n            composer={false}\n          />{:else}<AiRecordedTranscript\n            entries={imports.entries}\n            bind:view\n            showViewToolbar={false}\n            assistant={{\n              name: profileLabel(selected.profile),\n              image: agentAvatar(selected.kind),\n            }}\n          />{/if}\n      {:else}<Empty.Root\n          ><Empty.Header\n            ><Empty.Media variant=\"icon\"><FolderIcon /></Empty.Media\n            ><Empty.Title\n              >{imports.available\n                ? \"Your local AI history\"\n                : \"Local import is unavailable\"}</Empty.Title\n            ><Empty.Description\n              >{imports.available\n                ? \"Expand a harness and choose a project folder. Sessions load only when you open that folder. Preview does not save or start an agent.\"\n                : \"This host has no configured transcript source. Existing conversations remain available.\"}</Empty.Description\n            ></Empty.Header\n          ></Empty.Root\n        >{/if}\n    </AiSessionThread>\n  </AiSessionFrame>\n</div>\n\n<style>\n  .import-panel {\n    height: 100%;\n    min-width: 0;\n    min-height: 0;\n  }\n</style>",
           "after": "<div class=\"import-panel\" data-testid=\"ai-import-panel\">\n  <AiSessionFrame\n    label=\"Importable AI sessions\"\n    bind:width\n    bind:height\n    contentHidden={compact && open}\n  >\n    {#snippet navigation()}<AppShell.Body.Sidebar\n        side=\"left\"\n        panelId=\"ai-import-sources\"\n        label=\"Import sources\"\n        bind:open\n        class=\"ai-session-list-region\"\n        style={`--ui-shell-body-sidebar-width:${compact ? \"100%\" : \"min(23rem, 38%)\"}`}\n      >\n        <AiImportSources\n          browser={imports.browser}\n          {selected}\n          available={!!imports.available}\n          onSelect={select}\n          onClose={compact ? () => (open = false) : undefined}\n        />\n      </AppShell.Body.Sidebar>{/snippet}\n    <AiSessionThread\n      {height}\n      title={selected?.title ?? \"Import AI sessions\"}\n      status={selected\n        ? `${profileLabel(selected.profile)} · ${folder?.location ?? \"Local history\"} · Read-only preview`\n        : \"Browse local history by harness and project\"}\n      harness={selected?.kind}\n      selected={!!selected}\n      listLabel=\"Import sources\"\n      expanded={open}\n      onToggle={() => (open = !open)}\n    >\n      {#snippet actions()}\n        {#if imports.phase === \"reading\"}<Button\n            variant=\"ghost\"\n            size=\"icon-sm\"\n            aria-label={imports.paused\n              ? \"Resume transcript loading\"\n              : \"Pause transcript loading\"}\n            title={imports.paused\n              ? \"Resume transcript loading\"\n              : \"Pause transcript loading\"}\n            onclick={() => imports.togglePause()}\n            >{#if imports.paused}<PlayIcon\n                aria-hidden=\"true\"\n              />{:else}<PauseIcon aria-hidden=\"true\" />{/if}</Button\n          >{/if}\n        {#if imports.phase === \"ready\"}<Button\n            variant=\"ghost\"\n            size=\"icon-sm\"\n            aria-label=\"Reload preview\"\n            title=\"Reload preview\"\n            onclick={() => void imports.reload()}\n            ><RefreshIcon aria-hidden=\"true\" /></Button\n          >{/if}\n        {#if selected}<TranscriptViewToggle bind:view />{/if}\n      {/snippet}\n      {#snippet footer()}<AiImportFooter\n          {imports}\n          canOpen={!!imports.canOpen}\n        />{/snippet}\n      {#if selected}\n        <AiImportProgress {imports} {selected} />\n        {#if imports.phase === \"reading\" && !imports.entries.length}<AiTranscriptLoading\n            composer={false}\n          />{:else}<AiRecordedTranscript\n            {options}\n            entries={imports.entries}\n            bind:view\n            showViewToolbar={false}\n            assistant={{\n              name: profileLabel(selected.profile),\n              image: agentAvatar(selected.kind),\n            }}\n          />{/if}\n      {:else}<Empty.Root\n          ><Empty.Header\n            ><Empty.Media variant=\"icon\"><FolderIcon /></Empty.Media\n            ><Empty.Title\n              >{imports.available\n                ? \"Your local AI history\"\n                : \"Local import is unavailable\"}</Empty.Title\n            ><Empty.Description\n              >{imports.available\n                ? \"Expand a harness and choose a project folder. Sessions load only when you open that folder. Preview does not save or start an agent.\"\n                : \"This host has no configured transcript source. Existing conversations remain available.\"}</Empty.Description\n            ></Empty.Header\n          ></Empty.Root\n        >{/if}\n    </AiSessionThread>\n  </AiSessionFrame>\n</div>\n\n<style>\n  .import-panel {\n    height: 100%;\n    min-width: 0;\n    min-height: 0;\n  }\n</style>"
@@ -1608,10 +1559,7 @@
       "adaptations": [],
       "destinationSha256": "2689943f567eedce4dd02f1fc0af61dedee5a22d5fe358661b08e69606740e77",
       "layoutAdaptations": [
-        {
-          "before": "        {app}\n",
-          "after": ""
-        },
+        { "before": "        {app}\n", "after": "" },
         {
           "before": "<AiSessionShell\n  {items}\n  harness={profileHarness(session?.profile ?? \"\")}\n  activeId={selected}\n  title={session?.title ?? \"Captured AI sessions\"}\n  status={session\n    ? `${profileLabel(session.profile)} · Read-only local history`\n    : \"Locally saved session versions\"}\n  label=\"Captured sessions\"\n  {loading}\n  busy={previewLoading}\n  emptyTitle=\"No captured sessions\"\n  emptyDescription=\"Import a local session to save its captured history.\"\n  onSelect={select}\n>\n  {#snippet actions()}<TranscriptViewToggle bind:view />\n    {#if onRefresh}<AiSessionMenu\n        busy={previewLoading}\n        unavailable={false}\n        refreshLabel=\"Refresh saved sessions\"\n        {onRefresh}\n      />{/if}\n  {/snippet}\n  {#snippet listFooter()}<footer class=\"ai-session-list-footer\">\n      <div class=\"ai-session-status-items\">\n        <span class=\"ai-session-status-item\"\n          ><MessagesIcon aria-hidden=\"true\" />{sessions.length} sessions</span\n        >\n        <span class=\"ai-session-status-item ai-session-status-item--end\"\n          ><PauseIcon aria-hidden=\"true\" />Local only</span\n        >\n      </div>\n    </footer>{/snippet}\n  {#snippet footer()}<footer class=\"ai-session-footer\">\n      <div class=\"ai-session-status-items\">\n        {#if session && version}\n          <div class=\"ai-session-status-item\" style=\"padding-inline:0\">\n            <CaptureVersionPicker\n              versions={session.versions}\n              selected={selectedVersion}\n              onSelect={(id) => {\n                if (onSelectVersion) onSelectVersion(id);\n                else selectedVersion = id;\n              }}\n            />\n          </div>\n          <span class=\"ai-session-status-item\" role=\"status\"\n            ><DriveIcon aria-hidden=\"true\" />{version.incomplete\n              ? \"Incomplete\"\n              : \"Saved locally\"}</span\n          >\n        {:else}<span class=\"ai-session-status-item\"\n            ><HistoryIcon aria-hidden=\"true\" />Local history</span\n          >{/if}\n        <span class=\"ai-session-status-item ai-session-status-item--end\"\n          ><LockIcon aria-hidden=\"true\" />Read-only</span\n        >\n      </div>\n    </footer>{/snippet}\n  {#if loading || previewLoading}<AiTranscriptLoading composer={false} />\n  {:else if version?.entries && !version.incomplete}{#key version.id}<AiRecordedTranscript\n        entries={version.entries}\n        bind:view\n        showViewToolbar={false}\n        assistant={{\n          name: profileLabel(session?.profile ?? \"Codex\"),\n          image: agentAvatar(profileHarness(session?.profile ?? \"\")),\n        }}\n      />{/key}\n  {:else}<Empty.Root\n      ><Empty.Header\n        ><Empty.Media variant=\"icon\"\n          ><HistoryIcon aria-hidden=\"true\" /></Empty.Media\n        ><Empty.Title\n          >{version?.incomplete\n            ? \"Incomplete local version\"\n            : \"Choose a captured session\"}</Empty.Title\n        ><Empty.Description\n          >{version?.incomplete\n            ? \"A complete saved snapshot is required before this version can be viewed.\"\n            : \"Choose a session on the left to read a saved version.\"}</Empty.Description\n        ></Empty.Header\n      ></Empty.Root\n    >{/if}\n</AiSessionShell>",
           "after": "<AiSessionShell\n  {items}\n  harness={profileHarness(session?.profile ?? \"\")}\n  activeId={selected}\n  title={session?.title ?? \"Captured AI sessions\"}\n  status={session\n    ? `${profileLabel(session.profile)} · Read-only local history`\n    : \"Locally saved session versions\"}\n  label=\"Captured sessions\"\n  {loading}\n  busy={previewLoading}\n  emptyTitle=\"No captured sessions\"\n  emptyDescription=\"Import a local session to save its captured history.\"\n  onSelect={select}\n>\n  {#snippet actions()}<TranscriptViewToggle bind:view />\n    {#if onRefresh}<AiSessionMenu\n        busy={previewLoading}\n        unavailable={false}\n        refreshLabel=\"Refresh saved sessions\"\n        {onRefresh}\n      />{/if}\n  {/snippet}\n  {#snippet listFooter()}<footer class=\"ai-session-list-footer\">\n      <div class=\"ai-session-status-items\">\n        <span class=\"ai-session-status-item\"\n          ><MessagesIcon aria-hidden=\"true\" />{sessions.length} sessions</span\n        >\n        <span class=\"ai-session-status-item ai-session-status-item--end\"\n          ><PauseIcon aria-hidden=\"true\" />Local only</span\n        >\n      </div>\n    </footer>{/snippet}\n  {#snippet footer()}<footer class=\"ai-session-footer\">\n      <div class=\"ai-session-status-items\">\n        {#if session && version}\n          <div class=\"ai-session-status-item\" style=\"padding-inline:0\">\n            <CaptureVersionPicker\n              versions={session.versions}\n              selected={selectedVersion}\n              onSelect={(id) => {\n                if (onSelectVersion) onSelectVersion(id);\n                else selectedVersion = id;\n              }}\n            />\n          </div>\n          <span class=\"ai-session-status-item\" role=\"status\"\n            ><DriveIcon aria-hidden=\"true\" />{version.incomplete\n              ? \"Incomplete\"\n              : \"Saved locally\"}</span\n          >\n        {:else}<span class=\"ai-session-status-item\"\n            ><HistoryIcon aria-hidden=\"true\" />Local history</span\n          >{/if}\n        <span class=\"ai-session-status-item ai-session-status-item--end\"\n          ><LockIcon aria-hidden=\"true\" />Read-only</span\n        >\n      </div>\n    </footer>{/snippet}\n  {#if loading || previewLoading}<AiTranscriptLoading composer={false} />\n  {:else if version?.entries && !version.incomplete}{#key version.id}<AiRecordedTranscript\n        entries={version.entries}\n        options={transcriptOptions}\n        bind:view\n        showViewToolbar={false}\n        assistant={{\n          name: profileLabel(session?.profile ?? \"Codex\"),\n          image: agentAvatar(profileHarness(session?.profile ?? \"\")),\n        }}\n      />{/key}\n  {:else}<Empty.Root\n      ><Empty.Header\n        ><Empty.Media variant=\"icon\"\n          ><HistoryIcon aria-hidden=\"true\" /></Empty.Media\n        ><Empty.Title\n          >{version?.incomplete\n            ? \"Incomplete local version\"\n            : \"Choose a captured session\"}</Empty.Title\n        ><Empty.Description\n          >{version?.incomplete\n            ? \"A complete saved snapshot is required before this version can be viewed.\"\n            : \"Choose a session on the left to read a saved version.\"}</Empty.Description\n        ></Empty.Header\n      ></Empty.Root\n    >{/if}\n</AiSessionShell>"
@@ -1887,10 +1835,7 @@
       ],
       "destinationSha256": "f5f6af5ac35a1004fa2a67e30395ad32c4ee380e213b0f21eafa98d3d639aad6",
       "layoutAdaptations": [
-        {
-          "before": "item.path && app",
-          "after": "item.path && onOpenPath"
-        }
+        { "before": "item.path && app", "after": "item.path && onOpenPath" }
       ],
       "layoutSha256": "44aa01a35d9f17fd43068bd53955ed99991f7d1d4efb7ffb9d6c490de02c3a04"
     },
@@ -2378,16 +2323,22 @@
         {
           "before": "{#snippet controls()}{@render headerControls?.(snapshot)}{/snippet}\n{#snippet actions()}\n  {#if searchable}<Button\n      variant=\"ghost\"\n      size=\"icon-xs\"\n      aria-label=\"Search operations\"\n      title=\"Search operations\"\n      aria-expanded={queryOpen}\n      onclick={() => (queryOpen = !queryOpen)}\n      ><SearchIcon aria-hidden=\"true\" /></Button\n    >{/if}\n  {@render headerActions?.(snapshot)}\n{/snippet}\n\n<RepositoryShell>\n  <section\n    class=\"repository-operations\"\n    aria-label=\"Repository operation log\"\n    aria-busy={snapshot.busy}\n  >\n    <div class=\"operation-columns\">\n      <ColumnCanvas.Root controller={canvas} aria-label=\"Operation log columns\">\n        <ColumnCanvas.Column\n          id=\"revisions\"\n          columnTitle=\"Op Log\"\n          aria-label=\"Operations\"\n        >\n          <RepositoryLogHeader\n            controls={headerControls ? controls : undefined}\n            {actions}\n            {sources}\n            {copyText}\n            nodes={snapshot.nodes}\n            workspaces={repositoryWorkspaces(snapshot.workspaceCommits)}\n            workspace={snapshot.workspace}\n            onWorkspaceSelect={(next) => void controller.selectWorkspace(next)}\n            onWorkspaceOpen={() => void controller.loadWorkspaces()}\n            title=\"Op Log\"\n            count={snapshot.nodes.length}\n            operations={pins}\n            operation={snapshot.operation}\n            selectionLabel=\"Pinned operation\"\n            busy={snapshot.busy}\n            onSelect={(operation) => controller.selectPin(operation)}\n            onRefresh={() => controller.refresh()}\n          />\n          {#if searchable && queryOpen}<RepositoryOperationQuery\n              info={queryInfo}\n              {controller}\n              busy={snapshot.busy}\n            />{/if}\n          <ColumnCanvas.Body>\n            {#if snapshot.phase === \"loading\"}<RepositorySkeleton\n                label=\"Preparing operation log…\"\n              />\n            {:else if snapshot.phase === \"unavailable\"}<RepositoryOperationEmpty\n                title=\"Operation log unavailable\"\n                description=\"Operation log is unavailable for this vault. Refresh to try again.\"\n              />\n            {:else if !snapshot.headsReady}<RepositorySkeleton\n                label=\"Loading repository operations…\"\n              />\n            {:else if !snapshot.operation}<Empty.Root role=\"status\"\n                ><Empty.Header\n                  ><Empty.Media variant=\"icon\"\n                    ><FileQuestionIcon aria-hidden=\"true\" /></Empty.Media\n                  ><Empty.Title\n                    >{snapshot.heads.length > 1\n                      ? \"Choose an operation\"\n                      : \"No repository operations\"}</Empty.Title\n                  ><Empty.Description\n                    >{snapshot.heads.length > 1\n                      ? \"Choose an operation to inspect its ancestry.\"\n                      : \"No repository operations available.\"}</Empty.Description\n                  ></Empty.Header\n                ></Empty.Root\n              >{/if}\n            {#if snapshot.snapshot}\n              {#if snapshot.selected && !snapshot.nodes.some((node) => node.id === snapshot.selected?.id)}\n                <section aria-label=\"Selected operation outside loaded graph\">\n                  <p>The selected operation is outside this graph page.</p>\n                  <RepositoryOperationFiles\n                    actions={operationActions}\n                    {fileActions}\n                    {onRevert}\n                    onConflicts={() => (conflictsOpen = true)}\n                    {copyText}\n                    commits={snapshot.commits}\n                    onHistory={onHistory && snapshot.selected\n                      ? () => onHistory?.(snapshot.selected!.id)\n                      : undefined}\n                    state={snapshot}\n                    {controller}\n                    onOpenDiff={() => canvas.open(\"diff\")}\n                    onOpenDetails={() => canvas.open(\"diff\")}\n                  />\n                </section>\n              {/if}\n              {#if !snapshot.ready && !snapshot.busy}<RepositoryOperationEmpty\n                  title=\"Operations unavailable\"\n                  description=\"Retry the query or refresh the pinned operation.\"\n                />\n              {:else if snapshot.ready && !snapshot.nodes.length}<RepositoryOperationEmpty\n                  title=\"No operations\"\n                  description=\"No operations in this history.\"\n                />{/if}\n              {#if snapshot.nodes.length}<RepositoryGraph\n                  operationTitles\n                  {copyText}\n                  commitLabel=\"operation ID\"\n                  revisions={rows}\n                  selectedId={snapshot.selected?.id}\n                  label=\"Operation graph\"\n                  onSelect={(id) => {\n                    const node = snapshot.nodes.find((item) => item.id === id);\n                    if (node)\n                      void (snapshot.selected?.id === id\n                        ? controller.clearSelection()\n                        : controller.select(node));\n                  }}\n                >\n                  {#snippet selectedFiles()}<RepositoryOperationFiles\n                      actions={operationActions}\n                      {fileActions}\n                      {onRevert}\n                      onConflicts={() => (conflictsOpen = true)}\n                      {copyText}\n                      commits={snapshot.commits}\n                      onHistory={onHistory && snapshot.selected\n                        ? () => onHistory?.(snapshot.selected!.id)\n                        : undefined}\n                      state={snapshot}\n                      {controller}\n                      onOpenDiff={() => canvas.open(\"diff\")}\n                      onOpenDetails={() => canvas.open(\"diff\")}\n                    />{/snippet}\n                </RepositoryGraph>{/if}\n              {#if snapshot.next}<Button\n                  size=\"sm\"\n                  variant=\"ghost\"\n                  style=\"width: 100%; font-weight: 400; color: var(--ui-repository-operations-more-foreground, var(--muted-foreground))\"\n                  disabled={snapshot.busy}\n                  onclick={() => controller.more()}>More operations</Button\n                >{/if}\n            {/if}\n          </ColumnCanvas.Body>\n          {#if snapshot.limitReached}<RepositoryHistoryLimit\n              limit={snapshot.displayLimit}\n              label=\"operations\"\n            />{/if}\n        </ColumnCanvas.Column>\n        <RepositoryOperationColumn\n          {diffFileMode}\n          {onDiffFileModeChange}\n          {diffPageSize}\n          {getDiffMenuItems}\n          {getDiffStats}\n          state={snapshot}\n          {controller}\n          {copyText}\n          {metadataActions}\n          {diffActions}\n          {allChangesActions}\n        />\n      </ColumnCanvas.Root>\n    </div>\n  </section>\n  {#snippet surface()}\n    {#key `${snapshot.selected?.id}/${snapshot.parent}/${snapshot.files.group?.change}/${snapshot.files.to}`}\n      {#if snapshot.files.to}<RepositoryConflictResolution\n          open={conflictsOpen}\n          conflicts={snapshot.conflicts}\n          ready={snapshot.conflictsReady}\n          busy={snapshot.busy}\n          onLoad={() => void controller.loadConflicts()}\n          onClose={() => (conflictsOpen = false)}\n        />{/if}\n    {/key}\n  {/snippet}\n</RepositoryShell>\n\n<style>\n  .repository-operations {\n    display: flex;\n    flex-direction: column;\n    height: 100%;\n    min-height: 0;\n    background: var(--ui-workspace-view-background, var(--background));\n    color: var(--ui-workspace-view-foreground, var(--foreground));\n    font-size: var(--ui-repository-operations-font-size, 0.875rem);\n  }\n  .operation-columns {\n    display: block;\n    width: 100%;\n    min-width: 0;\n    min-height: 0;\n    flex: 1;\n    overflow: hidden;\n  }\n  p {\n    padding: 0.75rem;\n  }\n</style>",
           "after": "{#snippet controls()}{@render headerControls?.(snapshot)}{/snippet}\n{#snippet actions()}\n  {#if searchable}<Button\n      variant=\"ghost\"\n      size=\"icon-xs\"\n      aria-label=\"Search operations\"\n      title=\"Search operations\"\n      aria-expanded={queryOpen}\n      onclick={() => (queryOpen = !queryOpen)}\n      ><SearchIcon aria-hidden=\"true\" /></Button\n    >{/if}\n  {@render headerActions?.(snapshot)}\n{/snippet}\n\n<RepositoryShell>\n  <section\n    class=\"repository-operations\"\n    aria-label=\"Repository operation log\"\n    aria-busy={snapshot.busy}\n  >\n    <div class=\"operation-columns\">\n      <ColumnCanvas.Root\n        controller={canvas}\n        displayMode=\"fixed\"\n        aria-label=\"Operation log columns\"\n      >\n        {#snippet trailingSpacer()}<RepositoryCanvasSpacer />{/snippet}\n        <ColumnCanvas.Column\n          id=\"revisions\"\n          columnTitle=\"Op Log\"\n          aria-label=\"Operations\"\n        >\n          <RepositoryLogHeader\n            controls={headerControls ? controls : undefined}\n            {actions}\n            {sources}\n            {copyText}\n            nodes={snapshot.nodes}\n            workspaces={repositoryWorkspaces(snapshot.workspaceCommits)}\n            workspace={snapshot.workspace}\n            onWorkspaceSelect={(next) => void controller.selectWorkspace(next)}\n            onWorkspaceOpen={() => void controller.loadWorkspaces()}\n            title=\"Op Log\"\n            count={snapshot.nodes.length}\n            operations={pins}\n            operation={snapshot.operation}\n            selectionLabel=\"Pinned operation\"\n            busy={snapshot.busy}\n            onSelect={(operation) => controller.selectPin(operation)}\n            onRefresh={() => controller.refresh()}\n          />\n          {#if searchable && queryOpen}<RepositoryOperationQuery\n              info={queryInfo}\n              {controller}\n              busy={snapshot.busy}\n            />{/if}\n          <ColumnCanvas.Body>\n            {#if snapshot.phase === \"loading\"}<RepositorySkeleton\n                label=\"Preparing operation log…\"\n              />\n            {:else if snapshot.phase === \"unavailable\"}<RepositoryOperationEmpty\n                title=\"Operation log unavailable\"\n                description=\"Operation log is unavailable for this vault. Refresh to try again.\"\n              />\n            {:else if !snapshot.headsReady}<RepositorySkeleton\n                label=\"Loading repository operations…\"\n              />\n            {:else if !snapshot.operation}<Empty.Root role=\"status\"\n                ><Empty.Header\n                  ><Empty.Media variant=\"icon\"\n                    ><FileQuestionIcon aria-hidden=\"true\" /></Empty.Media\n                  ><Empty.Title\n                    >{snapshot.heads.length > 1\n                      ? \"Choose an operation\"\n                      : \"No repository operations\"}</Empty.Title\n                  ><Empty.Description\n                    >{snapshot.heads.length > 1\n                      ? \"Choose an operation to inspect its ancestry.\"\n                      : \"No repository operations available.\"}</Empty.Description\n                  ></Empty.Header\n                ></Empty.Root\n              >{/if}\n            {#if snapshot.snapshot}\n              {#if snapshot.selected && !snapshot.nodes.some((node) => node.id === snapshot.selected?.id)}\n                <section aria-label=\"Selected operation outside loaded graph\">\n                  <p>The selected operation is outside this graph page.</p>\n                  <RepositoryOperationFiles\n                    actions={operationActions}\n                    {fileActions}\n                    {onRevert}\n                    onConflicts={() => (conflictsOpen = true)}\n                    {copyText}\n                    commits={snapshot.commits}\n                    onHistory={onHistory && snapshot.selected\n                      ? () => onHistory?.(snapshot.selected!.id)\n                      : undefined}\n                    state={snapshot}\n                    {controller}\n                    onOpenDiff={() => canvas.open(\"diff\")}\n                    onOpenDetails={() => canvas.open(\"diff\")}\n                  />\n                </section>\n              {/if}\n              {#if !snapshot.ready && !snapshot.busy}<RepositoryOperationEmpty\n                  title=\"Operations unavailable\"\n                  description=\"Retry the query or refresh the pinned operation.\"\n                />\n              {:else if snapshot.ready && !snapshot.nodes.length}<RepositoryOperationEmpty\n                  title=\"No operations\"\n                  description=\"No operations in this history.\"\n                />{/if}\n              {#if snapshot.nodes.length}<RepositoryGraph\n                  operationTitles\n                  {copyText}\n                  commitLabel=\"operation ID\"\n                  revisions={rows}\n                  selectedId={snapshot.selected?.id}\n                  label=\"Operation graph\"\n                  onSelect={(id) => {\n                    const node = snapshot.nodes.find((item) => item.id === id);\n                    if (node)\n                      void (snapshot.selected?.id === id\n                        ? controller.clearSelection()\n                        : controller.select(node));\n                  }}\n                >\n                  {#snippet selectedFiles()}<RepositoryOperationFiles\n                      actions={operationActions}\n                      {fileActions}\n                      {onRevert}\n                      onConflicts={() => (conflictsOpen = true)}\n                      {copyText}\n                      commits={snapshot.commits}\n                      onHistory={onHistory && snapshot.selected\n                        ? () => onHistory?.(snapshot.selected!.id)\n                        : undefined}\n                      state={snapshot}\n                      {controller}\n                      onOpenDiff={() => canvas.open(\"diff\")}\n                      onOpenDetails={() => canvas.open(\"diff\")}\n                    />{/snippet}\n                </RepositoryGraph>{/if}\n              {#if snapshot.next}<Button\n                  size=\"sm\"\n                  variant=\"ghost\"\n                  style=\"width: 100%; font-weight: 400; color: var(--ui-repository-operations-more-foreground, var(--muted-foreground))\"\n                  disabled={snapshot.busy}\n                  onclick={() => controller.more()}>More operations</Button\n                >{/if}\n            {/if}\n          </ColumnCanvas.Body>\n          {#if snapshot.limitReached}<RepositoryHistoryLimit\n              limit={snapshot.displayLimit}\n              label=\"operations\"\n            />{/if}\n        </ColumnCanvas.Column>\n        <RepositoryOperationColumn\n          {diffFileMode}\n          {onDiffFileModeChange}\n          {diffPageSize}\n          {getDiffMenuItems}\n          {getDiffStats}\n          state={snapshot}\n          {controller}\n          {copyText}\n          {metadataActions}\n          {diffActions}\n          {allChangesActions}\n        />\n      </ColumnCanvas.Root>\n    </div>\n  </section>\n  {#snippet surface()}\n    {#key `${snapshot.selected?.id}/${snapshot.parent}/${snapshot.files.group?.change}/${snapshot.files.to}`}\n      {#if snapshot.files.to}<RepositoryConflictResolution\n          open={conflictsOpen}\n          conflicts={snapshot.conflicts}\n          ready={snapshot.conflictsReady}\n          busy={snapshot.busy}\n          onLoad={() => void controller.loadConflicts()}\n          onClose={() => (conflictsOpen = false)}\n        />{/if}\n    {/key}\n  {/snippet}\n</RepositoryShell>\n\n<style>\n  .repository-operations {\n    display: flex;\n    flex-direction: column;\n    height: 100%;\n    min-height: 0;\n    background: var(--ui-workspace-view-background, var(--background));\n    color: var(--ui-workspace-view-foreground, var(--foreground));\n    font-size: var(--ui-repository-operations-font-size, 0.875rem);\n  }\n  .operation-columns {\n    display: block;\n    width: 100%;\n    min-width: 0;\n    min-height: 0;\n    flex: 1;\n    overflow: hidden;\n  }\n  p {\n    padding: 0.75rem;\n  }\n</style>"
+        },
+        {
+          "before": "              {#if snapshot.nodes.length}<RepositoryGraph\n                  operationTitles\n                  {copyText}\n                  commitLabel=\"operation ID\"\n                  revisions={rows}\n                  selectedId={snapshot.selected?.id}\n                  label=\"Operation graph\"\n                  onSelect={(id) => {\n                    const node = snapshot.nodes.find((item) => item.id === id);\n                    if (node)\n                      void (snapshot.selected?.id === id\n                        ? controller.clearSelection()\n                        : controller.select(node));\n                  }}\n                >\n                  {#snippet selectedFiles()}<RepositoryOperationFiles\n                      actions={operationActions}\n                      {fileActions}\n                      {onRevert}\n                      onConflicts={() => (conflictsOpen = true)}\n                      {copyText}\n                      commits={snapshot.commits}\n                      onHistory={onHistory && snapshot.selected\n                        ? () => onHistory?.(snapshot.selected!.id)\n                        : undefined}\n                      state={snapshot}\n                      {controller}\n                      onOpenDiff={() => canvas.open(\"diff\")}\n                      onOpenDetails={() => canvas.open(\"diff\")}\n                    />{/snippet}\n                </RepositoryGraph>{/if}\n              {#if snapshot.next}<Button\n                  size=\"sm\"\n                  variant=\"ghost\"\n                  style=\"width: 100%; font-weight: 400; color: var(--ui-repository-operations-more-foreground, var(--muted-foreground))\"\n                  disabled={snapshot.busy}\n                  onclick={() => controller.more()}>More operations</Button\n                >{/if}\n",
+          "after": "              <div style=\"display: grid\">\n                {#if snapshot.nodes.length}<RepositoryGraph\n                    operationTitles\n                    {copyText}\n                    commitLabel=\"operation ID\"\n                    revisions={rows}\n                    selectedId={snapshot.selected?.id}\n                    label=\"Operation graph\"\n                    onSelect={(id) => {\n                      const node = snapshot.nodes.find(\n                        (item) => item.id === id,\n                      );\n                      if (node)\n                        void (snapshot.selected?.id === id\n                          ? controller.clearSelection()\n                          : controller.select(node));\n                    }}\n                  >\n                    {#snippet selectedFiles()}<RepositoryOperationFiles\n                        actions={operationActions}\n                        {fileActions}\n                        {onRevert}\n                        onConflicts={() => (conflictsOpen = true)}\n                        {copyText}\n                        commits={snapshot.commits}\n                        onHistory={onHistory && snapshot.selected\n                          ? () => onHistory?.(snapshot.selected!.id)\n                          : undefined}\n                        state={snapshot}\n                        {controller}\n                        onOpenDiff={() => canvas.open(\"diff\")}\n                        onOpenDetails={() => canvas.open(\"diff\")}\n                      />{/snippet}\n                  </RepositoryGraph>{/if}\n                {#if snapshot.next}<Button\n                    size=\"sm\"\n                    variant=\"ghost\"\n                    style=\"width: 100%; font-weight: 400; color: var(--ui-repository-operations-more-foreground, var(--muted-foreground))\"\n                    disabled={snapshot.busy}\n                    onclick={() => controller.more()}>More operations</Button\n                  >{/if}\n              </div>\n",
+          "description": "Reviewed 2026-10-25: graph and paging share one grid track so the paging action spans horizontal graph overflow without changing graph minimum width or column scrolling."
         }
       ],
-      "destinationSha256": "cf2e5f56be6386e39505251dbb5e1232c046a9801fa35c81eaa98df4311317bb",
-      "layoutSha256": "787b40be371e81c1bf6734837ad1f4adce0059f4c599000e20a8d162b980219d",
+      "destinationSha256": "5210f51ba8bc25d7af9cc031637b99f84b4fc7ac0d7808f7e4461a623c1fb04d",
+      "layoutSha256": "d2686ed5250f753d1bbeb82845c9caaae5015252b77d95b30976049ec2a2c6dc",
       "reviewNotes": [
         "Op Log portability review: native filtered queries and guarded bounds, typed host action slots, explicit comparison/conflict state, shared icon-bearing Empty presentation and unchanged default shell geometry. See spec/records/2026-10-22-op-log-parity.md.",
         "Op Log presentation review: full-width muted paging in both logs; known after-revision conflicts mark the selected operation and shared graph rows; opaque icon chips, source-copied jj-store per-row content offsets and horizontal content reserve; shared source-adapted query controls and metadata-driven file statistics. See spec/records/2026-10-22-op-log-parity.md.",
         "Reviewed all-in-one diff slice: retain original column topology and metadata; reuse shared diff bodies, host-controlled file mode, lazy comparison-scoped reads, bounded paging and vertical per-file menus. The main file menu precedes Close. See spec/records/2026-10-22-diff-collection.md.",
         "All Changes header follow-up: host-provided complete comparison totals and separate comparison-wide actions; file actions remain single-file scoped, with restore available by exact path in each file menu. See spec/records/2026-10-22-diff-header-review.md.",
-        "Log resize-space follow-up: configure the existing public trailingSpacer slot with the shared icon-bearing Empty part; no change to column content or host actions. See spec/records/2026-10-22-log-canvas-spacer.md. Configure displayMode=\"fixed\", matching the source workspace, so the final column has its own resize handle; small panes retain horizontal scrolling."
+        "Log resize-space follow-up: configure the existing public trailingSpacer slot with the shared icon-bearing Empty part; no change to column content or host actions. See spec/records/2026-10-22-log-canvas-spacer.md. Configure displayMode=\"fixed\", matching the source workspace, so the final column has its own resize handle; small panes retain horizontal scrolling.",
+        "Portable browser follow-up: graph and More operations share intrinsic width so the existing exact light/dark full-width check covers fixed-column horizontal overflow. See spec/records/2026-10-25-browser-readiness.md."
       ]
     },
     {
@@ -8608,9 +8559,7 @@
       "sourceSha256": "d3f27a6ff24a6b38111f7fcf765d29941a3bbc9d49218d8594390d394c0447b9",
       "destination": "packages/repository-ui/src/jj/settings/settings-card/RepositorySettingsField.svelte",
       "adaptations": [
-        {
-          "description": "Public original divided settings field"
-        }
+        { "description": "Public original divided settings field" }
       ],
       "destinationSha256": "d4dc00d436c117663f295da2ff1538a085244fbaf6b7150586feeb28c9bca6af",
       "layoutAdaptations": [],
@@ -8623,9 +8572,7 @@
       "sourceSha256": "3f5a8d27bdfd162298e1d51d4f7d9caf66d226b32c69d807bbd401f0d70ee71d",
       "destination": "packages/repository-ui/src/jj/settings/settings-card/RepositorySettingsFooter.svelte",
       "adaptations": [
-        {
-          "description": "Public original settings form footer"
-        }
+        { "description": "Public original settings form footer" }
       ],
       "destinationSha256": "44ef8c2d61b73b2a694ff47be6dc40e5d25ade7023972026ada021619a695988",
       "layoutAdaptations": [],

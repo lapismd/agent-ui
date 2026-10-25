@@ -200,44 +200,48 @@
                   title="No operations"
                   description="No operations in this history."
                 />{/if}
-              {#if snapshot.nodes.length}<RepositoryGraph
-                  operationTitles
-                  {copyText}
-                  commitLabel="operation ID"
-                  revisions={rows}
-                  selectedId={snapshot.selected?.id}
-                  label="Operation graph"
-                  onSelect={(id) => {
-                    const node = snapshot.nodes.find((item) => item.id === id);
-                    if (node)
-                      void (snapshot.selected?.id === id
-                        ? controller.clearSelection()
-                        : controller.select(node));
-                  }}
-                >
-                  {#snippet selectedFiles()}<RepositoryOperationFiles
-                      actions={operationActions}
-                      {fileActions}
-                      {onRevert}
-                      onConflicts={() => (conflictsOpen = true)}
-                      {copyText}
-                      commits={snapshot.commits}
-                      onHistory={onHistory && snapshot.selected
-                        ? () => onHistory?.(snapshot.selected!.id)
-                        : undefined}
-                      state={snapshot}
-                      {controller}
-                      onOpenDiff={() => canvas.open("diff")}
-                      onOpenDetails={() => canvas.open("diff")}
-                    />{/snippet}
-                </RepositoryGraph>{/if}
-              {#if snapshot.next}<Button
-                  size="sm"
-                  variant="ghost"
-                  style="width: 100%; font-weight: 400; color: var(--ui-repository-operations-more-foreground, var(--muted-foreground))"
-                  disabled={snapshot.busy}
-                  onclick={() => controller.more()}>More operations</Button
-                >{/if}
+              <div style="display: grid">
+                {#if snapshot.nodes.length}<RepositoryGraph
+                    operationTitles
+                    {copyText}
+                    commitLabel="operation ID"
+                    revisions={rows}
+                    selectedId={snapshot.selected?.id}
+                    label="Operation graph"
+                    onSelect={(id) => {
+                      const node = snapshot.nodes.find(
+                        (item) => item.id === id,
+                      );
+                      if (node)
+                        void (snapshot.selected?.id === id
+                          ? controller.clearSelection()
+                          : controller.select(node));
+                    }}
+                  >
+                    {#snippet selectedFiles()}<RepositoryOperationFiles
+                        actions={operationActions}
+                        {fileActions}
+                        {onRevert}
+                        onConflicts={() => (conflictsOpen = true)}
+                        {copyText}
+                        commits={snapshot.commits}
+                        onHistory={onHistory && snapshot.selected
+                          ? () => onHistory?.(snapshot.selected!.id)
+                          : undefined}
+                        state={snapshot}
+                        {controller}
+                        onOpenDiff={() => canvas.open("diff")}
+                        onOpenDetails={() => canvas.open("diff")}
+                      />{/snippet}
+                  </RepositoryGraph>{/if}
+                {#if snapshot.next}<Button
+                    size="sm"
+                    variant="ghost"
+                    style="width: 100%; font-weight: 400; color: var(--ui-repository-operations-more-foreground, var(--muted-foreground))"
+                    disabled={snapshot.busy}
+                    onclick={() => controller.more()}>More operations</Button
+                  >{/if}
+              </div>
             {/if}
           </ColumnCanvas.Body>
           {#if snapshot.limitReached}<RepositoryHistoryLimit

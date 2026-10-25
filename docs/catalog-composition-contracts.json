@@ -1,0 +1,12 @@
+{
+  "catalog/AgentFlows.stories.ts": [
+    "packages/agent-ui/src/screens/workbench/AgentWorkbench.svelte"
+  ],
+  "catalog/AgentScreens.stories.ts": [
+    "packages/agent-ui/src/screens/workbench/AgentWorkbench.svelte",
+    "packages/agent-ui/src/chat/chat-screen/AgentChatScreen.svelte"
+  ],
+  "catalog/AgentStates.stories.ts": [
+    "packages/agent-ui/src/screens/workbench/AgentWorkbench.svelte"
+  ]
+}

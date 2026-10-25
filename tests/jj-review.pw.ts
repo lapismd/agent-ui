@@ -89,8 +89,26 @@ test("Every Empty and Unavailable story uses shadcn Empty with an icon", async (
   for (const entry of entries)
     await test.step(entry.id, async () => {
       await page.goto(`/iframe.html?id=${entry.id}&viewMode=story`);
+      if (
+        entry.id === "jj-navigation-repository-picker--unavailable-selection"
+      ) {
+        const picker = page.getByRole("combobox", {
+          name: "Repository",
+          exact: true,
+        });
+        await expect(picker).toContainText("Unavailable repository · missing");
+        await picker.click();
+        await expect(
+          page.getByRole("option", { name: /^Lapis/ }),
+        ).toBeVisible();
+        return;
+      }
       if (entry.name === "Original Unavailable")
         await page.getByRole("button", { name: /History source:/ }).click();
+      if (entry.id.startsWith("jj-browsing-reference-picker--"))
+        await page
+          .getByRole("combobox", { name: "Repository bookmark or change" })
+          .click();
       const empty = page
         .locator('[data-slot="empty"]:visible')
         .filter({ has: page.locator('[data-ui-part="empty-media"] svg') })
@@ -228,8 +246,9 @@ test("File history delegates exact navigation and blame actions to its host", as
   await page.goto(
     "/iframe.html?id=jj-history-file-history--basic&viewMode=story",
   );
-  await expect(page.locator(".repository-graph-select").first()).toBeVisible();
-  await page.locator(".repository-graph-select").first().click();
+  await page
+    .getByRole("button", { name: "View code at this point", exact: true })
+    .click();
   await page.getByRole("button", { name: "Blame file", exact: true }).click();
   await expect(page.getByTestId("jj-story-state")).toHaveAttribute(
     "data-actions",

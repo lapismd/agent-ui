@@ -1,4 +1,4 @@
-import { expect, userEvent, within } from "storybook/test";
+import { expect, userEvent, waitFor, within } from "storybook/test";
 
 /** Exercise the rendered layout, not only the control's selected value. */
 export async function exerciseProjectLayouts(canvasElement: HTMLElement) {
@@ -13,7 +13,9 @@ export async function exerciseProjectLayouts(canvasElement: HTMLElement) {
     }
   }
   async function toggle(tab: string, list: string) {
-    await userEvent.click(canvas.getByRole("tab", { name: tab }));
+    const control = await canvas.findByRole("tab", { name: tab });
+    await waitFor(() => expect(control).toBeVisible());
+    await userEvent.click(control);
     await canvas.findAllByRole("list", { name: list });
     await expect(
       canvas.getAllByRole("button", { name: /^Show (cards|list)$/ }),
@@ -94,7 +96,9 @@ export async function exerciseProjectLayouts(canvasElement: HTMLElement) {
     ["Repositories", "Repositories"],
   ])
     await toggle(tab, list);
-  await userEvent.click(canvas.getByRole("tab", { name: "Projects" }));
+  const projects = await canvas.findByRole("tab", { name: "Projects" });
+  await waitFor(() => expect(projects).toBeVisible());
+  await userEvent.click(projects);
   await userEvent.click(
     (
       await canvas.findAllByRole("button", {

@@ -38,23 +38,34 @@ describe("Storybook Svelte runtime diagnostics", () => {
     }
   });
 
-  it("records diagnostics even when teardown catches the thrown error", () => {
+  it("retains fatal origin diagnostics while allowing teardown to complete", () => {
     const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
     const diagnostics: string[] = [];
-    const restore = installSvelteRuntimeDiagnosticGuard((message) => {
-      diagnostics.push(message);
-    });
+    const restore = installSvelteRuntimeDiagnosticGuard((message) =>
+      diagnostics.push(message),
+    );
+    let cleaned = false;
     try {
-      try {
+      expect(() => {
         console.warn("[svelte] state_proxy_equality_mismatch");
-      } catch {
-        // Component teardown can catch the immediate error; the test gate
-        // still needs the recorded diagnostic after teardown finishes.
-      }
-      expect(diagnostics).toEqual(["[svelte] state_proxy_equality_mismatch"]);
+        cleaned = true;
+      }).not.toThrow();
+      expect(cleaned).toBe(true);
+      expect(diagnostics).toHaveLength(1);
+      expect(diagnostics[0]).toContain("state_proxy_equality_mismatch");
+      expect(diagnostics[0]).toContain("runtime-diagnostics.test.ts");
     } finally {
       restore();
       warn.mockRestore();
     }
+  });
+  it("does not overwrite a later console wrapper during disposal", () => {
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+    const restore = installSvelteRuntimeDiagnosticGuard();
+    const later = () => {};
+    console.warn = later;
+    restore();
+    expect(console.warn).toBe(later);
+    warn.mockRestore();
   });
 });

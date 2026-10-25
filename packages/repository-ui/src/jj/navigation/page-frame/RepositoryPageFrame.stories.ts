@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/svelte-vite";
-import { expect, userEvent, within } from "storybook/test";
+import { expect, userEvent, waitFor, within } from "storybook/test";
 import Component from "./RepositoryPageFrame.svelte";
 import Demo from "../../../../../../catalog/jj/NavigationDemo.svelte";
 import { Basic as source } from "./RepositoryPageFrame.example-sources.js";
@@ -17,7 +17,9 @@ export const Stacks: Story = {
   render: () => ({ Component: Demo, props: { context: "stacks" } }),
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.click(canvas.getByRole("tab", { name: "Branches" }));
+    const tab = await canvas.findByRole("tab", { name: "Branches" });
+    await waitFor(() => expect(tab).toBeVisible());
+    await userEvent.click(tab);
     await expect(
       canvas.getByRole("heading", { name: "branches" }),
     ).toBeVisible();
@@ -46,11 +48,12 @@ export const Overflow: Story = {
     await userEvent.click(
       await canvas.findByRole("button", { name: "More repository views" }),
     );
-    await userEvent.click(
-      within(canvasElement.ownerDocument.body).getByRole("menuitem", {
-        name: "Reviews",
-      }),
+    const item = await within(canvasElement.ownerDocument.body).findByRole(
+      "menuitem",
+      { name: "Reviews" },
     );
+    await waitFor(() => expect(item).toBeVisible());
+    await userEvent.click(item);
     await expect(
       canvas.getByRole("heading", { name: "reviews" }),
     ).toBeVisible();

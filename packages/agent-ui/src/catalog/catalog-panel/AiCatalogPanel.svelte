@@ -37,7 +37,7 @@
               />{/each}
           </div>
         {:else if !catalog.visibleGroups.length || catalog.error}
-          <Empty.Root
+          <Empty.Root role={catalog.error ? "alert" : undefined}
             ><Empty.Header
               ><Empty.Media variant="icon"
                 ><PackageSearch aria-hidden="true" /></Empty.Media

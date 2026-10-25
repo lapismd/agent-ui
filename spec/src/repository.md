@@ -141,8 +141,8 @@ able to supply typed header, operation, metadata, file and diff actions without
 moving routing, admission or mutation execution into the shared UI. Conflicts
 MUST be read against the selected recorded commit/change pair.
 Known conflicted rows MUST display a Conflicted badge and a subtle semantic
-destructive tint in light and dark themes. Operation paging MUST span its row
-with a centered, muted label.
+destructive tint in light and dark themes. Operation paging MUST span its row,
+including horizontal graph overflow, with a centered, muted label.
 Operation chips MUST remain distinct during selection and use icons for known
 metadata. Dense comparisons MUST include unchanged sections large enough to
 demonstrate the shared diff reader's context expansion and collapse in both

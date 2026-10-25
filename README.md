@@ -28,7 +28,9 @@ accounts or services. Visual review remains separate from functional acceptance.
 
 `pnpm check`, `pnpm test`, `pnpm build`, `pnpm test:storybook`,
 `pnpm test:browser`, `pnpm build-storybook`, `pnpm test:package`, and
-`pnpm spec:check`. `pnpm checks` runs the full sequence.
+`pnpm spec:check`. `pnpm checks` runs the full sequence in one bounded Docker worker. See
+[Local validation](docs/local-validation.md) for explicit native execution,
+archive qualification, resource limits and retained reports.
 Visual review remains pending; no screenshot baselines are updated.
 
 ## Ownership

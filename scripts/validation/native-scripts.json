@@ -1,0 +1,13 @@
+{
+  "storybook": "WATCHPACK_POLLING=250 node scripts/with-storybook-env.mjs node scripts/storybook-run.mjs --no-open --host 127.0.0.1",
+  "storybook:stop": "node scripts/with-storybook-env.mjs bash scripts/storybook-stop.sh",
+  "storybook:restart": "node scripts/with-storybook-env.mjs bash scripts/storybook-restart.sh",
+  "spec:serve": "spec-validator serve",
+  "format": "prettier --write .",
+  "changeset": "changeset",
+  "test:source-parity": "playwright test --config tests/source-parity.config.ts",
+  "validation": "node scripts/validation.mjs",
+  "validation:doctor": "node scripts/validation.mjs doctor",
+  "validation:images": "node scripts/validation.mjs images",
+  "validation:clean": "node scripts/validation.mjs clean"
+}

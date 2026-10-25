@@ -35,9 +35,11 @@ export const Basic: Story = {
     );
     await userEvent.keyboard("{Enter}");
     await expect(args.onChange).toHaveBeenCalledWith("two");
-    await expect(
-      within(canvasElement).getByRole("combobox", { name: "Repository" }),
-    ).toHaveFocus();
+    await waitFor(() =>
+      expect(
+        within(canvasElement).getByRole("combobox", { name: "Repository" }),
+      ).toHaveFocus(),
+    );
   },
 };
 export const OpenLocal: Story = {
@@ -73,6 +75,6 @@ export const Compact: Story = {
       ).toBeVisible(),
     );
     await userEvent.keyboard("{Escape}");
-    await expect(trigger).toHaveFocus();
+    await waitFor(() => expect(trigger).toHaveFocus());
   },
 };

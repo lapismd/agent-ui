@@ -1,3 +1,23 @@
+# Portable tooling qualified
+
+Updated: 2026-10-25T21:45:54Z
+
+Docker-first portable validation and production composition/teardown guards are
+implemented. The final explicit-archive cohort qualifies through a recorded
+composite: 1,944 Storybook/axe passes, 234 units, 144 unchanged browser cases,
+and the complete seven-case repaired reference file (all 151 browser cases). Final
+source/type/format, static catalog, 149 packed examples, specification and
+workflow checks pass. The original aggregate remains failed for the private
+browser navigation timeout; no passing full `pnpm checks` command is invented.
+All production, package, Storybook and other browser inputs remain byte-identical.
+Normal final packs match all 333 Agent UI and 699 Repository UI public files in
+the provisional Desktop cohort. The Catalog alert, Op Log paging and upstream
+Design Core content-fit regressions are repaired and independently recorded.
+Frozen registry installation remains blocked by unpublished jj-history. Native
+source parity/host behavior, visual approval and publication remain separate.
+Evidence: `spec/records/2026-10-25-docker-validation.md` and
+`spec/records/2026-10-25-browser-readiness.md`.
+
 # Delivery and review
 
 The global Threads inbox now has a read-only registered-home controller,
