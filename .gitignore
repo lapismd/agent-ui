@@ -9,6 +9,8 @@ playwright-report/
 test-results/
 .local/
 *.tgz
+!.release/
+!.release/*.tgz
 .cache/
 .env.storybook.local
 *.local-check.txt
