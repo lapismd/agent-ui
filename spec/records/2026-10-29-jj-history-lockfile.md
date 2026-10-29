@@ -30,14 +30,19 @@ Frozen install resolves `@lapismd/jj-history@0.1.0` and
 `@lapismd/design-core@0.7.0`. `pnpm check` passes (spec validate, architecture,
 source layout, svelte-check, format).
 
-## Follow-up — Branches content-fit browser coverage
+## Follow-up — browser coverage on Design Core 0.7.0
 
-Hosted `pnpm test:browser` failed once on
-`resize rail toggles content fit and default width without changing selection`
-with `aria-valuenow` stuck at `380` after double-click. Column content-fit only
-measures nodes with client rects; the overflowing
-`review/long-branch-name` row can sit below the fold on CI. The browser test now
-scrolls that row into view before fit. Local re-run of the exact case passed.
+Hosted `pnpm test:browser` failed on:
+
+1. Branches content-fit — `aria-valuenow` stayed at `380` after double-click.
+   Content-fit only measures nodes with client rects; the overflowing
+   `review/long-branch-name` row can sit below the fold. The browser test now
+   waits for fonts, scrolls that row into view, asserts label overflow, then
+   fits with a longer poll. Catalog browser retries once under `CI`.
+2. Saved-file icon — `FilePreview` story play closed the panel before the
+   iframe browser assertion ran. Play now leaves the panel open; close coverage
+   moved to `FilePreviewClose`. Local exact cases and Turn-changes Storybook
+   interactions (11) pass.
 
 ## Contract
 

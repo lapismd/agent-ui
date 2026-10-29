@@ -80,7 +80,8 @@ test("saved-file preview uses the shared icon in its header", async ({
     name: "Saved changes to notes/review.md",
     exact: true,
   });
-  await expect(
-    preview.locator("header [data-file-type-icon='markdown']"),
-  ).toHaveCSS("width", "16px");
+  await expect(preview).toBeVisible({ timeout: 15_000 });
+  const icon = preview.locator("header [data-file-type-icon='markdown']");
+  await expect(icon).toBeVisible();
+  await expect(icon).toHaveCSS("width", "16px");
 });

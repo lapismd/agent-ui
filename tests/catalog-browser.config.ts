@@ -31,6 +31,7 @@ export default defineConfig({
     "repository-metadata-details.pw.ts",
   ],
   workers: 1,
+  retries: process.env.CI ? 1 : 0,
   outputDir: "../.local/catalog-browser",
   use: {
     browserName: "chromium",

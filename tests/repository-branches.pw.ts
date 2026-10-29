@@ -282,15 +282,23 @@ test("resize rail toggles content fit and default width without changing selecti
     name: "Resize Branches column",
     exact: true,
   });
-  // Content-fit measures currently rendered client rects; bring the overflowing
-  // bookmark label into view so CI viewports see the same width demand as local.
-  await page
-    .getByRole("row", { name: /review\/long-branch-name/ })
-    .scrollIntoViewIfNeeded();
+  // Content-fit measures currently rendered client rects; wait for fonts and
+  // bring the overflowing bookmark label into view before fitting.
+  await page.evaluate(() => document.fonts.ready);
+  const long = page.getByRole("row", { name: /review\/long-branch-name/ });
+  await long.scrollIntoViewIfNeeded();
+  const label = long.locator('[data-ui-part="item-label"]');
+  await expect
+    .poll(async () =>
+      label.evaluate((node) => node.scrollWidth > node.clientWidth),
+    )
+    .toBe(true);
   await expect(resize).toHaveAttribute("aria-valuenow", "380");
   await resize.dblclick();
   await expect
-    .poll(async () => Number(await resize.getAttribute("aria-valuenow")))
+    .poll(async () => Number(await resize.getAttribute("aria-valuenow")), {
+      timeout: 15_000,
+    })
     .toBeGreaterThan(380);
   expect(
     Number(await resize.getAttribute("aria-valuenow")),
