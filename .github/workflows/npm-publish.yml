@@ -1,0 +1,119 @@
+name: Publish npm packages
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing immutable version tag to publish
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: agent-ui-npm-publish-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
+env:
+  AGENT_UI_VALIDATION_RUNTIME: native
+
+jobs:
+  package-gate:
+    name: Validate and pack packages
+    runs-on: ubuntu-latest
+    outputs:
+      artifact_name: ${{ steps.release.outputs.artifact_name }}
+      version: ${{ steps.release.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ inputs.tag || github.ref }}
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: mdbook@0.5.4
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Validate release identity
+        id: release
+        run: |
+          version="$(node --input-type=module -e "import manifest from './packages/agent-ui/package.json' with { type: 'json' }; console.log(manifest.version)")"
+          repo_version="$(node --input-type=module -e "import manifest from './packages/repository-ui/package.json' with { type: 'json' }; console.log(manifest.version)")"
+          tag="${{ inputs.tag || github.ref_name }}"
+          tag_version="${tag#v}"
+          test "$version" = "$repo_version"
+          test "$tag_version" = "$version"
+          {
+            echo "artifact_name=agent-ui-release-${GITHUB_SHA}"
+            echo "version=$version"
+          } >> "$GITHUB_OUTPUT"
+
+      - run: pnpm build
+      - run: pnpm test:package
+
+      - name: Pack both packages
+        run: |
+          mkdir -p .release
+          pnpm --filter @lapismd/agent-ui exec npm pack --ignore-scripts --pack-destination "$GITHUB_WORKSPACE/.release"
+          pnpm --filter @lapismd/repository-ui exec npm pack --ignore-scripts --pack-destination "$GITHUB_WORKSPACE/.release"
+          ls -la .release/*.tgz
+          test "$(find .release -name '*.tgz' | wc -l | tr -d ' ')" = "2"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.release.outputs.artifact_name }}
+          path: .release/*.tgz
+          if-no-files-found: error
+          retention-days: 14
+
+  publish-production:
+    name: Publish with npm trusted publishing
+    needs: package-gate
+    runs-on: ubuntu-latest
+    environment:
+      name: npm-production
+    permissions:
+      contents: read
+      id-token: write
+    strategy:
+      fail-fast: false
+      matrix:
+        package: [agent-ui, repository-ui]
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+
+      - run: npm install --global npm@12.0.2
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.package-gate.outputs.artifact_name }}
+          path: .release
+
+      - name: Publish ${{ matrix.package }}
+        run: |
+          shopt -s nullglob
+          tarball=(.release/lapismd-${{ matrix.package }}-*.tgz)
+          test "${#tarball[@]}" -eq 1
+          published="$(npm view "@lapismd/${{ matrix.package }}@${{ needs.package-gate.outputs.version }}" version --registry=https://registry.npmjs.org 2>/dev/null || true)"
+          if [ "$published" = "${{ needs.package-gate.outputs.version }}" ]; then
+            echo "Already published @lapismd/${{ matrix.package }}@${{ needs.package-gate.outputs.version }}"
+            exit 0
+          fi
+          npm publish "${tarball[0]}" --provenance --access public --registry=https://registry.npmjs.org
