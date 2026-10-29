@@ -64,7 +64,7 @@ try {
         ...dependencies,
         svelte: "5.57.2",
         "@lucide/svelte": "^1.57.0",
-        "@lapismd/design-core": "^0.6.0",
+        "@lapismd/design-core": "^0.7.0",
         "@lapismd/jj-history": "^0.1.0",
       },
       devDependencies: {
