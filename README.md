@@ -1,7 +1,14 @@
 # LapisMD Agent and Repository UI
 
+[![Publish npm packages](https://github.com/lapismd/agent-ui/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/lapismd/agent-ui/actions/workflows/npm-publish.yml)
+[![Storybook Pages](https://github.com/lapismd/agent-ui/actions/workflows/publish-storybook-pages.yml/badge.svg)](https://github.com/lapismd/agent-ui/actions/workflows/publish-storybook-pages.yml)
+[![npm version](https://img.shields.io/npm/v/@lapismd/agent-ui.svg)](https://www.npmjs.com/package/@lapismd/agent-ui)
+[![Storybook](https://img.shields.io/badge/storybook-live-ff4785?logo=storybook&logoColor=white)](https://lapismd.github.io/agent-ui/)
+
 Two Svelte 5 libraries compose public Design Core primitives into complete
 controller-driven screens. Hosts supply execution and persistence through ports.
+
+Live catalog: <https://lapismd.github.io/agent-ui/>.
 
 ## Applications consume complete screens
 

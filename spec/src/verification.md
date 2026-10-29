@@ -39,8 +39,10 @@ Commands, counts and visual limits are recorded in
 `spec/records/2026-10-22-transcript-completeness.md` and
 `spec/records/2026-10-22-desktop-jj-review.md`. Standalone Agent settings pages are
 excluded. Local downstream icon/dependency refresh is user-authorized in the
-filename icon closeout record. Publication and deployment remain pending.
-User approval of the Agent presentation remains pending.
+filename icon closeout record. npm package publication remains pending. The
+Storybook catalog deploys from `main` to <https://lapismd.github.io/agent-ui/>;
+see `spec/records/2026-10-29-storybook-pages.md`. User approval of the Agent
+presentation remains pending.
 
 The progressive history graph and source-style query-help follow-up for
 RUI-HISTORY-001 / AUI-GOV-003 is recorded in

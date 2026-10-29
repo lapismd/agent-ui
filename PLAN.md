@@ -40,7 +40,7 @@ host can keep a failed draft open and allow an explicit save retry.
 | Stacks and Workspace presentation           | Awaiting screen review | Source-adapted lanes, unstaged/source files, target history and adjacent diff review      |
 | Workspace drag/drop and keyboard transfers  | Awaiting screen review | Native sources/targets, exact host requests and an interactive preview/Apply/Cancel demo  |
 | Stack PR details and workflow actions       | Awaiting screen review | PR above diff, retained floating editor, source action bars and commit composer           |
-| Downstream adoption and publication         | Review gate            | No application/service changes, deployment or publication                                 |
+| Downstream adoption and publication         | Review gate            | Storybook catalog Pages is authorized; npm publication and app deployment stay gated      |
 
 The user authorized the Desktop-first JJ slice and requested a pause for review
 before continuing. AGENTS.md records the current source-copy, AppShell/Column
