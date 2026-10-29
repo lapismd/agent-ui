@@ -1,5 +1,8 @@
 name: Verify packages and review catalog
 on: [push, pull_request]
+concurrency:
+  group: verify-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   verify:
     runs-on: ubuntu-latest
