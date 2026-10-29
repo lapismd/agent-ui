@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.1",
-    "@lapismd/design-core": "^0.6.0",
+    "@lapismd/design-core": "^0.7.0",
     "@lapismd/mira": "~0.1.0",
     "@lapismd/spec-validator": "^0.1.4",
     "@lucide/svelte": "^1.57.0",

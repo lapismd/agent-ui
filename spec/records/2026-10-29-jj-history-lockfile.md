@@ -1,14 +1,19 @@
-# Refresh lockfile for published jj-history
+# Refresh registry pins for jj-history and Design Core 0.7.0
 
 Date: 2026-10-29  
-Revision: enclosing Jujutsu change on `fix/jj-history-lockfile`
+Revision: enclosing Jujutsu changes on `fix/jj-history-lockfile`
 
 ## Scope
 
-GitHub Actions `check.yml` failed on `pnpm install --frozen-lockfile` after
-`lapismd/agent-ui` main landed at `0e549ebc`. Root and
-`packages/repository-ui` already declare `@lapismd/jj-history@^0.1.0`, but the
-committed lockfile omitted that specifier while the package was unpublished.
+GitHub Actions `check.yml` failed after `lapismd/agent-ui` main landed at
+`0e549ebc`:
+
+1. `pnpm install --frozen-lockfile` — root and `packages/repository-ui` declare
+   `@lapismd/jj-history@^0.1.0`, but the lockfile omitted that specifier while
+   the package was unpublished.
+2. `pnpm check` / `spec:validate` — `AUI-DOCS-TOKEN-DEFAULT` against Design Core
+   `0.6.0` source. Chat token contracts reference files and `var(--…, default)`
+   fallbacks that exist in published Design Core `0.7.0`.
 
 ## Validation
 
@@ -18,12 +23,15 @@ npm view @lapismd/jj-history version
 
 pnpm install
 pnpm install --frozen-lockfile
+AGENT_UI_VALIDATION_RUNTIME=native pnpm check
 ```
 
-Frozen install succeeds with `@lapismd/jj-history@0.1.0` resolved from the
-registry.
+Frozen install resolves `@lapismd/jj-history@0.1.0` and
+`@lapismd/design-core@0.7.0`. `pnpm check` passes (spec validate, architecture,
+source layout, svelte-check, format).
 
 ## Contract
 
-Unchanged. No production source change; lockfile intake of the published
-`@lapismd/jj-history@0.1.0` only.
+Unchanged production UI contracts. Registry intake of published
+`@lapismd/jj-history@0.1.0` and Design Core minimum bump `^0.6.0` → `^0.7.0`
+for token-source parity.
