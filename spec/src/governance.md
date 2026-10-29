@@ -191,7 +191,7 @@ See [local validation](../../docs/local-validation.md) for commands and scope.
 
 ### Acceptance details
 
-- `turbo.json` MUST enable signed remote caching that fails open, `futureFlags.longerSignatureKey`, and a `CI` global environment.
+- `turbo.json` MUST enable signed remote caching that fails open, `futureFlags.longerSignatureKey`, a `CI` global environment, and loose environment mode so hosted tasks keep `AGENT_UI_VALIDATION_RUNTIME`.
 - Default concurrency MUST be half the available processors capped at four, with a validated `TURBO_CONCURRENCY` override.
 - Remote cache credentials MUST come from CI secrets and MUST NOT be logged.
 - Workspace package, catalog, Storybook, test, script and specification inputs MUST invalidate root task caches.

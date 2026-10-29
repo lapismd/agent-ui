@@ -9,6 +9,7 @@
     "longerSignatureKey": true
   },
   "globalEnv": ["CI"],
+  "envMode": "loose",
   "globalDependencies": [
     "packages/**",
     "catalog/**",

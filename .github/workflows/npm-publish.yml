@@ -67,16 +67,16 @@ jobs:
 
       - name: Pack both packages
         run: |
-          mkdir -p .release
-          pnpm --filter @lapismd/agent-ui exec npm pack --ignore-scripts --pack-destination "$GITHUB_WORKSPACE/.release"
-          pnpm --filter @lapismd/repository-ui exec npm pack --ignore-scripts --pack-destination "$GITHUB_WORKSPACE/.release"
-          ls -la .release/*.tgz
-          test "$(find .release -name '*.tgz' | wc -l | tr -d ' ')" = "2"
+          mkdir -p "$GITHUB_WORKSPACE/.release"
+          (cd packages/agent-ui && npm pack --ignore-scripts --pack-destination "$GITHUB_WORKSPACE/.release")
+          (cd packages/repository-ui && npm pack --ignore-scripts --pack-destination "$GITHUB_WORKSPACE/.release")
+          ls -la "$GITHUB_WORKSPACE/.release"/*.tgz
+          test "$(find "$GITHUB_WORKSPACE/.release" -name '*.tgz' | wc -l | tr -d ' ')" = "2"
 
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ steps.release.outputs.artifact_name }}
-          path: .release/*.tgz
+          path: ${{ github.workspace }}/.release/*.tgz
           if-no-files-found: error
           retention-days: 14
 

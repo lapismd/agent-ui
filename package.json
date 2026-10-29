@@ -52,7 +52,7 @@
     "@lapismd/design-core": "^0.7.0",
     "@lapismd/jj-history": "^0.1.0",
     "@lapismd/mira": "~0.1.0",
-    "@lapismd/spec-validator": "^0.1.4",
+    "@lapismd/spec-validator": "^0.2.0",
     "@lucide/svelte": "^1.57.0",
     "@playwright/test": "1.61.1",
     "@storybook/addon-a11y": "10.5.7",

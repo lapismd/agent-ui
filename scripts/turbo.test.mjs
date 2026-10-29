@@ -43,6 +43,7 @@ test("turbo.json matches the signed Design Core task-graph shape", () => {
   assert.equal(config.remoteCache.uploadTimeout, 30);
   assert.equal(config.futureFlags.longerSignatureKey, true);
   assert.deepEqual(config.globalEnv, ["CI"]);
+  assert.equal(config.envMode, "loose");
   assert.equal(config.tasks["//#ci:governance"].cache, false);
   assert.equal(config.tasks["//#ci:storybook-interaction"].dependsOn, undefined);
   assert.equal(config.tasks["//#ci:browser"].dependsOn, undefined);

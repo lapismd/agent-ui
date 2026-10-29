@@ -25,8 +25,17 @@ Validation:
 - `node --test scripts/turbo.test.mjs scripts/validation.test.mjs`: 16 passed.
 - `actionlint .github/workflows/check.yml`: passed.
 - `node scripts/architecture.mjs`: passed.
-- `AGENT_UI_VALIDATION_RUNTIME=native pnpm spec:check`: passed, including
-  spec-first.
+- `AGENT_UI_VALIDATION_RUNTIME=native pnpm spec:check`: passed on
+  `@lapismd/spec-validator` 0.2.0, including spec-first.
 - `pnpm exec turbo run ci:storybook-interaction ci:browser ci:governance --dry-run`:
   three root tasks, no dependencies between Storybook interaction and browser
   acceptance, and `ci:governance` cache disabled.
+- The first hosted run failed immediately with `spawnSync jj ENOENT` because
+  Turbo 2.11 strict mode hid `AGENT_UI_VALIDATION_RUNTIME` and the lanes entered
+  the Docker path. `envMode` is `loose` so those lanes stay on the explicit
+  native runtime.
+- `@lapismd/spec-validator` moves from `^0.1.4` (resolved 0.1.4) to `^0.2.0`,
+  the latest registry version and the same caret range Design Core uses.
+- npm publish packs with `npm pack --pack-destination` into
+  `$GITHUB_WORKSPACE/.release` so the release artifact upload can see both
+  tarballs.
