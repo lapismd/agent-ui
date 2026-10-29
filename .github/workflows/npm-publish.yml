@@ -29,16 +29,16 @@ jobs:
       artifact_name: ${{ steps.release.outputs.artifact_name }}
       version: ${{ steps.release.outputs.version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
           ref: ${{ inputs.tag || github.ref }}
 
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version-file: .node-version
+          node-version: 24
           cache: pnpm
           registry-url: https://registry.npmjs.org
 
@@ -94,7 +94,7 @@ jobs:
       matrix:
         package: [agent-ui, repository-ui]
     steps:
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org
