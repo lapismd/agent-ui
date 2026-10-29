@@ -282,6 +282,11 @@ test("resize rail toggles content fit and default width without changing selecti
     name: "Resize Branches column",
     exact: true,
   });
+  // Content-fit measures currently rendered client rects; bring the overflowing
+  // bookmark label into view so CI viewports see the same width demand as local.
+  await page
+    .getByRole("row", { name: /review\/long-branch-name/ })
+    .scrollIntoViewIfNeeded();
   await expect(resize).toHaveAttribute("aria-valuenow", "380");
   await resize.dblclick();
   await expect
