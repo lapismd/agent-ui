@@ -12,6 +12,7 @@ standalone and completed screens; consumer admission states remain host-owned.
 | AUI-GOV-001     | Implemented | Architecture and clean public-package acceptance; Agent review record                                                                                                                                                                                                                 |
 | AUI-GOV-002     | Partial     | Five complete in-memory screens; downstream review gate retained                                                                                                                                                                                                                      |
 | AUI-GOV-003     | Implemented | Spec checks, source ledger and before/after counts                                                                                                                                                                                                                                    |
+| AUI-GOV-004     | Implemented | Hosted Turbo lanes in parallel; `spec/records/2026-10-29-verify-parallel.md`                                                                                                                                                                                                          |
 | AUI-CHAT-001    | Partial     | 81 documented layouts; comment draft/context acceptance in `spec/records/2026-10-22-comment-draft-review.md`; pixel review pending                                                                                                                                                    |
 | AUI-CHAT-002    | Implemented | Exact submission/status and retained-draft controller regressions                                                                                                                                                                                                                     |
 | AUI-CHAT-003    | Implemented | Outlined request cards and pinned local-dismissal panel; `spec/records/2026-10-22-pinned-permission-panel.md`                                                                                                                                                                         |
@@ -42,7 +43,8 @@ excluded. Local downstream icon/dependency refresh is user-authorized in the
 filename icon closeout record. npm package publication remains pending. The
 Storybook catalog deploys from `main` to <https://lapismd.github.io/agent-ui/>;
 see `spec/records/2026-10-29-storybook-pages.md`. User approval of the Agent
-presentation remains pending.
+presentation remains pending. Hosted lane parallelism
+under AUI-GOV-004 is recorded in `spec/records/2026-10-29-verify-parallel.md`.
 
 The progressive history graph and source-style query-help follow-up for
 RUI-HISTORY-001 / AUI-GOV-003 is recorded in

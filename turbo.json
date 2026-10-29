@@ -1,0 +1,53 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "remoteCache": {
+    "signature": true,
+    "timeout": 10,
+    "uploadTimeout": 30
+  },
+  "futureFlags": {
+    "longerSignatureKey": true
+  },
+  "globalEnv": ["CI"],
+  "envMode": "loose",
+  "globalDependencies": [
+    "packages/**",
+    "catalog/**",
+    ".storybook/**",
+    "tests/**",
+    "scripts/**",
+    "spec/**",
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml",
+    "package.json",
+    "vitest.config.ts",
+    "vite.config.ts",
+    "tsconfig.json",
+    "spec-validator.config.mjs",
+    ".node-version"
+  ],
+  "tasks": {
+    "//#ci:governance": {
+      "cache": false,
+      "outputs": []
+    },
+    "//#ci:quality": {
+      "outputs": []
+    },
+    "//#ci:unit": {
+      "outputs": []
+    },
+    "//#ci:package": {
+      "outputs": []
+    },
+    "//#ci:storybook-static": {
+      "outputs": ["storybook-static/**"]
+    },
+    "//#ci:storybook-interaction": {
+      "outputs": []
+    },
+    "//#ci:browser": {
+      "outputs": []
+    }
+  }
+}

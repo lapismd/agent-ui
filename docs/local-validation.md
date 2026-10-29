@@ -78,3 +78,12 @@ only terminal workers owned by this checkout. Unknown, prepared, paused or
 active workers retain their lease. No global prune runs. Native host integration,
 source parity, visual approval, publication and installed-app replacement remain
 separate gates; this runner does not claim them.
+
+## Hosted verification
+
+GitHub verification runs these lanes through Turbo on separate runners.
+`pnpm test:storybook` and `pnpm test:browser` run at the same time there:
+Vitest uses browser API port 63315, and the catalog browser binds Storybook to
+port 7498. `pnpm storybook:check` keeps them sequential inside the one bounded
+worker, which shares `node_modules/.vite`. `pnpm spec:check` remains mandatory
+and uncached. See AUI-GOV-004.

@@ -38,13 +38,21 @@
     "validation": "node scripts/validation.mjs",
     "validation:doctor": "node scripts/validation.mjs doctor",
     "validation:images": "node scripts/validation.mjs images",
-    "validation:clean": "node scripts/validation.mjs clean"
+    "validation:clean": "node scripts/validation.mjs clean",
+    "ci:governance": "pnpm spec:check",
+    "ci:quality": "pnpm check",
+    "ci:unit": "pnpm test",
+    "ci:package": "pnpm build && pnpm test:package",
+    "ci:storybook-static": "pnpm build-storybook",
+    "ci:storybook-interaction": "pnpm test:storybook",
+    "ci:browser": "pnpm test:browser"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.1",
     "@lapismd/design-core": "^0.7.0",
+    "@lapismd/jj-history": "^0.1.0",
     "@lapismd/mira": "~0.1.0",
-    "@lapismd/spec-validator": "^0.1.4",
+    "@lapismd/spec-validator": "^0.2.0",
     "@lucide/svelte": "^1.57.0",
     "@playwright/test": "1.61.1",
     "@storybook/addon-a11y": "10.5.7",
@@ -70,9 +78,9 @@
     "storybook": "10.5.7",
     "svelte": "5.57.2",
     "svelte-check": "^4.3.1",
+    "turbo": "^2.11.10",
     "typescript": "~5.9.3",
     "vite": "8.3.5",
-    "vitest": "4.1.11",
-    "@lapismd/jj-history": "^0.1.0"
+    "vitest": "4.1.11"
   }
 }
