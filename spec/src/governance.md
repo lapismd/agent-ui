@@ -104,7 +104,12 @@ application composition without duplicate ancestry or contextual tabs; Stacks
 also exposes local view-tab visibility while retaining its workspace/actions. Missing native capabilities MUST remain explicit; missing
 generic extension points belong in the owning library. JJ Desktop is the first
 explicitly authorized consumer, including source-adapted shared appearance and
-settings presentation. Other adoption and publication remain separate decisions.
+settings presentation. Other adoption and package publication remain separate
+decisions. The Storybook catalog MUST publish from `main` to
+<https://lapismd.github.io/agent-ui/> through
+`.github/workflows/publish-storybook-pages.yml`. The repository README MUST link
+that catalog and the npm-publish and Pages workflows. npm package publication
+MUST remain a separate trusted-publish decision.
 
 The user authorized Stacks and Workspace presentation after Branches. The new
 families MUST copy the source canvas/lane/card/files/history geometry, reuse the
