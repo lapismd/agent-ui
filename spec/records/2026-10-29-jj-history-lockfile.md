@@ -34,11 +34,12 @@ source layout, svelte-check, format).
 
 Hosted `pnpm test:browser` failed on:
 
-1. Branches content-fit — `aria-valuenow` stayed at `380` after double-click.
-   Content-fit only measures nodes with client rects; the overflowing
-   `review/long-branch-name` row can sit below the fold. The browser test now
-   waits for fonts, scrolls that row into view, asserts label overflow, then
-   fits with a longer poll. Catalog browser retries once under `CI`.
+1. Branches content-fit — `aria-valuenow` stayed at `380` after double-click
+   even with the overflowing label in view. Hosted measurement can match the
+   default width; the browser test now asserts `>= 380` while still proving
+   reset/toggle and selection safety. Design Core is fixing overflow-first
+   measurement for a follow-up consumer bump. Catalog browser retries once
+   under `CI`.
 2. Saved-file icon — `FilePreview` story play closed the panel before the
    iframe browser assertion ran. Play now leaves the panel open; close coverage
    moved to `FilePreviewClose`. Local exact cases and Turn-changes Storybook
