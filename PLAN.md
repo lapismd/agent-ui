@@ -1,3 +1,11 @@
+# Hosted verify
+
+Updated: 2026-10-29
+
+Hosted verification fans the existing lanes across runners. Storybook interaction
+and browser acceptance run together. Evidence:
+`spec/records/2026-10-29-verify-parallel.md`.
+
 # Portable tooling qualified
 
 Updated: 2026-10-25T21:45:54Z

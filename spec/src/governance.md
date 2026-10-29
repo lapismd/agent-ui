@@ -183,6 +183,19 @@ retain every case in all four modes, and reject duplicate, missing or inconsiste
 case identities. Focused selectors MUST remain literal and failures MUST NOT retry.
 See [local validation](../../docs/local-validation.md) for commands and scope.
 
+## AUI-GOV-004 — Hosted verification
+
+**Requirement.** Hosted verification MUST run the existing package, catalog, browser and specification lanes through a bounded Turbo task graph on separate runners, then report one `verify` result. `spec:check` MUST run on every hosted verification and MUST NOT be cached.
+
+`test:storybook` and `test:browser` MUST run at the same time on hosted runners. Vitest browser mode uses API port 63315 and writes `.local/validation/storybook`; cold browser acceptance binds Storybook to port 7498 and writes `.local/catalog-browser`. The portable `storybook:check` lane MUST keep those commands sequential because one worker shares `node_modules/.vite` and the bounded CPU and memory budget. Root scripts MUST be Turbo root tasks (`//#`) so the package workspaces cannot satisfy them by skipping a missing script.
+
+### Acceptance details
+
+- `turbo.json` MUST enable signed remote caching that fails open, `futureFlags.longerSignatureKey`, and a `CI` global environment.
+- Default concurrency MUST be half the available processors capped at four, with a validated `TURBO_CONCURRENCY` override.
+- Remote cache credentials MUST come from CI secrets and MUST NOT be logged.
+- Workspace package, catalog, Storybook, test, script and specification inputs MUST invalidate root task caches.
+
 ## AUI-GOV-003 — Evidence
 
 **Requirement.** Protected changes MUST update their owning contract and verification evidence. Functional and accessibility failures MUST remain explicit; visual baselines MUST NOT change without approval.

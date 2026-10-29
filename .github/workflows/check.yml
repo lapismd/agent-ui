@@ -1,10 +1,26 @@
 name: Verify packages and review catalog
+
 on: [push, pull_request]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: agent-ui-verify-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  AGENT_UI_VALIDATION_RUNTIME: native
+  TURBO_API: ${{ vars.TURBO_API }}
+  TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+  TURBO_REMOTE_CACHE_SIGNATURE_KEY: ${{ secrets.TURBO_REMOTE_CACHE_SIGNATURE_KEY }}
+
 jobs:
-  verify:
+  governance:
+    name: Governance
     runs-on: ubuntu-latest
-    env:
-      AGENT_UI_VALIDATION_RUNTIME: native
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -18,12 +34,140 @@ jobs:
         with:
           tool: mdbook@0.5.4
       - run: pnpm install --frozen-lockfile
+      - run: node scripts/run-turbo.mjs ci:governance --summarize
+      - run: node scripts/report-turbo-cache.mjs --github-summary
+
+  quality:
+    name: Quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: mdbook@0.5.4
+      - run: pnpm install --frozen-lockfile
+      - run: node scripts/run-turbo.mjs ci:quality --summarize
+      - run: node scripts/report-turbo-cache.mjs --github-summary
+
+  unit:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: node scripts/run-turbo.mjs ci:unit --summarize
+      - run: node scripts/report-turbo-cache.mjs --github-summary
+
+  package:
+    name: Package acceptance
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: node scripts/run-turbo.mjs ci:package --summarize
+      - run: node scripts/report-turbo-cache.mjs --github-summary
+
+  storybook-static:
+    name: Static Storybook
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: node scripts/run-turbo.mjs ci:storybook-static --summarize
+      - run: node scripts/report-turbo-cache.mjs --github-summary
+
+  storybook-interaction:
+    name: Storybook interactions
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install --with-deps chromium
-      - run: pnpm check
-      - run: pnpm test
-      - run: pnpm build
-      - run: pnpm test:storybook
-      - run: pnpm test:browser
-      - run: pnpm build-storybook
-      - run: pnpm test:package
-      - run: pnpm spec:check
+      - run: node scripts/run-turbo.mjs ci:storybook-interaction --summarize
+      - run: node scripts/report-turbo-cache.mjs --github-summary
+
+  browser:
+    name: Browser acceptance
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: node scripts/run-turbo.mjs ci:browser --summarize
+      - run: node scripts/report-turbo-cache.mjs --github-summary
+
+  verify:
+    if: always()
+    needs:
+      - governance
+      - quality
+      - unit
+      - package
+      - storybook-static
+      - storybook-interaction
+      - browser
+    runs-on: ubuntu-latest
+    steps:
+      - name: Aggregate blocking validation lanes
+        env:
+          GOVERNANCE: ${{ needs.governance.result }}
+          QUALITY: ${{ needs.quality.result }}
+          UNIT: ${{ needs.unit.result }}
+          PACKAGE: ${{ needs.package.result }}
+          STORYBOOK_STATIC: ${{ needs.storybook-static.result }}
+          STORYBOOK_INTERACTION: ${{ needs.storybook-interaction.result }}
+          BROWSER: ${{ needs.browser.result }}
+        run: |
+          set -euo pipefail
+          results=(
+            "$GOVERNANCE"
+            "$QUALITY"
+            "$UNIT"
+            "$PACKAGE"
+            "$STORYBOOK_STATIC"
+            "$STORYBOOK_INTERACTION"
+            "$BROWSER"
+          )
+          for result in "${results[@]}"; do
+            if [ "$result" != "success" ]; then
+              echo "A required Agent UI validation lane finished with: $result" >&2
+              exit 1
+            fi
+          done
+          echo "All blocking Agent UI validation lanes passed."
