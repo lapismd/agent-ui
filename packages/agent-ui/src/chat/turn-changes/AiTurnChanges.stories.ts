@@ -29,6 +29,8 @@ export const Basic: Story = {
 };
 export const FilePreview: Story = {
   play: async ({ canvasElement }) => {
+    // Keep the saved-file panel open: catalog browser coverage and iframe
+    // consumers assert the header icon after play completes.
     const title = canvasElement.querySelector(".history-file .file-title");
     await waitFor(() =>
       expect(
@@ -38,6 +40,17 @@ export const FilePreview: Story = {
     await expect(
       title?.querySelector('[data-ui-component="file-type-icon"]'),
     ).toHaveAttribute("data-size", "md");
+  },
+  render: () => ({ Component: Fixture, props: { file: true } }),
+};
+export const FilePreviewClose: Story = {
+  play: async ({ canvasElement }) => {
+    const title = canvasElement.querySelector(".history-file .file-title");
+    await waitFor(() =>
+      expect(
+        title?.querySelector('[data-file-type-icon="markdown"]'),
+      ).toBeVisible(),
+    );
     await userEvent.click(
       within(canvasElement).getByRole("button", { name: "Close saved file" }),
     );

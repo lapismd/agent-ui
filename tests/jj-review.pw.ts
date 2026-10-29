@@ -48,7 +48,9 @@ test("JJ docs load every foundation without failed dynamic modules", async ({
   page,
   request,
 }) => {
-  test.setTimeout(180000);
+  // Hosted Storybook compiles each docs entry on the shared worker; Stacks and
+  // other complete screens need well over three minutes for the full JJ set.
+  test.setTimeout(600_000);
   const response = await request.get("/index.json");
   const index = await response.json();
   const docs = Object.values(index.entries).filter(
@@ -63,12 +65,18 @@ test("JJ docs load every foundation without failed dynamic modules", async ({
   expect(docs).toHaveLength(families.families.length);
   for (const entry of docs)
     await test.step(entry.title, async () => {
-      await page.goto(`/iframe.html?id=${entry.id}&viewMode=docs`);
-      await expect(page.locator(".sbdocs-content h1").first()).toBeVisible({
-        timeout: 30000,
+      await page.goto(`/iframe.html?id=${entry.id}&viewMode=docs`, {
+        waitUntil: "domcontentloaded",
       });
-      await expect(page.locator("#usage")).toBeVisible();
-      await expect(page.getByRole("table").first()).toBeVisible();
+      // Hosted Storybook can take longer than a cold local run to compile
+      // complete-screen docs (Stacks) on the shared worker.
+      await expect(page.locator(".sbdocs-content h1").first()).toBeVisible({
+        timeout: 90_000,
+      });
+      await expect(page.locator("#usage")).toBeVisible({ timeout: 30_000 });
+      await expect(page.getByRole("table").first()).toBeVisible({
+        timeout: 30_000,
+      });
       await expect(page.locator(".sb-errordisplay")).not.toBeVisible();
       await expect(page.locator(".sbdocs-content")).not.toContainText(
         "Failed to fetch dynamically imported module",
