@@ -45,6 +45,13 @@ Busy response with a real simulated stop acknowledgement.
 
 <Canvas of={Stories.BusyStop} />
 
+### HostOwnedDraft
+
+The host owns the composer draft while the transcript controller owns comments.
+Its supported send callback receives the exact draft without a mirrored message.
+
+<Canvas of={Stories.HostOwnedDraft} />
+
 ### SendCapabilityWithdrawn
 
 A busy host without send capability retains Stop and the exact unsent draft.

@@ -168,7 +168,9 @@ semantics.
 Portable root scripts MUST default to bounded Docker execution with explicit
 native selection and no automatic host fallback. Exact source and ancestry,
 registry-frozen installation and explicit checksum-qualified archive projection
-MUST remain distinguishable. Source/history guards reject private/model/cache
+MUST remain distinguishable. Source-bearing audit archives MUST retain identical
+public runtime payloads and be recorded separately from distribution artifacts.
+Source/history guards reject private/model/cache
 payloads, while the tracked public port example retains a verified schema.
 Tool image and JavaScript dependency caches MUST have separate identities.
 Workers MUST use an init reaper, drop capabilities, prove actual permission
@@ -214,6 +216,8 @@ A passing focused retry MUST retain earlier failed/interrupted aggregate counts
 and MUST NOT qualify cold startup through a warm-server run alone.
 Catalog naming corrections MUST retain the unchanged content-state audit and
 production-action assertions, with the original classification failure recorded.
+Controlled-composer acceptance MUST also cover a host-owned draft independently
+of the transcript comment controller, with exact text and callback counts.
 Personal settings stories MUST use the completed settings page and public host
 controller, exercising retained edits, unknown outcomes, conflict reconciliation,
 avatar selection, compact footer menus and icon Empty/Skeleton states.
