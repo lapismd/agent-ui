@@ -1,5 +1,8 @@
 # Governance
 
+Specification discovery uses `pnpm spec:search` with semantic QMD retrieval;
+doctor and a real search qualify its local wiring without running search in CI.
+
 Settings composition coverage MUST check themed body surfaces, dividers between
 field groups and the public default MarkdownComposer with multiline form semantics.
 Rich read-only Profile values MUST exercise Markdown formatting, links and lists.

@@ -19,10 +19,12 @@ export default defineConfig(headingRequirements(), {
     book: "AUI-GOV-003",
     bookIgnore: "AUI-GOV-003",
     specFirst: "AUI-GOV-003",
+    qmd: "AUI-GOV-003",
     internal: "AUI-GOV-003",
     storybookCatalog: "AUI-VERIFY-001",
   },
   validators: {
+    qmd: { collection: "agent-ui-spec" },
     summary: true,
     storybookCatalog: {
       roots: [

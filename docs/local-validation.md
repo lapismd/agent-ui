@@ -33,7 +33,9 @@ transport; default limits are four CPUs, 12 GiB memory and 2 GiB shared memory:
 `AGENT_UI_VALIDATION_RUNTIME=native` explicitly runs the same portable lane
 locally. `pnpm validation:doctor` reports configuration; `pnpm validation:images`
 prepares the tool image. Live Storybook, format writing, Changesets and the docs
-server stay native. `test:source-parity` also remains native because its reference
+server stay native. Semantic `spec:search` and explicit `spec:index` also remain
+native because they use the developer-owned QMD index and local model cache;
+neither runs in CI. `test:source-parity` also remains native because its reference
 harness imports the independently owned Desktop checkout; it is an explicit
 source-comparison gate, not portable acceptance.
 

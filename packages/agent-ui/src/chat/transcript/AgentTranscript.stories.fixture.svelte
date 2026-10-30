@@ -34,6 +34,7 @@
     capturedFeedback = false,
     failHostResponse = false,
     inspectorVariant = "markdown",
+    sendCapability = true,
   }: {
     scenario?: AgentScenario;
     part?:
@@ -52,9 +53,16 @@
     capturedFeedback?: boolean;
     failHostResponse?: boolean;
     inspectorVariant?: InspectorVariant;
+    sendCapability?: boolean;
   } = $props();
   const demo = untrack(() => createDemo(scenario));
   const { controller, panel, port } = demo;
+  if (!untrack(() => sendCapability)) {
+    port.snapshot.capabilities = port.snapshot.capabilities.filter(
+      (kind) => kind !== "send",
+    );
+    controller.snapshot!.capabilities = [...port.snapshot.capabilities];
+  }
   if (untrack(() => failHostResponse))
     panel.actions.perform = async () => {
       throw new Error("Host response failed");
@@ -122,6 +130,7 @@
     void controller.actionBusy;
     return {
       calls: port.calls.length,
+      lastAction: port.calls.at(-1)?.kind ?? "",
       submission: JSON.stringify(port.calls.at(-1)?.submission),
     };
   });
@@ -264,6 +273,7 @@
       data-testid="agent-story-state"
       data-pending={controller.pending?.id ?? ""}
       data-calls={evidence.calls}
+      data-last-action={evidence.lastAction}
       data-draft={controller.transcript.message}
       data-submission={evidence.submission}
       data-anchors={JSON.stringify(

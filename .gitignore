@@ -18,3 +18,4 @@ test-results/
 debug-storybook.log
 
 .local-*.txt
+.qmd/index.sqlite*

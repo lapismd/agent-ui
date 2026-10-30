@@ -64,7 +64,9 @@ export class AgentUiController {
       items: this.items,
       canComment: this.canComment,
       author: { id: "you", name: "You" },
-      onSend: (submission) => this.send(submission),
+      onSend: this.can("send")
+        ? (submission) => this.send(submission)
+        : undefined,
     }));
     this.#unsubscribe = port.subscribe?.((value) => {
       if (!this.#closed) this.snapshot = value;
