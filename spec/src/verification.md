@@ -182,3 +182,9 @@ to 20 passes across four modes; all 56 affected-family cases pass. Evidence:
 `spec/records/2026-10-25-catalog-error-alerts.md`. The complete 1,944-case
 Storybook matrix also passes; final portable composite qualification remains
 distinct from native host behavior and visual review.
+
+Registry release-readiness intake under AUI-GOV-001/AUI-GOV-003 is recorded in
+`spec/records/2026-10-30-registry-release-readiness.md`. It tracks the published
+cohort separately from earlier private review archives. Released Core JSON and
+Bits focus-lifetime repairs, and complete deduplicated-lock qualification, remain release gates;
+publication and visual/native host gates remain separate.

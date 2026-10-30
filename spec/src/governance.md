@@ -95,6 +95,19 @@ the source ledger records only explicit optional host-state bindings.
 The Desktop adoption ledger also records confirmed independent diff recovery;
 its pinned reads and default component layout remain unchanged.
 
+Registry release readiness MUST consume Design Core from `^0.7.1` and the
+catalog's Mira dependency from `~0.1.2`, with the published jj-history 0.1.0
+and a frozen registry lock. Explicit archives remain available for future
+unreleased-source review; they do not qualify registry-only release acceptance.
+The registry lock MUST retain compatible CodeMirror/Lezer runtime identities
+when captured readers exchange syntax trees. Current release acceptance remains
+pending on a released Core cohort containing the captured-JSON correction and
+the qualified Bits UI focus-lifetime repair, followed by fresh complete
+qualification of the deduplicated registry lock. The prepared Bits owner-source
+archive is diagnostic evidence only; it MUST NOT qualify a registry release.
+Version preparation, publication, visual approval and native host integration
+retain their separate gates.
+
 ## AUI-GOV-001 — Source ownership
 
 **Requirement.** Production packages MUST consume public Design Core primitives and injected host ports without application-private imports, credentials, native transports or catalog dependencies.
@@ -112,7 +125,14 @@ decisions. The Storybook catalog MUST publish from `main` to
 <https://lapismd.github.io/agent-ui/> through
 `.github/workflows/publish-storybook-pages.yml`. The repository README MUST link
 that catalog and the npm-publish and Pages workflows. npm package publication
-MUST remain a separate trusted-publish decision.
+MUST remain a separate trusted-publish decision. The authorized release cohort
+MUST retain independent public package versions: its immutable
+`v<agent-ui-version>` tag identifies both exact package versions from that
+source. Publication MUST bind each tarball to its own declared version and
+integrity, run behind the protected npm publisher, and finish with exact
+registry-byte comparison, a clean installed-version check and npm signature
+and provenance verification. A manual dispatch MUST reference the same immutable
+source as its workflow; retries MUST NOT replace an existing package version.
 
 The user authorized Stacks and Workspace presentation after Branches. The new
 families MUST copy the source canvas/lane/card/files/history geometry, reuse the
