@@ -168,7 +168,9 @@ semantics.
 Portable root scripts MUST default to bounded Docker execution with explicit
 native selection and no automatic host fallback. Exact source and ancestry,
 registry-frozen installation and explicit checksum-qualified archive projection
-MUST remain distinguishable. Source/history guards reject private/model/cache
+MUST remain distinguishable. Source-bearing audit archives MUST retain identical
+public runtime payloads and be recorded separately from distribution artifacts.
+Source/history guards reject private/model/cache
 payloads, while the tracked public port example retains a verified schema.
 Tool image and JavaScript dependency caches MUST have separate identities.
 Workers MUST use an init reaper, drop capabilities, prove actual permission
