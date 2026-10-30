@@ -46,7 +46,7 @@ export const BusyStop: Story = {
     props: { part: "footer", scenario: "busy" },
   }),
 };
-export const UnavailableQueueRetainsStop: Story = {
+export const SendCapabilityWithdrawn: Story = {
   render: () => ({
     Component: Fixture,
     props: { part: "footer", scenario: "busy", sendCapability: false },
