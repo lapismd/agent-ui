@@ -212,7 +212,10 @@
       "destination": "packages/agent-ui/src/identity/agent-avatar.ts",
       "sourceSha256": "1943e25b2522771430ad929bccd168b9c3de5f84a63980e9b3fa1879829a3e30",
       "adaptations": [
-        { "before": "local: \"/lapis-logo.svg\"", "after": "local: lapisIcon" },
+        {
+          "before": "local: \"/lapis-logo.svg\"",
+          "after": "local: lapisIcon"
+        },
         {
           "before": "import cursorIcon",
           "after": "import lapisIcon from \"./assets/lapis.svg\";\nimport cursorIcon"
@@ -435,9 +438,12 @@
         },
         {
           "description": "User-authorized hidden-editor permission flow: prevent sending the retained draft while a visible permission is pending; Stop remains available during active work."
+        },
+        {
+          "description": "Honor host send capabilities through the existing optional transcript send callback and canSend state, preserving explicit Stop without advertising an unsupported Queue action."
         }
       ],
-      "destinationSha256": "49d5c1f8fd8f55e35955603c1b1bf807bd4e5f77ae7074776f526c6af51a71e5",
+      "destinationSha256": "1fdd26a651a084606212d2b1674162d8cf6aaedf501e7b7f1669949996574191",
       "layoutAdaptations": [
         {
           "before": "gap: 0.25rem;",
@@ -455,9 +461,19 @@
           "before": "<TranscriptFooter\n  style=\"--ui-transcript-footer-padding:var(--ui-agent-footer-padding,0);--ui-transcript-footer-gap:var(--ui-agent-footer-gap,0.25rem)\"\n  busy={controller.busy || !!controller.queuedMessages.pending.length}\n  {state}\n  sendPending={state.sending ||\n    !!state.retainedSubmission ||\n    controller.queuedMessages.saving}\n  hasContent={(!controller.busy || !!controller.repository) &&\n    Boolean(composerState.draft.trim() || state.pending.length)}\n  canSend={!controller.queuedMessages.saving &&\n    Boolean(composerState.draft.trim() || state.pending.length)}\n  disabled={blocked}\n  {onSend}\n  onStop={controller.busy\n    ? () => panel.actions.perform(() => controller.cancel())\n    : undefined}\n  showStatus={false}\n>\n  {#snippet actions()}\n    <ChatComposerActions\n      {panelProps}\n      {controller}\n      {attachmentsState}\n      {composerState}\n      actions={panel.actions}\n    />\n    {@render documentActions?.()}\n  {/snippet}\n\n  {#snippet controls()}\n    <div class=\"transcript-controls\">\n      <ChatAgentPicker {panel} />\n      {#if panelProps.transcriptFrame}<ChatContextUsage\n          {controller}\n          {composerState}\n          actions={panel.actions}\n          variant=\"ring\"\n        />{/if}\n      <ChatComposerOptions {panelProps} {composerState} />\n    </div>\n  {/snippet}\n  {#snippet workspace()}<ChatScopeFooter\n      inline\n      {panelProps}\n      {controller}\n      {conversationsState}\n      actions={panel.actions}\n    />{/snippet}\n</TranscriptFooter>\n\n<style>\n  .transcript-controls {\n    gap: var(--ui-agent-footer-controls-gap, 0.25rem);\n    display: flex;\n    align-items: center;\n  }\n</style>",
           "after": "<TranscriptFooter\n  style=\"--ui-transcript-footer-padding:var(--ui-agent-footer-padding,0);--ui-transcript-footer-gap:var(--ui-agent-footer-gap,0.25rem)\"\n  busy={controller.busy || !!controller.queuedMessages.pending.length}\n  {state}\n  sendPending={state.sending ||\n    !!state.retainedSubmission ||\n    controller.queuedMessages.saving}\n  hasContent={!permissionRequested &&\n    (!controller.busy || !!controller.repository) &&\n    Boolean(composerState.draft.trim() || state.pending.length)}\n  canSend={!permissionRequested &&\n    !controller.queuedMessages.saving &&\n    Boolean(composerState.draft.trim() || state.pending.length)}\n  disabled={blocked}\n  {onSend}\n  onStop={controller.busy\n    ? () => panel.actions.perform(() => controller.cancel())\n    : undefined}\n  showStatus={false}\n>\n  {#snippet actions()}\n    <ChatComposerActions\n      {panelProps}\n      {controller}\n      {attachmentsState}\n      {composerState}\n      actions={panel.actions}\n    />\n    {@render documentActions?.()}\n  {/snippet}\n\n  {#snippet controls()}\n    <div class=\"transcript-controls\">\n      <ChatAgentPicker {panel} />\n      {#if panelProps.transcriptFrame}<ChatContextUsage\n          {controller}\n          {composerState}\n          actions={panel.actions}\n          variant=\"ring\"\n        />{/if}\n      <ChatComposerOptions {panelProps} {composerState} />\n    </div>\n  {/snippet}\n  {#snippet workspace()}<ChatScopeFooter\n      inline\n      {panelProps}\n      {controller}\n      {conversationsState}\n      actions={panel.actions}\n    />{/snippet}\n</TranscriptFooter>\n\n<style>\n  .transcript-controls {\n    gap: var(--ui-agent-footer-controls-gap, 0.25rem);\n    display: flex;\n    align-items: center;\n  }\n</style>",
           "description": "User-authorized hidden-editor permission flow: prevent sending the retained draft while a visible permission is pending; Stop remains available during active work."
+        },
+        {
+          "before": "hasContent={!permissionRequested &&\n",
+          "after": "hasContent={!permissionRequested &&\n    state.canSend &&\n",
+          "description": "Honor the advertised host send capability through existing TranscriptController.canSend; retain Stop and the exact unsupported draft."
+        },
+        {
+          "before": "canSend={!permissionRequested &&\n",
+          "after": "canSend={!permissionRequested &&\n    state.canSend &&\n",
+          "description": "Honor the advertised host send capability through existing TranscriptController.canSend; retain Stop and the exact unsupported draft."
         }
       ],
-      "layoutSha256": "05bb167d61e3696d8e24c4d8910e8858f2dbbd2366a2d255924f3b768fab3eb4",
+      "layoutSha256": "c982d08d73c1473cf880a3b28c4b1b0247f0158b5c874a338cd72b8c0d0d034d",
       "notes": " Desktop adoption: optional host transcript metadata and hooks, or same-file pin retention; default presentation unchanged."
     },
     {
@@ -651,7 +667,10 @@
           "before": "  import { composerReferences } from \"./composer-references.ts\";\n",
           "after": ""
         },
-        { "before": "    app,", "after": "    extensions = []," },
+        {
+          "before": "    app,",
+          "after": "    extensions = [],"
+        },
         {
           "before": "    app?: App;",
           "after": "    extensions?: ComponentProps<typeof MarkdownComposer>[\"extensions\"];"
@@ -679,7 +698,10 @@
       ],
       "destinationSha256": "0ca19c006779a8ca19b4ce68a6084bd5d8e5a740868725c7e07221f4383c6975",
       "layoutAdaptations": [
-        { "before": "extensions={[references]}", "after": "{extensions}" },
+        {
+          "before": "extensions={[references]}",
+          "after": "{extensions}"
+        },
         {
           "before": "--ui-markdown-composer-min-height: calc(2 * 1.4rem + 1rem);",
           "after": "--ui-markdown-composer-min-height: var(--ui-agent-composer-min-height, calc(2 * 1.4rem + 1rem));"
@@ -704,7 +726,10 @@
           "before": "placeholder=\"Ask about your notes…\"",
           "after": "{placeholder}"
         },
-        { "before": "{triggers}", "after": "triggers={suggestions}" },
+        {
+          "before": "{triggers}",
+          "after": "triggers={suggestions}"
+        },
         {
           "before": "{extensions}",
           "after": "extensions={[...(referenceExtension ? [referenceExtension] : []), ...extensions]}\n    {customEmojis}\n    {emojis}\n    {emojiText}\n    {additionalActions}"
@@ -777,12 +802,18 @@
           "before": "status={`${agent} · ${composerState.selectedModel || \"Automatic model\"} · ${panel.conversationsState.scopePathLabel}`}",
           "after": "{status}"
         },
-        { "before": "busy={controller.busy}", "after": "{busy}" },
+        {
+          "before": "busy={controller.busy}",
+          "after": "{busy}"
+        },
         {
           "before": "loading={!loaded || !!panelProps.initializing}",
           "after": "{loading}"
         },
-        { "before": "onSelect={select}", "after": "{onSelect}" },
+        {
+          "before": "onSelect={select}",
+          "after": "{onSelect}"
+        },
         {
           "before": "harness={composerState.selectedAgent}",
           "after": "{harness}"
@@ -791,7 +822,10 @@
           "before": "disabled={!!panelProps.initializing || controller.busy}",
           "after": "disabled={loading || busy}"
         },
-        { "before": "onclick={create}", "after": "onclick={onCreate}" },
+        {
+          "before": "onclick={create}",
+          "after": "onclick={onCreate}"
+        },
         {
           "before": "{view}\n      onChange={onViewChange}",
           "after": "bind:view\n      onChange={onViewChange}"
@@ -800,7 +834,10 @@
           "before": "<ChatConversationMenu\n      {panelProps}\n      {controller}\n      actions={panel.actions}\n      {composerState}\n    />",
           "after": "{@render menu?.()}"
         },
-        { "before": "{rows.length}", "after": "{items.length}" }
+        {
+          "before": "{rows.length}",
+          "after": "{items.length}"
+        }
       ],
       "destinationSha256": "9597708a4f5480d6ce131f70d911fae6695f8b4024e09defd3ca5aba5d58a929",
       "layoutAdaptations": [
@@ -812,12 +849,18 @@
           "before": "status={`${agent} · ${composerState.selectedModel || \"Automatic model\"} · ${panel.conversationsState.scopePathLabel}`}",
           "after": "{status}"
         },
-        { "before": "busy={controller.busy}", "after": "{busy}" },
+        {
+          "before": "busy={controller.busy}",
+          "after": "{busy}"
+        },
         {
           "before": "loading={!loaded || !!panelProps.initializing}",
           "after": "{loading}"
         },
-        { "before": "onSelect={select}", "after": "{onSelect}" },
+        {
+          "before": "onSelect={select}",
+          "after": "{onSelect}"
+        },
         {
           "before": "harness={composerState.selectedAgent}",
           "after": "{harness}"
@@ -826,13 +869,22 @@
           "before": "disabled={!!panelProps.initializing || controller.busy}",
           "after": "disabled={loading || busy}"
         },
-        { "before": "onclick={create}", "after": "onclick={onCreate}" },
-        { "before": "      {view}", "after": "      bind:view" },
+        {
+          "before": "onclick={create}",
+          "after": "onclick={onCreate}"
+        },
+        {
+          "before": "      {view}",
+          "after": "      bind:view"
+        },
         {
           "before": "<ChatConversationMenu\n      {panelProps}\n      {controller}\n      actions={panel.actions}\n      {composerState}\n    />",
           "after": "{@render menu?.()}"
         },
-        { "before": "{rows.length}", "after": "{items.length}" }
+        {
+          "before": "{rows.length}",
+          "after": "{items.length}"
+        }
       ],
       "layoutSha256": "09d77f95c54f8e2168203fbe348c8ec6940c06ddaed0c4434f748afd3402ecb1"
     },
@@ -1223,7 +1275,10 @@
           "before": "../conversations/transcript-store.ts",
           "after": "./models.js"
         },
-        { "before": "../conversations/types.ts", "after": "./models.js" }
+        {
+          "before": "../conversations/types.ts",
+          "after": "./models.js"
+        }
       ],
       "destinationSha256": "ffd9643bff626dd12a41a6016fbb2b4dc678a996f0d99db82cb59f412ff4e1a4"
     },
@@ -1492,10 +1547,22 @@
       "adaptations": [],
       "destinationSha256": "8afb9ff5f866b2fd2a89d2c7540ccb3ed9aaa1349c74d9e656c855d5555bb78d",
       "layoutAdaptations": [
-        { "before": "!!props.sources", "after": "!!imports.available" },
-        { "before": "!!props.onOpen", "after": "!!imports.canOpen" },
-        { "before": "            app={props.app}\n", "after": "" },
-        { "before": "{props.sources", "after": "{imports.available" },
+        {
+          "before": "!!props.sources",
+          "after": "!!imports.available"
+        },
+        {
+          "before": "!!props.onOpen",
+          "after": "!!imports.canOpen"
+        },
+        {
+          "before": "            app={props.app}\n",
+          "after": ""
+        },
+        {
+          "before": "{props.sources",
+          "after": "{imports.available"
+        },
         {
           "before": "<div class=\"import-panel\" data-testid=\"ai-import-panel\">\n  <AiSessionFrame\n    label=\"Importable AI sessions\"\n    bind:width\n    bind:height\n    contentHidden={compact && open}\n  >\n    {#snippet navigation()}<AppShell.Body.Sidebar\n        side=\"left\"\n        panelId=\"ai-import-sources\"\n        label=\"Import sources\"\n        bind:open\n        class=\"ai-session-list-region\"\n        style={`--ui-shell-body-sidebar-width:${compact ? \"100%\" : \"min(23rem, 38%)\"}`}\n      >\n        <AiImportSources\n          browser={imports.browser}\n          {selected}\n          available={!!imports.available}\n          onSelect={select}\n          onClose={compact ? () => (open = false) : undefined}\n        />\n      </AppShell.Body.Sidebar>{/snippet}\n    <AiSessionThread\n      {height}\n      title={selected?.title ?? \"Import AI sessions\"}\n      status={selected\n        ? `${profileLabel(selected.profile)} · ${folder?.location ?? \"Local history\"} · Read-only preview`\n        : \"Browse local history by harness and project\"}\n      harness={selected?.kind}\n      selected={!!selected}\n      listLabel=\"Import sources\"\n      expanded={open}\n      onToggle={() => (open = !open)}\n    >\n      {#snippet actions()}\n        {#if imports.phase === \"reading\"}<Button\n            variant=\"ghost\"\n            size=\"icon-sm\"\n            aria-label={imports.paused\n              ? \"Resume transcript loading\"\n              : \"Pause transcript loading\"}\n            title={imports.paused\n              ? \"Resume transcript loading\"\n              : \"Pause transcript loading\"}\n            onclick={() => imports.togglePause()}\n            >{#if imports.paused}<PlayIcon\n                aria-hidden=\"true\"\n              />{:else}<PauseIcon aria-hidden=\"true\" />{/if}</Button\n          >{/if}\n        {#if imports.phase === \"ready\"}<Button\n            variant=\"ghost\"\n            size=\"icon-sm\"\n            aria-label=\"Reload preview\"\n            title=\"Reload preview\"\n            onclick={() => void imports.reload()}\n            ><RefreshIcon aria-hidden=\"true\" /></Button\n          >{/if}\n        {#if selected}<TranscriptViewToggle bind:view />{/if}\n      {/snippet}\n      {#snippet footer()}<AiImportFooter\n          {imports}\n          canOpen={!!imports.canOpen}\n        />{/snippet}\n      {#if selected}\n        <AiImportProgress {imports} {selected} />\n        {#if imports.phase === \"reading\" && !imports.entries.length}<AiTranscriptLoading\n            composer={false}\n          />{:else}<AiRecordedTranscript\n            entries={imports.entries}\n            bind:view\n            showViewToolbar={false}\n            assistant={{\n              name: profileLabel(selected.profile),\n              image: agentAvatar(selected.kind),\n            }}\n          />{/if}\n      {:else}<Empty.Root\n          ><Empty.Header\n            ><Empty.Media variant=\"icon\"><FolderIcon /></Empty.Media\n            ><Empty.Title\n              >{imports.available\n                ? \"Your local AI history\"\n                : \"Local import is unavailable\"}</Empty.Title\n            ><Empty.Description\n              >{imports.available\n                ? \"Expand a harness and choose a project folder. Sessions load only when you open that folder. Preview does not save or start an agent.\"\n                : \"This host has no configured transcript source. Existing conversations remain available.\"}</Empty.Description\n            ></Empty.Header\n          ></Empty.Root\n        >{/if}\n    </AiSessionThread>\n  </AiSessionFrame>\n</div>\n\n<style>\n  .import-panel {\n    height: 100%;\n    min-width: 0;\n    min-height: 0;\n  }\n</style>",
           "after": "<div class=\"import-panel\" data-testid=\"ai-import-panel\">\n  <AiSessionFrame\n    label=\"Importable AI sessions\"\n    bind:width\n    bind:height\n    contentHidden={compact && open}\n  >\n    {#snippet navigation()}<AppShell.Body.Sidebar\n        side=\"left\"\n        panelId=\"ai-import-sources\"\n        label=\"Import sources\"\n        bind:open\n        class=\"ai-session-list-region\"\n        style={`--ui-shell-body-sidebar-width:${compact ? \"100%\" : \"min(23rem, 38%)\"}`}\n      >\n        <AiImportSources\n          browser={imports.browser}\n          {selected}\n          available={!!imports.available}\n          onSelect={select}\n          onClose={compact ? () => (open = false) : undefined}\n        />\n      </AppShell.Body.Sidebar>{/snippet}\n    <AiSessionThread\n      {height}\n      title={selected?.title ?? \"Import AI sessions\"}\n      status={selected\n        ? `${profileLabel(selected.profile)} · ${folder?.location ?? \"Local history\"} · Read-only preview`\n        : \"Browse local history by harness and project\"}\n      harness={selected?.kind}\n      selected={!!selected}\n      listLabel=\"Import sources\"\n      expanded={open}\n      onToggle={() => (open = !open)}\n    >\n      {#snippet actions()}\n        {#if imports.phase === \"reading\"}<Button\n            variant=\"ghost\"\n            size=\"icon-sm\"\n            aria-label={imports.paused\n              ? \"Resume transcript loading\"\n              : \"Pause transcript loading\"}\n            title={imports.paused\n              ? \"Resume transcript loading\"\n              : \"Pause transcript loading\"}\n            onclick={() => imports.togglePause()}\n            >{#if imports.paused}<PlayIcon\n                aria-hidden=\"true\"\n              />{:else}<PauseIcon aria-hidden=\"true\" />{/if}</Button\n          >{/if}\n        {#if imports.phase === \"ready\"}<Button\n            variant=\"ghost\"\n            size=\"icon-sm\"\n            aria-label=\"Reload preview\"\n            title=\"Reload preview\"\n            onclick={() => void imports.reload()}\n            ><RefreshIcon aria-hidden=\"true\" /></Button\n          >{/if}\n        {#if selected}<TranscriptViewToggle bind:view />{/if}\n      {/snippet}\n      {#snippet footer()}<AiImportFooter\n          {imports}\n          canOpen={!!imports.canOpen}\n        />{/snippet}\n      {#if selected}\n        <AiImportProgress {imports} {selected} />\n        {#if imports.phase === \"reading\" && !imports.entries.length}<AiTranscriptLoading\n            composer={false}\n          />{:else}<AiRecordedTranscript\n            {options}\n            entries={imports.entries}\n            bind:view\n            showViewToolbar={false}\n            assistant={{\n              name: profileLabel(selected.profile),\n              image: agentAvatar(selected.kind),\n            }}\n          />{/if}\n      {:else}<Empty.Root\n          ><Empty.Header\n            ><Empty.Media variant=\"icon\"><FolderIcon /></Empty.Media\n            ><Empty.Title\n              >{imports.available\n                ? \"Your local AI history\"\n                : \"Local import is unavailable\"}</Empty.Title\n            ><Empty.Description\n              >{imports.available\n                ? \"Expand a harness and choose a project folder. Sessions load only when you open that folder. Preview does not save or start an agent.\"\n                : \"This host has no configured transcript source. Existing conversations remain available.\"}</Empty.Description\n            ></Empty.Header\n          ></Empty.Root\n        >{/if}\n    </AiSessionThread>\n  </AiSessionFrame>\n</div>\n\n<style>\n  .import-panel {\n    height: 100%;\n    min-width: 0;\n    min-height: 0;\n  }\n</style>"
@@ -1559,7 +1626,10 @@
       "adaptations": [],
       "destinationSha256": "2689943f567eedce4dd02f1fc0af61dedee5a22d5fe358661b08e69606740e77",
       "layoutAdaptations": [
-        { "before": "        {app}\n", "after": "" },
+        {
+          "before": "        {app}\n",
+          "after": ""
+        },
         {
           "before": "<AiSessionShell\n  {items}\n  harness={profileHarness(session?.profile ?? \"\")}\n  activeId={selected}\n  title={session?.title ?? \"Captured AI sessions\"}\n  status={session\n    ? `${profileLabel(session.profile)} · Read-only local history`\n    : \"Locally saved session versions\"}\n  label=\"Captured sessions\"\n  {loading}\n  busy={previewLoading}\n  emptyTitle=\"No captured sessions\"\n  emptyDescription=\"Import a local session to save its captured history.\"\n  onSelect={select}\n>\n  {#snippet actions()}<TranscriptViewToggle bind:view />\n    {#if onRefresh}<AiSessionMenu\n        busy={previewLoading}\n        unavailable={false}\n        refreshLabel=\"Refresh saved sessions\"\n        {onRefresh}\n      />{/if}\n  {/snippet}\n  {#snippet listFooter()}<footer class=\"ai-session-list-footer\">\n      <div class=\"ai-session-status-items\">\n        <span class=\"ai-session-status-item\"\n          ><MessagesIcon aria-hidden=\"true\" />{sessions.length} sessions</span\n        >\n        <span class=\"ai-session-status-item ai-session-status-item--end\"\n          ><PauseIcon aria-hidden=\"true\" />Local only</span\n        >\n      </div>\n    </footer>{/snippet}\n  {#snippet footer()}<footer class=\"ai-session-footer\">\n      <div class=\"ai-session-status-items\">\n        {#if session && version}\n          <div class=\"ai-session-status-item\" style=\"padding-inline:0\">\n            <CaptureVersionPicker\n              versions={session.versions}\n              selected={selectedVersion}\n              onSelect={(id) => {\n                if (onSelectVersion) onSelectVersion(id);\n                else selectedVersion = id;\n              }}\n            />\n          </div>\n          <span class=\"ai-session-status-item\" role=\"status\"\n            ><DriveIcon aria-hidden=\"true\" />{version.incomplete\n              ? \"Incomplete\"\n              : \"Saved locally\"}</span\n          >\n        {:else}<span class=\"ai-session-status-item\"\n            ><HistoryIcon aria-hidden=\"true\" />Local history</span\n          >{/if}\n        <span class=\"ai-session-status-item ai-session-status-item--end\"\n          ><LockIcon aria-hidden=\"true\" />Read-only</span\n        >\n      </div>\n    </footer>{/snippet}\n  {#if loading || previewLoading}<AiTranscriptLoading composer={false} />\n  {:else if version?.entries && !version.incomplete}{#key version.id}<AiRecordedTranscript\n        entries={version.entries}\n        bind:view\n        showViewToolbar={false}\n        assistant={{\n          name: profileLabel(session?.profile ?? \"Codex\"),\n          image: agentAvatar(profileHarness(session?.profile ?? \"\")),\n        }}\n      />{/key}\n  {:else}<Empty.Root\n      ><Empty.Header\n        ><Empty.Media variant=\"icon\"\n          ><HistoryIcon aria-hidden=\"true\" /></Empty.Media\n        ><Empty.Title\n          >{version?.incomplete\n            ? \"Incomplete local version\"\n            : \"Choose a captured session\"}</Empty.Title\n        ><Empty.Description\n          >{version?.incomplete\n            ? \"A complete saved snapshot is required before this version can be viewed.\"\n            : \"Choose a session on the left to read a saved version.\"}</Empty.Description\n        ></Empty.Header\n      ></Empty.Root\n    >{/if}\n</AiSessionShell>",
           "after": "<AiSessionShell\n  {items}\n  harness={profileHarness(session?.profile ?? \"\")}\n  activeId={selected}\n  title={session?.title ?? \"Captured AI sessions\"}\n  status={session\n    ? `${profileLabel(session.profile)} · Read-only local history`\n    : \"Locally saved session versions\"}\n  label=\"Captured sessions\"\n  {loading}\n  busy={previewLoading}\n  emptyTitle=\"No captured sessions\"\n  emptyDescription=\"Import a local session to save its captured history.\"\n  onSelect={select}\n>\n  {#snippet actions()}<TranscriptViewToggle bind:view />\n    {#if onRefresh}<AiSessionMenu\n        busy={previewLoading}\n        unavailable={false}\n        refreshLabel=\"Refresh saved sessions\"\n        {onRefresh}\n      />{/if}\n  {/snippet}\n  {#snippet listFooter()}<footer class=\"ai-session-list-footer\">\n      <div class=\"ai-session-status-items\">\n        <span class=\"ai-session-status-item\"\n          ><MessagesIcon aria-hidden=\"true\" />{sessions.length} sessions</span\n        >\n        <span class=\"ai-session-status-item ai-session-status-item--end\"\n          ><PauseIcon aria-hidden=\"true\" />Local only</span\n        >\n      </div>\n    </footer>{/snippet}\n  {#snippet footer()}<footer class=\"ai-session-footer\">\n      <div class=\"ai-session-status-items\">\n        {#if session && version}\n          <div class=\"ai-session-status-item\" style=\"padding-inline:0\">\n            <CaptureVersionPicker\n              versions={session.versions}\n              selected={selectedVersion}\n              onSelect={(id) => {\n                if (onSelectVersion) onSelectVersion(id);\n                else selectedVersion = id;\n              }}\n            />\n          </div>\n          <span class=\"ai-session-status-item\" role=\"status\"\n            ><DriveIcon aria-hidden=\"true\" />{version.incomplete\n              ? \"Incomplete\"\n              : \"Saved locally\"}</span\n          >\n        {:else}<span class=\"ai-session-status-item\"\n            ><HistoryIcon aria-hidden=\"true\" />Local history</span\n          >{/if}\n        <span class=\"ai-session-status-item ai-session-status-item--end\"\n          ><LockIcon aria-hidden=\"true\" />Read-only</span\n        >\n      </div>\n    </footer>{/snippet}\n  {#if loading || previewLoading}<AiTranscriptLoading composer={false} />\n  {:else if version?.entries && !version.incomplete}{#key version.id}<AiRecordedTranscript\n        entries={version.entries}\n        options={transcriptOptions}\n        bind:view\n        showViewToolbar={false}\n        assistant={{\n          name: profileLabel(session?.profile ?? \"Codex\"),\n          image: agentAvatar(profileHarness(session?.profile ?? \"\")),\n        }}\n      />{/key}\n  {:else}<Empty.Root\n      ><Empty.Header\n        ><Empty.Media variant=\"icon\"\n          ><HistoryIcon aria-hidden=\"true\" /></Empty.Media\n        ><Empty.Title\n          >{version?.incomplete\n            ? \"Incomplete local version\"\n            : \"Choose a captured session\"}</Empty.Title\n        ><Empty.Description\n          >{version?.incomplete\n            ? \"A complete saved snapshot is required before this version can be viewed.\"\n            : \"Choose a session on the left to read a saved version.\"}</Empty.Description\n        ></Empty.Header\n      ></Empty.Root\n    >{/if}\n</AiSessionShell>"
@@ -1835,7 +1905,10 @@
       ],
       "destinationSha256": "f5f6af5ac35a1004fa2a67e30395ad32c4ee380e213b0f21eafa98d3d639aad6",
       "layoutAdaptations": [
-        { "before": "item.path && app", "after": "item.path && onOpenPath" }
+        {
+          "before": "item.path && app",
+          "after": "item.path && onOpenPath"
+        }
       ],
       "layoutSha256": "44aa01a35d9f17fd43068bd53955ed99991f7d1d4efb7ffb9d6c490de02c3a04"
     },
@@ -8559,7 +8632,9 @@
       "sourceSha256": "d3f27a6ff24a6b38111f7fcf765d29941a3bbc9d49218d8594390d394c0447b9",
       "destination": "packages/repository-ui/src/jj/settings/settings-card/RepositorySettingsField.svelte",
       "adaptations": [
-        { "description": "Public original divided settings field" }
+        {
+          "description": "Public original divided settings field"
+        }
       ],
       "destinationSha256": "d4dc00d436c117663f295da2ff1538a085244fbaf6b7150586feeb28c9bca6af",
       "layoutAdaptations": [],
@@ -8572,7 +8647,9 @@
       "sourceSha256": "3f5a8d27bdfd162298e1d51d4f7d9caf66d226b32c69d807bbd401f0d70ee71d",
       "destination": "packages/repository-ui/src/jj/settings/settings-card/RepositorySettingsFooter.svelte",
       "adaptations": [
-        { "description": "Public original settings form footer" }
+        {
+          "description": "Public original settings form footer"
+        }
       ],
       "destinationSha256": "44ef8c2d61b73b2a694ff47be6dc40e5d25ade7023972026ada021619a695988",
       "layoutAdaptations": [],

@@ -46,6 +46,32 @@ export const BusyStop: Story = {
     props: { part: "footer", scenario: "busy" },
   }),
 };
+export const SendCapabilityWithdrawn: Story = {
+  render: () => ({
+    Component: Fixture,
+    props: { part: "footer", scenario: "busy", sendCapability: false },
+  }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const editor = canvas.getByRole("textbox", { name: "Message" });
+    await userEvent.type(editor, "Retain this unsupported follow-up");
+    expect(canvas.queryByRole("button", { name: "Queue message" })).toBeNull();
+    const stop = canvas.getByRole("button", { name: "Stop agent" });
+    expect(stop).toBeEnabled();
+    await userEvent.click(stop);
+    await waitFor(() =>
+      expect(canvas.getByTestId("agent-story-state")).toHaveAttribute(
+        "data-last-action",
+        "stop",
+      ),
+    );
+    expect(editor).toHaveTextContent("Retain this unsupported follow-up");
+    expect(canvas.getByTestId("agent-story-state")).toHaveAttribute(
+      "data-calls",
+      "1",
+    );
+  },
+};
 export const Attachments: Story = {
   play: async ({ canvasElement }) => {
     await userEvent.click(

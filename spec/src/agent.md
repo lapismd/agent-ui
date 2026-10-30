@@ -66,6 +66,10 @@ presentation in this permission-only slice. Hosts with durable follow-up queues
 MAY opt into `queueWhileAwaitingApproval`; both views MUST then retain the
 editable draft and the exact permission controls, with one Send/Queue/Stop action.
 Typing or toggling cannot submit a response or send the queued draft.
+An active host without the send capability MUST retain Stop and the unsent draft
+without offering Queue; text entry cannot imply a supported host capability.
+Withdrawing send capability MUST preserve the active conversation and composer
+presentation; catalog variations MUST identify the withheld action explicitly.
 The controller MUST snapshot reactive submissions before recipient resolution
 and host dispatch, retaining exact comments and anchors as cloneable data.
 The header MUST expose a far-right Close control that dismisses only the exact

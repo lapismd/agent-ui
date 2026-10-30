@@ -1,3 +1,9 @@
+# Footer capability repair
+
+The owning current contract is AUI-CHAT-003 in `spec/src/agent.md`; commands,
+counts and remaining acceptance are in
+`spec/records/2026-10-30-footer-send-capability.md`.
+
 # Hosted verify
 
 Updated: 2026-10-29
