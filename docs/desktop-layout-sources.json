@@ -440,10 +440,10 @@
           "description": "User-authorized hidden-editor permission flow: prevent sending the retained draft while a visible permission is pending; Stop remains available during active work."
         },
         {
-          "description": "Honor host send capabilities through the existing optional transcript send callback and canSend state, preserving explicit Stop without advertising an unsupported Queue action."
+          "description": "Honor host send capability through the existing optional transcript callback while retaining independently owned host drafts and explicit Stop."
         }
       ],
-      "destinationSha256": "1fdd26a651a084606212d2b1674162d8cf6aaedf501e7b7f1669949996574191",
+      "destinationSha256": "15d89c0c3f0ffcab29058e77d0ca72a4512e173e7da2ac677b516c002f15b352",
       "layoutAdaptations": [
         {
           "before": "gap: 0.25rem;",
@@ -464,16 +464,16 @@
         },
         {
           "before": "hasContent={!permissionRequested &&\n",
-          "after": "hasContent={!permissionRequested &&\n    state.canSend &&\n",
-          "description": "Honor the advertised host send capability through existing TranscriptController.canSend; retain Stop and the exact unsupported draft."
+          "after": "hasContent={!permissionRequested &&\n    typeof state.props().onSend === \"function\" &&\n",
+          "description": "Read the existing optional onSend capability independently of the host composer draft; retain Stop and the exact unsupported draft."
         },
         {
           "before": "canSend={!permissionRequested &&\n",
-          "after": "canSend={!permissionRequested &&\n    state.canSend &&\n",
-          "description": "Honor the advertised host send capability through existing TranscriptController.canSend; retain Stop and the exact unsupported draft."
+          "after": "canSend={!permissionRequested &&\n    typeof state.props().onSend === \"function\" &&\n",
+          "description": "Read the existing optional onSend capability independently of the host composer draft; retain Stop and the exact unsupported draft."
         }
       ],
-      "layoutSha256": "c982d08d73c1473cf880a3b28c4b1b0247f0158b5c874a338cd72b8c0d0d034d",
+      "layoutSha256": "144b9db2bf3441c8038026fa0b7d0d486e7fc333151081ead68a1393deb1df9f",
       "notes": " Desktop adoption: optional host transcript metadata and hooks, or same-file pin retention; default presentation unchanged."
     },
     {

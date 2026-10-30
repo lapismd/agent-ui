@@ -2,6 +2,7 @@ import { expect, within, userEvent, waitFor } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/svelte-vite";
 import Footer from "./AiTranscriptFooter.svelte";
 import Fixture from "../transcript/AgentTranscript.stories.fixture.svelte";
+import HostDraftFixture from "./AiTranscriptFooter.host-draft.stories.fixture.svelte";
 import { Basic as source } from "./AiTranscriptFooter.example-sources.js";
 const meta = {
   title: "Agents/Chat/Footer",
@@ -45,6 +46,23 @@ export const BusyStop: Story = {
     Component: Fixture,
     props: { part: "footer", scenario: "busy" },
   }),
+};
+export const HostOwnedDraft: StoryObj<typeof HostDraftFixture> = {
+  render: () => ({ Component: HostDraftFixture }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const editor = canvas.getByRole("textbox", { name: "Message" });
+    const text = "Keep the host-owned draft exact";
+    await userEvent.type(editor, text);
+    const evidence = canvas.getByTestId("host-draft-state");
+    expect(evidence).toHaveAttribute("data-transcript-message", "");
+    const send = canvas.getByRole("button", { name: "Send message" });
+    expect(send).toBeEnabled();
+    await userEvent.click(send);
+    await waitFor(() => expect(evidence).toHaveAttribute("data-requests", "1"));
+    expect(evidence).toHaveAttribute("data-submitted", text);
+    expect(editor).toHaveTextContent(text);
+  },
 };
 export const SendCapabilityWithdrawn: Story = {
   render: () => ({

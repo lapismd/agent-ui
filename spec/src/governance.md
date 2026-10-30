@@ -214,6 +214,8 @@ A passing focused retry MUST retain earlier failed/interrupted aggregate counts
 and MUST NOT qualify cold startup through a warm-server run alone.
 Catalog naming corrections MUST retain the unchanged content-state audit and
 production-action assertions, with the original classification failure recorded.
+Controlled-composer acceptance MUST also cover a host-owned draft independently
+of the transcript comment controller, with exact text and callback counts.
 Personal settings stories MUST use the completed settings page and public host
 controller, exercising retained edits, unknown outcomes, conflict reconciliation,
 avatar selection, compact footer menus and icon Empty/Skeleton states.

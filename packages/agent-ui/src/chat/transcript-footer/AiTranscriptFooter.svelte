@@ -46,11 +46,11 @@
     !!state.retainedSubmission ||
     controller.queuedMessages.saving}
   hasContent={!permissionRequested &&
-    state.canSend &&
+    typeof state.props().onSend === "function" &&
     (!controller.busy || !!controller.repository) &&
     Boolean(composerState.draft.trim() || state.pending.length)}
   canSend={!permissionRequested &&
-    state.canSend &&
+    typeof state.props().onSend === "function" &&
     !controller.queuedMessages.saving &&
     Boolean(composerState.draft.trim() || state.pending.length)}
   disabled={blocked}

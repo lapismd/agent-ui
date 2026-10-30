@@ -70,6 +70,9 @@ An active host without the send capability MUST retain Stop and the unsent draft
 without offering Queue; text entry cannot imply a supported host capability.
 Withdrawing send capability MUST preserve the active conversation and composer
 presentation; catalog variations MUST identify the withheld action explicitly.
+Footer capability checks MUST remain independent of draft ownership. A host's
+composer draft MUST enable its supported send action without requiring a second
+copy in the comments controller's message field.
 The controller MUST snapshot reactive submissions before recipient resolution
 and host dispatch, retaining exact comments and anchors as cloneable data.
 The header MUST expose a far-right Close control that dismisses only the exact

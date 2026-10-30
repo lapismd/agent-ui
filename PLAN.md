@@ -3,6 +3,8 @@
 The owning current contract is AUI-CHAT-003 in `spec/src/agent.md`; commands,
 counts and remaining acceptance are in
 `spec/records/2026-10-30-footer-send-capability.md`.
+The independent host-draft correction and its acceptance are recorded in
+`spec/records/2026-10-30-footer-host-owned-draft.md`.
 
 # Hosted verify
 
