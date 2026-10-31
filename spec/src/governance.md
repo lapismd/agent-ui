@@ -147,8 +147,11 @@ MUST retain independent public package versions: its immutable
 source. Publication MUST bind each tarball to its own declared version and
 integrity, run behind the protected npm publisher, and finish with exact
 registry-byte comparison, a clean installed-version check and npm signature
-and provenance verification. A manual dispatch MUST reference the same immutable
-source as its workflow; retries MUST NOT replace an existing package version.
+and provenance verification. The publish and registry-verification jobs MUST NOT
+configure an npm auth token, so trusted publishing uses the GitHub OIDC identity.
+A manual dispatch that packs again MUST reference the same immutable
+source as its workflow. Retries MUST NOT replace an existing package version.
+A dispatch MAY republish an immutable tag only by reusing that tag's already packed tarballs unchanged.
 Normal validation MUST execute the actual workflow identity and artifact-manifest
 steps against isolated fixtures, proving independent versions and rejecting
 invalid source/tag/package identities and wrong-version artifacts without

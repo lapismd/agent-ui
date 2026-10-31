@@ -10,6 +10,10 @@ on:
         description: Existing immutable version tag to publish
         required: true
         type: string
+      packed_run:
+        description: Actions run whose packed tarballs are published unchanged
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -25,9 +29,13 @@ jobs:
   package-gate:
     name: Validate and pack packages
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
     outputs:
       artifact_name: ${{ steps.release.outputs.artifact_name }}
       packages: ${{ steps.release.outputs.packages }}
+      pack_source: ${{ steps.release.outputs.pack_source }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -42,19 +50,36 @@ jobs:
           cache: pnpm
           registry-url: https://registry.npmjs.org
 
+      - name: Record packed source
+        id: packed
+        if: inputs.packed_run != ''
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/download-artifact@v4
+        if: inputs.packed_run != ''
+        with:
+          name: agent-ui-release-${{ steps.packed.outputs.sha }}
+          path: .release
+          run-id: ${{ inputs.packed_run }}
+          github-token: ${{ github.token }}
+
       - uses: taiki-e/install-action@v2
+        if: inputs.packed_run == ''
         with:
           tool: mdbook@0.5.4
 
       - run: pnpm install --frozen-lockfile
+        if: inputs.packed_run == ''
 
       - name: Validate release identity
         id: release
         env:
           RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+          PACKED_RUN: ${{ inputs.packed_run }}
         run: |
           git merge-base --is-ancestor HEAD origin/main
           node --input-type=module <<'NODE'
+          import { createHash } from 'node:crypto';
           import { appendFileSync, readFileSync } from 'node:fs';
           import { execFileSync } from 'node:child_process';
           const packages = ['agent-ui', 'repository-ui'].map((directory) => {
@@ -65,14 +90,28 @@ jobs:
           if (process.env.RELEASE_TAG !== `v${packages[0].version}`) throw Error('Cohort tag must match Agent UI version');
           const source = execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
           const tagged = execFileSync('git', ['rev-parse', '--verify', `refs/tags/${process.env.RELEASE_TAG}^{commit}`], { encoding: 'utf8' }).trim();
-          if (source !== tagged || source !== process.env.GITHUB_SHA) throw Error('Release source must match the immutable tag and workflow source');
-          appendFileSync(process.env.GITHUB_OUTPUT, `artifact_name=agent-ui-release-${source}\npackages=${JSON.stringify(packages)}\n`);
+          const packed = Boolean(process.env.PACKED_RUN);
+          if (source !== tagged || (!packed && source !== process.env.GITHUB_SHA)) throw Error('Release source must match the immutable tag and workflow source');
+          if (packed) {
+            const manifest = JSON.parse(readFileSync('.release/manifest.json', 'utf8'));
+            if (manifest.source !== source || manifest.packages.length !== packages.length) throw Error('Packed artifact source differs');
+            for (const entry of manifest.packages) {
+              const expected = packages.find((item) => `@lapismd/${item.package}` === entry.name);
+              const bytes = readFileSync(`.release/${entry.tarball}`);
+              const integrity = `sha512-${createHash('sha512').update(bytes).digest('base64')}`;
+              if (!expected || entry.version !== expected.version || entry.integrity !== integrity) throw Error('Packed artifact bytes differ');
+            }
+          }
+          appendFileSync(process.env.GITHUB_OUTPUT, `artifact_name=agent-ui-release-${source}\npackages=${JSON.stringify(packages)}\npack_source=${packed ? source : process.env.GITHUB_SHA}\n`);
           NODE
 
       - run: pnpm build
+        if: inputs.packed_run == ''
       - run: pnpm test:package
+        if: inputs.packed_run == ''
 
       - name: Pack both packages
+        if: inputs.packed_run == ''
         run: |
           mkdir -p "$GITHUB_WORKSPACE/.release"
           (cd packages/agent-ui && npm pack --ignore-scripts --pack-destination "$GITHUB_WORKSPACE/.release")
@@ -81,6 +120,7 @@ jobs:
           test "$(find "$GITHUB_WORKSPACE/.release" -name '*.tgz' | wc -l | tr -d ' ')" = "2"
 
       - name: Bind exact package versions and artifact integrity
+        if: inputs.packed_run == ''
         run: |
           node --input-type=module <<'NODE'
           import { createHash } from 'node:crypto';
@@ -119,7 +159,6 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: 24
-          registry-url: https://registry.npmjs.org
 
       - run: npm install --global npm@12.0.2
 
@@ -148,20 +187,21 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: 24
-          registry-url: https://registry.npmjs.org
       - run: npm install --global npm@12.0.2
       - uses: actions/download-artifact@v4
         with:
           name: ${{ needs.package-gate.outputs.artifact_name }}
           path: .release
       - name: Verify exact registry bytes and a clean signed install
+        env:
+          PACK_SOURCE: ${{ needs.package-gate.outputs.pack_source }}
         run: |
           node --input-type=module <<'NODE'
           import { createHash } from 'node:crypto';
           import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
           import { execFileSync } from 'node:child_process';
           const manifest = JSON.parse(readFileSync('.release/manifest.json', 'utf8'));
-          if (manifest.source !== process.env.GITHUB_SHA) throw Error('Release source differs');
+          if (manifest.source !== process.env.PACK_SOURCE) throw Error('Release source differs');
           for (const entry of manifest.packages) {
             let verified = false;
             for (let attempt = 1; attempt <= 36; attempt++) {
