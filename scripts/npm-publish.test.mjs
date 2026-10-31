@@ -17,6 +17,18 @@ const workflow = readFileSync(
   new URL("../.github/workflows/npm-publish.yml", import.meta.url),
   "utf8",
 );
+
+test("trusted publish jobs do not install an npm auth token", () => {
+  for (const name of ["publish-production", "verify-registry"]) {
+    const start = workflow.indexOf(`\n  ${name}:`);
+    assert.notEqual(start, -1, name);
+    const rest = workflow.slice(start + 1);
+    const nextJob = rest.search(/\n {2}[a-z0-9-]+:/);
+    const body = nextJob === -1 ? rest : rest.slice(0, nextJob);
+    assert.equal(body.includes("registry-url"), false, name);
+    assert.equal(body.includes("NODE_AUTH_TOKEN"), false, name);
+  }
+});
 const source = "a".repeat(40);
 
 function workflowStep(name) {
