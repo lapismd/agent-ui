@@ -2,19 +2,22 @@
 
 Requirements: AUI-GOV-001, AUI-GOV-003, AUI-GOV-004.
 
-Current qualification gate, updated October 31: published Core remains 0.7.1.
-Core's combined patch is also waiting for a released Bits UI repair that
-preserves focus on identical-container remounts. Its owner-source regression
-passes, and Core's unchanged cold exact pair and complete Emoji families pass
-two and 12 cases respectively against a consistently projected owner archive.
-Its broader owning browser lane remains red. Corrected Core source `0aa34465`
-now passes complete uncached Linux checks: 921 units, 994 catalog/axe cases,
-four strict type surfaces and 189 browser passes plus the inherited platform
-skip, with zero failures, retries or flaky cases; cold Avatar/Emoji after
-checks also pass on macOS. This still uses the temporary owner archive.
-The earlier archives below do not contain that repair
-and do not establish final registry acceptance. Both UI package releases remain
-pending the real downloadable Core cohort and fresh complete registry checks.
+Current qualification gate, updated October 31: Core 0.7.2 is published from
+`3ee2b016e453f159b376a69a19e0f5680dda3f65`, but it lacks the required captured
+JSON and Swipe teardown corrections. The next Core candidate preserves the
+normal registry graph and passes its exact owner regressions. Its related Linux
+family boundary still reports 31 passes and one RestrictedReactions focus
+failure; complete qualification remains blocked.
+
+The dependency owner correction is now
+[Bits UI PR #2264](https://github.com/huntabyte/bits-ui/pull/2264), source
+`692fbdf5095941464561189fd81ffc2cb4b81c6c`. Its primary hosted checks pass and
+the PR is ready for maintainer review. No fixed npm release exists yet;
+bits-ui latest remains 2.20.2. Its additional native two-browser qualification
+still has failures, retained in the upstream PR rather than waived. Earlier Core
+archive-only results below remain historical evidence and do not establish
+released-registry acceptance. Both UI package releases require the fixed,
+downloadable Core cohort and fresh complete registry checks.
 
 Scope: qualify the released Design Core dependency for both public UI packages.
 No public API, runtime component, test assertion, baseline or publication
@@ -166,6 +169,24 @@ worker will repeat it. `changeset status` has the same native Git-discovery
 limitation. The public `@changesets/get-release-plan` API reads the actual
 candidate and confirms Agent UI 0.2.0 (minor) and Repository UI 0.1.1 (patch)
 without changing files or repository metadata. No checker or assertion is changed.
+
+The independent workflow source is reviewed in
+[Agent UI PR #11](https://github.com/lapismd/agent-ui/pull/11). It does not consume
+the separate runtime intake or pending Changesets. Its frozen-registry install,
+all three explicit actionlint paths and canonical specification checks pass.
+Node 24 Spec Validator doctor and serial semantic QMD discovery pass; the
+expected custom-wrapper alias warning remains. An initial search concurrent with
+doctor hit a QMD database lock; the serial search succeeds without configuration
+or installation changes.
+
+The exact workflow identity step is executed in an isolated fixture, with no
+network or real Git operations. Baseline rejects the actual 0.2.0/0.1.1 pair;
+the candidate accepts it and produces both exact package versions. Eight cases
+reject wrong cohort/workflow/tag sources, source outside main, and invalid
+package identity/private/version/access. Exact per-package SHA-512 manifest
+generation passes and a wrong-version tarball is rejected: 11 candidate contract
+cases pass. Hosted full verification remains required before merge. Source
+merge alone neither creates a version tag nor triggers the publisher.
 
 ## Combined Core source acceptance
 

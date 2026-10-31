@@ -105,6 +105,10 @@ pending on a released Core cohort containing the captured-JSON correction and
 the qualified Bits UI focus-lifetime repair, followed by fresh complete
 qualification of the deduplicated registry lock. The prepared Bits owner-source
 archive is diagnostic evidence only; it MUST NOT qualify a registry release.
+Published Core 0.7.2 lacks the required JSON/Swipe repairs. The current Core
+candidate still fails Linux option focus; Bits UI's
+[owner PR #2264](https://github.com/huntabyte/bits-ui/pull/2264) awaits maintainer
+merge and a legitimate npm release before final Core and UI qualification.
 Version preparation, publication, visual approval and native host integration
 retain their separate gates.
 
