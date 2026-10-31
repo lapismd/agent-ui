@@ -95,30 +95,35 @@ the source ledger records only explicit optional host-state bindings.
 The Desktop adoption ledger also records confirmed independent diff recovery;
 its pinned reads and default component layout remain unchanged.
 
-Registry release readiness MUST consume Design Core from `^0.7.1` and the
+Registry release readiness MUST consume Design Core from `^0.7.3` and the
 catalog's Mira dependency from `~0.1.2`, with the published jj-history 0.1.0
 and a frozen registry lock. Explicit archives remain available for future
 unreleased-source review; they do not qualify registry-only release acceptance.
 The registry lock MUST retain compatible CodeMirror/Lezer runtime identities
-when captured readers exchange syntax trees. Current release acceptance remains
-pending on a released Core cohort containing the captured-JSON correction and
-the qualified Bits UI focus-lifetime repair, followed by fresh complete
-qualification of the deduplicated registry lock. The prepared Bits owner-source
-archive is diagnostic evidence only; it MUST NOT qualify a registry release.
-Published Core 0.7.2 lacks the required JSON/Swipe repairs. The user authorizes
-the tracked shared Bits UI 2.20.2 patch with SHA-256
+when captured readers exchange syntax trees. Published Core 0.7.3 contains the
+captured-JSON, Swipe and popup corrections and the authoritative shared patch
+assets. Its source, registry bytes, provenance and release are verified in the
+owning publication receipt; fresh complete UI registry qualification remains
+required. Prepared source archives are diagnostic evidence only and MUST NOT
+qualify a registry release. The user authorizes the tracked shared Bits UI
+2.20.2 patch with SHA-256
 `debd3bc7d43917f0967f0cc1e212fc5c7721c751d3b92bf8f31030d1c96289ad`, retaining
 Link Preview, six Slider guards and owner FocusScope repair `692fbdf5` /
-[PR #2264](https://github.com/huntabyte/bits-ui/pull/2264). Core's original Linux
-boundary now passes 32 cases; complete qualification and actual Core publication
-remain pending. Every runtime and clean packed-example installation root MUST
+[PR #2264](https://github.com/huntabyte/bits-ui/pull/2264). Every runtime and
+clean packed-example installation root MUST
 explicitly bind Bits 2.20.2 and apply the same checksum-bound patch; dependency
 pnpm metadata does not propagate. Removal requires an actual released dependency
 containing all three fixes and complete unpatched source/consumer acceptance.
-The UI minimum and frozen lock MUST advance to the actually released fixed Core
-before version publication; current prepared floors do not qualify that gate.
+The UI minimum and frozen lock MUST retain the released fixed Core floor before
+version publication; source qualification alone does not establish UI acceptance.
 Version preparation, publication, visual approval and native host integration
 retain their separate gates.
+
+The UI runtime audit retains one pre-existing low KaTeX advisory through Mira.
+Core's acceptance does not qualify this consumer. The owning Mira packaging
+repair and actual release, then a Core release requiring that fixed Mira,
+remain gates before final UI intake. UI MUST NOT add duplicated Mira runtime
+dependencies or consumer overrides to conceal this owning-source issue.
 
 ## AUI-GOV-001 — Source ownership
 

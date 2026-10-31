@@ -60,7 +60,7 @@
     "build": "node ../../scripts/build-agent-package.mjs"
   },
   "dependencies": {
-    "@lapismd/design-core": "^0.7.1",
+    "@lapismd/design-core": "^0.7.3",
     "@lucide/svelte": "^1.57.0"
   },
   "peerDependencies": {

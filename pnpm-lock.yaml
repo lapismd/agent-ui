@@ -20,8 +20,8 @@ importers:
         specifier: ^2.31.1
         version: 2.31.1(@types/node@24.19.2)
       '@lapismd/design-core':
-        specifier: ^0.7.1
-        version: 0.7.1(svelte@5.57.2)(tailwindcss@4.3.3)
+        specifier: ^0.7.3
+        version: 0.7.3(svelte@5.57.2)(tailwindcss@4.3.3)
       '@lapismd/jj-history':
         specifier: ^0.1.0
         version: 0.1.0
@@ -122,8 +122,8 @@ importers:
   packages/agent-ui:
     dependencies:
       '@lapismd/design-core':
-        specifier: ^0.7.1
-        version: 0.7.1(svelte@5.57.2)(tailwindcss@4.3.3)
+        specifier: ^0.7.3
+        version: 0.7.3(svelte@5.57.2)(tailwindcss@4.3.3)
       '@lucide/svelte':
         specifier: ^1.57.0
         version: 1.61.0(svelte@5.57.2)
@@ -146,8 +146,8 @@ importers:
         specifier: ^6.43.15
         version: 6.43.15
       '@lapismd/design-core':
-        specifier: ^0.7.1
-        version: 0.7.1(svelte@5.57.2)(tailwindcss@4.3.3)
+        specifier: ^0.7.3
+        version: 0.7.3(svelte@5.57.2)(tailwindcss@4.3.3)
       '@lapismd/jj-history':
         specifier: ^0.1.0
         version: 0.1.0
@@ -583,6 +583,9 @@ packages:
   '@internationalized/date@3.12.4':
     resolution: {integrity: sha512-M1dEn4c1U1HsSlaVR8upZtSqvXrTkHDfv18H01uCSJyjVLDxnBR38v/fMxecmlwXKR4i9HeZcmgQAPE6A+aGJQ==}
 
+  '@isaacs/nonrecursive-glob-match@1.0.3':
+    resolution: {integrity: sha512-SI7kyKHq4XXDRozw+r9GlRZkia1ZkFrpLW98r2IC2Bpr8YkFGE3fvjzmxCG0x78A++69HmDNrDvSMYBZmHGpKA==}
+
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
 
@@ -599,8 +602,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@lapismd/design-core@0.7.1':
-    resolution: {integrity: sha512-20HXAco2bMF4vwlztCDbQ7Hc0gv5byhmLZZ40IEuErmi/q4DGOGL/pKnHqkmGnNR43Bi3TFN967FAR85M5Ru2Q==}
+  '@lapismd/design-core@0.7.3':
+    resolution: {integrity: sha512-mXDhs+c6kdMZ8E3krwXTxzVavb/b4UVEVrNDlM3eQ6ILgfeOHeFiXfrP29QKZ2JXAIKwcqDPIS3WNElL94fH3w==}
     engines: {node: ^22.11 || ^24 || >=26}
     peerDependencies:
       svelte: ^5.0.0
@@ -2326,8 +2329,8 @@ packages:
     resolution: {integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==}
     engines: {node: '>=4'}
 
-  minimatch@10.2.6:
-    resolution: {integrity: sha512-vpLQEs+VLCr1nU0BXS07maYoFwlDAH0gngQuuttxIwutDFEMHq2blX+8vpgxDdK3J1PwjCJiep77OitTZ4Ll1A==}
+  minimatch@11.0.3:
+    resolution: {integrity: sha512-iny/40PEGkNJQ5/Pv6z3nm6FbRAby32GeZRjCUJk2WnNDbgPSTcdI+DDvLqsgBdD4cD5sMtMheqPPnehCCa8Nw==}
     engines: {node: 18 || 20 || >=22}
 
   mlly@1.8.2:
@@ -3701,6 +3704,8 @@ snapshots:
     dependencies:
       '@swc/helpers': 0.5.23
 
+  '@isaacs/nonrecursive-glob-match@1.0.3': {}
+
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
       '@jridgewell/sourcemap-codec': 1.6.0
@@ -3720,7 +3725,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.6.0
 
-  '@lapismd/design-core@0.7.1(svelte@5.57.2)(tailwindcss@4.3.3)':
+  '@lapismd/design-core@0.7.3(svelte@5.57.2)(tailwindcss@4.3.3)':
     dependencies:
       '@codemirror/autocomplete': 6.20.4
       '@codemirror/commands': 6.11.1
@@ -3758,7 +3763,7 @@ snapshots:
       codemirror-lang-mermaid: 0.5.0
       emoji-mart: 5.6.0
       luxon: 3.7.2
-      minimatch: 10.2.6
+      minimatch: 11.0.3
       paneforge: 1.0.2(svelte@5.57.2)
       svelte: 5.57.2
       tailwind-merge: 3.7.0
@@ -5631,8 +5636,9 @@ snapshots:
 
   min-indent@1.0.1: {}
 
-  minimatch@10.2.6:
+  minimatch@11.0.3:
     dependencies:
+      '@isaacs/nonrecursive-glob-match': 1.0.3
       brace-expansion: 5.0.12
 
   mlly@1.8.2:

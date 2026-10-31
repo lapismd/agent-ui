@@ -48,8 +48,9 @@ There is no native/Cargo cache in this UI-only runner.
 
 ## Public archive qualification
 
-Ordinary installs use the registry lock with `--frozen-lockfile`. Published
-jj-history 0.1.0 is available; the fixed Core cohort still awaits publication.
+Ordinary installs use the registry lock with `--frozen-lockfile`. Required
+dependency floors and current qualification belong to the canonical governance
+and verification chapters.
 The user-authorized shared Bits UI 2.20.2 patch applies explicitly at each root,
 including the isolated packed-example fixture. Its exact payload/hash and all
 three installed postimages must match; dependency pnpm metadata is not inherited.

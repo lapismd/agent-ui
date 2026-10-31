@@ -1,6 +1,6 @@
 # Repository
 
-The publishable package consumes Design Core `^0.7.1` through its public npm
+The publishable package consumes Design Core `^0.7.3` through its public npm
 exports. Registry release qualification is recorded separately from source
 review archives; this dependency intake does not change the public UI API.
 
