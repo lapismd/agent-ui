@@ -1,5 +1,9 @@
 # Agent
 
+The publishable package consumes Design Core `^0.7.1` through its public npm
+exports. Registry release qualification is recorded separately from source
+review archives; this dependency intake does not change the public UI API.
+
 Recorded screen metadata comes from host-provided capture groups, preserving
 source/profile, timestamps, version identities and incomplete state. Public
 recorded transcript and captured-session surfaces accept host transcript hooks
