@@ -116,6 +116,40 @@ if (args.join(' ') === 'merge-base --is-ancestor HEAD origin/main') {
   return { directory, packages, run };
 }
 
+test("publisher reuses a packed tag from a later workflow commit", (t) => {
+  const { directory, packages, run } = packedFixture(t);
+  const manifest = {
+    source,
+    packages: packages.map((entry) => ({
+      name: `@lapismd/${entry.directory}`,
+      version: entry.version,
+      tarball: `lapismd-${entry.directory}-${entry.version}.tgz`,
+      integrity: `sha512-${createHash("sha512").update(`${entry.directory} artifact bytes`).digest("base64")}`,
+    })),
+  };
+  writeFileSync(
+    join(directory, ".release/manifest.json"),
+    JSON.stringify(manifest),
+  );
+  const workflowSha = "b".repeat(40);
+  const result = run("Validate release identity", {
+    PACKED_RUN: "41222039469",
+    GITHUB_SHA: workflowSha,
+  });
+  assert.equal(result.status, 0, result.stderr);
+  const outputs = Object.fromEntries(
+    readFileSync(join(directory, "output"), "utf8")
+      .trim()
+      .split("\n")
+      .map((line) => [
+        line.slice(0, line.indexOf("=")),
+        line.slice(line.indexOf("=") + 1),
+      ]),
+  );
+  assert.equal(outputs.pack_source, source);
+  assert.notEqual(outputs.pack_source, workflowSha);
+});
+
 test("publisher accepts unequal versions and emits their exact cohort", (t) => {
   const { directory, run } = fixture(t);
   const result = run("Validate release identity");
