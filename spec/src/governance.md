@@ -254,7 +254,7 @@ mandatory. The protected, immutable-tag npm publisher remains separate.
 ### Acceptance details
 
 - Version changes MUST derive from committed Changesets, preserve independent package versions and update the portable registry lock.
-- The Changesets changelog setting MUST write each bumped package's `CHANGELOG.md`. The version action reads those files before it opens the pull request.
+- The Changesets changelog setting MUST write each bumped package's `CHANGELOG.md`, which the version action reads before it opens the pull request.
 - The reviewed bot branch MUST run the existing verification workflow; manual dispatch MAY start the same checks when token PR events are suppressed.
 - Merging the version PR MUST leave actual npm publication to the protected immutable-tag publisher.
 
