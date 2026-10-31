@@ -95,16 +95,16 @@ the source ledger records only explicit optional host-state bindings.
 The Desktop adoption ledger also records confirmed independent diff recovery;
 its pinned reads and default component layout remain unchanged.
 
-Registry release readiness MUST consume Design Core from `^0.7.3` and the
-catalog's Mira dependency from `~0.1.2`, with the published jj-history 0.1.0
+Registry release readiness MUST consume Design Core from `^0.7.4` and the
+catalog's Mira dependency from `~0.1.4`, with the published jj-history 0.1.0
 and a frozen registry lock. Explicit archives remain available for future
 unreleased-source review; they do not qualify registry-only release acceptance.
 The registry lock MUST retain compatible CodeMirror/Lezer runtime identities
-when captured readers exchange syntax trees. Published Core 0.7.3 contains the
-captured-JSON, Swipe and popup corrections and the authoritative shared patch
-assets. Its source, registry bytes, provenance and release are verified in the
-owning publication receipt; fresh complete UI registry qualification remains
-required. Prepared source archives are diagnostic evidence only and MUST NOT
+when captured readers exchange syntax trees. Published Core 0.7.4 requires Mira
+`~0.1.4` and contains the captured-JSON, Swipe and popup corrections and the
+authoritative shared patch assets. Its registry publication is verified by the
+owning release; fresh complete UI registry qualification remains required
+through hosted checks. Prepared source archives are diagnostic evidence only and MUST NOT
 qualify a registry release. The user authorizes the tracked shared Bits UI
 2.20.2 patch with SHA-256
 `debd3bc7d43917f0967f0cc1e212fc5c7721c751d3b92bf8f31030d1c96289ad`, retaining
@@ -119,11 +119,10 @@ version publication; source qualification alone does not establish UI acceptance
 Version preparation, publication, visual approval and native host integration
 retain their separate gates.
 
-The UI runtime audit retains one pre-existing low KaTeX advisory through Mira.
-Core's acceptance does not qualify this consumer. The owning Mira packaging
-repair and actual release, then a Core release requiring that fixed Mira,
-remain gates before final UI intake. UI MUST NOT add duplicated Mira runtime
-dependencies or consumer overrides to conceal this owning-source issue.
+The prior consumer audit recorded one low KaTeX advisory through Mira 0.1.2.
+Released Mira 0.1.4 pins KaTeX 0.18.10, inside that advisory's patched range,
+and published Core 0.7.4 requires that Mira release. UI MUST NOT add duplicated
+Mira runtime dependencies or consumer overrides to conceal an owning-source issue.
 
 ## AUI-GOV-001 — Source ownership
 

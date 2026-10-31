@@ -38,7 +38,7 @@ settings navigation and repository-specific content. Native glass is disabled.
 
 Configure the shared temporary Bits UI 2.20.2 lifecycle/focus repair in each
 application's pnpm installation root. Copy `patches/bits-ui@2.20.2.patch` from
-[the released Core package](https://github.com/lapismd/design-core/releases/tag/design-core%400.7.3) into the application's `patches/`
+[the released Core package](https://github.com/lapismd/design-core/releases/tag/design-core%400.7.4) into the application's `patches/`
 directory and verify SHA-256
 `debd3bc7d43917f0967f0cc1e212fc5c7721c751d3b92bf8f31030d1c96289ad`.
 

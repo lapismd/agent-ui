@@ -30,7 +30,7 @@ standalone and completed screens; consumer admission states remain host-owned.
 | RUI-LIFE-001    | Partial     | Copied Desktop pin/late-read/drain regressions verified; downstream host lifetime remains separate                                                                                                                                                                                    |
 | AUI-FOUND-001   | Implemented | 18 colocated families; full recording; 36 public examples; completeness record; filename icon adoption record                                                                                                                                                                         |
 | AUI-THEME-001   | Implemented | Audited defaults; independent theme/mode controls; bounded flush docs previews                                                                                                                                                                                                        |
-| AUI-VERIFY-001  | Implemented | Core 0.7.3/Mira 0.1.2: 1,956 story/axe, 235 UI units, 151 browser and 149 compiled public examples; `spec/records/2026-10-31-published-core-cohort.md`. Fixed Mira/Core intake remains a separate release gate.                                                                       |
+| AUI-VERIFY-001  | Implemented | Prior Core 0.7.3/Mira 0.1.2 matrix in `spec/records/2026-10-31-published-core-cohort.md`. Adopted floor is published Core `^0.7.4` and catalog Mira `~0.1.4`; hosted required checks qualify that intake.                                                                             |
 | AUI-PARITY-001  | Partial     | 16 renderer mappings; full recording and changes UI; visual review pending                                                                                                                                                                                                            |
 | RUI-FOUND-001   | Implemented | 31 documented families; structural negative tests, token/catalog/package audits; Desktop JJ and filename icon review records                                                                                                                                                          |
 | RUI-DESKTOP-001 | Partial     | 656 story/axe, 92 unit, 21 cold browser and 18 native-density pixel comparisons; awaiting human review                                                                                                                                                                                |
@@ -185,14 +185,13 @@ Storybook matrix also passes; final portable composite qualification remains
 distinct from native host behavior and visual review.
 
 Registry release-readiness intake under AUI-GOV-001/AUI-GOV-003 is recorded in
-`spec/records/2026-10-31-published-core-cohort.md`. Actual Core 0.7.3 publication,
-integrity and packaged patch assets are verified; complete UI registry
-qualification and the remaining pre-existing low KaTeX audit finding remain
-pending. Earlier private archive results do not qualify
-this candidate. Publication and visual/native host gates remain separate.
-Final intake must consume the actual fixed Mira through an updated Core minimum;
-the Core 0.7.3/Mira 0.1.2 functional matrix passes in full but does not qualify
-that forthcoming fixed cohort or publication.
+`spec/records/2026-10-31-published-core-cohort.md`. That record verifies Core
+0.7.3 and the Core 0.7.3/Mira 0.1.2 functional matrix. The adopted floor is
+published Core `^0.7.4`, which requires Mira `~0.1.4`, and the catalog
+devDependency is `~0.1.4`. Hosted required checks qualify this intake. Earlier
+private archive results do not qualify this candidate. Publication and
+visual/native host gates remain separate. The prior matrix does not by itself
+qualify the 0.7.4 cohort. Released Mira 0.1.4 pins KaTeX 0.18.10.
 The authorized shared Bits patch and explicit packed-example root configuration
 retain the checksum and all three installed postimages from
 `spec/records/2026-10-31-shared-bits-patch.md`; every installation root must apply
