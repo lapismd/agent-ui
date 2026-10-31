@@ -1,0 +1,43 @@
+name: Prepare package versions
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: agent-ui-changesets-main
+  cancel-in-progress: false
+
+jobs:
+  changesets:
+    name: Open version pull request
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - uses: changesets/action@v1.8.0
+        with:
+          version: pnpm exec changeset version
+          commitMode: github-api
+          createGithubReleases: false
+          title: "chore: version UI packages"
+          commit: "chore: version UI packages"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

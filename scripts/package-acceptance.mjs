@@ -5,11 +5,15 @@ import {
   rm,
   readdir,
   mkdir,
+  copyFile,
+  realpath,
 } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
+import { createRequire } from "node:module";
 import { documentedExamples } from "./consumer-examples.mjs";
 const root = process.cwd(),
   temporary = await mkdtemp(path.join(tmpdir(), "agent-ui-package-"));
@@ -19,6 +23,17 @@ function run(command, args, cwd = temporary) {
     throw new Error(`${command} ${args.join(" ")} failed (${result.status})`);
 }
 try {
+  const rootManifest = JSON.parse(
+    await readFile(path.join(root, "package.json"), "utf8"),
+  );
+  const patchPath = "patches/bits-ui@2.20.2.patch";
+  const patchHash =
+    "debd3bc7d43917f0967f0cc1e212fc5c7721c751d3b92bf8f31030d1c96289ad";
+  const patchBytes = await readFile(path.join(root, patchPath));
+  if (createHash("sha256").update(patchBytes).digest("hex") !== patchHash)
+    throw Error("Shared dependency patch differs");
+  await mkdir(path.join(temporary, "patches"));
+  await copyFile(path.join(root, patchPath), path.join(temporary, patchPath));
   for (const name of ["agent-ui", "repository-ui"])
     run(
       "pnpm",
@@ -57,14 +72,14 @@ try {
       name: "agent-ui-package-acceptance",
       private: true,
       type: "module",
-      packageManager: JSON.parse(
-        await readFile(path.join(root, "package.json"), "utf8"),
-      ).packageManager,
+      packageManager: rootManifest.packageManager,
+      pnpm: rootManifest.pnpm,
       dependencies: {
         ...dependencies,
         svelte: "5.57.2",
         "@lucide/svelte": "^1.57.0",
-        "@lapismd/design-core": "^0.7.0",
+        "@lapismd/design-core":
+          rootManifest.devDependencies["@lapismd/design-core"],
         "@lapismd/jj-history": "^0.1.0",
       },
       devDependencies: {
@@ -113,6 +128,32 @@ try {
     "--ignore-scripts",
     "--no-frozen-lockfile",
   ]);
+  const coreRoot = path.join(temporary, "node_modules/@lapismd/design-core");
+  const corePatch = JSON.parse(
+    await readFile(path.join(coreRoot, "patches/manifest.json"), "utf8"),
+  );
+  if (corePatch.patchSha256 !== patchHash || corePatch.version !== "2.20.2")
+    throw Error("Installed Core patch contract differs");
+  if (!Array.isArray(corePatch.files) || corePatch.files.length !== 3)
+    throw Error("Installed Core patch must retain all three runtime fixes");
+  const consumerRequire = createRequire(
+    await realpath(path.join(coreRoot, "package.json")),
+  );
+  const bitsRoot = path.dirname(
+    path.dirname(consumerRequire.resolve("bits-ui")),
+  );
+  const bits = JSON.parse(
+    await readFile(path.join(bitsRoot, "package.json"), "utf8"),
+  );
+  if (bits.version !== "2.20.2")
+    throw Error("Packed consumer Bits version differs");
+  for (const file of corePatch.files) {
+    const actual = createHash("sha256")
+      .update(await readFile(path.join(bitsRoot, file.path)))
+      .digest("hex");
+    if (actual !== file.afterSha256)
+      throw Error(`Packed consumer dependency patch differs: ${file.path}`);
+  }
   run("pnpm", [
     "exec",
     "svelte-check",

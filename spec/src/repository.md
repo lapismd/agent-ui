@@ -1,5 +1,9 @@
 # Repository
 
+The publishable package consumes Design Core `^0.7.4` through its public npm
+exports. Registry release qualification is recorded separately from source
+review archives; this dependency intake does not change the public UI API.
+
 Documented public-import examples MUST compile in clean package acceptance,
 including icon dependencies explicitly imported by the consumer. Host-owned
 controller lifetimes MUST capture their initial constructor inputs explicitly;

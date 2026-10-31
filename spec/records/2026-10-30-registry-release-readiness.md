@@ -2,6 +2,13 @@
 
 Requirements: AUI-GOV-001, AUI-GOV-003, AUI-GOV-004.
 
+Current authorized follow-up: the shared tracked Bits UI 2.20.2 patch is now
+permitted and Core's original Linux boundary passes all 32 cases with it.
+The [patch intake](2026-10-31-shared-bits-patch.md) owns that provenance and its
+explicit consumer-root setup. Complete Core qualification, actual fixed Core
+publication and final UI registry acceptance remain pending; earlier failed and
+archive-only receipts below remain historical evidence.
+
 Current qualification gate, updated October 31: Core 0.7.2 is published from
 `3ee2b016e453f159b376a69a19e0f5680dda3f65`, but it lacks the required captured
 JSON and Swipe teardown corrections. The next Core candidate preserves the

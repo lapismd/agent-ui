@@ -95,22 +95,34 @@ the source ledger records only explicit optional host-state bindings.
 The Desktop adoption ledger also records confirmed independent diff recovery;
 its pinned reads and default component layout remain unchanged.
 
-Registry release readiness MUST consume Design Core from `^0.7.1` and the
-catalog's Mira dependency from `~0.1.2`, with the published jj-history 0.1.0
+Registry release readiness MUST consume Design Core from `^0.7.4` and the
+catalog's Mira dependency from `~0.1.4`, with the published jj-history 0.1.0
 and a frozen registry lock. Explicit archives remain available for future
 unreleased-source review; they do not qualify registry-only release acceptance.
 The registry lock MUST retain compatible CodeMirror/Lezer runtime identities
-when captured readers exchange syntax trees. Current release acceptance remains
-pending on a released Core cohort containing the captured-JSON correction and
-the qualified Bits UI focus-lifetime repair, followed by fresh complete
-qualification of the deduplicated registry lock. The prepared Bits owner-source
-archive is diagnostic evidence only; it MUST NOT qualify a registry release.
-Published Core 0.7.2 lacks the required JSON/Swipe repairs. The current Core
-candidate still fails Linux option focus; Bits UI's
-[owner PR #2264](https://github.com/huntabyte/bits-ui/pull/2264) awaits maintainer
-merge and a legitimate npm release before final Core and UI qualification.
+when captured readers exchange syntax trees. Published Core 0.7.4 requires Mira
+`~0.1.4` and contains the captured-JSON, Swipe and popup corrections and the
+authoritative shared patch assets. Its registry publication is verified by the
+owning release; fresh complete UI registry qualification remains required
+through hosted checks. Prepared source archives are diagnostic evidence only and MUST NOT
+qualify a registry release. The user authorizes the tracked shared Bits UI
+2.20.2 patch with SHA-256
+`debd3bc7d43917f0967f0cc1e212fc5c7721c751d3b92bf8f31030d1c96289ad`, retaining
+Link Preview, six Slider guards and owner FocusScope repair `692fbdf5` /
+[PR #2264](https://github.com/huntabyte/bits-ui/pull/2264). Every runtime and
+clean packed-example installation root MUST
+explicitly bind Bits 2.20.2 and apply the same checksum-bound patch; dependency
+pnpm metadata does not propagate. Removal requires an actual released dependency
+containing all three fixes and complete unpatched source/consumer acceptance.
+The UI minimum and frozen lock MUST retain the released fixed Core floor before
+version publication; source qualification alone does not establish UI acceptance.
 Version preparation, publication, visual approval and native host integration
 retain their separate gates.
+
+The prior consumer audit recorded one low KaTeX advisory through Mira 0.1.2.
+Released Mira 0.1.4 pins KaTeX 0.18.10, inside that advisory's patched range,
+and published Core 0.7.4 requires that Mira release. UI MUST NOT add duplicated
+Mira runtime dependencies or consumer overrides to conceal an owning-source issue.
 
 ## AUI-GOV-001 — Source ownership
 
@@ -228,6 +240,22 @@ See [local validation](../../docs/local-validation.md) for commands and scope.
 - Default concurrency MUST be half the available processors capped at four, with a validated `TURBO_CONCURRENCY` override.
 - Remote cache credentials MUST come from CI secrets and MUST NOT be logged.
 - Workspace package, catalog, Storybook, test, script and specification inputs MUST invalidate root task caches.
+
+## AUI-GOV-005 — Version pull requests
+
+**Requirement.** Changesets MUST prepare bot-authored version pull requests from `main` using only contents and pull-request write permissions. Candidates MUST pass normal protected checks and receive explicit review before merge. Version preparation MUST NOT publish packages, create release tags or approve pull requests.
+
+`.github/workflows/changesets.yml` uses the same GitHub-token action pattern as
+the sibling repositories. When GitHub suppresses automatic checks for a token's
+PR event, a maintainer dispatches `.github/workflows/check.yml` on the reviewed
+candidate branch. Its existing seven lanes and aggregate `verify` remain
+mandatory. The protected, immutable-tag npm publisher remains separate.
+
+### Acceptance details
+
+- Version changes MUST derive from committed Changesets, preserve independent package versions and update the portable registry lock.
+- The reviewed bot branch MUST run the existing verification workflow; manual dispatch MAY start the same checks when token PR events are suppressed.
+- Merging the version PR MUST leave actual npm publication to the protected immutable-tag publisher.
 
 ## AUI-GOV-003 — Evidence
 

@@ -1,3 +1,17 @@
+# Release guidance
+
+The current dependency floor, registry qualification and remaining release gates
+belong to `spec/src/governance.md` and `spec/src/verification.md`. Agent and
+Repository contracts remain in their owning canonical chapters. Exact commands,
+versions and results belong to append-only `spec/records` evidence, including
+`2026-10-30-registry-release-readiness.md` and `2026-10-31-shared-bits-patch.md`.
+
+Version preparation follows AUI-GOV-005: normal bot-authored Changesets PRs,
+protected checks and explicit review. The implementation receipt is
+`spec/records/2026-10-31-version-pull-requests.md`. Actual trusted publication,
+native host acceptance and visual approval retain their canonical gates. Older
+review and archive qualification below is historical context, not current status.
+
 # Footer capability repair
 
 The owning current contract is AUI-CHAT-003 in `spec/src/agent.md`; commands,
@@ -78,10 +92,10 @@ blame, host-resolved author avatars, icon-bearing Empty/unavailable states and
 Design Core's cold-catalog dependency optimization. Visual baselines remain
 unchanged.
 
-The unpublished public jj-history protocol package is supplied through an ignored
-review archive. The checked-in manifests retain semver ranges; ordinary registry
-installation and lockfile refresh remain a release prerequisite, not a passed
-review check. Details and actual qualification counts belong in
+The original jj-history protocol review used an ignored archive. Its published
+0.1.0 package now permits frozen registry installation; current qualification
+and remaining source/dependency gates are recorded in the release-readiness
+chapter above. Historical review details and counts remain in
 `spec/records/2026-10-22-desktop-jj-review.md`.
 
 The filename-icon follow-up adopts public Design Core FileTypeIcon in attachment
@@ -89,9 +103,10 @@ chips, attach-file suggestions, saved-file headers, local catalog skills and JJ 
 FileListing and diff/tool presentation inherit the source implementation. The
 source ledger documents each intentional glyph substitution at the original
 size; geometry and actions remain owned by the existing components. Qualification
-is recorded in `spec/records/2026-10-22-file-type-icons.md`. Before release,
-publish the icon-capable Design Core version and update the dependency minimum
-and portable lockfile; the local packed overlay is review evidence only.
+is recorded in `spec/records/2026-10-22-file-type-icons.md`. Published Design Core
+0.7.1 now provides those exports through the updated dependency minimum and
+portable lockfile. That original packed overlay remains historical review
+evidence; it does not replace current registry qualification.
 
 Earlier Agent records remain in `spec/records`. Final approval of each section
 and all downstream migration remain explicit user decisions.

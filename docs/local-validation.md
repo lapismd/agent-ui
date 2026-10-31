@@ -48,9 +48,14 @@ There is no native/Cargo cache in this UI-only runner.
 
 ## Public archive qualification
 
-Ordinary installs use the registry lock with `--frozen-lockfile`. The unpublished
-`@lapismd/jj-history` prerequisite currently prevents claiming that gate. A
-separate ignored archive inventory may supply verified public tarballs through
+Ordinary installs use the registry lock with `--frozen-lockfile`. Required
+dependency floors and current qualification belong to the canonical governance
+and verification chapters.
+The user-authorized shared Bits UI 2.20.2 patch applies explicitly at each root,
+including the isolated packed-example fixture. Its exact payload/hash and all
+three installed postimages must match; dependency pnpm metadata is not inherited.
+A separate ignored archive inventory may supply verified
+public tarballs for future unreleased-source review through
 `AGENT_UI_VALIDATION_ARCHIVES` or the config's `archives` path. Each entry names
 `name`, `version`, `path` and `sha256`; provenance may be retained alongside them.
 The runner verifies checksum, identity and safe archive members. It projects
