@@ -237,6 +237,22 @@ See [local validation](../../docs/local-validation.md) for commands and scope.
 - Remote cache credentials MUST come from CI secrets and MUST NOT be logged.
 - Workspace package, catalog, Storybook, test, script and specification inputs MUST invalidate root task caches.
 
+## AUI-GOV-005 — Version pull requests
+
+**Requirement.** Changesets MUST prepare bot-authored version pull requests from `main` using only contents and pull-request write permissions. Candidates MUST pass normal protected checks and receive explicit review before merge. Version preparation MUST NOT publish packages, create release tags or approve pull requests.
+
+`.github/workflows/changesets.yml` uses the same GitHub-token action pattern as
+the sibling repositories. When GitHub suppresses automatic checks for a token's
+PR event, a maintainer dispatches `.github/workflows/check.yml` on the reviewed
+candidate branch. Its existing seven lanes and aggregate `verify` remain
+mandatory. The protected, immutable-tag npm publisher remains separate.
+
+### Acceptance details
+
+- Version changes MUST derive from committed Changesets, preserve independent package versions and update the portable registry lock.
+- The reviewed bot branch MUST run the existing verification workflow; manual dispatch MAY start the same checks when token PR events are suppressed.
+- Merging the version PR MUST leave actual npm publication to the protected immutable-tag publisher.
+
 ## AUI-GOV-003 — Evidence
 
 **Requirement.** Protected changes MUST update their owning contract and verification evidence. Functional and accessibility failures MUST remain explicit; visual baselines MUST NOT change without approval.

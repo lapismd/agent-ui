@@ -1,19 +1,16 @@
-# Registry release readiness
+# Release guidance
 
-Public release follow-through is authorized. The npm workflow now admits
-independent Agent UI/Repository UI versions and verifies exact registry bytes,
-clean installed versions, signatures and provenance. Final registry qualification
-requires the actually released Design Core JSON/Swipe corrections and the
-user-authorized shared Bits UI 2.20.2 root patch. Its canonical gate and provenance
-live in `spec/src/governance.md` and `spec/records/2026-10-31-shared-bits-patch.md`.
-Prepared source archives remain separate evidence.
+The current dependency floor, registry qualification and remaining release gates
+belong to `spec/src/governance.md` and `spec/src/verification.md`. Agent and
+Repository contracts remain in their owning canonical chapters. Exact commands,
+versions and results belong to append-only `spec/records` evidence, including
+`2026-10-30-registry-release-readiness.md` and `2026-10-31-shared-bits-patch.md`.
 
-The release-readiness intake consumes published Design Core `^0.7.1`, Mira
-`~0.1.2` and jj-history 0.1.0 through the frozen registry lock. Current source
-contracts and actual qualification live in `spec/src` and the append-only
-`spec/records/2026-10-30-registry-release-readiness.md` record. Version
-preparation, publication, native host acceptance and visual approval remain
-separate gates. Older archive qualification below remains historical evidence.
+Version preparation follows AUI-GOV-005: normal bot-authored Changesets PRs,
+protected checks and explicit review. The implementation receipt is
+`spec/records/2026-10-31-version-pull-requests.md`. Actual trusted publication,
+native host acceptance and visual approval retain their canonical gates. Older
+review and archive qualification below is historical context, not current status.
 
 # Footer capability repair
 
