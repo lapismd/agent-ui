@@ -84,5 +84,13 @@
     "typescript": "~5.9.3",
     "vite": "8.3.5",
     "vitest": "4.1.11"
+  },
+  "pnpm": {
+    "overrides": {
+      "bits-ui": "2.20.2"
+    },
+    "patchedDependencies": {
+      "bits-ui@2.20.2": "patches/bits-ui@2.20.2.patch"
+    }
   }
 }

@@ -105,10 +105,18 @@ pending on a released Core cohort containing the captured-JSON correction and
 the qualified Bits UI focus-lifetime repair, followed by fresh complete
 qualification of the deduplicated registry lock. The prepared Bits owner-source
 archive is diagnostic evidence only; it MUST NOT qualify a registry release.
-Published Core 0.7.2 lacks the required JSON/Swipe repairs. The current Core
-candidate still fails Linux option focus; Bits UI's
-[owner PR #2264](https://github.com/huntabyte/bits-ui/pull/2264) awaits maintainer
-merge and a legitimate npm release before final Core and UI qualification.
+Published Core 0.7.2 lacks the required JSON/Swipe repairs. The user authorizes
+the tracked shared Bits UI 2.20.2 patch with SHA-256
+`debd3bc7d43917f0967f0cc1e212fc5c7721c751d3b92bf8f31030d1c96289ad`, retaining
+Link Preview, six Slider guards and owner FocusScope repair `692fbdf5` /
+[PR #2264](https://github.com/huntabyte/bits-ui/pull/2264). Core's original Linux
+boundary now passes 32 cases; complete qualification and actual Core publication
+remain pending. Every runtime and clean packed-example installation root MUST
+explicitly bind Bits 2.20.2 and apply the same checksum-bound patch; dependency
+pnpm metadata does not propagate. Removal requires an actual released dependency
+containing all three fixes and complete unpatched source/consumer acceptance.
+The UI minimum and frozen lock MUST advance to the actually released fixed Core
+before version publication; current prepared floors do not qualify that gate.
 Version preparation, publication, visual approval and native host integration
 retain their separate gates.
 

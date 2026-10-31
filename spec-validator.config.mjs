@@ -42,7 +42,7 @@ export default defineConfig(headingRequirements(), {
       mode: "mapped",
       canonicalPattern: "^spec/src/(?:agent|repository|governance)\\.md$",
       protected: [
-        "^(?:packages/|catalog/|scripts/|\\.storybook/|.*\\.(?:json|mjs|ts|yaml)$|AGENTS\\.md$|README\\.md$|PLAN\\.md$)",
+        "^(?:patches/|packages/|catalog/|scripts/|\\.storybook/|.*\\.(?:json|mjs|ts|yaml)$|AGENTS\\.md$|README\\.md$|PLAN\\.md$)",
       ],
       ignore: ["(^|/)(?:node_modules|dist|storybook-static)/", "^spec/book/"],
       rules: [

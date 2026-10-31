@@ -10,6 +10,12 @@ controller-driven screens. Hosts supply execution and persistence through ports.
 
 Live catalog: <https://lapismd.github.io/agent-ui/>.
 
+Current release preparation requires the shared temporary Bits UI 2.20.2 patch
+described in [patches/README.md](patches/README.md). Every installation root must
+apply it explicitly; installing either UI package or Core does not propagate
+pnpm patches. The actual fixed Core publication and final registry qualification
+remain release gates.
+
 ## Applications consume complete screens
 
 Mount the public complete screen for each application view. Hosts provide native

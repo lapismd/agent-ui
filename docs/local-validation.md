@@ -49,8 +49,11 @@ There is no native/Cargo cache in this UI-only runner.
 ## Public archive qualification
 
 Ordinary installs use the registry lock with `--frozen-lockfile`. Published
-Design Core 0.7.1 and jj-history 0.1.0 permit registry-only qualification of the
-current package cohort. A separate ignored archive inventory may supply verified
+jj-history 0.1.0 is available; the fixed Core cohort still awaits publication.
+The user-authorized shared Bits UI 2.20.2 patch applies explicitly at each root,
+including the isolated packed-example fixture. Its exact payload/hash and all
+three installed postimages must match; dependency pnpm metadata is not inherited.
+A separate ignored archive inventory may supply verified
 public tarballs for future unreleased-source review through
 `AGENT_UI_VALIDATION_ARCHIVES` or the config's `archives` path. Each entry names
 `name`, `version`, `path` and `sha256`; provenance may be retained alongside them.

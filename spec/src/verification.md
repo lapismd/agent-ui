@@ -188,6 +188,10 @@ Registry release-readiness intake under AUI-GOV-001/AUI-GOV-003 is recorded in
 cohort separately from earlier private review archives. Released Core JSON and
 Bits focus-lifetime repairs, and complete deduplicated-lock qualification, remain release gates;
 publication and visual/native host gates remain separate.
+The authorized shared Bits patch and explicit packed-example root configuration
+are recorded in `spec/records/2026-10-31-shared-bits-patch.md`. Core's owner Linux
+boundary passes 32 cases after the patch; actual fixed Core publication and the
+complete final registry cohort remain pending.
 The publisher's actual identity and artifact-manifest run blocks are exercised by
 11 isolated cases in `scripts/npm-publish.test.mjs` through `validation:check`,
 covering unequal versions, invalid release identities and exact tarball integrity.
