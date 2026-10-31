@@ -137,6 +137,10 @@ integrity, run behind the protected npm publisher, and finish with exact
 registry-byte comparison, a clean installed-version check and npm signature
 and provenance verification. A manual dispatch MUST reference the same immutable
 source as its workflow; retries MUST NOT replace an existing package version.
+Normal validation MUST execute the actual workflow identity and artifact-manifest
+steps against isolated fixtures, proving independent versions and rejecting
+invalid source/tag/package identities and wrong-version artifacts without
+network, credentials or real repository mutations.
 
 The user authorized Stacks and Workspace presentation after Branches. The new
 families MUST copy the source canvas/lane/card/files/history geometry, reuse the

@@ -17,7 +17,7 @@
   "storybook:check": "pnpm test:storybook && pnpm test:browser && pnpm build-storybook",
   "checks": "pnpm validation:smoke && pnpm check && pnpm test && pnpm storybook:check && pnpm test:package && pnpm spec:check && pnpm check:workflow",
   "check:validation-routing": "node scripts/validation/check-routing.mjs",
-  "validation:check": "node --test scripts/validation.test.mjs scripts/validation-archives.test.mjs scripts/turbo.test.mjs && node scripts/check-catalog-composition.mjs && vitest run --project unit tests/runtime-diagnostics.test.ts tests/catalog-composition.test.ts",
+  "validation:check": "node --test scripts/validation.test.mjs scripts/validation-archives.test.mjs scripts/turbo.test.mjs scripts/npm-publish.test.mjs && node scripts/check-catalog-composition.mjs && vitest run --project unit tests/runtime-diagnostics.test.ts tests/catalog-composition.test.ts",
   "validation:smoke": "node scripts/validation/smoke.mjs",
   "check:catalog-composition": "node scripts/check-catalog-composition.mjs",
   "check:workflow": "actionlint"

@@ -187,6 +187,12 @@ package identity/private/version/access. Exact per-package SHA-512 manifest
 generation passes and a wrong-version tarball is rejected: 11 candidate contract
 cases pass. Hosted full verification remains required before merge. Source
 merge alone neither creates a version tag nor triggers the publisher.
+The same 11 cases are retained in `scripts/npm-publish.test.mjs` and wired into
+the normal `validation:check` lane; they execute the tracked workflow run blocks
+without contacting the registry or changing real Git metadata.
+The normal local Node 24 test command passes all 28 tooling cases, 12 diagnostic
+and composition guards, and 235 unit cases. Full quality checks pass with zero
+Svelte diagnostics and no formatting, ownership or source-ledger findings.
 
 ## Combined Core source acceptance
 
