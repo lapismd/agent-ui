@@ -1,3 +1,4 @@
+import { specificationDockerArguments } from "../dependency-automation/spec-policy.mjs";
 import { execFileSync, spawn } from "node:child_process";
 import {
   closeSync,
@@ -9,6 +10,7 @@ import { pipeline } from "node:stream/promises";
 import { join } from "node:path";
 
 export function dockerCommand(config, args) {
+  args = specificationDockerArguments(args);
   const context = config.context ? ["--context", config.context] : [];
   if (config.transport !== "ssh-cli") return ["docker", [...context, ...args]];
   const endpoint = new URL(

@@ -249,3 +249,17 @@ jobs:
           include-hidden-files: true
           if-no-files-found: error
           retention-days: 90
+  notify-dependencies:
+    name: Notify dependency consumers
+    needs:
+      - verify-registry
+      - package-gate
+    if: always() && needs.verify-registry.result == 'success'
+    permissions:
+      contents: read
+    uses: lapismd/dependency-automation/.github/workflows/notify.yml@ea9d35b12b612467bbabf1c6271ffa41b5eda4ba
+    with:
+      automation-ref: ea9d35b12b612467bbabf1c6271ffa41b5eda4ba
+      source-sha: ${{ needs.package-gate.outputs.pack_source }}
+    secrets:
+      app-private-key: ${{ secrets.LAPIS_DEPENDENCY_APP_PRIVATE_KEY }}
