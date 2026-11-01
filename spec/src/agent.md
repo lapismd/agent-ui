@@ -1,6 +1,6 @@
 # Agent
 
-The publishable package consumes Design Core `^0.7.4` through its public npm
+The publishable package consumes Design Core `^0.7.4 || ^0.8.0 || ^0.9.0` through its public npm
 exports. Registry release qualification is recorded separately from source
 review archives; this dependency intake does not change the public UI API.
 
@@ -219,6 +219,11 @@ variable. Desktop and JJ Store adoption follows explicit review of this slice.
 ## AUI-THEME-001 — Styling and themes
 
 **Requirement.** Every documented foundation MUST expose audited styling variables with source-faithful default values, and Storybook MUST offer the same independent brand and light/dark controls as Design Core.
+
+Prepared dependency archives may move authored source beneath their public
+entry root. The token audit resolves that root from the installed package's
+export metadata, preserving the original ownership pointer and exact default
+comparison. Missing files and changed defaults remain failures.
 
 ### Acceptance details
 

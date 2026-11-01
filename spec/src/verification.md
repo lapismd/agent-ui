@@ -30,7 +30,7 @@ standalone and completed screens; consumer admission states remain host-owned.
 | RUI-LIFE-001    | Partial     | Copied Desktop pin/late-read/drain regressions verified; downstream host lifetime remains separate                                                                                                                                                                                    |
 | AUI-FOUND-001   | Implemented | 18 colocated families; full recording; 36 public examples; completeness record; filename icon adoption record                                                                                                                                                                         |
 | AUI-THEME-001   | Implemented | Audited defaults; independent theme/mode controls; bounded flush docs previews                                                                                                                                                                                                        |
-| AUI-VERIFY-001  | Implemented | Prior Core 0.7.3/Mira 0.1.2 matrix in `spec/records/2026-10-31-published-core-cohort.md`. Adopted floor is published Core `^0.7.4` and catalog Mira `~0.1.4`; hosted required checks qualify that intake.                                                                             |
+| AUI-VERIFY-001  | Implemented | Prior Core 0.7.3/Mira 0.1.2 matrix in `spec/records/2026-10-31-published-core-cohort.md`. Adopted floor is published Core `^0.7.4                                                                                                                                                     |     | ^0.8.0`and catalog Mira`~0.1.4`; hosted required checks qualify that intake. |
 | AUI-PARITY-001  | Partial     | 16 renderer mappings; full recording and changes UI; visual review pending                                                                                                                                                                                                            |
 | RUI-FOUND-001   | Implemented | 31 documented families; structural negative tests, token/catalog/package audits; Desktop JJ and filename icon review records                                                                                                                                                          |
 | RUI-DESKTOP-001 | Partial     | 656 story/axe, 92 unit, 21 cold browser and 18 native-density pixel comparisons; awaiting human review                                                                                                                                                                                |
@@ -187,7 +187,7 @@ distinct from native host behavior and visual review.
 Registry release-readiness intake under AUI-GOV-001/AUI-GOV-003 is recorded in
 `spec/records/2026-10-31-published-core-cohort.md`. That record verifies Core
 0.7.3 and the Core 0.7.3/Mira 0.1.2 functional matrix. The adopted floor is
-published Core `^0.7.4`, which requires Mira `~0.1.4`, and the catalog
+published Core `^0.7.4 || ^0.8.0 || ^0.9.0`, which requires Mira `~0.1.4`, and the catalog
 devDependency is `~0.1.4`. Hosted required checks qualify this intake. Earlier
 private archive results do not qualify this candidate. Publication and
 visual/native host gates remain separate. The prior matrix does not by itself
@@ -199,3 +199,7 @@ the patch independently.
 The publisher's actual identity and artifact-manifest run blocks are exercised by
 11 isolated cases in `scripts/npm-publish.test.mjs` through `validation:check`,
 covering unequal versions, invalid release identities and exact tarball integrity.
+
+The shared Notes cohort qualifies Core 0.9 through the complete Docker matrix
+in [server UI cohort evidence](../records/2026-11-01-server-ui-core-cohort.md).
+Registry publication and downstream acceptance remain separate.
