@@ -1,5 +1,11 @@
 # @lapismd/agent-ui
 
+## 0.2.1
+
+### Patch Changes
+
+- 5c61865: Admit Design Core 0.8/0.9 alongside 0.7.4 for the shared Notes application cohort.
+
 ## 0.2.0
 
 ### Minor Changes
