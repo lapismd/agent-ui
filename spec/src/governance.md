@@ -1,5 +1,9 @@
 # Governance
 
+<!-- dependency-automation-policy -->
+
+Dependency update PRs from the trusted LapisMD App, Dependabot or Renovate MAY skip specification checks using the PR author rather than the rerun actor. Functional checks remain required. The shared `lapismd/dependency-automation` coordinator proposes published first-party npm updates with Changeset release intent where required; it does not merge, publish, sign or deploy. This CI policy changes no runtime or public contract in this chapter.
+
 The server UI dependency cohort qualifies Design Core 0.8 and 0.9 through portable
 ranges and explicit checksum-verified archives. Token provenance retains its
 authored source path; validation resolves a unique installed export root when
