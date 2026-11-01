@@ -1,6 +1,7 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
+import { tokenSource } from "./token-source.mjs";
 export function walk(directory) {
   if (!existsSync(directory)) return [];
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -229,7 +230,7 @@ export function auditFoundations(root, options = {}) {
         continue;
       }
       const source = token.source.startsWith("@lapismd/")
-        ? `node_modules/${token.source}`
+        ? path.relative(root, tokenSource(root, token.source))
         : `${sourceRoot}/${token.source}`;
       if (
         fallback(compact(read(source)), token.name) !== compact(token.default)

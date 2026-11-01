@@ -1,5 +1,12 @@
 # Governance
 
+The server UI dependency cohort qualifies Design Core 0.8 and 0.9 through portable
+ranges and explicit checksum-verified archives. Token provenance retains its
+authored source path; validation resolves a unique installed export root when
+prepared packages relocate source to built output. Ambiguous or missing roots
+and mismatched defaults continue to fail. This tooling qualification grants no
+publication, native installation or downstream release authority.
+
 Specification discovery uses `pnpm spec:search` with semantic QMD retrieval;
 doctor and a real search qualify its local wiring without running search in CI.
 

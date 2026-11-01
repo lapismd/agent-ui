@@ -437,3 +437,9 @@ packed qualification is complete in
 archive remains 5a88a348. Integration preserves newer Profile/Threads/content
 states; its merge checks are in `spec/records/2026-10-23-desktop-main-integration.md`.
 Consumer/native follow-up gates stay separate.
+
+The server UI parity cohort qualifies Design Core 0.8/0.9 alongside 0.7.4 through
+portable dependency ranges. Full Docker checks pass, including 1,956 catalog
+cases and 151 browser journeys; source evidence is in
+`spec/records/2026-11-01-server-ui-core-cohort.md`. Downstream archive intake,
+publication and visual/native host approval remain separate gates.

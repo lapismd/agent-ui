@@ -147,6 +147,43 @@ describe("foundation specification enforcement", () => {
       auditFoundations(root).some((f) => f.code === "AUI-DOCS-TOKEN-DEFAULT"),
     ).toBe(true);
   });
+  it.each(["./src/index.ts", "./dist/index.js"])(
+    "checks owning token defaults through package entry %s",
+    (entry) => {
+      fixture();
+      const packageRoot = "node_modules/@lapismd/example";
+      write(
+        packageRoot + "/package.json",
+        JSON.stringify({
+          name: "@lapismd/example",
+          exports: { "./theme": { svelte: entry, import: entry } },
+        }),
+      );
+      const source = entry
+        .replace("index.ts", "theme.css")
+        .replace("index.js", "theme.css");
+      write(
+        packageRoot + "/" + source,
+        ".example {gap:var(--ui-agent-example-gap, 0.5rem)}",
+      );
+      const tokens = JSON.parse(
+        readFileSync(path.join(root, base + ".tokens.json"), "utf8"),
+      );
+      tokens.variables[0].owner = "@lapismd/example";
+      tokens.variables[0].source = "@lapismd/example/src/theme.css";
+      write(base + ".tokens.json", JSON.stringify(tokens));
+      expect(auditFoundations(root)).toEqual([]);
+      write(
+        packageRoot + "/" + source,
+        ".example {gap:var(--ui-agent-example-gap, 1rem)}",
+      );
+      expect(
+        auditFoundations(root).some(
+          (finding) => finding.code === "AUI-DOCS-TOKEN-DEFAULT",
+        ),
+      ).toBe(true);
+    },
+  );
   it("rejects undocumented new styling variables", () => {
     fixture();
     write(
