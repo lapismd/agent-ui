@@ -3,6 +3,9 @@
 The content-state audit and shared header follow-up are recorded in
 `spec/records/2026-10-23-content-states.md`. Loading and icon Empty checks cover
 standalone and completed screens; consumer admission states remain host-owned.
+The initially collapsed forge checks follow-up retains both Empty/icon audits;
+exact before/after results are in
+`spec/records/2026-11-10-check-disclosure-audits.md`.
 
 | ID              | Status      | Evidence                                                                                                                                                                                                                                                                              |
 | --------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

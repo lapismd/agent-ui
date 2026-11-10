@@ -207,7 +207,9 @@ MUST remain visible during refresh; pending continuations append skeleton rows.
 Empty/unavailable content and failed reads MUST render public shadcn Empty with
 a relevant icon, title, description and applicable retry action in production.
 Standalone and completed-screen stories MUST exercise these same implementations.
-The catalog-wide browser audit MUST verify Loading, Empty and Unavailable states.
+The catalog-wide browser audit MUST verify Loading, Empty and Unavailable states,
+opening their public disclosures when the reviewed default is collapsed and
+asserting that initial collapsed state before revealing the shared content.
 Scalar missing values, in-progress actions and live streaming retain their own
 semantics.
 
@@ -215,7 +217,7 @@ semantics.
 
 - Public types express the boundary.
 - Building blocks and complete Agent/JJ screens MUST compose the same production implementations and host-owned controllers.
-- Every named Empty or Unavailable story MUST expose visible public shadcn Empty content with an icon through the catalog-wide browser check.
+- Every named Empty or Unavailable story MUST expose visible public shadcn Empty content with an icon through the catalog-wide browser check, including after explicit expansion for initially collapsed checks.
 
 ## Portable local validation
 
