@@ -196,7 +196,7 @@ export const FloatingPullRequest: StoryObj<typeof WorkflowDemo> = {
     expect(within(checks).getByText(/^failed ·/)).toBeVisible();
     expect(
       within(checks).getByRole("button", {
-        name: "Some checks were not successful",
+        name: /^Some checks were not successful/,
       }),
     ).toBeVisible();
   },

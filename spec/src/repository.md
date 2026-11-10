@@ -290,6 +290,21 @@ execution to the host; rendering or dropping MUST NOT execute a command itself.
 
 **Requirement.** Forge, checks and repository settings screens MUST preserve drafts, capability gates and pending effects through navigation and floating. Credentials and execution MUST remain host-owned.
 
+The public RepositoryChecks component MUST own revision-aware summaries, status
+rings, descriptions, refresh requests, grouped/ungrouped display and independently
+collapsible status groups. PR panels and other check consumers MUST compose this
+same component. The public RepositoryForgePanel MUST also provide their common
+bordered disclosure, floating/docking controls and theme-preserving content
+frame; hosts MUST NOT recreate the PR frame for other item kinds. PR checks keep
+their merge controls visible, with capability and eligibility gates applied to
+submission. Standalone component stories and complete screens MUST render
+the production building blocks. Unavailable, stale and incomplete checks remain
+explicit, and rendering or grouping never requests a write.
+Detached PR content MUST inherit the owning application's theme and follow theme
+changes without recreating its content. The title disclosure has no background,
+and is inert while floating. Initial floating geometry fits the supplied content
+within the viewport instead of reserving unused space below it.
+
 Settings card headers MUST own a single compact inset and align section icon centres with row icon centres. Read-only settings use the source-ported JJ Store row with exact value copy and independent host open controls; consumers MUST NOT recreate path/action rows.
 
 Personal Profile settings and the sidebar profile menu MUST adapt JJ Store's

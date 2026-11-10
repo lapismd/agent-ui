@@ -260,7 +260,6 @@
       "primary": "jj/forge/pull-request/RepositoryPullRequest",
       "purpose": "Recorded PR details, checks, host action requests and state-preserving detachable window.",
       "parts": [
-        "jj/forge/pull-request/RepositoryDetachablePanel.svelte",
         "jj/forge/pull-request/RepositoryPullRequestBody.svelte",
         "jj/forge/pull-request/RepositoryPullRequestChecks.svelte",
         "jj/forge/pull-request/RepositoryPullRequestActions.svelte"
@@ -360,6 +359,25 @@
       "primary": "jj/settings/profile-menu/RepositoryProfileMenu",
       "purpose": "JJ Store sidebar profile avatar, identity, compact tooltip and local settings menu.",
       "parts": []
+    },
+    {
+      "primary": "jj/forge/checks/RepositoryChecks",
+      "purpose": "Shared revision-aware grouped checks for PRs and other forge surfaces, with public Collapsible and host refresh callbacks.",
+      "parts": [
+        "jj/forge/checks/RepositoryChecksRing.svelte",
+        "jj/forge/checks/RepositoryCheckRow.svelte",
+        "jj/forge/checks/model.ts",
+        "jj/forge/checks/checks.css"
+      ]
+    },
+    {
+      "primary": "jj/forge/panel/RepositoryForgePanel",
+      "purpose": "Shared bordered and detachable frame for PR, workflow and deployment detail content.",
+      "parts": [
+        "jj/forge/panel/RepositoryDetachablePanel.svelte",
+        "jj/forge/panel/detachable-panel.css",
+        "jj/forge/panel/panel.css"
+      ]
     }
   ],
   "deferred": [

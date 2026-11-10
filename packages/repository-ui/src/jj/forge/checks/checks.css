@@ -1,0 +1,87 @@
+/* SPDX-License-Identifier: Apache-2.0; adapted from JJ Store store-forge.css. */
+.repository-checks {
+  border-top: 1px solid var(--border);
+  font-size: var(--ui-repository-checks-font-size, 0.8125rem);
+}
+.repository-checks__summary {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  padding: 0.5rem;
+}
+.repository-checks__disclosure {
+  flex: 1;
+  min-width: 0;
+  height: auto;
+  justify-content: flex-start;
+  gap: 0.6rem;
+  text-align: start;
+  padding: 0.25rem;
+}
+.repository-checks__disclosure[data-ui-component="button"] {
+  background: transparent;
+}
+.repository-checks__name {
+  min-width: 0;
+  display: grid;
+  gap: 0.15rem;
+}
+.repository-checks__name strong {
+  white-space: normal;
+  font-weight: 550;
+}
+.repository-checks__name small,
+.repository-check-row small {
+  display: block;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+}
+.repository-checks__revision {
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+}
+.repository-checks__group-heading {
+  width: 100%;
+  justify-content: space-between;
+}
+.repository-checks__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.repository-check-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.75rem;
+  border-top: 1px solid var(--border);
+}
+.repository-check-row > svg {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+}
+.repository-checks-ring {
+  flex: none;
+}
+.repository-checks-ring [data-state="passed"] {
+  stroke: var(--success, var(--foreground));
+}
+.repository-checks-ring [data-state="failed"] {
+  stroke: var(--destructive);
+}
+.repository-checks-ring [data-state="running"],
+.repository-checks-ring [data-state="queued"] {
+  stroke: var(--primary);
+}
+.repository-checks-ring [data-state="unknown"] {
+  stroke: var(--muted-foreground);
+}
+.repository-check-row[data-state="passed"] > svg {
+  color: var(--success, var(--foreground));
+}
+.repository-check-row[data-state="failed"] > svg {
+  color: var(--destructive);
+}

@@ -443,3 +443,10 @@ portable dependency ranges. Full Docker checks pass, including 1,956 catalog
 cases and 151 browser journeys; source evidence is in
 `spec/records/2026-11-01-server-ui-core-cohort.md`. Downstream archive intake,
 publication and visual/native host approval remain separate gates.
+
+Lapis Maintenance's shared checks follow-up introduces public RepositoryChecks
+and RepositoryForgePanel with colocated standalone stories, documentation and
+native token contracts; PR panels and workflow/deployment consumers compose the
+same production building blocks while preserving host-owned data and actions.
+Evidence is recorded in `spec/records/2026-11-10-shared-forge-panels.md`.
+Publication remains subject to the explicit repository review boundary.

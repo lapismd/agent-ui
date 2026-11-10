@@ -295,6 +295,9 @@ avatar selection, compact footer menus and icon Empty/Skeleton states.
 Clean package acceptance MUST compile documented examples for both packages
 and exclude their catalog material; static catalog checks MUST audit both family
 inventories and specification pages.
+Shared forge catalog families MUST document the public checks and detachable
+panel components, assign their private parts once and demonstrate their actual
+production composition in standalone and complete-screen stories.
 The development catalog MUST prebundle its actual icon/runtime dependencies,
 including the public FileTypeIcon, filter and query-help Alert subpaths plus the shared CodeMirror query runtime, through both the Storybook dev
 `viteFinal` hook and Vitest configuration,

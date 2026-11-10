@@ -1,3 +1,5 @@
+import type { RepositoryChecksSnapshot } from "../checks/model.js";
+
 /** Host-issued PR presentation; no transport, credentials or execution policy. */
 export type PullRequestCapability =
   "edit" | "draft" | "merge" | "restack" | "refresh" | "checks";
@@ -18,16 +20,7 @@ export type RepositoryPullRequestRecord = {
   capabilities: readonly PullRequestCapability[];
   mergeMethods?: readonly PullRequestMergeMethod[];
   details?: readonly { label: string; value: string }[];
-  checks?: {
-    sha: string;
-    complete: boolean;
-    items: readonly {
-      id: string;
-      name: string;
-      state: "passed" | "failed" | "running" | "queued" | "unknown";
-      description?: string;
-    }[];
-  };
+  checks?: RepositoryChecksSnapshot;
 };
 export type PullRequestScope = {
   repository: string;

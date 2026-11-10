@@ -23,16 +23,18 @@
     review.select(pr.head);
   });
   let requested = $state("");
+  let theme = $state("lapis");
 </script>
 
-<div class="standalone">
+<div class="standalone" data-ui-theme={theme}>
   <PullRequest
     {review}
     branch="feature/portable-api"
     disabled={variant === "Disabled"}
     onAction={(request) => (requested = JSON.stringify(request))}
     onClose={() => (review.expanded = false)}
-  /><output aria-label="Host PR request">{requested}</output>
+  /><button onclick={() => (theme = "default")}>Change host theme</button
+  ><output aria-label="Host PR request">{requested}</output>
 </div>
 
 <style>

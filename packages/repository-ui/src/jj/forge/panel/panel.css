@@ -1,0 +1,61 @@
+/* SPDX-License-Identifier: Apache-2.0; adapted from JJ Store forge-inline.css. */
+.repository-forge-panel {
+  margin-block-end: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--ui-column-canvas-radius, var(--radius));
+  background: var(--ui-repository-forge-panel-background, var(--background));
+  overflow: hidden;
+  font-size: var(--ui-repository-forge-panel-font-size, 0.8125rem);
+}
+.repository-forge-panel--floating {
+  margin-block-end: 0;
+  border: 0;
+  border-radius: 0;
+}
+.repository-forge-panel__summary {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-height: var(--ui-column-canvas-header-height, 2.5rem);
+  padding: 0 0.5rem;
+  background: var(--background);
+}
+.repository-forge-panel--floating .repository-forge-panel__summary {
+  border-block-end: 1px solid var(--border);
+}
+.repository-forge-panel__title {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-size: 0.875rem;
+}
+.repository-forge-panel__title button {
+  width: 100%;
+  min-width: 0;
+  justify-content: flex-start;
+  padding-inline: 0.25rem;
+  background: transparent;
+  background-image: none;
+}
+.repository-forge-panel__title button:is(:hover, :focus-visible, :disabled) {
+  background: transparent;
+  background-image: none;
+}
+.repository-forge-panel__title button span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.repository-forge-panel__actions {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.125rem;
+}
+.repository-forge-panel--floating .repository-forge-panel__title button {
+  pointer-events: none;
+  opacity: 1;
+}
+.repository-forge-panel--floating .repository-forge-panel__title button svg {
+  display: none;
+}

@@ -85,3 +85,12 @@ export type * from "./forge/pull-request/types.js";
 export * from "./navigation/index.js";
 
 export * from "./projects/index.js";
+
+export { default as RepositoryChecks } from "./forge/checks/RepositoryChecks.svelte";
+export type {
+  RepositoryCheck,
+  RepositoryCheckState,
+  RepositoryChecksSnapshot,
+} from "./forge/checks/model.js";
+
+export { default as RepositoryForgePanel } from "./forge/panel/RepositoryForgePanel.svelte";
