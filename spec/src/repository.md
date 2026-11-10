@@ -300,6 +300,10 @@ their merge controls visible, with capability and eligibility gates applied to
 submission. Standalone component stories and complete screens MUST render
 the production building blocks. Unavailable, stale and incomplete checks remain
 explicit, and rendering or grouping never requests a write.
+Grouped check headings have square corners; empty or unavailable check sets
+start collapsed and retain explicit expansion. Long lists constrain the actual public ScrollArea viewport to the configured checks height, keeping the
+merge footer below the scroller without overlapping any rows. Wide PR Markdown
+uses a named horizontal ScrollArea while preserving stock content styling.
 Detached PR content MUST inherit the owning application's theme and follow theme
 changes without recreating its content. The title disclosure has no background,
 and is inert while floating. Initial floating geometry fits the supplied content

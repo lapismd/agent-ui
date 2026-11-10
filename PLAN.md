@@ -450,3 +450,10 @@ native token contracts; PR panels and workflow/deployment consumers compose the
 same production building blocks while preserving host-owned data and actions.
 Evidence is recorded in `spec/records/2026-11-10-shared-forge-panels.md`.
 Publication remains subject to the explicit repository review boundary.
+
+## Maintenance overflow follow-up
+
+RUI-FORGE-001 overflow, square headers, empty disclosure and horizontal Markdown
+are recorded in `spec/records/2026-11-10-forge-overflow.md`. Focused local
+qualification passed; full hosted qualification precedes the user-authorized
+dependency publication.

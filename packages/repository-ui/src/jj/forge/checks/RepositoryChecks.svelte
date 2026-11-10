@@ -1,5 +1,6 @@
 <!-- SPDX-License-Identifier: Apache-2.0; adapted from JJ Store StoreForgeChecks. -->
 <script lang="ts">
+  import { untrack } from "svelte";
   import { Button } from "@lapismd/design-core/shadcn/button";
   import { ScrollArea } from "@lapismd/design-core/shadcn/scroll-area";
   import * as Menu from "@lapismd/design-core/shadcn/dropdown-menu";
@@ -30,7 +31,7 @@
     disabled?: boolean;
     onRefresh?: () => void;
   } = $props();
-  let expanded = $state(true),
+  let expanded = $state(untrack(() => !!checks?.items.length)),
     grouped = $state(true);
   let collapsed = $state<Partial<Record<RepositoryCheckState, boolean>>>({});
   const current = $derived(checks?.sha === currentSha);
@@ -146,6 +147,9 @@
       {:else}
         <ScrollArea
           style="max-height:var(--ui-repository-checks-max-height,24rem)"
+          viewportProps={{
+            style: "max-height:var(--ui-repository-checks-max-height,24rem)",
+          }}
           aria-label="Check results"
         >
           {#if grouped}

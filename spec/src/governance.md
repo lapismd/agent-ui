@@ -285,6 +285,10 @@ An unpublished dependency's missing portable lockfile entries MUST remain an
 explicit release prerequisite rather than a claimed frozen-install pass.
 A passing focused retry MUST retain earlier failed/interrupted aggregate counts
 and MUST NOT qualify cold startup through a warm-server run alone.
+The Maintenance forge follow-up records the bounded viewport, horizontal table,
+square-header and empty-disclosure regressions, including reviewed source
+adaptations; full hosted qualification remains a publication gate after the
+user's explicit dependency-release request.
 Catalog naming corrections MUST retain the unchanged content-state audit and
 production-action assertions, with the original classification failure recorded.
 Controlled-composer acceptance MUST also cover a host-owned draft independently

@@ -56,5 +56,27 @@ export const Passed: Story = story("Passed");
 export const Stale: Story = story("Stale");
 export const Incomplete: Story = story("Incomplete");
 export const Unavailable: Story = story("Unavailable");
-export const Empty: Story = story("Empty");
+export const Empty: Story = {
+  ...story("Empty"),
+  play: async ({ canvasElement }) => {
+    const c = within(canvasElement);
+    await expect(
+      c.getByRole("button", { name: "Expand checks" }),
+    ).toBeVisible();
+    await expect(c.queryByText("No CI checks reported")).not.toBeVisible();
+    await userEvent.click(c.getByRole("button", { name: "Expand checks" }));
+    await expect(c.getByText("No CI checks reported")).toBeVisible();
+  },
+};
 export const Disabled: Story = story("Disabled");
+export const SquareGroupHeaders: Story = {
+  ...story("Mixed"),
+  play: async ({ canvasElement }) => {
+    const headings = canvasElement.querySelectorAll(
+      ".repository-checks__group-heading",
+    );
+    expect(headings.length).toBeGreaterThan(0);
+    for (const heading of headings)
+      expect(getComputedStyle(heading).borderTopLeftRadius).toBe("0px");
+  },
+};
