@@ -1,0 +1,19 @@
+{
+  "component": "RepositoryChecks",
+  "variables": [
+    {
+      "name": "--ui-repository-checks-font-size",
+      "default": "0.8125rem",
+      "description": "Check summary and row typography.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/forge/checks/checks.css"
+    },
+    {
+      "name": "--ui-repository-checks-max-height",
+      "default": "24rem",
+      "description": "Maximum results viewport height.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/forge/checks/RepositoryChecks.svelte"
+    }
+  ]
+}

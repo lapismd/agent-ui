@@ -1,16 +1,11 @@
 <!-- SPDX-License-Identifier: Apache-2.0; adapted from JJ Store StoreForgeDetails. -->
 <script lang="ts">
-  import * as Collapsible from "@lapismd/design-core/shadcn/collapsible";
   import * as Tooltip from "@lapismd/design-core/shadcn/tooltip";
   import { Button } from "@lapismd/design-core/shadcn/button";
   import { Badge } from "@lapismd/design-core/shadcn/badge";
-  import ChevronDown from "@lucide/svelte/icons/chevron-down";
-  import ChevronRight from "@lucide/svelte/icons/chevron-right";
   import Pencil from "@lucide/svelte/icons/pencil";
-  import PictureInPicture2 from "@lucide/svelte/icons/picture-in-picture-2";
   import GitPullRequest from "@lucide/svelte/icons/git-pull-request";
-  import X from "@lucide/svelte/icons/x";
-  import Detachable from "./RepositoryDetachablePanel.svelte";
+  import Panel from "../panel/RepositoryForgePanel.svelte";
   import Body from "./RepositoryPullRequestBody.svelte";
   import Actions from "./RepositoryPullRequestActions.svelte";
   import type { RepositoryPullRequestReview } from "./review.svelte.js";
@@ -41,112 +36,55 @@
 
 {#if pr}
   {#key review.key(pr)}
-    <Detachable title={`PR #${pr.number} · ${pr.head}`}>
-      {#snippet children({ floating, toggle })}
-        <section
-          class="repository-pr"
-          class:repository-pr--floating={floating}
-          aria-label={`Pull request for ${branch}`}
-        >
-          <Collapsible.Root
-            open={expanded}
-            onOpenChange={expand}
-            disabled={floating}
-          >
-            <header class="repository-pr__summary">
-              <GitPullRequest
-                aria-label={pr.provider === "github" ? "GitHub" : "Forgejo"}
-                size={16}
-              />
-              <h2 class="repository-pr__title">
-                <Collapsible.Trigger>
-                  {#snippet child({ props })}<Button
-                      {...props}
-                      variant="ghost"
-                      size="sm"
-                      aria-label={`${review.drafts[review.key(pr)]?.title || pr.title} · ${expanded ? "Collapse" : "Expand"} pull request #${pr.number}`}
-                    >
-                      {#if expanded}<ChevronDown
-                          aria-hidden="true"
-                        />{:else}<ChevronRight aria-hidden="true" />{/if}
-                      <span
-                        >{review.drafts[review.key(pr)]?.title ||
-                          pr.title}</span
-                      >
-                    </Button>{/snippet}
-                </Collapsible.Trigger>
-              </h2>
-              <a
-                class="repository-pr__number"
-                href={pr.url}
-                target="_blank"
-                rel="noreferrer">#{pr.number}</a
-              >
-              <Badge variant="secondary">{pr.draft ? "Draft" : pr.state}</Badge>
-              <div class="repository-pr__actions">
-                <Tooltip.Provider>
-                  <Tooltip.Root
-                    ><Tooltip.Trigger
-                      >{#snippet child({ props })}<Button
-                          {...props}
-                          variant="ghost"
-                          size="icon-sm"
-                          aria-label="Edit PR details"
-                          aria-pressed={review.drafts[review.key(pr)]
-                            ?.editing ?? false}
-                          disabled={blocked ||
-                            !onAction ||
-                            !pr.capabilities.includes("edit")}
-                          onclick={() => {
-                            expand(true);
-                            const draft = review.draft(pr);
-                            draft.editing = !draft.editing;
-                          }}><Pencil aria-hidden="true" /></Button
-                        >{/snippet}</Tooltip.Trigger
-                    ><Tooltip.Content>Edit details</Tooltip.Content
-                    ></Tooltip.Root
-                  >
-                  <Tooltip.Root
-                    ><Tooltip.Trigger
-                      >{#snippet child({ props })}<Button
-                          {...props}
-                          variant="ghost"
-                          size="icon-sm"
-                          aria-label={floating
-                            ? "Dock PR details"
-                            : "Float PR details"}
-                          onclick={() => {
-                            expand(true);
-                            toggle();
-                          }}><PictureInPicture2 aria-hidden="true" /></Button
-                        >{/snippet}</Tooltip.Trigger
-                    ><Tooltip.Content
-                      >{floating
-                        ? "Dock PR details"
-                        : "Float PR details"}</Tooltip.Content
-                    ></Tooltip.Root
-                  >
-                </Tooltip.Provider>
-                <Actions {review} {pr} disabled={blocked} {onAction} />
-                <Button
+    <Panel
+      title={review.drafts[review.key(pr)]?.title || pr.title}
+      windowTitle={`PR #${pr.number} · ${pr.head}`}
+      label="PR"
+      ariaLabel={`Pull request for ${branch}`}
+      class="repository-pr"
+      {expanded}
+      onExpandedChange={expand}
+      {onClose}
+    >
+      {#snippet leading()}<GitPullRequest
+          aria-label={pr.provider === "github" ? "GitHub" : "Forgejo"}
+          size={16}
+        />{/snippet}
+      {#snippet context()}<a
+          class="repository-pr__number"
+          href={pr.url}
+          target="_blank"
+          rel="noreferrer">#{pr.number}</a
+        ><Badge variant="secondary">{pr.draft ? "Draft" : pr.state}</Badge
+        >{/snippet}
+      {#snippet beforeActions()}<Tooltip.Provider
+          ><Tooltip.Root
+            ><Tooltip.Trigger
+              >{#snippet child({ props })}<Button
+                  {...props}
                   variant="ghost"
                   size="icon-sm"
-                  aria-label="Close PR details"
-                  onclick={onClose}><X aria-hidden="true" /></Button
-                >
-              </div>
-            </header>
-            <Collapsible.Content>
-              {#if expanded}<Body
-                  {review}
-                  {pr}
-                  disabled={blocked}
-                  {onAction}
-                />{/if}
-            </Collapsible.Content>
-          </Collapsible.Root>
-        </section>
-      {/snippet}
-    </Detachable>
+                  aria-label="Edit PR details"
+                  aria-pressed={review.drafts[review.key(pr)]?.editing ?? false}
+                  disabled={blocked ||
+                    !onAction ||
+                    !pr.capabilities.includes("edit")}
+                  onclick={() => {
+                    expand(true);
+                    const draft = review.draft(pr);
+                    draft.editing = !draft.editing;
+                  }}><Pencil aria-hidden="true" /></Button
+                >{/snippet}</Tooltip.Trigger
+            ><Tooltip.Content>Edit details</Tooltip.Content></Tooltip.Root
+          ></Tooltip.Provider
+        >{/snippet}
+      {#snippet actions()}<Actions
+          {review}
+          {pr}
+          disabled={blocked}
+          {onAction}
+        />{/snippet}
+      <Body {review} {pr} disabled={blocked} {onAction} />
+    </Panel>
   {/key}
 {/if}

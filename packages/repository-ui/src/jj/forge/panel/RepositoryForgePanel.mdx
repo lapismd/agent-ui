@@ -1,0 +1,73 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryForgePanel.stories";
+import { Basic, Styling } from "./RepositoryForgePanel.example-sources";
+import tokens from "./RepositoryForgePanel.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Forge panel
+
+The same bordered, collapsible and detachable frame for PR, workflow and deployment details.
+
+## Usage
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part             | Responsibility                                                      |
+| ---------------- | ------------------------------------------------------------------- |
+| Summary          | Title disclosure, optional leading icon and context.                |
+| Controls         | Shared float, dock and optional close controls.                     |
+| Body             | Host-composed production content, including RepositoryChecks.       |
+| Detachable panel | Same-node relocation, scroll/focus retention and theme inheritance. |
+
+## Variations
+
+### Workflow
+
+<Canvas of={Stories.Workflow} />
+
+### Approval
+
+<Canvas of={Stories.Approval} />
+
+### Floating
+
+<Canvas of={Stories.Floating} />
+
+## Behavior and accessibility
+
+The title disclosure is transparent and keyboard-operable when attached. It is
+inert while floating. Float opens the same content in a resizable, draggable
+Design Core window with the owning theme. Dock and Escape retain its state.
+Expanding, docking and floating never execute a provider action. The host owns
+controller lifetime and applicable actions; merge controls belong to PR content.
+
+## Styling variables
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+Optional leading/context/action snippets supply domain content without
+recreating the frame. Controlled expansion delegates to onExpandedChange;
+onClose belongs to the host. The panel never fabricates a PR for a workflow.
+
+## Composition
+
+RepositoryPullRequest composes this production frame around its editor, checks
+and merge footer. Other forge hosts compose it around the same RepositoryChecks
+and their own workflow/deployment metadata. RepositoryDetachablePanel is a
+private part of this family. All stories remain visual-pending.

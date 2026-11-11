@@ -1,0 +1,19 @@
+{
+  "component": "RepositoryForgePanel",
+  "variables": [
+    {
+      "name": "--ui-repository-forge-panel-background",
+      "default": "var(--background)",
+      "description": "Bordered and detached content surface.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/forge/panel/panel.css"
+    },
+    {
+      "name": "--ui-repository-forge-panel-font-size",
+      "default": "0.8125rem",
+      "description": "Default panel interface typography.",
+      "owner": "@lapismd/repository-ui",
+      "source": "jj/forge/panel/panel.css"
+    }
+  ]
+}

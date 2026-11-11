@@ -20,6 +20,31 @@
   } = $props();
   let anchor = $state<HTMLDivElement>();
   let content = $state<HTMLDivElement>();
+  let theme = $state<string>();
+  let dark = $state(false);
+  $effect(() => {
+    if (!anchor) return;
+    const ancestors: HTMLElement[] = [];
+    for (let node: HTMLElement | null = anchor; node; node = node.parentElement)
+      ancestors.push(node);
+    const sync = () => {
+      theme =
+        ancestors
+          .find((node) => node.hasAttribute("data-ui-theme"))
+          ?.getAttribute("data-ui-theme") ?? undefined;
+      dark =
+        getComputedStyle(anchor!).colorScheme === "dark" ||
+        ancestors.some((node) => node.classList.contains("dark"));
+    };
+    sync();
+    const observer = new MutationObserver(sync);
+    for (const node of ancestors)
+      observer.observe(node, {
+        attributes: true,
+        attributeFilter: ["class", "style", "data-ui-theme"],
+      });
+    return () => observer.disconnect();
+  });
   let returnFocus: HTMLElement | null = null;
   let disposed = false;
   const registry = createWorkspaceViewRegistry();
@@ -112,7 +137,10 @@
       returnFocus = active instanceof HTMLElement ? active : null;
       const viewport = content!.ownerDocument.defaultView!;
       const width = Math.min(600, viewport.innerWidth - 24);
-      const height = Math.min(600, viewport.innerHeight - 48);
+      const height = Math.min(
+        Math.max(180, content!.scrollHeight + 38),
+        viewport.innerHeight - 48,
+      );
       controller.openWindow(
         createWorkspaceTab({ title, view: { type: "detachable-panel" } }),
         "floating",
@@ -185,4 +213,13 @@
     {@render children({ floating, toggle: () => (floating = !floating) })}
   </div>
 </div>
-<Dialog.Portal><WorkspaceFloatingLayer {controller} /></Dialog.Portal>
+<Dialog.Portal>
+  <div
+    class="repository-detachable-panel__theme"
+    data-ui-theme={theme}
+    class:dark
+    style:color-scheme={dark ? "dark" : "light"}
+  >
+    <WorkspaceFloatingLayer {controller} />
+  </div>
+</Dialog.Portal>

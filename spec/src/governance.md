@@ -207,7 +207,9 @@ MUST remain visible during refresh; pending continuations append skeleton rows.
 Empty/unavailable content and failed reads MUST render public shadcn Empty with
 a relevant icon, title, description and applicable retry action in production.
 Standalone and completed-screen stories MUST exercise these same implementations.
-The catalog-wide browser audit MUST verify Loading, Empty and Unavailable states.
+The catalog-wide browser audit MUST verify Loading, Empty and Unavailable states,
+opening their public disclosures when the reviewed default is collapsed and
+asserting that initial collapsed state before revealing the shared content.
 Scalar missing values, in-progress actions and live streaming retain their own
 semantics.
 
@@ -215,7 +217,7 @@ semantics.
 
 - Public types express the boundary.
 - Building blocks and complete Agent/JJ screens MUST compose the same production implementations and host-owned controllers.
-- Every named Empty or Unavailable story MUST expose visible public shadcn Empty content with an icon through the catalog-wide browser check.
+- Every named Empty or Unavailable story MUST expose visible public shadcn Empty content with an icon through the catalog-wide browser check, including after explicit expansion for initially collapsed checks.
 
 ## Portable local validation
 
@@ -285,6 +287,10 @@ An unpublished dependency's missing portable lockfile entries MUST remain an
 explicit release prerequisite rather than a claimed frozen-install pass.
 A passing focused retry MUST retain earlier failed/interrupted aggregate counts
 and MUST NOT qualify cold startup through a warm-server run alone.
+The Maintenance forge follow-up records the bounded viewport, horizontal table,
+square-header and empty-disclosure regressions, including reviewed source
+adaptations; full hosted qualification remains a publication gate after the
+user's explicit dependency-release request.
 Catalog naming corrections MUST retain the unchanged content-state audit and
 production-action assertions, with the original classification failure recorded.
 Controlled-composer acceptance MUST also cover a host-owned draft independently
@@ -295,6 +301,9 @@ avatar selection, compact footer menus and icon Empty/Skeleton states.
 Clean package acceptance MUST compile documented examples for both packages
 and exclude their catalog material; static catalog checks MUST audit both family
 inventories and specification pages.
+Shared forge catalog families MUST document the public checks and detachable
+panel components, assign their private parts once and demonstrate their actual
+production composition in standalone and complete-screen stories.
 The development catalog MUST prebundle its actual icon/runtime dependencies,
 including the public FileTypeIcon, filter and query-help Alert subpaths plus the shared CodeMirror query runtime, through both the Storybook dev
 `viteFinal` hook and Vitest configuration,

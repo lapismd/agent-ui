@@ -3,6 +3,9 @@
 The content-state audit and shared header follow-up are recorded in
 `spec/records/2026-10-23-content-states.md`. Loading and icon Empty checks cover
 standalone and completed screens; consumer admission states remain host-owned.
+The initially collapsed forge checks follow-up retains both Empty/icon audits;
+exact before/after results are in
+`spec/records/2026-11-10-check-disclosure-audits.md`.
 
 | ID              | Status      | Evidence                                                                                                                                                                                                                                                                              |
 | --------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -26,7 +29,7 @@ standalone and completed screens; consumer admission states remain host-owned.
 | RUI-STACK-001   | Partial     | Source-adapted Stacks/Workspace presentation; focused evidence in `spec/records/2026-10-23-stack-workspace-presentation.md`; broad checks deferred                                                                                                                                    |
 | RUI-DRAG-001    | Partial     | Native workspace sources/targets and keyboard alternatives verified through an isolated preview/apply example; native host execution remains separate                                                                                                                                 |
 | RUI-COMMAND-001 | Partial     | Guarded restore, original-request recovery and local conflict staging verified; native host integration deferred                                                                                                                                                                      |
-| RUI-FORGE-001   | In progress | Forge and repository settings remain later sections                                                                                                                                                                                                                                   |
+| RUI-FORGE-001   | In progress | Shared checks/frame and PR composition verified in `spec/records/2026-11-10-shared-forge-panels.md` and `spec/records/2026-11-10-forge-overflow.md`; live forge execution remains host-owned                                                                                          |
 | RUI-LIFE-001    | Partial     | Copied Desktop pin/late-read/drain regressions verified; downstream host lifetime remains separate                                                                                                                                                                                    |
 | AUI-FOUND-001   | Implemented | 18 colocated families; full recording; 36 public examples; completeness record; filename icon adoption record                                                                                                                                                                         |
 | AUI-THEME-001   | Implemented | Audited defaults; independent theme/mode controls; bounded flush docs previews                                                                                                                                                                                                        |

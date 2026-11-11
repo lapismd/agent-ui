@@ -4,6 +4,7 @@
   import { Input } from "@lapismd/design-core/shadcn/input";
   import * as Field from "@lapismd/design-core/shadcn/field";
   import * as Empty from "@lapismd/design-core/shadcn/empty";
+  import { ScrollArea } from "@lapismd/design-core/shadcn/scroll-area";
   import FileText from "@lucide/svelte/icons/file-text";
   import { MarkdownContent, MarkdownComposer } from "@lapismd/design-core/chat";
   import Checks from "./RepositoryPullRequestChecks.svelte";
@@ -63,11 +64,16 @@
         showHint={false}
         onSubmit={save}
       />
-    {:else if draft.body.trim()}<MarkdownContent
-        content={draft.body}
-        fullWidth
-        style="--mira-preview-background: transparent"
-      />
+    {:else if draft.body.trim()}<ScrollArea
+        orientation="horizontal"
+        style="width:100%;min-width:0"
+        viewportProps={{ role: "region", "aria-label": "PR description" }}
+        ><MarkdownContent
+          content={draft.body}
+          fullWidth
+          style="--mira-preview-background: transparent"
+        /></ScrollArea
+      >
     {:else}<Empty.Root
         ><Empty.Header
           ><Empty.Media variant="icon"

@@ -31,6 +31,17 @@ for (const kind of ["Loading", "Empty", "Unavailable"] as const) {
             await page
               .getByRole("combobox", { name: "Compare with parent" })
               .click();
+          if (
+            id === "jj-forge-checks--unavailable" ||
+            id === "jj-forge-pull-request--checks-unavailable"
+          ) {
+            const checks = page.getByRole("button", {
+              name: "Expand checks",
+              exact: true,
+            });
+            await expect(checks).toHaveAttribute("aria-expanded", "false");
+            await checks.click();
+          }
           const state =
             kind === "Loading"
               ? page.locator('[data-slot="skeleton"]:visible').first()

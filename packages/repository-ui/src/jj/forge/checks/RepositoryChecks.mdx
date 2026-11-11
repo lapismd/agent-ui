@@ -1,0 +1,97 @@
+import {
+  Meta,
+  Canvas,
+  Source,
+  Markdown,
+  ArgTypes,
+} from "@storybook/addon-docs/blocks";
+import * as Stories from "./RepositoryChecks.stories";
+import { Basic, Styling } from "./RepositoryChecks.example-sources";
+import tokens from "./RepositoryChecks.tokens.json";
+import { tokenMarkdown } from "../../../../../../catalog/docs/tokens";
+
+<Meta of={Stories} />
+
+# Checks
+
+Shared revision-aware checks from JJ Store, used inside pull requests and standalone workflow or deployment details.
+
+## Usage
+
+The host supplies observations and owns refresh, permissions and adapter lifetime.
+
+<Source code={Basic} language="tsx" />
+
+## Anatomy
+
+| Part       | Responsibility                                                    |
+| ---------- | ----------------------------------------------------------------- |
+| Summary    | Segmented ring, status, counts, refresh and display options.      |
+| Disclosure | Public Collapsible controls hide all results or one status group. |
+| Results    | Shared divided rows with names, state and optional details.       |
+| Revision   | Identifies the observed commit and incomplete results.            |
+
+## Variations
+
+### Mixed
+
+<Canvas of={Stories.Mixed} />
+
+### Passed
+
+<Canvas of={Stories.Passed} />
+
+### Stale
+
+<Canvas of={Stories.Stale} />
+
+### Incomplete
+
+<Canvas of={Stories.Incomplete} />
+
+### Unavailable
+
+<Canvas of={Stories.Unavailable} />
+
+### Empty
+
+<Canvas of={Stories.Empty} />
+
+### Disabled
+
+<Canvas of={Stories.Disabled} />
+
+### Square group headers
+
+Status groups retain edge-to-edge square disclosure headers.
+
+<Canvas of={Stories.SquareGroupHeaders} />
+
+## Behavior and accessibility
+
+Keyboard-operable disclosures expose expanded state. Display options switch
+between grouped and flat lists without reading a provider or writing. Each status
+group collapses independently. Unknown, stale and incomplete data never claim
+that the current revision has passed. Refresh emits one explicit host callback;
+mounting and display changes emit none. Missing refresh capability stays disabled.
+
+## Styling variables
+
+<Markdown>{tokenMarkdown(tokens)}</Markdown>
+
+<Source code={Styling} language="tsx" />
+
+## API
+
+<ArgTypes of={Stories} />
+
+Public exports include RepositoryCheck, RepositoryCheckState and
+RepositoryChecksSnapshot. A snapshot carries its SHA, completeness and identified
+results; the host separately supplies currentSha.
+
+## Composition
+
+RepositoryPullRequestChecks only adapts the host review's exact scoped refresh
+request to RepositoryChecks. The same component supports non-PR hosts without
+copying check markup or controller authority. Ring and row are private parts of
+this family. Stories remain visual-pending.

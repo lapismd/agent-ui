@@ -117,6 +117,17 @@ test("Every Empty and Unavailable story uses shadcn Empty with an icon", async (
         await page
           .getByRole("combobox", { name: "Repository bookmark or change" })
           .click();
+      if (
+        entry.id === "jj-forge-checks--unavailable" ||
+        entry.id === "jj-forge-pull-request--checks-unavailable"
+      ) {
+        const checks = page.getByRole("button", {
+          name: "Expand checks",
+          exact: true,
+        });
+        await expect(checks).toHaveAttribute("aria-expanded", "false");
+        await checks.click();
+      }
       const empty = page
         .locator('[data-slot="empty"]:visible')
         .filter({ has: page.locator('[data-ui-part="empty-media"] svg') })
