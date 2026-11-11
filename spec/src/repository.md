@@ -303,7 +303,7 @@ explicit, and rendering or grouping never requests a write.
 Grouped check headings have square corners; empty or unavailable check sets
 start collapsed and retain explicit expansion; catalog audits MUST verify that
 default and reveal unavailable content before asserting its icon-bearing Empty.
-Long lists constrain the actual public ScrollArea viewport to the configured checks height, keeping the
+The published Repository UI dependency floor MUST be Design Core `^0.12.4`, so a clean consumer receives the viewportProps contract instead of the older 0.7 runtime. Long lists constrain the actual public ScrollArea viewport to the configured checks height, keeping the
 merge footer below the scroller without overlapping any rows. Wide PR Markdown
 uses a named horizontal ScrollArea while preserving stock content styling.
 Detached PR content MUST inherit the owning application's theme and follow theme
