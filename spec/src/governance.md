@@ -106,12 +106,12 @@ the source ledger records only explicit optional host-state bindings.
 The Desktop adoption ledger also records confirmed independent diff recovery;
 its pinned reads and default component layout remain unchanged.
 
-Registry release readiness MUST consume Design Core from `^0.7.4` and the
+Both UI packages and clean packed examples MUST consume Design Core from `^0.12.4` and the
 catalog's Mira dependency from `~0.1.4`, with the published jj-history 0.1.0
 and a frozen registry lock. Explicit archives remain available for future
 unreleased-source review; they do not qualify registry-only release acceptance.
 The registry lock MUST retain compatible CodeMirror/Lezer runtime identities
-when captured readers exchange syntax trees. Published Core 0.7.4 requires Mira
+when captured readers exchange syntax trees. The previous Core 0.7.4 qualification required Mira
 `~0.1.4` and contains the captured-JSON, Swipe and popup corrections and the
 authoritative shared patch assets. Its registry publication is verified by the
 owning release; fresh complete UI registry qualification remains required

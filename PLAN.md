@@ -457,3 +457,9 @@ RUI-FORGE-001 overflow, square headers, empty disclosure and horizontal Markdown
 are recorded in `spec/records/2026-11-10-forge-overflow.md`. Focused local
 qualification passed; full hosted qualification precedes the user-authorized
 dependency publication.
+
+## Maintenance consumer dependency correction
+
+Qualify and release Repository UI with a Design Core ^0.12.4 dependency floor,
+then consume the registry release in Maintenance and verify long-check scrolling.
+The older range admits 0.7.4, which silently drops viewportProps.
