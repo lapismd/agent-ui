@@ -1,5 +1,11 @@
 # @lapismd/repository-ui
 
+## 0.2.1
+
+### Patch Changes
+
+- 2adee1f: Require Design Core 0.12.4 in Repository UI so clean consumers retain viewport sizing and PR check lists cannot overlap merge controls. Advance the Agent UI cohort version for the shared release workflow.
+
 ## 0.2.0
 
 ### Minor Changes
