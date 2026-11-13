@@ -1,5 +1,11 @@
 # @lapismd/agent-ui
 
+## 0.2.4
+
+### Patch Changes
+
+- 55356e9: Refresh first-party Lapis dependencies to the published versions recorded in this pull request.
+
 ## 0.2.3
 
 ### Patch Changes
