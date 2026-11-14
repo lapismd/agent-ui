@@ -20,8 +20,8 @@ importers:
         specifier: ^2.31.1
         version: 2.31.1(@types/node@24.19.2)
       '@lapismd/design-core':
-        specifier: ^0.13.0
-        version: 0.13.0(svelte@5.57.2)(tailwindcss@4.3.3)
+        specifier: ^0.13.1
+        version: 0.13.1(svelte@5.57.2)(tailwindcss@4.3.3)
       '@lapismd/jj-history':
         specifier: ^0.1.0
         version: 0.1.0
@@ -122,8 +122,8 @@ importers:
   packages/agent-ui:
     dependencies:
       '@lapismd/design-core':
-        specifier: ^0.13.0
-        version: 0.13.0(svelte@5.57.2)(tailwindcss@4.3.3)
+        specifier: ^0.13.1
+        version: 0.13.1(svelte@5.57.2)(tailwindcss@4.3.3)
       '@lucide/svelte':
         specifier: ^1.57.0
         version: 1.61.0(svelte@5.57.2)
@@ -146,8 +146,8 @@ importers:
         specifier: ^6.43.15
         version: 6.43.15
       '@lapismd/design-core':
-        specifier: ^0.13.0
-        version: 0.13.0(svelte@5.57.2)(tailwindcss@4.3.3)
+        specifier: ^0.13.1
+        version: 0.13.1(svelte@5.57.2)(tailwindcss@4.3.3)
       '@lapismd/jj-history':
         specifier: ^0.1.0
         version: 0.1.0
@@ -599,8 +599,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@lapismd/design-core@0.13.0':
-    resolution: {integrity: sha512-0J9zFUT1oGZu59iaDyewatjUMvZtv25aPXtcaTWp3j+2uKLX9BGUMcV6VEwjO3nsravmrTzXUZ6DO6ST9OVxXg==}
+  '@lapismd/design-core@0.13.1':
+    resolution: {integrity: sha512-uPTMmDmUqn55dVC9QLnnpu5iwfEMoc618DRDNA0x99fNxLR9Z86Aim7L7aq/hrR2GFEqRW3YoXinwyXhEGxBkw==}
     engines: {node: ^22.11 || ^24 || >=26}
     peerDependencies:
       svelte: ^5.0.0
@@ -3666,7 +3666,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.6.0
 
-  '@lapismd/design-core@0.13.0(svelte@5.57.2)(tailwindcss@4.3.3)':
+  '@lapismd/design-core@0.13.1(svelte@5.57.2)(tailwindcss@4.3.3)':
     dependencies:
       '@codemirror/autocomplete': 6.20.4
       '@codemirror/commands': 6.11.1
