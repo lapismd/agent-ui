@@ -106,8 +106,8 @@ the source ledger records only explicit optional host-state bindings.
 The Desktop adoption ledger also records confirmed independent diff recovery;
 its pinned reads and default component layout remain unchanged.
 
-Both UI packages and clean packed examples MUST consume Design Core from `^0.12.4` and the
-catalog's Mira dependency from `~0.1.4`, with the published jj-history 0.1.0
+Both UI packages and clean packed examples MUST consume Design Core from `^0.13.1` and the
+catalog's Mira dependency from `~0.2.0`, with the published jj-history 0.1.0
 and a frozen registry lock. Explicit archives remain available for future
 unreleased-source review; they do not qualify registry-only release acceptance.
 The registry lock MUST retain compatible CodeMirror/Lezer runtime identities
@@ -134,6 +134,11 @@ The prior consumer audit recorded one low KaTeX advisory through Mira 0.1.2.
 Released Mira 0.1.4 pins KaTeX 0.18.10, inside that advisory's patched range,
 and published Core 0.7.4 requires that Mira release. UI MUST NOT add duplicated
 Mira runtime dependencies or consumer overrides to conceal an owning-source issue.
+
+The maintenance catalog intake of released Mira 0.2 is development-only. It
+changes no production export, controller lifetime or host authority. The Core
+0.13.1 package floor remains the owning published dependency contract; required
+registry/archive, catalog and browser checks remain publication gates.
 
 ## AUI-GOV-001 — Source ownership
 

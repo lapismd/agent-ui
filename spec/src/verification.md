@@ -206,3 +206,7 @@ covering unequal versions, invalid release identities and exact tarball integrit
 The shared Notes cohort qualifies Core 0.9 through the complete Docker matrix
 in [server UI cohort evidence](../records/2026-11-01-server-ui-core-cohort.md).
 Registry publication and downstream acceptance remain separate.
+
+The Mira 0.2 development-catalog intake is recorded in
+`spec/records/2026-11-14-mira-catalog-intake.md`. It retains Core 0.13.1 public
+package dependencies and the complete functional qualification gates.
