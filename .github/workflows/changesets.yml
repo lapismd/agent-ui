@@ -16,23 +16,33 @@ concurrency:
 jobs:
   changesets:
     name: Open version pull request
-    if: github.ref == 'refs/heads/main'
+    if: github.repository == 'lapismd/agent-ui' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
-      contents: write
-      pull-requests: write
+      contents: read
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           fetch-depth: 0
-      - uses: pnpm/action-setup@v6
-      - uses: actions/setup-node@v6
+          persist-credentials: false
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - uses: changesets/action@v1.8.0
+      - name: Mint repository-scoped version PR token
+        id: app
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3
+        with:
+          client-id: ${{ vars.LAPIS_DEPENDENCY_APP_CLIENT_ID }}
+          private-key: ${{ secrets.LAPIS_DEPENDENCY_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ github.event.repository.name }}
+          permission-contents: write
+          permission-pull-requests: write
+      - uses: changesets/action@63a615b9cd06ba9a3e6d13796c7fbcb080a60a0b # v1.8.0
         with:
           version: pnpm exec changeset version
           commitMode: github-api
@@ -40,4 +50,4 @@ jobs:
           title: "chore: version UI packages"
           commit: "chore: version UI packages"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.app.outputs.token }}
