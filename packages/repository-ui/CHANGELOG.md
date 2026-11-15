@@ -1,5 +1,11 @@
 # @lapismd/repository-ui
 
+## 0.2.5
+
+### Patch Changes
+
+- 1cd52a1: Refresh first-party Lapis dependencies to the published versions recorded in this pull request.
+
 ## 0.2.4
 
 ### Patch Changes
