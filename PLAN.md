@@ -1,5 +1,11 @@
 # Release guidance
 
+The version-PR App authentication slice records focused source and tooling
+qualification in `spec/records/2026-11-15-version-pr-app-auth.md`. AUI-GOV-005
+requires a repository-scoped App on canonical main while retaining protected
+verification and the separate immutable-tag publisher. Hosted generated-candidate
+acceptance remains pending; no release bump or publication is introduced.
+
 The current dependency floor, registry qualification and remaining release gates
 belong to `spec/src/governance.md` and `spec/src/verification.md`. Agent and
 Repository contracts remain in their owning canonical chapters. Exact commands,

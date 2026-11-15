@@ -266,11 +266,12 @@ See [local validation](../../docs/local-validation.md) for commands and scope.
 
 **Requirement.** Changesets MUST prepare bot-authored version pull requests from `main` using only contents and pull-request write permissions. Candidates MUST pass normal protected checks and receive explicit review before merge. Version preparation MUST NOT publish packages, create release tags or approve pull requests.
 
-`.github/workflows/changesets.yml` uses the same GitHub-token action pattern as
-the sibling repositories. When GitHub suppresses automatic checks for a token's
-PR event, a maintainer dispatches `.github/workflows/check.yml` on the reviewed
-candidate branch. Its existing seven lanes and aggregate `verify` remain
-mandatory. The protected, immutable-tag npm publisher remains separate.
+`.github/workflows/changesets.yml` MUST use the existing dependency App on
+canonical main, scoped to this repository with contents and pull-request write
+permissions only. Missing credentials MUST fail closed; checkout MUST NOT persist
+credentials. The workflow token remains read-only. Its existing seven lanes and
+aggregate `verify` remain mandatory; manual dispatch remains available for
+recovery. The protected, immutable-tag npm publisher remains separate.
 
 ### Acceptance details
 
