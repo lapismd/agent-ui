@@ -1,5 +1,12 @@
 # @lapismd/repository-ui
 
+## 0.2.6
+
+### Patch Changes
+
+- 26df9f9: Support custom visible and copy labels on the existing joined identifier pair while preserving native GIT/JJ defaults.
+- 6e9a008: Refresh first-party Lapis dependencies to the published versions recorded in this pull request.
+
 ## 0.2.5
 
 ### Patch Changes
