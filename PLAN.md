@@ -497,4 +497,8 @@ checks under one frozen1246-file snapshot:2012 four-mode interaction/axe cases,
 static/spec/workflow gates. The record retains earlier native import/network
 failures and the isolation inference. Full audit falls7→1unfixed development
 LOW while production stays0; no exception is added. Shared direct-command
-schema/proof and consumer guard adoption remain pending after source review.
+proof passed in43846835719 on shared sourcef73b6b98, executing the literal CLI2
+command against60826d6d with Deno absent and only the genuine historical
+Repository UI patch. Guard adoption is added as a separate verified slice;
+fresh PR CI and actual main guard execution remain required. Evidence is in
+`spec/records/2026-11-16-version-runtime-guard.md`.

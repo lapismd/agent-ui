@@ -277,6 +277,8 @@ credentials. The workflow token remains read-only. Its existing seven lanes and
 aggregate `verify` remain mandatory; manual dispatch remains available for
 recovery. The protected, immutable-tag npm publisher remains separate.
 
+Version preparation MUST run the pinned shared runtime guard after the existing frozen install and before App minting. Source-owned `.github/versioning-runtime.json` MUST retain CLI2/Node24, the literal direct version command and exact configuration, workspace, formatter and approved patch bindings; drift fails before writer authority.
+
 ### Acceptance details
 
 - Version changes MUST derive from committed Changesets, preserve independent package versions and update the portable registry lock.

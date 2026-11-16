@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "cliVersion": "2.31.1",
+  "packageManager": "pnpm@10.34.5",
+  "configSha256": "e23cb92e18b3381ba2137da20ba040f6966e56da226bc04fbcaac6f8d3aa7caf",
+  "scripts": {},
+  "mode": "direct",
+  "argv": ["exec", "changeset", "version"],
+  "nodeMajor": 24,
+  "files": {
+    "pnpm-workspace.yaml": "685c40cc27d7db8efd1fd331a8688ef6ec1d9ef2a774c8a6e66eaa5ea0474621",
+    ".prettierrc.json": "b7f83b4be9d97466006aebe064d4681d3cc0420c030dcc02f6b3ff92e0a9081e",
+    ".prettierignore": "4229e0f1ab1afb744e2913eed6f35ec2cdf15063b6a2779282dffea8e3038e27",
+    "patches/bits-ui@2.20.2.patch": "debd3bc7d43917f0967f0cc1e212fc5c7721c751d3b92bf8f31030d1c96289ad"
+  }
+}
