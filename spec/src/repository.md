@@ -30,6 +30,9 @@ FileTypeIcon from the host-issued path while retaining original geometry,
 truncation, folder affordances and explicit navigation identities.
 Hosts can use the public `encodeJjChangeId` helper for native hex change IDs
 before passing display models to file, branch and stack components.
+RepositoryIdentifiers retains its joined native GIT/JJ defaults and supports
+explicit copy/visible labels for a pair of exact host-owned non-VCS values,
+with independent copy feedback and sufficient label width without identity conversion.
 
 ### Acceptance details
 

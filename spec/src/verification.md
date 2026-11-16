@@ -210,3 +210,5 @@ Registry publication and downstream acceptance remain separate.
 The Mira 0.2 development-catalog intake is recorded in
 `spec/records/2026-11-14-mira-catalog-intake.md`. It retains Core 0.13.1 public
 package dependencies and the complete functional qualification gates.
+
+RUI-FOUND-001 custom identifier-pair labels are recorded in `spec/records/2026-11-16-identifier-pair-labels.md`.

@@ -26,6 +26,7 @@
         var(--id-compact) * 2ch + 3.875rem,
         var(--id-expanded) * 1ch * 10 / 11 + 3.875rem
       ) +
+      var(--id-commit-label-extra, 0px) + var(--id-change-label-extra, 0px) +
       2px
   );
   width: var(--id-width);
@@ -41,7 +42,10 @@
 }
 
 .repository-identifiers__split[data-single] {
-  width: calc(var(--id-expanded) * 1ch * 10 / 11 + 2.1875rem + 2px);
+  width: calc(
+    var(--id-expanded) * 1ch * 10 / 11 + 2.1875rem + 2px +
+      var(--id-single-label-extra, 0px)
+  );
   grid-template-columns: minmax(0, 1fr);
 }
 
@@ -108,16 +112,28 @@
 }
 
 .repository-identifiers__split[data-active="commit"] {
-  --id-left: calc(var(--id-expanded) * 1ch * 10 / 11 + 2rem);
+  --id-left: calc(
+    var(--id-expanded) * 1ch * 10 / 11 + 2rem +
+      var(--id-commit-label-extra, 0px)
+  );
 }
 .repository-identifiers__split[data-active="change"] {
   --id-left: calc(
-    var(--id-width) - 2px - (var(--id-expanded) * 1ch * 10 / 11 + 1.875rem)
+    var(--id-width) - 2px -
+      (
+        var(--id-expanded) * 1ch * 10 / 11 + 1.875rem +
+          var(--id-change-label-extra, 0px)
+      )
   );
 }
 .repository-identifiers__split:not([data-single]) {
   grid-template-columns:
-    var(--id-left, calc(var(--id-compact) * 1ch + 2.125rem))
+    var(
+      --id-left,
+      calc(
+        var(--id-compact) * 1ch + 2.125rem + var(--id-commit-label-extra, 0px)
+      )
+    )
     minmax(0, 1fr);
 }
 .repository-identifiers__split[data-active] .id-compact {
