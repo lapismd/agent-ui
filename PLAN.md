@@ -473,3 +473,11 @@ The older range admits 0.7.4, which silently drops viewportProps.
 The Mira 0.2 development-catalog dependency intake preserves the Core 0.13.1
 package floor. Exact source and hosted qualification are recorded in
 `spec/records/2026-11-14-mira-catalog-intake.md`; release verification is separate.
+
+## Maintenance identifier pairs
+
+Reuse RepositoryIdentifiers for joined Operation/Policy and Report/Policy values
+through optional visible/copy labels, preserving native GIT/JJ defaults and exact
+host-owned values. The user authorized source publication and consumer delivery
+without another review stop; qualification and the repaired Docker bootstrap are
+recorded in `spec/records/2026-11-16-identifier-pair-labels.md`.

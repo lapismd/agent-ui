@@ -49,6 +49,12 @@ The exact Git SHA remains usable when no JJ change ID was supplied.
 
 <Canvas of={Stories.CommitOnly} />
 
+### Custom labelled pair
+
+Use the existing joined control for two exact host-owned values with explicit labels; this does not convert either value into a Git or JJ identifier and each half copies its own full value.
+
+<Canvas of={Stories.CustomPair} />
+
 ## Behavior and accessibility
 
 Pass the exact host-issued strings. Copy uses the injected promise and reports failure through the optional error callback; displaying an ID grants no repository access. Keyboard focus, labelled controls and explicit retry actions follow the shared Design Core primitives.

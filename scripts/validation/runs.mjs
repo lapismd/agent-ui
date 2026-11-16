@@ -13,6 +13,7 @@ import {
 import { collect } from "./reports.mjs";
 import { output, docker, sendDirectory } from "./docker.mjs";
 import { snapshot } from "./source.mjs";
+import { specificationDockerArguments } from "../dependency-automation/spec-policy.mjs";
 
 export const revision = (root) =>
   execFileSync("jj", ["log", "-r", "@", "--no-graph", "-T", "commit_id"], {
@@ -199,31 +200,34 @@ export async function remoteRun(config, root, lane, args) {
       cache,
     ]);
     runRequested = true;
-    await docker(config, [
-      "create",
-      "--name",
-      run,
-      "--init",
-      "--cap-drop=ALL",
-      "--label",
-      `${label}=run`,
-      "--label",
-      `${label}.workspace=${owner}`,
-      "--cpus",
-      String(config.cpus),
-      "--memory",
-      `${config.memoryGiB}g`,
-      "--shm-size",
-      `${config.shmGiB}g`,
-      "--mount",
-      `type=volume,src=${cache},dst=/cache`,
-      "--env",
-      "NODE_OPTIONS=--max-old-space-size=6144",
-      "--entrypoint",
-      "node",
-      selected.tag,
-      "/input/worker.mjs",
-    ]);
+    await docker(
+      config,
+      specificationDockerArguments([
+        "create",
+        "--name",
+        run,
+        "--init",
+        "--cap-drop=ALL",
+        "--label",
+        `${label}=run`,
+        "--label",
+        `${label}.workspace=${owner}`,
+        "--cpus",
+        String(config.cpus),
+        "--memory",
+        `${config.memoryGiB}g`,
+        "--shm-size",
+        `${config.shmGiB}g`,
+        "--mount",
+        `type=volume,src=${cache},dst=/cache`,
+        "--env",
+        "NODE_OPTIONS=--max-old-space-size=6144",
+        "--entrypoint",
+        "node",
+        selected.tag,
+        "/input/worker.mjs",
+      ]),
+    );
     await sendDirectory(config, ["cp", "-", `${run}:/input`], directory);
     let failure;
     try {

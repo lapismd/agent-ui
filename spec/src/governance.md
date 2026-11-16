@@ -190,6 +190,8 @@ repository. Host-owned exact data and action ports replace native forge and
 notification services. Live forge transport and downstream adoption remain
 separate review gates.
 
+The RUI-FOUND-001 custom identifier-pair extension updates its source-ledger adaptation, complete public usage example and patch Changeset together; existing native labels remain the default and no consumer override replaces the shared control.
+
 ### Acceptance details
 
 - Public Design Core exports MUST own shared filename artwork, while Agent/JJ components pass exact file paths and preserve semantic action/status icons.
@@ -236,6 +238,8 @@ payloads, while the tracked public port example retains a verified schema.
 Tool image and JavaScript dependency caches MUST have separate identities.
 Workers MUST use an init reaper, drop capabilities, prove actual permission
 denial and collect failure evidence before owned terminal-only cleanup.
+Transferred bootstrap helpers MUST load without host-only policy modules; the
+host applies trusted specification context when creating the isolated worker.
 Story composition MUST resolve actual rendered production components; unused
 imports cannot satisfy ownership. Complete catalog families MUST register their
 complete production screen roots; an arbitrary control is insufficient. Recovered

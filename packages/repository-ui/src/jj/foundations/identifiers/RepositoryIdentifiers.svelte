@@ -16,6 +16,9 @@
     changeId = "",
     commitId = "",
     commitLabel = "commit ID",
+    changeLabel = "JJ Change ID",
+    commitChipLabel = "GIT",
+    changeChipLabel = "JJ",
     compactLeadingChars = 4,
     expandedLeadingChars = 5,
     placement = "overlay",
@@ -24,6 +27,11 @@
     changeId?: string | undefined;
     commitId?: string | undefined;
     commitLabel?: string | undefined;
+    /** Copy and feedback label for the second exact host-issued value. */
+    changeLabel?: string;
+    /** Visible labels for the existing joined control; native defaults stay GIT/JJ. */
+    commitChipLabel?: string;
+    changeChipLabel?: string;
     /** Leading characters shown at rest, without dots or suffix. */
     compactLeadingChars?: number;
     /** Leading characters shown by the hovered or keyboard-focused half. */
@@ -37,6 +45,9 @@
   const timers: Partial<Record<Side, ReturnType<typeof setTimeout>>> = {};
   const requests = { commit: 0, change: 0 };
   let destroyed = false;
+  const paired = $derived(commitLabel === "commit ID" || !!changeId);
+  const commitExtra = $derived(Math.max(0, commitChipLabel.length - 3) * 0.375);
+  const changeExtra = $derived(Math.max(0, changeChipLabel.length - 2) * 0.375);
   const compact = $derived(revisionLeadingChars(compactLeadingChars, 4));
   const single = $derived(!commitId || !changeId);
   const expanded = $derived(
@@ -149,7 +160,7 @@
 
 {#if commitId || changeId}
   <div class="repository-identifiers" data-placement={placement}>
-    {#if commitLabel === "commit ID"}
+    {#if paired}
       <div
         class="repository-identifiers__split"
         data-active={active ?? undefined}
@@ -157,20 +168,26 @@
         style:--id-compact={compact}
         style:--id-expanded={expanded + 4}
         role="group"
-        aria-label="Native revision identifiers"
+        aria-label={commitLabel === "commit ID" &&
+        changeLabel === "JJ Change ID"
+          ? "Native revision identifiers"
+          : "Identifiers"}
+        style:--id-commit-label-extra={`${commitExtra}rem`}
+        style:--id-change-label-extra={`${changeExtra}rem`}
+        style:--id-single-label-extra={`${commitId ? commitExtra : changeExtra}rem`}
       >
         <Tooltip.Provider delayDuration={0}>
           {#if commitId}{@render splitButton(
-              "Git commit SHA",
+              commitLabel === "commit ID" ? "Git commit SHA" : commitLabel,
               commitId,
               "commit",
-              "GIT",
+              commitChipLabel,
             )}{/if}
           {#if changeId}{@render splitButton(
-              "JJ Change ID",
+              changeLabel,
               changeId,
               "change",
-              "JJ",
+              changeChipLabel,
             )}{/if}
         </Tooltip.Provider>
       </div>
@@ -199,7 +216,7 @@
         {:else}<Copy aria-hidden="true" />{/if}
       </button>
     {/if}
-    {#if commitLabel === "commit ID"}
+    {#if paired}
       <span
         class="clipboard-status"
         role="status"
@@ -210,7 +227,7 @@
           {#if feedback[side]}
             {feedback[side] === "copied" ? "Copied" : "Could not copy"}
             {side === "change"
-              ? "JJ Change ID"
+              ? changeLabel
               : commitLabel === "commit ID"
                 ? "Git commit SHA"
                 : commitLabel}.

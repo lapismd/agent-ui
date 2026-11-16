@@ -10,6 +10,23 @@ import {
   validationKeys,
 } from "./validation/model.mjs";
 import { readFileSync } from "node:fs";
+import { copyFile, mkdtemp, rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { pathToFileURL } from "node:url";
+
+test("transferred worker transport loads without host-only policy modules", async () => {
+  const directory = await mkdtemp(join(tmpdir(), "agent-ui-worker-import-"));
+  try {
+    const target = join(directory, "docker.mjs");
+    await copyFile("scripts/validation/docker.mjs", target);
+    const transport = await import(pathToFileURL(target).href);
+    assert.equal(typeof transport.execute, "function");
+    assert.equal(typeof transport.importPack, "function");
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
 test("portable validation defaults to bounded Docker and explicit native execution", () => {
   assert.deepEqual(validationConfig({}, {}), {
     runtime: "docker",
