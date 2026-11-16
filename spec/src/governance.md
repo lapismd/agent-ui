@@ -387,3 +387,12 @@ dialogs and forge transport wait for their separate slices and review.
 
 - Public types express the boundary.
 - Focused tests and production-component stories verify the behavior.
+
+## AUI-GOV-006 — Supported development tooling
+
+**Requirement.** The catalog MUST retain a patched Storybook10/Vitest4/Vite8 cohort, CLI2 and existing source/validation contracts.
+
+### Acceptance details
+
+- Declared and locked versions exclude fixed advisory ranges; unresolved findings stay explicit and are not clean.
+- Frozen installs, the approved Bits UI patch and all functional/axe/runtime gates remain.

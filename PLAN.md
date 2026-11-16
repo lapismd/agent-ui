@@ -481,3 +481,20 @@ through optional visible/copy labels, preserving native GIT/JJ defaults and exac
 host-owned values. The user authorized source publication and consumer delivery
 without another review stop; qualification and the repaired Docker bootstrap are
 recorded in `spec/records/2026-11-16-identifier-pair-labels.md`.
+
+## Portable tooling and version-runtime maintenance
+
+Repair the actual Storybook10/Vitest4 advisories within the supported Vite8
+cohort, preserving CLI2, source version ABI and the approved shared Bits UI
+patch. Source regressions and raw full/production findings are recorded in
+`spec/records/2026-11-16-tooling-security.md`. Complete functional/catalog/archive
+qualification remains required; the shared direct-command proof and source
+guard adoption are separately pending, not inferred from CLI integrity.
+
+The source tooling slice now passes the complete existing default Docker
+checks under one frozen1246-file snapshot:2012 four-mode interaction/axe cases,
+151 browser journeys,239 units,34 controls,154 packed examples and all remaining
+static/spec/workflow gates. The record retains earlier native import/network
+failures and the isolation inference. Full audit falls7→1unfixed development
+LOW while production stays0; no exception is added. Shared direct-command
+schema/proof and consumer guard adoption remain pending after source review.
