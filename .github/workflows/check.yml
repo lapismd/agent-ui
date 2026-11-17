@@ -53,6 +53,8 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
       - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v6
         with:
@@ -62,6 +64,10 @@ jobs:
         with:
           tool: mdbook@0.5.4
       - run: pnpm install --frozen-lockfile
+      - name: Guard qualified version inputs before source acceptance
+        uses: lapismd/lapis-ci/actions/guard-version-runtime@dc81ff65ba812bf005fb2a806eb3308bb8b5f71f
+        with:
+          qualification-file: .github/versioning-runtime.json
       - run: node scripts/run-turbo.mjs ci:quality --summarize
       - run: node scripts/report-turbo-cache.mjs --github-summary
 

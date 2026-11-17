@@ -1,6 +1,6 @@
 # Agent
 
-The publishable package consumes Design Core `^0.12.4` through its public npm
+The publishable package consumes Design Core `^0.13.4` through its public npm
 exports. Registry release qualification is recorded separately from source
 review archives; this dependency intake does not change the public UI API.
 
@@ -14,6 +14,28 @@ ports when a host owns App-specific search, registry events or validated import
 plans. The shared screen remains the only layout. These ports cannot import App,
 start native services or bypass host validation. Import transcript options remain
 read-only and never replace the host save plan or captured source payload.
+
+AUI-GOV-007 governs shared registry intake; existing Agent contracts,
+public exports, controller lifetime and release gates remain unchanged.
+
+<!-- dependency-intake:ui-registry:start -->
+
+Current registry dependency coordinates; qualification remains separate.
+
+<!-- prettier-ignore -->
+| Manifest | Dependency | Range | Locked version |
+| --- | --- | --- | --- |
+| `package.json` (devDependencies) | `@lapismd/design-core` | `^0.13.4` | `0.13.4` |
+| `package.json` (devDependencies) | `@lapismd/jj-history` | `^0.1.0` | `0.1.0` |
+| `package.json` (devDependencies) | `@lapismd/mira` | `~0.2.0` | `0.2.0` |
+| `package.json` (devDependencies) | `@lapismd/spec-validator` | `^0.2.1` | `0.2.1` |
+| `packages/agent-ui/package.json` (dependencies) | `@lapismd/design-core` | `^0.13.4` | `0.13.4` |
+| `packages/repository-ui/package.json` (dependencies) | `@lapismd/design-core` | `^0.13.4` | `0.13.4` |
+| `packages/repository-ui/package.json` (dependencies) | `@lapismd/jj-history` | `^0.1.0` | `0.1.0` |
+
+Manifest, peer and integrity facts SHA256: `307bfe7e1c69717562c19c4fea604bf9ac0b7621f82890868f8f32e8577b748c`.
+
+<!-- dependency-intake:ui-registry:end -->
 
 ## AUI-CHAT-001 — Conversation
 

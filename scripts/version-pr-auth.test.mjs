@@ -27,7 +27,8 @@ test("version PRs require canonical main and a repository-scoped App without fal
   );
   assert.ok(app, "version PR writes require an App token");
   assert.equal(app.id, "app");
-  assert.equal(app.if, undefined);
+  assert.equal(app.if, "steps.runtime.outputs.hasChangesets == 'true'");
+  assert.equal(writer.if, app.if);
   assert.equal(app["continue-on-error"], undefined);
   assert.deepEqual(app.with, {
     "client-id": "${{ vars.LAPIS_DEPENDENCY_APP_CLIENT_ID }}",
@@ -78,11 +79,13 @@ test("the qualified direct-command runtime guard runs after install and before A
   );
   assert.equal(
     guard.uses,
-    "lapismd/lapis-ci/actions/guard-version-runtime@f73b6b98a4e1dc2e2c43ad92194f09ddb8c221f5",
+    "lapismd/lapis-ci/actions/guard-version-runtime@dc81ff65ba812bf005fb2a806eb3308bb8b5f71f",
   );
   assert.deepEqual(guard.with, {
     "qualification-file": ".github/versioning-runtime.json",
+    "detect-release-intent": "true",
   });
+  assert.equal(guard.id, "runtime");
   assert.equal(guard.if, undefined);
   assert.equal(guard["continue-on-error"], undefined);
   assert.ok(
@@ -122,4 +125,96 @@ test("qualification binds the unchanged CLI2 direct command and approved local i
   ]);
   for (const [file, expected] of Object.entries(qualification.files))
     assert.equal(hash(read(file)), expected, file);
+});
+
+test("ordinary quality verifies the same qualified inputs without writer authority", () => {
+  const quality = YAML.parse(
+    readFileSync(
+      new URL("../.github/workflows/check.yml", import.meta.url),
+      "utf8",
+    ),
+  ).jobs.quality;
+  assert.equal(
+    quality.steps[0].with?.["fetch-depth"],
+    0,
+    "ordinary source guard needs immutable baseline history",
+  );
+  const index = quality.steps.findIndex((step) =>
+    step.uses?.startsWith("lapismd/lapis-ci/actions/guard-version-runtime@"),
+  );
+  assert.ok(
+    index >
+      quality.steps.findIndex(
+        (step) => step.run === "pnpm install --frozen-lockfile",
+      ),
+  );
+  assert.equal(
+    quality.steps[index].uses,
+    "lapismd/lapis-ci/actions/guard-version-runtime@dc81ff65ba812bf005fb2a806eb3308bb8b5f71f",
+  );
+  assert.deepEqual(quality.steps[index].with, {
+    "qualification-file": ".github/versioning-runtime.json",
+  });
+  assert.ok(
+    !quality.steps.some((step) =>
+      step.uses?.startsWith("actions/create-github-app-token@"),
+    ),
+  );
+});
+
+test("completion uses only registered source workflows and one reviewed immutable shared pin", () => {
+  const callback = YAML.parse(
+    readFileSync(
+      new URL("../.github/workflows/dependency-completed.yml", import.meta.url),
+      "utf8",
+    ),
+  );
+  assert.deepEqual(callback.on, {
+    workflow_run: {
+      workflows: [
+        "Verify packages and review catalog",
+        "Publish Storybook to GitHub Pages",
+        "Prepare package versions",
+      ],
+      types: ["completed"],
+    },
+  });
+  assert.deepEqual(callback.permissions, {
+    contents: "read",
+    actions: "read",
+    "pull-requests": "read",
+  });
+  assert.equal(callback.concurrency, undefined);
+  const job = callback.jobs.notify;
+  assert.equal(
+    job.uses,
+    "lapismd/dependency-automation/.github/workflows/completion.yml@053ac8be573871ccc5b0232bc91d8ce7f3bff02f",
+  );
+  assert.equal(
+    job.with["automation-ref"],
+    "053ac8be573871ccc5b0232bc91d8ce7f3bff02f",
+  );
+  assert.deepEqual(job.secrets, {
+    "app-private-key": "${{ secrets.LAPIS_DEPENDENCY_APP_PRIVATE_KEY }}",
+  });
+  assert.equal(job.steps, undefined);
+  assert.equal(job.if, "github.event.workflow_run.conclusion == 'success'");
+  assert.deepEqual(Object.keys(job.with), ["automation-ref"]);
+});
+
+test("functional cache inputs retain source policy and recipe bindings", () => {
+  const turbo = JSON.parse(
+    readFileSync(new URL("../turbo.json", import.meta.url), "utf8"),
+  );
+  for (const pattern of [
+    ".github/dependency-automation/**",
+    ".github/versioning-runtime.json",
+    "scripts/**",
+    "spec/**",
+    "package.json",
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml",
+  ])
+    assert.ok(turbo.globalDependencies.includes(pattern), pattern);
+  assert.equal(turbo.tasks["//#ci:governance"].cache, false);
 });

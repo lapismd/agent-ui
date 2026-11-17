@@ -4,12 +4,10 @@
 
 Dependency update PRs from the trusted LapisMD App, Dependabot or Renovate MAY skip specification checks using the PR author rather than the rerun actor. Functional checks remain required. The shared `lapismd/dependency-automation` coordinator proposes published first-party npm updates with Changeset release intent where required; it does not merge, publish, sign or deploy. This CI policy changes no runtime or public contract in this chapter.
 
-The server UI dependency cohort qualifies Design Core 0.8 and 0.9 through portable
-ranges and explicit checksum-verified archives. Token provenance retains its
-authored source path; validation resolves a unique installed export root when
-prepared packages relocate source to built output. Ambiguous or missing roots
-and mismatched defaults continue to fail. This tooling qualification grants no
-publication, native installation or downstream release authority.
+Historical cohort and staged adoption evidence is retained in the
+[adoption provenance record](../records/2026-11-17-adoption-provenance.md).
+Current source ownership, host, review and publication requirements below remain
+authoritative; dependency automation grants no product or baseline authority.
 
 Specification discovery uses `pnpm spec:search` with semantic QMD retrieval;
 doctor and a real search qualify its local wiring without running search in CI.
@@ -17,11 +15,6 @@ doctor and a real search qualify its local wiring without running search in CI.
 Settings composition coverage MUST check themed body surfaces, dividers between
 field groups and the public default MarkdownComposer with multiline form semantics.
 Rich read-only Profile values MUST exercise Markdown formatting, links and lists.
-
-Lapis Desktop shared-screen adoption uses isolated Jujutsu workspaces and
-verified public archives. The Desktop plan also authorizes portable chat presentation, session admission
-and exact read-only capture metadata contracts. The portable `/history` entry exposes existing
-controllers without loading presentation components into native host adapters.
 
 Configured-agent consumer contracts MUST document absent source timestamps and
 unproven profile associations explicitly; example data MUST NOT imply that hosts
@@ -37,12 +30,6 @@ limit. This classification must not depend on the test runner.
 Browser acceptance MUST reveal virtualized editor widgets through real keyboard
 or scroll navigation before invoking their actions, preserving exact source and
 undo assertions.
-
-The approved Projects, Agents, Threads and JJ Desktop integration plan supersedes
-the historical per-section stop boundaries below. Its five slices are authorized
-for continuous implementation and focused commits, followed by required broader
-qualification. Complete Storybook scenarios remain visual-pending. JJ Desktop
-is the authorized consumer; publication and installed-app replacement are excluded.
 
 The request-card slice uses isolated Jujutsu workspaces and focused controller,
 component, type and spec checks before review. Downstream adoption and broad
@@ -135,10 +122,24 @@ Released Mira 0.1.4 pins KaTeX 0.18.10, inside that advisory's patched range,
 and published Core 0.7.4 requires that Mira release. UI MUST NOT add duplicated
 Mira runtime dependencies or consumer overrides to conceal an owning-source issue.
 
-The maintenance catalog intake of released Mira 0.2 is development-only. It
-changes no production export, controller lifetime or host authority. The Core
-0.13.1 package floor remains the owning published dependency contract; required
-registry/archive, catalog and browser checks remain publication gates.
+<!-- dependency-intake:ui-registry:start -->
+
+Current registry dependency coordinates; qualification remains separate.
+
+<!-- prettier-ignore -->
+| Manifest | Dependency | Range | Locked version |
+| --- | --- | --- | --- |
+| `package.json` (devDependencies) | `@lapismd/design-core` | `^0.13.4` | `0.13.4` |
+| `package.json` (devDependencies) | `@lapismd/jj-history` | `^0.1.0` | `0.1.0` |
+| `package.json` (devDependencies) | `@lapismd/mira` | `~0.2.0` | `0.2.0` |
+| `package.json` (devDependencies) | `@lapismd/spec-validator` | `^0.2.1` | `0.2.1` |
+| `packages/agent-ui/package.json` (dependencies) | `@lapismd/design-core` | `^0.13.4` | `0.13.4` |
+| `packages/repository-ui/package.json` (dependencies) | `@lapismd/design-core` | `^0.13.4` | `0.13.4` |
+| `packages/repository-ui/package.json` (dependencies) | `@lapismd/jj-history` | `^0.1.0` | `0.1.0` |
+
+Manifest, peer and integrity facts SHA256: `307bfe7e1c69717562c19c4fea604bf9ac0b7621f82890868f8f32e8577b748c`.
+
+<!-- dependency-intake:ui-registry:end -->
 
 ## AUI-GOV-001 — Source ownership
 
@@ -178,17 +179,6 @@ families MUST copy the source canvas/lane/card/files/history geometry, reuse the
 portable stack controller and share existing graph/diff primitives. Host-owned
 navigation/actions and controller lifetime remain explicit; transfers, mutation
 dialogs and forge transport wait for their separate slices and review.
-
-The drag/drop review follow-up authorizes connecting the existing workspace drag
-session and demonstrating transfers with an isolated in-memory preview/apply
-adapter. Production components emit host commands only. Native execution,
-full mutation dialogs, forge transport and downstream adoption remain deferred.
-
-The next Stacks/Workspace alignment follow-up authorizes source-adapted PR
-details, action bars, commit drafts and the detachable floating panel in this
-repository. Host-owned exact data and action ports replace native forge and
-notification services. Live forge transport and downstream adoption remain
-separate review gates.
 
 The RUI-FOUND-001 custom identifier-pair extension updates its source-ledger adaptation, complete public usage example and patch Changeset together; existing native labels remain the default and no consumer override replaces the shared control.
 
@@ -398,3 +388,13 @@ dialogs and forge transport wait for their separate slices and review.
 
 - Declared and locked versions exclude fixed advisory ranges; unresolved findings stay explicit and are not clean.
 - Frozen installs, the approved Bits UI patch and all functional/axe/runtime gates remain.
+
+## AUI-GOV-007 — Shared dependency intake
+
+**Requirement.** Reviewed workspace intake MUST preserve all three manifest owners, supported public ranges and immutable registry identities. Its ordinary independent functional guard MUST verify exact managed facts outside bot spec exemptions; only compatible stable patch updates and reviewed registry-transitive closure are supported. A
+source- bound initial SDK bootstrap MUST match exact baseline/input/policy hashes; later candidates MUST have unchanged source policy and factual slots in every mapped owning chapter. Completion MUST verify existing workflow identities at one reviewed immutable coordinator pin before App minting.
+
+### Acceptance details
+
+- The ordinary functional guard MUST reject unsupported updates, owner/peer/catalog drift and stale or manual managed facts.
+- Empty maintenance notes MUST acquire no writer token; completion MUST use only reviewed source code and registered current workflow evidence.

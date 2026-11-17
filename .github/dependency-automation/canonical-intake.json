@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 2,
+  "kind": "workspace-dependency-intake",
+  "repository": "lapismd/agent-ui",
+  "slot": "ui-registry",
+  "dependencies": [
+    "@lapismd/design-core",
+    "@lapismd/jj-history",
+    "@lapismd/mira",
+    "@lapismd/spec-validator"
+  ],
+  "manifests": [
+    "package.json",
+    "packages/agent-ui/package.json",
+    "packages/repository-ui/package.json"
+  ],
+  "chapters": [
+    "spec/src/governance.md",
+    "spec/src/agent.md",
+    "spec/src/repository.md"
+  ],
+  "lockClosure": "registry-transitives"
+}

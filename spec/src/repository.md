@@ -1,38 +1,52 @@
 # Repository
 
-The publishable package consumes Design Core `^0.7.4 || ^0.8.0 || ^0.9.0` through its public npm
-exports. Registry release qualification is recorded separately from source
-review archives; this dependency intake does not change the public UI API.
+The publishable package consumes Design Core `^0.13.4` through public npm exports. Registry qualification remains
+separate from source review archives.
 
-Documented public-import examples MUST compile in clean package acceptance,
-including icon dependencies explicitly imported by the consumer. Host-owned
-controller lifetimes MUST capture their initial constructor inputs explicitly;
-reactive callback props MUST remain invoked through closures. Documentation
-example repairs do not change the completed history/browser screen contracts.
+Documented public-import examples MUST compile in clean package acceptance, including icon dependencies explicitly
+imported by the consumer. Host-owned controller lifetimes MUST capture their initial constructor inputs explicitly;
+reactive callback props MUST remain invoked through closures. Documentation example repairs do not change the completed
+history/browser screen contracts.
 
 Following the same active editor file MUST retain its explicitly selected
 operation; only an explicit new operation or changed file scope replaces it.
 
-The current review slice copies Desktop JJ history components and controllers
-through public, operation-pinned HistoryReader ports, with complete in-memory
-examples under JJ. Native admission, repository access, notification policy,
-avatar resolution and preference persistence stay host-owned.
+Historical Desktop JJ source-review scope is retained in the [adoption provenance record](../records/2026-11-17-adoption-provenance.md).
 
 An explicit successful independent diff retry MUST clear its host feedback.
 Stale, closed or unconfirmed reads cannot acknowledge recovery.
+
+AUI-GOV-007 governs shared registry intake; existing Repository contracts, public exports, host authority and release
+gates remain unchanged.
+
+<!-- dependency-intake:ui-registry:start -->
+
+Current registry dependency coordinates; qualification remains separate.
+
+<!-- prettier-ignore -->
+| Manifest | Dependency | Range | Locked version |
+| --- | --- | --- | --- |
+| `package.json` (devDependencies) | `@lapismd/design-core` | `^0.13.4` | `0.13.4` |
+| `package.json` (devDependencies) | `@lapismd/jj-history` | `^0.1.0` | `0.1.0` |
+| `package.json` (devDependencies) | `@lapismd/mira` | `~0.2.0` | `0.2.0` |
+| `package.json` (devDependencies) | `@lapismd/spec-validator` | `^0.2.1` | `0.2.1` |
+| `packages/agent-ui/package.json` (dependencies) | `@lapismd/design-core` | `^0.13.4` | `0.13.4` |
+| `packages/repository-ui/package.json` (dependencies) | `@lapismd/design-core` | `^0.13.4` | `0.13.4` |
+| `packages/repository-ui/package.json` (dependencies) | `@lapismd/jj-history` | `^0.1.0` | `0.1.0` |
+
+Manifest, peer and integrity facts SHA256: `307bfe7e1c69717562c19c4fea604bf9ac0b7621f82890868f8f32e8577b748c`.
+
+<!-- dependency-intake:ui-registry:end -->
 
 ## RUI-FOUND-001 — Component foundations
 
 **Requirement.** JJ foundations MUST follow the same per-folder documentation, styling contracts and fail-closed specification enforcement as Agent foundations.
 
-Filename titles and shared file listings MUST use the public Design Core
-FileTypeIcon from the host-issued path while retaining original geometry,
-truncation, folder affordances and explicit navigation identities.
-Hosts can use the public `encodeJjChangeId` helper for native hex change IDs
-before passing display models to file, branch and stack components.
-RepositoryIdentifiers retains its joined native GIT/JJ defaults and supports
-explicit copy/visible labels for a pair of exact host-owned non-VCS values,
-with independent copy feedback and sufficient label width without identity conversion.
+Filename titles and shared file listings MUST use the public Design Core FileTypeIcon from the host-issued path while
+retaining original geometry, truncation, folder affordances and explicit navigation identities. Hosts can use the public
+`encodeJjChangeId` helper for native hex change IDs before passing display models to file, branch and stack components.
+RepositoryIdentifiers retains its joined native GIT/JJ defaults and supports explicit copy/visible labels for a pair of
+exact host-owned non-VCS values, with independent copy feedback and sufficient label width without identity conversion.
 
 ### Acceptance details
 
@@ -56,33 +70,31 @@ with independent copy feedback and sufficient label width without identity conve
 
 **Requirement.** Repository screens MUST preserve host-issued operation, revision and path identities while composing file, directory, code and document views through public primitives.
 
-The browser adapts JJ Store's resizable AppShell body sidebar, breadcrumb,
-directory table with attribution and recorded file/document previews. Typed
-read-only ports bind repository, operation, revision, canonical path and
-recursive/page scope. Controllers reject mismatched responses, repeated cursors
-and duplicate rows, fence stale reads, bound loaded pages and abort/drain owned
-work on close. Construction and mounting MUST NOT mutate repository state.
-Hosts supply navigation, clipboard, history/blame actions, custom header/row
-controls and layout persistence. Sidebar actions MUST use public Design Core
-PanelToggle controls; file previews MUST size to available space without forced
-minimum content heights or redundant nested vertical scrolling. File display
-MUST retain JJ Store's Preview/Source/Blame text toggles, render Blame in place
-of the file contents and expose shadcn tooltips plus semantic hover feedback
-for header actions. Directory description links MUST retain normal text colour
-until hover. The reusable snapshot picker MUST preserve JJ Store's command
-view with bookmark/change filters, commit keyword search and typed complete
-choices; the host resolves zero/multiple targets and owns pinned navigation.
-Change choices MUST reuse a documented shared card with author avatar, message,
-time and exact Git/JJ copy controls that do not activate the surrounding row.
-Complete Files headers MUST use public AppShell header components with matching
-body/sidebar header heights; standalone trees MAY receive a host header snippet.
-Both body sidebars MUST expose independent bounded pointer and keyboard resize controls, bindable widths and host persistence callbacks. The right inspector MUST default/reset to 420px while retaining host-controlled width and 280–800px resize bounds, and use the same semantic background as the body.
-File history MUST use a transparent public AppShell.Toolbar of the same height,
-group recorded revisions by date, retain the shared Git/JJ copy buttons, and
-expose separate host callbacks for viewing file code and browsing the repository
-at that revision. Description disclosure MUST reveal the recorded Markdown body
-with the existing View more/View less behavior for long messages. Directory summaries and file metadata MUST reuse this same local disclosure beneath the metadata row, without navigating to another commit or changing the selected pin. Directory and file metadata MUST keep the expanded description inside their existing bordered card, below the unchanged header row, with a divider and a theme-muted body surface. The description button MUST retain a visible theme-based background while expanded. Metadata detail panels MUST retain 8px top and horizontal padding with zero bottom padding and outer margins; other commit-description surfaces keep their existing defaults. Missing host
-navigation capabilities MUST remain absent rather than inventing routes.
+The browser adapts JJ Store's resizable AppShell body sidebar, breadcrumb, directory table with attribution and recorded
+file/document previews. Typed read-only ports bind repository, operation, revision, canonical path and recursive/page
+scope. Controllers reject mismatched responses, repeated cursors and duplicate rows, fence stale reads, bound loaded
+pages and abort/drain owned work on close. Construction and mounting MUST NOT mutate repository state. Hosts supply
+navigation, clipboard, history/blame actions, custom header/row controls and layout persistence. Sidebar actions MUST
+use public Design Core PanelToggle controls; file previews MUST size to available space without forced minimum content
+heights or redundant nested vertical scrolling. File display MUST retain JJ Store's Preview/Source/Blame text toggles,
+render Blame in place of the file contents and expose shadcn tooltips plus semantic hover feedback for header actions.
+Directory description links MUST retain normal text colour until hover. The reusable snapshot picker MUST preserve JJ
+Store's command view with bookmark/change filters, commit keyword search and typed complete choices; the host resolves
+zero/multiple targets and owns pinned navigation. Change choices MUST reuse a documented shared card with author avatar,
+message, time and exact Git/JJ copy controls that do not activate the surrounding row. Complete Files headers MUST use
+public AppShell header components with matching body/sidebar header heights; standalone trees MAY receive a host header
+snippet. Both body sidebars MUST expose independent bounded pointer and keyboard resize controls, bindable widths and
+host persistence callbacks. The right inspector MUST default/reset to 420px while retaining host-controlled width and
+280–800px resize bounds, and use the same semantic background as the body. File history MUST use a transparent public
+AppShell.Toolbar of the same height, group recorded revisions by date, retain the shared Git/JJ copy buttons, and expose
+separate host callbacks for viewing file code and browsing the repository at that revision. Description disclosure MUST
+reveal the recorded Markdown body with the existing View more/View less behavior for long messages. Directory summaries
+and file metadata MUST reuse this same local disclosure beneath the metadata row, without navigating to another commit
+or changing the selected pin. Directory and file metadata MUST keep the expanded description inside their existing
+bordered card, below the unchanged header row, with a divider and a theme-muted body surface. The description button
+MUST retain a visible theme-based background while expanded. Metadata detail panels MUST retain 8px top and horizontal
+padding with zero bottom padding and outer margins; other commit-description surfaces keep their existing defaults.
+Missing host navigation capabilities MUST remain absent rather than inventing routes.
 
 ### Acceptance details
 
@@ -97,13 +109,11 @@ navigation capabilities MUST remain absent rather than inventing routes.
 and Branches/Revisions/Diff canvas, with host-owned exact operation pins and
 read-only reference ports. Files provides the repository overview.
 
-References resolve before graph reads. Single targets use exact ancestry,
-conflicted targets use a union, and deleted references use none(). Branch
-switches clear dependent selections. Working copies open their exact commit
-while retaining the ancestry graph. Reference paging is bounded and
-deduplicated; graph paging retains its target query and evaluation clock.
-Invalid pins, repeated cursors, duplicate identities and stale replies fail
-closed. Closing aborts/drains owned work and releases history handles.
+References resolve before graph reads. Single targets use exact ancestry, conflicted targets use a union, and deleted
+references use none(). Branch switches clear dependent selections. Working copies open their exact commit while
+retaining the ancestry graph. Reference paging is bounded and deduplicated; graph paging retains its target query and
+evaluation clock. Invalid pins, repeated cursors, duplicate identities and stale replies fail closed. Closing
+aborts/drains owned work and releases history handles.
 
 The independently resizable three-column canvas reuses existing graph, changed
 files and single/all-file diff components, with keyboard controls and trailing

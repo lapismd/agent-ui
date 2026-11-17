@@ -24,7 +24,9 @@
     "vite.config.ts",
     "tsconfig.json",
     "spec-validator.config.mjs",
-    ".node-version"
+    ".node-version",
+    ".github/dependency-automation/**",
+    ".github/versioning-runtime.json"
   ],
   "tasks": {
     "//#ci:governance": {
