@@ -395,6 +395,6 @@ dialogs and forge transport wait for their separate slices and review.
 
 ### Acceptance details
 
-- The ordinary functional guard MUST reject unsupported updates, owner/peer/catalog drift and stale or manual managed facts.
+- The ordinary functional guard MUST reject unsupported updates, owner/peer/catalog drift and stale or manual facts using the same immutable Git/Jujutsu parent for source facts and changed paths, including the actual runtime Changeset in clean CI.
 - Empty maintenance notes MUST acquire no writer token; completion MUST use only reviewed source code and registered current workflow evidence.
 - No-note qualification MUST use the current immutable remote baseline; stale local bookmarks MUST NOT choose note policy.

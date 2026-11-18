@@ -1,7 +1,6 @@
 import { readFileSync, realpathSync, lstatSync } from "node:fs";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
-import { changesFromVcs } from "@lapismd/spec-validator";
 import { sourceIntakeReader } from "./source-intake-reader.mjs";
 import { sourceBaseline } from "./initial-intake.mjs";
 import { verifyIntake } from "./workspace-intake.mjs";
@@ -31,7 +30,7 @@ export function checkWorkspaceIntake(root = process.cwd()) {
     files,
     metadataBytes: read(".github/dependency-automation/bootstrap.json"),
   });
-  const changedFiles = changesFromVcs({}, root).map((change) => change.path);
+  const changedFiles = base.changedFiles();
   for (const path of changedFiles)
     if (/^\.changeset\/lapis-dependencies-[a-f0-9]{12}\.md$/u.test(path))
       files[path] = read(path);
