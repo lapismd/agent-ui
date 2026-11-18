@@ -1,13 +1,13 @@
 {
   "build": "pnpm -r build",
-  "check": "pnpm check:validation-routing && pnpm check:catalog-composition && pnpm spec:validate && pnpm check:architecture && pnpm check:source-layout && svelte-check --tsconfig tsconfig.json --fail-on-warnings && pnpm format:check",
+  "check": "pnpm check:dependency-intake && pnpm check:validation-routing && pnpm check:catalog-composition && pnpm spec:validate && pnpm check:architecture && pnpm check:source-layout && svelte-check --tsconfig tsconfig.json --fail-on-warnings && pnpm format:check",
   "check:architecture": "node scripts/architecture.mjs",
   "test": "pnpm validation:check && vitest run --project unit",
   "test:storybook": "node scripts/storybook-tests.mjs",
   "test:package": "node scripts/package-acceptance.mjs",
   "build-storybook": "pnpm build && storybook build --disable-telemetry && pnpm check:catalog",
   "spec:validate": "node scripts/dependency-automation/spec-policy.mjs validate",
-  "spec:check": "pnpm check:validation-routing && pnpm check:catalog-composition && node scripts/dependency-automation/spec-policy.mjs check && node --test scripts/version-pr-auth.test.mjs",
+  "spec:check": "pnpm check:dependency-intake && pnpm check:validation-routing && pnpm check:catalog-composition && node scripts/dependency-automation/spec-policy.mjs check && node --test scripts/version-pr-auth.test.mjs",
   "spec:first": "node scripts/dependency-automation/spec-policy.mjs first",
   "spec:build": "node scripts/dependency-automation/spec-policy.mjs build",
   "format:check": "prettier --check .",
@@ -17,8 +17,9 @@
   "storybook:check": "pnpm test:storybook && pnpm test:browser && pnpm build-storybook",
   "checks": "pnpm validation:smoke && pnpm check && pnpm test && pnpm storybook:check && pnpm test:package && pnpm spec:check && pnpm check:workflow",
   "check:validation-routing": "node scripts/validation/check-routing.mjs",
-  "validation:check": "node --test scripts/validation.test.mjs scripts/validation-archives.test.mjs scripts/turbo.test.mjs scripts/npm-publish.test.mjs scripts/version-pr-auth.test.mjs && node scripts/check-catalog-composition.mjs && vitest run --project unit tests/runtime-diagnostics.test.ts tests/catalog-composition.test.ts",
+  "validation:check": "node --test scripts/dependency-automation/*.test.mjs scripts/validation.test.mjs scripts/validation-archives.test.mjs scripts/turbo.test.mjs scripts/npm-publish.test.mjs scripts/version-pr-auth.test.mjs && node scripts/check-catalog-composition.mjs && vitest run --project unit tests/runtime-diagnostics.test.ts tests/catalog-composition.test.ts",
   "validation:smoke": "node scripts/validation/smoke.mjs",
   "check:catalog-composition": "node scripts/check-catalog-composition.mjs",
-  "check:workflow": "actionlint && node --test scripts/version-pr-auth.test.mjs"
+  "check:workflow": "actionlint && node --test scripts/version-pr-auth.test.mjs",
+  "check:dependency-intake": "node scripts/dependency-automation/check-workspace-intake.mjs"
 }

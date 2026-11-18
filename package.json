@@ -47,14 +47,15 @@
     "ci:storybook-interaction": "pnpm test:storybook",
     "ci:browser": "pnpm test:browser",
     "spec:search": "spec-validator search --semantic",
-    "spec:index": "spec-validator index"
+    "spec:index": "spec-validator index",
+    "check:dependency-intake": "node scripts/validation.mjs run check:dependency-intake"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.1",
     "@lapismd/design-core": "^0.13.4",
     "@lapismd/jj-history": "^0.1.0",
     "@lapismd/mira": "~0.2.0",
-    "@lapismd/spec-validator": "^0.2.0",
+    "@lapismd/spec-validator": "^0.2.1",
     "@lucide/svelte": "^1.57.0",
     "@playwright/test": "1.61.1",
     "@storybook/addon-a11y": "10.6.7",

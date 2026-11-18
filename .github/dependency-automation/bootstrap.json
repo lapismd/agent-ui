@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "baselineSource": "1643b8dad19f6da57873899a6f60d8f8de9a1515",
+  "policySha256": "07f966aac8ef2ce5ed9e6bfcb9058c7796e30fa1d017352cc0371dbccc58226b",
+  "inputs": {
+    "pnpm-workspace.yaml": {
+      "before": "685c40cc27d7db8efd1fd331a8688ef6ec1d9ef2a774c8a6e66eaa5ea0474621",
+      "after": "685c40cc27d7db8efd1fd331a8688ef6ec1d9ef2a774c8a6e66eaa5ea0474621"
+    },
+    "pnpm-lock.yaml": {
+      "before": "7133a6f1f1b2a908c35698cd7682090338431416a8eae3945c4f25fb9e254d1d",
+      "after": "4ca1f373d66fd9fa33da3ecf9a4229975ab62300bbf874c9939864f297e3bd40"
+    },
+    "package.json": {
+      "before": "84b7f84df6a53d4723bd5ef08dbba66c19f231ce9902aff74563e85ceba072b3",
+      "after": "52896070121704608908e13b52294502756538af3618a8dceb289d40609261c4"
+    },
+    "packages/agent-ui/package.json": {
+      "before": "24ef832edc4e191d041bfd560e04c3c915216feabb409dcfc97bcd2c3d163279",
+      "after": "24ef832edc4e191d041bfd560e04c3c915216feabb409dcfc97bcd2c3d163279"
+    },
+    "packages/repository-ui/package.json": {
+      "before": "879fde271d78da2104643c2ee0cf769a5a8bb422ccbe82a38cc4d4dd23ab3189",
+      "after": "879fde271d78da2104643c2ee0cf769a5a8bb422ccbe82a38cc4d4dd23ab3189"
+    }
+  }
+}

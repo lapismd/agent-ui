@@ -1,3 +1,12 @@
+# Shared dependency automation
+
+AUI-GOV-007 prepares three manifest owners, four registry inputs, exact managed
+facts, independent normal guards, source-bound SDK bootstrap, genuine-intent
+version admission and an immutable completion callback. Details and outstanding
+hosted acceptance/activation are tracked in
+`spec/records/2026-11-17-shared-dependency-adoption.md` and coordinator task59.
+This introduces no runtime package release or baseline authority.
+
 # Release guidance
 
 The version-PR App authentication slice records focused source and tooling
