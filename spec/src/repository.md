@@ -26,15 +26,15 @@ Current registry dependency coordinates; qualification remains separate.
 <!-- prettier-ignore -->
 | Manifest | Dependency | Range | Locked version |
 | --- | --- | --- | --- |
-| `package.json` (devDependencies) | `@lapismd/design-core` | `^0.13.4` | `0.13.4` |
+| `package.json` (devDependencies) | `@lapismd/design-core` | `^0.13.5` | `0.13.5` |
 | `package.json` (devDependencies) | `@lapismd/jj-history` | `^0.1.0` | `0.1.0` |
 | `package.json` (devDependencies) | `@lapismd/mira` | `~0.2.0` | `0.2.0` |
 | `package.json` (devDependencies) | `@lapismd/spec-validator` | `^0.2.1` | `0.2.1` |
-| `packages/agent-ui/package.json` (dependencies) | `@lapismd/design-core` | `^0.13.4` | `0.13.4` |
-| `packages/repository-ui/package.json` (dependencies) | `@lapismd/design-core` | `^0.13.4` | `0.13.4` |
+| `packages/agent-ui/package.json` (dependencies) | `@lapismd/design-core` | `^0.13.5` | `0.13.5` |
+| `packages/repository-ui/package.json` (dependencies) | `@lapismd/design-core` | `^0.13.5` | `0.13.5` |
 | `packages/repository-ui/package.json` (dependencies) | `@lapismd/jj-history` | `^0.1.0` | `0.1.0` |
 
-Manifest, peer and integrity facts SHA256: `307bfe7e1c69717562c19c4fea604bf9ac0b7621f82890868f8f32e8577b748c`.
+Manifest, peer and integrity facts SHA256: `79d4f0c97bbcb937c71ae05e35da123533c270db0729bcf9d871f13b0f610780`.
 
 <!-- dependency-intake:ui-registry:end -->
 
