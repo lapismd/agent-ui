@@ -274,7 +274,7 @@ Version preparation MUST run the pinned shared runtime guard after the existing 
 - Version changes MUST derive from committed Changesets, preserve independent package versions and update the portable registry lock.
 - The Changesets changelog setting MUST write each bumped package's `CHANGELOG.md`, which the version action reads before it opens the pull request.
 - The reviewed bot branch MUST run the existing verification workflow; manual dispatch MAY start the same checks when token PR events are suppressed.
-- Merging the version PR MUST leave actual npm publication to the protected immutable-tag publisher.
+- Merging the version PR MUST leave actual npm publication to the protected immutable-tag publisher, and consumed managed notes MUST remain in captured changed paths without reading absent current bytes when dependency facts are unchanged.
 
 ## AUI-GOV-003 — Evidence
 
@@ -395,6 +395,6 @@ dialogs and forge transport wait for their separate slices and review.
 
 ### Acceptance details
 
-- The ordinary functional guard MUST reject unsupported updates, owner/peer/catalog drift and stale or manual facts using the same immutable Git/Jujutsu parent for source facts and changed paths, including the actual runtime Changeset in clean CI.
+- The ordinary functional guard MUST reject unsupported updates, owner/peer/catalog drift and stale or manual facts using the same immutable Git/Jujutsu parent for source facts and changed paths, including the actual runtime Changeset in clean CI, while note consumption MUST NOT waive a missing runtime release map and present notes MUST remain regular, source-contained files.
 - Empty maintenance notes MUST acquire no writer token; completion MUST use only reviewed source code and registered current workflow evidence.
 - No-note qualification MUST use the current immutable remote baseline; stale local bookmarks MUST NOT choose note policy.

@@ -4,7 +4,10 @@ import { pathToFileURL } from "node:url";
 import { sourceIntakeReader } from "./source-intake-reader.mjs";
 import { sourceBaseline } from "./initial-intake.mjs";
 import { verifyIntake } from "./workspace-intake.mjs";
-export function checkWorkspaceIntake(root = process.cwd()) {
+export function checkWorkspaceIntake(
+  root = process.cwd(),
+  sourceReader = sourceIntakeReader,
+) {
   const read = (path) => {
     const target = resolve(root, path);
     if (realpathSync(target) !== target || !lstatSync(target).isFile())
@@ -22,7 +25,7 @@ export function checkWorkspaceIntake(root = process.cwd()) {
   const documents = Object.fromEntries(
     policy.chapters.map((path) => [path, read(path)]),
   );
-  const base = sourceIntakeReader(root);
+  const base = sourceReader(root);
   const context = sourceBaseline({
     readPrevious: base,
     sourceSha: base.sourceSha,
@@ -32,7 +35,10 @@ export function checkWorkspaceIntake(root = process.cwd()) {
   });
   const changedFiles = base.changedFiles();
   for (const path of changedFiles)
-    if (/^\.changeset\/lapis-dependencies-[a-f0-9]{12}\.md$/u.test(path))
+    if (
+      /^\.changeset\/lapis-dependencies-[a-f0-9]{12}\.md$/u.test(path) &&
+      lstatSync(resolve(root, path), { throwIfNoEntry: false }) !== undefined
+    )
       files[path] = read(path);
   return verifyIntake({
     policyBytes,
