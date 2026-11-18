@@ -391,10 +391,10 @@ dialogs and forge transport wait for their separate slices and review.
 
 ## AUI-GOV-007 — Shared dependency intake
 
-**Requirement.** Reviewed workspace intake MUST preserve all three manifest owners, supported public ranges and immutable registry identities. Its ordinary independent functional guard MUST verify exact managed facts outside bot spec exemptions; only compatible stable patch updates and reviewed registry-transitive closure are supported. A
-source- bound initial SDK bootstrap MUST match exact baseline/input/policy hashes; later candidates MUST have unchanged source policy and factual slots in every mapped owning chapter. Completion MUST verify existing workflow identities at one reviewed immutable coordinator pin before App minting.
+**Requirement.** Reviewed workspace intake MUST preserve three manifest owners, supported public ranges and immutable registry identities. Its independent functional guard MUST verify exact managed facts outside bot spec exemptions; only compatible stable patch updates and reviewed registry-transitive closure are supported. A source- bound initial SDK bootstrap MUST match exact baseline/input/policy hashes; later candidates MUST have unchanged source policy and factual slots in every mapped owning chapter. Completion MUST verify existing workflow identities at one reviewed immutable coordinator pin before App minting.
 
 ### Acceptance details
 
 - The ordinary functional guard MUST reject unsupported updates, owner/peer/catalog drift and stale or manual managed facts.
 - Empty maintenance notes MUST acquire no writer token; completion MUST use only reviewed source code and registered current workflow evidence.
+- No-note qualification MUST use the current immutable remote baseline; stale local bookmarks MUST NOT choose note policy.
