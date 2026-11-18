@@ -7,6 +7,13 @@ hosted acceptance/activation are tracked in
 `spec/records/2026-11-17-shared-dependency-adoption.md` and coordinator task59.
 This introduces no runtime package release or baseline authority.
 
+## Actual generated runtime intake repair
+
+- [x] Reproduce actual bot42's clean-Git missing-note failure under AUI-GOV-007; preserve its real two-owner runtime release map and untouched bot branch.
+- [x] Bind changed paths to the same immutable parent as source facts, with actual generated-output Git/Jujutsu and negative controls in `spec/records/2026-11-18-generated-runtime-intake-git-range.md`.
+- [ ] Merge the owning source repair and acquire it through normal bot42 regeneration/rebase; do not manually patch the bot candidate to conceal the source defect.
+- [ ] Complete actual candidate/main/version/publication and ordinary replay before closing coordinator task59; earlier product-job passes alone do not qualify the independent guard.
+
 # Release guidance
 
 The version-PR App authentication slice records focused source and tooling
