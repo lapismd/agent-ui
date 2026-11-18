@@ -518,3 +518,5 @@ command against60826d6d with Deno absent and only the genuine historical
 Repository UI patch. Guard adoption is added as a separate verified slice;
 fresh PR CI and actual main guard execution remain required. Evidence is in
 `spec/records/2026-11-16-version-runtime-guard.md`.
+
+- Agent UI dependency release follow-up: genuine bot42 merged as `e2a5a2c1`; actual version44 proposes Agent UI0.2.9/Repository UI0.2.7. [Consumed-note repair](spec/records/2026-11-18-consumed-version-note.md) retains the original governance/quality failures; source fix/main and regenerated version/current publisher qualification remain pending.
