@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.1",
-    "@lapismd/design-core": "^0.13.5",
+    "@lapismd/design-core": "^0.13.6",
     "@lapismd/jj-history": "^0.1.0",
     "@lapismd/mira": "~0.2.0",
     "@lapismd/spec-validator": "^0.2.1",
